@@ -3,7 +3,7 @@
 Plugin Name: ThemeIsle Companion
 Plugin URI: https://github.com/Codeinwp/themeisle-companion
 Description: Creates the widgets "Zerif - Testimonial widget" , "Zerif - Team member widget" , "Zerif - Our focus widget" and "Zerif - Clients widget" in the Zerif Lite theme.
-Version: 1.0.0
+Version: 1.0.1
 Author: Themeisle
 Author URI: http://themeisle.com
 Text Domain: themeisle-companion
@@ -12,7 +12,7 @@ License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
 
-define( 'THEMEISLE_COMPANION_VERSION',  '1.0.0' );
+define( 'THEMEISLE_COMPANION_VERSION',  '1.0.1' );
 define( 'THEMEISLE_COMPANION_PATH',  plugin_dir_path( __FILE__ ) );
 define( 'THEMEISLE_COMPANION_URL',  plugin_dir_url( __FILE__ ) );
 
