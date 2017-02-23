@@ -295,9 +295,11 @@ function themeisle_populate_with_default_widgets() {
 		update_option( 'widget_zerif_team-widget', $ourteam_content );
 
 		$zerif_lite_counter ++;
-		
+
 		update_option( 'sidebars_widgets', $active_widgets );
 	}
+
+	update_option( 'themeisle_companion_flag','installed' );
 
 }
 
@@ -311,7 +313,8 @@ function themeisle_register_widgets() {
 	register_widget('zerif_clients_widget');
 	register_widget('zerif_team_widget');
 
-	if ( function_exists( 'themeisle_populate_with_default_widgets' ) ) {
+	$themeisle_companion_flag = get_option( 'themeisle_companion_flag' );
+	if ( ! empty( $themeisle_companion_flag ) && function_exists( 'themeisle_populate_with_default_widgets' ) ) {
 		themeisle_populate_with_default_widgets();
 	}
 
