@@ -15,10 +15,6 @@ This plugin is the companion plugin for Zerif Lite. It creates the widgets "Zeri
 
 == Changelog ==
 
-= 1.0.1 =
-
-* Populate Zerif Lite frontpage widget areas with default widgets
-
 = 1.0.0 =
 
 * First version of the plugin
