@@ -26,7 +26,7 @@ if ( ! function_exists( 'add_action' ) ) {
  */
 function themeisle_populate_with_default_widgets() {
 
-	$zerif_lite_sidebars = array ( 'sidebar-ourfocus' => 'sidebar-ourfocus', 'sidebar-testimonials' => 'sidebar-testimonials', 'sidebar-ourteam' => 'sidebar-ourteam' );
+	$zerif_lite_sidebars = array ( 'sidebar-ourfocus' => 'sidebar-ourfocus', 'sidebar-testimonials' => 'sidebar-testimonials', 'sidebar-ourteam' => 'sidebar-ourteam', 'sidebar-aboutus' => 'sidebar-aboutus' );
 
 	$active_widgets = get_option( 'sidebars_widgets' );
 
@@ -297,6 +297,56 @@ function themeisle_populate_with_default_widgets() {
 		$zerif_lite_counter ++;
 
 		update_option( 'sidebars_widgets', $active_widgets );
+	}
+
+	/**
+	 * Populate the Aboutus sidebar with Client widgets
+	 */
+	if ( empty ( $active_widgets[ $zerif_lite_sidebars['sidebar-aboutus'] ] ) ) {
+
+		$zerif_lite_counter = 1;
+
+		/* client widget #1 */
+
+		$active_widgets['sidebar-aboutus'][0] = 'zerif_clients-widget-' . $zerif_lite_counter;
+
+		$client_content[ $zerif_lite_counter ] = array(
+			'link'      => '#',
+			'image_uri' => get_template_directory_uri() . "/images/parallax.png"
+		);
+
+		update_option( 'widget_zerif_clients-widget', $client_content );
+
+		/* client widget #2 */
+
+		$active_widgets['sidebar-aboutus'][] = 'zerif_clients-widget-' . $zerif_lite_counter;
+
+		$client_content[ $zerif_lite_counter ] = array(
+			'link'      => '#',
+			'image_uri' => get_template_directory_uri() . "/images/parallax.png"
+		);
+
+		update_option( 'widget_zerif_clients-widget', $client_content );
+
+		$zerif_lite_counter ++;
+
+		update_option( 'sidebars_widgets', $active_widgets );
+
+		/* client widget #3 */
+
+		$active_widgets['sidebar-aboutus'][] = 'zerif_clients-widget-' . $zerif_lite_counter;
+
+		$client_content[ $zerif_lite_counter ] = array(
+			'link'      => '#',
+			'image_uri' => get_template_directory_uri() . "/images/parallax.png"
+		);
+
+		update_option( 'widget_zerif_clients-widget', $client_content );
+
+		$zerif_lite_counter ++;
+
+		update_option( 'sidebars_widgets', $active_widgets );
+
 	}
 
 	update_option( 'themeisle_companion_flag','installed' );
