@@ -312,10 +312,12 @@ function themeisle_populate_with_default_widgets() {
 
 		$client_content[ $zerif_lite_counter ] = array(
 			'link'      => '#',
-			'image_uri' => get_template_directory_uri() . "/images/parallax.png"
+			'image_uri' => get_template_directory_uri() . "/images/clients1.png"
 		);
 
 		update_option( 'widget_zerif_clients-widget', $client_content );
+
+		$zerif_lite_counter ++;
 
 		/* client widget #2 */
 
@@ -323,7 +325,7 @@ function themeisle_populate_with_default_widgets() {
 
 		$client_content[ $zerif_lite_counter ] = array(
 			'link'      => '#',
-			'image_uri' => get_template_directory_uri() . "/images/parallax.png"
+			'image_uri' => get_template_directory_uri() . "/images/clients2.png"
 		);
 
 		update_option( 'widget_zerif_clients-widget', $client_content );
@@ -338,7 +340,37 @@ function themeisle_populate_with_default_widgets() {
 
 		$client_content[ $zerif_lite_counter ] = array(
 			'link'      => '#',
-			'image_uri' => get_template_directory_uri() . "/images/parallax.png"
+			'image_uri' => get_template_directory_uri() . "/images/clients3.png"
+		);
+
+		update_option( 'widget_zerif_clients-widget', $client_content );
+
+		$zerif_lite_counter ++;
+
+		update_option( 'sidebars_widgets', $active_widgets );
+
+		/* client widget #4 */
+
+		$active_widgets['sidebar-aboutus'][] = 'zerif_clients-widget-' . $zerif_lite_counter;
+
+		$client_content[ $zerif_lite_counter ] = array(
+			'link'      => '#',
+			'image_uri' => get_template_directory_uri() . "/images/clients4.png"
+		);
+
+		update_option( 'widget_zerif_clients-widget', $client_content );
+
+		$zerif_lite_counter ++;
+
+		update_option( 'sidebars_widgets', $active_widgets );
+
+		/* client widget #5 */
+
+		$active_widgets['sidebar-aboutus'][] = 'zerif_clients-widget-' . $zerif_lite_counter;
+
+		$client_content[ $zerif_lite_counter ] = array(
+			'link'      => '#',
+			'image_uri' => get_template_directory_uri() . "/images/clients5.png"
 		);
 
 		update_option( 'widget_zerif_clients-widget', $client_content );
