@@ -395,9 +395,16 @@ function themeisle_register_widgets() {
 	register_widget('zerif_clients_widget');
 	register_widget('zerif_team_widget');
 
-	$themeisle_companion_flag = get_option( 'themeisle_companion_flag' );
-	if ( empty( $themeisle_companion_flag ) && function_exists( 'themeisle_populate_with_default_widgets' ) ) {
-		themeisle_populate_with_default_widgets();
+	$theme = wp_get_theme();
+
+	/* Populate the sidebar only for Zerif Lite */
+	if ( 'Zerif Lite' == $theme->name || 'Zerif Lite' == $theme->parent_theme ) {
+
+		$themeisle_companion_flag = get_option( 'themeisle_companion_flag' );
+		if ( empty( $themeisle_companion_flag ) && function_exists( 'themeisle_populate_with_default_widgets' ) ) {
+			themeisle_populate_with_default_widgets();
+		}
+
 	}
 
 }
