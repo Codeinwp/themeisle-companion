@@ -86,7 +86,7 @@ if ( ! function_exists( 'hestia_features' ) ) :
 							$text = ! empty( $features_item->text ) ? apply_filters( 'hestia_translate_single_string', $features_item->text, 'Features section' ) : '';
 							$link = ! empty( $features_item->link ) ? apply_filters( 'hestia_translate_single_string', $features_item->link, 'Features section' ) : '';
 							?>
-							<div class="col-md-4 <?php echo esc_attr( $features_item->id ); ?>">
+							<div class="col-md-4 feature-box">
 								<div class="info">
 									<?php if ( ! empty( $link ) ) : ?>
 									<a href="<?php echo esc_url( $link ); ?>">
