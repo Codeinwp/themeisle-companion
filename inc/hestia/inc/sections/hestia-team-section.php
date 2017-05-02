@@ -163,6 +163,13 @@ if ( ! function_exists( 'hestia_team' ) ) :
 				<div class="row">
 					<?php
 					if ( ! empty( $hestia_team_content ) ) :
+						$allowed_html = array(
+							'br'     => array(),
+							'em'     => array(),
+							'strong' => array(),
+							'b'      => array(),
+							'i'      => array(),
+						);
 						$hestia_team_content = json_decode( $hestia_team_content );
 						foreach ( $hestia_team_content as $team_item ) :
 							$image = ! empty( $team_item->image_url ) ? apply_filters( 'hestia_translate_single_string', $team_item->image_url, 'Team section' ) : '';
@@ -196,7 +203,7 @@ if ( ! function_exists( 'hestia_team' ) ) :
 												<h6 class="category text-muted"><?php echo esc_html( $subtitle ); ?></h6>
 											<?php endif; ?>
 											<?php if ( ! empty( $text ) ) : ?>
-												<p class="card-description"><?php echo esc_html( $text ); ?></p>
+												<p class="card-description"><?php echo wp_kses( html_entity_decode( $text ), $allowed_html ); ?></p>
 											<?php endif; ?>
 											<?php
 											if ( ! empty( $team_item->social_repeater ) ) :
