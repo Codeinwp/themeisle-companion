@@ -660,7 +660,11 @@ function hestia_import_about_us_content( $content, $widget_ids ) {
 							$output .= 'alt="' . esc_html( $widget_content['title'] ) . '" ';
 						}
 						$output .= 'src="' . esc_url( $widget_content['image_uri'] ) . '"';
-						$output .= '/></a></div>';
+						$output .= '/>';
+						if ( ! empty( $widget_content['link'] ) ) {
+							$output .= '</a>';
+						}
+						$output .='</div>';
 					}
 				}
 				$output .= '</div>';
