@@ -19,29 +19,29 @@ if ( ! function_exists( 'hestia_features' ) ) :
 		$hide_section                 = get_theme_mod( 'hestia_features_hide', false );
 
 		if ( ( (bool) defined( 'HESTIA_COMPANION_PATH' ) ) || ( (bool) defined( 'HESTIA_PRO_FLAG' ) ) || (bool) defined( 'HESTIA_THEMEISLE_LITE' ) ) {
-			$hestia_features_title    = get_theme_mod( 'hestia_features_title', esc_html__( 'Why our product is the best', 'hestia-companion' ) );
-			$hestia_features_subtitle = get_theme_mod( 'hestia_features_subtitle', esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'hestia-companion' ) );
+			$hestia_features_title    = get_theme_mod( 'hestia_features_title', esc_html__( 'Why our product is the best', 'themeisle-companion' ) );
+			$hestia_features_subtitle = get_theme_mod( 'hestia_features_subtitle', esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'themeisle-companion' ) );
 			$hestia_features_content  = get_theme_mod( 'hestia_features_content', json_encode( array(
 				array(
 					'icon_value' => 'fa-wechat',
-					'title'      => esc_html__( 'Responsive', 'hestia-companion' ),
-					'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'hestia-companion' ),
+					'title'      => esc_html__( 'Responsive', 'themeisle-companion' ),
+					'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'themeisle-companion' ),
 					'link'       => '#',
 					'id'         => 'customizer_repeater_56d7ea7f40b56',
 					'color'      => '#e91e63',
 				),
 				array(
 					'icon_value' => 'fa-check',
-					'title'      => esc_html__( 'Quality', 'hestia-companion' ),
-					'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'hestia-companion' ),
+					'title'      => esc_html__( 'Quality', 'themeisle-companion' ),
+					'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'themeisle-companion' ),
 					'link'       => '#',
 					'id'         => 'customizer_repeater_56d7ea7f40b66',
 					'color'      => '#00bcd4',
 				),
 				array(
 					'icon_value' => 'fa-support',
-					'title'      => esc_html__( 'Support', 'hestia-companion' ),
-					'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'hestia-companion' ),
+					'title'      => esc_html__( 'Support', 'themeisle-companion' ),
+					'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'themeisle-companion' ),
 					'link'       => '#',
 					'id'         => 'customizer_repeater_56d7ea7f40b86',
 					'color'      => '#4caf50',
@@ -72,13 +72,6 @@ if ( ! function_exists( 'hestia_features' ) ) :
 				<div class="row">
 					<?php
 					if ( ! empty( $hestia_features_content ) ) :
-						$allowed_html = array(
-							'br'     => array(),
-							'em'     => array(),
-							'strong' => array(),
-							'b'      => array(),
-							'i'      => array(),
-						);
 						$hestia_features_content = json_decode( $hestia_features_content );
 						foreach ( $hestia_features_content as $features_item ) :
 							$icon = ! empty( $features_item->icon_value ) ? apply_filters( 'hestia_translate_single_string', $features_item->icon_value, 'Features section' ) : '';
@@ -86,7 +79,7 @@ if ( ! function_exists( 'hestia_features' ) ) :
 							$text = ! empty( $features_item->text ) ? apply_filters( 'hestia_translate_single_string', $features_item->text, 'Features section' ) : '';
 							$link = ! empty( $features_item->link ) ? apply_filters( 'hestia_translate_single_string', $features_item->link, 'Features section' ) : '';
 							?>
-							<div class="col-md-4 feature-box">
+							<div class="col-md-4 <?php echo esc_attr( $features_item->id ); ?>">
 								<div class="info">
 									<?php if ( ! empty( $link ) ) : ?>
 									<a href="<?php echo esc_url( $link ); ?>">
@@ -103,7 +96,7 @@ if ( ! function_exists( 'hestia_features' ) ) :
 									</a>
 								<?php endif; ?>
 									<?php if ( ! empty( $text ) ) : ?>
-										<p><?php echo wp_kses( html_entity_decode( $text ), $allowed_html ); ?></p>
+										<p><?php echo esc_html( $text ); ?></p>
 									<?php endif; ?>
 								</div>
 							</div>
@@ -127,24 +120,24 @@ if ( ! function_exists( 'hestia_features_register_strings' ) ) {
 		$default = json_encode( array(
 			array(
 				'icon_value' => 'fa-wechat',
-				'title'      => esc_html__( 'Responsive', 'hestia-companion' ),
-				'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'hestia-companion' ),
+				'title'      => esc_html__( 'Responsive', 'themeisle-companion' ),
+				'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'themeisle-companion' ),
 				'link'       => '#',
 				'id'         => 'customizer_repeater_56d7ea7f40b56',
 				'color'      => '#e91e63',
 			),
 			array(
 				'icon_value' => 'fa-check',
-				'title'      => esc_html__( 'Quality', 'hestia-companion' ),
-				'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'hestia-companion' ),
+				'title'      => esc_html__( 'Quality', 'themeisle-companion' ),
+				'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'themeisle-companion' ),
 				'link'       => '#',
 				'id'         => 'customizer_repeater_56d7ea7f40b66',
 				'color'      => '#00bcd4',
 			),
 			array(
 				'icon_value' => 'fa-support',
-				'title'      => esc_html__( 'Support', 'hestia-companion' ),
-				'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'hestia-companion' ),
+				'title'      => esc_html__( 'Support', 'themeisle-companion' ),
+				'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'themeisle-companion' ),
 				'link'       => '#',
 				'id'         => 'customizer_repeater_56d7ea7f40b86',
 				'color'      => '#4caf50',

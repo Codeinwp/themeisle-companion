@@ -16,14 +16,14 @@ if ( ! function_exists( 'hestia_team' ) ) :
 	function hestia_team() {
 
 		if ( ( (bool) defined( 'HESTIA_COMPANION_PATH' ) ) || ( (bool) defined( 'HESTIA_PRO_FLAG' ) ) || (bool) defined( 'HESTIA_THEMEISLE_LITE' ) ) {
-			$hestia_team_title    = get_theme_mod( 'hestia_team_title', esc_html__( 'Meet our team', 'hestia-companion' ) );
-			$hestia_team_subtitle = get_theme_mod( 'hestia_team_subtitle', esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'hestia-companion' ) );
+			$hestia_team_title    = get_theme_mod( 'hestia_team_title', esc_html__( 'Meet our team', 'themeisle-companion' ) );
+			$hestia_team_subtitle = get_theme_mod( 'hestia_team_subtitle', esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'themeisle-companion' ) );
 			$hestia_team_content  = get_theme_mod( 'hestia_team_content', json_encode( array(
 				array(
 					'image_url'       => get_template_directory_uri() . '/assets/img/1.jpg',
-					'title'           => esc_html__( 'Desmond Purpleson', 'hestia-companion' ),
-					'subtitle'        => esc_html__( 'CEO', 'hestia-companion' ),
-					'text'            => esc_html__( 'Locavore pinterest chambray affogato art party, forage coloring book typewriter. Bitters cold selfies, retro celiac sartorial mustache.', 'hestia-companion' ),
+					'title'           => esc_html__( 'Desmond Purpleson', 'themeisle-companion' ),
+					'subtitle'        => esc_html__( 'CEO', 'themeisle-companion' ),
+					'text'            => esc_html__( 'Locavore pinterest chambray affogato art party, forage coloring book typewriter. Bitters cold selfies, retro celiac sartorial mustache.', 'themeisle-companion' ),
 					'id'              => 'customizer_repeater_56d7ea7f40c56',
 					'social_repeater' => json_encode( array(
 						array(
@@ -50,9 +50,9 @@ if ( ! function_exists( 'hestia_team' ) ) :
 				),
 				array(
 					'image_url'       => get_template_directory_uri() . '/assets/img/2.jpg',
-					'title'           => esc_html__( 'Parsley Pepperspray', 'hestia-companion' ),
-					'subtitle'        => esc_html__( 'Marketing Specialist', 'hestia-companion' ),
-					'text'            => esc_html__( 'Craft beer salvia celiac mlkshk. Pinterest celiac tumblr, portland salvia skateboard cliche thundercats. Tattooed chia austin hell.', 'hestia-companion' ),
+					'title'           => esc_html__( 'Parsley Pepperspray', 'themeisle-companion' ),
+					'subtitle'        => esc_html__( 'Marketing Specialist', 'themeisle-companion' ),
+					'text'            => esc_html__( 'Craft beer salvia celiac mlkshk. Pinterest celiac tumblr, portland salvia skateboard cliche thundercats. Tattooed chia austin hell.', 'themeisle-companion' ),
 					'id'              => 'customizer_repeater_56d7ea7f40c66',
 					'social_repeater' => json_encode( array(
 						array(
@@ -79,9 +79,9 @@ if ( ! function_exists( 'hestia_team' ) ) :
 				),
 				array(
 					'image_url'       => get_template_directory_uri() . '/assets/img/3.jpg',
-					'title'           => esc_html__( 'Desmond Eagle', 'hestia-companion' ),
-					'subtitle'        => esc_html__( 'Graphic Designer', 'hestia-companion' ),
-					'text'            => esc_html__( 'Pok pok direct trade godard street art, poutine fam typewriter food truck narwhal kombucha wolf cardigan butcher whatever pickled you.', 'hestia-companion' ),
+					'title'           => esc_html__( 'Desmond Eagle', 'themeisle-companion' ),
+					'subtitle'        => esc_html__( 'Graphic Designer', 'themeisle-companion' ),
+					'text'            => esc_html__( 'Pok pok direct trade godard street art, poutine fam typewriter food truck narwhal kombucha wolf cardigan butcher whatever pickled you.', 'themeisle-companion' ),
 					'id'              => 'customizer_repeater_56d7ea7f40c76',
 					'social_repeater' => json_encode( array(
 						array(
@@ -108,9 +108,9 @@ if ( ! function_exists( 'hestia_team' ) ) :
 				),
 				array(
 					'image_url'       => get_template_directory_uri() . '/assets/img/4.jpg',
-					'title'           => esc_html__( 'Ruby Von Rails', 'hestia-companion' ),
-					'subtitle'        => esc_html__( 'Lead Developer', 'hestia-companion' ),
-					'text'            => esc_html__( 'Small batch vexillologist 90\'s blue bottle stumptown bespoke. Pok pok tilde fixie chartreuse, VHS gluten-free selfies wolf hot.', 'hestia-companion' ),
+					'title'           => esc_html__( 'Ruby Von Rails', 'themeisle-companion' ),
+					'subtitle'        => esc_html__( 'Lead Developer', 'themeisle-companion' ),
+					'text'            => esc_html__( 'Small batch vexillologist 90\'s blue bottle stumptown bespoke. Pok pok tilde fixie chartreuse, VHS gluten-free selfies wolf hot.', 'themeisle-companion' ),
 					'id'              => 'customizer_repeater_56d7ea7f40c86',
 					'social_repeater' => json_encode( array(
 						array(
@@ -163,13 +163,6 @@ if ( ! function_exists( 'hestia_team' ) ) :
 				<div class="row">
 					<?php
 					if ( ! empty( $hestia_team_content ) ) :
-						$allowed_html = array(
-							'br'     => array(),
-							'em'     => array(),
-							'strong' => array(),
-							'b'      => array(),
-							'i'      => array(),
-						);
 						$hestia_team_content = json_decode( $hestia_team_content );
 						foreach ( $hestia_team_content as $team_item ) :
 							$image = ! empty( $team_item->image_url ) ? apply_filters( 'hestia_translate_single_string', $team_item->image_url, 'Team section' ) : '';
@@ -203,7 +196,7 @@ if ( ! function_exists( 'hestia_team' ) ) :
 												<h6 class="category text-muted"><?php echo esc_html( $subtitle ); ?></h6>
 											<?php endif; ?>
 											<?php if ( ! empty( $text ) ) : ?>
-												<p class="card-description"><?php echo wp_kses( html_entity_decode( $text ), $allowed_html ); ?></p>
+												<p class="card-description"><?php echo esc_html( $text ); ?></p>
 											<?php endif; ?>
 											<?php
 											if ( ! empty( $team_item->social_repeater ) ) :
@@ -251,9 +244,9 @@ if ( ! function_exists( 'hestia_team_register_strings' ) ) {
 		$default = json_encode( array(
 			array(
 				'image_url'       => get_template_directory_uri() . '/assets/img/1.jpg',
-				'title'           => esc_html__( 'Desmond Purpleson', 'hestia-companion' ),
-				'subtitle'        => esc_html__( 'CEO', 'hestia-companion' ),
-				'text'            => esc_html__( 'Locavore pinterest chambray affogato art party, forage coloring book typewriter. Bitters cold selfies, retro celiac sartorial mustache.', 'hestia-companion' ),
+				'title'           => esc_html__( 'Desmond Purpleson', 'themeisle-companion' ),
+				'subtitle'        => esc_html__( 'CEO', 'themeisle-companion' ),
+				'text'            => esc_html__( 'Locavore pinterest chambray affogato art party, forage coloring book typewriter. Bitters cold selfies, retro celiac sartorial mustache.', 'themeisle-companion' ),
 				'id'              => 'customizer_repeater_56d7ea7f40c56',
 				'social_repeater' => json_encode( array(
 					array(
@@ -280,9 +273,9 @@ if ( ! function_exists( 'hestia_team_register_strings' ) ) {
 			),
 			array(
 				'image_url'       => get_template_directory_uri() . '/assets/img/2.jpg',
-				'title'           => esc_html__( 'Parsley Pepperspray', 'hestia-companion' ),
-				'subtitle'        => esc_html__( 'Marketing Specialist', 'hestia-companion' ),
-				'text'            => esc_html__( 'Craft beer salvia celiac mlkshk. Pinterest celiac tumblr, portland salvia skateboard cliche thundercats. Tattooed chia austin hell.', 'hestia-companion' ),
+				'title'           => esc_html__( 'Parsley Pepperspray', 'themeisle-companion' ),
+				'subtitle'        => esc_html__( 'Marketing Specialist', 'themeisle-companion' ),
+				'text'            => esc_html__( 'Craft beer salvia celiac mlkshk. Pinterest celiac tumblr, portland salvia skateboard cliche thundercats. Tattooed chia austin hell.', 'themeisle-companion' ),
 				'id'              => 'customizer_repeater_56d7ea7f40c66',
 				'social_repeater' => json_encode( array(
 					array(
@@ -309,9 +302,9 @@ if ( ! function_exists( 'hestia_team_register_strings' ) ) {
 			),
 			array(
 				'image_url'       => get_template_directory_uri() . '/assets/img/3.jpg',
-				'title'           => esc_html__( 'Desmond Eagle', 'hestia-companion' ),
-				'subtitle'        => esc_html__( 'Graphic Designer', 'hestia-companion' ),
-				'text'            => esc_html__( 'Pok pok direct trade godard street art, poutine fam typewriter food truck narwhal kombucha wolf cardigan butcher whatever pickled you.', 'hestia-companion' ),
+				'title'           => esc_html__( 'Desmond Eagle', 'themeisle-companion' ),
+				'subtitle'        => esc_html__( 'Graphic Designer', 'themeisle-companion' ),
+				'text'            => esc_html__( 'Pok pok direct trade godard street art, poutine fam typewriter food truck narwhal kombucha wolf cardigan butcher whatever pickled you.', 'themeisle-companion' ),
 				'id'              => 'customizer_repeater_56d7ea7f40c76',
 				'social_repeater' => json_encode( array(
 					array(
@@ -338,9 +331,9 @@ if ( ! function_exists( 'hestia_team_register_strings' ) ) {
 			),
 			array(
 				'image_url'       => get_template_directory_uri() . '/assets/img/4.jpg',
-				'title'           => esc_html__( 'Ruby Von Rails', 'hestia-companion' ),
-				'subtitle'        => esc_html__( 'Lead Developer', 'hestia-companion' ),
-				'text'            => esc_html__( 'Small batch vexillologist 90\'s blue bottle stumptown bespoke. Pok pok tilde fixie chartreuse, VHS gluten-free selfies wolf hot.', 'hestia-companion' ),
+				'title'           => esc_html__( 'Ruby Von Rails', 'themeisle-companion' ),
+				'subtitle'        => esc_html__( 'Lead Developer', 'themeisle-companion' ),
+				'text'            => esc_html__( 'Small batch vexillologist 90\'s blue bottle stumptown bespoke. Pok pok tilde fixie chartreuse, VHS gluten-free selfies wolf hot.', 'themeisle-companion' ),
 				'id'              => 'customizer_repeater_56d7ea7f40c86',
 				'social_repeater' => json_encode( array(
 					array(

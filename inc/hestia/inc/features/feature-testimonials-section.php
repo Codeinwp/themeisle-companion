@@ -22,7 +22,7 @@ if ( ! function_exists( 'hestia_testimonials_customize_register' ) ) :
 	function hestia_testimonials_customize_register( $wp_customize ) {
 
 		$wp_customize->add_section( 'hestia_testimonials', array(
-			'title'    => esc_html__( 'Testimonials', 'hestia-companion' ),
+			'title'    => esc_html__( 'Testimonials', 'hestia-companion', 'themeisle-companion' ),
 			'panel'    => 'hestia_frontpage_sections',
 			'priority' => apply_filters( 'hestia_section_priority', 40, 'hestia_testimonials' ),
 		) );
@@ -34,7 +34,7 @@ if ( ! function_exists( 'hestia_testimonials_customize_register' ) ) :
 
 		$wp_customize->add_control( 'hestia_testimonials_hide', array(
 			'type'     => 'checkbox',
-			'label'    => esc_html__( 'Disable section', 'hestia-companion' ),
+			'label'    => esc_html__( 'Disable section', 'hestia-companion', 'themeisle-companion' ),
 			'section'  => 'hestia_testimonials',
 			'priority' => 1,
 		) );
@@ -45,7 +45,7 @@ if ( ! function_exists( 'hestia_testimonials_customize_register' ) ) :
 		) );
 
 		$wp_customize->add_control( 'hestia_testimonials_title', array(
-			'label'    => esc_html__( 'Section Title', 'hestia-companion' ),
+			'label'    => esc_html__( 'Section Title', 'hestia-companion', 'themeisle-companion' ),
 			'section'  => 'hestia_testimonials',
 			'priority' => 5,
 		) );
@@ -56,7 +56,7 @@ if ( ! function_exists( 'hestia_testimonials_customize_register' ) ) :
 		) );
 
 		$wp_customize->add_control( 'hestia_testimonials_subtitle', array(
-			'label'    => esc_html__( 'Section Subtitle', 'hestia-companion' ),
+			'label'    => esc_html__( 'Section Subtitle', 'hestia-companion', 'themeisle-companion' ),
 			'section'  => 'hestia_testimonials',
 			'priority' => 10,
 		) );
@@ -67,11 +67,11 @@ if ( ! function_exists( 'hestia_testimonials_customize_register' ) ) :
 			) );
 
 			$wp_customize->add_control( new Hestia_Repeater( $wp_customize, 'hestia_testimonials_content', array(
-				'label'                                => esc_html__( 'Testimonials Content', 'hestia-companion' ),
+				'label'                                => esc_html__( 'Testimonials Content', 'hestia-companion', 'themeisle-companion' ),
 				'section'                              => 'hestia_testimonials',
 				'priority'                             => 15,
-				'add_field_label'                      => esc_html__( 'Add new Testimonial', 'hestia-companion' ),
-				'item_name'                            => esc_html__( 'Testimonial', 'hestia-companion' ),
+				'add_field_label'                      => esc_html__( 'Add new Testimonial', 'hestia-companion', 'themeisle-companion' ),
+				'item_name'                            => esc_html__( 'Testimonial', 'hestia-companion', 'themeisle-companion' ),
 				'customizer_repeater_image_control'    => true,
 				'customizer_repeater_title_control'    => true,
 				'customizer_repeater_subtitle_control' => true,

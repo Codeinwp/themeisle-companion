@@ -22,7 +22,7 @@ if ( ! function_exists( 'hestia_team_customize_register' ) ) :
 	function hestia_team_customize_register( $wp_customize ) {
 
 		$wp_customize->add_section( 'hestia_team', array(
-			'title'    => esc_html__( 'Team', 'hestia-companion' ),
+			'title'    => esc_html__( 'Team', 'hestia-companion', 'themeisle-companion' ),
 			'panel'    => 'hestia_frontpage_sections',
 			'priority' => apply_filters( 'hestia_section_priority', 30, 'hestia_team' ),
 		) );
@@ -34,7 +34,7 @@ if ( ! function_exists( 'hestia_team_customize_register' ) ) :
 
 		$wp_customize->add_control( 'hestia_team_hide', array(
 			'type'     => 'checkbox',
-			'label'    => esc_html__( 'Disable section', 'hestia-companion' ),
+			'label'    => esc_html__( 'Disable section', 'hestia-companion', 'themeisle-companion' ),
 			'section'  => 'hestia_team',
 			'priority' => 1,
 		) );
@@ -45,7 +45,7 @@ if ( ! function_exists( 'hestia_team_customize_register' ) ) :
 		) );
 
 		$wp_customize->add_control( 'hestia_team_title', array(
-			'label'    => esc_html__( 'Section Title', 'hestia-companion' ),
+			'label'    => esc_html__( 'Section Title', 'hestia-companion', 'themeisle-companion' ),
 			'section'  => 'hestia_team',
 			'priority' => 5,
 		) );
@@ -56,7 +56,7 @@ if ( ! function_exists( 'hestia_team_customize_register' ) ) :
 		) );
 
 		$wp_customize->add_control( 'hestia_team_subtitle', array(
-			'label'    => esc_html__( 'Section Subtitle', 'hestia-companion' ),
+			'label'    => esc_html__( 'Section Subtitle', 'hestia-companion', 'themeisle-companion' ),
 			'section'  => 'hestia_team',
 			'priority' => 10,
 		) );
@@ -67,11 +67,11 @@ if ( ! function_exists( 'hestia_team_customize_register' ) ) :
 			) );
 
 			$wp_customize->add_control( new Hestia_Repeater( $wp_customize, 'hestia_team_content', array(
-				'label'                                => esc_html__( 'Team Content', 'hestia-companion' ),
+				'label'                                => esc_html__( 'Team Content', 'hestia-companion', 'themeisle-companion' ),
 				'section'                              => 'hestia_team',
 				'priority'                             => 15,
-				'add_field_label'                      => esc_html__( 'Add new Team Member', 'hestia-companion' ),
-				'item_name'                            => esc_html__( 'Team Member', 'hestia-companion' ),
+				'add_field_label'                      => esc_html__( 'Add new Team Member', 'hestia-companion', 'themeisle-companion' ),
+				'item_name'                            => esc_html__( 'Team Member', 'hestia-companion', 'themeisle-companion' ),
 				'customizer_repeater_image_control'    => true,
 				'customizer_repeater_title_control'    => true,
 				'customizer_repeater_subtitle_control' => true,
