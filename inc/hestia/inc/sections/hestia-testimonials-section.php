@@ -15,7 +15,7 @@ if ( ! function_exists( 'hestia_testimonials' ) ) :
 	 */
 	function hestia_testimonials() {
 
-		if ( ( (bool) defined( 'HESTIA_COMPANION_PATH' ) ) || ( (bool) defined( 'HESTIA_PRO_FLAG' ) ) || (bool) defined( 'HESTIA_THEMEISLE_LITE' ) ) {
+		if ( current_user_can('edit_theme_options' ) ) {
 			$hestia_testimonials_title    = get_theme_mod( 'hestia_testimonials_title', esc_html__( 'What clients say', 'themeisle-companion' ) );
 			$hestia_testimonials_subtitle = get_theme_mod( 'hestia_testimonials_subtitle', esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'themeisle-companion' ) );
 			$hestia_testimonials_content  = get_theme_mod( 'hestia_testimonials_content', json_encode( array(
