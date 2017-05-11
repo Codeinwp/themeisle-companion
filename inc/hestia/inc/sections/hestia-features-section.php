@@ -18,7 +18,7 @@ if ( ! function_exists( 'hestia_features' ) ) :
 		$show_features_single_product = get_theme_mod( 'hestia_features_show_on_single_product', false );
 		$hide_section                 = get_theme_mod( 'hestia_features_hide', false );
 
-		if ( ( (bool) defined( 'HESTIA_COMPANION_PATH' ) ) || ( (bool) defined( 'HESTIA_PRO_FLAG' ) ) || (bool) defined( 'HESTIA_THEMEISLE_LITE' ) ) {
+		if ( current_user_can('edit_theme_options' ) ) {
 			$hestia_features_title    = get_theme_mod( 'hestia_features_title', esc_html__( 'Why our product is the best', 'themeisle-companion' ) );
 			$hestia_features_subtitle = get_theme_mod( 'hestia_features_subtitle', esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'themeisle-companion' ) );
 			$hestia_features_content  = get_theme_mod( 'hestia_features_content', json_encode( array(

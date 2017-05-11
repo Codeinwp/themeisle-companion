@@ -15,7 +15,7 @@ if ( ! function_exists( 'hestia_team' ) ) :
 	 */
 	function hestia_team() {
 
-		if ( ( (bool) defined( 'HESTIA_COMPANION_PATH' ) ) || ( (bool) defined( 'HESTIA_PRO_FLAG' ) ) || (bool) defined( 'HESTIA_THEMEISLE_LITE' ) ) {
+		if ( ( current_user_can('edit_theme_options' ) ) {
 			$hestia_team_title    = get_theme_mod( 'hestia_team_title', esc_html__( 'Meet our team', 'themeisle-companion' ) );
 			$hestia_team_subtitle = get_theme_mod( 'hestia_team_subtitle', esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'themeisle-companion' ) );
 			$hestia_team_content  = get_theme_mod( 'hestia_team_content', json_encode( array(
