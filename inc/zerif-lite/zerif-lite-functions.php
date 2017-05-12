@@ -36,14 +36,16 @@ function themeisle_populate_with_default_widgets() {
 				'title'     => 'PARALLAX EFFECT',
 				'text'      => 'Create memorable pages with smooth parallax effects that everyone loves. Also, use our lightweight content slider offering you smooth and great-looking animations.',
 				'link'      => '#',
-				'image_uri' => get_stylesheet_directory_uri() . "/images/parallax.png"
+				// Custom code with stylesheet_direc
+				'image_uri' => apply_filters ( 'zerif_ourfocus_first_icon_default_filter', get_stylesheet_directory_uri() . "/images/parallax.png" ),
 			);
 		} else {
 			$ourfocus_content[ $zerif_lite_counter ] = array(
 				'title'     => 'PARALLAX EFFECT',
 				'text'      => 'Create memorable pages with smooth parallax effects that everyone loves. Also, use our lightweight content slider offering you smooth and great-looking animations.',
 				'link'      => '#',
-				'image_uri' => get_template_directory_uri() . "/images/parallax.png"
+				// Custom code with template_direc
+				'image_uri' => apply_filters ( 'zerif_ourfocus_first_icon_default_filter', get_template_directory_uri() . "/images/parallax.png" ),
 			);
 		}
 
@@ -60,14 +62,16 @@ function themeisle_populate_with_default_widgets() {
 				'title'     => 'WOOCOMMERCE',
 				'text'      => 'Build a front page for your WooCommerce store in a matter of minutes. The neat and clean presentation will help your sales and make your store accessible to everyone.',
 				'link'      => '#',
-				'image_uri' => get_stylesheet_directory_uri() . "/images/woo.png"
+				// Custom code with stylesheet_direc
+				'image_uri' => apply_filters ( 'zerif_ourfocus_second_icon_default_filter', get_stylesheet_directory_uri() . "/images/woo.png" ),
 			);
 		} else {
 			$ourfocus_content[ $zerif_lite_counter ] = array(
 				'title'     => 'WOOCOMMERCE',
 				'text'      => 'Build a front page for your WooCommerce store in a matter of minutes. The neat and clean presentation will help your sales and make your store accessible to everyone.',
 				'link'      => '#',
-				'image_uri' => get_template_directory_uri() . "/images/woo.png"
+				// Custom code with template_direc
+				'image_uri' => apply_filters ( 'zerif_ourfocus_second_icon_default_filter', get_template_directory_uri() . "/images/woo.png" ),
 			);
 		}
 
@@ -84,14 +88,16 @@ function themeisle_populate_with_default_widgets() {
 				'title'     => 'CUSTOM CONTENT BLOCKS',
 				'text'      => 'Showcase your team, products, clients, about info, testimonials, latest posts from the blog, contact form, additional calls to action. Everything translation ready.',
 				'link'      => '#',
-				'image_uri' => get_stylesheet_directory_uri() . "/images/ccc.png"
+				// Custom code with stylesheet_direc
+				'image_uri' => apply_filters ( 'zerif_ourfocus_third_icon_default_filter', get_stylesheet_directory_uri() . "/images/ccc.png" ),
 			);
 		} else {
 			$ourfocus_content[ $zerif_lite_counter ] = array(
 				'title'     => 'CUSTOM CONTENT BLOCKS',
 				'text'      => 'Showcase your team, products, clients, about info, testimonials, latest posts from the blog, contact form, additional calls to action. Everything translation ready.',
 				'link'      => '#',
-				'image_uri' => get_template_directory_uri() . "/images/ccc.png"
+				// Custom code with template_direc
+				'image_uri' => apply_filters ( 'zerif_ourfocus_third_icon_default_filter', get_template_directory_uri() . "/images/ccc.png" ),
 			);
 		}
 
@@ -108,14 +114,16 @@ function themeisle_populate_with_default_widgets() {
 				'title'     => 'GO PRO FOR MORE FEATURES',
 				'text'      => 'Get new content blocks: pricing table, Google Maps, and more. Change the sections order, display each block exactly where you need it, customize the blocks with whatever colors you wish.',
 				'link'      => '#',
-				'image_uri' => get_stylesheet_directory_uri() . "/images/ti-logo.png"
+				// Custom code with stylesheet_direc
+				'image_uri' => apply_filters ( 'zerif_ourfocus_fourth_icon_default_filter', get_stylesheet_directory_uri() . "/images/ti-logo.png" ),
 			);
 		} else {
 			$ourfocus_content[ $zerif_lite_counter ] = array(
 				'title'     => 'GO PRO FOR MORE FEATURES',
 				'text'      => 'Get new content blocks: pricing table, Google Maps, and more. Change the sections order, display each block exactly where you need it, customize the blocks with whatever colors you wish.',
 				'link'      => '#',
-				'image_uri' => get_template_directory_uri() . "/images/ti-logo.png"
+				// Custom code with template_direc
+				'image_uri' => apply_filters ( 'zerif_ourfocus_fourth_icon_default_filter', get_template_directory_uri() . "/images/ti-logo.png" ),
 			);
 		}
 
