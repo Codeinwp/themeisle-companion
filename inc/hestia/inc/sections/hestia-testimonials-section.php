@@ -53,7 +53,7 @@ if ( ! function_exists( 'hestia_testimonials' ) ) :
 		}
 
 		?>
-		<section class="testimonials" id="testimonials" data-sorder="hestia_testimonials">
+		<section class="testimonials hestia-testimonials" id="testimonials" data-sorder="hestia_testimonials">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center">
