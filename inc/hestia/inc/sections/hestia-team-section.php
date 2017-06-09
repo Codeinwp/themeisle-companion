@@ -148,7 +148,7 @@ if ( ! function_exists( 'hestia_team' ) ) :
 		}
 
 		?>
-		<section class="team" id="team" data-sorder="hestia_team">
+		<section class="team hestia-team" id="team" data-sorder="hestia_team">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center">

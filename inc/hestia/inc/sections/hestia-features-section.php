@@ -54,7 +54,7 @@ if ( ! function_exists( 'hestia_features' ) ) :
 			return;
 		}
 		?>
-		<section class="features" id="features" data-sorder="hestia_features">
+		<section class="features hestia-features" id="features" data-sorder="hestia_features">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2">
@@ -77,7 +77,7 @@ if ( ! function_exists( 'hestia_features' ) ) :
 							$link = ! empty( $features_item->link ) ? apply_filters( 'hestia_translate_single_string', $features_item->link, 'Features section' ) : '';
 							?>
 							<div class="col-md-4 feature-box">
-								<div class="info">
+								<div class="info hestia-info">
 									<?php if ( ! empty( $link ) ) : ?>
 									<a href="<?php echo esc_url( $link ); ?>">
 										<?php endif; ?>
