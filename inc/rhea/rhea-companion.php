@@ -43,7 +43,7 @@ function rhea_register_widgets() {
 }
 function rhea_load_custom_wp_admin_style() {
 
-	wp_enqueue_style( 'fontawesome-style',  trailingslashit( THEMEISLE_COMPANION_URL ) . 'inc/rhea/assets/css/font-awesome.min.css' );
+	wp_enqueue_style( 'fontawesome-style',  get_template_directory_uri() . '/css/font-awesome.min.css' );
 	wp_enqueue_style( 'rhea-admin-style',  trailingslashit( THEMEISLE_COMPANION_URL ) . 'inc/rhea/assets/css/admin-style.css' );
 	wp_enqueue_script( 'fontawesome-icons',  trailingslashit( THEMEISLE_COMPANION_URL ) . 'inc/rhea/assets/js/icons.js', false, '1.0.0' );
 	wp_enqueue_script( 'jquery-ui-dialog' );

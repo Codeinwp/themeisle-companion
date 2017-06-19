@@ -1,11 +1,11 @@
 #fontawesome-popup {
-	display: none;
-	height: 520px;
+    display: none;
+    height: 520px;
 }
 #fontawesome-popup:after {
-	display: block;
-	content: "";
-	clear: both;
+    display: block;
+    content: "";
+    clear: both;
 }
 .ui-widget-overlay {
     position: fixed;
@@ -22,7 +22,7 @@
     background: #fcfcfc;
 }
 .rhea-fontawesome-dialog .ui-dialog-titlebar {
-	padding: 0 15px;
+    padding: 0 15px;
     font-size: 22px;
     line-height: 50px;
     margin: 0;
@@ -31,16 +31,16 @@
     font-weight: 600;
 }
 .rhea-fontawesome-dialog .ui-dialog-titlebar .ui-button {
-	float: right;
+    float: right;
 }
 #fontawesome-popup .left-side {
-	float: left;
+    float: left;
     width: 20%;
     box-sizing: border-box;
     padding: 15px;
 }
 #fontawesome-popup .right-side {
-	float: left;
+    float: left;
     width: 80%;
     box-sizing: border-box;
     padding: 15px;
@@ -70,13 +70,13 @@
     text-indent: 1px;
 }
 .ui-dialog.rhea-fontawesome-dialog .ui-button-text {
-	display: none;
+    display: none;
 }
 .filter-icons li {
-	cursor: pointer;
+    cursor: pointer;
 }
 .filter-icons li.active {
-	font-weight: bold;
+    font-weight: bold;
 }
 a.rhea-fontawesome-icon {
     width: 5%;
@@ -87,8 +87,8 @@ a.rhea-fontawesome-icon {
     padding: 5px 0;
 }
 a.rhea-fontawesome-icon:hover {
-	background-color: #ccc;
-	color: #fff;
+    background-color: #ccc;
+    color: #fff;
 }
 
 /* Style Input */
@@ -104,20 +104,20 @@ a.rhea-fontawesome-icon:hover {
 .icon-holder p,
 .empty-icon i,
 .wp-core-ui .actions .button.add-icon-button {
-	display: none;
+    display: none;
 }
 .empty-icon .icon-holder p {
-	display: block;
+    display: block;
 }
 .wp-core-ui .empty-icon .actions .button.add-icon-button {
-	display: inline-block;
+    display: inline-block;
 }
 .fontawesome-icon-container .actions {
-	text-align: right;
+    text-align: right;
 }
 .icon-holder {
-	margin: 20px 0;
-	text-align: center;
+    margin: 20px 0;
+    text-align: center;
 }
 .icon-holder i {
     font-size: 50px;

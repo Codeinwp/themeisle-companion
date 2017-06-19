@@ -1,12 +1,14 @@
 <?php
 class Rhea_Contact_Company extends WP_Widget {
-	
-	public function __construct() {
-		parent::__construct(
-			'rhea-contact-company',
-			__( '[Rhea] Contact', 'rhea' )
-		);
-	}
+
+    public function __construct() {
+
+        $widget_args = array(
+            'description' => esc_html__( 'This widget is designed for footer area', 'rhea' )
+        );
+
+        parent::__construct( 'rhea-contact-company', __( '[Rhea] Contact', 'rhea' ), $widget_args );
+    }
 
     function widget($args, $instance) {
 
@@ -20,7 +22,7 @@ class Rhea_Contact_Company extends WP_Widget {
 
         echo '<div class="rhea_company_contact">';
         if ( isset($instance['adress']) && $instance['adress'] != '' ) {
-            
+
             if ( isset($instance['gmaps_url']) && $instance['gmaps_url'] != '' ) {
                 echo '<p><a href="'.$instance['gmaps_url'].'" target="_blank">'.$instance['adress'].'</a></p>';
             }else{
@@ -42,9 +44,9 @@ class Rhea_Contact_Company extends WP_Widget {
     function update($new_instance, $old_instance) {
 
         $instance = $old_instance;
-        
+
         $instance['title'] = strip_tags( $new_instance['title'] );
-		$instance['adress'] = strip_tags( $new_instance['adress'] );
+        $instance['adress'] = strip_tags( $new_instance['adress'] );
         $instance['gmaps_url'] = esc_url($new_instance['gmaps_url']);
         $instance['email'] = strip_tags($new_instance['email']);
         $instance['phone'] = strip_tags($new_instance['phone']);
@@ -75,8 +77,8 @@ class Rhea_Contact_Company extends WP_Widget {
             <label for="<?php echo $this->get_field_id('phone'); ?>"><?php _e('Phone', 'rhea'); ?></label><br/>
             <input type="text" class="widefat" name="<?php echo $this->get_field_name('phone'); ?>" id="<?php echo $this->get_field_id('phone'); ?>" value="<?php if( !empty($instance['phone']) ): echo $instance['phone']; endif; ?>">
         </p>
-		
-    <?php
+
+        <?php
 
     }
 

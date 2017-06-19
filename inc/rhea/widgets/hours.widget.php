@@ -1,12 +1,13 @@
 <?php
 class Rhea_Hours extends WP_Widget {
-	
-	public function __construct() {
-		parent::__construct(
-			'rhea-company-hours',
-			__( '[Rhea] Company Program', 'rhea' )
-		);
-	}
+
+    public function __construct() {
+
+        $widget_args = array(
+            'description' => esc_html__( 'This widget is designed for footer area', 'rhea' )
+        );
+        parent::__construct( 'rhea-company-hours', __( '[Rhea] Company Program', 'rhea' ), $widget_args );
+    }
 
     function widget($args, $instance) {
 
@@ -146,7 +147,7 @@ class Rhea_Hours extends WP_Widget {
                     </div>
                 </div>
             <?php } ?>
-            
+
         </div>
 
         <?php
@@ -239,8 +240,8 @@ class Rhea_Hours extends WP_Widget {
             <input type="text" name="<?php echo $this->get_field_name('sunday_from'); ?>" id="<?php echo $this->get_field_id('sunday_from'); ?>" value="<?php if( !empty($instance['sunday_from']) ): echo $instance['sunday_from']; endif; ?>" placeholder="<?php _e('From', 'rhea'); ?>" style="width:45%;">
             <input type="text" name="<?php echo $this->get_field_name('sunday_to'); ?>" id="<?php echo $this->get_field_id('sunday_to'); ?>" value="<?php if( !empty($instance['sunday_to']) ): echo $instance['sunday_to']; endif; ?>" placeholder="<?php _e('To', 'rhea'); ?>" style="width:45%;">
         </p>
-		
-    <?php
+
+        <?php
 
     }
 
