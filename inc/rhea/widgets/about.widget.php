@@ -26,13 +26,13 @@ class Rhea_About_Company extends WP_Widget {
         echo $before_widget;
 
         $logo_url = '';
-        if ( isset( $instance['use_logo'] ) ) {
+        if ( isset( $instance['use_logo'] ) && $instance['use_logo'] != '' ) {
             $custom_logo_id = get_theme_mod( 'custom_logo' );
             if ( $custom_logo_id ) {
                 $image = wp_get_attachment_image_src( $custom_logo_id , 'full' );
                 $logo_url = $image[0];
             }
-        }elseif ( !empty( $instance['image_uri'] ) ) {
+        }elseif ( ! empty( $instance['image_uri'] ) ) {
             $logo_url = $instance['image_uri'];
         }
 
@@ -71,6 +71,14 @@ class Rhea_About_Company extends WP_Widget {
     }
 
     function form($instance) {
+
+        $image_in_customizer = '';
+        $display             = 'none';
+        if ( ! empty( $instance['image_uri'] ) ) {
+            $image_in_customizer = esc_url( $instance['image_uri'] );
+            $display             = 'inline-block';
+        }
+
         ?>
         <p>
             <input type="checkbox" name="<?php echo $this->get_field_name('use_logo'); ?>" id="<?php echo $this->get_field_id('use_logo'); ?>" value="use_logo" <?php if( isset( $instance['use_logo'] ) ) { checked( $instance['use_logo'], 'use_logo' ); } ?>>
@@ -78,15 +86,8 @@ class Rhea_About_Company extends WP_Widget {
         </p>
         <p>
             <label for="<?php echo $this->get_field_id('image_uri'); ?>"><?php _e('Logo', 'rhea'); ?></label><br/>
-            <?php
-            if ( !empty($instance['image_uri']) ) :
-
-                echo '<img class="custom_media_image_testimonial" src="' . $instance['image_uri'] . '" style="margin:0;padding:0;max-width:100px;float:left;display:inline-block" alt="'.__( 'Uploaded image', 'rhea' ).'" /><br />';
-
-            endif;
-
-            ?>
-            <input type="text" class="widefat custom_media_url_testimonial" name="<?php echo $this->get_field_name('image_uri'); ?>" id="<?php echo $this->get_field_id('image_uri'); ?>" value="<?php if( !empty($instance['image_uri']) ): echo $instance['image_uri']; endif; ?>" style="margin-top:5px;">
+            <img class="custom_media_image" src="<?php echo $image_in_customizer; ?>" style="margin:0;padding:0;max-width:100px;float:left;display:<?php echo $display; ?>" alt="<?php echo __( 'Uploaded image', 'zerif-lite' ); ?>"/><br/>
+            <input type="text" class="widefat custom_media_url" name="<?php echo $this->get_field_name('image_uri'); ?>" id="<?php echo $this->get_field_id('image_uri'); ?>" value="<?php if( !empty($instance['image_uri']) ): echo $instance['image_uri']; endif; ?>" style="margin-top:5px;">
             <input type="button" class="button button-primary custom_media_button" id="custom_media_button" name="<?php echo $this->get_field_name('image_uri'); ?>" value="<?php _e('Upload Image','rhea'); ?>" style="margin-top:5px;">
         </p>
         <p>
