@@ -6,30 +6,33 @@ class rhea_features_block extends WP_Widget {
 		$widget_args = array(
 			'description' => esc_html__( 'This widget is designed for Our focus section widgets', 'rhea' )
 		);
-		parent::__construct( 'rhea-feature-block', __( '[Rhea] Our features widget', 'rhea' ), $widget_args );
+		parent::__construct( 'rhea-feature-block', esc_html__( '[Rhea] Our features widget', 'rhea' ), $widget_args );
 	}
 
 	function widget($args, $instance) {
 
 		extract($args);
 
-		echo $before_widget;
-		$link = !empty($instance['link']) ? $instance['link'] : '#';
+		if ( ! empty( $before_widget ) ) {
+			echo $before_widget;
+		}
+
+		$link = ! empty($instance['link']) ? $instance['link'] : '#';
 		?>
 
 		<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 focus-box" data-scrollreveal="enter bottom after 0.15s over 1s">
 			<div class="service-block">
-				<a href="<?php echo $link ?>" class="service-url">
+				<a href="<?php echo esc_url( $link ); ?>" class="service-url">
 
-					<?php if ( !empty($instance['icon']) ): ?>
-						<span class="icon-holder"><i class="<?php echo $instance['icon'] ?>"></i></span>
-					<?php endif ?>
-					<?php if ( !empty($instance['title']) ): ?>
-						<h3 class="service-title"><?php echo $instance['title'] ?></h3>
-					<?php endif ?>
-					<?php if ( !empty($instance['text']) ): ?>
-						<p class="service-title"><?php echo $instance['text'] ?></p>
-					<?php endif ?>
+					<?php if ( ! empty( $instance['icon'] ) ) { ?>
+						<span class="icon-holder"><i class="<?php echo esc_attr( $instance['icon'] ); ?>"></i></span>
+					<?php } ?>
+					<?php if ( ! empty( $instance['title'] ) ) { ?>
+						<h3 class="service-title"><?php echo $instance['title']; ?></h3>
+					<?php } ?>
+					<?php if ( ! empty( $instance['text'] ) ) { ?>
+						<p class="service-title"><?php echo $instance['text']; ?></p>
+					<?php } ?>
 
 				</a>
 			</div>
@@ -37,32 +40,34 @@ class rhea_features_block extends WP_Widget {
 
 		<?php
 
-		echo $after_widget;
+		if ( ! empty( $after_widget ) ) {
+			echo $after_widget;
+		}
 
 	}
 
-	function update($new_instance, $old_instance) {
+	function update( $new_instance, $old_instance ) {
 
 		$instance = $old_instance;
-		$instance['text'] = stripslashes(wp_filter_post_kses($new_instance['text']));
-		$instance['title'] = strip_tags($new_instance['title']);
+		$instance['text'] = stripslashes( wp_filter_post_kses( $new_instance['text'] ) );
+		$instance['title'] = strip_tags( $new_instance['title'] );
 		$instance['link'] = strip_tags( $new_instance['link'] );
-		$instance['icon'] = strip_tags($new_instance['icon']);
+		$instance['icon'] = strip_tags( $new_instance['icon'] );
 
 		return $instance;
 
 	}
 
 	function form($instance) {
-		$icon_holder_class = empty($instance['icon']) ? ' empty-icon' : '';
+		$icon_holder_class = empty( $instance['icon'] ) ? ' empty-icon' : '';
 		?>
 		<p>
-			<label for="<?php echo $this->get_field_id('icon'); ?>"><?php _e('Icon', 'rhea'); ?></label><br/>
-			<div class="fontawesome-icon-container<?php echo $icon_holder_class ?>">
-				<input type="hidden" class="widefat" name="<?php echo $this->get_field_name('icon'); ?>" id="<?php echo $this->get_field_id('icon'); ?>" value="<?php if( !empty($instance['icon']) ): echo $instance['icon']; endif; ?>">
+			<label for="<?php echo $this->get_field_id('icon'); ?>"><?php esc_html_e( 'Icon', 'rhea' ); ?></label><br/>
+			<div class="fontawesome-icon-container<?php echo esc_attr( $icon_holder_class ); ?>">
+				<input type="hidden" class="widefat" name="<?php echo $this->get_field_name('icon'); ?>" id="<?php echo $this->get_field_id('icon'); ?>" value="<?php if( ! empty( $instance['icon'] ) ) { echo $instance['icon']; } ?>">
 				<div class="icon-holder">
 		<p>No icon selected :( ... </p>
-		<i class="<?php if( !empty($instance['icon']) ): echo $instance['icon']; endif; ?>"></i>
+		<i class="<?php if( ! empty( $instance['icon'] ) ) { echo esc_attr( $instance['icon'] ); } ?>"></i>
 		</div>
 		<div class="actions">
 			<button type="button" class="button add-icon-button">Select Icon</button>
@@ -72,18 +77,17 @@ class rhea_features_block extends WP_Widget {
 		</div>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title', 'rhea'); ?></label><br/>
-			<input type="text" name="<?php echo $this->get_field_name('title'); ?>" id="<?php echo $this->get_field_id('title'); ?>" value="<?php if( !empty($instance['title']) ): echo $instance['title']; endif; ?>" class="widefat">
+			<label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e( 'Title', 'rhea' ); ?></label><br/>
+			<input type="text" name="<?php echo $this->get_field_name('title'); ?>" id="<?php echo $this->get_field_id('title'); ?>" value="<?php if( ! empty( $instance['title'] ) ) { echo $instance['title']; } ?>" class="widefat">
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('text'); ?>"><?php _e('Text', 'rhea'); ?></label><br/>
-			<textarea class="widefat" rows="8" cols="20" name="<?php echo $this->get_field_name('text'); ?>" id="<?php echo $this->get_field_id('text'); ?>"><?php if( !empty($instance['text']) ): echo htmlspecialchars_decode($instance['text']); endif; ?></textarea>
+			<label for="<?php echo $this->get_field_id('text'); ?>"><?php esc_html_e( 'Text', 'rhea' ); ?></label><br/>
+			<textarea class="widefat" rows="8" cols="20" name="<?php echo $this->get_field_name('text'); ?>" id="<?php echo $this->get_field_id('text'); ?>"><?php if( ! empty( $instance['text'] ) ) { echo htmlspecialchars_decode( $instance['text'] ); } ?></textarea>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id('link'); ?>"><?php _e('Link','rhea'); ?></label><br />
-			<input type="text" name="<?php echo $this->get_field_name('link'); ?>" id="<?php echo $this->get_field_id('link'); ?>" value="<?php if( !empty($instance['link']) ): echo $instance['link']; endif; ?>" class="widefat">
+			<label for="<?php echo $this->get_field_id('link'); ?>"><?php esc_html_e( 'Link','rhea' ); ?></label><br />
+			<input type="text" name="<?php echo $this->get_field_name('link'); ?>" id="<?php echo $this->get_field_id('link'); ?>" value="<?php if( ! empty( $instance['link'] ) ) { echo $instance['link']; } ?>" class="widefat">
 		</p>
-
 
 		<?php
 

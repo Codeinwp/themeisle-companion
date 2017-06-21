@@ -6,14 +6,16 @@ class Rhea_Hours extends WP_Widget {
         $widget_args = array(
             'description' => esc_html__( 'This widget is designed for footer area', 'rhea' )
         );
-        parent::__construct( 'rhea-company-hours', __( '[Rhea] Company Program', 'rhea' ), $widget_args );
+        parent::__construct( 'rhea-company-hours', esc_html__( '[Rhea] Company Program', 'rhea' ), $widget_args );
     }
 
     function widget($args, $instance) {
 
         extract($args);
 
-        echo $before_widget;
+        if ( ! empty( $before_widget ) ) {
+            echo $before_widget;
+        }
 
         if ( ! empty( $instance['title'] ) ) {
             echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
@@ -22,108 +24,108 @@ class Rhea_Hours extends WP_Widget {
 
         <div class="rhea_program">
 
-            <?php if ( ( isset( $instance['monday_from'] ) && $instance['monday_from'] != '' ) || ( isset( $instance['monday_to'] ) && $instance['monday_to'] != '' ) ) { ?>
+            <?php if ( ! empty( $instance['monday_from'] ) || ! empty( $instance['monday_to'] ) ) { ?>
                 <div class="rhea_program_item">
-                    <p><?php _e('Monday', 'rhea'); ?></p>
+                    <p><?php esc_html_e( 'Monday', 'rhea' ); ?></p>
                     <div class="rhea_program_hours">
-                        <?php if ( isset( $instance['monday_from'] ) && $instance['monday_from'] != '' ) { ?>
+                        <?php if ( ! empty( $instance['monday_from'] ) ) { ?>
                             <div class="rhea_program_item_from">
-                                <?php echo $instance['monday_from'] ?>
+                                <?php echo $instance['monday_from']; ?>
                             </div>
                         <?php } ?>
-                        <?php if ( isset( $instance['monday_to'] ) && $instance['monday_to'] != '' ) { ?>
+                        <?php if ( ! empty( $instance['monday_to'] ) ) { ?>
                             <div class="rhea_program_item_to">
-                                <?php echo $instance['monday_to'] ?>
+                                <?php echo $instance['monday_to']; ?>
                             </div>
                         <?php } ?>
                     </div>
                 </div>
             <?php } ?>
 
-            <?php if ( ( isset( $instance['tuesday_from'] ) && $instance['tuesday_from'] != '' ) || ( isset( $instance['tuesday_to'] ) && $instance['tuesday_to'] != '' ) ) { ?>
+            <?php if ( ! empty( $instance['tuesday_from'] ) || ! empty( $instance['tuesday_to'] ) ) { ?>
                 <div class="rhea_program_item">
-                    <p><?php _e('Tuesday', 'rhea'); ?></p>
+                    <p><?php esc_html_e( 'Tuesday', 'rhea' ); ?></p>
                     <div class="rhea_program_hours">
-                        <?php if ( isset( $instance['tuesday_from'] ) && $instance['tuesday_from'] != '' ) { ?>
+                        <?php if ( ! empty( $instance['tuesday_from'] ) ) { ?>
                             <div class="rhea_program_item_from">
-                                <?php echo $instance['tuesday_from'] ?>
+                                <?php echo $instance['tuesday_from']; ?>
                             </div>
                         <?php } ?>
-                        <?php if ( isset( $instance['tuesday_to'] ) && $instance['tuesday_to'] != '' ) { ?>
+                        <?php if ( ! empty( $instance['tuesday_to'] ) ) { ?>
                             <div class="rhea_program_item_to">
-                                <?php echo $instance['tuesday_to'] ?>
+                                <?php echo $instance['tuesday_to']; ?>
                             </div>
                         <?php } ?>
                     </div>
                 </div>
             <?php } ?>
 
-            <?php if ( ( isset( $instance['wednesday_from'] ) && $instance['wednesday_from'] != '' ) || ( isset( $instance['wednesday_to'] ) && $instance['wednesday_to'] != '' ) ) { ?>
+            <?php if ( ! empty( $instance['wednesday_from'] ) || ! empty( $instance['wednesday_to'] ) ) { ?>
                 <div class="rhea_program_item">
-                    <p><?php _e('Wednesday', 'rhea'); ?></p>
+                    <p><?php esc_html_e( 'Wednesday', 'rhea' ); ?></p>
                     <div class="rhea_program_hours">
-                        <?php if ( isset( $instance['wednesday_from'] ) && $instance['wednesday_from'] != '' ) { ?>
+                        <?php if ( ! empty( $instance['wednesday_from'] ) ) { ?>
                             <div class="rhea_program_item_from">
-                                <?php echo $instance['wednesday_from'] ?>
+                                <?php echo $instance['wednesday_from']; ?>
                             </div>
                         <?php } ?>
-                        <?php if ( isset( $instance['wednesday_to'] ) && $instance['wednesday_to'] != '' ) { ?>
+                        <?php if ( ! empty( $instance['wednesday_to'] ) ) { ?>
                             <div class="rhea_program_item_to">
-                                <?php echo $instance['wednesday_to'] ?>
+                                <?php echo $instance['wednesday_to']; ?>
                             </div>
                         <?php } ?>
                     </div>
                 </div>
             <?php } ?>
 
-            <?php if ( ( isset( $instance['thursday_from'] ) && $instance['thursday_from'] != '' ) || ( isset( $instance['thursday_to'] ) && $instance['thursday_to'] != '' ) ) { ?>
+            <?php if ( ! empty( $instance['thursday_from'] ) || ! empty( $instance['thursday_to'] ) ) { ?>
                 <div class="rhea_program_item">
-                    <p><?php _e('Thursday', 'rhea'); ?></p>
+                    <p><?php esc_html_e( 'Thursday', 'rhea' ); ?></p>
                     <div class="rhea_program_hours">
-                        <?php if ( isset( $instance['thursday_from'] ) && $instance['thursday_from'] != '' ) { ?>
+                        <?php if ( ! empty( $instance['thursday_from'] ) ) { ?>
                             <div class="rhea_program_item_from">
-                                <?php echo $instance['thursday_from'] ?>
+                                <?php echo $instance['thursday_from']; ?>
                             </div>
                         <?php } ?>
-                        <?php if ( isset( $instance['thursday_to'] ) && $instance['thursday_to'] != '' ) { ?>
+                        <?php if ( ! empty( $instance['thursday_to'] ) ) { ?>
                             <div class="rhea_program_item_to">
-                                <?php echo $instance['thursday_to'] ?>
+                                <?php echo $instance['thursday_to']; ?>
                             </div>
                         <?php } ?>
                     </div>
                 </div>
             <?php } ?>
 
-            <?php if ( ( isset( $instance['friday_from'] ) && $instance['friday_from'] != '' ) || ( isset( $instance['friday_to'] ) && $instance['friday_to'] != '' ) ) { ?>
+            <?php if ( ! empty( $instance['friday_from'] ) || ! empty( $instance['friday_to'] ) ) { ?>
                 <div class="rhea_program_item">
-                    <p><?php _e('Friday', 'rhea'); ?></p>
+                    <p><?php esc_html_e( 'Friday', 'rhea' ); ?></p>
                     <div class="rhea_program_hours">
-                        <?php if ( isset( $instance['friday_from'] ) && $instance['friday_from'] != '' ) { ?>
+                        <?php if ( ! empty( $instance['friday_from'] ) ) { ?>
                             <div class="rhea_program_item_from">
-                                <?php echo $instance['friday_from'] ?>
+                                <?php echo $instance['friday_from']; ?>
                             </div>
                         <?php } ?>
-                        <?php if ( isset( $instance['friday_to'] ) && $instance['friday_to'] != '' ) { ?>
+                        <?php if ( ! empty( $instance['friday_to'] ) ) { ?>
                             <div class="rhea_program_item_to">
-                                <?php echo $instance['friday_to'] ?>
+                                <?php echo $instance['friday_to']; ?>
                             </div>
                         <?php } ?>
                     </div>
                 </div>
             <?php } ?>
 
-            <?php if ( ( isset( $instance['saturday_from'] ) && $instance['saturday_from'] != '' ) || ( isset( $instance['saturday_to'] ) && $instance['saturday_to'] != '' ) ) { ?>
+            <?php if ( ! empty( $instance['saturday_from'] ) || ! empty( $instance['saturday_to'] ) ) { ?>
                 <div class="rhea_program_item">
-                    <p><?php _e('Saturday', 'rhea'); ?></p>
+                    <p><?php esc_html_e( 'Saturday', 'rhea' ); ?></p>
                     <div class="rhea_program_hours">
-                        <?php if ( isset( $instance['saturday_from'] ) && $instance['saturday_from'] != '' ) { ?>
+                        <?php if ( ! empty( $instance['saturday_from'] ) ) { ?>
                             <div class="rhea_program_item_from">
-                                <?php echo $instance['saturday_from'] ?>
+                                <?php echo $instance['saturday_from']; ?>
                             </div>
                         <?php } ?>
-                        <?php if ( isset( $instance['saturday_to'] ) && $instance['saturday_to'] != '' ) { ?>
+                        <?php if ( ! empty( $instance['saturday_to'] ) ) { ?>
                             <div class="rhea_program_item_to">
-                                <?php echo $instance['saturday_to'] ?>
+                                <?php echo $instance['saturday_to']; ?>
                             </div>
                         <?php } ?>
                     </div>
@@ -132,16 +134,16 @@ class Rhea_Hours extends WP_Widget {
 
             <?php if ( ( isset( $instance['sunday_from'] ) && $instance['sunday_from'] != '' ) || ( isset( $instance['sunday_to'] ) && $instance['sunday_to'] != '' ) ) { ?>
                 <div class="rhea_program_item">
-                    <p><?php _e('Sunday', 'rhea'); ?></p>
+                    <p><?php esc_html_e( 'Sunday', 'rhea' ); ?></p>
                     <div class="rhea_program_hours">
-                        <?php if ( isset( $instance['sunday_from'] ) && $instance['sunday_from'] != '' ) { ?>
+                        <?php if ( ! empty( $instance['sunday_from'] ) ) { ?>
                             <div class="rhea_program_item_from">
-                                <?php echo $instance['sunday_from'] ?>
+                                <?php echo $instance['sunday_from']; ?>
                             </div>
                         <?php } ?>
-                        <?php if ( isset( $instance['sunday_to'] ) && $instance['sunday_to'] != '' ) { ?>
+                        <?php if ( ! empty( $instance['sunday_to'] ) ) { ?>
                             <div class="rhea_program_item_to">
-                                <?php echo $instance['sunday_to'] ?>
+                                <?php echo $instance['sunday_to'];?>
                             </div>
                         <?php } ?>
                     </div>
@@ -151,42 +153,44 @@ class Rhea_Hours extends WP_Widget {
         </div>
 
         <?php
-        echo $after_widget;
+        if ( ! empty( $after_widget ) ) {
+            echo $after_widget;
+        }
 
     }
 
-    function update($new_instance, $old_instance) {
+    function update( $new_instance, $old_instance ) {
 
         $instance = $old_instance;
-        $instance['title'] = strip_tags($new_instance['title']);
+        $instance['title'] = strip_tags( $new_instance['title'] );
 
         // Monday
-        $instance['monday_from'] = strip_tags($new_instance['monday_from']);
-        $instance['monday_to'] = strip_tags($new_instance['monday_to']);
+        $instance['monday_from'] = strip_tags( $new_instance['monday_from'] );
+        $instance['monday_to'] = strip_tags( $new_instance['monday_to'] );
 
         // Tuesday
-        $instance['tuesday_from'] = strip_tags($new_instance['tuesday_from']);
-        $instance['tuesday_to'] = strip_tags($new_instance['tuesday_to']);
+        $instance['tuesday_from'] = strip_tags( $new_instance['tuesday_from'] );
+        $instance['tuesday_to'] = strip_tags( $new_instance['tuesday_to'] );
 
         // Wednesday
-        $instance['wednesday_from'] = strip_tags($new_instance['wednesday_from']);
-        $instance['wednesday_to'] = strip_tags($new_instance['wednesday_to']);
+        $instance['wednesday_from'] = strip_tags( $new_instance['wednesday_from'] );
+        $instance['wednesday_to'] = strip_tags( $new_instance['wednesday_to'] );
 
         // Thursday
-        $instance['thursday_from'] = strip_tags($new_instance['thursday_from']);
-        $instance['thursday_to'] = strip_tags($new_instance['thursday_to']);
+        $instance['thursday_from'] = strip_tags( $new_instance['thursday_from'] );
+        $instance['thursday_to'] = strip_tags( $new_instance['thursday_to'] );
 
         // Friday
-        $instance['friday_from'] = strip_tags($new_instance['friday_from']);
-        $instance['friday_to'] = strip_tags($new_instance['friday_to']);
+        $instance['friday_from'] = strip_tags( $new_instance['friday_from'] );
+        $instance['friday_to'] = strip_tags( $new_instance['friday_to'] );
 
         // Saturday
-        $instance['saturday_from'] = strip_tags($new_instance['saturday_from']);
-        $instance['saturday_to'] = strip_tags($new_instance['saturday_to']);
+        $instance['saturday_from'] = strip_tags( $new_instance['saturday_from'] );
+        $instance['saturday_to'] = strip_tags( $new_instance['saturday_to'] );
 
         // Sunday
-        $instance['sunday_from'] = strip_tags($new_instance['sunday_from']);
-        $instance['sunday_to'] = strip_tags($new_instance['sunday_to']);
+        $instance['sunday_from'] = strip_tags( $new_instance['sunday_from'] );
+        $instance['sunday_to'] = strip_tags( $new_instance['sunday_to'] );
 
         return $instance;
 
@@ -195,50 +199,50 @@ class Rhea_Hours extends WP_Widget {
     function form($instance) {
         ?>
         <p>
-            <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title', 'rhea'); ?></label><br/>
-            <input type="text" name="<?php echo $this->get_field_name('title'); ?>" id="<?php echo $this->get_field_id('title'); ?>" value="<?php if( !empty($instance['title']) ): echo $instance['title']; endif; ?>" class="widefat">
+            <label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e( 'Title', 'rhea' ); ?></label><br/>
+            <input type="text" name="<?php echo $this->get_field_name('title'); ?>" id="<?php echo $this->get_field_id('title'); ?>" value="<?php if( ! empty( $instance['title'] ) ) { echo $instance['title']; } ?>" class="widefat">
         </p>
         <p>
-            <label><?php _e('Monday', 'rhea'); ?></label><br/>
+            <label><?php esc_html_e( 'Monday', 'rhea' ); ?></label><br/>
 
-            <input type="text" name="<?php echo $this->get_field_name('monday_from'); ?>" id="<?php echo $this->get_field_id('monday_from'); ?>" value="<?php if( !empty($instance['monday_from']) ): echo $instance['monday_from']; endif; ?>" placeholder="<?php _e('From', 'rhea'); ?>" style="width:45%;">
-            <input type="text" name="<?php echo $this->get_field_name('monday_to'); ?>" id="<?php echo $this->get_field_id('monday_to'); ?>" value="<?php if( !empty($instance['monday_to']) ): echo $instance['monday_to']; endif; ?>" placeholder="<?php _e('To', 'rhea'); ?>" style="width:45%;">
+            <input type="text" name="<?php echo $this->get_field_name('monday_from'); ?>" id="<?php echo $this->get_field_id('monday_from'); ?>" value="<?php if( ! empty( $instance['monday_from'] ) ) { echo $instance['monday_from']; } ?>" placeholder="<?php esc_html_e( 'From', 'rhea' ); ?>" style="width:45%;">
+            <input type="text" name="<?php echo $this->get_field_name('monday_to'); ?>" id="<?php echo $this->get_field_id('monday_to'); ?>" value="<?php if( ! empty( $instance['monday_to'] ) ) { echo $instance['monday_to']; } ?>" placeholder="<?php esc_html_e( 'To', 'rhea' ); ?>" style="width:45%;">
         </p>
         <p>
-            <label><?php _e('Tuesday', 'rhea'); ?></label><br/>
+            <label><?php esc_html_e( 'Tuesday', 'rhea' ); ?></label><br/>
 
-            <input type="text" name="<?php echo $this->get_field_name('tuesday_from'); ?>" id="<?php echo $this->get_field_id('tuesday_from'); ?>" value="<?php if( !empty($instance['tuesday_from']) ): echo $instance['tuesday_from']; endif; ?>" placeholder="<?php _e('From', 'rhea'); ?>" style="width:45%;">
-            <input type="text" name="<?php echo $this->get_field_name('tuesday_to'); ?>" id="<?php echo $this->get_field_id('tuesday_to'); ?>" value="<?php if( !empty($instance['tuesday_to']) ): echo $instance['tuesday_to']; endif; ?>" placeholder="<?php _e('To', 'rhea'); ?>" style="width:45%;">
+            <input type="text" name="<?php echo $this->get_field_name('tuesday_from'); ?>" id="<?php echo $this->get_field_id('tuesday_from'); ?>" value="<?php if( ! empty( $instance['tuesday_from'] ) ) { echo $instance['tuesday_from']; } ?>" placeholder="<?php esc_html_e( 'From', 'rhea' ); ?>" style="width:45%;">
+            <input type="text" name="<?php echo $this->get_field_name('tuesday_to'); ?>" id="<?php echo $this->get_field_id('tuesday_to'); ?>" value="<?php if( ! empty( $instance['tuesday_to'] ) ) { echo $instance['tuesday_to']; } ?>" placeholder="<?php esc_html_e( 'To', 'rhea' ); ?>" style="width:45%;">
         </p>
         <p>
-            <label><?php _e('Wednesday', 'rhea'); ?></label><br/>
+            <label><?php esc_html_e( 'Wednesday', 'rhea' ); ?></label><br/>
 
-            <input type="text" name="<?php echo $this->get_field_name('wednesday_from'); ?>" id="<?php echo $this->get_field_id('wednesday_from'); ?>" value="<?php if( !empty($instance['wednesday_from']) ): echo $instance['wednesday_from']; endif; ?>" placeholder="<?php _e('From', 'rhea'); ?>" style="width:45%;">
-            <input type="text" name="<?php echo $this->get_field_name('wednesday_to'); ?>" id="<?php echo $this->get_field_id('wednesday_to'); ?>" value="<?php if( !empty($instance['wednesday_to']) ): echo $instance['wednesday_to']; endif; ?>" placeholder="<?php _e('To', 'rhea'); ?>" style="width:45%;">
+            <input type="text" name="<?php echo $this->get_field_name('wednesday_from'); ?>" id="<?php echo $this->get_field_id('wednesday_from'); ?>" value="<?php if( ! empty( $instance['wednesday_from'] ) ) { echo $instance['wednesday_from']; } ?>" placeholder="<?php esc_html_e( 'From', 'rhea' ); ?>" style="width:45%;">
+            <input type="text" name="<?php echo $this->get_field_name('wednesday_to'); ?>" id="<?php echo $this->get_field_id('wednesday_to'); ?>" value="<?php if( ! empty( $instance['wednesday_to'] ) ) { echo $instance['wednesday_to']; } ?>" placeholder="<?php esc_html_e( 'To', 'rhea' ); ?>" style="width:45%;">
         </p>
         <p>
-            <label><?php _e('Thursday', 'rhea'); ?></label><br/>
+            <label><?php esc_html_e( 'Thursday', 'rhea' ); ?></label><br/>
 
-            <input type="text" name="<?php echo $this->get_field_name('thursday_from'); ?>" id="<?php echo $this->get_field_id('thursday_from'); ?>" value="<?php if( !empty($instance['thursday_from']) ): echo $instance['thursday_from']; endif; ?>" placeholder="<?php _e('From', 'rhea'); ?>" style="width:45%;">
-            <input type="text" name="<?php echo $this->get_field_name('thursday_to'); ?>" id="<?php echo $this->get_field_id('thursday_to'); ?>" value="<?php if( !empty($instance['thursday_to']) ): echo $instance['thursday_to']; endif; ?>" placeholder="<?php _e('To', 'rhea'); ?>" style="width:45%;">
+            <input type="text" name="<?php echo $this->get_field_name('thursday_from'); ?>" id="<?php echo $this->get_field_id('thursday_from'); ?>" value="<?php if( ! empty( $instance['thursday_from'] ) ) { echo $instance['thursday_from']; } ?>" placeholder="<?php esc_html_e( 'From', 'rhea' ); ?>" style="width:45%;">
+            <input type="text" name="<?php echo $this->get_field_name('thursday_to'); ?>" id="<?php echo $this->get_field_id('thursday_to'); ?>" value="<?php if( ! empty( $instance['thursday_to'] ) ) { echo $instance['thursday_to']; } ?>" placeholder="<?php esc_html_e( 'To', 'rhea' ); ?>" style="width:45%;">
         </p>
         <p>
-            <label><?php _e('Friday', 'rhea'); ?></label><br/>
+            <label><?php esc_html_e( 'Friday', 'rhea' ); ?></label><br/>
 
-            <input type="text" name="<?php echo $this->get_field_name('friday_from'); ?>" id="<?php echo $this->get_field_id('friday_from'); ?>" value="<?php if( !empty($instance['friday_from']) ): echo $instance['friday_from']; endif; ?>" placeholder="<?php _e('From', 'rhea'); ?>" style="width:45%;">
-            <input type="text" name="<?php echo $this->get_field_name('friday_to'); ?>" id="<?php echo $this->get_field_id('friday_to'); ?>" value="<?php if( !empty($instance['friday_to']) ): echo $instance['friday_to']; endif; ?>" placeholder="<?php _e('To', 'rhea'); ?>" style="width:45%;">
+            <input type="text" name="<?php echo $this->get_field_name('friday_from'); ?>" id="<?php echo $this->get_field_id('friday_from'); ?>" value="<?php if( ! empty( $instance['friday_from'] ) ) { echo $instance['friday_from']; } ?>" placeholder="<?php esc_html_e( 'From', 'rhea' ); ?>" style="width:45%;">
+            <input type="text" name="<?php echo $this->get_field_name('friday_to'); ?>" id="<?php echo $this->get_field_id('friday_to'); ?>" value="<?php if( ! empty( $instance['friday_to'] ) ) { echo $instance['friday_to']; } ?>" placeholder="<?php esc_html_e( 'To', 'rhea' ); ?>" style="width:45%;">
         </p>
         <p>
-            <label><?php _e('Saturday', 'rhea'); ?></label><br/>
+            <label><?php esc_html_e( 'Saturday', 'rhea' ); ?></label><br/>
 
-            <input type="text" name="<?php echo $this->get_field_name('saturday_from'); ?>" id="<?php echo $this->get_field_id('saturday_from'); ?>" value="<?php if( !empty($instance['saturday_from']) ): echo $instance['saturday_from']; endif; ?>" placeholder="<?php _e('From', 'rhea'); ?>" style="width:45%;">
-            <input type="text" name="<?php echo $this->get_field_name('saturday_to'); ?>" id="<?php echo $this->get_field_id('saturday_to'); ?>" value="<?php if( !empty($instance['saturday_to']) ): echo $instance['saturday_to']; endif; ?>" placeholder="<?php _e('To', 'rhea'); ?>" style="width:45%;">
+            <input type="text" name="<?php echo $this->get_field_name('saturday_from'); ?>" id="<?php echo $this->get_field_id('saturday_from'); ?>" value="<?php if( ! empty( $instance['saturday_from'] ) ) { echo $instance['saturday_from']; } ?>" placeholder="<?php esc_html_e( 'From', 'rhea' ); ?>" style="width:45%;">
+            <input type="text" name="<?php echo $this->get_field_name('saturday_to'); ?>" id="<?php echo $this->get_field_id('saturday_to'); ?>" value="<?php if( ! empty( $instance['saturday_to'] ) ) { echo $instance['saturday_to']; } ?>" placeholder="<?php esc_html_e( 'To', 'rhea' ); ?>" style="width:45%;">
         </p>
         <p>
-            <label><?php _e('Sunday', 'rhea'); ?></label><br/>
+            <label><?php esc_html_e( 'Sunday', 'rhea' ); ?></label><br/>
 
-            <input type="text" name="<?php echo $this->get_field_name('sunday_from'); ?>" id="<?php echo $this->get_field_id('sunday_from'); ?>" value="<?php if( !empty($instance['sunday_from']) ): echo $instance['sunday_from']; endif; ?>" placeholder="<?php _e('From', 'rhea'); ?>" style="width:45%;">
-            <input type="text" name="<?php echo $this->get_field_name('sunday_to'); ?>" id="<?php echo $this->get_field_id('sunday_to'); ?>" value="<?php if( !empty($instance['sunday_to']) ): echo $instance['sunday_to']; endif; ?>" placeholder="<?php _e('To', 'rhea'); ?>" style="width:45%;">
+            <input type="text" name="<?php echo $this->get_field_name('sunday_from'); ?>" id="<?php echo $this->get_field_id('sunday_from'); ?>" value="<?php if( ! empty( $instance['sunday_from'] ) ) { echo $instance['sunday_from']; } ?>" placeholder="<?php esc_html_e( 'From', 'rhea' ); ?>" style="width:45%;">
+            <input type="text" name="<?php echo $this->get_field_name('sunday_to'); ?>" id="<?php echo $this->get_field_id('sunday_to'); ?>" value="<?php if( ! empty( $instance['sunday_to'] ) ) { echo $instance['sunday_to']; } ?>" placeholder="<?php esc_html_e( 'To', 'rhea' ); ?>" style="width:45%;">
         </p>
 
         <?php
