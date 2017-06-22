@@ -26,16 +26,16 @@ class Rhea_Contact_Company extends WP_Widget {
         if ( ! empty( $instance['adress'] ) ) {
 
             if ( ! empty( $instance['gmaps_url'] ) ) {
-                echo '<p><a href="' . $instance['gmaps_url'] . '" target="_blank">' . $instance['adress'] . '</a></p>';
+                echo '<p><a href="' . esc_url( $instance['gmaps_url'] ) . '" target="_blank">' . esc_html( $instance['adress'] ) . '</a></p>';
             } else {
-                echo '<p>' . $instance['adress'] . '</p>';
+                echo '<p>' . esc_html( $instance['adress'] ) . '</p>';
             }
         }
         if ( ! empty( $instance['email'] ) ) {
-            echo '<p>Email: <a href="mailto:' . $instance['email'] . '">' . $instance['email'] . '</a></p>';
+            echo '<p>Email: <a href="mailto:' . antispambot( $instance['email'] ) . '">' . antispambot( $instance['email'] ) . '</a></p>';
         }
         if ( ! empty( $instance['phone']) ) {
-            echo '<p>Phone: ' . $instance['phone'] . '</p>';
+            echo '<p>Phone: ' . esc_html( $instance['phone'] ) . '</p>';
         }
         echo '</div>';
 

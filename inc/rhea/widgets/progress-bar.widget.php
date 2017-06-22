@@ -23,16 +23,16 @@ class Rhea_Progress_Bar extends WP_Widget {
 		<div class="progress-holder">
 			<?php
 			if ( ! empty( $instance['title'] ) ) {
-				echo '<h3>' . $instance['title'] . '</h3>';
+				echo '<h3>' . esc_html( $instance['title'] ) . '</h3>';
 			}
 
 			if ( ! empty( $instance['info'] ) ) {
-				echo '<span class="completion-rate" style="width: ' . $percentage . '%">' . $instance['info'] . '</span>';
+				echo '<span class="completion-rate" style="width: ' . absint( $percentage ) . '%">' . esc_html( $instance['info'] ) . '</span>';
 			}
 
 			?>
 			<div class="progress">
-				<div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo $percentage ?>%"></div>
+				<div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo absint( $percentage ) ?>%"></div>
 			</div>
 		</div>
 

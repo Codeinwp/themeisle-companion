@@ -54,7 +54,7 @@ class Rhea_About_Company extends WP_Widget {
 
             if ( ! empty( $instance['text'] ) ) {
                 echo '<div class="rhea-company-description">';
-                    echo $instance['text'];
+                    echo wp_kses_post( $instance['text'] );
                 echo '</div>';
             }
             ?>
@@ -95,7 +95,7 @@ class Rhea_About_Company extends WP_Widget {
         </p>
         <p>
             <label for="<?php echo $this->get_field_id('image_uri'); ?>"><?php esc_html_e( 'Logo', 'rhea' ); ?></label><br/>
-            <img class="custom_media_image" src="<?php echo $image_in_customizer; ?>" style="margin:0;padding:0;max-width:100px;float:left;display:<?php echo $display; ?>" alt="<?php echo __( 'Uploaded image', 'zerif-lite' ); ?>"/><br/>
+            <img class="custom_media_image" src="<?php echo $image_in_customizer; ?>" style="margin:0;padding:0;max-width:100px;float:left;display:<?php echo esc_attr( $display ); ?>" alt="<?php echo __( 'Uploaded image', 'zerif-lite' ); ?>"/><br/>
             <input type="text" class="widefat custom_media_url" name="<?php echo $this->get_field_name('image_uri'); ?>" id="<?php echo $this->get_field_id('image_uri'); ?>" value="<?php if( ! empty( $instance['image_uri'] ) ) { echo $instance['image_uri']; } ?>" style="margin-top:5px;">
             <input type="button" class="button button-primary custom_media_button" id="custom_media_button" name="<?php echo $this->get_field_name('image_uri'); ?>" value="<?php esc_html_e( 'Upload Image','rhea' ); ?>" style="margin-top:5px;">
         </p>

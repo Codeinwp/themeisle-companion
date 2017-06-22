@@ -28,10 +28,10 @@ class Rhea_Icon_Box extends WP_Widget {
                 <div class="aboutus_titles pull-left">
                     <?php
                     if ( ! empty( $instance['title'] ) ) {
-                        echo '<h4>' . $instance['title'] . '</h4>';
+                        echo '<h4>' . esc_html( $instance['title'] ) . '</h4>';
                     }
                     if ( ! empty( $instance['subtitle'] ) ) {
-                        echo '<p>' . $instance['subtitle'] . '</p>';
+                        echo '<p>' . esc_html( $instance['subtitle'] ) . '</p>';
                     }
                     ?>
                 </div>
@@ -39,9 +39,9 @@ class Rhea_Icon_Box extends WP_Widget {
             </div>
             <div class="aboutus_content">
                 <?php
-                    if ( ! empty( $instance['description'] ) ) {
-                        echo '<p>' . $instance['description'] . '</p>';
-                    }
+                if ( ! empty( $instance['description'] ) ) {
+                    echo '<p>' . esc_html( $instance['description'] ) . '</p>';
+                }
                 ?>
             </div>
         </div>
@@ -71,15 +71,15 @@ class Rhea_Icon_Box extends WP_Widget {
         <p>
             <label for="<?php echo $this->get_field_id('icon'); ?>"><?php esc_html_e( 'Icon', 'rhea' ); ?></label><br/>
             <div class="fontawesome-icon-container<?php echo esc_attr( $icon_holder_class ); ?>">
-                <input type="hidden" class="widefat" name="<?php echo $this->get_field_name('icon'); ?>" id="<?php echo $this->get_field_id('icon'); ?>" value="<?php if( ! empty( $instance['icon'] ) ) { echo $instance['icon']; } ?>">
+                <input type="hidden" class="widefat" name="<?php echo $this->get_field_name('icon'); ?>" id="<?php echo $this->get_field_id('icon'); ?>" value="<?php if( ! empty( $instance['icon'] ) ) { echo esc_html( $instance['icon'] ); } ?>">
                 <div class="icon-holder">
-        <p>No icon selected :( ... </p>
+        <p><?php esc_html_e( 'No icon selected :( ...', 'rhea' ) ?></p>
         <i class="<?php if( ! empty( $instance['icon'] ) ) { echo esc_attr( $instance['icon'] ); } ?>"></i>
         </div>
         <div class="actions">
-            <button type="button" class="button add-icon-button">Select Icon</button>
-            <button type="button" class="button change-icon-button">Change Icon</button>
-            <button type="button" class="button remove-icon-button">Remove</button>
+            <button type="button" class="button add-icon-button"><?php esc_html_e( 'Select Icon', 'rhea' ) ?></button>
+            <button type="button" class="button change-icon-button"><?php esc_html_e( 'Change Icon', 'rhea' ) ?></button>
+            <button type="button" class="button remove-icon-button"><?php esc_html_e( 'Remove', 'rhea' ) ?></button>
         </div>
         </div>
         </p>
