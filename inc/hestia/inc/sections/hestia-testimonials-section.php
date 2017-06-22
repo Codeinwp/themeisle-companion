@@ -164,5 +164,4 @@ if ( ! function_exists( 'hestia_testimonials_register_strings' ) ) {
 if ( function_exists( 'hestia_testimonials' ) ) {
 	$section_priority = apply_filters( 'hestia_section_priority', 40, 'hestia_testimonials' );
 	add_action( 'hestia_sections', 'hestia_testimonials', absint( $section_priority ) );
-	add_action( 'after_setup_theme', 'hestia_testimonials_register_strings', 11 );
 }
