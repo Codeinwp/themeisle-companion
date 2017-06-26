@@ -56,6 +56,19 @@ if ( ! function_exists( 'hestia_features' ) ) :
 
 endif;
 
+if ( ! function_exists( 'hestia_features_register_strings' ) ) {
+	/**
+	 * Register polylang strings
+	 *
+	 * @modified 1.1.30
+	 * @access public
+	 */
+	function hestia_features_register_strings() {
+		$default = hestia_get_features_default();
+		hestia_pll_string_register_helper( 'hestia_features_content', $default, 'Features section' );
+	}
+}
+
 /**
  * Get content for features section.
  *
@@ -154,4 +167,5 @@ function hestia_get_features_default() {
 if ( function_exists( 'hestia_features' ) ) {
 	$section_priority = apply_filters( 'hestia_section_priority', 10, 'hestia_features' );
 	add_action( 'hestia_sections', 'hestia_features', absint( $section_priority ) );
+	add_action( 'after_setup_theme', 'hestia_features_register_strings', 11 );
 }

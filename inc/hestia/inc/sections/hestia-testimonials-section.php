@@ -151,6 +151,16 @@ function hestia_get_testimonials_default() {
 	) ) );
 }
 
+if ( ! function_exists( 'hestia_testimonials_register_strings' ) ) {
+	/**
+	 * Register polylang strings
+	 */
+	function hestia_testimonials_register_strings() {
+		$default = hestia_get_testimonials_default();
+		hestia_pll_string_register_helper( 'hestia_testimonials_content', $default, 'Testimonials section' );
+	}
+}
+
 if ( function_exists( 'hestia_testimonials' ) ) {
 	$section_priority = apply_filters( 'hestia_section_priority', 40, 'hestia_testimonials' );
 	add_action( 'hestia_sections', 'hestia_testimonials', absint( $section_priority ) );

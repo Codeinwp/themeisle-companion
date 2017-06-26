@@ -54,6 +54,18 @@ if ( ! function_exists( 'hestia_team' ) ) :
 	}
 endif;
 
+if ( ! function_exists( 'hestia_team_register_strings' ) ) {
+	/**
+	 * Register polylang strings
+	 */
+	function hestia_team_register_strings() {
+		$default = hestia_get_team_default();
+
+		hestia_pll_string_register_helper( 'hestia_team_content', $default, 'Team section' );
+	}
+}// End if().
+
+
 /**
  * Get content for team section.
  *
@@ -285,4 +297,5 @@ function hestia_get_team_default() {
 if ( function_exists( 'hestia_team' ) ) {
 	$section_priority = apply_filters( 'hestia_section_priority', 30, 'hestia_team' );
 	add_action( 'hestia_sections', 'hestia_team', absint( $section_priority ) );
+	add_action( 'after_setup_theme', 'hestia_team_register_strings', 11 );
 }
