@@ -7,13 +7,18 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Creates the Testimonial, Team member, Our focus and Clients widgets in Zerif Lite.
+Enhances ThemeIsle's themes with extra functionalities.
 
 == Description ==
 
-This plugin is the companion plugin for Zerif Lite. It creates the widgets "Zerif - Testimonial widget" , "Zerif - Team member widget" , "Zerif - Our focus widget" and "Zerif - Clients widget" in the Zerif Lite theme.
+Enhances ThemeIsle's themes with extra functionalities.
 
 == Changelog ==
+
+= 1.0.3 =
+
+* New widgets for Rhea child theme
+* Improved front page selection mechanism for Hestia
 
 = 1.0.1 = 
 
