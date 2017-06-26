@@ -38,6 +38,10 @@ function themeisle_companion_loader() {
 	if ( function_exists( 'hestia_setup_theme' ) ) {
 		require_once( THEMEISLE_COMPANION_PATH . 'inc/hestia/hestia-functions.php' );
 	}
+
+	if ( function_exists( 'rhea_lite_setup' ) ) {
+		require_once( THEMEISLE_COMPANION_PATH . 'inc/rhea/rhea-companion.php' );
+	}
 }
 
 add_action( 'after_setup_theme', 'themeisle_companion_loader', 0 );
