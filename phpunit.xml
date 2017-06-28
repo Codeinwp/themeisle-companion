@@ -16,6 +16,10 @@
 			<directory suffix=".php">core</directory>
 			<exclude>
 				<file>*index.php</file>
+				<file>core/includes/class-orbit-fox-activator.php</file>
+				<file>core/includes/class-orbit-fox-deactivator.php</file>
+				<file>core/includes/class-orbit-fox-loader.php</file>
+				<file>core/includes/class-orbit-fox-i18n.php</file>
 			</exclude>
 		</whitelist>
 	</filter>
