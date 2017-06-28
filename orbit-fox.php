@@ -35,7 +35,7 @@ if ( ! defined( 'WPINC' ) ) {
  * This action is documented in includes/class-orbit-fox-activator.php
  */
 function activate_orbit_fox() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-orbit-fox-activator.php';
+	require_once plugin_dir_path( __FILE__ ) . 'core/includes/class-orbit-fox-activator.php';
 	Orbit_Fox_Activator::activate();
 }
 
@@ -44,7 +44,7 @@ function activate_orbit_fox() {
  * This action is documented in includes/class-orbit-fox-deactivator.php
  */
 function deactivate_orbit_fox() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-orbit-fox-deactivator.php';
+	require_once plugin_dir_path( __FILE__ ) . 'core/includes/class-orbit-fox-deactivator.php';
 	Orbit_Fox_Deactivator::deactivate();
 }
 
@@ -55,7 +55,7 @@ register_deactivation_hook( __FILE__, 'deactivate_orbit_fox' );
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-orbit-fox.php';
+require plugin_dir_path( __FILE__ ) . 'core/includes/class-orbit-fox.php';
 
 /**
  * Begins execution of the plugin.

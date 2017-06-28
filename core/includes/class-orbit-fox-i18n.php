@@ -35,9 +35,9 @@ class Orbit_Fox_i18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'orbit-fox',
+			'obfx',
 			false,
-			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
+			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/core/languages/'
 		);
 
 	}
