@@ -22,13 +22,20 @@ env:
   - WP_VERSION=latest WP_MULTISITE=0
   global:
   - MASTER_BRANCH=master UPSTREAM_REPO=Codeinwp/orbit-fox STORE_URL=https://themeisle.com DEPLOY_BUILD=7.0
+  - CC_TEST_REPORTER_ID=36627779d65433de8e5e76f49f2952113e7cbe00033663474e2377500fc1f121
+  - GIT_COMMITTED_AT=$(if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then git log -1 --pretty=format:%ct; else git log -1 --skip 1 --pretty=format:%ct; fi)
 before_install:
   - mkdir -p bin && cd bin
   - wget "$PIRATE_FLEET"load.sh
   - cd .. && chmod +x bin/load.sh
   - ". ./bin/load.sh"
 install:
-- chmod +x bin/install-dependencies.sh
-- ". ./bin/install-dependencies.sh"
+  - chmod +x bin/install-dependencies.sh
+  - ". ./bin/install-dependencies.sh"
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
 script:
-- if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then  grunt travis; fi;
+  - bundle exec rspec
+  - if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT; fi
+  - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then  grunt travis; fi;
