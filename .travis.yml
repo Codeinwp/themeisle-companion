@@ -28,7 +28,6 @@ before_install:
   - cd .. && chmod +x bin/load.sh
   - ". ./bin/load.sh"
 install:
-  - ./"$HOME/.nvm/nvm.sh"
   - nvm install v7.10.0
   - nvm use v7.10.0
   - npm install
