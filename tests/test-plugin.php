@@ -11,7 +11,9 @@
 class Test_Orbit_Fox extends WP_UnitTestCase {
 	/**
 	 * Test to check PHPUNIT is working.
-	 */
+     *
+     * @covers Orbit_Fox_Admin::enqueue_styles
+     */
 	public function test_default() {
 		$this->assertTrue( true );
 	}

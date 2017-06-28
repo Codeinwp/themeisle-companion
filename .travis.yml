@@ -38,7 +38,7 @@ before_script:
   - "composer install"
 script:
   - phpunit --coverage-text --coverage-clover build/logs/clover.xml
-  - if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then  grunt travis; fi;
+  - grunt travis
 after_script:
   - CODECLIMATE_REPO_TOKEN="36627779d65433de8e5e76f49f2952113e7cbe00033663474e2377500fc1f121" vendor/bin/test-reporter --stdout > codeclimate.json
   - "sh -c 'if [ \"$TRAVIS_PHP_VERSION\" != \"hhvm\" ]; then curl -X POST -d @codeclimate.json -H \"Content-Type: application/json\" -H \"User-Agent: Code Climate (PHP Test Reporter v0.1.1)\" https://codeclimate.com/test_reports  ; fi'"
