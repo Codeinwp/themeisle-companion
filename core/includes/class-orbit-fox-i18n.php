@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Define the internationalization functionality
  *
@@ -24,7 +23,7 @@
  * @subpackage Orbit_Fox/includes
  * @author     Themeisle <friends@themeisle.com>
  */
-class Orbit_Fox_i18n {
+class Orbit_Fox_I18n {
 
 
 	/**

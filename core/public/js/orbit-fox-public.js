@@ -1,3 +1,13 @@
+/**
+ * The public-specific functionality of the plugin.
+ *
+ * @link       https://themeisle.com
+ * @since      1.0.0
+ *
+ * @package    Orbit_Fox
+ * @subpackage Orbit_Fox/public/js
+ */
+
 (function( $ ) {
 	'use strict';
 

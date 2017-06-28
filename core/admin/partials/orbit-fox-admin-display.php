@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Provide a admin area view for the plugin
  *
@@ -11,4 +10,7 @@
  * @package    Orbit_Fox
  * @subpackage Orbit_Fox/admin/partials
  */
-?>
+
+/**
+ * Nothing here for now
+ */

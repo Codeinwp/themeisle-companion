@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Provide a public-facing view for the plugin
  *
@@ -11,4 +10,7 @@
  * @package    Orbit_Fox
  * @subpackage Orbit_Fox/public/partials
  */
-?>
+
+/**
+ * Nothing here for now
+ */
