@@ -24,7 +24,6 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
         $this->plugin_version = $this->obfx->get_version();
 
         $this->obfx_admin = new Orbit_Fox_Admin( $this->plugin_name, $this->plugin_version );
-        $this->obfx_public =new Orbit_Fox_Public( $this->plugin_name, $this->plugin_version );
 	}
 
 	/**
@@ -32,7 +31,6 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
 	 *
 	 * @covers Orbit_Fox
 	 * @covers Orbit_Fox_Admin
-	 * @covers Orbit_Fox_Public
 	 * @covers Orbit_Fox_Loader
 	 * @covers Orbit_Fox_i18n
 	 */
@@ -42,9 +40,6 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
 
         $this->obfx_admin->enqueue_styles();
         $this->obfx_admin->enqueue_scripts();
-
-        $this->obfx_public->enqueue_styles();
-        $this->obfx_public->enqueue_scripts();
 
 		$this->assertTrue( true );
 	}

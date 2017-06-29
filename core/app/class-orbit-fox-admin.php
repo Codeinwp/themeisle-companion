@@ -6,7 +6,7 @@
  * @since      1.0.0
  *
  * @package    Orbit_Fox
- * @subpackage Orbit_Fox/admin
+ * @subpackage Orbit_Fox/app
  */
 
 /**
@@ -72,7 +72,7 @@ class Orbit_Fox_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/orbit-fox-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . '../assets/css/orbit-fox-admin.css', array(), $this->version, 'all' );
 
 	}
 
@@ -95,7 +95,7 @@ class Orbit_Fox_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/orbit-fox-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . '../assets/js/orbit-fox-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
 

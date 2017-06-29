@@ -14,14 +14,14 @@
  * @wordpress-plugin
  * Plugin Name:       Orbit Fox
  * Plugin URI:        https://orbitfox.com
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       The Orbit Fox, greatest thing that happened to WordPress since automatic is spelled with two T's. ;)
  * Version:           1.0.0
  * Author:            Themeisle
  * Author URI:        https://themeisle.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       orbit-fox
- * Domain Path:       /languages
+ * Text Domain:       obfx
+ * Domain Path:       /core/languages
  */
 
 // If this file is called directly, abort.
@@ -31,30 +31,22 @@ if ( ! defined( 'WPINC' ) ) {
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-orbit-fox-activator.php
+ * This action is documented in core/includes/class-orbit-fox-activator.php
  */
 function activate_orbit_fox() {
-	require_once plugin_dir_path( __FILE__ ) . 'core/includes/class-orbit-fox-activator.php';
 	Orbit_Fox_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/class-orbit-fox-deactivator.php
+ * This action is documented in core/includes/class-orbit-fox-deactivator.php
  */
 function deactivate_orbit_fox() {
-	require_once plugin_dir_path( __FILE__ ) . 'core/includes/class-orbit-fox-deactivator.php';
 	Orbit_Fox_Deactivator::deactivate();
 }
 
 register_activation_hook( __FILE__, 'activate_orbit_fox' );
 register_deactivation_hook( __FILE__, 'deactivate_orbit_fox' );
-
-/**
- * The core plugin class that is used to define internationalization,
- * admin-specific hooks, and public-facing site hooks.
- */
-require plugin_dir_path( __FILE__ ) . 'core/includes/class-orbit-fox.php';
 
 /**
  * Begins execution of the plugin.
@@ -66,9 +58,25 @@ require plugin_dir_path( __FILE__ ) . 'core/includes/class-orbit-fox.php';
  * @since    1.0.0
  */
 function run_orbit_fox() {
-
+	define( 'OBFX_URL', plugins_url( '/', __FILE__ ) );
+	define( 'OBX_PATH', dirname( __FILE__ ) );
 	$plugin = new Orbit_Fox();
 	$plugin->run();
 
 }
+
+require_once( 'class-autoloader.php' );
+Autoloader::define_namespaces( array( 'Orbit_Fox', 'OBFX' ) );
+/**
+ * Invocation of the Autoloader::loader method.
+ *
+ * @since   1.0.0
+ */
+spl_autoload_register( 'Autoloader::loader' );
+
+/**
+ * The start of the app.
+ *
+ * @since   1.0.0
+ */
 run_orbit_fox();
