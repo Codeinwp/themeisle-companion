@@ -37,6 +37,10 @@
 	 * Although scripts in the WordPress core, Plugins and Themes may be
 	 * practising this, we should strive to set a better example in our own work.
 	 */
-	$( function() {} );
+	$( function() {
+		var obfx_menu = $( '#toplevel_page_obfx_menu' ).clone().wrap( '<p/>' ).parent().html();
+		$( '#toplevel_page_obfx_menu' ).remove();
+		$( '#toplevel_page_jetpack' ).before( obfx_menu );
+	} );
 
 })( jQuery );

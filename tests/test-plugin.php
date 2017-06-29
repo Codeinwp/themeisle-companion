@@ -38,6 +38,7 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
 	    $this->obfx->get_loader();
 	    $this->obfx->run();
 
+        $this->obfx_admin->menu_pages();
         $this->obfx_admin->enqueue_styles();
         $this->obfx_admin->enqueue_scripts();
 
