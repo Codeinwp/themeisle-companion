@@ -114,11 +114,9 @@ class Autoloader {
 
 		$filename = 'class-' . str_replace( '_', '-', strtolower( $class_name ) ) . static::$file_ext;
 		foreach ( static::$file_iterator as $file ) {
-			if ( strtolower( $file->getFilename() ) === strtolower( $filename ) ) {
-				if ( $file->isReadable() ) {
-					include_once $file->getPathname();
-					return true;
-				}
+			if ( strtolower( $file->getFilename() ) === strtolower( $filename ) && $file->isReadable() ) {
+                include_once $file->getPathname();
+                return true;
 			}
 		}
 	}
