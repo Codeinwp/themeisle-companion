@@ -80,6 +80,27 @@ class Autoloader {
 	protected static $file_iterator = null;
 
 	/**
+	 * Method to check in allowed namespaces.
+	 *
+	 * @since   1.0.0
+	 * @access  protected
+	 * @param   string $class_name the class name to check with the namespaces.
+	 * @return bool
+	 */
+	protected static function check_namespaces( $class_name ) {
+		$found = false;
+		foreach ( static::$namespaces as $namespace ) {
+			if ( $namespace == 'OBFX_Module' && substr( $class_name, strlen( $namespace ) * (-1), strlen( $namespace ) ) == $namespace ) {
+				return static::module_loader( $class_name );
+			}
+			if ( substr( $class_name, 0, strlen( $namespace ) ) == $namespace ) {
+				$found = true;
+			}
+		}
+		return $found;
+	}
+
+	/**
 	 * Autoload function for registration with spl_autoload_register
 	 *
 	 * Looks recursively through project directory and loads class files based on
@@ -98,15 +119,7 @@ class Autoloader {
 		}
 
 		if ( ! empty( static::$namespaces ) ) {
-		    $found = false;
-			foreach ( static::$namespaces as $namespace ) {
-				if ( $namespace == 'OBFX_Module' && substr( $class_name, strlen( $namespace ) * (-1), strlen( $namespace ) ) == $namespace ) {
-					return static::module_loader( $class_name );
-				}
-				if ( substr( $class_name, 0, strlen( $namespace ) ) == $namespace ) {
-					$found = true;
-				}
-			}
+		    $found = static::check_namespaces( $class_name );
 			if ( ! $found ) {
 				return $found;
 			}
