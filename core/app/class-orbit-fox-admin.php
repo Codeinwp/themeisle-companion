@@ -96,7 +96,7 @@ class Orbit_Fox_Admin {
 		 */
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . '../assets/js/orbit-fox-admin.js', array( 'jquery' ), $this->version, false );
-
+		do_action( 'orbit_admin_enqueue' );
 	}
 
 	/**

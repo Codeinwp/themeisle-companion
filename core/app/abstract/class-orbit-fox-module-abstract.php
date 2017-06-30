@@ -54,6 +54,22 @@ abstract class Orbit_Fox_Module_Abstract {
 	 */
 	protected $loader;
 
+    protected function get_dir() {
+        $reflector = new ReflectionClass( get_class( $this ) );
+        return dirname( $reflector->getFileName() );
+    }
+
+    /**
+     * Registers the loader.
+     *
+     * @since   1.0.0
+     * @access  public
+     * @param Orbit_Fox_Loader $loader
+     */
+	public static function register_loader( Orbit_Fox_Loader $loader ) {
+	    static::$loader = $loader;
+    }
+
 	/**
 	 * Method to determine if the module is enabled or not.
 	 *
@@ -100,4 +116,49 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @return array
 	 */
 	public abstract function options();
+
+    final public function enqueue() {
+        $admin_enqueue = $this->admin_enqueue();
+        $public_enqueue = $this->public_enqueue();
+
+        $this->register_enqueue( $admin_enqueue, 'admin' );
+        $this->register_enqueue( $admin_enqueue );
+    }
+
+    private function register_enqueue( $enqueue, $type = 'public' ) {
+        if( ! empty( $enqueue ) ) {
+            if( $type == 'admin' ) {
+                if( isset( $enqueue['js'] ) && ! empty( $enqueue['js'] ) ) {
+                    foreach ( $enqueue['js'] as $file_name => $dependencies ) {
+                        if( $dependencies == false ) {
+                            $dependencies = array();
+                        }
+                        wp_enqueue_script(
+                            'obfx-module-js-' . str_replace( ' ', '-', strtolower( $this->name ) ),
+                            plugin_dir_url( $this->get_dir() ) . 'js/' . $file_name . '.js',
+                            $dependencies,
+                            '1.0.0',
+                            false
+                        );
+                    }
+                }
+                if( isset( $enqueue['css'] ) && ! empty( $enqueue['css'] ) ) {
+                    foreach ( $enqueue['js'] as $file_name => $dependencies ) {
+                        if ($dependencies == false ) {
+                            $dependencies = array();
+                        }
+                        wp_enqueue_style(
+                            'obfx-module-css-' . str_replace(' ', '-', strtolower( $this->name ) ),
+                            plugin_dir_url( $this->get_dir() ) . 'css/' . $file_name . '.css',
+                            $dependencies,
+                            '1.0.0',
+                            'all'
+                        );
+                    }
+                }
+            } else {
+
+            }
+        }
+    }
 }
