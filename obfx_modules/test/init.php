@@ -69,7 +69,14 @@ class Test_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return array
 	 */
 	public function admin_enqueue() {
-		return array();
+		return array(
+		    'js' => array(
+		        'test' => array( 'jquery' ),
+			),
+			'css' => array(
+				'test' => false,
+			),
+		);
 	}
 
 	/**
