@@ -43,6 +43,15 @@ class Autoloader {
 	protected static $path_top = __DIR__;
 
 	/**
+	 * The plugin directory where recursion will begin. Defaults to empty ( No module will be loaded ).
+	 *
+	 * @since   1.0.0
+	 * @access  protected
+	 * @var     string $plugins_path The installation plugins directory.
+	 */
+	protected static $plugins_path = '';
+
+	/**
 	 * Holds an array of namespaces to filter in autoloading if set.
 	 *
 	 * @since   1.0.0
@@ -91,6 +100,11 @@ class Autoloader {
 		if ( ! empty( static::$namespaces ) ) {
 		    $found = false;
 			foreach ( static::$namespaces as $namespace ) {
+			    if ( $namespace == 'OBFX_Module' ) {
+			        if ( substr( $class_name, strlen( $namespace ) * (-1), strlen( $namespace ) ) == $namespace ) {
+						return static::module_loader( $class_name );
+					}
+				}
 				if ( substr( $class_name, 0, strlen( $namespace ) ) == $namespace ) {
 					$found = true;
 				}
@@ -112,6 +126,34 @@ class Autoloader {
 	}
 
 	/**
+	 * Method used for loading required module init file.
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 * @param   string $class_name The class name requested.
+	 * @return bool
+	 */
+	public static function module_loader( $class_name ) {
+		$module_name = str_replace( '_', '-', strtolower( str_replace( '_OBFX_Module', '', $class_name ) ) );
+		if ( static::$plugins_path != '' ) {
+			$plugin_directory = new RecursiveDirectoryIterator( static::$plugins_path, RecursiveDirectoryIterator::SKIP_DOTS );
+			$file_iterator = new RecursiveIteratorIterator( $plugin_directory, RecursiveIteratorIterator::LEAVES_ONLY );
+			$filename = 'init.php';
+			foreach ( $file_iterator as $file ) {
+				if ( in_array( 'obfx_modules', explode( DIRECTORY_SEPARATOR, $file->getPathname() ) ) && in_array( $module_name, explode( DIRECTORY_SEPARATOR, $file->getPathname() ) ) ) {
+					if ( strtolower( $file->getFilename() ) === strtolower( $filename ) ) {
+						if ( $file->isReadable() ) {
+							include_once $file->getPathname();
+							return true;
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * Sets the $file_ext property
 	 *
 	 * @since   1.0.0
@@ -120,6 +162,18 @@ class Autoloader {
 	 */
 	public static function set_file_ext( $file_ext ) {
 		static::$file_ext = $file_ext;
+	}
+
+	/**
+	 * Sets the $plugins_path property
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 * @param   string $path The path representing the top level where recursion should
+	 *                       begin for plugins. Defaults to empty ( does not look in plugins ).
+	 */
+	public static function set_plugins_path( $path ) {
+		static::$plugins_path = $path;
 	}
 
 	/**

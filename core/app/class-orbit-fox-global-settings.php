@@ -51,8 +51,8 @@ class Orbit_Fox_Global_Settings {
 			self::$instance = new Orbit_Fox_Global_Settings;
 			self::$instance->modules = apply_filters( 'obfx_modules',
 				array(
-					'test' => false,
-					'test-external' => 'wp-product-review',
+				    'test',
+					'new-module',
 				)
 			);
 		}// End if().
@@ -69,17 +69,5 @@ class Orbit_Fox_Global_Settings {
 	 */
 	public function get_modules() {
 		return self::instance()->modules;
-	}
-
-	/**
-	 * Method to append modules to the global modules.
-	 *
-	 * @since   1.0.0
-	 * @access  public
-	 * @param   array $new_modules  New modules to be added.
-	 */
-	public function add_modules( $new_modules = array() ) {
-		$merged_modules = array_merge( self::instance()->modules, $new_modules );
-		self::$instance->modules = apply_filters( 'obfx_modules', $merged_modules );
 	}
 }

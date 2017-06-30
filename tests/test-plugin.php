@@ -39,6 +39,7 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
 	    $this->obfx->run();
 
         $this->obfx_admin->menu_pages();
+        $this->obfx_admin->load_modules();
         ob_start();
         $this->obfx_admin->page_temp_render();
         $output = ob_get_clean();
@@ -57,14 +58,25 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
         $global_settings = new Orbit_Fox_Global_Settings();
         $this->assertTrue( is_array( $global_settings->instance()->get_modules() ) );
         $this->assertTrue( ! empty( $global_settings->instance()->get_modules() ) );
-        
-        $global_settings->instance()->add_modules( array( 'new-module' => false, 'new-plugin-module' => 'plugin-name' ) );
-        $expected_array = array(
-            'test' => false,
-            'test-external' => 'wp-product-review',
-            'new-module' => false,
-            'new-plugin-module' => 'plugin-name'
-        );
-        $this->assertEquals( $expected_array,  $global_settings->instance()->get_modules() );
     }
+
+    /**
+     * Test for Orbit Fox Modules.
+     *
+     * @covers Orbit_Fox_Module_Factory
+     */
+    public function test_module() {
+        $modules_to_load = array(
+            'test',
+            'new-module'
+        );
+
+        $module_factory = new Orbit_Fox_Module_Factory();
+
+        echo PHP_EOL;
+        foreach ( $modules_to_load as $module_name ) {
+            $module = $module_factory::build( $module_name );
+            $this->assertTrue( $module->enable_module() );
+        }
+	}
 }

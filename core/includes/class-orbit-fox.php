@@ -72,6 +72,7 @@ class Orbit_Fox {
 
 		$this->load_dependencies();
 		$this->set_locale();
+		$this->prepare_modules();
 		$this->define_admin_hooks();
 
 	}
@@ -114,6 +115,26 @@ class Orbit_Fox {
 	}
 
 	/**
+	 * Check Modules and register them.
+	 *
+	 * @since   1.0.0
+	 * @access  private
+	 */
+	private function prepare_modules() {
+		$global_settings = new Orbit_Fox_Global_Settings();
+		$modules_to_load = $global_settings->instance()->get_modules();
+
+		$module_factory = new Orbit_Fox_Module_Factory();
+
+		foreach ( $modules_to_load as $module_name ) {
+			$module = $module_factory::build( $module_name );
+			if ( $module->enable_module() ) {
+				$this->loader->add_action( 'orbit_fox_modules', $module, 'load' );
+			}
+		}
+	}
+
+	/**
 	 * Register all of the hooks related to the admin area functionality
 	 * of the plugin.
 	 *
@@ -124,8 +145,8 @@ class Orbit_Fox {
 
 		$plugin_admin = new Orbit_Fox_Admin( $this->get_plugin_name(), $this->get_version() );
 
+		$this->loader->add_action( 'init', $plugin_admin, 'load_modules' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'menu_pages' );
-
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 

@@ -66,7 +66,8 @@ function run_orbit_fox() {
 }
 
 require_once( 'class-autoloader.php' );
-Autoloader::define_namespaces( array( 'Orbit_Fox', 'OBFX' ) );
+Autoloader::set_plugins_path( plugin_dir_path( __DIR__ ) );
+Autoloader::define_namespaces( array( 'Orbit_Fox', 'OBFX', 'OBFX_Module' ) );
 /**
  * Invocation of the Autoloader::loader method.
  *
