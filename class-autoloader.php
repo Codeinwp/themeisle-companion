@@ -100,11 +100,9 @@ class Autoloader {
 		if ( ! empty( static::$namespaces ) ) {
 		    $found = false;
 			foreach ( static::$namespaces as $namespace ) {
-			    if ( $namespace == 'OBFX_Module' ) {
-			        if ( substr( $class_name, strlen( $namespace ) * (-1), strlen( $namespace ) ) == $namespace ) {
-						return static::module_loader( $class_name );
-					}
-				}
+                if ( $namespace == 'OBFX_Module' && substr( $class_name, strlen( $namespace ) * (-1), strlen( $namespace ) ) == $namespace ) {
+                    return static::module_loader( $class_name );
+                }
 				if ( substr( $class_name, 0, strlen( $namespace ) ) == $namespace ) {
 					$found = true;
 				}

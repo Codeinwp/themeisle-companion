@@ -32,8 +32,7 @@ class Orbit_Fox_Module_Factory {
 
 		if ( class_exists( $module ) ) {
 			return new $module;
-		} else {
-			throw new Exception( 'Invalid module name given.' );
 		}
+		throw new Exception( 'Invalid module name given.' );
 	}
 }
