@@ -100,9 +100,9 @@ class Autoloader {
 		if ( ! empty( static::$namespaces ) ) {
 		    $found = false;
 			foreach ( static::$namespaces as $namespace ) {
-                if ( $namespace == 'OBFX_Module' && substr( $class_name, strlen( $namespace ) * (-1), strlen( $namespace ) ) == $namespace ) {
-                    return static::module_loader( $class_name );
-                }
+				if ( $namespace == 'OBFX_Module' && substr( $class_name, strlen( $namespace ) * (-1), strlen( $namespace ) ) == $namespace ) {
+					return static::module_loader( $class_name );
+				}
 				if ( substr( $class_name, 0, strlen( $namespace ) ) == $namespace ) {
 					$found = true;
 				}
@@ -115,8 +115,8 @@ class Autoloader {
 		$filename = 'class-' . str_replace( '_', '-', strtolower( $class_name ) ) . static::$file_ext;
 		foreach ( static::$file_iterator as $file ) {
 			if ( strtolower( $file->getFilename() ) === strtolower( $filename ) && $file->isReadable() ) {
-                include_once $file->getPathname();
-                return true;
+				include_once $file->getPathname();
+				return true;
 			}
 		}
 	}

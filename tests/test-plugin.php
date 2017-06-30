@@ -17,6 +17,10 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
 	protected $plugin_name;
 	protected $plugin_version;
 
+    public function tearDown() {
+        Orbit_Fox_Global_Settings::distroy_instance();
+    }
+
 	public function setUp() {
 		$this->obfx = new Orbit_Fox();
 
@@ -56,9 +60,10 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
      */
 	public function test_global_settings() {
         $global_settings = new Orbit_Fox_Global_Settings();
-        $global_settings->instance();
+        $instance = $global_settings->instance();
         $this->assertTrue( is_array( $global_settings->instance()->get_modules() ) );
         $this->assertTrue( ! empty( $global_settings->instance()->get_modules() ) );
+        $global_settings->distroy_instance();
     }
 
     /**

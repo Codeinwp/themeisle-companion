@@ -69,4 +69,14 @@ class Orbit_Fox_Global_Settings {
 	public function get_modules() {
 		return self::instance()->modules;
 	}
+
+	/**
+	 * Method to destroy singleton.
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 */
+	public static function distroy_instance() {
+	    static::$instance = null;
+	}
 }

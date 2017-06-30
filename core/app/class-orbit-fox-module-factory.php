@@ -33,6 +33,8 @@ class Orbit_Fox_Module_Factory {
 		if ( class_exists( $module ) ) {
 			return new $module;
 		}
+		// @codeCoverageIgnoreStart
 		throw new Exception( 'Invalid module name given.' );
+		// @codeCoverageIgnoreEnd
 	}
 }
