@@ -39,9 +39,32 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
 	    $this->obfx->run();
 
         $this->obfx_admin->menu_pages();
+        ob_start();
+        $this->obfx_admin->page_temp_render();
+        $output = ob_get_clean();
         $this->obfx_admin->enqueue_styles();
         $this->obfx_admin->enqueue_scripts();
 
 		$this->assertTrue( true );
 	}
+
+    /**
+     * Test for global settings.
+     *
+     * @covers Orbit_Fox_Global_Settings
+     */
+	public function test_global_settings() {
+        $global_settings = new Orbit_Fox_Global_Settings();
+        $this->assertTrue( is_array( $global_settings->instance()->get_modules() ) );
+        $this->assertTrue( ! empty( $global_settings->instance()->get_modules() ) );
+        
+        $global_settings->instance()->add_modules( array( 'new-module' => false, 'new-plugin-module' => 'plugin-name' ) );
+        $expected_array = array(
+            'test' => false,
+            'test-external' => 'wp-product-review',
+            'new-module' => false,
+            'new-plugin-module' => 'plugin-name'
+        );
+        $this->assertEquals( $expected_array,  $global_settings->instance()->get_modules() );
+    }
 }
