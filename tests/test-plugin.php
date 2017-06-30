@@ -56,6 +56,7 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
      */
 	public function test_global_settings() {
         $global_settings = new Orbit_Fox_Global_Settings();
+        $global_settings->instance();
         $this->assertTrue( is_array( $global_settings->instance()->get_modules() ) );
         $this->assertTrue( ! empty( $global_settings->instance()->get_modules() ) );
     }
@@ -66,9 +67,9 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
      * @covers Orbit_Fox_Module_Factory
      */
     public function test_module() {
+        Autoloader::set_plugins_path( plugin_dir_path( __DIR__ ) );
         $modules_to_load = array(
             'test',
-            'new-module'
         );
 
         $module_factory = new Orbit_Fox_Module_Factory();
