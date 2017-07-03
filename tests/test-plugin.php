@@ -89,7 +89,6 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
             $module->set_admin_scripts();
             $module->set_public_styles();
             $module->set_public_scripts();
-            $module->get_dir();
         }
 	}
 }
