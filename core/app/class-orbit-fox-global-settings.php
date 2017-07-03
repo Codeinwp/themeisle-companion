@@ -39,6 +39,15 @@ class Orbit_Fox_Global_Settings {
 	public $modules = array();
 
 	/**
+	 * Stores an array of module objects.
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 * @var     array $module_objects Stores references to modules Objects.
+	 */
+	public $module_objects = array();
+
+	/**
 	 * The instance method for the static class.
 	 * Defines and returns the instance of the static class.
 	 *
@@ -57,6 +66,18 @@ class Orbit_Fox_Global_Settings {
 		}// End if().
 
 		return self::$instance;
+	}
+
+	/**
+	 * Registers a module object reference in the $module_objects array.
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 * @param   string                    $name The name of the module from $modules array.
+	 * @param   Orbit_Fox_Module_Abstract $module The module object.
+	 */
+	public function register_module_reference( $name, Orbit_Fox_Module_Abstract $module ) {
+	    self::$instance->module_objects[ $name ] = $module;
 	}
 
 	/**

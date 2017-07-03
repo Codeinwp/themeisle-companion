@@ -165,6 +165,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	 */
 	public function set_admin_styles() {
 		$enqueue = $this->admin_enqueue();
+		$module_dir = str_replace( '_', '-',strtolower( str_replace( '_OBFX_Module', '', get_class( $this ) ) ) );
 		if ( ! empty( $enqueue ) ) {
 			if ( isset( $enqueue['css'] ) && ! empty( $enqueue['css'] ) ) {
 				foreach ( $enqueue['css'] as $file_name => $dependencies ) {
@@ -173,7 +174,7 @@ abstract class Orbit_Fox_Module_Abstract {
 					}
 					wp_enqueue_style(
 						'obfx-module-css-' . str_replace( ' ', '-', strtolower( $this->name ) ),
-						plugin_dir_url( $this->get_dir() ) . 'css/' . $file_name . '.css',
+						plugin_dir_url( $this->get_dir() ) . $module_dir . '/css/' . $file_name . '.css',
 						$dependencies,
 						$this->version,
 						'all'
@@ -193,6 +194,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	 */
 	public function set_admin_scripts() {
 		$enqueue = $this->admin_enqueue();
+		$module_dir = str_replace( '_', '-',strtolower( str_replace( '_OBFX_Module', '', get_class( $this ) ) ) );
 		if ( ! empty( $enqueue ) ) {
 			if ( isset( $enqueue['js'] ) && ! empty( $enqueue['js'] ) ) {
 				foreach ( $enqueue['js'] as $file_name => $dependencies ) {
@@ -201,7 +203,7 @@ abstract class Orbit_Fox_Module_Abstract {
 					}
 					wp_enqueue_script(
 						'obfx-module-js-' . str_replace( ' ', '-', strtolower( $this->name ) ),
-						plugin_dir_url( $this->get_dir() ) . 'js/' . $file_name . '.js',
+						plugin_dir_url( $this->get_dir() ) . $module_dir . '/js/' . $file_name . '.js',
 						$dependencies,
 						$this->version,
 						false
@@ -221,6 +223,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	 */
 	public function set_public_styles() {
 		$enqueue = $this->public_enqueue();
+		$module_dir = str_replace( '_', '-',strtolower( str_replace( '_OBFX_Module', '', get_class( $this ) ) ) );
 		if ( ! empty( $enqueue ) ) {
 			if ( isset( $enqueue['css'] ) && ! empty( $enqueue['css'] ) ) {
 				foreach ( $enqueue['css'] as $file_name => $dependencies ) {
@@ -229,7 +232,7 @@ abstract class Orbit_Fox_Module_Abstract {
 					}
 					wp_enqueue_style(
 						'obfx-module-pub-css-' . str_replace( ' ', '-', strtolower( $this->name ) ),
-						plugin_dir_url( $this->get_dir() ) . 'css/' . $file_name . '.css',
+						plugin_dir_url( $this->get_dir() ) . $module_dir . '/css/' . $file_name . '.css',
 						$dependencies,
 						$this->version,
 						'all'
@@ -249,6 +252,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	 */
 	public function set_public_scripts() {
 		$enqueue = $this->public_enqueue();
+		$module_dir = str_replace( '_', '-',strtolower( str_replace( '_OBFX_Module', '', get_class( $this ) ) ) );
 		if ( ! empty( $enqueue ) ) {
 			if ( isset( $enqueue['js'] ) && ! empty( $enqueue['js'] ) ) {
 				foreach ( $enqueue['js'] as $file_name => $dependencies ) {
@@ -257,7 +261,7 @@ abstract class Orbit_Fox_Module_Abstract {
 					}
 					wp_enqueue_script(
 						'obfx-module-pub-js-' . str_replace( ' ', '-', strtolower( $this->name ) ),
-						plugin_dir_url( $this->get_dir() ) . 'js/' . $file_name . '.js',
+						plugin_dir_url( $this->get_dir() ) . $module_dir . '/js/' . $file_name . '.js',
 						$dependencies,
 						$this->version,
 						false
