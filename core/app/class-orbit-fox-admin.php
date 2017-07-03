@@ -128,8 +128,8 @@ class Orbit_Fox_Admin {
 	/**
 	 * Method to display modules page.
 	 *
-     * @codeCoverageIgnore
-     *
+	 * @codeCoverageIgnore
+	 *
 	 * @since   1.0.0
 	 * @access  public
 	 */
@@ -151,11 +151,18 @@ class Orbit_Fox_Admin {
 			$tiles .= $rdh->get_partial( 'module-tile', $data );
 			$tiles .= '<div class="divider"></div>';
 
+			$module_options = $module->options();
+			$options_fields = '';
+			foreach ( $module_options as $option ) {
+				$options_fields = $rdh->render_option( $option );
+			}
+
 			$panels .= $rdh->get_partial(
 				'module-panel',
 				array(
 						'name' => $module->name,
 						'description' => $module->description,
+						'options_fields' => $options_fields,
 					)
 			);
 		}

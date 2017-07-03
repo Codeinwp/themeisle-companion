@@ -30,5 +30,6 @@ if ( ! isset( $options_fields ) ) {
 	</div>
 	<div class="panel-body">
 		<?php echo $options_fields; ?>
+		<div class="divider"></div>
 	</div>
 </div>
