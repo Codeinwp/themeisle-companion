@@ -138,22 +138,46 @@ class Orbit_Fox_Admin {
 
 		$rh = new Orbit_Fox_Render_Helper();
 		$tiles = '';
+        $panels = '';
 		$count_modules = 0;
-		foreach ( $modules as $name => $module ) {
+		foreach ( $modules as $module ) {
 			$count_modules++;
 			$data = array(
 				'name' => $module->name,
 				'description' => $module->description,
 			);
 			$tiles .= $rh->get_partial( 'module-tile', $data );
-			$tiles .= '<hr/>';
+			$tiles .= '<div class="divider"></div>';
+
+            $panels .= $rh->get_partial(
+                'module-panel',
+                    array(
+                        'name' => $module->name,
+                        'description' => $module->description,
+                    )
+            );
 		}
 
 		$no_modules = false;
 		$empty_tpl = '';
 		if ( $count_modules == 0 ) {
 			$no_modules = true;
-			$empty_tpl = $rh->get_partial( 'empty' );
+			$empty_tpl = $rh->get_partial(
+                'empty',
+                    array(
+                        'title' => __('No modules found.', 'obfx'),
+                        'sub_title' => __('Please contact support for more help.', 'obfx'),
+                        'show_btn' => true
+                    )
+            );
+            $panels = $rh->get_partial(
+                'empty',
+                array(
+                    'title' => __('No active modules.', 'obfx'),
+                    'sub_title' => __('Activate a module using the toggles above.', 'obfx'),
+                    'show_btn' => false
+                )
+            );
 		}
 
 		$data = array(
@@ -161,6 +185,7 @@ class Orbit_Fox_Admin {
 			'empty_tpl' => $empty_tpl,
 			'count_modules' => $count_modules,
 			'tiles' => $tiles,
+            'panels' => $panels,
 		);
 	    $output = $rh->get_view( 'modules', $data );
 	    echo $output;

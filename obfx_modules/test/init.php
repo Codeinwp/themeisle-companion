@@ -87,6 +87,17 @@ class Test_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return array
 	 */
 	public function options() {
-		return array();
+		return array(
+		    array(
+		        'id' => 'test_text_id',
+		        'name' => 'test_text_name',
+		        'label' => 'Module Text Label',
+		        'description' => 'Module Text Description ...',
+		        'type' => 'text',
+		        'default' => '',
+		        'placeholder' => 'Add some text',
+		        'options' => array(),
+            )
+        );
 	}
 }

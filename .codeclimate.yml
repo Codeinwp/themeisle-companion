@@ -1,15 +1,15 @@
 ---
 engines:
   csslint:
-    enabled: true
+    enabled: false
   duplication:
     enabled: true
     config:
       languages:
         javascript:
-          mass_threshold: 40
+          mass_threshold: 60
         php:
-          mass_threshold: 40
+          mass_threshold: 60
   eslint:
     enabled: true
   fixme:

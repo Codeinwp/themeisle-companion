@@ -24,6 +24,10 @@ if ( ! isset( $count_modules ) ) {
 if ( ! isset( $tiles ) ) {
 	$tiles = '';
 }
+
+if ( ! isset( $panels ) ) {
+    $panels = '';
+}
 ?>
 <div id="obfx-wrapper">
 	<h1 class="text-center"><?php echo __( 'Orbit Fox', 'obfx' ); ?></h1>
@@ -56,6 +60,7 @@ if ( ! isset( $tiles ) ) {
 			<!-- buttons or inputs -->
 		</div>
 	</div>
+    <?php echo $panels; ?>
 	<?php
 	}
 	?>

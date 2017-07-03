@@ -14,12 +14,12 @@ if ( ! isset( $title ) ) {
 	$title = __( 'There are no modules for the Fox!', 'obfx' );
 }
 
-if ( ! isset( $sub_title ) ) {
-	$sub_title = __( 'Click the button to get some help.', 'obfx' );
-}
-
 if ( ! isset( $btn_text ) ) {
 	$btn_text = __( 'Contact support', 'obfx' );
+}
+
+if ( ! isset( $show_btn ) ) {
+    $show_btn = true;
 }
 
 ?>
@@ -28,8 +28,13 @@ if ( ! isset( $btn_text ) ) {
 		<i class="dashicons dashicons-warning" style="width: 48px; height: 48px; font-size: 48px; "></i>
 	</div>
 	<h4 class="empty-title"><?php echo $title; ?></h4>
-	<p class="empty-subtitle"><?php echo $sub_title; ?></p>
-	<div class="empty-action">
-		<button class="btn btn-primary"><?php echo $btn_text; ?></button>
-	</div>
+	<?php echo ( isset( $sub_title ) )? '<p class="empty-subtitle">' . $sub_title . '</p>':''; ?>
+    <?php if ( $show_btn ) {
+    ?>
+        <div class="empty-action">
+            <button class="btn btn-primary"><?php echo $btn_text; ?></button>
+        </div>
+    <?php
+    }
+    ?>
 </div>
