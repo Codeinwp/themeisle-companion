@@ -66,6 +66,8 @@ abstract class Orbit_Fox_Module_Abstract {
 	/**
 	 * Method to return path to child class in a Reflective Way.
 	 *
+	 * @codeCoverageIgnore
+	 *
 	 * @since   1.0.0
 	 * @access  protected
 	 * @return string
@@ -77,6 +79,8 @@ abstract class Orbit_Fox_Module_Abstract {
 
 	/**
 	 * Registers the loader.
+	 *
+	 * @codeCoverageIgnore
 	 *
 	 * @since   1.0.0
 	 * @access  public
@@ -136,6 +140,8 @@ abstract class Orbit_Fox_Module_Abstract {
 	/**
 	 * Adds the hooks for amdin and public enqueue.
 	 *
+	 * @codeCoverageIgnore
+	 *
 	 * @since   1.0.0
 	 * @access  public
 	 * @param   string $version The version for the files.
@@ -151,6 +157,8 @@ abstract class Orbit_Fox_Module_Abstract {
 
 	/**
 	 * Sets the styles for admin from the module array.
+	 *
+	 * @codeCoverageIgnore
 	 *
 	 * @since   1.0.0
 	 * @access  public
@@ -178,6 +186,8 @@ abstract class Orbit_Fox_Module_Abstract {
 	/**
 	 * Sets the scripts for admin from the module array.
 	 *
+	 * @codeCoverageIgnore
+	 *
 	 * @since   1.0.0
 	 * @access  public
 	 */
@@ -204,6 +214,8 @@ abstract class Orbit_Fox_Module_Abstract {
 	/**
 	 * Sets the styles for public from the module array.
 	 *
+	 * @codeCoverageIgnore
+	 *
 	 * @since   1.0.0
 	 * @access  public
 	 */
@@ -229,6 +241,8 @@ abstract class Orbit_Fox_Module_Abstract {
 
 	/**
 	 * Sets the scripts for public from the module array.
+	 *
+	 * @codeCoverageIgnore
 	 *
 	 * @since   1.0.0
 	 * @access  public
