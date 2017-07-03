@@ -228,7 +228,7 @@ abstract class Orbit_Fox_Module_Abstract {
 						$dependencies = array();
 					}
 					wp_enqueue_style(
-						'obfx-module-css-' . str_replace( ' ', '-', strtolower( $this->name ) ),
+						'obfx-module-pub-css-' . str_replace( ' ', '-', strtolower( $this->name ) ),
 						plugin_dir_url( $this->get_dir() ) . 'css/' . $file_name . '.css',
 						$dependencies,
 						$this->version,
@@ -256,7 +256,7 @@ abstract class Orbit_Fox_Module_Abstract {
 						$dependencies = array();
 					}
 					wp_enqueue_script(
-						'obfx-module-js-' . str_replace( ' ', '-', strtolower( $this->name ) ),
+						'obfx-module-pub-js-' . str_replace( ' ', '-', strtolower( $this->name ) ),
 						plugin_dir_url( $this->get_dir() ) . 'js/' . $file_name . '.js',
 						$dependencies,
 						$this->version,
