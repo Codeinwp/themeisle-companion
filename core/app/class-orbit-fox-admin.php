@@ -138,7 +138,7 @@ class Orbit_Fox_Admin {
 
 		$rdh = new Orbit_Fox_Render_Helper();
 		$tiles = '';
-        $panels = '';
+		$panels = '';
 		$count_modules = 0;
 		foreach ( $modules as $module ) {
 			$count_modules++;
@@ -149,13 +149,13 @@ class Orbit_Fox_Admin {
 			$tiles .= $rdh->get_partial( 'module-tile', $data );
 			$tiles .= '<div class="divider"></div>';
 
-            $panels .= $rdh->get_partial(
-                'module-panel',
-                    array(
-                        'name' => $module->name,
-                        'description' => $module->description,
-                    )
-            );
+			$panels .= $rdh->get_partial(
+				'module-panel',
+				array(
+						'name' => $module->name,
+						'description' => $module->description,
+					)
+			);
 		}
 
 		$no_modules = false;
@@ -163,21 +163,21 @@ class Orbit_Fox_Admin {
 		if ( $count_modules == 0 ) {
 			$no_modules = true;
 			$empty_tpl = $rdh->get_partial(
-                'empty',
-                    array(
-                        'title' => __('No modules found.', 'obfx'),
-                        'sub_title' => __('Please contact support for more help.', 'obfx'),
-                        'show_btn' => true
-                    )
-            );
-            $panels = $rdh->get_partial(
-                'empty',
-                array(
-                    'title' => __('No active modules.', 'obfx'),
-                    'sub_title' => __('Activate a module using the toggles above.', 'obfx'),
-                    'show_btn' => false
-                )
-            );
+				'empty',
+				array(
+						'title' => __( 'No modules found.', 'obfx' ),
+						'sub_title' => __( 'Please contact support for more help.', 'obfx' ),
+						'show_btn' => true,
+					)
+			);
+			$panels = $rdh->get_partial(
+				'empty',
+				array(
+					'title' => __( 'No active modules.', 'obfx' ),
+					'sub_title' => __( 'Activate a module using the toggles above.', 'obfx' ),
+					'show_btn' => false,
+				)
+			);
 		}
 
 		$data = array(
@@ -185,7 +185,7 @@ class Orbit_Fox_Admin {
 			'empty_tpl' => $empty_tpl,
 			'count_modules' => $count_modules,
 			'tiles' => $tiles,
-            'panels' => $panels,
+			'panels' => $panels,
 		);
 	    $output = $rdh->get_view( 'modules', $data );
 	    echo $output;

@@ -19,7 +19,7 @@ if ( ! isset( $btn_text ) ) {
 }
 
 if ( ! isset( $show_btn ) ) {
-    $show_btn = true;
+	$show_btn = true;
 }
 
 ?>
@@ -29,12 +29,12 @@ if ( ! isset( $show_btn ) ) {
 	</div>
 	<h4 class="empty-title"><?php echo $title; ?></h4>
 	<?php echo ( isset( $sub_title ) )? '<p class="empty-subtitle">' . $sub_title . '</p>':''; ?>
-    <?php if ( $show_btn ) {
-    ?>
-        <div class="empty-action">
-            <button class="btn btn-primary"><?php echo $btn_text; ?></button>
-        </div>
-    <?php
-    }
-    ?>
+	<?php if ( $show_btn ) {
+	?>
+		<div class="empty-action">
+			<button class="btn btn-primary"><?php echo $btn_text; ?></button>
+		</div>
+	<?php
+}
+	?>
 </div>

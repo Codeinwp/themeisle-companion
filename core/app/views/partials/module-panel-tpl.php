@@ -11,24 +11,24 @@
  */
 
 if ( ! isset( $name ) ) {
-    $name = __( 'The Module Name', 'obfx' );
+	$name = __( 'The Module Name', 'obfx' );
 }
 
 if ( ! isset( $description ) ) {
-    $description = __( 'The Module Description ...', 'obfx' );
+	$description = __( 'The Module Description ...', 'obfx' );
 }
 
 if ( ! isset( $options_fields ) ) {
-    $options_fields = __( 'No options provided.', 'obfx' );
+	$options_fields = __( 'No options provided.', 'obfx' );
 }
 
 ?>
 <div class="panel">
-    <div class="panel-header">
-        <div class="panel-title"><?php echo $name; ?></div>
-        <div class="panel-subtitle"><?php echo $description; ?></div>
-    </div>
-    <div class="panel-body">
-        <?php echo $options_fields; ?>
-    </div>
+	<div class="panel-header">
+		<div class="panel-title"><?php echo $name; ?></div>
+		<div class="panel-subtitle"><?php echo $description; ?></div>
+	</div>
+	<div class="panel-body">
+		<?php echo $options_fields; ?>
+	</div>
 </div>

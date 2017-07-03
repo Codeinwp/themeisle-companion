@@ -26,7 +26,7 @@ if ( ! isset( $tiles ) ) {
 }
 
 if ( ! isset( $panels ) ) {
-    $panels = '';
+	$panels = '';
 }
 ?>
 <div id="obfx-wrapper">
@@ -60,7 +60,7 @@ if ( ! isset( $panels ) ) {
 			<!-- buttons or inputs -->
 		</div>
 	</div>
-    <?php echo $panels; ?>
+	<?php echo $panels; ?>
 	<?php
 	}
 	?>
