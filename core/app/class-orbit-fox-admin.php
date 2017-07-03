@@ -126,8 +126,10 @@ class Orbit_Fox_Admin {
 	}
 
 	/**
-	 * Temporary method to render page.
+	 * Method to display modules page.
 	 *
+     * @codeCoverageIgnore
+     *
 	 * @since   1.0.0
 	 * @access  public
 	 */
