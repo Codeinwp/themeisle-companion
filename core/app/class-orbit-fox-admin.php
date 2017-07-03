@@ -136,7 +136,7 @@ class Orbit_Fox_Admin {
 
 		$modules = $global_settings::$instance->module_objects;
 
-		$rh = new Orbit_Fox_Render_Helper();
+		$rdh = new Orbit_Fox_Render_Helper();
 		$tiles = '';
         $panels = '';
 		$count_modules = 0;
@@ -146,10 +146,10 @@ class Orbit_Fox_Admin {
 				'name' => $module->name,
 				'description' => $module->description,
 			);
-			$tiles .= $rh->get_partial( 'module-tile', $data );
+			$tiles .= $rdh->get_partial( 'module-tile', $data );
 			$tiles .= '<div class="divider"></div>';
 
-            $panels .= $rh->get_partial(
+            $panels .= $rdh->get_partial(
                 'module-panel',
                     array(
                         'name' => $module->name,
@@ -162,7 +162,7 @@ class Orbit_Fox_Admin {
 		$empty_tpl = '';
 		if ( $count_modules == 0 ) {
 			$no_modules = true;
-			$empty_tpl = $rh->get_partial(
+			$empty_tpl = $rdh->get_partial(
                 'empty',
                     array(
                         'title' => __('No modules found.', 'obfx'),
@@ -170,7 +170,7 @@ class Orbit_Fox_Admin {
                         'show_btn' => true
                     )
             );
-            $panels = $rh->get_partial(
+            $panels = $rdh->get_partial(
                 'empty',
                 array(
                     'title' => __('No active modules.', 'obfx'),
@@ -187,7 +187,7 @@ class Orbit_Fox_Admin {
 			'tiles' => $tiles,
             'panels' => $panels,
 		);
-	    $output = $rh->get_view( 'modules', $data );
+	    $output = $rdh->get_view( 'modules', $data );
 	    echo $output;
 	}
 
