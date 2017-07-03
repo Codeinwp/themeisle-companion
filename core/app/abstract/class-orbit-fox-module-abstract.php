@@ -54,21 +54,37 @@ abstract class Orbit_Fox_Module_Abstract {
 	 */
 	protected $loader;
 
-    protected function get_dir() {
-        $reflector = new ReflectionClass( get_class( $this ) );
-        return dirname( $reflector->getFileName() );
-    }
+	/**
+	 * Stores the curent version of Orbit fox for use during the enqueue.
+	 *
+	 * @since   1.0.0
+	 * @access  protected
+	 * @var     string $version The current version of Orbit Fox.
+	 */
+	protected $version;
 
-    /**
-     * Registers the loader.
-     *
-     * @since   1.0.0
-     * @access  public
-     * @param Orbit_Fox_Loader $loader
-     */
-	public static function register_loader( Orbit_Fox_Loader $loader ) {
-	    static::$loader = $loader;
-    }
+	/**
+	 * Method to return path to child class in a Reflective Way.
+	 *
+	 * @since   1.0.0
+	 * @access  protected
+	 * @return string
+	 */
+	protected function get_dir() {
+		$reflector = new ReflectionClass( get_class( $this ) );
+		return dirname( $reflector->getFileName() );
+	}
+
+	/**
+	 * Registers the loader.
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 * @param Orbit_Fox_Loader $loader The loader class used to register action hooks and filters.
+	 */
+	public function register_loader( Orbit_Fox_Loader $loader ) {
+	    $this->loader = $loader;
+	}
 
 	/**
 	 * Method to determine if the module is enabled or not.
@@ -117,48 +133,123 @@ abstract class Orbit_Fox_Module_Abstract {
 	 */
 	public abstract function options();
 
-    final public function enqueue() {
-        $admin_enqueue = $this->admin_enqueue();
-        $public_enqueue = $this->public_enqueue();
+	/**
+	 * Adds the hooks for amdin and public enqueue.
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 * @param   string $version The version for the files.
+	 */
+	final public function enqueue( $version ) {
+		$this->version = $version;
+		$this->loader->add_action( 'obfx_admin_enqueue_styles', $this, 'set_admin_styles' );
+		$this->loader->add_action( 'obfx_admin_enqueue_scripts', $this, 'set_admin_scripts' );
 
-        $this->register_enqueue( $admin_enqueue, 'admin' );
-        $this->register_enqueue( $admin_enqueue );
-    }
+		$this->loader->add_action( 'obfx_public_enqueue_styles', $this, 'set_public_styles' );
+		$this->loader->add_action( 'obfx_public_enqueue_scripts', $this, 'set_public_scripts' );
+	}
 
-    private function register_enqueue( $enqueue, $type = 'public' ) {
-        if( ! empty( $enqueue ) ) {
-            if( $type == 'admin' ) {
-                if( isset( $enqueue['js'] ) && ! empty( $enqueue['js'] ) ) {
-                    foreach ( $enqueue['js'] as $file_name => $dependencies ) {
-                        if( $dependencies == false ) {
-                            $dependencies = array();
-                        }
-                        wp_enqueue_script(
-                            'obfx-module-js-' . str_replace( ' ', '-', strtolower( $this->name ) ),
-                            plugin_dir_url( $this->get_dir() ) . 'js/' . $file_name . '.js',
-                            $dependencies,
-                            '1.0.0',
-                            false
-                        );
-                    }
-                }
-                if( isset( $enqueue['css'] ) && ! empty( $enqueue['css'] ) ) {
-                    foreach ( $enqueue['js'] as $file_name => $dependencies ) {
-                        if ($dependencies == false ) {
-                            $dependencies = array();
-                        }
-                        wp_enqueue_style(
-                            'obfx-module-css-' . str_replace(' ', '-', strtolower( $this->name ) ),
-                            plugin_dir_url( $this->get_dir() ) . 'css/' . $file_name . '.css',
-                            $dependencies,
-                            '1.0.0',
-                            'all'
-                        );
-                    }
-                }
-            } else {
+	/**
+	 * Sets the styles for admin from the module array.
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 */
+	public function set_admin_styles() {
+		$enqueue = $this->admin_enqueue();
+		if ( ! empty( $enqueue ) ) {
+			if ( isset( $enqueue['css'] ) && ! empty( $enqueue['css'] ) ) {
+				foreach ( $enqueue['css'] as $file_name => $dependencies ) {
+					if ( $dependencies == false ) {
+						$dependencies = array();
+					}
+					wp_enqueue_style(
+						'obfx-module-css-' . str_replace( ' ', '-', strtolower( $this->name ) ),
+						plugin_dir_url( $this->get_dir() ) . 'css/' . $file_name . '.css',
+						$dependencies,
+						$this->version,
+						'all'
+					);
+				}
+			}
+		}
+	}
 
-            }
-        }
-    }
+	/**
+	 * Sets the scripts for admin from the module array.
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 */
+	public function set_admin_scripts() {
+		$enqueue = $this->admin_enqueue();
+		if ( ! empty( $enqueue ) ) {
+			if ( isset( $enqueue['js'] ) && ! empty( $enqueue['js'] ) ) {
+				foreach ( $enqueue['js'] as $file_name => $dependencies ) {
+					if ( $dependencies == false ) {
+						$dependencies = array();
+					}
+					wp_enqueue_script(
+						'obfx-module-js-' . str_replace( ' ', '-', strtolower( $this->name ) ),
+						plugin_dir_url( $this->get_dir() ) . 'js/' . $file_name . '.js',
+						$dependencies,
+						$this->version,
+						false
+					);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Sets the styles for public from the module array.
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 */
+	public function set_public_styles() {
+		$enqueue = $this->public_enqueue();
+		if ( ! empty( $enqueue ) ) {
+			if ( isset( $enqueue['css'] ) && ! empty( $enqueue['css'] ) ) {
+				foreach ( $enqueue['css'] as $file_name => $dependencies ) {
+					if ( $dependencies == false ) {
+						$dependencies = array();
+					}
+					wp_enqueue_style(
+						'obfx-module-css-' . str_replace( ' ', '-', strtolower( $this->name ) ),
+						plugin_dir_url( $this->get_dir() ) . 'css/' . $file_name . '.css',
+						$dependencies,
+						$this->version,
+						'all'
+					);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Sets the scripts for public from the module array.
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 */
+	public function set_public_scripts() {
+		$enqueue = $this->public_enqueue();
+		if ( ! empty( $enqueue ) ) {
+			if ( isset( $enqueue['js'] ) && ! empty( $enqueue['js'] ) ) {
+				foreach ( $enqueue['js'] as $file_name => $dependencies ) {
+					if ( $dependencies == false ) {
+						$dependencies = array();
+					}
+					wp_enqueue_script(
+						'obfx-module-js-' . str_replace( ' ', '-', strtolower( $this->name ) ),
+						plugin_dir_url( $this->get_dir() ) . 'js/' . $file_name . '.js',
+						$dependencies,
+						$this->version,
+						false
+					);
+				}
+			}
+		}
+	}
 }

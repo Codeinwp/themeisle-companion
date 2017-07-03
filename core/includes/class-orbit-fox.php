@@ -130,7 +130,8 @@ class Orbit_Fox {
 			$module = $module_factory::build( $module_name );
 			if ( $module->enable_module() ) {
 				$this->loader->add_action( 'orbit_fox_modules', $module, 'load' );
-				$this->loader->add_action( 'orbit_admin_enqueue', $module, 'enqueue' );
+				$module->register_loader( $this->get_loader() );
+				$module->enqueue( $this->get_version() );
 			}
 		}
 	}
