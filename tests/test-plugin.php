@@ -97,14 +97,14 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
 	public function test_render_helper() {
 	    $rdh = new Orbit_Fox_Render_Helper();
 
-	    $rdh->get_partial( 'empty' );
-	    $rdh->get_view( 'modules' );
-	    $rdh->render_option( array( 'type' => 'text', 'default' => 'Bla' ) );
-	    $rdh->render_option( array( 'type' => 'textarea', 'default' => 'Bla' ) );
-	    $rdh->render_option( array( 'type' => 'select', 'default' => '0', 'options' => array( '0' => 'label 1', '1' => 'label 2' ) ) );
-	    $rdh->render_option( array( 'type' => 'radio', 'default' => '0', 'options' => array( '0' => 'label 1', '1' => 'label 2' ) ) );
-	    $rdh->render_option( array( 'type' => 'checkbox', 'default' => '0', 'options' => array( '0' => 'label 1', '1' => 'label 2' ) ) );
-	    $rdh->render_option( array( 'type' => 'toggle' ) );
+	    $rdh->get_partial( 'empty', array( 'title' => 'Test Title' ) );
+	    $rdh->get_view( 'modules', array( 'no_modules' => true ) );
+	    $rdh->render_option( array( 'type' => 'text', 'value' => 'Value', 'default' => 'Bla' ) );
+	    $rdh->render_option( array( 'type' => 'textarea', 'value' => 'Value', 'default' => 'Bla' ) );
+	    $rdh->render_option( array( 'type' => 'select', 'value' => '1', 'default' => '0', 'options' => array( '0' => 'label 1', '1' => 'label 2' ) ) );
+	    $rdh->render_option( array( 'type' => 'radio', 'value' => '1', 'default' => '0', 'options' => array( '0' => 'label 1', '1' => 'label 2' ) ) );
+	    $rdh->render_option( array( 'type' => 'checkbox', 'value' => '1', 'default' => '0', 'options' => array( '0' => 'label 1', '1' => 'label 2' ) ) );
+	    $rdh->render_option( array( 'type' => 'toggle', 'value' => '0' ) );
 	    $rdh->render_option( array( 'type' => 'unknown' ) );
 
         $this->invokeMethod( $rdh, 'sanitize_option', array( 'type' => 'text' ) );
