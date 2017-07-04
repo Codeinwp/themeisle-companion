@@ -93,6 +93,43 @@ class Orbit_Fox_Render_Helper {
 	}
 
 	/**
+	 * Method to set field value.
+	 *
+	 * @since   1.0.0
+	 * @access  private
+	 * @param   array $option The option from the module.
+	 * @return mixed
+	 */
+	private function set_field_value( $option = array() ) {
+		$field_value = $option['default'];
+		if ( isset( $option['value'] ) && $option['value'] != '' ) {
+			$field_value = $option['value'];
+		}
+		return $field_value;
+	}
+
+	/**
+	 * DRY method to generate checkbox or radio field types
+	 *
+	 * @since   1.0.0
+	 * @access  private
+	 * @param   string $type The field type ( checkbox | radio ).
+	 * @param   string $field_value The field value.
+	 * @param   string $checked The checked flag.
+	 * @param   string $label The option label.
+	 * @param   array  $option The option from the module.
+	 * @return string
+	 */
+	private function generate_check_type( $type = 'radio', $field_value, $checked, $label, $option = array() ) {
+	    return '
+	    <label class="form-' . $type . ' ' . $option['class'] . '">
+            <input type="' . $type . '" name="' . $option['name'] . '" value="' . $field_value . '" ' . $checked . ' />
+            <i class="form-icon"></i> ' . $label . '
+        </label>
+	    ';
+	}
+
+	/**
 	 * Render an input text field.
 	 *
 	 * @since   1.0.0
@@ -101,10 +138,7 @@ class Orbit_Fox_Render_Helper {
 	 * @return mixed
 	 */
 	private function field_text( $option = array() ) {
-		$field_value = $option['default'];
-		if ( isset( $option['value'] ) && $option['value'] != '' ) {
-			$field_value = $option['value'];
-		}
+		$field_value = $this->set_field_value( $option );
 		$field = '
         <div class="form-group">
             <label class="form-label" for="' . $option['id'] . '">' . $option['label'] . '</label>
@@ -124,10 +158,7 @@ class Orbit_Fox_Render_Helper {
 	 * @return mixed
 	 */
 	private function field_textarea( $option = array() ) {
-		$field_value = $option['default'];
-		if ( isset( $option['value'] ) && $option['value'] != '' ) {
-			$field_value = $option['value'];
-		}
+		$field_value = $this->set_field_value( $option );
 		$field = '
         <div class="form-group">
             <label class="form-label" for="' . $option['id'] . '">' . $option['label'] . '</label>
@@ -147,11 +178,7 @@ class Orbit_Fox_Render_Helper {
 	 * @return mixed
 	 */
 	private function field_select( $option = array() ) {
-		$field_value = $option['default'];
-		if ( isset( $option['value'] ) && $option['value'] != '' ) {
-			$field_value = $option['value'];
-		}
-
+		$field_value = $this->set_field_value( $option );
 		$select_options = '';
 		foreach ( $option['options'] as $value => $label ) {
 			$select_options .= '<option value="' . $value . '">' . $label . '</option>';
@@ -178,23 +205,14 @@ class Orbit_Fox_Render_Helper {
 	 * @return mixed
 	 */
 	private function field_radio( $option = array() ) {
-		$field_value = $option['default'];
-		if ( isset( $option['value'] ) && $option['value'] != '' ) {
-			$field_value = $option['value'];
-		}
-
+		$field_value = $this->set_field_value( $option );
 		$select_options = '';
 		foreach ( $option['options'] as $value => $label ) {
 			$checked = '';
 			if ( $value == $field_value ) {
 				$checked = 'checked';
 			}
-			$select_options .= '
-            <label class="form-radio ' . $option['class'] . '">
-                <input type="radio" name="' . $option['name'] . '" value="' . $field_value . '" ' . $checked . ' />
-                <i class="form-icon"></i> ' . $label . '
-            </label>
-            ';
+			$select_options .= $this->generate_check_type( 'radio', $field_value, $checked, $label, $option );
 		}
 
 		$field = '
@@ -216,23 +234,14 @@ class Orbit_Fox_Render_Helper {
 	 * @return mixed
 	 */
 	private function field_checkbox( $option = array() ) {
-		$field_value = $option['default'];
-		if ( isset( $option['value'] ) && $option['value'] != '' ) {
-			$field_value = $option['value'];
-		}
-
+		$field_value = $this->set_field_value( $option );
 		$select_options = '';
 		foreach ( $option['options'] as $value => $label ) {
 			$checked = '';
 			if ( $value == $field_value ) {
 				$checked = 'checked';
 			}
-			$select_options .= '
-            <label class="form-checkbox ' . $option['class'] . '">
-                <input type="checkbox" name="' . $option['name'] . '" value="' . $field_value . '" ' . $checked . ' />
-                <i class="form-icon"></i> ' . $label . '
-            </label>
-            ';
+			$select_options .= $this->generate_check_type( 'checkbox', $field_value, $checked, $label, $option );
 		}
 
 		$field = '
@@ -254,11 +263,7 @@ class Orbit_Fox_Render_Helper {
 	 * @return mixed
 	 */
 	private function field_toggle( $option = array() ) {
-		$field_value = $option['default'];
-		if ( isset( $option['value'] ) && $option['value'] != '' ) {
-			$field_value = $option['value'];
-		}
-
+		$field_value = $this->set_field_value( $option );
 		$field = '
         <div class="form-group">
             <label class="form-label" for="' . $option['id'] . '">' . $option['label'] . '</label>
