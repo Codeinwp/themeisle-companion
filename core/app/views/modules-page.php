@@ -7,6 +7,7 @@
  *
  * @package    Orbit_Fox
  * @subpackage Orbit_Fox/app/views
+ * @codeCoverageIgnore
  */
 
 if ( ! isset( $no_modules ) ) {

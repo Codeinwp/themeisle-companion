@@ -101,14 +101,171 @@ class Orbit_Fox_Render_Helper {
 	 * @return mixed
 	 */
 	private function field_text( $option = array() ) {
-		$value = $option['default'];
+		$field_value = $option['default'];
 		if ( isset( $option['value'] ) && $option['value'] != '' ) {
-			$value = $option['value'];
+			$field_value = $option['value'];
 		}
 		$field = '
         <div class="form-group">
             <label class="form-label" for="' . $option['id'] . '">' . $option['label'] . '</label>
-            <input class="form-input" type="text" id="' . $option['id'] . '" class="' . $option['class'] . '" name="' . $option['name'] . '" placeholder="' . $option['placeholder'] . '" value="' . $value . '">
+            <input class="form-input ' . $option['class'] . '" type="text" id="' . $option['id'] . '" name="' . $option['name'] . '" placeholder="' . $option['placeholder'] . '" value="' . $field_value . '">
+        </div>
+        ';
+
+		return $field;
+	}
+
+	/**
+	 * Render a textarea field.
+	 *
+	 * @since   1.0.0
+	 * @access  private
+	 * @param   array $option The option from the module.
+	 * @return mixed
+	 */
+	private function field_textarea( $option = array() ) {
+		$field_value = $option['default'];
+		if ( isset( $option['value'] ) && $option['value'] != '' ) {
+			$field_value = $option['value'];
+		}
+		$field = '
+        <div class="form-group">
+            <label class="form-label" for="' . $option['id'] . '">' . $option['label'] . '</label>
+            <textarea class="form-input ' . $option['class'] . '" id="' . $option['id'] . '" name="' . $option['name'] . '" placeholder="' . $option['placeholder'] . '" rows="3">' . $field_value . '</textarea>
+        </div>
+        ';
+
+		return $field;
+	}
+
+	/**
+	 * Render a select field.
+	 *
+	 * @since   1.0.0
+	 * @access  private
+	 * @param   array $option The option from the module.
+	 * @return mixed
+	 */
+	private function field_select( $option = array() ) {
+		$field_value = $option['default'];
+		if ( isset( $option['value'] ) && $option['value'] != '' ) {
+			$field_value = $option['value'];
+		}
+
+		$select_options = '';
+		foreach ( $option['options'] as $value => $label ) {
+			$select_options .= '<option value="' . $value . '">' . $label . '</option>';
+		}
+
+		$field = '
+        <div class="form-group">
+            <label class="form-label" for="' . $option['id'] . '">' . $option['label'] . '</label>
+            <select class="form-select ' . $option['class'] . '" id="' . $option['id'] . '" name="' . $option['name'] . '" placeholder="' . $option['placeholder'] . '">
+                ' . $select_options . '
+            </select>
+        </div>
+        ';
+
+		return $field;
+	}
+
+	/**
+	 * Render a radio field.
+	 *
+	 * @since   1.0.0
+	 * @access  private
+	 * @param   array $option The option from the module.
+	 * @return mixed
+	 */
+	private function field_radio( $option = array() ) {
+		$field_value = $option['default'];
+		if ( isset( $option['value'] ) && $option['value'] != '' ) {
+			$field_value = $option['value'];
+		}
+
+		$select_options = '';
+		foreach ( $option['options'] as $value => $label ) {
+			$checked = '';
+			if ( $value == $field_value ) {
+				$checked = 'checked';
+			}
+			$select_options .= '
+            <label class="form-radio ' . $option['class'] . '">
+                <input type="radio" name="' . $option['name'] . '" value="' . $field_value . '" ' . $checked . ' />
+                <i class="form-icon"></i> ' . $label . '
+            </label>
+            ';
+		}
+
+		$field = '
+        <div class="form-group">
+            <label class="form-label" for="' . $option['id'] . '">' . $option['label'] . '</label>
+            ' . $select_options . '
+        </div>
+        ';
+
+		return $field;
+	}
+
+	/**
+	 * Render a checkbox field.
+	 *
+	 * @since   1.0.0
+	 * @access  private
+	 * @param   array $option The option from the module.
+	 * @return mixed
+	 */
+	private function field_checkbox( $option = array() ) {
+		$field_value = $option['default'];
+		if ( isset( $option['value'] ) && $option['value'] != '' ) {
+			$field_value = $option['value'];
+		}
+
+		$select_options = '';
+		foreach ( $option['options'] as $value => $label ) {
+			$checked = '';
+			if ( $value == $field_value ) {
+				$checked = 'checked';
+			}
+			$select_options .= '
+            <label class="form-checkbox ' . $option['class'] . '">
+                <input type="checkbox" name="' . $option['name'] . '" value="' . $field_value . '" ' . $checked . ' />
+                <i class="form-icon"></i> ' . $label . '
+            </label>
+            ';
+		}
+
+		$field = '
+        <div class="form-group">
+            <label class="form-label" for="' . $option['id'] . '">' . $option['label'] . '</label>
+            ' . $select_options . '
+        </div>
+        ';
+
+		return $field;
+	}
+
+	/**
+	 * Render a toggle field.
+	 *
+	 * @since   1.0.0
+	 * @access  private
+	 * @param   array $option The option from the module.
+	 * @return mixed
+	 */
+	private function field_toggle( $option = array() ) {
+		$field_value = $option['default'];
+		if ( isset( $option['value'] ) && $option['value'] != '' ) {
+			$field_value = $option['value'];
+		}
+
+		$field = '
+        <div class="form-group">
+            <label class="form-label" for="' . $option['id'] . '">' . $option['label'] . '</label>
+            <label class="form-switch ' . $option['class'] . '">
+                <input type="checkbox" name="' . $option['name'] . '" value="' . $field_value . '" />
+                <i class="form-icon"></i> ' . $option['label'] . '
+            </label>
         </div>
         ';
 
@@ -128,6 +285,21 @@ class Orbit_Fox_Render_Helper {
 	    switch ( $option['type'] ) {
 			case 'text':
 				return $this->field_text( $option );
+				break;
+			case 'textarea':
+				return $this->field_textarea( $option );
+				break;
+			case 'select':
+				return $this->field_select( $option );
+				break;
+			case 'radio':
+				return $this->field_radio( $option );
+				break;
+			case 'checkbox':
+				return $this->field_checkbox( $option );
+				break;
+			case 'toggle':
+				return $this->field_toggle( $option );
 				break;
 			default:
 				return __( 'No option found for provided type', 'obfx' );

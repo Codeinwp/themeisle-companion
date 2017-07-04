@@ -88,4 +88,43 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
             $module->set_public_scripts();
         }
 	}
+
+	/**
+     * Test for Orbit Fox Render Helper.
+     *
+     * @covers Orbit_Fox_Render_Helper
+     */
+	public function test_render_helper() {
+	    $rdh = new Orbit_Fox_Render_Helper();
+
+	    $rdh->get_partial( 'empty' );
+	    $rdh->get_view( 'modules' );
+	    $rdh->render_option( array( 'type' => 'text', 'default' => 'Bla' ) );
+	    $rdh->render_option( array( 'type' => 'textarea', 'default' => 'Bla' ) );
+	    $rdh->render_option( array( 'type' => 'select', 'default' => '0', 'options' => array( '0' => 'label 1', '1' => 'label 2' ) ) );
+	    $rdh->render_option( array( 'type' => 'radio', 'default' => '0', 'options' => array( '0' => 'label 1', '1' => 'label 2' ) ) );
+	    $rdh->render_option( array( 'type' => 'checkbox', 'default' => '0', 'options' => array( '0' => 'label 1', '1' => 'label 2' ) ) );
+	    $rdh->render_option( array( 'type' => 'toggle' ) );
+	    $rdh->render_option( array( 'type' => 'unknown' ) );
+
+        $this->invokeMethod( $rdh, 'sanitize_option', array( 'type' => 'text' ) );
+    }
+
+
+    /**
+     * Call protected/private method of a class.
+     *
+     * @param object &$object    Instantiated object that we will run method on.
+     * @param string $methodName Method name to call
+     * @param array  $parameters Array of parameters to pass into method.
+     *
+     * @return mixed Method return.
+     */
+    public function invokeMethod( &$object, $methodName, array $parameters = array() ) {
+        $reflection = new \ReflectionClass( get_class( $object ) );
+        $method = $reflection->getMethod( $methodName );
+        $method->setAccessible( true );
+
+        return $method->invokeArgs( $object, $parameters );
+    }
 }

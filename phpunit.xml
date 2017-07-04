@@ -20,6 +20,7 @@
 				<file>core/includes/class-orbit-fox-deactivator.php</file>
 				<file>core/includes/class-orbit-fox-loader.php</file>
 				<file>core/includes/class-orbit-fox-i18n.php</file>
+				<directory suffix=".php">core/app/views</directory>
 			</exclude>
 		</whitelist>
 	</filter>

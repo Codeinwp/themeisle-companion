@@ -96,8 +96,63 @@ class Test_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		        'type' => 'text',
 		        'default' => '',
 		        'placeholder' => 'Add some text',
-		        'options' => array(),
-            )
+            ),
+            array(
+                'id' => 'test_textarea_id',
+                'name' => 'test_textarea_name',
+                'label' => 'Module Textarea Label',
+                'description' => 'Module Textarea Description ...',
+                'type' => 'textarea',
+                'default' => '',
+                'placeholder' => 'Add some text here ...',
+            ),
+            array(
+                'id' => 'test_select_id',
+                'name' => 'test_select_name',
+                'label' => 'Module Select Label',
+                'description' => 'Module Select Description ...',
+                'type' => 'select',
+                'default' => '',
+                'placeholder' => 'Select an option',
+                'options' => array(
+                    'opt_1' => 'I like cats!',
+                    'opt_2' => 'I like dogs!',
+                    'opt_3' => 'I like both! Like all the animals!!!',
+                ),
+            ),
+            array(
+                'id' => 'test_radio_id',
+                'name' => 'test_radio_name',
+                'label' => 'Module Radio Label',
+                'description' => 'Module Radio Description ...',
+                'type' => 'radio',
+                'default' => '1',
+                'options' => array(
+                    '0' => 'Meh!',
+                    '1' => 'Good!',
+                    '2' => 'Great!',
+                ),
+            ),
+            array(
+                'id' => 'test_checkbox_id',
+                'name' => 'test_checkbox_name',
+                'label' => 'Module Checkbox Label',
+                'description' => 'Module Checkbox Description ...',
+                'type' => 'checkbox',
+                'default' => '1',
+                'options' => array(
+                    '0' => 'Subscribe me to newsletter.',
+                    '1' => 'I agree to anonymous data collection.',
+                ),
+            ),
+            array(
+                'id' => 'test_toggle_id',
+                'name' => 'test_toggle_name',
+                'label' => 'Module Toggle Label',
+                'description' => 'Module Toggle Description ...',
+                'type' => 'toggle',
+                'default' => '1',
+            ),
         );
 	}
 }

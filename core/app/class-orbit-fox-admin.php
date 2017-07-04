@@ -154,7 +154,7 @@ class Orbit_Fox_Admin {
 			$module_options = $module->options();
 			$options_fields = '';
 			foreach ( $module_options as $option ) {
-				$options_fields = $rdh->render_option( $option );
+				$options_fields .= $rdh->render_option( $option );
 			}
 
 			$panels .= $rdh->get_partial(
