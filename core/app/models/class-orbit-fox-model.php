@@ -126,7 +126,7 @@ class Orbit_Fox_Model {
 		if ( isset( $data['module_status'][ $slug ]['active'] ) ) {
 			return $data['module_status'][ $slug ]['active'];
 		}
-		return false;
+		return false; // @codeCoverageIgnore
 	}
 
 	/**
@@ -143,7 +143,7 @@ class Orbit_Fox_Model {
 		if ( isset( $data['module_settings'][ $slug ][ $key ] ) ) {
 			return $data['module_settings'][ $slug ][ $key ];
 		}
-		return false;
+		return false; // @codeCoverageIgnore
 	}
 
 	/**
@@ -190,7 +190,7 @@ class Orbit_Fox_Model {
 		if ( isset( $data['module_status'][ $slug ][ $key ] ) ) {
 			return $data['module_status'][ $slug ][ $key ];
 		}
-		return false;
+		return false; // @codeCoverageIgnore
 	}
 
 	/**

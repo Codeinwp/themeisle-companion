@@ -102,12 +102,12 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
 
 	    $rdh->get_partial( 'empty', array( 'title' => 'Test Title' ) );
 	    $rdh->get_view( 'modules', array( 'no_modules' => true ) );
-	    $rdh->render_option( array( 'type' => 'text', 'value' => 'Value', 'default' => 'Bla' ) );
-	    $rdh->render_option( array( 'type' => 'textarea', 'value' => 'Value', 'default' => 'Bla' ) );
+	    $rdh->render_option( array( 'type' => 'text', 'title' => 'Test title', 'value' => 'Value', 'default' => 'Bla' ) );
+	    $rdh->render_option( array( 'type' => 'textarea', 'description' => 'Test Description', 'value' => 'Value', 'default' => 'Bla' ) );
 	    $rdh->render_option( array( 'type' => 'select', 'value' => '1', 'default' => '0', 'options' => array( '0' => 'label 1', '1' => 'label 2' ) ) );
 	    $rdh->render_option( array( 'type' => 'radio', 'value' => '1', 'default' => '0', 'options' => array( '0' => 'label 1', '1' => 'label 2' ) ) );
 	    $rdh->render_option( array( 'type' => 'checkbox', 'value' => '1', 'default' => '0', 'options' => array( '0' => 'label 1', '1' => 'label 2' ) ) );
-	    $rdh->render_option( array( 'type' => 'toggle', 'value' => '0' ) );
+	    $rdh->render_option( array( 'type' => 'toggle', 'value' => '1' ) );
 	    $rdh->render_option( array( 'type' => 'unknown' ) );
 
         $this->invokeMethod( $rdh, 'sanitize_option', array( 'type' => 'text' ) );
