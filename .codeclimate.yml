@@ -12,6 +12,9 @@ engines:
           mass_threshold: 60
   eslint:
     enabled: true
+    checks:
+      global-require:
+        enabled: false
   fixme:
     enabled: true
   phpmd:
