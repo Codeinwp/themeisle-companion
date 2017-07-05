@@ -12,6 +12,5 @@
 var test_module = function( $ ) {
 	'use strict';
 	console.log( 'Module JS Loaded' );
-}
-
+};
 test_module( jQuery );
