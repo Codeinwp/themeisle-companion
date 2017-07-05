@@ -179,6 +179,57 @@ class Orbit_Fox_Admin {
 	}
 
 	/**
+	 * A method used for saving module status data
+	 * and returning a well formatted response as an array.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 * @param   array $data The data to try and update status via the module model.
+	 * @return array
+	 */
+	public function try_module_activate( $data ) {
+		$response = array();
+		$global_settings = new Orbit_Fox_Global_Settings();
+		$modules = $global_settings::$instance->module_objects;
+		$response['type'] = 'error';
+		$response['message'] = __( 'No module found!', 'obfx' );
+		if ( isset( $modules[ $data['name'] ] ) ) {
+			$module = $modules[ $data['name'] ];
+			$response['type'] = 'warning';
+			$response['message'] = __( 'Something went wrong, can not change module status!', 'obfx' );
+			$result = $module->set_status( 'active', $data['checked'] );
+			if ( $result ) {
+				$response['type'] = 'success';
+				$response['message'] = __( 'Module status changed!', 'obfx' );
+			}
+		}
+		return $response;
+	}
+
+	/**
+	 * This method is called via AJAX and processes the
+	 * request for updating module options.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 */
+	public function obfx_update_module_active_status() {
+		$json = stripslashes( str_replace( '&quot;', '"', $_POST['data'] ) );
+		$data = json_decode( $json, true );
+		$response['type'] = 'error';
+		$response['message'] = __( 'Could not process the request!', 'obfx' );
+		if ( isset( $data['noance'] ) && wp_verify_nonce( $data['noance'], 'obfx_activate_mod_' . $data['name'] ) ) {
+			$response = $this->try_module_activate( $data );
+		}
+		echo json_encode( $response );
+		wp_die();
+	}
+
+	/**
 	 * Method to display modules page.
 	 *
 	 * @codeCoverageIgnore
@@ -197,9 +248,15 @@ class Orbit_Fox_Admin {
 		$count_modules = 0;
 		foreach ( $modules as $slug => $module ) {
 			$count_modules++;
+			$checked = '';
+			if ( $module->is_active() ) {
+			    $checked = 'checked';
+			}
 			$data = array(
+			    'slug' => $slug,
 				'name' => $module->name,
 				'description' => $module->description,
+				'checked' => $checked,
 			);
 			$tiles .= $rdh->get_partial( 'module-tile', $data );
 			$tiles .= '<div class="divider"></div>';
@@ -215,6 +272,7 @@ class Orbit_Fox_Admin {
 				array(
 				        'slug' => $slug,
 						'name' => $module->name,
+						'active' => $module->is_active(),
 						'description' => $module->description,
 						'options_fields' => $options_fields,
 					)

@@ -121,20 +121,16 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
         $modules = $global_settings::$instance->module_objects;
 
         $obfx_model->register_modules_data( $modules );
-
-        var_dump( $obfx_model->get() );
-
-        foreach ( $modules as $module ) {
+        foreach ( $modules as $slug => $module ) {
             $module->register_model( $obfx_model );
-            var_dump( $module->get_status( 'active' ) );
-            var_dump( $module->get_option( 'test_checkbox_name' ) );
-
             $module->set_status( 'active', true );
-            var_dump( $module->get_status( 'active' ) );
+            $module->get_status( 'active' );
             $module->set_option( 'test_checkbox_name', '2' );
+            $module->get_option( 'test_checkbox_name' );
+            $module->set_options( array('test_checkbox_name', '1') );
+            $obfx_model->get_is_module_active( $slug );
         }
 
-	    var_dump( $obfx_model->get() );
     }
 
 

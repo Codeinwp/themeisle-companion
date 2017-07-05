@@ -155,6 +155,7 @@ class Orbit_Fox {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'wp_ajax_obfx_update_module_options', $plugin_admin, 'obfx_update_module_options' );
+		$this->loader->add_action( 'wp_ajax_obfx_update_module_active_status', $plugin_admin, 'obfx_update_module_active_status' );
 
 	}
 

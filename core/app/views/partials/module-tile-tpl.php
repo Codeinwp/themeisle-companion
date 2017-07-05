@@ -18,6 +18,12 @@ if ( ! isset( $description ) ) {
 	$description = __( 'Module Description ...', 'obfx' );
 }
 
+if ( ! isset( $checked ) ) {
+	$checked = '';
+}
+
+$noance = wp_create_nonce( 'obfx_activate_mod_' . $slug );
+
 ?>
 <div class="tile">
 	<div class="tile-icon">
@@ -32,7 +38,7 @@ if ( ! isset( $description ) ) {
 	<div class="tile-action">
 		<div class="form-group">
 			<label class="form-switch">
-				<input type="checkbox">
+				<input class="obfx-mod-switch" type="checkbox" name="<?php echo $slug; ?>" value="<?php echo $noance; ?>" <?php echo $checked; ?> >
 				<i class="form-icon"></i><?php echo  __( 'Activate', 'obfx' ); ?>
 			</label>
 		</div>
