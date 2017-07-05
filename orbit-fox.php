@@ -34,7 +34,8 @@ if ( ! defined( 'WPINC' ) ) {
  * This action is documented in core/includes/class-orbit-fox-activator.php
  */
 function activate_orbit_fox() {
-	Orbit_Fox_Activator::activate();
+	$orbit_fox_activator = new Orbit_Fox_Activator();
+	$orbit_fox_activator::activate();
 }
 
 /**
@@ -42,7 +43,8 @@ function activate_orbit_fox() {
  * This action is documented in core/includes/class-orbit-fox-deactivator.php
  */
 function deactivate_orbit_fox() {
-	Orbit_Fox_Deactivator::deactivate();
+	$orbit_fox_deactivator = new Orbit_Fox_Deactivator();
+	$orbit_fox_deactivator::deactivate();
 }
 
 register_activation_hook( __FILE__, 'activate_orbit_fox' );

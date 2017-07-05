@@ -9,7 +9,9 @@
 
 /* jshint unused:vars */
 /* global console */
-(function( $ ) {
+var test_module = function( $ ) {
 	'use strict';
 	console.log( 'Module JS Loaded' );
-})( jQuery );
+}
+
+test_module( jQuery );

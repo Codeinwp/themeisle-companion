@@ -8,7 +8,7 @@
  * @subpackage Orbit_Fox/admin/js
  */
 
-(function( $ ) {
+var obfx_admin = function( $ ) {
 	'use strict';
 	/**
 	 * All of the code for your admin-facing JavaScript source
@@ -139,4 +139,6 @@
 
 	} );
 
-})( jQuery );
+};
+
+obfx_admin( jQuery );
