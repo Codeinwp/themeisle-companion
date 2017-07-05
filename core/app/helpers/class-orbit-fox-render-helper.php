@@ -80,7 +80,8 @@ class Orbit_Fox_Render_Helper {
 			'class' => null,
 			'name' => null,
 			'label' => 'Module Text Label',
-			'description' => 'Module Text Description ...',
+			'title' => false,
+			'description' => false,
 			'type' => null,
 			'value' => '',
 			'default' => '',
@@ -106,6 +107,61 @@ class Orbit_Fox_Render_Helper {
 			$field_value = $option['value'];
 		}
 		return $field_value;
+	}
+
+	/**
+	 * Method to return a title for element if needed.
+	 *
+	 * @since   1.0.0
+	 * @access  private
+	 * @param   string $id The option id field.
+	 * @param   string $title The option title field.
+	 * @return string
+	 */
+	private function get_title( $id, $title ) {
+	    $display_title = '';
+	    if ( $title ) {
+			$display_title = '<label class="form-label" for="' . $id . '">' . $title . '</label>';
+		}
+		return $display_title;
+	}
+
+	/**
+	 * Method to return a description for element if needed.
+	 *
+	 * @since   1.0.0
+	 * @access  private
+	 * @param   string $description The option description field.
+	 * @return string
+	 */
+	private function get_description( $description ) {
+		$display_description = '';
+		if ( $description ) {
+			$display_description = '<p><small>' . $description . '</small></p>';
+		}
+		return $display_description;
+	}
+
+	/**
+	 * Utility method to wrap an element with proper blocks.
+	 *
+	 * @since   1.0.0
+	 * @access  private
+	 * @param   array  $option The option array.
+	 * @param   string $element The element we want to wrap.
+	 * @return string
+	 */
+	private function wrap_element( $option, $element ) {
+		$title = $this->get_title( $option['id'], $option['title'] );
+		$description = $this->get_description( $option['description'] );
+
+		return '
+        <div class="form-group">
+            ' . $title . '
+            ' . $element . '
+            ' . $description . '
+        </div>
+        ';
 	}
 
 	/**
@@ -139,12 +195,8 @@ class Orbit_Fox_Render_Helper {
 	 */
 	private function field_text( $option = array() ) {
 		$field_value = $this->set_field_value( $option );
-		$field = '
-        <div class="form-group">
-            <label class="form-label" for="' . $option['id'] . '">' . $option['label'] . '</label>
-            <input class="form-input ' . $option['class'] . '" type="text" id="' . $option['id'] . '" name="' . $option['name'] . '" placeholder="' . $option['placeholder'] . '" value="' . $field_value . '">
-        </div>
-        ';
+		$field = '<input class="form-input ' . $option['class'] . '" type="text" id="' . $option['id'] . '" name="' . $option['name'] . '" placeholder="' . $option['placeholder'] . '" value="' . $field_value . '">';
+		$field = $this->wrap_element( $option, $field );
 
 		return $field;
 	}
@@ -159,12 +211,8 @@ class Orbit_Fox_Render_Helper {
 	 */
 	private function field_textarea( $option = array() ) {
 		$field_value = $this->set_field_value( $option );
-		$field = '
-        <div class="form-group">
-            <label class="form-label" for="' . $option['id'] . '">' . $option['label'] . '</label>
-            <textarea class="form-input ' . $option['class'] . '" id="' . $option['id'] . '" name="' . $option['name'] . '" placeholder="' . $option['placeholder'] . '" rows="3">' . $field_value . '</textarea>
-        </div>
-        ';
+		$field = '<textarea class="form-input ' . $option['class'] . '" id="' . $option['id'] . '" name="' . $option['name'] . '" placeholder="' . $option['placeholder'] . '" rows="3">' . $field_value . '</textarea>';
+		$field = $this->wrap_element( $option, $field );
 
 		return $field;
 	}
@@ -181,17 +229,17 @@ class Orbit_Fox_Render_Helper {
 		$field_value = $this->set_field_value( $option );
 		$select_options = '';
 		foreach ( $option['options'] as $value => $label ) {
-			$select_options .= '<option value="' . $value . '">' . $label . '</option>';
+			$is_selected = '';
+			if ( $field_value == $value ) {
+				$is_selected = 'selected';
+			}
+			$select_options .= '<option value="' . $value . '" ' . $is_selected . '>' . $label . '</option>';
 		}
-
 		$field = '
-        <div class="form-group">
-            <label class="form-label" for="' . $option['id'] . '">' . $option['label'] . '</label>
             <select class="form-select ' . $option['class'] . '" id="' . $option['id'] . '" name="' . $option['name'] . '" placeholder="' . $option['placeholder'] . '">
                 ' . $select_options . '
-            </select>
-        </div>
-        ';
+            </select>';
+		$field = $this->wrap_element( $option, $field );
 
 		return $field;
 	}
@@ -212,15 +260,9 @@ class Orbit_Fox_Render_Helper {
 			if ( $value == $field_value ) {
 				$checked = 'checked';
 			}
-			$select_options .= $this->generate_check_type( 'radio', $field_value, $checked, $label, $option );
+			$select_options .= $this->generate_check_type( 'radio', $value, $checked, $label, $option );
 		}
-
-		$field = '
-        <div class="form-group">
-            <label class="form-label" for="' . $option['id'] . '">' . $option['label'] . '</label>
-            ' . $select_options . '
-        </div>
-        ';
+		$field = $this->wrap_element( $option, $select_options );
 
 		return $field;
 	}
@@ -235,21 +277,12 @@ class Orbit_Fox_Render_Helper {
 	 */
 	private function field_checkbox( $option = array() ) {
 		$field_value = $this->set_field_value( $option );
-		$select_options = '';
-		foreach ( $option['options'] as $value => $label ) {
-			$checked = '';
-			if ( $value == $field_value ) {
-				$checked = 'checked';
-			}
-			$select_options .= $this->generate_check_type( 'checkbox', $field_value, $checked, $label, $option );
+		$checked = '';
+		if ( $field_value ) {
+			$checked = 'checked';
 		}
-
-		$field = '
-        <div class="form-group">
-            <label class="form-label" for="' . $option['id'] . '">' . $option['label'] . '</label>
-            ' . $select_options . '
-        </div>
-        ';
+		$select_options = $this->generate_check_type( 'checkbox', 1, $checked, $option['label'], $option );
+		$field = $this->wrap_element( $option, $select_options );
 
 		return $field;
 	}
@@ -264,15 +297,16 @@ class Orbit_Fox_Render_Helper {
 	 */
 	private function field_toggle( $option = array() ) {
 		$field_value = $this->set_field_value( $option );
+		$checked = '';
+		if ( $field_value ) {
+			$checked = 'checked';
+		}
 		$field = '
-        <div class="form-group">
-            <label class="form-label" for="' . $option['id'] . '">' . $option['label'] . '</label>
             <label class="form-switch ' . $option['class'] . '">
-                <input type="checkbox" name="' . $option['name'] . '" value="' . $field_value . '" />
+                <input type="checkbox" name="' . $option['name'] . '" value="1" ' . $checked . ' />
                 <i class="form-icon"></i> ' . $option['label'] . '
-            </label>
-        </div>
-        ';
+            </label>';
+		$field = $this->wrap_element( $option, $field );
 
 		return $field;
 	}

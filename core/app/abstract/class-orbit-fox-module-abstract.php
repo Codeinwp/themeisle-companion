@@ -19,6 +19,15 @@
 abstract class Orbit_Fox_Module_Abstract {
 
 	/**
+	 * Holds the module slug.
+	 *
+	 * @since   1.0.0
+	 * @access  protected
+	 * @var     string $slug The module slug.
+	 */
+	protected $slug;
+
+	/**
 	 * Holds the name of the module
 	 *
 	 * @since   1.0.0
@@ -55,6 +64,15 @@ abstract class Orbit_Fox_Module_Abstract {
 	protected $loader;
 
 	/**
+	 * Has an instance of the Orbit_Fox_Model class used for interacting with DB data.
+	 *
+	 * @since   1.0.0
+	 * @access  protected
+	 * @var     Orbit_Fox_Model $model A instance of Orbit_Fox_Model.
+	 */
+	protected $model;
+
+	/**
 	 * Stores the curent version of Orbit fox for use during the enqueue.
 	 *
 	 * @since   1.0.0
@@ -62,6 +80,16 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @var     string $version The current version of Orbit Fox.
 	 */
 	protected $version;
+
+	/**
+	 * Orbit_Fox_Module_Abstract constructor.
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 */
+	public function __construct() {
+	    $this->slug = str_replace( '_', '-',strtolower( str_replace( '_OBFX_Module', '', get_class( $this ) ) ) );
+	}
 
 	/**
 	 * Method to return path to child class in a Reflective Way.
@@ -88,6 +116,19 @@ abstract class Orbit_Fox_Module_Abstract {
 	 */
 	public function register_loader( Orbit_Fox_Loader $loader ) {
 	    $this->loader = $loader;
+	}
+
+	/**
+	 * Registers the loader.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 * @param Orbit_Fox_Model $model The loader class used to register action hooks and filters.
+	 */
+	public function register_model( Orbit_Fox_Model $model ) {
+		$this->model = $model;
 	}
 
 	/**
@@ -138,6 +179,137 @@ abstract class Orbit_Fox_Module_Abstract {
 	public abstract function options();
 
 	/**
+	 * Method to check if module status is active.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 * @return bool
+	 */
+	final public function is_active() {
+	    return $this->model->get_is_module_active( $this->slug );
+	}
+
+	/**
+	 * Method to retrieve from model the module status for
+	 * the provided key.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 * @param   string $key Key to look for.
+	 * @return bool
+	 */
+	final public function get_status( $key ) {
+		return $this->model->get_module_status( $this->slug, $key );
+	}
+
+	/**
+	 * Method to update in model the module status for
+	 * the provided key value pair.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 * @param   string $key Key to update.
+	 * @param   string $value The new value.
+	 * @return mixed
+	 */
+	final public function set_status( $key, $value ) {
+		return $this->model->set_module_status( $this->slug, $key, $value );
+	}
+
+	/**
+	 * Method to retrieve an option value from model.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 * @param   string $key The option key to retrieve.
+	 * @return bool
+	 */
+	final public function get_option( $key ) {
+		return $this->model->get_module_option( $this->slug, $key );
+	}
+
+	/**
+	 * Method to update an option key value pair.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 * @param   string $key The key name.
+	 * @param   string $value The new value.
+	 * @return mixed
+	 */
+	final public function set_option( $key, $value ) {
+		return $this->model->set_module_option( $this->slug, $key, $value );
+	}
+
+	/**
+	 * Method to update a set of options.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 * @param   array $options An associative array of options to be
+	 *                         updated. Eg. ( 'key' => 'new_value' ).
+	 * @return mixed
+	 */
+	final public function set_options( $options ) {
+	    return $this->model->set_module_options( $this->slug, $options );
+	}
+
+	/**
+	 * Method to define the default model value for options, based on
+	 * the options array if not set DB.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 * @return array
+	 */
+	final public function get_options_defaults() {
+	    $options = $this->options();
+	    $defaults = array();
+	    foreach ( $options as $opt ) {
+	        if ( ! isset( $opt['default'] ) ) {
+				$opt['default'] = '';
+			}
+			$defaults[ $opt['name'] ] = $opt['default'];
+		}
+		return $defaults;
+	}
+
+	/**
+	 * Method to retrieve the options for the module.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 * @return array
+	 */
+	final public function get_options() {
+	    $model_options = $this->options();
+		$options = array();
+		$i = 0;
+		foreach ( $model_options as $opt ) {
+			$options[ $i ] = $opt;
+			$options[ $i ]['value'] = $this->get_option( $opt['name'] );
+			$i++;
+		}
+		return $options;
+	}
+
+	/**
 	 * Adds the hooks for amdin and public enqueue.
 	 *
 	 * @codeCoverageIgnore
@@ -165,7 +337,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	 */
 	public function set_admin_styles() {
 		$enqueue = $this->admin_enqueue();
-		$module_dir = str_replace( '_', '-',strtolower( str_replace( '_OBFX_Module', '', get_class( $this ) ) ) );
+		$module_dir = $this->slug;
 		if ( ! empty( $enqueue ) ) {
 			if ( isset( $enqueue['css'] ) && ! empty( $enqueue['css'] ) ) {
 				foreach ( $enqueue['css'] as $file_name => $dependencies ) {
@@ -194,7 +366,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	 */
 	public function set_admin_scripts() {
 		$enqueue = $this->admin_enqueue();
-		$module_dir = str_replace( '_', '-',strtolower( str_replace( '_OBFX_Module', '', get_class( $this ) ) ) );
+		$module_dir = $this->slug;
 		if ( ! empty( $enqueue ) ) {
 			if ( isset( $enqueue['js'] ) && ! empty( $enqueue['js'] ) ) {
 				foreach ( $enqueue['js'] as $file_name => $dependencies ) {
@@ -223,7 +395,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	 */
 	public function set_public_styles() {
 		$enqueue = $this->public_enqueue();
-		$module_dir = str_replace( '_', '-',strtolower( str_replace( '_OBFX_Module', '', get_class( $this ) ) ) );
+		$module_dir = $this->slug;
 		if ( ! empty( $enqueue ) ) {
 			if ( isset( $enqueue['css'] ) && ! empty( $enqueue['css'] ) ) {
 				foreach ( $enqueue['css'] as $file_name => $dependencies ) {
@@ -252,7 +424,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	 */
 	public function set_public_scripts() {
 		$enqueue = $this->public_enqueue();
-		$module_dir = str_replace( '_', '-',strtolower( str_replace( '_OBFX_Module', '', get_class( $this ) ) ) );
+		$module_dir = $this->slug;
 		if ( ! empty( $enqueue ) ) {
 			if ( isset( $enqueue['js'] ) && ! empty( $enqueue['js'] ) ) {
 				foreach ( $enqueue['js'] as $file_name => $dependencies ) {

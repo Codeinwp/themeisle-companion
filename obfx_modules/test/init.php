@@ -23,6 +23,7 @@ class Test_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function __construct() {
+	    parent::__construct();
 		$this->name = __( 'Orbit Fox Test Module', 'obfx' );
 		$this->description = __( 'A test module for Orbit Fox.', 'obfx' );
 	}
@@ -92,6 +93,7 @@ class Test_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		        'id' => 'test_text_id',
 		        'name' => 'test_text_name',
 		        'label' => 'Module Text Label',
+		        'title' => 'Module Text Title',
 		        'description' => 'Module Text Description ...',
 		        'type' => 'text',
 		        'default' => '',
@@ -101,6 +103,7 @@ class Test_OBFX_Module extends Orbit_Fox_Module_Abstract {
                 'id' => 'test_textarea_id',
                 'name' => 'test_textarea_name',
                 'label' => 'Module Textarea Label',
+                'title' => 'Module Textarea Title',
                 'description' => 'Module Textarea Description ...',
                 'type' => 'textarea',
                 'default' => '',
@@ -110,6 +113,7 @@ class Test_OBFX_Module extends Orbit_Fox_Module_Abstract {
                 'id' => 'test_select_id',
                 'name' => 'test_select_name',
                 'label' => 'Module Select Label',
+                'title' => 'Module Select Title',
                 'description' => 'Module Select Description ...',
                 'type' => 'select',
                 'default' => '',
@@ -124,6 +128,7 @@ class Test_OBFX_Module extends Orbit_Fox_Module_Abstract {
                 'id' => 'test_radio_id',
                 'name' => 'test_radio_name',
                 'label' => 'Module Radio Label',
+                'title' => 'Module Radio Title',
                 'description' => 'Module Radio Description ...',
                 'type' => 'radio',
                 'default' => '1',
@@ -137,18 +142,16 @@ class Test_OBFX_Module extends Orbit_Fox_Module_Abstract {
                 'id' => 'test_checkbox_id',
                 'name' => 'test_checkbox_name',
                 'label' => 'Module Checkbox Label',
+                'title' => 'Module Checkbox Title',
                 'description' => 'Module Checkbox Description ...',
                 'type' => 'checkbox',
-                'default' => '1',
-                'options' => array(
-                    '0' => 'Subscribe me to newsletter.',
-                    '1' => 'I agree to anonymous data collection.',
-                ),
+                'default' => '1'
             ),
             array(
                 'id' => 'test_toggle_id',
                 'name' => 'test_toggle_name',
                 'label' => 'Module Toggle Label',
+                'title' => 'Module Toggle Title',
                 'description' => 'Module Toggle Description ...',
                 'type' => 'toggle',
                 'default' => '1',

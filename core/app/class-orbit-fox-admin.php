@@ -126,6 +126,62 @@ class Orbit_Fox_Admin {
 	}
 
 	/**
+	 * A method used for saving module options data
+	 * and returning a well formatted response as an array.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 * @param   array $data The options data to try and save via the module model.
+	 * @return array
+	 */
+	public function try_module_save( $data ) {
+		$response = array();
+		$global_settings = new Orbit_Fox_Global_Settings();
+		$modules = $global_settings::$instance->module_objects;
+		if ( isset( $modules[ $data['module-slug'] ] ) ) {
+			$module = $modules[ $data['module-slug'] ];
+			unset( $data['noance'] );
+			unset( $data['module-slug'] );
+			$result = $module->set_options( $data );
+			if ( $result ) {
+				$response['type'] = 'success';
+				$response['message'] = __( 'Options updated, successfully!', 'obfx' );
+			} else {
+				$response['type'] = 'warning';
+				$response['message'] = __( 'Something went wrong, data might not be saved!', 'obfx' );
+			}
+		} else {
+			$response['type'] = 'error';
+			$response['message'] = __( 'No module found! No data was updated.', 'obfx' );
+		}
+	    return $response;
+	}
+
+	/**
+	 * This method is called via AJAX and processes the
+	 * request for updating module options.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 */
+	public function obfx_update_module_options() {
+		$json = stripslashes( str_replace( '&quot;', '"', $_POST['data'] ) );
+	    $data = json_decode( $json, true );
+	    if ( isset( $data['noance'] ) && wp_verify_nonce( $data['noance'], 'obfx_update_module_options_' . $data['module-slug'] ) ) {
+			$response = $this->try_module_save( $data );
+		} else {
+			$response['type'] = 'error';
+			$response['message'] = __( 'Could not process the request!', 'obfx' );
+		}
+		echo json_encode( $response );
+		wp_die();
+	}
+
+	/**
 	 * Method to display modules page.
 	 *
 	 * @codeCoverageIgnore
@@ -142,7 +198,7 @@ class Orbit_Fox_Admin {
 		$tiles = '';
 		$panels = '';
 		$count_modules = 0;
-		foreach ( $modules as $module ) {
+		foreach ( $modules as $slug => $module ) {
 			$count_modules++;
 			$data = array(
 				'name' => $module->name,
@@ -151,7 +207,7 @@ class Orbit_Fox_Admin {
 			$tiles .= $rdh->get_partial( 'module-tile', $data );
 			$tiles .= '<div class="divider"></div>';
 
-			$module_options = $module->options();
+			$module_options = $module->get_options();
 			$options_fields = '';
 			foreach ( $module_options as $option ) {
 				$options_fields .= $rdh->render_option( $option );
@@ -160,6 +216,7 @@ class Orbit_Fox_Admin {
 			$panels .= $rdh->get_partial(
 				'module-panel',
 				array(
+				        'slug' => $slug,
 						'name' => $module->name,
 						'description' => $module->description,
 						'options_fields' => $options_fields,

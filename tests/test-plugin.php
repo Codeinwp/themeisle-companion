@@ -19,6 +19,9 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
 
     public function tearDown() {
         Orbit_Fox_Global_Settings::distroy_instance();
+
+        $obfx_model = new Orbit_Fox_Model();
+        $obfx_model->distroy_model();
     }
 
 	public function setUp() {
@@ -108,6 +111,30 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
 	    $rdh->render_option( array( 'type' => 'unknown' ) );
 
         $this->invokeMethod( $rdh, 'sanitize_option', array( 'type' => 'text' ) );
+    }
+
+    public function test_model() {
+	    $obfx_model = new Orbit_Fox_Model();
+
+        $global_settings = new Orbit_Fox_Global_Settings();
+
+        $modules = $global_settings::$instance->module_objects;
+
+        $obfx_model->register_modules_data( $modules );
+
+        var_dump( $obfx_model->get() );
+
+        foreach ( $modules as $module ) {
+            $module->register_model( $obfx_model );
+            var_dump( $module->get_status( 'active' ) );
+            var_dump( $module->get_option( 'test_checkbox_name' ) );
+
+            $module->set_status( 'active', true );
+            var_dump( $module->get_status( 'active' ) );
+            $module->set_option( 'test_checkbox_name', '2' );
+        }
+
+	    var_dump( $obfx_model->get() );
     }
 
 
