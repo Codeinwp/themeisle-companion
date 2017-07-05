@@ -140,21 +140,19 @@ class Orbit_Fox_Admin {
 		$response = array();
 		$global_settings = new Orbit_Fox_Global_Settings();
 		$modules = $global_settings::$instance->module_objects;
+		$response['type'] = 'error';
+		$response['message'] = __( 'No module found! No data was updated.', 'obfx' );
 		if ( isset( $modules[ $data['module-slug'] ] ) ) {
 			$module = $modules[ $data['module-slug'] ];
 			unset( $data['noance'] );
 			unset( $data['module-slug'] );
+			$response['type'] = 'warning';
+			$response['message'] = __( 'Something went wrong, data might not be saved!', 'obfx' );
 			$result = $module->set_options( $data );
 			if ( $result ) {
 				$response['type'] = 'success';
 				$response['message'] = __( 'Options updated, successfully!', 'obfx' );
-			} else {
-				$response['type'] = 'warning';
-				$response['message'] = __( 'Something went wrong, data might not be saved!', 'obfx' );
 			}
-		} else {
-			$response['type'] = 'error';
-			$response['message'] = __( 'No module found! No data was updated.', 'obfx' );
 		}
 	    return $response;
 	}
@@ -171,11 +169,10 @@ class Orbit_Fox_Admin {
 	public function obfx_update_module_options() {
 		$json = stripslashes( str_replace( '&quot;', '"', $_POST['data'] ) );
 	    $data = json_decode( $json, true );
+		$response['type'] = 'error';
+		$response['message'] = __( 'Could not process the request!', 'obfx' );
 	    if ( isset( $data['noance'] ) && wp_verify_nonce( $data['noance'], 'obfx_update_module_options_' . $data['module-slug'] ) ) {
 			$response = $this->try_module_save( $data );
-		} else {
-			$response['type'] = 'error';
-			$response['message'] = __( 'Could not process the request!', 'obfx' );
 		}
 		echo json_encode( $response );
 		wp_die();

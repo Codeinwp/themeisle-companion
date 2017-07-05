@@ -27,6 +27,10 @@ engines:
         enabled: false
       Controversial/CamelCaseMethodName:
         enabled: false
+      Controversial/Superglobals:
+        enabled: false
+      Naming/BooleanGetMethodName:
+        enabled: false
 ratings:
   paths:
   - "**.css"

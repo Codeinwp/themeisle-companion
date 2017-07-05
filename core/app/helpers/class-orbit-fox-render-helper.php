@@ -114,14 +114,14 @@ class Orbit_Fox_Render_Helper {
 	 *
 	 * @since   1.0.0
 	 * @access  private
-	 * @param   string $id The option id field.
+	 * @param   string $element_id The option id field.
 	 * @param   string $title The option title field.
 	 * @return string
 	 */
-	private function get_title( $id, $title ) {
+	private function get_title( $element_id, $title ) {
 	    $display_title = '';
 	    if ( $title ) {
-			$display_title = '<label class="form-label" for="' . $id . '">' . $title . '</label>';
+			$display_title = '<label class="form-label" for="' . $element_id . '">' . $title . '</label>';
 		}
 		return $display_title;
 	}

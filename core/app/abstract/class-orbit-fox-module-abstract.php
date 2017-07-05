@@ -300,11 +300,11 @@ abstract class Orbit_Fox_Module_Abstract {
 	final public function get_options() {
 	    $model_options = $this->options();
 		$options = array();
-		$i = 0;
+		$index = 0;
 		foreach ( $model_options as $opt ) {
-			$options[ $i ] = $opt;
-			$options[ $i ]['value'] = $this->get_option( $opt['name'] );
-			$i++;
+			$options[ $index ] = $opt;
+			$options[ $index ]['value'] = $this->get_option( $opt['name'] );
+			$index++;
 		}
 		return $options;
 	}
