@@ -18,6 +18,8 @@
 
 ## Features
 
+## Docs
+
 ## Frequently Asked Questions
 
 ## Change Log
