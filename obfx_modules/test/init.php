@@ -46,8 +46,21 @@ class Test_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function load() {
-
 	}
+
+    function example_add_dashboard_widgets() {
+
+        wp_add_dashboard_widget(
+            'example_dashboard_widget',         // Widget slug.
+            'Example Dashboard Widget',         // Title.
+            array( $this, 'example_dashboard_widget_function' ) // Display function.
+        );
+    }
+
+    function example_dashboard_widget_function() {
+        // Display whatever it is you want to show.
+        echo "Hello World, I'm a great Dashboard Widget";
+    }
 
 	/**
 	 * Method that returns an array of scripts and styles to be loaded

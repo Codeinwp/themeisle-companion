@@ -131,10 +131,11 @@ class Orbit_Fox {
 			$module = $module_factory::build( $module_name );
 			$global_settings->register_module_reference( $module_name, $module );
 			if ( $module->enable_module() ) {
-				$this->loader->add_action( 'orbit_fox_modules', $module, 'load' );
 				$module->register_loader( $this->get_loader() );
 				$module->register_model( $obfx_model );
 				$module->enqueue( $this->get_version() );
+                $this->loader->add_action( 'orbit_fox_modules', $module, 'load' );
+                $this->loader->add_action( 'wp_dashboard_setup', $module, 'example_add_dashboard_widgets' );
 			}
 		}
 	}
