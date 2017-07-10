@@ -20,6 +20,8 @@
 
 ## Docs
 
+[Read the Project Documentation](https://docs.google.com/a/vertistudio.com/document/d/1fFepVs4if5rEmMqA8TiHUFp2WPnkUCW6JZohnsSNtKE/edit?usp=sharing)
+
 ## Frequently Asked Questions
 
 ## Change Log
