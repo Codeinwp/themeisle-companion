@@ -24,8 +24,8 @@ class Test_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function __construct() {
 	    parent::__construct();
-		$this->name = __( 'Orbit Fox Test Module', 'obfx' );
-		$this->description = __( 'A test module for Orbit Fox.', 'obfx' );
+		$this->name = __( 'Orbit Fox Test Module', 'themeisle-companion' );
+		$this->description = __( 'A test module for Orbit Fox.', 'themeisle-companion' );
 	}
 
 	/**

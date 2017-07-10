@@ -11,11 +11,11 @@
  */
 
 if ( ! isset( $title ) ) {
-	$title = __( 'There are no modules for the Fox!', 'obfx' );
+	$title = __( 'There are no modules for the Fox!', 'themeisle-companion' );
 }
 
 if ( ! isset( $btn_text ) ) {
-	$btn_text = __( 'Contact support', 'obfx' );
+	$btn_text = __( 'Contact support', 'themeisle-companion' );
 }
 
 if ( ! isset( $show_btn ) ) {

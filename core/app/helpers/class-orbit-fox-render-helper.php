@@ -341,7 +341,7 @@ class Orbit_Fox_Render_Helper {
 				return $this->field_toggle( $option );
 				break;
 			default:
-				return __( 'No option found for provided type', 'obfx' );
+				return __( 'No option found for provided type', 'themeisle-companion' );
 				break;
 		}
 	}

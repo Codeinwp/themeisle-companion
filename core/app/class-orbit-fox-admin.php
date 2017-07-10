@@ -106,7 +106,7 @@ class Orbit_Fox_Admin {
 	 * @access  public
 	 */
 	public function menu_pages() {
-		add_menu_page( __( 'Orbit Fox', 'obfx' ), __( 'Orbit Fox Modules', 'obfx' ), 'manage_options', 'obfx_menu',
+		add_menu_page( __( 'Orbit Fox', 'themeisle-companion' ), __( 'Orbit Fox Modules', 'obfx' ), 'manage_options', 'obfx_menu',
 			array(
 				$this,
 				'page_modules_render',
@@ -141,17 +141,17 @@ class Orbit_Fox_Admin {
 		$global_settings = new Orbit_Fox_Global_Settings();
 		$modules = $global_settings::$instance->module_objects;
 		$response['type'] = 'error';
-		$response['message'] = __( 'No module found! No data was updated.', 'obfx' );
+		$response['message'] = __( 'No module found! No data was updated.', 'themeisle-companion' );
 		if ( isset( $modules[ $data['module-slug'] ] ) ) {
 			$module = $modules[ $data['module-slug'] ];
 			unset( $data['noance'] );
 			unset( $data['module-slug'] );
 			$response['type'] = 'warning';
-			$response['message'] = __( 'Something went wrong, data might not be saved!', 'obfx' );
+			$response['message'] = __( 'Something went wrong, data might not be saved!', 'themeisle-companion' );
 			$result = $module->set_options( $data );
 			if ( $result ) {
 				$response['type'] = 'success';
-				$response['message'] = __( 'Options updated, successfully!', 'obfx' );
+				$response['message'] = __( 'Options updated, successfully!', 'themeisle-companion' );
 			}
 		}
 	    return $response;
@@ -170,7 +170,7 @@ class Orbit_Fox_Admin {
 		$json = stripslashes( str_replace( '&quot;', '"', $_POST['data'] ) );
 	    $data = json_decode( $json, true );
 		$response['type'] = 'error';
-		$response['message'] = __( 'Could not process the request!', 'obfx' );
+		$response['message'] = __( 'Could not process the request!', 'themeisle-companion' );
 	    if ( isset( $data['noance'] ) && wp_verify_nonce( $data['noance'], 'obfx_update_module_options_' . $data['module-slug'] ) ) {
 			$response = $this->try_module_save( $data );
 		}
@@ -194,15 +194,15 @@ class Orbit_Fox_Admin {
 		$global_settings = new Orbit_Fox_Global_Settings();
 		$modules = $global_settings::$instance->module_objects;
 		$response['type'] = 'error';
-		$response['message'] = __( 'No module found!', 'obfx' );
+		$response['message'] = __( 'No module found!', 'themeisle-companion' );
 		if ( isset( $modules[ $data['name'] ] ) ) {
 			$module = $modules[ $data['name'] ];
 			$response['type'] = 'warning';
-			$response['message'] = __( 'Something went wrong, can not change module status!', 'obfx' );
+			$response['message'] = __( 'Something went wrong, can not change module status!', 'themeisle-companion' );
 			$result = $module->set_status( 'active', $data['checked'] );
 			if ( $result ) {
 				$response['type'] = 'success';
-				$response['message'] = __( 'Module status changed!', 'obfx' );
+				$response['message'] = __( 'Module status changed!', 'themeisle-companion' );
 			}
 		}
 		return $response;
@@ -221,7 +221,7 @@ class Orbit_Fox_Admin {
 		$json = stripslashes( str_replace( '&quot;', '"', $_POST['data'] ) );
 		$data = json_decode( $json, true );
 		$response['type'] = 'error';
-		$response['message'] = __( 'Could not process the request!', 'obfx' );
+		$response['message'] = __( 'Could not process the request!', 'themeisle-companion' );
 		if ( isset( $data['noance'] ) && wp_verify_nonce( $data['noance'], 'obfx_activate_mod_' . $data['name'] ) ) {
 			$response = $this->try_module_activate( $data );
 		}
@@ -286,16 +286,16 @@ class Orbit_Fox_Admin {
 			$empty_tpl = $rdh->get_partial(
 				'empty',
 				array(
-						'title' => __( 'No modules found.', 'obfx' ),
-						'sub_title' => __( 'Please contact support for more help.', 'obfx' ),
+						'title' => __( 'No modules found.', 'themeisle-companion' ),
+						'sub_title' => __( 'Please contact support for more help.', 'themeisle-companion' ),
 						'show_btn' => true,
 					)
 			);
 			$panels = $rdh->get_partial(
 				'empty',
 				array(
-					'title' => __( 'No active modules.', 'obfx' ),
-					'sub_title' => __( 'Activate a module using the toggles above.', 'obfx' ),
+					'title' => __( 'No active modules.', 'themeisle-companion' ),
+					'sub_title' => __( 'Activate a module using the toggles above.', 'themeisle-companion' ),
 					'show_btn' => false,
 				)
 			);

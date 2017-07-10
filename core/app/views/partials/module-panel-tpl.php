@@ -20,15 +20,15 @@ if ( ! isset( $active ) ) {
 }
 
 if ( ! isset( $name ) ) {
-	$name = __( 'The Module Name', 'obfx' );
+	$name = __( 'The Module Name', 'themeisle-companion' );
 }
 
 if ( ! isset( $description ) ) {
-	$description = __( 'The Module Description ...', 'obfx' );
+	$description = __( 'The Module Description ...', 'themeisle-companion' );
 }
 
 if ( ! isset( $options_fields ) ) {
-	$options_fields = __( 'No options provided.', 'obfx' );
+	$options_fields = __( 'No options provided.', 'themeisle-companion' );
 }
 
 $display = '';

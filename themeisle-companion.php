@@ -12,7 +12,7 @@
  * @package           Orbit_Fox
  *
  * @wordpress-plugin
- * Plugin Name:       Orbit Fox
+ * Plugin Name:       Orbit Fox ( ThemeIsle Companion )
  * Plugin URI:        https://orbitfox.com
  * Description:       The Orbit Fox, greatest thing that happened to WordPress since automatic is spelled with two T's. ;)
  * Version:           1.0.0
@@ -20,7 +20,7 @@
  * Author URI:        https://themeisle.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       obfx
+ * Text Domain:       themeisle-companion
  * Domain Path:       /core/languages
  */
 
