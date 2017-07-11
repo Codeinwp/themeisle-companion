@@ -79,6 +79,31 @@ class Stats_OBFX_Module extends Orbit_Fox_Module_Abstract {
     }
 
     /**
+     * Creates a query for graph data.
+     *
+     * @since   1.0.0
+     * @access  private
+     * @param   string $display_year The year to look for.
+     * @param   string $table The table name
+     * @param   bool $posts_or_comments Counts posts if `true` or comments if `false`.
+     * @return string
+     */
+    private function build_graph_query( $display_year, $table,  $posts_or_comments ) {
+        $count = "SUM(`comment_count`) as `comment_count`";
+        if( $posts_or_comments ) {
+            $count = "COUNT( `ID` ) AS `post_count`";
+        }
+        $query = "
+        SELECT
+        MONTH( `post_date` ) AS `post_month`, {$count}
+        FROM {$table}
+        WHERE `post_type` = 'post' AND `post_status` = 'publish' AND YEAR( `post_date` ) = '{$display_year}'
+        GROUP BY `post_month`
+        ";
+        return $query;
+    }
+
+    /**
      * Utility method to return posts count,
      *
      * @since   1.0.0
@@ -87,24 +112,18 @@ class Stats_OBFX_Module extends Orbit_Fox_Module_Abstract {
      * @return array
      */
     public function get_posts_count( $display_year ) {
+        $posts_count = array();
+        for( $cnt = 0; $cnt < 12; $cnt++ ) {
+            $posts_count[] = rand( 13, 766 );
+        }
+
 	    if ( ! $this->get_option( 'mock_data' ) ) {
             global $wpdb;
-            $results = $wpdb->get_results( "
-            SELECT
-            MONTH( `post_date` ) AS `post_month`, COUNT( `ID` ) AS `post_count`
-            FROM {$wpdb->posts}
-            WHERE `post_type` = 'post' AND `post_status` = 'publish' AND YEAR( `post_date` ) = '{$display_year}'
-            GROUP BY `post_month`
-            ", ARRAY_A );
+            $results = $wpdb->get_results( $this->build_graph_query( $display_year, $wpdb->posts, true ), ARRAY_A );
             $posts_count = array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 );
             foreach ( $results as $posts_published ) {
                 $pos = $posts_published['post_month']-1;
                 $posts_count[$pos] = (int) $posts_published['post_count'];
-            }
-        } else {
-	        $posts_count = array();
-	        for( $cnt = 0; $cnt < 12; $cnt++ ) {
-                $posts_count[] = rand( 13, 766 );
             }
         }
 
@@ -120,24 +139,18 @@ class Stats_OBFX_Module extends Orbit_Fox_Module_Abstract {
      * @return array
      */
     public function get_comments_count( $display_year ) {
+        $comments_count = array();
+        for( $cnt = 0; $cnt < 12; $cnt++ ) {
+            $comments_count[] = rand( 7, 484 );
+        }
+
         if ( ! $this->get_option( 'mock_data' ) ) {
             global $wpdb;
-            $results = $wpdb->get_results( "
-            SELECT
-            MONTH( `post_date` ) AS `post_month`, SUM(`comment_count`) as `comment_count`
-            FROM {$wpdb->posts}
-            WHERE `post_type` = 'post' AND `post_status` = 'publish' AND YEAR( `post_date` ) = '{$display_year}'
-            GROUP BY `post_month`
-            ", ARRAY_A );
+            $results = $wpdb->get_results( $this->build_graph_query( $display_year, $wpdb->posts, false ), ARRAY_A );
             $comments_count = array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 );
             foreach ( $results as $posts_published ) {
                 $pos = $posts_published['post_month']-1;
                 $comments_count[$pos] = (int) $posts_published['comment_count'];
-            }
-        } else {
-            $comments_count = array();
-            for( $cnt = 0; $cnt < 12; $cnt++ ) {
-                $comments_count[] = rand( 7, 484 );
             }
         }
 
