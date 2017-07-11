@@ -131,10 +131,11 @@ class Orbit_Fox {
 			$module = $module_factory::build( $module_name );
 			$global_settings->register_module_reference( $module_name, $module );
 			if ( $module->enable_module() ) {
-				$this->loader->add_action( 'orbit_fox_modules', $module, 'load' );
 				$module->register_loader( $this->get_loader() );
 				$module->register_model( $obfx_model );
 				$module->enqueue( $this->get_version() );
+				$module->register_hooks();
+				$this->loader->add_action( 'orbit_fox_modules', $module, 'load' );
 			}
 		}
 	}
@@ -150,7 +151,7 @@ class Orbit_Fox {
 
 		$plugin_admin = new Orbit_Fox_Admin( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'init', $plugin_admin, 'load_modules' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'load_modules' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'menu_pages' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );

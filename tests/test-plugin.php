@@ -74,7 +74,7 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
     public function test_module() {
         Autoloader::set_plugins_path( plugin_dir_path( __DIR__ ) );
         $modules_to_load = array(
-            'test',
+            'stats',
         );
 
         $module_factory = new Orbit_Fox_Module_Factory();

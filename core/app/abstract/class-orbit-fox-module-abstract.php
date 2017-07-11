@@ -179,6 +179,41 @@ abstract class Orbit_Fox_Module_Abstract {
 	public abstract function options();
 
 	/**
+	 * Method to define actions and filters needed for the module.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 * @return array
+	 */
+	public abstract function hooks();
+
+	/**
+	 * Utility method to register `add_action` and `add_filter` for
+	 * defined actions and filters returned by the `hooks()` method.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 */
+	final public function register_hooks() {
+	    $hooks = $this->hooks();
+	    if ( isset( $hooks['actions'] ) && ! empty( $hooks['actions'] ) ) {
+			foreach ( $hooks['actions'] as $hook => $method ) {
+					$this->loader->add_action( $hook, $this, $method );
+			}
+		}
+		if ( isset( $hooks['filters'] ) && ! empty( $hooks['filters'] ) ) {
+			foreach ( $hooks['actions'] as $hook => $method ) {
+				$this->loader->add_filter( $hook, $this, $method );
+			}
+		}
+
+	}
+
+	/**
 	 * Method to check if module status is active.
 	 *
 	 * @codeCoverageIgnore
@@ -233,7 +268,13 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @return bool
 	 */
 	final public function get_option( $key ) {
-		return $this->model->get_module_option( $this->slug, $key );
+	    $default_options = $this->get_options_defaults();
+		$db_option = $this->model->get_module_option( $this->slug, $key );
+		$value = $db_option;
+		if ( $db_option === false ) {
+			$value = $default_options[ $key ];
+		}
+		return $value;
 	}
 
 	/**
@@ -369,17 +410,19 @@ abstract class Orbit_Fox_Module_Abstract {
 		$module_dir = $this->slug;
 		if ( ! empty( $enqueue ) ) {
 			if ( isset( $enqueue['js'] ) && ! empty( $enqueue['js'] ) ) {
+			    $order = 0;
 				foreach ( $enqueue['js'] as $file_name => $dependencies ) {
 					if ( $dependencies == false ) {
 						$dependencies = array();
 					}
 					wp_enqueue_script(
-						'obfx-module-js-' . str_replace( ' ', '-', strtolower( $this->name ) ),
+						'obfx-module-js-' . str_replace( ' ', '-', strtolower( $this->name ) ) . '-' . $order,
 						plugin_dir_url( $this->get_dir() ) . $module_dir . '/js/' . $file_name . '.js',
 						$dependencies,
 						$this->version,
 						false
 					);
+					$order++;
 				}
 			}
 		}
@@ -441,5 +484,30 @@ abstract class Orbit_Fox_Module_Abstract {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Utility method to render a view from module.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @since   1.0.0
+	 * @access  protected
+	 * @param   string $view_name The view name w/o the `-tpl.php` part.
+	 * @param   array  $args An array of arguments to be passed to the view.
+	 * @return string
+	 */
+	protected function render_view( $view_name, $args = array() ) {
+		ob_start();
+		$file = $this->get_dir() . '/views/' . $view_name . '-tpl.php';
+		if ( ! empty( $args ) ) {
+			foreach ( $args as $obfx_rh_name => $obfx_rh_value ) {
+				$$obfx_rh_name = $obfx_rh_value;
+			}
+		}
+		if ( file_exists( $file ) ) {
+			include $file;
+		}
+		return ob_get_clean();
 	}
 }
