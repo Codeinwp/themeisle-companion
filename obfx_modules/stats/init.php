@@ -104,6 +104,26 @@ class Stats_OBFX_Module extends Orbit_Fox_Module_Abstract {
     }
 
     /**
+     * Utility method to build result array.
+     *
+     * @since   1.0.0
+     * @access  private
+     * @param   array $results Query results as associative array.
+     * @param   bool $posts_or_comments Counts posts if `true` or comments if `false`.
+     * @return array
+     */
+    private function build_graph_array( $results, $posts_or_comments ) {
+        $data_count = array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 );
+        foreach ( $results as $posts_published ) {
+            $pos = $posts_published['post_month']-1;
+            $key = 'comment_count';
+            if( $posts_or_comments ) { $key = 'post_count'; }
+            $data_count[$pos] = (int) $posts_published[$key];
+        }
+        return $data_count;
+    }
+
+    /**
      * Utility method to return posts count,
      *
      * @since   1.0.0
@@ -120,11 +140,7 @@ class Stats_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	    if ( ! $this->get_option( 'mock_data' ) ) {
             global $wpdb;
             $results = $wpdb->get_results( $this->build_graph_query( $display_year, $wpdb->posts, true ), ARRAY_A );
-            $posts_count = array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 );
-            foreach ( $results as $posts_published ) {
-                $pos = $posts_published['post_month']-1;
-                $posts_count[$pos] = (int) $posts_published['post_count'];
-            }
+            $posts_count = $this->build_graph_array( $results, true );
         }
 
         return $posts_count;
@@ -147,11 +163,7 @@ class Stats_OBFX_Module extends Orbit_Fox_Module_Abstract {
         if ( ! $this->get_option( 'mock_data' ) ) {
             global $wpdb;
             $results = $wpdb->get_results( $this->build_graph_query( $display_year, $wpdb->posts, false ), ARRAY_A );
-            $comments_count = array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 );
-            foreach ( $results as $posts_published ) {
-                $pos = $posts_published['post_month']-1;
-                $comments_count[$pos] = (int) $posts_published['comment_count'];
-            }
+            $comments_count = $this->build_graph_array( $results, false );
         }
 
         return $comments_count;
@@ -164,43 +176,18 @@ class Stats_OBFX_Module extends Orbit_Fox_Module_Abstract {
      * @access  public
      */
     public function dashboard_widget_function() {
-	    $display_year = $this->get_option( 'display_year' );
+        $display_year = $this->get_option( 'display_year' );
 	    $posts_count = $this->get_posts_count( $display_year );
         $comments_count = $this->get_comments_count( $display_year );
 
-        $title = $this->get_option( 'dashboard_title' );
-        $desc = $this->get_option( 'dashboard_desc' );
-        $html_title = '';
-        if( trim( $title ) != '' ) {
-            $html_title = '<h3>' . $title . ' <small><i> for ' . $display_year . '</i></small></h3>';
-        }
-
-        $html_desc = '';
-        if( trim( $desc ) != '' ) {
-            $html_desc = '<hr/><small>' . $desc . '</small>';
-        }
-
-        $html_foot = '';
-        if( $this->get_option( 'dev_link' ) ) {
-            $html_foot = '<hr/><small style="text-align: right">Learn more at <a href="themeisle.com">ThemeIsle</a></small>';
-        }
-
-        $posts_data = '';
-        $comments_data = '';
-        $graph_shows = $this->get_option( 'graph_shows' );
-        if( $graph_shows == 0 || $graph_shows == 2 ) {
-            $posts_data = 'data-posts="' . json_encode( $posts_count ) . '"';
-        }
-        if( $graph_shows == 1 || $graph_shows == 2 ) {
-            $comments_data = 'data-comments="' . json_encode( $comments_count ) . '"';
-        }
-
         $data = array(
-            'html_title' => $html_title,
-            'html_desc' => $html_desc,
-            'html_foot' => $html_foot,
-            'posts_data' => $posts_data,
-            'comments_data' => $comments_data,
+            'display_year' => $display_year,
+            'title' => $this->get_option( 'dashboard_title' ),
+            'desc' => $this->get_option( 'dashboard_desc' ),
+            'dev_link' => $this->get_option( 'dev_link' ),
+            'graph_shows' => $this->get_option( 'graph_shows' ),
+            'posts_count' => $posts_count,
+            'comments_count' => $comments_count,
         );
 
         echo $this->render_view( 'dashboard-widget', $data );

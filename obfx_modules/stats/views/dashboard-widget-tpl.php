@@ -10,6 +10,31 @@
  * @codeCoverageIgnore
  */
 
+$html_title = '';
+if ( trim( $title ) != '' ) {
+	$html_title = '<h3>' . $title . ' <small><i> for ' . $display_year . '</i></small></h3>';
+}
+
+$html_desc = '';
+if ( trim( $desc ) != '' ) {
+	$html_desc = '<hr/><small>' . $desc . '</small>';
+}
+
+$html_foot = '';
+if ( $dev_link ) {
+	$html_foot = '<hr/><small style="text-align: right">Learn more at <a href="themeisle.com">ThemeIsle</a></small>';
+}
+
+$posts_data = '';
+$comments_data = '';
+$graph_shows = $this->get_option( 'graph_shows' );
+if ( $graph_shows == 0 || $graph_shows == 2 ) {
+	$posts_data = 'data-posts="' . json_encode( $posts_count ) . '"';
+}
+if ( $graph_shows == 1 || $graph_shows == 2 ) {
+	$comments_data = 'data-comments="' . json_encode( $comments_count ) . '"';
+}
+
 ?>
 
 <?php echo $html_title; ?>
