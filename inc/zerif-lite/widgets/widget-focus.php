@@ -34,10 +34,7 @@ if ( !class_exists( 'zerif_ourfocus' ) ) {
 		 *
 		 * @param $hook
 		 */
-		function widget_scripts( $hook ) {
-			if ( $hook != 'widgets.php' ) {
-				return;
-			}
+		function widget_scripts() {
 			wp_enqueue_media();
 			wp_enqueue_script( 'zerif_widget_media_script', THEMEISLE_COMPANION_URL . 'assets/js/widget-media.js', false, '1.1', true );
 		}
