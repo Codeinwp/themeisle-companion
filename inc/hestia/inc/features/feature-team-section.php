@@ -7,7 +7,7 @@
  */
 
 // Load Customizer repeater control.
-$repeater_path = trailingslashit( get_template_directory() ) . '/inc/customizer-repeater/functions.php';
+$repeater_path = get_template_directory() . '/inc/customizer-repeater/functions.php';
 if ( file_exists( $repeater_path ) ) {
 	require_once( $repeater_path );
 }
