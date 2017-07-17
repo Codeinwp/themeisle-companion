@@ -393,6 +393,7 @@ abstract class Orbit_Fox_Module_Abstract {
 						$this->version,
 						'all'
 					);
+					$order++;
 				}
 			}
 		}
@@ -454,6 +455,7 @@ abstract class Orbit_Fox_Module_Abstract {
 						$this->version,
 						'all'
 					);
+					$order++;
 				}
 			}
 		}
@@ -484,6 +486,7 @@ abstract class Orbit_Fox_Module_Abstract {
 						$this->version,
 						false
 					);
+					$order++;
 				}
 			}
 		}
