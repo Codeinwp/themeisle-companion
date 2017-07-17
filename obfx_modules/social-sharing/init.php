@@ -17,6 +17,8 @@
  */
 class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
+	private $social_share_links = array();
+
 	/**
 	 * Social_Sharing_OBFX_Module  constructor.
 	 *
@@ -24,9 +26,88 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function __construct() {
-	    parent::__construct();
-		$this->name = __( 'Social Sharing Module', 'obfx' );
-		$this->description = __( 'Add basic social sharing to your posts and pages.', 'obfx' );
+		parent::__construct();
+		$this->name               = __( 'Social Sharing Module', 'obfx' );
+		$this->description        = __( 'Add basic social sharing to your posts and pages.', 'obfx' );
+	}
+
+	private function define_networks() {
+    	$post_categories = strip_tags( get_the_category_list( ',' ) );
+		$post_title = get_the_title();
+		$post_link = get_post_permalink();
+
+		$this->social_share_links = array(
+			'facebook'  => array(
+				'link'     => 'https://www.facebook.com/sharer.php?u=' . $post_link,
+				'nicename' => 'Facebook',
+				'icon'     => 'facebook',
+			),
+			'twitter'   => array(
+				'link'     => 'https://twitter.com/intent/tweet?url=' . $post_link . '&text=' . $post_title . '&hashtags=' . $post_categories,
+				'nicename' => 'Twitter',
+				'icon'     => 'twitter',
+			),
+			'g-plus'    => array(
+				'link'     => 'https://plus.google.com/share?url=' . $post_link,
+				'nicename' => 'Google Plus',
+				'icon'     => 'googleplus',
+			),
+			'pinterest' => array(
+				'link'     => 'https://pinterest.com/pin/create/bookmarklet/?media=' . get_the_post_thumbnail_url() . '&url=' . $post_link . '&description=' . $post_title,
+				'nicename' => 'Pinterest',
+				'icon'     => 'pinterest',
+			),
+			'linkedin'  => array(
+				'link'     => 'https://www.linkedin.com/shareArticle?url=' . $post_link . '&title=' . $post_title,
+				'nicename' => 'LinkedIn',
+				'icon'     => 'linkedin',
+			),
+			'tumblr'    => array(
+				'link'     => 'https://www.tumblr.com/widgets/share/tool?canonicalUrl=' . $post_link . '&title=' . $post_title,
+				'nicename' => 'Tumblr',
+				'icon'     => 'tumblr',
+			),
+			'reddit'    => array(
+				'link'     => 'https://reddit.com/submit?url=' . $post_link . '&title=' . $post_title,
+				'nicename' => 'Reddit',
+				'icon'     => 'reddit',
+			),
+			'vk'        => array(
+				'link'     => 'http://vk.com/share.php?url=' . $post_link,
+				'nicename' => 'VKontakte',
+				'icon'     => 'vkontakte',
+			),
+			'okru'      => array(
+				'link'     => 'https://connect.ok.ru/dk?st.cmd=WidgetSharePreview&st.shareUrl=' . $post_link . '&title=' . $post_title,
+				'nicename' => 'OK.ru',
+				'icon'     => 'odnoklassniki',
+			),
+			'douban'    => array(
+				'link'     => 'http://www.douban.com/recommend/?url=' . $post_link . '&title=' . $post_title,
+				'nicename' => 'Douban',
+				'icon'     => 'douban',
+			),
+			'baidu'     => array(
+				'link'     => 'http://cang.baidu.com/do/add?it=' . $post_title . '&iu=' . $post_link,
+				'nicename' => 'Baidu',
+				'icon'     => 'baidu',
+			),
+			'xing'      => array(
+				'link'     => 'https://www.xing.com/app/user?op=share&url=' . $post_link,
+				'nicename' => 'Xing',
+				'icon'     => 'xing',
+			),
+			'renren'    => array(
+				'link'     => 'http://widget.renren.com/dialog/share?resourceUrl=' . $post_link . '&srcUrl=' . $post_link . '&title=' . $post_title,
+				'nicename' => 'RenRen',
+				'icon'     => 'renren',
+			),
+			'weibo'     => array(
+				'link'     => 'http://service.weibo.com/share/share.php?url=' . $post_link . '&appkey=&title=' . $post_title . '&pic=&ralateUid=',
+				'nicename' => 'Weibo',
+				'icon'     => 'weibo',
+			),
+		);
 	}
 
 	/**
@@ -47,7 +128,6 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function load() {
-
     }
 
     /**
@@ -58,11 +138,7 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
      * @return array
      */
     public function hooks() {
-	    return array(
-		    'actions' => array(
-			    'wp_footer' => 'social_sharing_function',
-		    )
-	    );
+        $this->loader->add_action('wp_footer', $this, 'social_sharing_function' );
     }
 
     /**
@@ -72,18 +148,26 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
      * @access  public
      */
     public function social_sharing_function() {
-        if ( is_single() || is_page() ) {
-        	$class = 'obfx-core-social-sharing-icons-right';
+        if ( is_single() || is_page() && ! is_front_page() ) {
+	        $this->define_networks();
+        	$class_desktop = 'obfx-core-social-sharing-icons-right ';
         	if( $this->get_option( 'socials_position' ) == '0' ) {
-        		$class = 'obfx-core-social-sharing-icons-left';
+        		$class_desktop = 'obfx-core-social-sharing-icons-left ';
 	        }
+
+	        $class_mobile = '';
+        	if( $this->get_option( 'mobile_position' ) == '1' ) {
+        		$class_mobile = 'obfx-core-social-sharing-icons-bottom ';
+	        }
+
 		    $data = array(
-			    'position_class'     => $class,
-			    'social_links' => $this->social_links_array(),
-			    'show_name'    => $this->get_option( 'network_name' ),
+		    	'desktop_class' => $class_desktop,
+		    	'mobile_class'  => $class_mobile,
+		    	'show_name' => $this->get_option( 'network_name' ),
+		    	'social_links_array' => $this->social_links_array(),
 		    );
 
-		    return $this->render_view( 'social-sharing', $data );
+		    echo $this->render_view( 'social-sharing', $data );
 	    }
     }
 
@@ -96,80 +180,21 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
     private function social_links_array() {
     	$social_links = array();
-    	$post_categories = strip_tags( get_the_category_list( ',' ) );
-		$post_title = get_the_title();
-
-    	if( $this->get_option( 'facebook') ) {
-		    $link = 'https://www.facebook.com/sharer.php?u=' . get_post_permalink();
-		    $social_links['Facebook'] = $this->set_social_icon_array( $link, 'facebook' );
-	    }
-
-    	if( $this->get_option( 'twitter') ) {
-		    $link = 'https://twitter.com/intent/tweet?url=' . get_post_permalink() . '&text=' . $post_title . '&hashtags=' . $post_categories;
-		    $social_links['Twitter'] = $this->set_social_icon_array( $link, 'twitter');
-	    }
-
-    	if( $this->get_option( 'g-plus') ) {
-		    $link = 'https://plus.google.com/share?url=' . get_post_permalink();
-		    $social_links['Google Plus'] = $this->set_social_icon_array( $link, 'google-googleplus' );
-	    }
-
-		if( $this->get_option('pinterest' ) ) {
-    		$link = 'https://pinterest.com/pin/create/bookmarklet/?media='. get_the_post_thumbnail_url() .'&url='. get_post_permalink() .'&description=' . $post_title;
-    		$social_links['Pinterest'] = $this->set_social_icon_array( $link, 'pinterest' );
+		foreach ( $this->social_share_links as $network => $array_data ) {
+			$network_links = $this->get_network_links( $network );
+			if( ! empty( $network_links ) ) {
+				$social_links[ $network ] = $network_links;
+			}
 		}
-
-		if( $this->get_option('linkedin' ) ) {
-    		$link = 'https://www.linkedin.com/shareArticle?url='. get_post_permalink() .'&title='. $post_title;
-    		$social_links['LinkedIn'] = $this->set_social_icon_array( $link, 'linkedin' );
-		}
-
-		if( $this->get_option('tumblr' ) ) {
-    		$link = 'https://www.tumblr.com/widgets/share/tool?canonicalUrl=' . get_post_permalink() . '&title=' . $post_title;
-    		$social_links['Tumblr'] = $this->set_social_icon_array( $link, 'tumblr' );
-		}
-
-		if( $this->get_option('reddit' ) ) {
-    		$link = 'https://reddit.com/submit?url=' . get_post_permalink() . '&title=' . $post_title;
-    		$social_links['Reddit'] = $this->set_social_icon_array( $link, 'reddit' );
-		}
-
-		if( $this->get_option('vk' ) ) {
-    		$link = 'http://vk.com/share.php?url={url}';
-    		$social_links['VKontakte'] = $this->set_social_icon_array( $link, 'vkontakte' );
-		}
-
-		if( $this->get_option('okru' ) ) {
-    		$link = 'https://connect.ok.ru/dk?st.cmd=WidgetSharePreview&st.shareUrl={url}&title={title}';
-    		$social_links['OK.ru'] = $this->set_social_icon_array( $link, 'sharethis' );
-		}
-
-		if( $this->get_option('douban' ) ) {
-    		$link = 'http://www.douban.com/recommend/?url={url}&title={title}';
-    		$social_links['Douban'] = $this->set_social_icon_array( $link, 'douban' );
-		}
-
-		if( $this->get_option('baidu' ) ) {
-    		$link = 'http://cang.baidu.com/do/add?it={title}&iu={url}';
-    		$social_links['Baidu'] = $this->set_social_icon_array( $link, 'baidu' );
-		}
-
-		if( $this->get_option('xing' ) ) {
-    		$link = 'https://www.xing.com/app/user?op=share&url={url}';
-    		$social_links['Xing'] = $this->set_social_icon_array( $link, 'xing' );
-		}
-
-		if( $this->get_option('renren' ) ) {
-    		$link = 'http://widget.renren.com/dialog/share?resourceUrl={url}&srcUrl={url}&title={title}';
-    		$social_links['RenRen'] = $this->set_social_icon_array( $link, 'renren' );
-		}
-
-		if( $this->get_option('weibo' ) ) {
-    		$link = 'http://service.weibo.com/share/share.php?url={url}&appkey=&title={text}&pic=&ralateUid=';
-    		$social_links['Weibo'] = $this->set_social_icon_array( $link, 'weibo' );
-		}
-
 	    return $social_links;
+    }
+
+
+    private function get_network_links( $network ) {
+	    if( $this->get_option( $network ) ) {
+		    return $this->social_share_links[$network];
+	    }
+	    return array();
     }
 
 	/**
@@ -233,12 +258,24 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		return array(
 			array(
 				'id'      => 'socials_position',
-				'title'   => 'Alignment',
+				'title'   => 'Desktop Position',
 				'name'    => 'socials_position',
 				'type'    => 'radio',
 				'options' => array(
 					'0' => 'Left',
 					'1' => 'Right',
+				),
+				'default' => '0',
+			),
+			array(
+				'id'      => 'mobile_position',
+				'name'    => 'mobile_position',
+				'title'   => 'Mobile Position',
+				'label'   => 'Show network name on hover',
+				'type'    => 'radio',
+				'options' => array(
+					'1' => 'Pinned to bottom',
+					'0' => 'Pinned to the side',
 				),
 				'default' => '1',
 			),
@@ -310,7 +347,7 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			array(
 				'id'      => 'okru',
 				'name'    => 'okru',
-				'label'   => '<i class="socicon-sharethis"></i>  - OKru',
+				'label'   => '<i class="socicon-odnoklassniki"></i>  - OKru',
 				'type'    => 'toggle',
 				'default' => '0',
 			),

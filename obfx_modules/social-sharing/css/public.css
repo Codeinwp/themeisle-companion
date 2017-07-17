@@ -1,96 +1,167 @@
 .obfx-core-social-sharing-icons {
 	position: fixed;
-	list-style: none;
-	padding: 0;
-	margin: 10px 0;
 	z-index: 10000;
-	top: 25%;
+	top: 50%;
+	padding: 0;
+	list-style: none;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
 }
+
 .obfx-core-social-sharing-icons-left {
 	left: 0;
 }
+
 .obfx-core-social-sharing-icons-right {
 	right: 0;
 }
+
 .obfx-core-social-sharing-icons li {
 	display: block;
-}
-.obfx-core-social-sharing-icons a {
 	position: relative;
-	color: #fff;
-	text-decoration: none;
-	padding: 5px 10px;
-	display: block;
 }
+
+.obfx-core-social-sharing-icons a {
+	display: block;
+	position: relative;
+	z-index: 10000;
+	padding: 5px 10px;
+	color: #fff;
+	font-size: 20px;
+	line-height: 30px;
+	text-decoration: none;
+	letter-spacing: normal;
+}
+
+.obfx-core-social-sharing-icons a:hover,
+.obfx-core-social-sharing-icons a:focus,
+.obfx-core-social-sharing-icons a:visited {
+	color: #fff;
+}
+
 .obfx-core-social-sharing-icons i {
-	text-align: center;
 	width: 20px;
 	height: 20px;
-	line-height: 20px;
-	font-size: 18px;
 	padding-top: 5px;
+	font-size: 18px;
+	line-height: 20px;
+	text-align: center;
 }
+
 .obfx-core-social-sharing-icons span {
 	display: none;
 	position: absolute;
+	z-index: -10;
 	top: 0;
+	right: 0;
 	bottom: 0;
-	line-height: 30px;
-	background: rgba(0,0,0,0.5);
+	left: -200%;
 	padding: 5px 10px;
-	opacity: .75;
+	background: rgba(0,0,0,0.375);
+	font-size: 13px;
+	line-height: 30px;
+	-webkit-transition: 0.3s ease all;
+	transition: 0.3s ease all;
 }
-.obfx-core-social-sharing-icons-right span {
-	left: -250%;
+
+.obfx-core-social-sharing-icons-right a:hover > span {
 	right: 105%;
+	left: -250%;
 }
-.obfx-core-social-sharing-icons-left span {
+
+.obfx-core-social-sharing-icons-left a:hover > span {
 	right: -250%;
 	left: 105%;
 }
+
 .obfx-core-social-sharing-icons a:hover > span {
 	display: inline-block;
 }
+
 /* Social icons color */
 .obfx-core-social-sharing-icons a[href*="facebook"] {
 	background-color: #3b5998;
 }
+
 .obfx-core-social-sharing-icons a[href*="twitter"] {
 	background-color: #1da1f2;
 }
+
 .obfx-core-social-sharing-icons a[href*="google"] {
 	background-color: #dd4b39;
 }
+
 .obfx-core-social-sharing-icons a[href*="pinterest"] {
 	background-color: #bd081c;
 }
+
 .obfx-core-social-sharing-icons a[href*="linkedin"] {
 	background-color: #0077b5;
 }
+
 .obfx-core-social-sharing-icons a[href*="tumblr"] {
 	background-color: #35465c;
 }
+
 .obfx-core-social-sharing-icons a[href*="reddit"] {
 	background-color: #ff4500;
 }
+
 .obfx-core-social-sharing-icons a[href*="vk"] {
 	background-color: #45668e;
 }
+
 .obfx-core-social-sharing-icons a[href*="ok.ru"] {
-	background-color: #ee8208;
+	background-color: #f48420;
 }
+
 .obfx-core-social-sharing-icons a[href*="douban"] {
 	background-color: #228a31;
 }
+
 .obfx-core-social-sharing-icons a[href*="baidu"] {
 	background-color: #de0f17;
 }
+
 .obfx-core-social-sharing-icons a[href*="xing"] {
 	background-color: #026466;
 }
+
 .obfx-core-social-sharing-icons a[href*="renren"] {
 	background-color: #227ec7;
 }
+
 .obfx-core-social-sharing-icons a[href*="weibo"] {
 	background-color: #e6162d;
+}
+
+@media ( max-width: 768px ) {
+	.obfx-core-social-sharing-icons-bottom {
+		display: table;
+		top: auto;
+		bottom: 0;
+		width: 100%;
+		margin: 0;
+		-webkit-transform: translateY(0);
+		-ms-transform: translateY(0);
+		transform: translateY(0);
+	}
+
+	.obfx-core-social-sharing-icons-bottom li {
+		display: table-cell;
+		margin: 0;
+		padding: 0;
+		text-align: center;
+	}
+
+	.obfx-core-social-sharing-icons-bottom a {
+		padding: 0;
+		opacity: 1;
+		line-height: 40px;
+	}
+
+	.obfx-core-social-sharing-icons-bottom span {
+		display: none;
+	}
 }
