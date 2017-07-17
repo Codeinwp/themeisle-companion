@@ -73,7 +73,7 @@ class Orbit_Fox {
 		$this->load_dependencies();
 		$this->set_locale();
 		$this->prepare_modules();
-		$this->define_admin_hooks();
+		$this->define_hooks();
 
 	}
 
@@ -133,7 +133,9 @@ class Orbit_Fox {
 			if ( $module->enable_module() ) {
 				$module->register_loader( $this->get_loader() );
 				$module->register_model( $obfx_model );
-				$module->enqueue( $this->get_version() );
+				if ( $module->is_active() ) {
+					$module->enqueue( $this->get_version() );
+				}
 				$module->register_hooks();
 				$this->loader->add_action( 'orbit_fox_modules', $module, 'load' );
 			}
@@ -141,13 +143,13 @@ class Orbit_Fox {
 	}
 
 	/**
-	 * Register all of the hooks related to the admin area functionality
+	 * Register all of the hooks related to the functionality
 	 * of the plugin.
 	 *
 	 * @since    1.0.0
 	 * @access   private
 	 */
-	private function define_admin_hooks() {
+	private function define_hooks() {
 
 		$plugin_admin = new Orbit_Fox_Admin( $this->get_plugin_name(), $this->get_version() );
 
@@ -157,6 +159,11 @@ class Orbit_Fox {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'wp_ajax_obfx_update_module_options', $plugin_admin, 'obfx_update_module_options' );
 		$this->loader->add_action( 'wp_ajax_obfx_update_module_active_status', $plugin_admin, 'obfx_update_module_active_status' );
+
+		$plugin_public = new Orbit_Fox_Public( $this->get_plugin_name(), $this->get_version() );
+
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
 	}
 

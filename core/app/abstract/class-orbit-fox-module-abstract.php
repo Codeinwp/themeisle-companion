@@ -381,12 +381,13 @@ abstract class Orbit_Fox_Module_Abstract {
 		$module_dir = $this->slug;
 		if ( ! empty( $enqueue ) ) {
 			if ( isset( $enqueue['css'] ) && ! empty( $enqueue['css'] ) ) {
+				$order = 0;
 				foreach ( $enqueue['css'] as $file_name => $dependencies ) {
 					if ( $dependencies == false ) {
 						$dependencies = array();
 					}
 					wp_enqueue_style(
-						'obfx-module-css-' . str_replace( ' ', '-', strtolower( $this->name ) ),
+						'obfx-module-css-' . str_replace( ' ', '-', strtolower( $this->name ) ) . '-' . $order,
 						plugin_dir_url( $this->get_dir() ) . $module_dir . '/css/' . $file_name . '.css',
 						$dependencies,
 						$this->version,
@@ -441,12 +442,13 @@ abstract class Orbit_Fox_Module_Abstract {
 		$module_dir = $this->slug;
 		if ( ! empty( $enqueue ) ) {
 			if ( isset( $enqueue['css'] ) && ! empty( $enqueue['css'] ) ) {
+				$order = 0;
 				foreach ( $enqueue['css'] as $file_name => $dependencies ) {
 					if ( $dependencies == false ) {
 						$dependencies = array();
 					}
 					wp_enqueue_style(
-						'obfx-module-pub-css-' . str_replace( ' ', '-', strtolower( $this->name ) ),
+						'obfx-module-pub-css-' . str_replace( ' ', '-', strtolower( $this->name ) ) . '-' . $order,
 						plugin_dir_url( $this->get_dir() ) . $module_dir . '/css/' . $file_name . '.css',
 						$dependencies,
 						$this->version,
@@ -470,12 +472,13 @@ abstract class Orbit_Fox_Module_Abstract {
 		$module_dir = $this->slug;
 		if ( ! empty( $enqueue ) ) {
 			if ( isset( $enqueue['js'] ) && ! empty( $enqueue['js'] ) ) {
+				$order = 0;
 				foreach ( $enqueue['js'] as $file_name => $dependencies ) {
 					if ( $dependencies == false ) {
 						$dependencies = array();
 					}
 					wp_enqueue_script(
-						'obfx-module-pub-js-' . str_replace( ' ', '-', strtolower( $this->name ) ),
+						'obfx-module-pub-js-' . str_replace( ' ', '-', strtolower( $this->name ) ) . '-' . $order,
 						plugin_dir_url( $this->get_dir() ) . $module_dir . '/js/' . $file_name . '.js',
 						$dependencies,
 						$this->version,
