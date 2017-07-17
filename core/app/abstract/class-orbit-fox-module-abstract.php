@@ -185,7 +185,6 @@ abstract class Orbit_Fox_Module_Abstract {
 	 *
 	 * @since   1.0.0
 	 * @access  public
-	 * @return array
 	 */
 	public abstract function hooks();
 

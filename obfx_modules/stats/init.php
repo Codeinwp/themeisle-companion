@@ -54,7 +54,6 @@ class Stats_OBFX_Module extends Orbit_Fox_Module_Abstract {
      *
      * @since   1.0.0
      * @access  public
-     * @return array
      */
     public function hooks() {
         $this->loader->add_action('wp_dashboard_setup', $this, 'add_dashboard_widgets');
