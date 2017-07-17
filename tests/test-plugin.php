@@ -89,7 +89,7 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
             $module = $module_factory::build( $module_name );
             $this->assertTrue( $module->enable_module() );
             $module->register_loader( $this->obfx->get_loader() );
-            $module->enqueue( $this->plugin_version );
+            $module->set_enqueue( $this->plugin_version );
             $module->set_admin_styles();
             $module->set_admin_scripts();
             $module->set_public_styles();

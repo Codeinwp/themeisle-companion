@@ -180,37 +180,12 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
     private function social_links_array() {
     	$social_links = array();
-		foreach ( $this->social_share_links as $network => $array_data ) {
-			$network_links = $this->get_network_links( $network );
-			if( ! empty( $network_links ) ) {
+		foreach ( $this->social_share_links as $network => $network_links ) {
+			if( $this->get_option( $network ) ) {
 				$social_links[ $network ] = $network_links;
 			}
 		}
 	    return $social_links;
-    }
-
-
-    private function get_network_links( $network ) {
-	    if( $this->get_option( $network ) ) {
-		    return $this->social_share_links[$network];
-	    }
-	    return array();
-    }
-
-	/**
-	 * Utility method to return an array that contains the link and the icon class.
-	 *
-	 * @since   1.0.0
-	 * @access  public
-	 * @param string $link The social icon link.
-	 * @param string $icon_class The icon class.
-	 * @return array
-	 */
-    private function set_social_icon_array( $link, $icon_class ) {
-    	return array(
-    		'link' => $link,
-	        'icon_class' => $icon_class,
-	    );
     }
 
 	/**

@@ -197,7 +197,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 * @return bool
 	 */
-	final public function is_active() {
+	final public function get_is_active() {
 	    return $this->model->get_is_module_active( $this->slug );
 	}
 
@@ -334,7 +334,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 * @param   string $version The version for the files.
 	 */
-	final public function enqueue( $version ) {
+	final public function set_enqueue( $version ) {
 		$this->version = $version;
 		$this->loader->add_action( 'obfx_admin_enqueue_styles', $this, 'set_admin_styles' );
 		$this->loader->add_action( 'obfx_admin_enqueue_scripts', $this, 'set_admin_scripts' );

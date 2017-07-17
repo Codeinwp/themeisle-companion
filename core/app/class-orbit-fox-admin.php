@@ -249,7 +249,7 @@ class Orbit_Fox_Admin {
 		foreach ( $modules as $slug => $module ) {
 			$count_modules++;
 			$checked = '';
-			if ( $module->is_active() ) {
+			if ( $module->get_is_active() ) {
 			    $checked = 'checked';
 			}
 			$data = array(
@@ -272,7 +272,7 @@ class Orbit_Fox_Admin {
 				array(
 				        'slug' => $slug,
 						'name' => $module->name,
-						'active' => $module->is_active(),
+						'active' => $module->get_is_active(),
 						'description' => $module->description,
 						'options_fields' => $options_fields,
 					)
