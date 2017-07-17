@@ -136,7 +136,7 @@ class Orbit_Fox {
 				if ( $module->is_active() ) {
 					$module->enqueue( $this->get_version() );
 				}
-				$module->register_hooks();
+				$module->hooks();
 				$this->loader->add_action( 'orbit_fox_modules', $module, 'load' );
 			}
 		}

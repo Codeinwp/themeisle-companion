@@ -190,30 +190,6 @@ abstract class Orbit_Fox_Module_Abstract {
 	public abstract function hooks();
 
 	/**
-	 * Utility method to register `add_action` and `add_filter` for
-	 * defined actions and filters returned by the `hooks()` method.
-	 *
-	 * @codeCoverageIgnore
-	 *
-	 * @since   1.0.0
-	 * @access  public
-	 */
-	final public function register_hooks() {
-	    $hooks = $this->hooks();
-	    if ( isset( $hooks['actions'] ) && ! empty( $hooks['actions'] ) ) {
-			foreach ( $hooks['actions'] as $hook => $method ) {
-					$this->loader->add_action( $hook, $this, $method );
-			}
-		}
-		if ( isset( $hooks['filters'] ) && ! empty( $hooks['filters'] ) ) {
-			foreach ( $hooks['actions'] as $hook => $method ) {
-				$this->loader->add_filter( $hook, $this, $method );
-			}
-		}
-
-	}
-
-	/**
 	 * Method to check if module status is active.
 	 *
 	 * @codeCoverageIgnore
