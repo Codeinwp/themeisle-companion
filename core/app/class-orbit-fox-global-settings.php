@@ -61,6 +61,7 @@ class Orbit_Fox_Global_Settings {
 			self::$instance->modules = apply_filters( 'obfx_modules',
 				array(
 				    'stats',
+				    'social-sharing',
 				)
 			);
 		}// End if().
