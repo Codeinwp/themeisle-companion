@@ -155,12 +155,24 @@ class Orbit_Fox_Render_Helper {
 		$title = $this->get_title( $option['id'], $option['title'] );
 		$description = $this->get_description( $option['description'] );
 
+		$before_wrap = '';
+		if ( isset( $option['before_wrap'] ) ) {
+		    $before_wrap = $option['before_wrap'];
+		}
+
+		$after_wrap = '';
+		if ( isset( $option['after_wrap'] ) ) {
+			$after_wrap = $option['after_wrap'];
+		}
+
 		return '
+		' . $before_wrap . '
         <div class="form-group ' . $option['class'] . '">
             ' . $title . '
             ' . $element . '
             ' . $description . '
         </div>
+        ' . $after_wrap . '
         ';
 	}
 
