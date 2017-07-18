@@ -53,3 +53,37 @@
 #obfx-mod-social-sharing .socicon-weibo {
 	color: #e6162d;
 }
+
+#obfx-mod-social-sharing .socicon-viber {
+	color: #00B901;
+}
+
+#obfx-mod-social-sharing  .socicon-whatsapp {
+	color: #20B038;
+}
+
+#obfx-mod-social-sharing .socicon-mail {
+	color: #58a9de;
+}
+
+#obfx-mod-social-sharing .form-group.inline-setting {
+	display: inline-block;
+}
+
+#obfx-mod-social-sharing .form-group.inline-setting.network-toggle {
+	min-width: 300px;
+}
+
+#obfx-mod-social-sharing .form-group.inline-setting.last .form-label {
+	display: none;
+}
+
+#obfx-mod-social-sharing .show {
+	opacity: 1;
+	transition: all .3s ease;
+}
+
+#obfx-mod-social-sharing .show.obfxHiddenOption {
+	opacity: 0;
+	cursor: default;
+}

@@ -10,6 +10,8 @@
  * @codeCoverageIgnore
  */
 
+var_dump($social_links_array);
+
 if ( ! empty( $social_links_array ) ) { ?>
 	<ul class="obfx-core-social-sharing-icons
 	<?php
@@ -22,10 +24,18 @@ if ( ! empty( $social_links_array ) ) { ?>
 	}
 
 	?>">
-		<?php foreach ( $social_links_array as $network_data ) { ?>
-			<li>
+		<?php foreach ( $social_links_array as $network_data ) {
+			$class = '';
+		    if( $network_data[ 'show_desktop' ] == '0' ) {
+			    $class .= 'obfx-hide-desktop-socials ';
+            }
+            if( $network_data[ 'show_mobile' ] == '0' ) {
+		        $class .= 'obfx-hide-mobile-socials ';
+            }
+			?>
+			<li class="<?php echo esc_attr( $class ); ?>">
 				<a target="_blank"
-				   href="<?php echo esc_url( $network_data['link'] ); ?>">
+				   href="<?php echo esc_url( $network_data['link'], array('http', 'https', 'whatsapp:', 'tel', 'sms:', 'mailto') ); ?>">
 					<i class="socicon-<?php echo esc_attr( $network_data['icon'] ); ?>"></i>
 					<?php if ( $show_name ) {
 						echo '<span>' . esc_html( $network_data['nicename'] ) . '</span>';

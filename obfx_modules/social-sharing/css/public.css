@@ -38,6 +38,7 @@
 .obfx-core-social-sharing-icons a:focus,
 .obfx-core-social-sharing-icons a:visited {
 	color: #fff;
+	text-decoration: none;
 }
 
 .obfx-core-social-sharing-icons i {
@@ -136,6 +137,18 @@
 	background-color: #e6162d;
 }
 
+.obfx-core-social-sharing-icons a[href*="sms"] {
+	background-color: #00B901;
+}
+
+.obfx-core-social-sharing-icons a[href*="whatsapp"] {
+	background-color: #20B038;
+}
+
+.obfx-core-social-sharing-icons a[href*="mail"] {
+	background-color: #58a9de;
+}
+
 @media ( max-width: 768px ) {
 	.obfx-core-social-sharing-icons-bottom {
 		display: table;
@@ -161,7 +174,15 @@
 		line-height: 40px;
 	}
 
-	.obfx-core-social-sharing-icons-bottom span {
+	.obfx-core-social-sharing-icons-bottom span,
+	.obfx-core-social-sharing-icons a:hover > span,
+	.obfx-core-social-sharing-icons li.obfx-hide-mobile-socials {
+		display: none;
+	}
+}
+
+@media ( min-width: 769px ) {
+	.obfx-core-social-sharing-icons li.obfx-hide-desktop-socials {
 		display: none;
 	}
 }
