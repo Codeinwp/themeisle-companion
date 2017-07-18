@@ -156,7 +156,7 @@ class Orbit_Fox_Render_Helper {
 		$description = $this->get_description( $option['description'] );
 
 		return '
-        <div class="form-group">
+        <div class="form-group ' . $option['class'] . '">
             ' . $title . '
             ' . $element . '
             ' . $description . '
