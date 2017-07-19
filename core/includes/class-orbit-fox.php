@@ -126,7 +126,6 @@ class Orbit_Fox {
 		$obfx_model = new Orbit_Fox_Model();
 
 		$module_factory = new Orbit_Fox_Module_Factory();
-
 		foreach ( $modules_to_load as $module_name ) {
 			$module = $module_factory::build( $module_name );
 			$global_settings->register_module_reference( $module_name, $module );

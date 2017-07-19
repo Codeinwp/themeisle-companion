@@ -29,7 +29,6 @@ class Orbit_Fox_Module_Factory {
 	 */
 	public static function build( $module_name ) {
 		$module = str_replace( '-','_', ucwords( $module_name ) ) . '_OBFX_Module';
-
 		if ( class_exists( $module ) ) {
 			return new $module;
 		}
