@@ -3,6 +3,7 @@
 	z-index: 10000;
 	top: 50%;
 	padding: 0;
+	margin: 0;
 	list-style: none;
 	-webkit-transform: translateY(-50%);
 	-ms-transform: translateY(-50%);

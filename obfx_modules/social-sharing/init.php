@@ -37,7 +37,7 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	private function define_networks() {
     	$post_categories = strip_tags( get_the_category_list( ',' ) );
 		$post_title = get_the_title();
-		$post_link = get_post_permalink();
+		$post_link = get_the_permalink();
 
 		$this->social_share_links = array(
 			'facebook'  => array(
@@ -79,16 +79,19 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'link'     => 'whatsapp://send?text=' . $post_link,
 				'nicename' => 'WhatsApp',
 				'icon'     => 'whatsapp',
+				'target'   => '0',
 			),
 			'mail'     => array(
 				'link'     => 'mailto:?&subject=' . $post_title . '&body=' . $post_link,
 				'nicename' => 'Email',
 				'icon'     => 'mail',
+				'target'   => '0'
 			),
 			'sms'     => array(
-				'link'     => 'sms:body=' . $post_title . ' - ' . $post_title,
+				'link'     => 'sms://?&body=' . $post_title . ' - ' . $post_link,
 				'nicename' => 'SMS',
 				'icon'     => 'viber',
+				'target'   => '0',
 			),
 			'vk'        => array(
 				'link'     => 'http://vk.com/share.php?url=' . $post_link,
@@ -156,10 +159,17 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
      * @return array
      */
     public function hooks() {
-        $this->loader->add_action('wp_footer', $this, 'social_sharing_function' );
+	    $this->loader->add_filter('kses_allowed_protocols', $this, 'custom_allowed_protocols' );
+
+	    if( $this -> get_option( 'socials_position' ) == 2 ) {
+		    $this->loader->add_action('hestia_blog_social_icons', $this, 'social_sharing_function' );
+		    return;
+	    }
+
+	    $this->loader->add_action('wp_footer', $this, 'social_sharing_function' );
     }
 
-    /**
+	/**
      * Display method for the Social Sharing.
      *
      * @since   1.0.0
@@ -205,6 +215,17 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			}
 		}
 	    return $social_links;
+    }
+
+    /**
+     * Add extra protocols to list of allowed protocols.
+     *
+     * @return array Updated list including extra protocols added.
+     */
+    public function custom_allowed_protocols( $protocols ){
+    	$protocols[] = 'whatsapp';
+	    $protocols[] = 'sms';
+	    return $protocols;
     }
 
 	/**
@@ -255,7 +276,7 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return array
 	 */
 	public function options() {
-		$options =  array(
+		$options = array(
 			array(
 				'id'      => 'socials_position',
 				'title'   => 'Desktop Position',
@@ -324,7 +345,36 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			);
 		}
 
-		return $options;
+		$options = $this->add_hestia_options( $options );
 
+		return $options;
 	}
+
+	/**
+	 * Add hestia options.
+	 */
+	private function add_hestia_options( $options ) {
+		if( defined( 'HESTIA_VERSION' ) ) {
+			$option_id = $this->search_for_id( 'socials_position', $options );
+			$options[$option_id]['options']['2'] = 'Inline after content';
+		}
+		return $options;
+	}
+
+	/**
+	 * Search for module option by id.
+	 *
+	 * @param $id
+	 *
+	 * @return int|null|string
+	 */
+	private function search_for_id( $id, $options ) {
+		foreach ( $options as $key => $val ) {
+			if ( $val['id'] === $id ) {
+				return $key;
+			}
+		}
+		return null;
+	}
+
 }

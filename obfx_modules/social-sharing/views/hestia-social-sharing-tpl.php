@@ -9,7 +9,6 @@
  * @subpackage Orbit_Fox_Modules/stats/social-sharing
  * @codeCoverageIgnore
  */
-
 if ( ! empty( $social_links_array ) ) { ?>
 	<ul class="obfx-core-social-sharing-icons
 	<?php

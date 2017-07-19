@@ -7,14 +7,19 @@
  * @author	ThemeIsle
  */
 
-jQuery(document).ready(function() {
 
-    jQuery('.obfx-core-social-sharing-icons a').click(function(e) {
-        e.preventDefault();
-        var link = jQuery(this).attr('href');
+var obfx_sharing_module = function( $ ) {
+    'use strict';
 
-        window.open(link, 'obfxShareWindow', 'height=450, width=550, top=' + (jQuery(window).height() / 2 - 275) + ', left=' + (jQuery(window).width() / 2 - 225) + ', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
-        return false;
-    });
+    $( function() {
+        $( '.obfx-core-social-sharing-icons a' ).not( '.whatsapp, .mail, .viber' ).on( 'click', function(e) {
+            e.preventDefault();
+            var link = $( this ).attr( 'href' );
 
-});
+            window.open( link, 'obfxShareWindow', 'height=450, width=550, top=' + ( $( window ).height() / 2 - 275 ) + ', left=' + ( $( window ).width() / 2 - 225 ) + ', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0' );
+            return true;
+        } );
+    } );
+};
+
+obfx_sharing_module( jQuery );
