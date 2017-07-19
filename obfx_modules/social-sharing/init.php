@@ -364,13 +364,13 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	/**
 	 * Search for module option by id.
 	 *
-	 * @param $id
+	 * @param $index
 	 *
 	 * @return int|null|string
 	 */
-	private function search_for_id( $id, $options ) {
+	private function search_for_id( $index, $options ) {
 		foreach ( $options as $key => $val ) {
-			if ( $val['id'] === $id ) {
+			if ( $val['id'] === $index ) {
 				return $key;
 			}
 		}
