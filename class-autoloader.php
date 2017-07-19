@@ -145,17 +145,12 @@ class Autoloader {
 	public static function module_loader( $class_name ) {
 		$module_name = str_replace( '_', '-', strtolower( str_replace( '_OBFX_Module', '', $class_name ) ) );
 		if ( static::$plugins_path != '' ) {
-			$plugin_directory = new RecursiveDirectoryIterator( static::$plugins_path, RecursiveDirectoryIterator::SKIP_DOTS );
-			$file_iterator = new RecursiveIteratorIterator( $plugin_directory, RecursiveIteratorIterator::LEAVES_ONLY );
-			$filename = 'init.php';
-			foreach ( $file_iterator as $file ) {
-				if ( in_array( 'obfx_modules', explode( DIRECTORY_SEPARATOR, $file->getPathname() ) ) && in_array( $module_name, explode( DIRECTORY_SEPARATOR, $file->getPathname() ) ) ) {
-					if ( strtolower( $file->getFilename() ) === strtolower( $filename ) ) {
-						if ( $file->isReadable() ) {
-							include_once $file->getPathname();
-							return true;
-						}
-					}
+			$directories = glob( static::$plugins_path . '*' . DIRECTORY_SEPARATOR . 'obfx_modules' . DIRECTORY_SEPARATOR . $module_name , GLOB_ONLYDIR );
+			foreach ( $directories as $directory ) {
+				$filename = $directory . DIRECTORY_SEPARATOR . 'init.php';
+				if ( is_readable( $filename ) ) {
+				    include_once $filename;
+					return true;
 				}
 			}
 		}
