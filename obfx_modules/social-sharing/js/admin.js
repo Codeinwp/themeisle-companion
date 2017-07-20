@@ -7,16 +7,24 @@
  * @author    ThemeIsle
  */
 
-jQuery( document ).ready(function () {
-	jQuery( '.network-toggle input:checkbox:not(:checked)' ).each(function(){
-		jQuery( this ).parents( '.obfx-row' ).find( '.show input' ).attr( "disabled", true ).parent().addClass( 'obfxHiddenOption' );
-	});
+var obfx_sharing_module_admin = function( $ ) {
+    'use strict';
 
-	jQuery( '.network-toggle input' ).on('change', function(){
-		if (jQuery( this ).is( ':checked' )) {
-			jQuery( this ).parents( '.obfx-row' ).find( '.show input' ).attr( "disabled", false ).parent().removeClass( 'obfxHiddenOption' );
-		} else {
-			jQuery( this ).parents( '.obfx-row' ).find( '.show input' ).attr( "disabled", true ).parent().addClass( 'obfxHiddenOption' );
-		}
-	});
-});
+    $( function() {
+        $( '.network-toggle input:checkbox:not(:checked)' ).each( function () {
+            $( this ).parents( '.obfx-row' ).find( '.show input' ).attr( 'disabled', true ).parent().addClass( 'obfxHiddenOption' );
+        } );
+
+        $( '.network-toggle input' ).on( 'change', function () {
+            if ( $( this ).is( ':checked' ) ) {
+                $( this ).parents( '.obfx-row' ).find( '.show input' ).attr( 'disabled', false ).parent().removeClass( 'obfxHiddenOption' );
+            } else {
+                $( this ).parents( '.obfx-row' ).find( '.show input' ).attr( 'disabled', true ).parent().addClass( 'obfxHiddenOption' );
+            }
+        } );
+        
+    } );
+
+};
+
+obfx_sharing_module_admin( jQuery );
