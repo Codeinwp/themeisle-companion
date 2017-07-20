@@ -134,8 +134,8 @@ class Orbit_Fox {
 				$module->register_model( $obfx_model );
 				if ( $module->get_is_active() ) {
 					$module->set_enqueue( $this->get_version() ); // @codeCoverageIgnore
+					$module->hooks(); // @codeCoverageIgnore
 				}
-				$module->hooks();
 				$this->loader->add_action( 'orbit_fox_modules', $module, 'load' );
 			}
 		}

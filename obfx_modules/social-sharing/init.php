@@ -139,7 +139,7 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return bool
 	 */
 	public function enable_module() {
-		return true;
+		return false;
 	}
 
 	/**

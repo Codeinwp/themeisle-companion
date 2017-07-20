@@ -247,36 +247,38 @@ class Orbit_Fox_Admin {
 		$panels = '';
 		$count_modules = 0;
 		foreach ( $modules as $slug => $module ) {
-			$count_modules++;
-			$checked = '';
-			if ( $module->get_is_active() ) {
-			    $checked = 'checked';
-			}
-			$data = array(
-			    'slug' => $slug,
-				'name' => $module->name,
-				'description' => $module->description,
-				'checked' => $checked,
-			);
-			$tiles .= $rdh->get_partial( 'module-tile', $data );
-			$tiles .= '<div class="divider"></div>';
+		    if ( $module->enable_module() ) {
+				$count_modules++;
+				$checked = '';
+				if ( $module->get_is_active() ) {
+					$checked = 'checked';
+				}
+				$data = array(
+					'slug' => $slug,
+					'name' => $module->name,
+					'description' => $module->description,
+					'checked' => $checked,
+				);
+				$tiles .= $rdh->get_partial( 'module-tile', $data );
+				$tiles .= '<div class="divider"></div>';
 
-			$module_options = $module->get_options();
-			$options_fields = '';
-			foreach ( $module_options as $option ) {
-				$options_fields .= $rdh->render_option( $option );
-			}
+				$module_options = $module->get_options();
+				$options_fields = '';
+				foreach ( $module_options as $option ) {
+					$options_fields .= $rdh->render_option( $option );
+				}
 
-			$panels .= $rdh->get_partial(
-				'module-panel',
-				array(
-				        'slug' => $slug,
-						'name' => $module->name,
-						'active' => $module->get_is_active(),
-						'description' => $module->description,
-						'options_fields' => $options_fields,
-					)
-			);
+				$panels .= $rdh->get_partial(
+					'module-panel',
+					array(
+							'slug' => $slug,
+							'name' => $module->name,
+							'active' => $module->get_is_active(),
+							'description' => $module->description,
+							'options_fields' => $options_fields,
+						)
+				);
+			}
 		}
 
 		$no_modules = false;
