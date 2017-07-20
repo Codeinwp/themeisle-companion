@@ -11,7 +11,7 @@ var obfx_sharing_module = function( $ ) {
 	'use strict';
 
 	$( function() {
-		$( '.obfx-core-social-sharing-icons a' ).not( '.whatsapp, .mail, .viber' ).on( 'click', function(e) {
+		$( '.obfx-sharing a, .obfx-sharing-inline a' ).not( '.whatsapp, .mail, .viber' ).on( 'click', function(e) {
 			e.preventDefault();
 			var link = $( this ).attr( 'href' );
 
