@@ -75,7 +75,7 @@ Autoloader::define_namespaces( array( 'Orbit_Fox', 'OBFX', 'OBFX_Module' ) );
  *
  * @since   1.0.0
  */
-spl_autoload_register( array( 'Autoloader', 'loader') );
+spl_autoload_register( array( 'Autoloader', 'loader' ) );
 
 /**
  * The start of the app.

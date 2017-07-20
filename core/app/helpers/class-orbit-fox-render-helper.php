@@ -157,12 +157,12 @@ class Orbit_Fox_Render_Helper {
 
 		$before_wrap = '';
 		if ( isset( $option['before_wrap'] ) ) {
-		    $before_wrap = wp_kses_post( $option['before_wrap'] );
+		    $before_wrap = wp_kses_post( $option['before_wrap'] ); // @codeCoverageIgnore
 		}
 
 		$after_wrap = '';
 		if ( isset( $option['after_wrap'] ) ) {
-			$after_wrap = wp_kses_post( $option['after_wrap'] );
+			$after_wrap = wp_kses_post( $option['after_wrap'] ); // @codeCoverageIgnore
 		}
 
 		return '

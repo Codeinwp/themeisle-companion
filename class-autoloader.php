@@ -124,7 +124,7 @@ class Autoloader {
 
 		if ( is_null( static::$file_iterator ) ) {
 			$Iterator = new RecursiveIteratorIterator( $directory );
-			$Regex = new RegexIterator( $Iterator, '/^.+\.php$/i', RecursiveRegexIterator::MATCH);
+			$Regex = new RegexIterator( $Iterator, '/^.+\.php$/i', RecursiveRegexIterator::MATCH );
 			static::$file_iterator = iterator_to_array( $Regex, false );
 		}
 
