@@ -83,13 +83,6 @@ function hestia_features_content( $hestia_features_content, $is_callback = false
 	    <?php
 	}
 	if ( ! empty( $hestia_features_content ) ) :
-		$allowed_html = array(
-		'br'     => array(),
-		'em'     => array(),
-		'strong' => array(),
-		'b'      => array(),
-		'i'      => array(),
-		);
 		$hestia_features_content = json_decode( $hestia_features_content );
 		foreach ( $hestia_features_content as $features_item ) :
 			$icon = ! empty( $features_item->icon_value ) ? apply_filters( 'hestia_translate_single_string', $features_item->icon_value, 'Features section' ) : '';
@@ -119,7 +112,7 @@ function hestia_features_content( $hestia_features_content, $is_callback = false
 						</a>
 					<?php endif; ?>
 			<?php if ( ! empty( $text ) ) : ?>
-							<p><?php echo wp_kses( html_entity_decode( $text ), $allowed_html ); ?></p>
+							<p><?php echo wp_kses_post( html_entity_decode( $text ) ); ?></p>
 						<?php endif; ?>
 		</div>
 			</div>

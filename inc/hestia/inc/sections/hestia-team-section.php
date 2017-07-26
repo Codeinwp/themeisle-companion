@@ -81,13 +81,6 @@ function hestia_team_content( $hestia_team_content, $is_callback = false ) {
 	} ?>
 		<?php
 		if ( ! empty( $hestia_team_content ) ) :
-			$allowed_html = array(
-				'br'     => array(),
-				'em'     => array(),
-				'strong' => array(),
-				'b'      => array(),
-				'i'      => array(),
-			);
 			$hestia_team_content = json_decode( $hestia_team_content );
 
 	        if ( empty( $hestia_team_content ) ) {
@@ -126,7 +119,7 @@ function hestia_team_content( $hestia_team_content, $is_callback = false ) {
 									<h6 class="category text-muted"><?php echo esc_html( $subtitle ); ?></h6>
 								<?php endif; ?>
 								<?php if ( ! empty( $text ) ) : ?>
-									<p class="card-description"><?php echo wp_kses( html_entity_decode( $text ), $allowed_html ); ?></p>
+									<p class="card-description"><?php echo wp_kses_post( html_entity_decode( $text ) ); ?></p>
 								<?php endif; ?>
 								<?php
 								if ( ! empty( $team_item->social_repeater ) ) :
