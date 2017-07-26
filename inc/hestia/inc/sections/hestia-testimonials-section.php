@@ -67,13 +67,6 @@ function hestia_testimonials_content( $hestia_testimonials_content, $is_callback
 		<?php
 	}
 	if ( ! empty( $hestia_testimonials_content ) ) :
-		$allowed_html = array(
-			'br'     => array(),
-			'em'     => array(),
-			'strong' => array(),
-			'b'      => array(),
-			'i'      => array(),
-		);
 		$hestia_testimonials_content = json_decode( $hestia_testimonials_content );
 		foreach ( $hestia_testimonials_content as $testimonial_item ) :
 			$image = ! empty( $testimonial_item->image_url ) ? apply_filters( 'hestia_translate_single_string', $testimonial_item->image_url, 'Testimonials section' ) : '';
@@ -104,7 +97,7 @@ function hestia_testimonials_content( $hestia_testimonials_content, $is_callback
 							<h6 class="category text-muted"><?php echo esc_html( $subtitle ); ?></h6>
 						<?php endif; ?>
 						<?php if ( ! empty( $text ) ) : ?>
-							<p class="card-description"><?php echo wp_kses( html_entity_decode( $text ), $allowed_html ); ?></p>
+							<p class="card-description"><?php echo wp_kses_post( html_entity_decode( $text ) ); ?></p>
 						<?php endif; ?>
 					</div>
 				</div>
