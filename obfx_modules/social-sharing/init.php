@@ -156,16 +156,15 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
      *
      * @since   1.0.0
      * @access  public
-     * @return array
+     * @return mixed | array
      */
     public function hooks() {
 	    $this->loader->add_filter('kses_allowed_protocols', $this, 'custom_allowed_protocols' );
 
 	    if( $this -> get_option( 'socials_position' ) == 2 ) {
-		    $this->loader->add_action('hestia_blog_social_icons', $this, 'social_sharing_function' );
-		    return;
+		    $this->loader->add_filter('hestia_filter_blog_social_icons', $this, 'social_sharing_function' );
+		    return true;
 	    }
-
 	    $this->loader->add_action('wp_footer', $this, 'social_sharing_function' );
     }
 
@@ -176,17 +175,20 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
      * @access  public
      */
     public function social_sharing_function() {
-        if ( is_single() || is_page() && ! is_front_page() ) {
-        	$class_desktop = 'obfx-core-social-sharing-icons-right ';
-        	if( $this->get_option( 'socials_position' ) == '0' ) {
-        		$class_desktop = 'obfx-core-social-sharing-icons-left ';
+        if ( is_single() ) {
+        	$class_desktop = 'obfx-sharing-left ';
+        	switch ( $this->get_option( 'socials_position' ) ) {
+		        case '1':
+			        $class_desktop = 'obfx-sharing-right ';
+			        break;
+		        case '2':
+		        	$class_desktop = 'obfx-sharing-inline ';
 	        }
 
 	        $class_mobile = '';
-        	if( $this->get_option( 'mobile_position' ) == '1' ) {
-        		$class_mobile = 'obfx-core-social-sharing-icons-bottom ';
+        	if( $this->get_option( 'mobile_position' ) == '0' ) {
+	            $class_mobile = 'obfx-sharing-bottom';
 	        }
-
 		    $data = array(
 		    	'desktop_class' => $class_desktop,
 		    	'mobile_class'  => $class_mobile,
@@ -194,7 +196,10 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		    	'social_links_array' => $this->social_links_array(),
 		    );
 
-		    echo $this->render_view( 'social-sharing', $data );
+	        if( $this -> get_option( 'socials_position' ) == 2 ) {
+	            return $this->render_view( 'hestia-social-sharing', $data );
+	        }
+		        echo $this->render_view( 'social-sharing', $data );
 	    }
     }
 
@@ -295,8 +300,8 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'label'   => 'Show network name on hover',
 				'type'    => 'radio',
 				'options' => array(
-					'1' => 'Pinned to bottom',
-					'0' => 'Pinned to the side',
+					'0' => 'Pinned to bottom',
+					'1' => 'Same as desktop',
 				),
 				'default' => '1',
 			),
@@ -315,7 +320,7 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		foreach ( $this->social_share_links as $network => $data_array ) {
 			$options[] = array(
 				'before_wrap' => '<div class="obfx-row">',
-				'title'       => ( $network == 'facebook' ) ? 'Network' : '',
+				'title'       => ( $network == 'facebook' ) ? 'Networks' : '',
 				'id'          => $network,
 				'name'        => $network,
 				'label'       => '<i class="socicon-' . $data_array['icon'] . '"></i>  - ' . $data_array['nicename'],

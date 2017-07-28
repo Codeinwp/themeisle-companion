@@ -11,7 +11,7 @@
  */
 
 if ( ! empty( $social_links_array ) ) { ?>
-	<ul class="obfx-core-social-sharing-icons
+	<ul class="obfx-sharing
 	<?php
 
 	if ( ! empty( $desktop_class ) ) {
@@ -32,7 +32,7 @@ if ( ! empty( $social_links_array ) ) { ?>
 			}
 			?>
 			<li class="<?php echo esc_attr( $class ); ?>">
-				<a class = "<?php echo $network_data['icon'] ?>"
+				<a class = "<?php echo esc_attr( $network_data['icon'] ); ?>"
 					<?php echo ( isset( $network_data['target'] ) && $network_data['target'] != '0' ) ? 'target="_blank"' : ''?>
 				   href="<?php echo esc_url( $network_data['link'] ); ?>">
 					<i class="socicon-<?php echo esc_attr( $network_data['icon'] ); ?>"></i>
