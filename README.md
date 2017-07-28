@@ -12,17 +12,53 @@
 - **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
 
 ## Description
-> Description of project
+> Orbit Fox is a plugin for WordPress that provides an abstraction layer on top of which you can 
+write modules to extend its functionality. The plugin provides some predefined workflows and 
+methods that work automagically. This means that you can focus more on the logic of your module 
+and less on the loading and display of data or files. 
+
+### Goals
+ 1. **Provide a framework like environment for writing modules:**
+    
+    Have a predefined set of rules and workflows that work out of the box. This should simplify 
+    the way a developer interacts with data, views or files.
+
+ 2. **Accessibility:**
+
+    Modules should be easy to write and deploy, also allow for loading of modules from third party 
+    developers.
+
+### Specifications
+ Have a plugin that can be extended with modules bundled or built by third party developers inside 
+ their own plugins. The modules must have an abstract class that defines the implemented methods 
+ required and utility methods that simplify the module development.
 
 ## Installation
+ 1. Put the `orbit-fox` folder inside WordPress plugins folder.
+ 2. Activate via the Plugins WordPress Dashboard.
 
 ## Features
+ - Easy extensability via modules
+ - Support for third party modules
+ - Reusable and Utility Classes for faster development
+
+## Development
+[Module development guidelines](docs/MODULE.md)
 
 ## Frequently Asked Questions
 
+// TODO
+
 ## Change Log
 
-### Contributors
-Bogdan Preda -- bogdan.themeisle.com
+**v.1.0.0a** 
+- Basic structure and module loading workflow. 
+- Support for 3rd party modules
+- Render Helper
+- Model Helper
+- Automagic classes
 
-Marius Cristea -- marius.cristea@vertistudio.com
+### Contributors
+**Bogdan Preda** -- bogdan.themeisle.com
+
+**Marius Cristea** -- marius.cristea@vertistudio.com
