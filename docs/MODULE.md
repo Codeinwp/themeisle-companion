@@ -56,3 +56,56 @@ The methods need for the module to work are as follows:
     ...
  }
 ```
+
+ - `public_enqueue()` and `admin_enqueue()` - This methods are similar, they both return an array 
+ of resources that Orbit Fox should enqueue. The difference is that one is used for the front end 
+ and the latter is used for the admin. Example of the returned array:
+ ```$php
+array(
+     'js' => array(
+	    'vendor/lib' => array( 'jquery' ),  // ../js/vendor/lib.js
+	    'script' => array( 'jquery' ),      // ../js/script.js
+	),
+	'css' => array(
+	    'style' => false,                   // ../css/style.css
+	),
+);
+```
+
+ - `options()` - This method returns an array of options needed by the module. Options defined here 
+ also build form elements inside Orbit Fox Admin area for setting defined Module Options. 
+ Example of returned array:
+ ```$php
+array(
+     ...
+     array(
+          'id' => 'option_id',                              // id for the input element
+          'name' => 'option_name',                          // the name to store in DB
+          'title' => 'Mod Option Title',                    // title for the form element
+          'description' => 'Mod Option Description ...',    // Description
+          'type' => 'text',                                 // type of element: (text, textarea, select, radio etc.)
+          'default' => '',                                  // a default value if needed
+          'placeholder' => 'Add some text',                 // placeholder (* optional)
+    ),
+    ...
+);
+```
+
+In addition you can assign values inside the `__construct()` method to the predefined class vars:
+
+ - `$name` - The name of the module. Is displayed inside Orbit Fox Modules.
+ - `$description` - A short description for the module. Is displayed inside Orbit Fox Modules.
+ - `$auto` - Flag for autoloading Module.
+ 
+ **NOTE:** Remember to also have a call to `parent::__construct();` so that you can inherit 
+ required functionality from the base model.
+ 
+ ## Registering the module
+ 
+ **If your module is part of the core deployment of Orbit Fox** just add the module slug inside 
+ the Global Settings **$modules** array.
+ 
+ **If your module is third party**, you need to register a filter  `obfx_modules`  to append your 
+ module slug to the Global Settings **$modules** array.
+ 
+ 
