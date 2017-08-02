@@ -26,6 +26,15 @@ class Stats_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	    parent::__construct();
 		$this->name = __( 'Orbit Fox Stats Module', 'obfx' );
 		$this->description = __( 'A stats module for Orbit Fox.', 'obfx' );
+
+		$this->notices = array(
+		    array(
+		        'type' => 'primary',
+                'title' => 'My Notice',
+                'message' => 'My custom notice',
+                'display_always' => false
+            )
+        );
 	}
 
 	/**

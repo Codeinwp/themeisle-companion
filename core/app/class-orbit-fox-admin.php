@@ -244,6 +244,7 @@ class Orbit_Fox_Admin {
 		$rdh = new Orbit_Fox_Render_Helper();
 		$tiles = '';
 		$panels = '';
+		$toasts = '';
 		$count_modules = 0;
 		foreach ( $modules as $slug => $module ) {
 		    if ( $module->enable_module() ) {
@@ -252,6 +253,21 @@ class Orbit_Fox_Admin {
 				if ( $module->get_is_active() ) {
 					$checked = 'checked';
 				}
+
+				$notices = $module->get_notices();
+                $showed_notices = $module->get_status( 'showed_notices' );
+				foreach ( $notices as $notice ) {
+                    $hash = md5( serialize( $notice ) );
+                    $data = array( 'notice' => $notice );
+                    if( $notice['display_always'] == false && ! in_array( $hash, $showed_notices ) ) {
+                        $toasts .= $rdh->get_partial( 'module-toast', $data );
+                    } else if( $notice['display_always'] == true )  {
+                        $toasts .= $rdh->get_partial( 'module-toast', $data );
+                    }
+                }
+
+				$module->update_showed_notices();
+
 				$data = array(
 					'slug' => $slug,
 					'name' => $module->name,
@@ -307,6 +323,7 @@ class Orbit_Fox_Admin {
 			'empty_tpl' => $empty_tpl,
 			'count_modules' => $count_modules,
 			'tiles' => $tiles,
+			'toasts' => $toasts,
 			'panels' => $panels,
 		);
 	    $output = $rdh->get_view( 'modules', $data );

@@ -80,10 +80,12 @@ class Orbit_Fox_Model {
 				$is_enabled = $module->enable_module();
 				$is_auto = $module->auto;
 				$active = false;
+                $showed_notices = array();
 
 				$module_status[ $slug ] = array(
 					'enabled' => $is_enabled,
 					'autoload' => $is_auto,
+					'showed_notices' => $showed_notices,
 					'active' => $active,
 				);
 
