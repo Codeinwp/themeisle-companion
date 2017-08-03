@@ -14,14 +14,14 @@ function themeisle_hestia_require() {
 	if ( function_exists( 'hestia_setup_theme' ) ) {
 
 		// Require Zerif > Hestia content importer if it exists.
-		$zerif_importer_path      = THEMEISLE_COMPANION_PATH. 'inc/hestia/inc/features/import-zerif-content.php';
+		$zerif_importer_path      = THEMEISLE_COMPANION_PATH. 'hestia/inc/features/import-zerif-content.php';
 		if ( file_exists( $zerif_importer_path ) ) {
 			require_once( $zerif_importer_path );
 		}
 
 		// Require Hestia Features section and customizer settings.
-		$features_path            = THEMEISLE_COMPANION_PATH . 'inc/hestia/inc/features/feature-features-section.php';
-		$customizer_features_path = THEMEISLE_COMPANION_PATH . 'inc/hestia/inc/sections/hestia-features-section.php';
+		$features_path            = THEMEISLE_COMPANION_PATH . 'hestia/inc/features/feature-features-section.php';
+		$customizer_features_path = THEMEISLE_COMPANION_PATH . 'hestia/inc/sections/hestia-features-section.php';
 		if ( file_exists( $features_path ) ) {
 			require_once( $features_path );
 		}
@@ -30,8 +30,8 @@ function themeisle_hestia_require() {
 		}
 
 		// Require Hestia Testimonials section and customizer settings.
-		$testimonials_path            = THEMEISLE_COMPANION_PATH . 'inc/hestia/inc/features/feature-testimonials-section.php';
-		$customizer_testimonials_path = THEMEISLE_COMPANION_PATH . 'inc/hestia/inc/sections/hestia-testimonials-section.php';
+		$testimonials_path            = THEMEISLE_COMPANION_PATH . 'hestia/inc/features/feature-testimonials-section.php';
+		$customizer_testimonials_path = THEMEISLE_COMPANION_PATH . 'hestia/inc/sections/hestia-testimonials-section.php';
 		if ( file_exists( $testimonials_path ) ) {
 			require_once( $testimonials_path );
 		}
@@ -40,8 +40,8 @@ function themeisle_hestia_require() {
 		}
 
 		// Require Hestia Team section and customizer settings.
-		$team_path            = THEMEISLE_COMPANION_PATH . 'inc/hestia/inc/features/feature-team-section.php';
-		$customizer_team_path = THEMEISLE_COMPANION_PATH . 'inc/hestia/inc/sections/hestia-team-section.php';
+		$team_path            = THEMEISLE_COMPANION_PATH . 'hestia/inc/features/feature-team-section.php';
+		$customizer_team_path = THEMEISLE_COMPANION_PATH . 'hestia/inc/sections/hestia-team-section.php';
 		if ( file_exists( $team_path ) ) {
 			require_once( $team_path );
 		}
@@ -50,14 +50,12 @@ function themeisle_hestia_require() {
 		}
 
 		// Require Hestia Customizer extension.
-		$customizer_path = THEMEISLE_COMPANION_PATH . 'inc/hestia/inc/customizer.php';
+		$customizer_path = THEMEISLE_COMPANION_PATH . 'hestia/inc/customizer.php';
 		if ( file_exists( $customizer_path ) ) {
 			require_once( $customizer_path );
 		}
 	}
 }
-
-add_action( 'after_setup_theme', 'themeisle_hestia_require' );
 
 /**
  * Set Front page displays option to A static page
@@ -81,8 +79,6 @@ function themeisle_hestia_set_frontpage() {
 		}
 	}
 }
-
-add_action( 'after_switch_theme', 'themeisle_hestia_set_frontpage' );
 
 /**
  * Function that checks if a page with a slug exists. If not, it create one.

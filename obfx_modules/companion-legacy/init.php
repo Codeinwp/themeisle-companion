@@ -152,10 +152,6 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
         if ( $this->is_zerif() ) {
             require_once $this->inc_dir . 'zerif-lite' . DIRECTORY_SEPARATOR . 'functions.php';
         }
-
-//        if ( $this->is_hestia() ) {
-//            require_once $this->inc_dir . 'hestia' . DIRECTORY_SEPARATOR . 'functions.php';
-//        }
     }
 
     /**
@@ -172,6 +168,9 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
         $this->loader->add_action( 'admin_footer',  $this, 'rhea_add_html_to_admin_footer' );
 
         $this->loader->add_action( 'customize_controls_print_footer_scripts',  $this, 'rhea_add_html_to_admin_footer' );
+
+        add_action( 'after_setup_theme', 'themeisle_hestia_require' );
+        add_action( 'after_switch_theme', 'themeisle_hestia_set_frontpage' );
     }
 
     /**
@@ -182,9 +181,7 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
      * @access  public
      * @return array
      */
-    public function public_enqueue() {
-        // TODO: Implement public_enqueue() method.
-    }
+    public function public_enqueue() {}
 
     /**
      * Method that returns an array of scripts and styles to be loaded
@@ -194,9 +191,7 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
      * @access  public
      * @return array
      */
-    public function admin_enqueue() {
-        // TODO: Implement admin_enqueue() method.
-    }
+    public function admin_enqueue() {}
 
     /**
      * Method to define the options fields for the module
