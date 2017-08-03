@@ -62,6 +62,7 @@ class Orbit_Fox_Global_Settings {
 				array(
 				    'stats',
 				    'social-sharing',
+				    'companion-legacy',
 				)
 			);
 		}// End if().

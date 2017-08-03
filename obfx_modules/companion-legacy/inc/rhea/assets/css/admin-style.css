@@ -1,0 +1,124 @@
+#fontawesome-popup {
+    display: none;
+    height: 520px;
+}
+#fontawesome-popup:after {
+    display: block;
+    content: "";
+    clear: both;
+}
+.ui-widget-overlay {
+    position: fixed;
+    z-index: 999998;
+    background: rgba( 0,0,0,.4 );
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
+.rhea-fontawesome-dialog {
+    z-index: 999999;
+    -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.7);
+    box-shadow: 0 5px 15px rgba(0,0,0,.7);
+    background: #fcfcfc;
+}
+.rhea-fontawesome-dialog .ui-dialog-titlebar {
+    padding: 0 15px;
+    font-size: 22px;
+    line-height: 50px;
+    margin: 0;
+    color: #23282d;
+    border-bottom: 1px solid #ddd;
+    font-weight: 600;
+}
+.rhea-fontawesome-dialog .ui-dialog-titlebar .ui-button {
+    float: right;
+}
+#fontawesome-popup .left-side {
+    float: left;
+    width: 20%;
+    box-sizing: border-box;
+    padding: 15px;
+}
+#fontawesome-popup .right-side {
+    float: left;
+    width: 80%;
+    box-sizing: border-box;
+    padding: 15px;
+    background: #fff;
+    border-left: 1px solid #ccc;
+    height: 507px;
+    overflow-y: scroll;
+}
+.ui-dialog.rhea-fontawesome-dialog .ui-dialog-titlebar-close {
+    background: transparent;
+    box-shadow: none;
+    border: 0 none;
+    margin: 14px 0;
+    padding-right: 0;
+    cursor: pointer;
+}
+.ui-dialog.rhea-fontawesome-dialog .ui-button-icon-only .ui-icon:after {
+    content: "\f158";
+    font-family: "dashicons";
+    font-size: 20px;
+    color: #23282d;
+    display: block;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    text-indent: 1px;
+}
+.ui-dialog.rhea-fontawesome-dialog .ui-button-text {
+    display: none;
+}
+.filter-icons li {
+    cursor: pointer;
+}
+.filter-icons li.active {
+    font-weight: bold;
+}
+a.rhea-fontawesome-icon {
+    width: 5%;
+    display: inline-block;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 5px 0;
+}
+a.rhea-fontawesome-icon:hover {
+    background-color: #ccc;
+    color: #fff;
+}
+
+/* Style Input */
+.icon-holder p {
+    padding: 20px 0;
+    text-align: center;
+    border: 1px dashed #ccc;
+    color: rgba( 0,0,0,.6 );
+    margin:0;
+}
+.empty-icon .change-icon-button,
+.empty-icon .remove-icon-button,
+.icon-holder p,
+.empty-icon i,
+.wp-core-ui .actions .button.add-icon-button {
+    display: none;
+}
+.empty-icon .icon-holder p {
+    display: block;
+}
+.wp-core-ui .empty-icon .actions .button.add-icon-button {
+    display: inline-block;
+}
+.fontawesome-icon-container .actions {
+    text-align: right;
+}
+.icon-holder {
+    margin: 20px 0;
+    text-align: center;
+}
+.icon-holder i {
+    font-size: 50px;
+}
