@@ -31,6 +31,7 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
         $this->plugin_version = $this->obfx->get_version();
 
         $this->obfx_admin = new Orbit_Fox_Admin( $this->plugin_name, $this->plugin_version );
+        $this->obfx_public = new Orbit_Fox_Public( $this->plugin_name, $this->plugin_version );
 	}
 
 	/**
@@ -38,6 +39,7 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
 	 *
 	 * @covers Orbit_Fox
 	 * @covers Orbit_Fox_Admin
+	 * @covers Orbit_Fox_Public
 	 * @covers Orbit_Fox_Loader
 	 * @covers Orbit_Fox_i18n
 	 */
@@ -49,6 +51,9 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
         $this->obfx_admin->load_modules();
         $this->obfx_admin->enqueue_styles();
         $this->obfx_admin->enqueue_scripts();
+
+        $this->obfx_public->enqueue_styles();
+        $this->obfx_public->enqueue_scripts();
 
 		$this->assertTrue( true );
 	}
@@ -74,7 +79,7 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
     public function test_module() {
         Autoloader::set_plugins_path( plugin_dir_path( __DIR__ ) );
         $modules_to_load = array(
-            'test',
+            'stats',
         );
 
         $module_factory = new Orbit_Fox_Module_Factory();
@@ -84,7 +89,7 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
             $module = $module_factory::build( $module_name );
             $this->assertTrue( $module->enable_module() );
             $module->register_loader( $this->obfx->get_loader() );
-            $module->enqueue( $this->plugin_version );
+            $module->set_enqueue( $this->plugin_version );
             $module->set_admin_styles();
             $module->set_admin_scripts();
             $module->set_public_styles();

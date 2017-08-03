@@ -45,6 +45,15 @@ abstract class Orbit_Fox_Module_Abstract {
 	 */
 	public $description;
 
+    /**
+     * Stores an array of notices
+     *
+     * @since   1.0.0
+     * @access  public
+     * @var     array $notices Stores an array of notices to be displayed on the admin panel.
+     */
+	protected $notices = array();
+
 	/**
 	 * Flags if module should autoload.
 	 *
@@ -131,6 +140,27 @@ abstract class Orbit_Fox_Module_Abstract {
 		$this->model = $model;
 	}
 
+    /**
+     * @return array
+     */
+	public function get_notices() {
+	    return $this->notices;
+    }
+
+    public function update_showed_notices() {
+	    $showed_notices = $this->get_status( 'showed_notices' );
+	    if( $showed_notices == false ) { $showed_notices = array(); }
+	    foreach ( $this->notices as $notice ) {
+	        if( $notice['display_always'] == false ) {
+	            $hash = md5( serialize($notice) );
+	            if( ! in_array( $hash, $showed_notices ) ) {
+                    $showed_notices[] = $hash;
+                }
+            }
+        }
+        $this->set_status( 'showed_notices', $showed_notices );
+    }
+
 	/**
 	 * Method to determine if the module is enabled or not.
 	 *
@@ -179,6 +209,16 @@ abstract class Orbit_Fox_Module_Abstract {
 	public abstract function options();
 
 	/**
+	 * Method to define actions and filters needed for the module.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 */
+	public abstract function hooks();
+
+	/**
 	 * Method to check if module status is active.
 	 *
 	 * @codeCoverageIgnore
@@ -187,7 +227,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 * @return bool
 	 */
-	final public function is_active() {
+	final public function get_is_active() {
 	    return $this->model->get_is_module_active( $this->slug );
 	}
 
@@ -233,7 +273,13 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @return bool
 	 */
 	final public function get_option( $key ) {
-		return $this->model->get_module_option( $this->slug, $key );
+	    $default_options = $this->get_options_defaults();
+		$db_option = $this->model->get_module_option( $this->slug, $key );
+		$value = $db_option;
+		if ( $db_option === false ) {
+			$value = $default_options[ $key ];
+		}
+		return $value;
 	}
 
 	/**
@@ -318,7 +364,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 * @param   string $version The version for the files.
 	 */
-	final public function enqueue( $version ) {
+	final public function set_enqueue( $version ) {
 		$this->version = $version;
 		$this->loader->add_action( 'obfx_admin_enqueue_styles', $this, 'set_admin_styles' );
 		$this->loader->add_action( 'obfx_admin_enqueue_scripts', $this, 'set_admin_scripts' );
@@ -340,17 +386,19 @@ abstract class Orbit_Fox_Module_Abstract {
 		$module_dir = $this->slug;
 		if ( ! empty( $enqueue ) ) {
 			if ( isset( $enqueue['css'] ) && ! empty( $enqueue['css'] ) ) {
+				$order = 0;
 				foreach ( $enqueue['css'] as $file_name => $dependencies ) {
 					if ( $dependencies == false ) {
 						$dependencies = array();
 					}
 					wp_enqueue_style(
-						'obfx-module-css-' . str_replace( ' ', '-', strtolower( $this->name ) ),
+						'obfx-module-css-' . str_replace( ' ', '-', strtolower( $this->name ) ) . '-' . $order,
 						plugin_dir_url( $this->get_dir() ) . $module_dir . '/css/' . $file_name . '.css',
 						$dependencies,
 						$this->version,
 						'all'
 					);
+					$order++;
 				}
 			}
 		}
@@ -369,17 +417,19 @@ abstract class Orbit_Fox_Module_Abstract {
 		$module_dir = $this->slug;
 		if ( ! empty( $enqueue ) ) {
 			if ( isset( $enqueue['js'] ) && ! empty( $enqueue['js'] ) ) {
+			    $order = 0;
 				foreach ( $enqueue['js'] as $file_name => $dependencies ) {
 					if ( $dependencies == false ) {
 						$dependencies = array();
 					}
 					wp_enqueue_script(
-						'obfx-module-js-' . str_replace( ' ', '-', strtolower( $this->name ) ),
+						'obfx-module-js-' . str_replace( ' ', '-', strtolower( $this->name ) ) . '-' . $order,
 						plugin_dir_url( $this->get_dir() ) . $module_dir . '/js/' . $file_name . '.js',
 						$dependencies,
 						$this->version,
 						false
 					);
+					$order++;
 				}
 			}
 		}
@@ -398,17 +448,19 @@ abstract class Orbit_Fox_Module_Abstract {
 		$module_dir = $this->slug;
 		if ( ! empty( $enqueue ) ) {
 			if ( isset( $enqueue['css'] ) && ! empty( $enqueue['css'] ) ) {
+				$order = 0;
 				foreach ( $enqueue['css'] as $file_name => $dependencies ) {
 					if ( $dependencies == false ) {
 						$dependencies = array();
 					}
 					wp_enqueue_style(
-						'obfx-module-pub-css-' . str_replace( ' ', '-', strtolower( $this->name ) ),
+						'obfx-module-pub-css-' . str_replace( ' ', '-', strtolower( $this->name ) ) . '-' . $order,
 						plugin_dir_url( $this->get_dir() ) . $module_dir . '/css/' . $file_name . '.css',
 						$dependencies,
 						$this->version,
 						'all'
 					);
+					$order++;
 				}
 			}
 		}
@@ -427,19 +479,46 @@ abstract class Orbit_Fox_Module_Abstract {
 		$module_dir = $this->slug;
 		if ( ! empty( $enqueue ) ) {
 			if ( isset( $enqueue['js'] ) && ! empty( $enqueue['js'] ) ) {
+				$order = 0;
 				foreach ( $enqueue['js'] as $file_name => $dependencies ) {
 					if ( $dependencies == false ) {
 						$dependencies = array();
 					}
 					wp_enqueue_script(
-						'obfx-module-pub-js-' . str_replace( ' ', '-', strtolower( $this->name ) ),
+						'obfx-module-pub-js-' . str_replace( ' ', '-', strtolower( $this->name ) ) . '-' . $order,
 						plugin_dir_url( $this->get_dir() ) . $module_dir . '/js/' . $file_name . '.js',
 						$dependencies,
 						$this->version,
 						false
 					);
+					$order++;
 				}
 			}
 		}
+	}
+
+	/**
+	 * Utility method to render a view from module.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @since   1.0.0
+	 * @access  protected
+	 * @param   string $view_name The view name w/o the `-tpl.php` part.
+	 * @param   array  $args An array of arguments to be passed to the view.
+	 * @return string
+	 */
+	protected function render_view( $view_name, $args = array() ) {
+		ob_start();
+		$file = $this->get_dir() . '/views/' . $view_name . '-tpl.php';
+		if ( ! empty( $args ) ) {
+			foreach ( $args as $obfx_rh_name => $obfx_rh_value ) {
+				$$obfx_rh_name = $obfx_rh_value;
+			}
+		}
+		if ( file_exists( $file ) ) {
+			include $file;
+		}
+		return ob_get_clean();
 	}
 }

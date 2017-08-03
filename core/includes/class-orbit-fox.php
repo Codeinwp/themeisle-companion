@@ -73,7 +73,7 @@ class Orbit_Fox {
 		$this->load_dependencies();
 		$this->set_locale();
 		$this->prepare_modules();
-		$this->define_admin_hooks();
+		$this->define_hooks();
 
 	}
 
@@ -126,37 +126,43 @@ class Orbit_Fox {
 		$obfx_model = new Orbit_Fox_Model();
 
 		$module_factory = new Orbit_Fox_Module_Factory();
-
 		foreach ( $modules_to_load as $module_name ) {
 			$module = $module_factory::build( $module_name );
 			$global_settings->register_module_reference( $module_name, $module );
 			if ( $module->enable_module() ) {
 				$module->register_loader( $this->get_loader() );
 				$module->register_model( $obfx_model );
-				$module->enqueue( $this->get_version() );
-                $this->loader->add_action( 'orbit_fox_modules', $module, 'load' );
-                $this->loader->add_action( 'wp_dashboard_setup', $module, 'example_add_dashboard_widgets' );
+				if ( $module->get_is_active() ) {
+					$module->set_enqueue( $this->get_version() ); // @codeCoverageIgnore
+					$module->hooks(); // @codeCoverageIgnore
+				}
+				$this->loader->add_action( 'orbit_fox_modules', $module, 'load' );
 			}
 		}
 	}
 
 	/**
-	 * Register all of the hooks related to the admin area functionality
+	 * Register all of the hooks related to the functionality
 	 * of the plugin.
 	 *
 	 * @since    1.0.0
 	 * @access   private
 	 */
-	private function define_admin_hooks() {
+	private function define_hooks() {
 
 		$plugin_admin = new Orbit_Fox_Admin( $this->get_plugin_name(), $this->get_version() );
 
-		$this->loader->add_action( 'init', $plugin_admin, 'load_modules' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'load_modules' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'menu_pages' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'wp_ajax_obfx_update_module_options', $plugin_admin, 'obfx_update_module_options' );
 		$this->loader->add_action( 'wp_ajax_obfx_update_module_active_status', $plugin_admin, 'obfx_update_module_active_status' );
+
+		$plugin_public = new Orbit_Fox_Public( $this->get_plugin_name(), $this->get_version() );
+
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
 	}
 

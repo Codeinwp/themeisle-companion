@@ -90,11 +90,11 @@ class Autoloader {
 	protected static function check_namespaces( $class_name ) {
 		$found = false;
 		foreach ( static::$namespaces as $namespace ) {
-			if ( $namespace == 'OBFX_Module' && substr( $class_name, strlen( $namespace ) * (-1), strlen( $namespace ) ) == $namespace ) {
-				return static::module_loader( $class_name );
-			}
 			if ( substr( $class_name, 0, strlen( $namespace ) ) == $namespace ) {
 				$found = true;
+			}
+			if ( $namespace == 'OBFX_Module' && substr( $class_name, strlen( $namespace ) * (-1), strlen( $namespace ) ) == $namespace ) {
+				return static::module_loader( $class_name );
 			}
 		}
 		return $found;
@@ -112,23 +112,26 @@ class Autoloader {
 	 * @return mixed
 	 */
 	public static function loader( $class_name ) {
-	    $directory = new RecursiveDirectoryIterator( static::$path_top, RecursiveDirectoryIterator::SKIP_DOTS );
-
-		if ( is_null( static::$file_iterator ) ) {
-			static::$file_iterator = new RecursiveIteratorIterator( $directory, RecursiveIteratorIterator::LEAVES_ONLY );
-		}
 
 		if ( ! empty( static::$namespaces ) ) {
-		    $found = static::check_namespaces( $class_name );
+			$found = static::check_namespaces( $class_name );
 			if ( ! $found ) {
 				return $found;
 			}
 		}
 
+		$directory = new RecursiveDirectoryIterator( static::$path_top . DIRECTORY_SEPARATOR . 'core', RecursiveDirectoryIterator::SKIP_DOTS );
+
+		if ( is_null( static::$file_iterator ) ) {
+			$Iterator = new RecursiveIteratorIterator( $directory );
+			$Regex = new RegexIterator( $Iterator, '/^.+\.php$/i', RecursiveRegexIterator::MATCH );
+			static::$file_iterator = iterator_to_array( $Regex, false );
+		}
+
 		$filename = 'class-' . str_replace( '_', '-', strtolower( $class_name ) ) . static::$file_ext;
 		foreach ( static::$file_iterator as $file ) {
-			if ( strtolower( $file->getFilename() ) === strtolower( $filename ) && $file->isReadable() ) {
-				include_once $file->getPathname();
+			if ( strtolower( $file->getFileName() ) === strtolower( $filename ) && is_readable( $file->getPathName() ) ) {
+				require( $file->getPathName() );
 				return true;
 			}
 		}
@@ -145,17 +148,12 @@ class Autoloader {
 	public static function module_loader( $class_name ) {
 		$module_name = str_replace( '_', '-', strtolower( str_replace( '_OBFX_Module', '', $class_name ) ) );
 		if ( static::$plugins_path != '' ) {
-			$plugin_directory = new RecursiveDirectoryIterator( static::$plugins_path, RecursiveDirectoryIterator::SKIP_DOTS );
-			$file_iterator = new RecursiveIteratorIterator( $plugin_directory, RecursiveIteratorIterator::LEAVES_ONLY );
-			$filename = 'init.php';
-			foreach ( $file_iterator as $file ) {
-				if ( in_array( 'obfx_modules', explode( DIRECTORY_SEPARATOR, $file->getPathname() ) ) && in_array( $module_name, explode( DIRECTORY_SEPARATOR, $file->getPathname() ) ) ) {
-					if ( strtolower( $file->getFilename() ) === strtolower( $filename ) ) {
-						if ( $file->isReadable() ) {
-							include_once $file->getPathname();
-							return true;
-						}
-					}
+			$directories = glob( static::$plugins_path . '*' . DIRECTORY_SEPARATOR . 'obfx_modules' . DIRECTORY_SEPARATOR . $module_name , GLOB_ONLYDIR );
+			foreach ( $directories as $directory ) {
+				$filename = $directory . DIRECTORY_SEPARATOR . 'init.php';
+				if ( is_readable( $filename ) ) {
+				    require( $filename );
+					return true;
 				}
 			}
 		}

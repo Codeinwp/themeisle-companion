@@ -414,7 +414,9 @@ html {
 	margin-top: 0;
 }
 #obfx-wrapper h1 {
+	display: inline-block;
 	font-size: 5rem;
+	vertical-align: top;
 }
 #obfx-wrapper h2 {
 	font-size: 4rem;
@@ -431,6 +433,15 @@ html {
 #obfx-wrapper h6 {
 	font-size: 1.6rem;
 }
+
+#obfx-wrapper .powered {
+	display: inline-block;
+	margin-bottom: 22px;
+	margin-left: 10px;
+	vertical-align: bottom;
+	font-style: italic;
+}
+
 #obfx-wrapper p {
 	line-height: 2.4rem;
 	margin: 0 0 1rem;

@@ -38,9 +38,11 @@ var obfx_admin = function( $ ) {
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 	$( function() {
-		var obfx_menu = $( '#toplevel_page_obfx_menu' ).clone().wrap( '<p/>' ).parent().html();
-		$( '#toplevel_page_obfx_menu' ).remove();
-		$( '#toplevel_page_jetpack' ).before( obfx_menu );
+		// if ( $( '#toplevel_page_jetpack' ).length ) {
+		// var obfx_menu = $( '#toplevel_page_obfx_menu' ).clone().wrap( '<p/>' ).parent().html();
+		// $( '#toplevel_page_obfx_menu' ).remove();
+		// $( '#toplevel_page_jetpack' ).before( obfx_menu );
+		// }
 	} );
 
 	$( function() {
