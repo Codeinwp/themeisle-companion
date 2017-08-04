@@ -199,9 +199,11 @@ class Orbit_Fox_Admin {
 			$response['type'] = 'warning';
 			$response['message'] = __( 'Something went wrong, can not change module status!', 'themeisle-companion' );
 			$result = $module->set_status( 'active', $data['checked'] );
+			$resources = $module->get_dependencies();
 			if ( $result ) {
 				$response['type'] = 'success';
 				$response['message'] = __( 'Module status changed!', 'themeisle-companion' );
+				$response['resources'] = $resources;
 			}
 		}
 		return $response;
@@ -248,53 +250,60 @@ class Orbit_Fox_Admin {
 		$count_modules = 0;
 		foreach ( $modules as $slug => $module ) {
 		    if ( $module->enable_module() ) {
-				$count_modules++;
-				$checked = '';
-				if ( $module->get_is_active() ) {
-					$checked = 'checked';
+				if ( $module->auto == false ) {
+					$count_modules++;
+					$checked = '';
+					if ( $module->get_is_active() ) {
+						$checked = 'checked';
+					}
+
+					$notices = $module->get_notices();
+					$showed_notices = $module->get_status( 'showed_notices' );
+					if ( isset( $showed_notices ) && is_array( $showed_notices ) && ! empty( $showed_notices ) ) {
+						foreach ( $notices as $notice ) {
+							$hash = md5( serialize( $notice ) );
+							$data = array(
+								'notice' => $notice,
+							);
+							if ( $notice['display_always'] == false && ! in_array( $hash, $showed_notices ) ) {
+								$toasts .= $rdh->get_partial( 'module-toast', $data );
+							} elseif ( $notice['display_always'] == true ) {
+								$toasts .= $rdh->get_partial( 'module-toast', $data );
+							}
+						}
+					}
+
+					$module->update_showed_notices();
+					$data = array(
+						'slug' => $slug,
+						'name' => $module->name,
+						'description' => $module->description,
+						'checked' => $checked,
+					);
+					$tiles .= $rdh->get_partial( 'module-tile', $data );
+					$tiles .= '<div class="divider"></div>';
 				}
-
-				$notices = $module->get_notices();
-                $showed_notices = $module->get_status( 'showed_notices' );
-				foreach ( $notices as $notice ) {
-                    $hash = md5( serialize( $notice ) );
-                    $data = array( 'notice' => $notice );
-                    if( $notice['display_always'] == false && ! in_array( $hash, $showed_notices ) ) {
-                        $toasts .= $rdh->get_partial( 'module-toast', $data );
-                    } else if( $notice['display_always'] == true )  {
-                        $toasts .= $rdh->get_partial( 'module-toast', $data );
-                    }
-                }
-
-				$module->update_showed_notices();
-
-				$data = array(
-					'slug' => $slug,
-					'name' => $module->name,
-					'description' => $module->description,
-					'checked' => $checked,
-				);
-				$tiles .= $rdh->get_partial( 'module-tile', $data );
-				$tiles .= '<div class="divider"></div>';
 
 				$module_options = $module->get_options();
 				$options_fields = '';
-				foreach ( $module_options as $option ) {
-					$options_fields .= $rdh->render_option( $option );
-				}
+				if ( ! empty( $module_options ) ) {
+					foreach ( $module_options as $option ) {
+						$options_fields .= $rdh->render_option( $option );
+					}
 
-				$panels .= $rdh->get_partial(
-					'module-panel',
-					array(
+					$panels .= $rdh->get_partial(
+						'module-panel',
+						array(
 							'slug' => $slug,
 							'name' => $module->name,
 							'active' => $module->get_is_active(),
 							'description' => $module->description,
 							'options_fields' => $options_fields,
 						)
-				);
-			}
-		}
+					);
+				}
+			}// End if().
+		}// End foreach().
 
 		$no_modules = false;
 		$empty_tpl = '';

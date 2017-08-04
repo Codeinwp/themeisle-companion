@@ -87,6 +87,18 @@ var obfx_admin = function( $ ) {
 			} );
 		} );
 
+		$( '.btn-expand' ).on( 'click', function() {
+			if ( $( this ).hasClass( 'active' ) ) {
+				$( this ).removeClass( 'active' );
+				$( this ).closest( '.panel-header' ).siblings( '.obfx-module-form' ).removeClass( 'active' );
+				$( this ).closest( '.panel.options' ).css( 'height', '75px' );
+			} else {
+				$( this ).addClass( 'active' );
+				$( this ).closest( '.panel-header' ).siblings( '.obfx-module-form' ).addClass( 'active' );
+				$( this ).closest( '.panel.options' ).css( 'height', $( this ).closest( '.panel-header' ).siblings( '.obfx-module-form' ).height() + 'px' );
+			}
+		} );
+
 		$( '.obfx-module-form' ).on( 'submit', function (e) {
 			e.preventDefault();
 		} );

@@ -2941,3 +2941,20 @@ html {
 #obfx-wrapper .circle {
 	border-radius: 50%;
 }
+
+#obfx-wrapper .panel .btn-expand.active {
+	transform: rotate( 180deg );
+	-webkit-transition: transform 0.5s ease;
+	-moz-transition: transform 0.5s ease;
+	-o-transition: transform 0.5s ease;
+	transition: transform 0.5s ease;
+}
+
+#obfx-wrapper .panel.options {
+	-webkit-transition: height 1s;
+	-moz-transition: height 1s;
+	-o-transition: height 1s;
+	transition: height 1s;
+	height: 75px;
+	overflow: hidden;
+}

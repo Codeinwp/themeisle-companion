@@ -20,11 +20,6 @@ if ( trim( $desc ) != '' ) {
 	$html_desc = '<hr/><small>' . $desc . '</small>';
 }
 
-$html_foot = '';
-if ( $dev_link ) {
-	$html_foot = '<hr/><small style="text-align: right">Learn more at <a href="themeisle.com">ThemeIsle</a></small>';
-}
-
 $posts_data = '';
 $comments_data = '';
 $graph_shows = $this->get_option( 'graph_shows' );
@@ -40,4 +35,3 @@ if ( $graph_shows == 1 || $graph_shows == 2 ) {
 <?php echo $html_title; ?>
 <canvas id="obfxChart" <?php echo $posts_data; ?> <?php echo $comments_data; ?> ></canvas>
 <?php echo $html_desc; ?>
-<?php echo $html_foot; ?>

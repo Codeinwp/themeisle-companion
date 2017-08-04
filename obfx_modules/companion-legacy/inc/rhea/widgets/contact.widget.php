@@ -1,89 +1,89 @@
 <?php
 class Rhea_Contact_Company extends WP_Widget {
 
-    public function __construct() {
+	public function __construct() {
 
-        $widget_args = array(
-            'description' => esc_html__( 'This widget is designed for footer area', 'rhea' )
-        );
+		$widget_args = array(
+			'description' => esc_html__( 'This widget is designed for footer area', 'rhea' ),
+		);
 
-        parent::__construct( 'rhea-contact-company', esc_html__( '[Rhea] Contact', 'rhea' ), $widget_args );
-    }
+		parent::__construct( 'rhea-contact-company', esc_html__( '[Rhea] Contact', 'rhea' ), $widget_args );
+	}
 
-    function widget($args, $instance) {
+	function widget( $args, $instance ) {
 
-        extract($args);
+		extract( $args );
 
-        if ( ! empty( $before_widget ) ) {
-            echo $before_widget;
-        }
+		if ( ! empty( $before_widget ) ) {
+			echo $before_widget;
+		}
 
-        if ( ! empty( $instance['title'] ) ) {
-            echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
-        }
+		if ( ! empty( $instance['title'] ) ) {
+			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
+		}
 
-        echo '<div class="rhea_company_contact">';
-        if ( ! empty( $instance['adress'] ) ) {
+		echo '<div class="rhea_company_contact">';
+		if ( ! empty( $instance['adress'] ) ) {
 
-            if ( ! empty( $instance['gmaps_url'] ) ) {
-                echo '<p><a href="' . esc_url( $instance['gmaps_url'] ) . '" target="_blank">' . esc_html( $instance['adress'] ) . '</a></p>';
-            } else {
-                echo '<p>' . esc_html( $instance['adress'] ) . '</p>';
-            }
-        }
-        if ( ! empty( $instance['email'] ) ) {
-            echo '<p>Email: <a href="mailto:' . antispambot( $instance['email'] ) . '">' . antispambot( $instance['email'] ) . '</a></p>';
-        }
-        if ( ! empty( $instance['phone']) ) {
-            echo '<p>Phone: ' . esc_html( $instance['phone'] ) . '</p>';
-        }
-        echo '</div>';
+			if ( ! empty( $instance['gmaps_url'] ) ) {
+				echo '<p><a href="' . esc_url( $instance['gmaps_url'] ) . '" target="_blank">' . esc_html( $instance['adress'] ) . '</a></p>';
+			} else {
+				echo '<p>' . esc_html( $instance['adress'] ) . '</p>';
+			}
+		}
+		if ( ! empty( $instance['email'] ) ) {
+			echo '<p>Email: <a href="mailto:' . antispambot( $instance['email'] ) . '">' . antispambot( $instance['email'] ) . '</a></p>';
+		}
+		if ( ! empty( $instance['phone'] ) ) {
+			echo '<p>Phone: ' . esc_html( $instance['phone'] ) . '</p>';
+		}
+		echo '</div>';
 
-        if ( ! empty( $after_widget ) ) {
-            echo $after_widget;
-        }
+		if ( ! empty( $after_widget ) ) {
+			echo $after_widget;
+		}
 
-    }
+	}
 
-    function update($new_instance, $old_instance) {
+	function update( $new_instance, $old_instance ) {
 
-        $instance = $old_instance;
+		$instance = $old_instance;
 
-        $instance['title'] = strip_tags( $new_instance['title'] );
-        $instance['adress'] = strip_tags( $new_instance['adress'] );
-        $instance['gmaps_url'] = esc_url( $new_instance['gmaps_url'] );
-        $instance['email'] = strip_tags( $new_instance['email'] );
-        $instance['phone'] = strip_tags( $new_instance['phone'] );
+		$instance['title'] = strip_tags( $new_instance['title'] );
+		$instance['adress'] = strip_tags( $new_instance['adress'] );
+		$instance['gmaps_url'] = esc_url( $new_instance['gmaps_url'] );
+		$instance['email'] = strip_tags( $new_instance['email'] );
+		$instance['phone'] = strip_tags( $new_instance['phone'] );
 
-        return $instance;
+		return $instance;
 
-    }
+	}
 
-    function form($instance) {
-        ?>
-        <p>
-            <label for="<?php echo $this->get_field_id('title'); ?>"><?php esc_html_e( 'Title', 'rhea' ); ?></label><br/>
-            <input type="text" class="widefat" name="<?php echo $this->get_field_name('title'); ?>" id="<?php echo $this->get_field_id('title'); ?>" value="<?php if( ! empty( $instance['title'] ) ) { echo $instance['title']; } ?>">
-        </p>
-        <p>
-            <label for="<?php echo $this->get_field_id('adress'); ?>"><?php esc_html_e( 'Company Adress', 'rhea' ); ?></label><br/>
-            <textarea class="widefat" rows="8" cols="20" name="<?php echo $this->get_field_name('adress'); ?>" id="<?php echo $this->get_field_id('adress'); ?>"><?php if( ! empty( $instance['adress'] ) ) { echo htmlspecialchars_decode( $instance['adress'] ); } ?></textarea>
-        </p>
-        <p>
-            <label for="<?php echo $this->get_field_id('gmaps_url'); ?>"><?php esc_html_e( 'Google Maps URL', 'rhea' ); ?></label><br/>
-            <input type="text" class="widefat" name="<?php echo $this->get_field_name('gmaps_url'); ?>" id="<?php echo $this->get_field_id('gmaps_url'); ?>" value="<?php if( ! empty( $instance['gmaps_url'] ) ) { echo $instance['gmaps_url']; } ?>">
-        </p>
-        <p>
-            <label for="<?php echo $this->get_field_id('email'); ?>"><?php esc_html_e( 'Email', 'rhea' ); ?></label><br/>
-            <input type="text" class="widefat" name="<?php echo $this->get_field_name('email'); ?>" id="<?php echo $this->get_field_id('email'); ?>" value="<?php if( ! empty( $instance['email'] ) ) { echo $instance['email']; } ?>">
-        </p>
-        <p>
-            <label for="<?php echo $this->get_field_id('phone'); ?>"><?php esc_html_e( 'Phone', 'rhea' ); ?></label><br/>
-            <input type="text" class="widefat" name="<?php echo $this->get_field_name('phone'); ?>" id="<?php echo $this->get_field_id('phone'); ?>" value="<?php if( ! empty( $instance['phone'] ) ) { echo $instance['phone']; } ?>">
-        </p>
+	function form( $instance ) {
+		?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title', 'rhea' ); ?></label><br/>
+			<input type="text" class="widefat" name="<?php echo $this->get_field_name( 'title' ); ?>" id="<?php echo $this->get_field_id( 'title' ); ?>" value="<?php if ( ! empty( $instance['title'] ) ) { echo $instance['title']; } ?>">
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'adress' ); ?>"><?php esc_html_e( 'Company Adress', 'rhea' ); ?></label><br/>
+			<textarea class="widefat" rows="8" cols="20" name="<?php echo $this->get_field_name( 'adress' ); ?>" id="<?php echo $this->get_field_id( 'adress' ); ?>"><?php if ( ! empty( $instance['adress'] ) ) { echo htmlspecialchars_decode( $instance['adress'] ); } ?></textarea>
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'gmaps_url' ); ?>"><?php esc_html_e( 'Google Maps URL', 'rhea' ); ?></label><br/>
+			<input type="text" class="widefat" name="<?php echo $this->get_field_name( 'gmaps_url' ); ?>" id="<?php echo $this->get_field_id( 'gmaps_url' ); ?>" value="<?php if ( ! empty( $instance['gmaps_url'] ) ) { echo $instance['gmaps_url']; } ?>">
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'email' ); ?>"><?php esc_html_e( 'Email', 'rhea' ); ?></label><br/>
+			<input type="text" class="widefat" name="<?php echo $this->get_field_name( 'email' ); ?>" id="<?php echo $this->get_field_id( 'email' ); ?>" value="<?php if ( ! empty( $instance['email'] ) ) { echo $instance['email']; } ?>">
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'phone' ); ?>"><?php esc_html_e( 'Phone', 'rhea' ); ?></label><br/>
+			<input type="text" class="widefat" name="<?php echo $this->get_field_name( 'phone' ); ?>" id="<?php echo $this->get_field_id( 'phone' ); ?>" value="<?php if ( ! empty( $instance['phone'] ) ) { echo $instance['phone']; } ?>">
+		</p>
 
-        <?php
+		<?php
 
-    }
+	}
 
 }

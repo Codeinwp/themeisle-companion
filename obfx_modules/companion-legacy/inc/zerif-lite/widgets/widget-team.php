@@ -11,7 +11,7 @@
 /**
  * Class zerif_team_widget
  */
-if ( !class_exists( 'zerif_team_widget' ) ) {
+if ( ! class_exists( 'zerif_team_widget' ) ) {
 
 	class zerif_team_widget extends WP_Widget {
 
@@ -66,35 +66,35 @@ if ( !class_exists( 'zerif_team_widget' ) ) {
 
 						</figure>
 						<?php
-					} elseif ( ! empty( $instance['custom_media_id'] ) ) {
+} elseif ( ! empty( $instance['custom_media_id'] ) ) {
 
-						$zerif_team_custom_media_id = wp_get_attachment_image_src( $instance["custom_media_id"] );
-						$alt                        = get_post_meta( $instance['custom_media_id'], '_wp_attachment_image_alt', true );
+	$zerif_team_custom_media_id = wp_get_attachment_image_src( $instance['custom_media_id'] );
+	$alt                        = get_post_meta( $instance['custom_media_id'], '_wp_attachment_image_alt', true );
 
-						if ( ! empty( $zerif_team_custom_media_id ) && ! empty( $zerif_team_custom_media_id[0] ) ) {
-							?>
+	if ( ! empty( $zerif_team_custom_media_id ) && ! empty( $zerif_team_custom_media_id[0] ) ) {
+		?>
 
-							<figure class="profile-pic">
+		<figure class="profile-pic">
 
-								<img src="<?php echo esc_url( $zerif_team_custom_media_id[0] ); ?>"
-								     alt="<?php echo $alt; ?>"/>
+			<img src="<?php echo esc_url( $zerif_team_custom_media_id[0] ); ?>"
+				 alt="<?php echo $alt; ?>"/>
 
 							</figure>
 
 							<?php
-						}
-					}
+	}
+}
 					?>
 
 					<div class="member-details">
 
-						<?php if ( ! empty( $instance['name'] ) ): ?>
+						<?php if ( ! empty( $instance['name'] ) ) :  ?>
 
 							<h3 class="dark-text red-border-bottom"><?php echo apply_filters( 'widget_title', $instance['name'] ); ?></h3>
 
 						<?php endif; ?>
 
-						<?php if ( ! empty( $instance['position'] ) ): ?>
+						<?php if ( ! empty( $instance['position'] ) ) :  ?>
 
 							<div
 								class="position"><?php echo htmlspecialchars_decode( apply_filters( 'widget_title', $instance['position'] ) ); ?></div>
@@ -108,13 +108,13 @@ if ( !class_exists( 'zerif_team_widget' ) ) {
 						<ul>
 							<?php
 							$zerif_team_target = '_self';
-							if ( ! empty( $instance['open_new_window'] ) ):
+							if ( ! empty( $instance['open_new_window'] ) ) :
 								$zerif_team_target = '_blank';
 							endif;
 							?>
 
 							<?php
-							if ( ! empty( $instance['fb_link'] ) ): ?>
+							if ( ! empty( $instance['fb_link'] ) ) :  ?>
 								<li>
 									<a href="<?php echo apply_filters( 'widget_title', $instance['fb_link'] ); ?>"
 									   target="<?php echo $zerif_team_target; ?>">
@@ -132,7 +132,7 @@ if ( !class_exists( 'zerif_team_widget' ) ) {
 								<?php
 							endif;
 
-							if ( ! empty( $instance['tw_link'] ) ): ?>
+							if ( ! empty( $instance['tw_link'] ) ) :  ?>
 								<li>
 									<a href="<?php echo apply_filters( 'widget_title', $instance['tw_link'] ); ?>"
 									   target="<?php echo $zerif_team_target; ?>">
@@ -150,7 +150,7 @@ if ( !class_exists( 'zerif_team_widget' ) ) {
 								<?php
 							endif;
 
-							if ( ! empty( $instance['bh_link'] ) ): ?>
+							if ( ! empty( $instance['bh_link'] ) ) :  ?>
 								<li>
 									<a href="<?php echo apply_filters( 'widget_title', $instance['bh_link'] ); ?>"
 									   target="<?php echo $zerif_team_target; ?>">
@@ -168,7 +168,7 @@ if ( !class_exists( 'zerif_team_widget' ) ) {
 								<?php
 							endif;
 
-							if ( ! empty( $instance['db_link'] ) ): ?>
+							if ( ! empty( $instance['db_link'] ) ) :  ?>
 								<li>
 									<a href="<?php echo apply_filters( 'widget_title', $instance['db_link'] ); ?>"
 									   target="<?php echo $zerif_team_target; ?>">
@@ -186,7 +186,7 @@ if ( !class_exists( 'zerif_team_widget' ) ) {
 								<?php
 							endif;
 
-							if ( ! empty( $instance['ln_link'] ) ): ?>
+							if ( ! empty( $instance['ln_link'] ) ) :  ?>
 								<li>
 									<a href="<?php echo apply_filters( 'widget_title', $instance['ln_link'] ); ?>"
 									   target="<?php echo $zerif_team_target; ?>">
@@ -208,7 +208,7 @@ if ( !class_exists( 'zerif_team_widget' ) ) {
 
 					</div>
 
-					<?php if ( ! empty( $instance['description'] ) ): ?>
+					<?php if ( ! empty( $instance['description'] ) ) :  ?>
 						<div class="details">
 
 							<?php echo htmlspecialchars_decode( apply_filters( 'widget_title', $instance['description'] ) ); ?>
@@ -269,14 +269,16 @@ if ( !class_exists( 'zerif_team_widget' ) ) {
 					for="<?php echo $this->get_field_id( 'name' ); ?>"><?php _e( 'Name', 'zerif-lite' ); ?></label><br/>
 				<input type="text" name="<?php echo $this->get_field_name( 'name' ); ?>"
 				       id="<?php echo $this->get_field_id( 'name' ); ?>"
-				       value="<?php if ( ! empty( $instance['name'] ) ): echo $instance['name']; endif; ?>"
+				       value="<?php if ( ! empty( $instance['name'] ) ) :  echo $instance['name'];
+endif; ?>"
 				       class="widefat"/>
 			</p>
 			<p>
 				<label
 					for="<?php echo $this->get_field_id( 'position' ); ?>"><?php _e( 'Position', 'zerif-lite' ); ?></label><br/>
 				<textarea class="widefat" rows="8" cols="20" name="<?php echo $this->get_field_name( 'position' ); ?>"
-				          id="<?php echo $this->get_field_id( 'position' ); ?>"><?php if ( ! empty( $instance['position'] ) ): echo htmlspecialchars_decode( $instance['position'] ); endif; ?></textarea>
+				          id="<?php echo $this->get_field_id( 'position' ); ?>"><?php if ( ! empty( $instance['position'] ) ) :  echo htmlspecialchars_decode( $instance['position'] );
+endif; ?></textarea>
 			</p>
 			<p>
 				<label
@@ -284,7 +286,8 @@ if ( !class_exists( 'zerif_team_widget' ) ) {
 				<textarea class="widefat" rows="8" cols="20"
 				          name="<?php echo $this->get_field_name( 'description' ); ?>"
 				          id="<?php echo $this->get_field_id( 'description' ); ?>"><?php
-					if ( ! empty( $instance['description'] ) ): echo htmlspecialchars_decode( $instance['description'] ); endif;
+							if ( ! empty( $instance['description'] ) ) :  echo htmlspecialchars_decode( $instance['description'] );
+endif;
 					?></textarea>
 			</p>
 			<p>
@@ -292,7 +295,8 @@ if ( !class_exists( 'zerif_team_widget' ) ) {
 					for="<?php echo $this->get_field_id( 'fb_link' ); ?>"><?php _e( 'Facebook link', 'zerif-lite' ); ?></label><br/>
 				<input type="text" name="<?php echo $this->get_field_name( 'fb_link' ); ?>"
 				       id="<?php echo $this->get_field_id( 'fb_link' ); ?>"
-				       value="<?php if ( ! empty( $instance['fb_link'] ) ): echo $instance['fb_link']; endif; ?>"
+				       value="<?php if ( ! empty( $instance['fb_link'] ) ) :  echo $instance['fb_link'];
+endif; ?>"
 				       class="widefat">
 
 			</p>
@@ -301,7 +305,8 @@ if ( !class_exists( 'zerif_team_widget' ) ) {
 					for="<?php echo $this->get_field_id( 'tw_link' ); ?>"><?php _e( 'Twitter link', 'zerif-lite' ); ?></label><br/>
 				<input type="text" name="<?php echo $this->get_field_name( 'tw_link' ); ?>"
 				       id="<?php echo $this->get_field_id( 'tw_link' ); ?>"
-				       value="<?php if ( ! empty( $instance['tw_link'] ) ): echo $instance['tw_link']; endif; ?>"
+				       value="<?php if ( ! empty( $instance['tw_link'] ) ) :  echo $instance['tw_link'];
+endif; ?>"
 				       class="widefat">
 			</p>
 			<p>
@@ -309,7 +314,8 @@ if ( !class_exists( 'zerif_team_widget' ) ) {
 					for="<?php echo $this->get_field_id( 'bh_link' ); ?>"><?php _e( 'Behance link', 'zerif-lite' ); ?></label><br/>
 				<input type="text" name="<?php echo $this->get_field_name( 'bh_link' ); ?>"
 				       id="<?php echo $this->get_field_id( 'bh_link' ); ?>"
-				       value="<?php if ( ! empty( $instance['bh_link'] ) ): echo $instance['bh_link']; endif; ?>"
+				       value="<?php if ( ! empty( $instance['bh_link'] ) ) :  echo $instance['bh_link'];
+endif; ?>"
 				       class="widefat">
 
 			</p>
@@ -318,7 +324,8 @@ if ( !class_exists( 'zerif_team_widget' ) ) {
 					for="<?php echo $this->get_field_id( 'db_link' ); ?>"><?php _e( 'Dribble link', 'zerif-lite' ); ?></label><br/>
 				<input type="text" name="<?php echo $this->get_field_name( 'db_link' ); ?>"
 				       id="<?php echo $this->get_field_id( 'db_link' ); ?>"
-				       value="<?php if ( ! empty( $instance['db_link'] ) ): echo $instance['db_link']; endif; ?>"
+				       value="<?php if ( ! empty( $instance['db_link'] ) ) :  echo $instance['db_link'];
+endif; ?>"
 				       class="widefat">
 			</p>
 			<p>
@@ -326,12 +333,14 @@ if ( !class_exists( 'zerif_team_widget' ) ) {
 					for="<?php echo $this->get_field_id( 'ln_link' ); ?>"><?php _e( 'Linkedin link', 'zerif-lite' ); ?></label><br/>
 				<input type="text" name="<?php echo $this->get_field_name( 'ln_link' ); ?>"
 				       id="<?php echo $this->get_field_id( 'ln_link' ); ?>"
-				       value="<?php if ( ! empty( $instance['ln_link'] ) ): echo $instance['ln_link']; endif; ?>"
+				       value="<?php if ( ! empty( $instance['ln_link'] ) ) :  echo $instance['ln_link'];
+endif; ?>"
 				       class="widefat">
 			</p>
 			<p>
 				<input type="checkbox" name="<?php echo $this->get_field_name( 'open_new_window' ); ?>"
-				       id="<?php echo $this->get_field_id( 'open_new_window' ); ?>" <?php if ( ! empty( $instance['open_new_window'] ) ): checked( (bool) $instance['open_new_window'], true ); endif; ?> ><?php _e( 'Open links in new window?', 'zerif-lite' ); ?>
+				       id="<?php echo $this->get_field_id( 'open_new_window' ); ?>" <?php if ( ! empty( $instance['open_new_window'] ) ) :  checked( (bool) $instance['open_new_window'], true );
+endif; ?> ><?php _e( 'Open links in new window?', 'zerif-lite' ); ?>
 				<br>
 			</p>
 			<p>
@@ -354,9 +363,10 @@ if ( !class_exists( 'zerif_team_widget' ) ) {
 				?>
 				<input type="hidden" class="custom_media_display_in_customizer"
 				       name="<?php if ( ! empty( $zerif_image_in_customizer ) ) {
-					       echo $zerif_image_in_customizer;
-				       } ?>"
-				       value="<?php if ( ! empty( $instance['image_in_customizer'] ) ): echo $instance['image_in_customizer']; endif; ?>">
+							echo $zerif_image_in_customizer;
+} ?>"
+				       value="<?php if ( ! empty( $instance['image_in_customizer'] ) ) :  echo $instance['image_in_customizer'];
+endif; ?>">
 				<img class="custom_media_image" src="<?php echo $image_in_customizer; ?>"
 				     style="margin:0;padding:0;max-width:100px;float:left;display:<?php echo $display; ?>"
 				     alt="<?php echo __( 'Uploaded image', 'zerif-lite' ); ?>"/><br/>
@@ -364,7 +374,8 @@ if ( !class_exists( 'zerif_team_widget' ) ) {
 				<input type="text" class="widefat custom_media_url"
 				       name="<?php echo $this->get_field_name( 'image_uri' ); ?>"
 				       id="<?php echo $this->get_field_id( 'image_uri' ); ?>"
-				       value="<?php if ( ! empty( $instance['image_uri'] ) ): echo $instance['image_uri']; endif; ?>"
+				       value="<?php if ( ! empty( $instance['image_uri'] ) ) :  echo $instance['image_uri'];
+endif; ?>"
 				       style="margin-top:5px;">
 
 				<input type="button" class="button button-primary custom_media_button" id="custom_media_button"
@@ -374,11 +385,12 @@ if ( !class_exists( 'zerif_team_widget' ) ) {
 
 			<input class="custom_media_id" id="<?php echo $this->get_field_id( 'custom_media_id' ); ?>"
 			       name="<?php echo $this->get_field_name( 'custom_media_id' ); ?>" type="hidden"
-			       value="<?php if ( ! empty( $instance["custom_media_id"] ) ): echo $instance["custom_media_id"]; endif; ?>"/>
+			       value="<?php if ( ! empty( $instance['custom_media_id'] ) ) :  echo $instance['custom_media_id'];
+endif; ?>"/>
 
 			<?php
 
 		}
 
 	}
-}
+}// End if().

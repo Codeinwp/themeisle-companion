@@ -27,7 +27,7 @@ if ( ! isset( $tiles ) ) {
 }
 
 if ( ! isset( $toasts ) ) {
-    $toasts = '';
+	$toasts = '';
 }
 
 if ( ! isset( $panels ) ) {
@@ -41,9 +41,9 @@ if ( ! isset( $panels ) ) {
 	<h1><?php echo __( 'Orbit Fox Companion', 'obfx' ); ?></h1><span class="powered"> by <b>ThemeIsle</b></span>
 </div>
 <div id="obfx-wrapper" style="padding: 0; margin-top: 10px; margin-bottom: 5px;">
-    <?php
-        echo $toasts;
-    ?>
+	<?php
+		echo $toasts;
+	?>
 </div>
 <div id="obfx-wrapper">
 	<?php
@@ -53,18 +53,18 @@ if ( ! isset( $panels ) ) {
 	?>
 	<div class="panel">
 		<div class="panel-header text-center">
-			<div class="panel-title mt-10"><?php echo __( 'Modules', 'obfx' ); ?></div>
+			<div class="panel-title mt-10"><?php echo __( 'Available Modules', 'obfx' ); ?></div>
 		</div>
-		<div class="panel-nav">
-			<ul class="tab tab-block">
-				<li class="tab-item active">
-					<a href="#" class="badge" data-badge="<?php echo $count_modules; ?>" data-initial="0"><?php echo __( 'Modules List', 'themeisle-companion' ); ?></a>
-				</li>
-				<li class="tab-item">
-					<a href="#"><?php echo __( 'Settings', 'themeisle-companion' ); ?></a>
-				</li>
-			</ul>
-		</div>
+<!--		<div class="panel-nav">-->
+<!--			<ul class="tab tab-block">-->
+<!--				<li class="tab-item active">-->
+<!--					<a href="#" class="badge" data-badge="--><?php // echo $count_modules; ?><!--" data-initial="0">--><?php // echo __( 'Modules List', 'themeisle-companion' ); ?><!--</a>-->
+<!--				</li>-->
+<!--				<li class="tab-item">-->
+<!--					<a href="#">--><?php // echo __( 'Settings', 'themeisle-companion' ); ?><!--</a>-->
+<!--				</li>-->
+<!--			</ul>-->
+<!--		</div>-->
 		<div class="panel-body">
 			<?php echo $tiles; ?>
 		</div>
@@ -72,7 +72,12 @@ if ( ! isset( $panels ) ) {
 			<!-- buttons or inputs -->
 		</div>
 	</div>
-	<?php echo $panels; ?>
+	<div class="panel">
+		<div class="panel-header text-center">
+			<div class="panel-title mt-10"><?php echo __( 'Activated Modules Options', 'obfx' ); ?></div>
+		</div>
+	<?php echo ( $panels == '' )?'<p class="text-center">' . __( 'No modules activated.', 'obfx' ) . '</p>':$panels; ?>
+	</div>
 	<?php
 	}
 	?>

@@ -30,6 +30,8 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
         $this->name = __( 'Companion Legacy', 'obfx' );
         $this->description = __( 'Module containing legacy functionality from ThemeIsle Companion.', 'obfx' );
 
+        $this->auto = true;
+
         $this->inc_dir = $this->get_dir() . DIRECTORY_SEPARATOR . 'inc' . DIRECTORY_SEPARATOR;
 
         define( 'THEMEISLE_COMPANION_PATH', $this->inc_dir );

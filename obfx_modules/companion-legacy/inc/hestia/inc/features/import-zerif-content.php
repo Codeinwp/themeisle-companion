@@ -118,16 +118,16 @@ function hestia_import_simple_theme_mods( $content ) {
 	/* END OF SLIDER IMPORT */
 
 	/* Import the "Big Title" section */
-	if( ! empty( $content['background_image'] ) ) {
+	if ( ! empty( $content['background_image'] ) ) {
 		set_theme_mod( 'hestia_big_title_background', $content['background_image'] );
 	}
-	if( ! empty( $big_title_text ) ) {
+	if ( ! empty( $big_title_text ) ) {
 		set_theme_mod( 'hestia_big_title_title', $big_title_text );
 	}
-	if( ! empty( $big_title_button_text ) ) {
+	if ( ! empty( $big_title_button_text ) ) {
 		set_theme_mod( 'hestia_big_title_button_text', $big_title_button_text );
 	}
-	if( ! empty( $big_title_button_link ) ) {
+	if ( ! empty( $big_title_button_link ) ) {
 		set_theme_mod( 'hestia_big_title_button_link', $big_title_button_link );
 	}
 	set_theme_mod( 'hestia_big_title_text', '' );
@@ -664,7 +664,7 @@ function hestia_import_about_us_content( $content, $widget_ids ) {
 						if ( ! empty( $widget_content['link'] ) ) {
 							$output .= '</a>';
 						}
-						$output .='</div>';
+						$output .= '</div>';
 					}
 				}
 				$output .= '</div>';

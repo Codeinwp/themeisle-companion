@@ -38,8 +38,11 @@ if ( ! $active ) {
 	$disabled_fields = 'disabled';
 }
 ?>
-<div id="obfx-mod-<?php echo $slug; ?>" class="panel" <?php echo $display; ?>>
+<div id="obfx-mod-<?php echo $slug; ?>" class="panel options" <?php echo $display; ?>>
 	<div class="panel-header">
+		<button class="btn btn-action circle btn-expand" style="float: right; margin-right: 10px;">
+			<i class="dashicons dashicons-arrow-down-alt2"></i>
+		</button>
 		<div class="panel-title"><?php echo $name; ?></div>
 		<div class="panel-subtitle"><?php echo $description; ?></div>
 		<div class="obfx-mod-toast toast" style="display: none;">

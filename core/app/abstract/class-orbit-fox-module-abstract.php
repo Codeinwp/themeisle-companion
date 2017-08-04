@@ -45,13 +45,13 @@ abstract class Orbit_Fox_Module_Abstract {
 	 */
 	public $description;
 
-    /**
-     * Stores an array of notices
-     *
-     * @since   1.0.0
-     * @access  public
-     * @var     array $notices Stores an array of notices to be displayed on the admin panel.
-     */
+	/**
+	 * Stores an array of notices
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 * @var     array $notices Stores an array of notices to be displayed on the admin panel.
+	 */
 	protected $notices = array();
 
 	/**
@@ -140,26 +140,26 @@ abstract class Orbit_Fox_Module_Abstract {
 		$this->model = $model;
 	}
 
-    /**
-     * @return array
-     */
+	/**
+	 * @return array
+	 */
 	public function get_notices() {
 	    return $this->notices;
-    }
+	}
 
-    public function update_showed_notices() {
+	public function update_showed_notices() {
 	    $showed_notices = $this->get_status( 'showed_notices' );
-	    if( $showed_notices == false ) { $showed_notices = array(); }
+	    if ( $showed_notices == false ) { $showed_notices = array(); }
 	    foreach ( $this->notices as $notice ) {
-	        if( $notice['display_always'] == false ) {
-	            $hash = md5( serialize($notice) );
-	            if( ! in_array( $hash, $showed_notices ) ) {
-                    $showed_notices[] = $hash;
-                }
-            }
-        }
-        $this->set_status( 'showed_notices', $showed_notices );
-    }
+	        if ( $notice['display_always'] == false ) {
+	            $hash = md5( serialize( $notice ) );
+	            if ( ! in_array( $hash, $showed_notices ) ) {
+					$showed_notices[] = $hash;
+				}
+			}
+		}
+		$this->set_status( 'showed_notices', $showed_notices );
+	}
 
 	/**
 	 * Method to determine if the module is enabled or not.
@@ -228,6 +228,9 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @return bool
 	 */
 	final public function get_is_active() {
+	    if ( $this->auto == true ) {
+	        return true;
+		}
 	    return $this->model->get_is_module_active( $this->slug );
 	}
 
@@ -354,6 +357,18 @@ abstract class Orbit_Fox_Module_Abstract {
 		}
 		return $options;
 	}
+	// TODO Dynamic enqueue
+	final public function get_dependencies() {
+		$enqueue = $this->admin_enqueue();
+		$module_dir = $this->slug;
+		if ( ! empty( $enqueue ) ) {
+			if ( isset( $enqueue['css'] ) && ! empty( $enqueue['css'] ) ) {
+				foreach ( $enqueue['css'] as $file_name => $dependencies ) {
+
+				}
+			}
+		}
+	}
 
 	/**
 	 * Adds the hooks for amdin and public enqueue.
@@ -391,9 +406,14 @@ abstract class Orbit_Fox_Module_Abstract {
 					if ( $dependencies == false ) {
 						$dependencies = array();
 					}
+					$url = filter_var( $file_name, FILTER_SANITIZE_URL );
+					$resource = plugin_dir_url( $this->get_dir() ) . $module_dir . '/css/' . $file_name . '.css';
+					if ( ! filter_var( $url, FILTER_VALIDATE_URL ) === false ) {
+						$resource = $url;
+					}
 					wp_enqueue_style(
 						'obfx-module-css-' . str_replace( ' ', '-', strtolower( $this->name ) ) . '-' . $order,
-						plugin_dir_url( $this->get_dir() ) . $module_dir . '/css/' . $file_name . '.css',
+						$resource,
 						$dependencies,
 						$this->version,
 						'all'
@@ -422,9 +442,14 @@ abstract class Orbit_Fox_Module_Abstract {
 					if ( $dependencies == false ) {
 						$dependencies = array();
 					}
+					$url = filter_var( $file_name, FILTER_SANITIZE_URL );
+					$resource = plugin_dir_url( $this->get_dir() ) . $module_dir . '/js/' . $file_name . '.js';
+					if ( ! filter_var( $url, FILTER_VALIDATE_URL ) === false ) {
+						$resource = $url;
+					}
 					wp_enqueue_script(
 						'obfx-module-js-' . str_replace( ' ', '-', strtolower( $this->name ) ) . '-' . $order,
-						plugin_dir_url( $this->get_dir() ) . $module_dir . '/js/' . $file_name . '.js',
+						$resource,
 						$dependencies,
 						$this->version,
 						false
@@ -453,9 +478,14 @@ abstract class Orbit_Fox_Module_Abstract {
 					if ( $dependencies == false ) {
 						$dependencies = array();
 					}
+					$url = filter_var( $file_name, FILTER_SANITIZE_URL );
+					$resource = plugin_dir_url( $this->get_dir() ) . $module_dir . '/css/' . $file_name . '.css';
+					if ( ! filter_var( $url, FILTER_VALIDATE_URL ) === false ) {
+						$resource = $url;
+					}
 					wp_enqueue_style(
 						'obfx-module-pub-css-' . str_replace( ' ', '-', strtolower( $this->name ) ) . '-' . $order,
-						plugin_dir_url( $this->get_dir() ) . $module_dir . '/css/' . $file_name . '.css',
+						$resource,
 						$dependencies,
 						$this->version,
 						'all'
@@ -484,9 +514,15 @@ abstract class Orbit_Fox_Module_Abstract {
 					if ( $dependencies == false ) {
 						$dependencies = array();
 					}
+					$url = filter_var( $file_name, FILTER_SANITIZE_URL );
+					$resource = plugin_dir_url( $this->get_dir() ) . $module_dir . '/js/' . $file_name . '.js';
+					if ( ! filter_var( $url, FILTER_VALIDATE_URL ) === false ) {
+						$resource = $url;
+					}
+
 					wp_enqueue_script(
 						'obfx-module-pub-js-' . str_replace( ' ', '-', strtolower( $this->name ) ) . '-' . $order,
-						plugin_dir_url( $this->get_dir() ) . $module_dir . '/js/' . $file_name . '.js',
+						$resource,
 						$dependencies,
 						$this->version,
 						false

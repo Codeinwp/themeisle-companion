@@ -14,7 +14,7 @@ function themeisle_hestia_require() {
 	if ( function_exists( 'hestia_setup_theme' ) ) {
 
 		// Require Zerif > Hestia content importer if it exists.
-		$zerif_importer_path      = THEMEISLE_COMPANION_PATH. 'hestia/inc/features/import-zerif-content.php';
+		$zerif_importer_path      = THEMEISLE_COMPANION_PATH . 'hestia/inc/features/import-zerif-content.php';
 		if ( file_exists( $zerif_importer_path ) ) {
 			require_once( $zerif_importer_path );
 		}
@@ -54,7 +54,7 @@ function themeisle_hestia_require() {
 		if ( file_exists( $customizer_path ) ) {
 			require_once( $customizer_path );
 		}
-	}
+	}// End if().
 }
 
 /**
@@ -62,8 +62,8 @@ function themeisle_hestia_require() {
  */
 function themeisle_hestia_set_frontpage() {
 	if ( function_exists( 'hestia_setup_theme' ) ) {
-		$is_fresh_site = get_option('fresh_site');
-		if ( (bool)$is_fresh_site === false ) {
+		$is_fresh_site = get_option( 'fresh_site' );
+		if ( (bool) $is_fresh_site === false ) {
 			$frontpage_title = esc_html__( 'Front Page', 'themeisle-companion' );
 			$front_id = themeisle_hestia_create_page( 'hestia-front', $frontpage_title );
 			$blogpage_title = esc_html__( 'Blog', 'themeisle-companion' );
@@ -82,20 +82,21 @@ function themeisle_hestia_set_frontpage() {
 
 /**
  * Function that checks if a page with a slug exists. If not, it create one.
+ *
  * @param string $slug Page slug.
  * @param string $page_title Page title.
  * @return int
  */
-function themeisle_hestia_create_page( $slug, $page_title ){
-	//Check if page exists
+function themeisle_hestia_create_page( $slug, $page_title ) {
+	// Check if page exists
 	$args = array(
 		'name'        => $slug,
 		'post_type'   => 'page',
 		'post_status' => 'publish',
-		'numberposts' => 1
+		'numberposts' => 1,
 	);
-	$post = get_posts($args);
-	if( !empty( $post ) ) {
+	$post = get_posts( $args );
+	if ( ! empty( $post ) ) {
 		$page_id = $post[0]->ID;
 	} else {
 		// Page doesn't exist. Create one.

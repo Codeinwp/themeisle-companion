@@ -188,7 +188,6 @@ class Stats_OBFX_Module extends Orbit_Fox_Module_Abstract {
             'display_year' => $display_year,
             'title' => $this->get_option( 'dashboard_title' ),
             'desc' => $this->get_option( 'dashboard_desc' ),
-            'dev_link' => $this->get_option( 'dev_link' ),
             'graph_shows' => $this->get_option( 'graph_shows' ),
             'posts_count' => $posts_count,
             'comments_count' => $comments_count,
@@ -218,15 +217,20 @@ class Stats_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return array
 	 */
 	public function admin_enqueue() {
-		return array(
-		    'js' => array(
-		        'vendor/chart.min' => array( 'jquery' ),
-		        'stats' => array( 'jquery' ),
-			),
-			'css' => array(
-				'stats' => false,
-			),
-		);
+	    $current_screen = get_current_screen();
+
+	    if( $current_screen->id == 'dashboard' ) {
+            return array(
+                'js' => array(
+                    'vendor/chart.min' => array( 'jquery' ),
+                    'stats' => array( 'jquery' ),
+                ),
+                'css' => array(
+                    'stats' => false,
+                ),
+            );
+        }
+		return false;
 	}
 
 	/**
@@ -287,15 +291,6 @@ class Stats_OBFX_Module extends Orbit_Fox_Module_Abstract {
                     '1' => 'Comments Count',
                     '2' => 'Posts & Comments Count',
                 ),
-            ),
-            array(
-                'id' => 'dev_link',
-                'name' => 'dev_link',
-                'label' => 'Yes, I want to show the ThemeIsle Link in footer.',
-                'title' => 'Display ThemeIsle Link?',
-                'description' => 'Adds a powered by link inside the footer.',
-                'type' => 'checkbox',
-                'default' => '1'
             ),
             array(
                 'id' => 'mock_data',
