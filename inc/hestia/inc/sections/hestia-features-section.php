@@ -89,11 +89,8 @@ function hestia_features_content( $hestia_features_content, $is_callback = false
 			$title = ! empty( $features_item->title ) ? apply_filters( 'hestia_translate_single_string', $features_item->title, 'Features section' ) : '';
 			$text = ! empty( $features_item->text ) ? apply_filters( 'hestia_translate_single_string', $features_item->text, 'Features section' ) : '';
 			$link = ! empty( $features_item->link ) ? apply_filters( 'hestia_translate_single_string', $features_item->link, 'Features section' ) : '';
-
-			$color = '';
-			if ( is_customize_preview() && ! empty( $features_item->color ) ) {
-				$color = $features_item->color;
-			}
+			$color = ! empty( $features_item->color ) ? $features_item->color : '';
+			
 			?>
 			<div class="col-md-4 feature-box">
 			<div class="info hestia-info">
