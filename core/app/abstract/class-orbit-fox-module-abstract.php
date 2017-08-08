@@ -115,6 +115,21 @@ abstract class Orbit_Fox_Module_Abstract {
 	}
 
 	/**
+	 * Utility method to return active theme dir name.
+	 *
+	 * @since   1.0.0
+	 * @access  protected
+	 * @param   boolean $is_child Flag for child themes.
+	 * @return string
+	 */
+	protected function get_active_theme_dir( $is_child = false ) {
+	    if ( $is_child ) {
+	        return basename( get_stylesheet_directory() );
+		}
+	    return basename( get_template_directory() );
+	}
+
+	/**
 	 * Registers the loader.
 	 *
 	 * @codeCoverageIgnore
@@ -141,15 +156,27 @@ abstract class Orbit_Fox_Module_Abstract {
 	}
 
 	/**
+	 * Method to return the notices array
+	 *
+	 * @since   1.0.0
+	 * @access  public
 	 * @return array
 	 */
 	public function get_notices() {
 	    return $this->notices;
 	}
 
+	/**
+	 * Utility method to updated showed notices array.
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 */
 	public function update_showed_notices() {
 	    $showed_notices = $this->get_status( 'showed_notices' );
-	    if ( $showed_notices == false ) { $showed_notices = array(); }
+	    if ( $showed_notices == false ) {
+	        $showed_notices = array();
+	    }
 	    foreach ( $this->notices as $notice ) {
 	        if ( $notice['display_always'] == false ) {
 	            $hash = md5( serialize( $notice ) );
@@ -356,18 +383,6 @@ abstract class Orbit_Fox_Module_Abstract {
 			$index++;
 		}
 		return $options;
-	}
-	// TODO Dynamic enqueue
-	final public function get_dependencies() {
-		$enqueue = $this->admin_enqueue();
-		$module_dir = $this->slug;
-		if ( ! empty( $enqueue ) ) {
-			if ( isset( $enqueue['css'] ) && ! empty( $enqueue['css'] ) ) {
-				foreach ( $enqueue['css'] as $file_name => $dependencies ) {
-
-				}
-			}
-		}
 	}
 
 	/**

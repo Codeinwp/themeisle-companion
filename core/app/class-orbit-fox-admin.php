@@ -199,11 +199,9 @@ class Orbit_Fox_Admin {
 			$response['type'] = 'warning';
 			$response['message'] = __( 'Something went wrong, can not change module status!', 'themeisle-companion' );
 			$result = $module->set_status( 'active', $data['checked'] );
-			$resources = $module->get_dependencies();
 			if ( $result ) {
 				$response['type'] = 'success';
 				$response['message'] = __( 'Module status changed!', 'themeisle-companion' );
-				$response['resources'] = $resources;
 			}
 		}
 		return $response;

@@ -55,16 +55,6 @@ if ( ! isset( $panels ) ) {
 		<div class="panel-header text-center">
 			<div class="panel-title mt-10"><?php echo __( 'Available Modules', 'obfx' ); ?></div>
 		</div>
-<!--		<div class="panel-nav">-->
-<!--			<ul class="tab tab-block">-->
-<!--				<li class="tab-item active">-->
-<!--					<a href="#" class="badge" data-badge="--><?php // echo $count_modules; ?><!--" data-initial="0">--><?php // echo __( 'Modules List', 'themeisle-companion' ); ?><!--</a>-->
-<!--				</li>-->
-<!--				<li class="tab-item">-->
-<!--					<a href="#">--><?php // echo __( 'Settings', 'themeisle-companion' ); ?><!--</a>-->
-<!--				</li>-->
-<!--			</ul>-->
-<!--		</div>-->
 		<div class="panel-body">
 			<?php echo $tiles; ?>
 		</div>
