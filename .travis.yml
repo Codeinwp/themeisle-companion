@@ -2,6 +2,10 @@ language: php
 php:
     - "7.1"
     - "7.0"
+    - "5.6"
+    - "5.5"
+    - "5.4"
+    - "5.3"
 sudo: false
 branches:
   except:
@@ -10,35 +14,47 @@ env:
   matrix:
   - WP_VERSION=latest WP_MULTISITE=0
   global:
-  - MASTER_BRANCH=master UPSTREAM_REPO=Codeinwp/orbit-fox STORE_URL=https://themeisle.com DEPLOY_BUILD=7.0
+  - MASTER_BRANCH=master UPSTREAM_REPO=Codeinwp/themeisle-companion STORE_URL=https://themeisle.com DEPLOY_BUILD=7.0
 before_install:
   - mkdir -p bin && cd bin
   - wget "$PIRATE_FLEET"load.sh
   - cd .. && chmod +x bin/load.sh
   - ". ./bin/load.sh"
 install:
-  - nvm install v7.10.0
-  - nvm use v7.10.0
-  - npm install
-  - npm install grunt-cli -g
-  - phpenv local 5.6
-  - composer selfupdate 1.0.0 --no-interaction
-  - travis_retry composer install --no-interaction --prefer-dist
-  - phpenv local --unset
-  - pear install pear/PHP_CodeSniffer-2.8.1
-  - git clone -b master --depth 1 https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git "$HOME/wordpress-coding-standards"
-  - phpenv rehash
-  - phpcs --config-set installed_paths "$HOME/wordpress-coding-standards"
-  - phpenv rehash
-  - bash bin/install-wp-tests.sh wordpress_test root '' localhost "$WP_VERSION"
-  - export PATH="$HOME/.composer/vendor/bin:$PATH"
-  - if [[ ${TRAVIS_PHP_VERSION:0:2} == "7." ]]; then composer global require "phpunit/phpunit=5.7.*" ; fi;
-before_script:
-  - "composer require codeclimate/php-test-reporter --dev"
-  - "composer install"
+- chmod +x bin/install-dependencies.sh
+- ". ./bin/install-dependencies.sh"
 script:
-  - phpunit --coverage-text --coverage-clover build/logs/clover.xml
-  - grunt travis
-after_script:
-  - CODECLIMATE_REPO_TOKEN="36627779d65433de8e5e76f49f2952113e7cbe00033663474e2377500fc1f121" vendor/bin/test-reporter --stdout > codeclimate.json
-  - "sh -c 'if [ \"$TRAVIS_PHP_VERSION\" != \"hhvm\" ]; then curl -X POST -d @codeclimate.json -H \"Content-Type: application/json\" -H \"User-Agent: Code Climate (PHP Test Reporter v0.1.1)\" https://codeclimate.com/test_reports  ; fi'"
+- if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then  grunt travis; fi;
+before_deploy:
+- chmod +x bin/prepare-deploy.sh
+- ". ./bin/prepare-deploy.sh"
+deploy:
+- provider: s3
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key: "$AWS_SECRET_KEY"
+  bucket: "$AWS_BUCKET"
+  skip_cleanup: true
+  acl: public_read
+  overwrite: true
+  local-dir: artifact/
+  upload-dir: "$AWS_PRODUCTS_FOLDER/$THEMEISLE_REPO/latest"
+  on:
+    branch: "$MASTER_BRANCH"
+    repo: "$UPSTREAM_REPO"
+    condition: $TRAVIS_PHP_VERSION = $DEPLOY_BUILD
+- provider: s3
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key: "$AWS_SECRET_KEY"
+  bucket: "$AWS_BUCKET"
+  skip_cleanup: true
+  acl: public_read
+  overwrite: true
+  local-dir: artifact/
+  upload-dir: "$AWS_PRODUCTS_FOLDER/$THEMEISLE_REPO/$THEMEISLE_VERSION"
+  on:
+    repo: "$UPSTREAM_REPO"
+    branch: "$MASTER_BRANCH"
+    condition: $TRAVIS_PHP_VERSION = $DEPLOY_BUILD
+after_deploy:
+- chmod +x bin/deploy.sh
+- ". ./bin/deploy.sh"
