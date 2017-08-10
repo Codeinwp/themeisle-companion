@@ -12,9 +12,9 @@
  * @package           Orbit_Fox
  *
  * @wordpress-plugin
- * Plugin Name:       Orbit Fox ( ThemeIsle Companion )
- * Plugin URI:        https://orbitfox.com
- * Description:       The Orbit Fox, greatest thing that happened to WordPress since automatic is spelled with two T's. ;)
+ * Plugin Name:       Orbit Fox Companion
+ * Plugin URI:        https://themeisle.com/plugins/orbit-fox
+ * Description:       Enhances ThemeIsle's themes with extra functionalities.
  * Version:           1.1.0
  * Author:            Themeisle
  * Author URI:        https://themeisle.com
