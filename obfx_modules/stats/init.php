@@ -24,17 +24,10 @@ class Stats_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function __construct() {
 	    parent::__construct();
-		$this->name = __( 'Orbit Fox Stats Module', 'obfx' );
-		$this->description = __( 'A stats module for Orbit Fox.', 'obfx' );
+		$this->name = __( 'Reports Module', 'obfx' );
+		$this->description = __( 'A simple reports module.', 'obfx' );
 
-		$this->notices = array(
-		    array(
-		        'type' => 'primary',
-                'title' => 'My Notice',
-                'message' => 'My custom notice',
-                'display_always' => false
-            )
-        );
+
 	}
 
 	/**
@@ -77,7 +70,7 @@ class Stats_OBFX_Module extends Orbit_Fox_Module_Abstract {
     public function add_dashboard_widgets() {
         wp_add_dashboard_widget(
             'obfx_dashboard_widget',    // Widget slug.
-            'Orbit Fox Stats',         // Title.
+            'Site Reports &nbsp;&nbsp; <small><i>by OrbitFox</i></small>',         // Title.
             array( $this, 'dashboard_widget_function' ) // Display function.
         );
     }
@@ -214,7 +207,7 @@ class Stats_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 *
 	 * @since   1.0.0
 	 * @access  public
-	 * @return array
+	 * @return array|boolean
 	 */
 	public function admin_enqueue() {
 	    $current_screen = get_current_screen();
