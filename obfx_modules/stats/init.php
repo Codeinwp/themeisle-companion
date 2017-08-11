@@ -223,7 +223,7 @@ class Stats_OBFX_Module extends Orbit_Fox_Module_Abstract {
                 ),
             );
         }
-		return false;
+		return array( );
 	}
 
 	/**
