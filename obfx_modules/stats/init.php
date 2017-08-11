@@ -69,7 +69,7 @@ class Stats_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function add_dashboard_widgets() {
 		wp_add_dashboard_widget(
 			'obfx_dashboard_widget',    // Widget slug.
-			'Site Reports &nbsp;&nbsp; <small><i>by OrbitFox</i></small>',         // Title.
+			'Site Reports <small><i>by Orbit Fox</i></small>',         // Title.
 			array( $this, 'dashboard_widget_function' ) // Display function.
 		);
 	}
