@@ -66,7 +66,7 @@ function run_orbit_fox() {
 	define( 'OBX_PATH', dirname( __FILE__ ) );
 	$plugin = new Orbit_Fox();
 	$plugin->run();
-	$vendor_file = OBX_PATH . '/vendor/autoload_52.php';
+	$vendor_file = OBX_PATH . '/vendor/autoload.php';
 	if ( is_readable( $vendor_file ) ) {
 		require_once $vendor_file;
 	}
