@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbit Fox Companion 2.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Codeinwp/orbit-fox/issues\n"
-"POT-Creation-Date: 2017-08-11 09:05:10+00:00\n"
+"POT-Creation-Date: 2017-08-11 10:36:30+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,7 +24,7 @@ msgstr ""
 "X-Poedit-Bookmarks: \n"
 "X-Textdomain-Support: yes\n"
 
-#: core/app/class-orbit-fox-admin.php:111
+#: core/app/class-orbit-fox-admin.php:110
 msgid "Orbit Fox"
 msgstr ""
 
@@ -32,48 +32,48 @@ msgstr ""
 msgid "Orbit Fox Companion"
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:142
-#: core/app/class-orbit-fox-admin.php:198
-msgid "Could not process the request!"
-msgstr ""
-
-#: core/app/class-orbit-fox-admin.php:168
+#: core/app/class-orbit-fox-admin.php:144
 msgid "No module found! No data was updated."
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:174
+#: core/app/class-orbit-fox-admin.php:150
 msgid "Something went wrong, data might not be saved!"
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:178
+#: core/app/class-orbit-fox-admin.php:154
 msgid "Options updated, successfully!"
 msgstr ""
 
+#: core/app/class-orbit-fox-admin.php:173
 #: core/app/class-orbit-fox-admin.php:224
+msgid "Could not process the request!"
+msgstr ""
+
+#: core/app/class-orbit-fox-admin.php:197
 msgid "No module found!"
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:228
+#: core/app/class-orbit-fox-admin.php:201
 msgid "Something went wrong, can not change module status!"
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:232
+#: core/app/class-orbit-fox-admin.php:205
 msgid "Module status changed!"
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:325
+#: core/app/class-orbit-fox-admin.php:317
 msgid "No modules found."
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:326
+#: core/app/class-orbit-fox-admin.php:318
 msgid "Please contact support for more help."
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:333
+#: core/app/class-orbit-fox-admin.php:325
 msgid "No active modules."
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:334
+#: core/app/class-orbit-fox-admin.php:326
 msgid "Activate a module using the toggles above."
 msgstr ""
 
@@ -677,11 +677,11 @@ msgstr ""
 msgid "Module containing legacy functionality from ThemeIsle Companion."
 msgstr ""
 
-#: obfx_modules/companion-legacy/init.php:142
+#: obfx_modules/companion-legacy/init.php:151
 msgid "Search icon"
 msgstr ""
 
-#: obfx_modules/companion-legacy/init.php:144
+#: obfx_modules/companion-legacy/init.php:153
 msgid "All Icons"
 msgstr ""
 
@@ -706,11 +706,11 @@ msgid "A simple module for your WordPress data."
 msgstr ""
 
 #. Plugin URI of the plugin/theme
-msgid "https://themeisle.com/plugins/orbit-fox"
+msgid "https://themeisle.com/plugins/orbit-fox-companion"
 msgstr ""
 
 #. Description of the plugin/theme
-msgid "Enhances ThemeIsle's themes with extra functionalities."
+msgid "Enhances ThemeIsle's themes with extra functionality."
 msgstr ""
 
 #. Author of the plugin/theme

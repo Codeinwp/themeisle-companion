@@ -13,7 +13,7 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Orbit Fox Companion
- * Plugin URI:        https://themeisle.com/plugins/orbit-fox
+ * Plugin URI:        https://themeisle.com/plugins/orbit-fox-companion
  * Description:       Enhances ThemeIsle's themes with extra functionality.
  * Version:           2.0.0
  * Author:            Themeisle
