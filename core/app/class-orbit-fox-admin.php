@@ -249,7 +249,6 @@ class Orbit_Fox_Admin {
 		$count_modules = 0;
 		foreach ( $modules as $slug => $module ) {
 			if ( $module->enable_module() ) {
-				if ( $module->auto == false ) {
 					$count_modules++;
 					$checked = '';
 					if ( $module->get_is_active() ) {
@@ -258,7 +257,10 @@ class Orbit_Fox_Admin {
 
 					$notices = $module->get_notices();
 					$showed_notices = $module->get_status( 'showed_notices' );
-					if ( isset( $showed_notices ) && is_array( $showed_notices ) && ! empty( $showed_notices ) ) {
+					if( ! is_array($showed_notices)){
+						$showed_notices = array();
+					}
+					if ( isset( $showed_notices ) && is_array( $showed_notices ) ) {
 						foreach ( $notices as $notice ) {
 							$hash = md5( serialize( $notice ) );
 							$data = array(
@@ -281,7 +283,6 @@ class Orbit_Fox_Admin {
 					);
 					$tiles .= $rdh->get_partial( 'module-tile', $data );
 					$tiles .= '<div class="divider"></div>';
-				}
 
 				$module_options = $module->get_options();
 				$options_fields = '';

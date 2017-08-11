@@ -22,6 +22,8 @@
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       themeisle-companion
  * Domain Path:       /languages
+ * WordPress Available:  yes
+ * Requires License:    no
  */
 
 // If this file is called directly, abort.
