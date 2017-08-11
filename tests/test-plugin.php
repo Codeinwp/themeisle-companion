@@ -66,8 +66,9 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
 	public function test_global_settings() {
         $global_settings = new Orbit_Fox_Global_Settings();
         $instance = $global_settings->instance();
-        $this->assertTrue( is_array( $global_settings->instance()->get_modules() ) );
-        $this->assertTrue( ! empty( $global_settings->instance()->get_modules() ) );
+        $modules = $instance->get_modules();
+        $this->assertTrue( is_array( $modules ) );
+        $this->assertTrue( ! empty($modules ) );
         $global_settings->distroy_instance();
     }
 
