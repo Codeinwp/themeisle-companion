@@ -12,6 +12,7 @@ Enhances ThemeIsle's themes with extra functionality.
 == Description ==
 
 Extend your theme functionality with <a href="https://themeisle.com/plugins/orbit-fox-companion/" rel="nofollow">Orbit Fox Companion</a> with various modules for sharing, reporting, analytics(upcoming), security(upcoming) and caching(upcoming).
+
 This is an easy-to-use WordPress plugin with features that are loaded only if you need them or they are compatible with your current WordPress theme and plugins.
 
 **Why should i use this with Zerif/Hestia themes:**
