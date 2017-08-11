@@ -13,15 +13,17 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Orbit Fox Companion
- * Plugin URI:        https://themeisle.com/plugins/orbit-fox
- * Description:       Enhances ThemeIsle's themes with extra functionalities.
+ * Plugin URI:        https://themeisle.com/plugins/orbit-fox-companion
+ * Description:       Enhances ThemeIsle's themes with extra functionality.
  * Version:           2.0.0
  * Author:            Themeisle
  * Author URI:        https://themeisle.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       themeisle-companion
- * Domain Path:       /core/languages
+ * Domain Path:       /languages
+ * WordPress Available:  yes
+ * Requires License:    no
  */
 
 // If this file is called directly, abort.
@@ -64,7 +66,7 @@ function run_orbit_fox() {
 	define( 'OBX_PATH', dirname( __FILE__ ) );
 	$plugin = new Orbit_Fox();
 	$plugin->run();
-	$vendor_file = OBX_PATH . '/vendor/autoload_52.php';
+	$vendor_file = OBX_PATH . '/vendor/autoload.php';
 	if ( is_readable( $vendor_file ) ) {
 		require_once $vendor_file;
 	}

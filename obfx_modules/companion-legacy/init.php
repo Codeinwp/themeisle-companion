@@ -33,11 +33,15 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$this->auto = true;
 
 		$this->inc_dir = $this->get_dir() . DIRECTORY_SEPARATOR . 'inc' . DIRECTORY_SEPARATOR;
-
-		define( 'THEMEISLE_COMPANION_PATH', $this->inc_dir );
-		define( 'THEMEISLE_COMPANION_URL', plugin_dir_url( $this->inc_dir ) );
-
+		if( ! defined('THEMEISLE_COMPANION_PATH') ) {
+			define( 'THEMEISLE_COMPANION_PATH', $this->inc_dir );
+		}
+		if( ! defined('THEMEISLE_COMPANION_URL') ) {
+			define( 'THEMEISLE_COMPANION_URL', plugin_dir_url( $this->inc_dir ) );
+		}
+		$theme_name = '';
 		if ( $this->is_zerif() ) {
+			$theme_name = 'Zerif';
 			require_once $this->inc_dir . 'zerif-lite' . DIRECTORY_SEPARATOR . 'widgets' . DIRECTORY_SEPARATOR . 'widget-focus.php';
 			require_once $this->inc_dir . 'zerif-lite' . DIRECTORY_SEPARATOR . 'widgets' . DIRECTORY_SEPARATOR . 'widget-testimonial.php';
 			require_once $this->inc_dir . 'zerif-lite' . DIRECTORY_SEPARATOR . 'widgets' . DIRECTORY_SEPARATOR . 'widget-clients.php';
@@ -46,6 +50,7 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		}
 
 		if ( $this->is_rhea() ) {
+			$theme_name = 'Rhea';
 			require_once $this->inc_dir . 'rhea' . DIRECTORY_SEPARATOR . 'widgets' . DIRECTORY_SEPARATOR . 'features.widget.php';
 			require_once $this->inc_dir . 'rhea' . DIRECTORY_SEPARATOR . 'widgets' . DIRECTORY_SEPARATOR . 'about.widget.php';
 			require_once $this->inc_dir . 'rhea' . DIRECTORY_SEPARATOR . 'widgets' . DIRECTORY_SEPARATOR . 'hours.widget.php';
@@ -56,8 +61,19 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		if ( $this->is_hestia() ) {
 			require_once $this->inc_dir . 'hestia' . DIRECTORY_SEPARATOR . 'functions.php';
-		}
+			$theme_name = 'Hestia';
 
+		}
+		if ( ! empty( $theme_name ) ) {
+			$this->notices = array(
+				array(
+					'type'           => 'primary',
+					'title'          => 'How Orbit Fox helps you ?',
+					'message'        => str_replace( '{theme}', $theme_name, 'Orbit Fox  enhances {theme} theme with extra functionalities like widgets and custom sections. Moreover we have a simple sharing and report module and added the ground for more useful ones for security, caching and analytics.  ' ),
+					'display_always' => false
+				)
+			);
+		}
 	}
 
 	private function is_zerif() {
