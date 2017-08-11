@@ -33,9 +33,12 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$this->auto = true;
 
 		$this->inc_dir = $this->get_dir() . DIRECTORY_SEPARATOR . 'inc' . DIRECTORY_SEPARATOR;
-
-		define( 'THEMEISLE_COMPANION_PATH', $this->inc_dir );
-		define( 'THEMEISLE_COMPANION_URL', plugin_dir_url( $this->inc_dir ) );
+		if( ! defined('THEMEISLE_COMPANION_PATH') ) {
+			define( 'THEMEISLE_COMPANION_PATH', $this->inc_dir );
+		}
+		if( ! defined('THEMEISLE_COMPANION_URL') ) {
+			define( 'THEMEISLE_COMPANION_URL', plugin_dir_url( $this->inc_dir ) );
+		}
 		$theme_name = '';
 		if ( $this->is_zerif() ) {
 			$theme_name = 'Zerif';
