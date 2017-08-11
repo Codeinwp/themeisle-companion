@@ -36,7 +36,7 @@ if ( ! isset( $panels ) ) {
 ?>
 <div id="obfx-wrapper" class="obfx-header">
     <div class="obfx-header-content">
-        <img src="<?php echo OBFX_URL; ?>/images/orbit-fox-logo.png" title="Orbit Fox" class="obfx-logo"/>
+        <img src="<?php echo OBFX_URL; ?>/images/orbit-fox.png" title="Orbit Fox" class="obfx-logo"/>
         <h1><?php echo __( 'Orbit Fox Companion', 'themeisle-companion' ); ?></h1><span class="powered"> by <a href="https://themeisle.com" target="_blank"><b>ThemeIsle</b></a></span>
     </div>
 </div>
