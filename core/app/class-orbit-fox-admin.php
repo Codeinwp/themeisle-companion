@@ -251,28 +251,28 @@ class Orbit_Fox_Admin {
 			if ( $module->enable_module() ) {
 					$count_modules++;
 					$checked = '';
-					if ( $module->get_is_active() ) {
-						$checked = 'checked';
-					}
+				if ( $module->get_is_active() ) {
+					$checked = 'checked';
+				}
 
 					$notices = $module->get_notices();
 					$showed_notices = $module->get_status( 'showed_notices' );
-					if( ! is_array($showed_notices)){
-						$showed_notices = array();
-					}
-					if ( isset( $showed_notices ) && is_array( $showed_notices ) ) {
-						foreach ( $notices as $notice ) {
-							$hash = md5( serialize( $notice ) );
-							$data = array(
-								'notice' => $notice,
-							);
-							if ( $notice['display_always'] == false && ! in_array( $hash, $showed_notices ) ) {
-								$toasts .= $rdh->get_partial( 'module-toast', $data );
-							} elseif ( $notice['display_always'] == true ) {
-								$toasts .= $rdh->get_partial( 'module-toast', $data );
-							}
+				if ( ! is_array( $showed_notices ) ) {
+					$showed_notices = array();
+				}
+				if ( isset( $showed_notices ) && is_array( $showed_notices ) ) {
+					foreach ( $notices as $notice ) {
+						$hash = md5( serialize( $notice ) );
+						$data = array(
+							'notice' => $notice,
+						);
+						if ( $notice['display_always'] == false && ! in_array( $hash, $showed_notices ) ) {
+							$toasts .= $rdh->get_partial( 'module-toast', $data );
+						} elseif ( $notice['display_always'] == true ) {
+							$toasts .= $rdh->get_partial( 'module-toast', $data );
 						}
 					}
+				}
 
 					$module->update_showed_notices();
 					$data = array(
