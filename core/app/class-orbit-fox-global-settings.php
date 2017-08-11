@@ -58,11 +58,12 @@ class Orbit_Fox_Global_Settings {
 	public static function instance() {
 		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Orbit_Fox_Global_Settings ) ) {
 			self::$instance = new Orbit_Fox_Global_Settings;
-			self::$instance->modules = apply_filters( 'obfx_modules',
+			self::$instance->modules = apply_filters(
+				'obfx_modules',
 				array(
-				    'stats',
-				    'social-sharing',
-				    'companion-legacy',
+					'stats',
+					'social-sharing',
+					'companion-legacy',
 				)
 			);
 		}// End if().
@@ -79,7 +80,7 @@ class Orbit_Fox_Global_Settings {
 	 * @param   Orbit_Fox_Module_Abstract $module The module object.
 	 */
 	public function register_module_reference( $name, Orbit_Fox_Module_Abstract $module ) {
-	    self::$instance->module_objects[ $name ] = $module;
+		self::$instance->module_objects[ $name ] = $module;
 	}
 
 	/**
@@ -100,6 +101,6 @@ class Orbit_Fox_Global_Settings {
 	 * @access  public
 	 */
 	public static function distroy_instance() {
-	    static::$instance = null;
+		static::$instance = null;
 	}
 }

@@ -1,6 +1,8 @@
 .idea
 node_modules
-/vendor
-composer.lock
+logs
+dist
+artifact
+vendor
 bin
-build
+composer.lock

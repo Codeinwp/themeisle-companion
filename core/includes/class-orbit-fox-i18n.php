@@ -36,7 +36,7 @@ class Orbit_Fox_I18n {
 		load_plugin_textdomain(
 			'themeisle-companion',
 			false,
-			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/core/languages/'
+			OBX_PATH . '/languages/'
 		);
 
 	}

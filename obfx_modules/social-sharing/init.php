@@ -27,8 +27,8 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function __construct() {
 		parent::__construct();
-		$this->name               = __( 'Social Sharing Module', 'obfx' );
-		$this->description        = __( 'Add basic social sharing to your posts and pages.', 'obfx' );
+		$this->name               = __( 'Social Sharing Module', 'themeisle-companion' );
+		$this->description        = __( 'Add basic social sharing to your posts and pages.', 'themeisle-companion' );
 	}
 
 	/**

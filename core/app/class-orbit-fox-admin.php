@@ -106,7 +106,8 @@ class Orbit_Fox_Admin {
 	 * @access  public
 	 */
 	public function menu_pages() {
-		add_management_page( __( 'Orbit Fox', 'obfx' ), __( 'Orbit Fox Companion', 'obfx' ), 'manage_options', 'obfx_companion',
+		add_management_page(
+			__( 'Orbit Fox', 'themeisle-companion' ), __( 'Orbit Fox Companion', 'themeisle-companion' ), 'manage_options', 'obfx_companion',
 			array(
 				$this,
 				'page_modules_render',
@@ -121,7 +122,7 @@ class Orbit_Fox_Admin {
 	 * @access  public
 	 */
 	public function load_modules() {
-	    do_action( 'orbit_fox_modules' );
+		do_action( 'orbit_fox_modules' );
 	}
 
 	/**
@@ -153,7 +154,7 @@ class Orbit_Fox_Admin {
 				$response['message'] = __( 'Options updated, successfully!', 'themeisle-companion' );
 			}
 		}
-	    return $response;
+		return $response;
 	}
 
 	/**
@@ -167,10 +168,10 @@ class Orbit_Fox_Admin {
 	 */
 	public function obfx_update_module_options() {
 		$json = stripslashes( str_replace( '&quot;', '"', $_POST['data'] ) );
-	    $data = json_decode( $json, true );
+		$data = json_decode( $json, true );
 		$response['type'] = 'error';
 		$response['message'] = __( 'Could not process the request!', 'themeisle-companion' );
-	    if ( isset( $data['noance'] ) && wp_verify_nonce( $data['noance'], 'obfx_update_module_options_' . $data['module-slug'] ) ) {
+		if ( isset( $data['noance'] ) && wp_verify_nonce( $data['noance'], 'obfx_update_module_options_' . $data['module-slug'] ) ) {
 			$response = $this->try_module_save( $data );
 		}
 		echo json_encode( $response );
@@ -247,7 +248,7 @@ class Orbit_Fox_Admin {
 		$toasts = '';
 		$count_modules = 0;
 		foreach ( $modules as $slug => $module ) {
-		    if ( $module->enable_module() ) {
+			if ( $module->enable_module() ) {
 				if ( $module->auto == false ) {
 					$count_modules++;
 					$checked = '';
@@ -310,10 +311,10 @@ class Orbit_Fox_Admin {
 			$empty_tpl = $rdh->get_partial(
 				'empty',
 				array(
-						'title' => __( 'No modules found.', 'themeisle-companion' ),
-						'sub_title' => __( 'Please contact support for more help.', 'themeisle-companion' ),
-						'show_btn' => true,
-					)
+					'title' => __( 'No modules found.', 'themeisle-companion' ),
+					'sub_title' => __( 'Please contact support for more help.', 'themeisle-companion' ),
+					'show_btn' => true,
+				)
 			);
 			$panels = $rdh->get_partial(
 				'empty',
@@ -333,8 +334,8 @@ class Orbit_Fox_Admin {
 			'toasts' => $toasts,
 			'panels' => $panels,
 		);
-	    $output = $rdh->get_view( 'modules', $data );
-	    echo $output;
+		$output = $rdh->get_view( 'modules', $data );
+		echo $output;
 	}
 
 }

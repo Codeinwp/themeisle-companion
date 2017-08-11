@@ -152,7 +152,7 @@ class Autoloader {
 			foreach ( $directories as $directory ) {
 				$filename = $directory . DIRECTORY_SEPARATOR . 'init.php';
 				if ( is_readable( $filename ) ) {
-				    require( $filename );
+					require( $filename );
 					return true;
 				}
 			}
@@ -203,7 +203,7 @@ class Autoloader {
 	 * @param   string $file_name The file name to exclude from autoload.
 	 */
 	public static function exclude_file( $file_name ) {
-	    static::$excluded_files[] = $file_name;
+		static::$excluded_files[] = $file_name;
 	}
 
 	/**
@@ -214,6 +214,6 @@ class Autoloader {
 	 * @param   array $namespaces The namespaces to use.
 	 */
 	public static function define_namespaces( $namespaces = array() ) {
-	    static::$namespaces = $namespaces;
+		static::$namespaces = $namespaces;
 	}
 }

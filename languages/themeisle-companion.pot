@@ -1,0 +1,952 @@
+# Copyright (C) 2017 Themeisle
+# This file is distributed under the GPL-2.0+.
+msgid ""
+msgstr ""
+"Project-Id-Version: Orbit Fox Companion 2.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/Codeinwp/orbit-fox/issues\n"
+"POT-Creation-Date: 2017-08-11 08:09:47+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Themeisle Translate Team <friends@themeisle.com>\n"
+"Language-Team: Themeisle Translate <friends@themeisle.com>\n"
+"X-Generator: grunt-wp-i18n 0.5.4\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
+"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: United States\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Bookmarks: \n"
+"X-Textdomain-Support: yes\n"
+
+#: core/app/class-orbit-fox-admin.php:110
+#: dist/core/app/class-orbit-fox-admin.php:110
+msgid "Orbit Fox"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Orbit Fox Companion"
+msgstr ""
+
+#: core/app/class-orbit-fox-admin.php:144
+#: dist/core/app/class-orbit-fox-admin.php:144
+msgid "No module found! No data was updated."
+msgstr ""
+
+#: core/app/class-orbit-fox-admin.php:150
+#: dist/core/app/class-orbit-fox-admin.php:150
+msgid "Something went wrong, data might not be saved!"
+msgstr ""
+
+#: core/app/class-orbit-fox-admin.php:154
+#: dist/core/app/class-orbit-fox-admin.php:154
+msgid "Options updated, successfully!"
+msgstr ""
+
+#: core/app/class-orbit-fox-admin.php:173
+#: core/app/class-orbit-fox-admin.php:224
+#: dist/core/app/class-orbit-fox-admin.php:173
+#: dist/core/app/class-orbit-fox-admin.php:224
+msgid "Could not process the request!"
+msgstr ""
+
+#: core/app/class-orbit-fox-admin.php:197
+#: dist/core/app/class-orbit-fox-admin.php:197
+msgid "No module found!"
+msgstr ""
+
+#: core/app/class-orbit-fox-admin.php:201
+#: dist/core/app/class-orbit-fox-admin.php:201
+msgid "Something went wrong, can not change module status!"
+msgstr ""
+
+#: core/app/class-orbit-fox-admin.php:205
+#: dist/core/app/class-orbit-fox-admin.php:205
+msgid "Module status changed!"
+msgstr ""
+
+#: core/app/class-orbit-fox-admin.php:314
+#: dist/core/app/class-orbit-fox-admin.php:314
+msgid "No modules found."
+msgstr ""
+
+#: core/app/class-orbit-fox-admin.php:315
+#: dist/core/app/class-orbit-fox-admin.php:315
+msgid "Please contact support for more help."
+msgstr ""
+
+#: core/app/class-orbit-fox-admin.php:322
+#: dist/core/app/class-orbit-fox-admin.php:322
+msgid "No active modules."
+msgstr ""
+
+#: core/app/class-orbit-fox-admin.php:323
+#: dist/core/app/class-orbit-fox-admin.php:323
+msgid "Activate a module using the toggles above."
+msgstr ""
+
+#: core/app/helpers/class-orbit-fox-render-helper.php:356
+#: dist/core/app/helpers/class-orbit-fox-render-helper.php:356
+msgid "No option found for provided type"
+msgstr ""
+
+#: core/app/views/modules-page.php:56 dist/core/app/views/modules-page.php:56
+msgid "Available Modules"
+msgstr ""
+
+#: core/app/views/modules-page.php:67 dist/core/app/views/modules-page.php:67
+msgid "Activated Modules Options"
+msgstr ""
+
+#: core/app/views/modules-page.php:69 dist/core/app/views/modules-page.php:69
+msgid "No modules activated."
+msgstr ""
+
+#: core/app/views/partials/empty-tpl.php:14
+#: dist/core/app/views/partials/empty-tpl.php:14
+msgid "There are no modules for the Fox!"
+msgstr ""
+
+#: core/app/views/partials/empty-tpl.php:18
+#: dist/core/app/views/partials/empty-tpl.php:18
+msgid "Contact support"
+msgstr ""
+
+#: core/app/views/partials/module-panel-tpl.php:23
+#: dist/core/app/views/partials/module-panel-tpl.php:23
+msgid "The Module Name"
+msgstr ""
+
+#: core/app/views/partials/module-panel-tpl.php:27
+#: dist/core/app/views/partials/module-panel-tpl.php:27
+msgid "The Module Description ..."
+msgstr ""
+
+#: core/app/views/partials/module-panel-tpl.php:31
+#: dist/core/app/views/partials/module-panel-tpl.php:31
+msgid "No options provided."
+msgstr ""
+
+#: core/app/views/partials/module-tile-tpl.php:14
+#: dist/core/app/views/partials/module-tile-tpl.php:14
+msgid "Module Name"
+msgstr ""
+
+#: core/app/views/partials/module-tile-tpl.php:18
+#: dist/core/app/views/partials/module-tile-tpl.php:18
+msgid "Module Description ..."
+msgstr ""
+
+#: core/app/views/partials/module-tile-tpl.php:42
+#: dist/core/app/views/partials/module-tile-tpl.php:42
+msgid "Activate"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/functions.php:67
+#: obfx_modules/companion-legacy/inc/hestia/functions.php:67
+msgid "Front Page"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/functions.php:69
+#: obfx_modules/companion-legacy/inc/hestia/functions.php:69
+msgid "Blog"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:18
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-features-section.php:26
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:18
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-features-section.php:26
+msgid "Why our product is the best"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:23
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:32
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:40
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:48
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:64
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:194
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-features-section.php:27
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-features-section.php:139
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-features-section.php:146
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-features-section.php:153
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:24
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:22
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:23
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:32
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:40
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:48
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:64
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:194
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-features-section.php:27
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-features-section.php:139
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-features-section.php:146
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-features-section.php:153
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:24
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:22
+msgid ""
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod "
+"tempor incididunt ut labore et dolore magna aliqua."
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:31
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-features-section.php:138
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:31
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-features-section.php:138
+msgid "Responsive"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:39
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-features-section.php:145
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:39
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-features-section.php:145
+msgid "Quality"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:47
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-features-section.php:152
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:47
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-features-section.php:152
+msgid "Support"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:60
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:23
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:60
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:23
+msgid "Meet our team"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:71
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:172
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:71
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:172
+msgid "Desmond Purpleson"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:72
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:173
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:72
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:173
+msgid "CEO"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:73
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:174
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:73
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:174
+msgid ""
+"Locavore pinterest chambray affogato art party, forage coloring book "
+"typewriter. Bitters cold selfies, retro celiac sartorial mustache."
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:100
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:201
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:100
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:201
+msgid "Parsley Pepperspray"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:101
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:202
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:101
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:202
+msgid "Marketing Specialist"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:102
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:203
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:102
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:203
+msgid ""
+"Craft beer salvia celiac mlkshk. Pinterest celiac tumblr, portland salvia "
+"skateboard cliche thundercats. Tattooed chia austin hell."
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:129
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:230
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:129
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:230
+msgid "Desmond Eagle"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:130
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:231
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:130
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:231
+msgid "Graphic Designer"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:131
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:232
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:131
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:232
+msgid ""
+"Pok pok direct trade godard street art, poutine fam typewriter food truck "
+"narwhal kombucha wolf cardigan butcher whatever pickled you."
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:158
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:259
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:158
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:259
+msgid "Ruby Von Rails"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:159
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:260
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:159
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:260
+msgid "Lead Developer"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:160
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:261
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:160
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:261
+msgid ""
+"Small batch vexillologist 90's blue bottle stumptown bespoke. Pok pok tilde "
+"fixie chartreuse, VHS gluten-free selfies wolf hot."
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:190
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:21
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:190
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:21
+msgid "What clients say"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:201
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:125
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:201
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:125
+msgid "Inverness McKenzie"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:202
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:126
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:202
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:126
+msgid "Business Owner"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:203
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:127
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:203
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:127
+msgid ""
+"\"We have no regrets! After using your product my business skyrocketed! I "
+"made back the purchase price in just 48 hours! I couldn't have asked for "
+"more than this.\""
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:208
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:132
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:208
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:132
+msgid "Hanson Deck"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:209
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:133
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:209
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:133
+msgid "Independent Artist"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:210
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:134
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:210
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:134
+msgid ""
+"\"Your company is truly upstanding and is behind its product 100 percent. "
+"Hestia is worth much more than I paid. I like Hestia more each day because "
+"it makes easier.\""
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:215
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:139
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:215
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:139
+msgid "Natalya Undergrowth"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:216
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:140
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:216
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:140
+msgid "Freelancer"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:217
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:141
+#: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:217
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:141
+msgid ""
+"\"Thank you for making it painless, pleasant and most of all hassle free! I "
+"am so pleased with this product. Dude, your stuff is great! I will refer "
+"everyone I know.\""
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/features/feature-features-section.php:26
+#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-features-section.php:26
+msgid "Features"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/features/feature-features-section.php:38
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/features/feature-team-section.php:38
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/features/feature-testimonials-section.php:38
+#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-features-section.php:38
+#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-team-section.php:38
+#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-testimonials-section.php:38
+msgid "Disable section"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/features/feature-features-section.php:49
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/features/feature-team-section.php:49
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/features/feature-testimonials-section.php:49
+#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-features-section.php:49
+#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-team-section.php:49
+#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-testimonials-section.php:49
+msgid "Section Title"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/features/feature-features-section.php:60
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/features/feature-team-section.php:60
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/features/feature-testimonials-section.php:60
+#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-features-section.php:60
+#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-team-section.php:60
+#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-testimonials-section.php:60
+msgid "Section Subtitle"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/features/feature-features-section.php:72
+#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-features-section.php:72
+msgid "Features Content"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/features/feature-features-section.php:75
+#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-features-section.php:75
+msgid "Add new Feature"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/features/feature-features-section.php:76
+#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-features-section.php:76
+msgid "Feature"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/features/feature-team-section.php:26
+#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-team-section.php:26
+msgid "Team"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/features/feature-team-section.php:72
+#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-team-section.php:72
+msgid "Team Content"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/features/feature-team-section.php:75
+#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-team-section.php:75
+msgid "Add new Team Member"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/features/feature-team-section.php:76
+#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-team-section.php:76
+msgid "Team Member"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/features/feature-testimonials-section.php:26
+#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-testimonials-section.php:26
+msgid "Testimonials"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/features/feature-testimonials-section.php:72
+#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-testimonials-section.php:72
+msgid "Testimonials Content"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/features/feature-testimonials-section.php:75
+#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-testimonials-section.php:75
+msgid "Add new Testimonial"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/hestia/inc/features/feature-testimonials-section.php:76
+#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-testimonials-section.php:76
+msgid "Testimonial"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/about.widget.php:7
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/contact.widget.php:7
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:7
+#: obfx_modules/companion-legacy/inc/rhea/widgets/about.widget.php:7
+#: obfx_modules/companion-legacy/inc/rhea/widgets/contact.widget.php:7
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:7
+msgid "This widget is designed for footer area"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/about.widget.php:10
+#: obfx_modules/companion-legacy/inc/rhea/widgets/about.widget.php:10
+msgid "[Rhea] About Company"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/about.widget.php:94
+#: obfx_modules/companion-legacy/inc/rhea/widgets/about.widget.php:94
+msgid "Use website logo"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/about.widget.php:97
+#: obfx_modules/companion-legacy/inc/rhea/widgets/about.widget.php:97
+msgid "Logo"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/about.widget.php:98
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-clients.php:148
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-focus.php:216
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:372
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-testimonial.php:226
+#: obfx_modules/companion-legacy/inc/rhea/widgets/about.widget.php:98
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-clients.php:148
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-focus.php:216
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:372
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-testimonial.php:226
+msgid "Uploaded image"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/about.widget.php:100
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-clients.php:159
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-focus.php:227
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:383
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-testimonial.php:237
+#: obfx_modules/companion-legacy/inc/rhea/widgets/about.widget.php:100
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-clients.php:159
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-focus.php:227
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:383
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-testimonial.php:237
+msgid "Upload Image"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/about.widget.php:103
+#: obfx_modules/companion-legacy/inc/rhea/widgets/about.widget.php:103
+msgid "Company Description"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/contact.widget.php:10
+#: obfx_modules/companion-legacy/inc/rhea/widgets/contact.widget.php:10
+msgid "[Rhea] Contact"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/contact.widget.php:65
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/features.widget.php:80
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:202
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/icon-box.widget.php:87
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/progress-bar.widget.php:62
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-focus.php:167
+#: obfx_modules/companion-legacy/inc/rhea/widgets/contact.widget.php:65
+#: obfx_modules/companion-legacy/inc/rhea/widgets/features.widget.php:80
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:202
+#: obfx_modules/companion-legacy/inc/rhea/widgets/icon-box.widget.php:87
+#: obfx_modules/companion-legacy/inc/rhea/widgets/progress-bar.widget.php:62
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-focus.php:167
+msgid "Title"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/contact.widget.php:69
+#: obfx_modules/companion-legacy/inc/rhea/widgets/contact.widget.php:69
+msgid "Company Adress"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/contact.widget.php:73
+#: obfx_modules/companion-legacy/inc/rhea/widgets/contact.widget.php:73
+msgid "Google Maps URL"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/contact.widget.php:77
+#: obfx_modules/companion-legacy/inc/rhea/widgets/contact.widget.php:77
+msgid "Email"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/contact.widget.php:81
+#: obfx_modules/companion-legacy/inc/rhea/widgets/contact.widget.php:81
+msgid "Phone"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/features.widget.php:7
+#: obfx_modules/companion-legacy/inc/rhea/widgets/features.widget.php:7
+msgid "This widget is designed for Our focus section widgets"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/features.widget.php:9
+#: obfx_modules/companion-legacy/inc/rhea/widgets/features.widget.php:9
+msgid "[Rhea] Our features widget"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/features.widget.php:65
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/icon-box.widget.php:72
+#: obfx_modules/companion-legacy/inc/rhea/widgets/features.widget.php:65
+#: obfx_modules/companion-legacy/inc/rhea/widgets/icon-box.widget.php:72
+msgid "Icon"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/features.widget.php:69
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/icon-box.widget.php:76
+#: obfx_modules/companion-legacy/inc/rhea/widgets/features.widget.php:69
+#: obfx_modules/companion-legacy/inc/rhea/widgets/icon-box.widget.php:76
+msgid "No icon selected :( ..."
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/features.widget.php:73
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/icon-box.widget.php:80
+#: obfx_modules/companion-legacy/inc/rhea/widgets/features.widget.php:73
+#: obfx_modules/companion-legacy/inc/rhea/widgets/icon-box.widget.php:80
+msgid "Select Icon"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/features.widget.php:74
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/icon-box.widget.php:81
+#: obfx_modules/companion-legacy/inc/rhea/widgets/features.widget.php:74
+#: obfx_modules/companion-legacy/inc/rhea/widgets/icon-box.widget.php:81
+msgid "Change Icon"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/features.widget.php:75
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/icon-box.widget.php:82
+#: obfx_modules/companion-legacy/inc/rhea/widgets/features.widget.php:75
+#: obfx_modules/companion-legacy/inc/rhea/widgets/icon-box.widget.php:82
+msgid "Remove"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/features.widget.php:84
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-focus.php:176
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-testimonial.php:195
+#: obfx_modules/companion-legacy/inc/rhea/widgets/features.widget.php:84
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-focus.php:176
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-testimonial.php:195
+msgid "Text"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/features.widget.php:88
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-clients.php:115
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-focus.php:183
+#: obfx_modules/companion-legacy/inc/rhea/widgets/features.widget.php:88
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-clients.php:115
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-focus.php:183
+msgid "Link"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:9
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:9
+msgid "[Rhea] Company Program"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:29
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:206
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:29
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:206
+msgid "Monday"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:47
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:212
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:47
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:212
+msgid "Tuesday"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:65
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:218
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:65
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:218
+msgid "Wednesday"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:83
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:224
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:83
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:224
+msgid "Thursday"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:101
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:230
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:101
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:230
+msgid "Friday"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:119
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:236
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:119
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:236
+msgid "Saturday"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:137
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:242
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:137
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:242
+msgid "Sunday"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:208
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:214
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:220
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:226
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:232
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:238
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:244
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:208
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:214
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:220
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:226
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:232
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:238
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:244
+msgid "From"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:209
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:215
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:221
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:227
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:233
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:239
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:245
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:209
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:215
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:221
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:227
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:233
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:239
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:245
+msgid "To"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/icon-box.widget.php:6
+#: obfx_modules/companion-legacy/inc/rhea/widgets/icon-box.widget.php:6
+msgid "This widget is designed for Right Section sidebar"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/icon-box.widget.php:8
+#: obfx_modules/companion-legacy/inc/rhea/widgets/icon-box.widget.php:8
+msgid "[Rhea] Icon Box"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/icon-box.widget.php:91
+#: obfx_modules/companion-legacy/inc/rhea/widgets/icon-box.widget.php:91
+msgid "Subtitle"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/icon-box.widget.php:96
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:285
+#: obfx_modules/companion-legacy/inc/rhea/widgets/icon-box.widget.php:96
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:285
+msgid "Description"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/progress-bar.widget.php:6
+#: obfx_modules/companion-legacy/inc/rhea/widgets/progress-bar.widget.php:6
+msgid "This widget is designed for Progress Bar Section"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/progress-bar.widget.php:8
+#: obfx_modules/companion-legacy/inc/rhea/widgets/progress-bar.widget.php:8
+msgid "[Rhea] - Progress Bar"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/progress-bar.widget.php:66
+#: obfx_modules/companion-legacy/inc/rhea/widgets/progress-bar.widget.php:66
+msgid "Info"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/rhea/widgets/progress-bar.widget.php:70
+#: obfx_modules/companion-legacy/inc/rhea/widgets/progress-bar.widget.php:70
+msgid "Percentage"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-clients.php:24
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-clients.php:24
+msgid "Zerif - Clients widget"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-clients.php:61
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-clients.php:68
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-clients.php:61
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-clients.php:68
+msgid "Client"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-clients.php:124
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-focus.php:192
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:348
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-testimonial.php:202
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-clients.php:124
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-focus.php:192
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:348
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-testimonial.php:202
+msgid "Image"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-focus.php:24
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-focus.php:24
+msgid "Zerif - Our focus widget"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-focus.php:65
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-focus.php:95
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-focus.php:65
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-focus.php:95
+msgid "Go to"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:24
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:24
+msgid "Zerif - Team member widget"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:124
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:124
+msgid "Facebook account of"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:142
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:142
+msgid "Twitter account of"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:160
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:160
+msgid "Behance account of"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:178
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:178
+msgid "Dribble account of"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:196
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:196
+msgid "Linkedin account of"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:269
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:269
+msgid "Name"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:278
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:278
+msgid "Position"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:295
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:295
+msgid "Facebook link"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:305
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:305
+msgid "Twitter link"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:314
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:314
+msgid "Behance link"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:324
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:324
+msgid "Dribble link"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:333
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:333
+msgid "Linkedin link"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:343
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:343
+msgid "Open links in new window?"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-testimonial.php:24
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-testimonial.php:24
+msgid "Zerif - Testimonial widget"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-testimonial.php:168
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-testimonial.php:168
+msgid "Author"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-testimonial.php:177
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-testimonial.php:177
+msgid "Author link"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-testimonial.php:186
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-testimonial.php:186
+msgid "Author details"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/init.php:30
+#: obfx_modules/companion-legacy/init.php:30
+msgid "Companion Legacy"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/init.php:31
+#: obfx_modules/companion-legacy/init.php:31
+msgid "Module containing legacy functionality from ThemeIsle Companion."
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/init.php:135
+#: obfx_modules/companion-legacy/init.php:135
+msgid "Search icon"
+msgstr ""
+
+#: dist/obfx_modules/companion-legacy/init.php:137
+#: obfx_modules/companion-legacy/init.php:137
+msgid "All Icons"
+msgstr ""
+
+#: dist/obfx_modules/social-sharing/init.php:30
+#: obfx_modules/social-sharing/init.php:30
+msgid "Social Sharing Module"
+msgstr ""
+
+#: dist/obfx_modules/social-sharing/init.php:31
+#: obfx_modules/social-sharing/init.php:31
+msgid "Add basic social sharing to your posts and pages."
+msgstr ""
+
+#: dist/obfx_modules/social-sharing/views/hestia-social-sharing-tpl.php:37
+#: obfx_modules/social-sharing/views/hestia-social-sharing-tpl.php:37
+msgid "Share on "
+msgstr ""
+
+#: dist/obfx_modules/stats/init.php:27 obfx_modules/stats/init.php:27
+msgid "Reports Module"
+msgstr ""
+
+#: dist/obfx_modules/stats/init.php:28 obfx_modules/stats/init.php:28
+msgid "A simple reports module."
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://themeisle.com/plugins/orbit-fox"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Enhances ThemeIsle's themes with extra functionalities."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Themeisle"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://themeisle.com"
+msgstr ""

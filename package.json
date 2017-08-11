@@ -1,6 +1,6 @@
 {
-  "name": "orbit-fox",
-  "version": "1.0.0",
+  "name": "themeisle-companion",
+  "version": "2.0.0",
   "description": "Orbit Fox",
   "repository": {
     "type": "git",
@@ -9,9 +9,10 @@
   "keywords": [
     "wordpress-plugin"
   ],
-  "textdomain": "obfx",
+  "textdomain": "themeisle-companion",
   "author": "ThemeIsle <friends@themeisle.com>",
   "license": "GPL-2.0+",
+  "category": "plugins",
   "bugs": {
     "url": "https://github.com/Codeinwp/orbit-fox/issues"
   },

@@ -2,103 +2,121 @@
 	display: none;
 	height: 520px;
 }
+
 #fontawesome-popup:after {
 	display: block;
-	content: "";
 	clear: both;
+	content: "";
 }
+
 .ui-widget-overlay {
 	position: fixed;
 	z-index: 999998;
-	background: rgba( 0,0,0,.4 );
+	top: 0;
 	width: 100%;
 	height: 100%;
-	top: 0;
+	background: rgba( 0,0,0,0.4 );
 }
+
 .rhea-fontawesome-dialog {
 	z-index: 999999;
-	-webkit-box-shadow: 0 5px 15px rgba(0,0,0,.7);
-	box-shadow: 0 5px 15px rgba(0,0,0,.7);
 	background: #fcfcfc;
+	-webkit-box-shadow: 0 5px 15px rgba(0,0,0,0.7);
+	box-shadow: 0 5px 15px rgba(0,0,0,0.7);
 }
+
 .rhea-fontawesome-dialog .ui-dialog-titlebar {
-	padding: 0 15px;
-	font-size: 22px;
-	line-height: 50px;
 	margin: 0;
-	color: #23282d;
+	padding: 0 15px;
 	border-bottom: 1px solid #ddd;
+	color: #23282d;
+	font-size: 22px;
 	font-weight: 600;
+	line-height: 50px;
 }
+
 .rhea-fontawesome-dialog .ui-dialog-titlebar .ui-button {
 	float: right;
 }
+
 #fontawesome-popup .left-side {
 	float: left;
-	width: 20%;
+	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
+	width: 20%;
 	padding: 15px;
 }
+
 #fontawesome-popup .right-side {
 	float: left;
-	width: 80%;
-	box-sizing: border-box;
-	padding: 15px;
-	background: #fff;
-	border-left: 1px solid #ccc;
-	height: 507px;
 	overflow-y: scroll;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 80%;
+	height: 507px;
+	padding: 15px;
+	border-left: 1px solid #ccc;
+	background: #fff;
 }
+
 .ui-dialog.rhea-fontawesome-dialog .ui-dialog-titlebar-close {
-	background: transparent;
-	box-shadow: none;
-	border: 0 none;
 	margin: 14px 0;
 	padding-right: 0;
+	border: 0 none;
+	background: transparent;
+	-webkit-box-shadow: none;
+	box-shadow: none;
 	cursor: pointer;
 }
+
 .ui-dialog.rhea-fontawesome-dialog .ui-button-icon-only .ui-icon:after {
-	content: "\f158";
-	font-family: "dashicons";
-	font-size: 20px;
-	color: #23282d;
 	display: block;
-	left: 0;
 	top: 0;
+	left: 0;
 	width: 20px;
 	height: 20px;
+	color: #23282d;
+	font-family: "dashicons";
+	font-size: 20px;
 	text-indent: 1px;
+	content: "\f158";
 }
+
 .ui-dialog.rhea-fontawesome-dialog .ui-button-text {
 	display: none;
 }
+
 .filter-icons li {
 	cursor: pointer;
 }
+
 .filter-icons li.active {
 	font-weight: bold;
 }
+
 a.rhea-fontawesome-icon {
-	width: 5%;
 	display: inline-block;
-	font-size: 20px;
-	text-align: center;
+	width: 5%;
 	margin-bottom: 10px;
 	padding: 5px 0;
+	font-size: 20px;
+	text-align: center;
 }
+
 a.rhea-fontawesome-icon:hover {
-	background-color: #ccc;
 	color: #fff;
+	background-color: #ccc;
 }
 
 /* Style Input */
 .icon-holder p {
+	margin: 0;
 	padding: 20px 0;
-	text-align: center;
 	border: 1px dashed #ccc;
-	color: rgba( 0,0,0,.6 );
-	margin:0;
+	color: rgba( 0,0,0,0.6 );
+	text-align: center;
 }
+
 .empty-icon .change-icon-button,
 .empty-icon .remove-icon-button,
 .icon-holder p,
@@ -106,19 +124,24 @@ a.rhea-fontawesome-icon:hover {
 .wp-core-ui .actions .button.add-icon-button {
 	display: none;
 }
+
 .empty-icon .icon-holder p {
 	display: block;
 }
+
 .wp-core-ui .empty-icon .actions .button.add-icon-button {
 	display: inline-block;
 }
+
 .fontawesome-icon-container .actions {
 	text-align: right;
 }
+
 .icon-holder {
 	margin: 20px 0;
 	text-align: center;
 }
+
 .icon-holder i {
 	font-size: 50px;
 }

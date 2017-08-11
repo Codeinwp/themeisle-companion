@@ -119,8 +119,8 @@ class Orbit_Fox_Render_Helper {
 	 * @return string
 	 */
 	private function get_title( $element_id, $title ) {
-	    $display_title = '';
-	    if ( $title ) {
+		$display_title = '';
+		if ( $title ) {
 			$display_title = '<label class="form-label" for="' . $element_id . '">' . $title . '</label>';
 		}
 		return $display_title;
@@ -157,7 +157,7 @@ class Orbit_Fox_Render_Helper {
 
 		$before_wrap = '';
 		if ( isset( $option['before_wrap'] ) ) {
-		    $before_wrap = wp_kses_post( $option['before_wrap'] ); // @codeCoverageIgnore
+			$before_wrap = wp_kses_post( $option['before_wrap'] ); // @codeCoverageIgnore
 		}
 
 		$after_wrap = '';
@@ -189,7 +189,7 @@ class Orbit_Fox_Render_Helper {
 	 * @return string
 	 */
 	private function generate_check_type( $type = 'radio', $field_value, $checked, $label, $option = array() ) {
-	    return '
+		return '
 	    <label class="form-' . $type . ' ' . $option['class'] . '">
             <input type="' . $type . '" name="' . $option['name'] . '" value="' . $field_value . '" ' . $checked . ' />
             <i class="form-icon"></i> ' . $label . '
@@ -333,7 +333,7 @@ class Orbit_Fox_Render_Helper {
 	 */
 	public function render_option( $option = array() ) {
 		$option = $this->sanitize_option( $option );
-	    switch ( $option['type'] ) {
+		switch ( $option['type'] ) {
 			case 'text':
 				return $this->field_text( $option );
 				break;

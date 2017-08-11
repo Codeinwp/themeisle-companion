@@ -97,7 +97,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function __construct() {
-	    $this->slug = str_replace( '_', '-',strtolower( str_replace( '_OBFX_Module', '', get_class( $this ) ) ) );
+		$this->slug = str_replace( '_', '-',strtolower( str_replace( '_OBFX_Module', '', get_class( $this ) ) ) );
 	}
 
 	/**
@@ -123,10 +123,10 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @return string
 	 */
 	protected function get_active_theme_dir( $is_child = false ) {
-	    if ( $is_child ) {
-	        return basename( get_stylesheet_directory() );
+		if ( $is_child ) {
+			return basename( get_stylesheet_directory() );
 		}
-	    return basename( get_template_directory() );
+		return basename( get_template_directory() );
 	}
 
 	/**
@@ -139,7 +139,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @param Orbit_Fox_Loader $loader The loader class used to register action hooks and filters.
 	 */
 	public function register_loader( Orbit_Fox_Loader $loader ) {
-	    $this->loader = $loader;
+		$this->loader = $loader;
 	}
 
 	/**
@@ -163,7 +163,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @return array
 	 */
 	public function get_notices() {
-	    return $this->notices;
+		return $this->notices;
 	}
 
 	/**
@@ -173,14 +173,14 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function update_showed_notices() {
-	    $showed_notices = $this->get_status( 'showed_notices' );
-	    if ( $showed_notices == false ) {
-	        $showed_notices = array();
-	    }
-	    foreach ( $this->notices as $notice ) {
-	        if ( $notice['display_always'] == false ) {
-	            $hash = md5( serialize( $notice ) );
-	            if ( ! in_array( $hash, $showed_notices ) ) {
+		$showed_notices = $this->get_status( 'showed_notices' );
+		if ( $showed_notices == false ) {
+			$showed_notices = array();
+		}
+		foreach ( $this->notices as $notice ) {
+			if ( $notice['display_always'] == false ) {
+				$hash = md5( serialize( $notice ) );
+				if ( ! in_array( $hash, $showed_notices ) ) {
 					$showed_notices[] = $hash;
 				}
 			}
@@ -255,10 +255,10 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @return bool
 	 */
 	final public function get_is_active() {
-	    if ( $this->auto == true ) {
-	        return true;
+		if ( $this->auto == true ) {
+			return true;
 		}
-	    return $this->model->get_is_module_active( $this->slug );
+		return $this->model->get_is_module_active( $this->slug );
 	}
 
 	/**
@@ -303,7 +303,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @return bool
 	 */
 	final public function get_option( $key ) {
-	    $default_options = $this->get_options_defaults();
+		$default_options = $this->get_options_defaults();
 		$db_option = $this->model->get_module_option( $this->slug, $key );
 		$value = $db_option;
 		if ( $db_option === false ) {
@@ -339,7 +339,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @return mixed
 	 */
 	final public function set_options( $options ) {
-	    return $this->model->set_module_options( $this->slug, $options );
+		return $this->model->set_module_options( $this->slug, $options );
 	}
 
 	/**
@@ -353,10 +353,10 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @return array
 	 */
 	final public function get_options_defaults() {
-	    $options = $this->options();
-	    $defaults = array();
-	    foreach ( $options as $opt ) {
-	        if ( ! isset( $opt['default'] ) ) {
+		$options = $this->options();
+		$defaults = array();
+		foreach ( $options as $opt ) {
+			if ( ! isset( $opt['default'] ) ) {
 				$opt['default'] = '';
 			}
 			$defaults[ $opt['name'] ] = $opt['default'];
@@ -374,7 +374,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @return array
 	 */
 	final public function get_options() {
-	    $model_options = $this->options();
+		$model_options = $this->options();
 		$options = array();
 		$index = 0;
 		foreach ( $model_options as $opt ) {
@@ -452,7 +452,7 @@ abstract class Orbit_Fox_Module_Abstract {
 		$module_dir = $this->slug;
 		if ( ! empty( $enqueue ) ) {
 			if ( isset( $enqueue['js'] ) && ! empty( $enqueue['js'] ) ) {
-			    $order = 0;
+				$order = 0;
 				foreach ( $enqueue['js'] as $file_name => $dependencies ) {
 					if ( $dependencies == false ) {
 						$dependencies = array();

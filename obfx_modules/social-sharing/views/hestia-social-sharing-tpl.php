@@ -12,15 +12,18 @@
 
 if ( ! empty( $social_links_array ) ) { ?>
 	<div class="obfx-hestia-social-wrapper">
-		<ul class="entry-social <?php
+		<ul class="entry-social 
+		<?php
 		if ( ! empty( $desktop_class ) ) {
 			echo esc_attr( $desktop_class );
 		}
 		if ( ! empty( $mobile_class ) ) {
 			echo esc_attr( $mobile_class );
 		}
-		?>">
-			<?php foreach ( $social_links_array as $network_data ) {
+		?>
+		">
+			<?php
+			foreach ( $social_links_array as $network_data ) {
 				$class = '';
 				if ( $network_data['show_desktop'] == '0' ) {
 					$class .= 'obfx-hide-desktop-socials ';
@@ -31,9 +34,9 @@ if ( ! empty( $social_links_array ) ) { ?>
 				?>
 					<li class="<?php echo esc_attr( $class ); ?>">
 						<a rel="tooltip"
-						   data-original-title="<?php echo esc_attr( __( 'Share on ', 'obfx' ) . $network_data['nicename'] ); ?>"
-						   class = "btn btn-just-icon btn-round btn-<?php echo esc_attr( $network_data['icon'] ) ?>"
-							<?php echo ( isset( $network_data['target'] ) && $network_data['target'] != '0' ) ? 'target="_blank"' : ''?>
+						   data-original-title="<?php echo esc_attr( __( 'Share on ', 'themeisle-companion' ) . $network_data['nicename'] ); ?>"
+						   class = "btn btn-just-icon btn-round btn-<?php echo esc_attr( $network_data['icon'] ); ?>"
+							<?php echo ( isset( $network_data['target'] ) && $network_data['target'] != '0' ) ? 'target="_blank"' : ''; ?>
 						   href="<?php echo esc_url( $network_data['link'] ); ?>">
 							<i class="socicon-<?php echo esc_attr( $network_data['icon'] ); ?>"></i>
 						</a>
@@ -41,4 +44,5 @@ if ( ! empty( $social_links_array ) ) { ?>
 			<?php } ?>
 		</ul>
 	</div>
-<?php }
+<?php
+}

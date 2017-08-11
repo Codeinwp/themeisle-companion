@@ -24,8 +24,8 @@ class Stats_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function __construct() {
 	    parent::__construct();
-		$this->name = __( 'Reports Module', 'obfx' );
-		$this->description = __( 'A simple reports module.', 'obfx' );
+		$this->name = __( 'Reports Module', 'themeisle-companion' );
+		$this->description = __( 'A simple module for your WordPress data.', 'themeisle-companion' );
 
 
 	}
