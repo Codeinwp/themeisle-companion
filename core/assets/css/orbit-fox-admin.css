@@ -500,7 +500,7 @@ html {
 
 #obfx-wrapper .powered {
 	display: inline-block;
-	margin-bottom: 22px;
+	margin-bottom: 10px;
 	margin-left: 10px;
 	font-style: italic;
 	vertical-align: bottom;
@@ -1588,6 +1588,19 @@ html {
 
 #obfx-wrapper .col-1 {
 	width: 8.33333333%;
+}
+
+.obfx-header {
+	border-top: 4px solid #5764c6;
+}
+
+.obfx-logo {
+	margin-right: 10px;
+}
+
+.obfx-header h1 {
+	letter-spacing: -0.025em;
+	margin-bottom: 0 !important;
 }
 
 @media screen and (max-width: 1280px) {
