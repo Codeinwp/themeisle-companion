@@ -7,11 +7,11 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Enhances ThemeIsle's themes with extra functionality.
+Enhance your website with extra functionality through modules like: social media share buttons & icons, reporting, analytics(upcoming), security(upcoming) and caching(upcoming).
 
 == Description ==
 
-Extend your theme functionality with <a href="https://themeisle.com/plugins/orbit-fox-companion/" rel="nofollow">Orbit Fox Companion</a> with various modules for sharing, reporting, analytics(upcoming), security(upcoming) and caching(upcoming).
+Extend your theme functionality with <a href="https://themeisle.com/plugins/orbit-fox-companion/" rel="nofollow">Orbit Fox Companion</a> with various modules like Social Media Share Buttons & Icons, reporting, analytics(upcoming), security(upcoming) and caching(upcoming).
 
 This is an easy-to-use WordPress plugin with features that are loaded only if you need them or they are compatible with your current WordPress theme and plugins.
 
@@ -19,14 +19,14 @@ This is an easy-to-use WordPress plugin with features that are loaded only if yo
 
  - More widgets & sections
 
-By using it along with our themes you gain access to a lot of useful widgets like **Testimonials**, **Our Focus**, **About Us** and more other.
+ - By using it along with our themes you gain access to a lot of useful widgets like **Testimonials**, **Our Focus**, **About Us** and more other.
 
 
 **Why use our sharing module:**
 
 - It's easy to use
 
-Enable sharing networks right from your admin dashboard and choose for what kind of mobile device you would like to use.
+- Enable sharing networks right from your admin dashboard and choose for what kind of mobile device you would like to use.
 
 - It's fully customizable
 
@@ -49,11 +49,11 @@ We've also built some fantastic <a href="http://themeisle.com/wordpress-themes/f
 
 == Frequently Asked Questions ==
 
-= How I can get support for this contact form plugin ? =
+= How I can get support for this plugin ? =
 
 You can learn more about Orbit Fox Companion and ask for help by <a href="https://themeisle.com/contact/"  >visiting ThemeIsle website</a>.
 
-= What can i do with this plugin =
+= What can I do with this plugin =
 
 This plugin extends the features of your themes by adding numerous widgets if you are using Zerif and Hestia themes and some modules for sharing and reporting for general use.
 
