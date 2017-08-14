@@ -45,4 +45,4 @@ if ( ! empty( $social_links_array ) ) { ?>
 		</ul>
 	</div>
 <?php
-}
+}// End if().
