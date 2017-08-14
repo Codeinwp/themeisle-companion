@@ -91,7 +91,7 @@ function hestia_features_content( $hestia_features_content, $is_callback = false
 			$link = ! empty( $features_item->link ) ? apply_filters( 'hestia_translate_single_string', $features_item->link, 'Features section' ) : '';
 
 			$color = '';
-			if ( is_customize_preview() && ! empty( $features_item->color ) ) {
+			if ( ! empty( $features_item->color ) ) {
 				$color = $features_item->color;
 			}
 			?>

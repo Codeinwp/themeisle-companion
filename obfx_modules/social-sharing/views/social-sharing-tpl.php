@@ -48,4 +48,4 @@ if ( ! empty( $social_links_array ) ) { ?>
 		<?php } ?>
 	</ul>
 <?php
-}
+}// End if().

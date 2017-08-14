@@ -1,8 +1,9 @@
 /**
  * Version File for Grunt
  *
- * @package feedzy-rss-feeds-pro
+ * @package themeisle-companion
  */
+
 /* jshint node:true */
 // https://github.com/kswedberg/grunt-version
 module.exports = {
