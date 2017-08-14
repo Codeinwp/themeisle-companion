@@ -77,6 +77,12 @@ Activating the Orbit Fox Companion plugin is just like any other plugin. If you'
 3. Screenshot 3. How reports module is looking
 
 == Changelog ==
+= 2.0.1 - 2017-08-14  = 
+
+* Fixed issues with grey icons in Hestia.
+* Fixed Recommended Actions flags in customizer.
+
+
 
 = 1.0.3 =
 
