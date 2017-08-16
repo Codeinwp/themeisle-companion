@@ -1,4 +1,8 @@
 
+ ### v2.0.2 - 2017-08-16 
+ **Changes:** 
+ * Fix accordion not opening to display save buttons for modules
+ 
  ### v2.0.1 - 2017-08-14 
  **Changes:** 
  * Fixed issues with grey icons in Hestia.
