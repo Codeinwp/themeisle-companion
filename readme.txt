@@ -76,6 +76,11 @@ Activating the Orbit Fox Companion plugin is just like any other plugin. If you'
 3. Screenshot 3. How reports module is looking
 
 == Changelog ==
+= 2.0.3 - 2017-08-24  = 
+
+* Improved compatibility with the new Hestia version.
+
+
 = 2.0.2 - 2017-08-16  = 
 
 * Fix accordion not opening to display save buttons for modules
