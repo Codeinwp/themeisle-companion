@@ -178,24 +178,3 @@ function hestia_ribbon_text_callback() {
 function hestia_ribbon_button_text_callback() {
 	return get_theme_mod( 'hestia_ribbon_button_text' );
 }
-
-/**
- * Callback function for ribbon background selective refresh.
- *
- * @since 1.1.47
- */
-function hestia_ribbon_background() {
-	$default                  = ( current_user_can( 'edit_theme_options' ) ? get_template_directory_uri() . '/assets/img/contact.jpg' : false );
-	$hestia_ribbon_background = get_theme_mod( 'hestia_ribbon_background', $default );
-	?>
-	<div class="hestia-ribbon-style">
-		<style>
-			<?php
-			if ( ! empty( $hestia_ribbon_background ) ) {
-				echo '.hestia-ribbon{ background-image: url(\'' . esc_url( $hestia_ribbon_background ) . '\'); }';
-			}
-			?>
-		</style>
-	</div>
-<?php
-}

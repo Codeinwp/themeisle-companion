@@ -57,6 +57,27 @@ if ( ! function_exists( 'hestia_ribbon' ) ) :
 	}
 endif;
 
+/**
+ * Callback function for ribbon background selective refresh.
+ *
+ * @since 1.1.47
+ */
+function hestia_ribbon_background() {
+	$default                  = ( current_user_can( 'edit_theme_options' ) ? get_template_directory_uri() . '/assets/img/contact.jpg' : false );
+	$hestia_ribbon_background = get_theme_mod( 'hestia_ribbon_background', $default );
+	?>
+    <div class="hestia-ribbon-style">
+        <style>
+            <?php
+			if ( ! empty( $hestia_ribbon_background ) ) {
+				echo '.hestia-ribbon{ background-image: url(\'' . esc_url( $hestia_ribbon_background ) . '\'); }';
+			}
+			?>
+        </style>
+    </div>
+	<?php
+}
+
 if ( function_exists( 'hestia_ribbon' ) ) {
 	$section_priority = apply_filters( 'hestia_section_priority', 35, 'hestia_ribbon' );
 	add_action( 'hestia_sections', 'hestia_ribbon', absint( $section_priority ) );
