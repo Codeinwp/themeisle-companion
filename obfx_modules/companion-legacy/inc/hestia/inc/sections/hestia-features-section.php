@@ -45,25 +45,25 @@ if ( ! function_exists( 'hestia_features' ) ) :
 
 		hestia_before_features_section_trigger();
 		?>
-		<section class="features hestia-features" id="features" data-sorder="hestia_features">
+        <section class="features hestia-features" id="features" data-sorder="hestia_features">
 			<?php hestia_before_features_section_content_trigger(); ?>
-			<div class="<?php echo esc_attr( $class_to_add ); ?>">
+            <div class="<?php echo esc_attr( $class_to_add ); ?>">
 				<?php hestia_top_features_section_content_trigger(); ?>
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
 						<?php if ( ! empty( $hestia_features_title ) || is_customize_preview() ) : ?>
-							<h2 class="hestia-title"><?php echo esc_html( $hestia_features_title ); ?></h2>
+                            <h2 class="hestia-title"><?php echo esc_html( $hestia_features_title ); ?></h2>
 						<?php endif; ?>
 						<?php if ( ! empty( $hestia_features_subtitle ) || is_customize_preview() ) : ?>
-							<h5 class="description"><?php echo esc_html( $hestia_features_subtitle ); ?></h5>
+                            <h5 class="description"><?php echo esc_html( $hestia_features_subtitle ); ?></h5>
 						<?php endif; ?>
-					</div>
-				</div>
+                    </div>
+                </div>
 				<?php hestia_features_content( $hestia_features_content ); ?>
 				<?php hestia_bottom_features_section_content_trigger(); ?>
-			</div>
+            </div>
 			<?php hestia_after_features_section_content_trigger(); ?>
-		</section>
+        </section>
 		<?php
 		hestia_after_features_section_trigger();
 	}
@@ -80,8 +80,8 @@ endif;
  */
 function hestia_features_content( $hestia_features_content, $is_callback = false ) {
 	if ( ! $is_callback ) {
-	?>
-		<div class="hestia-features-content">
+		?>
+        <div class="hestia-features-content">
 		<?php
 	}
 	if ( ! empty( $hestia_features_content ) ) :
@@ -99,45 +99,45 @@ function hestia_features_content( $hestia_features_content, $is_callback = false
 				$color = ! empty( $features_item->color ) ? $features_item->color : '';
 				$choice = ! empty( $features_item->choice ) ? $features_item->choice : 'customizer_repeater_icon';
 				?>
-				<div class="col-md-4 feature-box">
-					<div class="info hestia-info">
+                <div class="col-md-4 feature-box">
+                    <div class="info hestia-info">
 						<?php if ( ! empty( $link ) ) : ?>
-						<a href="<?php echo esc_url( $link ); ?>">
+                        <a href="<?php echo esc_url( $link ); ?>">
 							<?php
 							endif;
 
-switch ( $choice ) {
-	case 'customizer_repeater_image':
-		if ( ! empty( $image ) ) {
-			?>
-			<div class="card card-plain">
-				<img src="<?php echo esc_url( $image ); ?>"/>
-										</div>
+							switch ( $choice ) {
+								case 'customizer_repeater_image':
+									if ( ! empty( $image ) ) {
+										?>
+                                        <div class="card card-plain">
+                                            <img src="<?php echo esc_url( $image ); ?>"/>
+                                        </div>
 										<?php
-		}
-		break;
-	case 'customizer_repeater_icon':
-		if ( ! empty( $icon ) ) {
-			?>
-			<div class="icon" <?php echo ( ! empty( $color ) ? 'style="color:' . $color . '"' : '' ); ?>>
-				<i class="fa <?php echo esc_html( $icon ); ?>"></i>
-										</div>
+									}
+									break;
+								case 'customizer_repeater_icon':
+									if ( ! empty( $icon ) ) {
+										?>
+                                        <div class="icon" <?php echo ( ! empty( $color ) ? 'style="color:' . $color . '"' : '' ); ?>>
+                                            <i class="fa <?php echo esc_html( $icon ); ?>"></i>
+                                        </div>
 										<?php
-		}
-		break;
-}
+									}
+									break;
+							}
 							?>
 							<?php if ( ! empty( $title ) ) : ?>
-								<h4 class="info-title"><?php echo esc_html( $title ); ?></h4>
+                                <h4 class="info-title"><?php echo esc_html( $title ); ?></h4>
 							<?php endif; ?>
 							<?php if ( ! empty( $link ) ) : ?>
-						</a>
+                        </a>
 					<?php endif; ?>
-			<?php if ( ! empty( $text ) ) : ?>
-							<p><?php echo wp_kses_post( html_entity_decode( $text ) ); ?></p>
+						<?php if ( ! empty( $text ) ) : ?>
+                            <p><?php echo wp_kses_post( html_entity_decode( $text ) ); ?></p>
 						<?php endif; ?>
-					</div>
-				</div>
+                    </div>
+                </div>
 				<?php
 				if ( $i % 3 == 0 ) {
 					echo '</div><!-- /.row -->';
@@ -148,10 +148,10 @@ switch ( $choice ) {
 			endforeach;
 			echo '</div>';
 		}// End if().
-		endif;
+	endif;
 	if ( ! $is_callback ) {
-	?>
-		</div>
+		?>
+        </div>
 		<?php
 	}
 }

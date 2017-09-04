@@ -20,7 +20,7 @@ if ( ! function_exists( 'hestia_testimonials_customize_register' ) ) :
 			'hestia_testimonials', array(
 				'title'    => esc_html__( 'Testimonials', 'themeisle-companion' ),
 				'panel'    => 'hestia_frontpage_sections',
-				'priority' => apply_filters( 'hestia_section_priority', 40, 'hestia_testimonials' ),
+				'priority' => apply_filters( 'hestia_section_priority', 45, 'hestia_testimonials' ),
 			)
 		);
 

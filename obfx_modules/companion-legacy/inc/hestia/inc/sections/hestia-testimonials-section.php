@@ -44,25 +44,25 @@ if ( ! function_exists( 'hestia_testimonials' ) ) :
 
 		hestia_before_testimonials_section_trigger();
 		?>
-		<section class="testimonials hestia-testimonials" id="testimonials" data-sorder="hestia_testimonials">
+        <section class="testimonials hestia-testimonials" id="testimonials" data-sorder="hestia_testimonials">
 			<?php hestia_before_testimonials_section_content_trigger(); ?>
-			<div class="<?php echo esc_attr( $class_to_add ); ?>">
+            <div class="<?php echo esc_attr( $class_to_add ); ?>">
 				<?php hestia_top_testimonials_section_content_trigger(); ?>
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2 text-center">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2 text-center">
 						<?php if ( ! empty( $hestia_testimonials_title ) || is_customize_preview() ) : ?>
-							<h2 class="hestia-title"><?php echo esc_html( $hestia_testimonials_title ); ?></h2>
+                            <h2 class="hestia-title"><?php echo esc_html( $hestia_testimonials_title ); ?></h2>
 						<?php endif; ?>
 						<?php if ( ! empty( $hestia_testimonials_subtitle ) || is_customize_preview() ) : ?>
-							<h5 class="description"><?php echo esc_html( $hestia_testimonials_subtitle ); ?></h5>
+                            <h5 class="description"><?php echo esc_html( $hestia_testimonials_subtitle ); ?></h5>
 						<?php endif; ?>
-					</div>
-				</div>
+                    </div>
+                </div>
 				<?php hestia_testimonials_content( $hestia_testimonials_content ); ?>
 				<?php hestia_bottom_testimonials_section_content_trigger(); ?>
-			</div>
+            </div>
 			<?php hestia_after_testimonials_section_content_trigger(); ?>
-		</section>
+        </section>
 		<?php
 		hestia_after_testimonials_section_trigger();
 	}
@@ -80,8 +80,8 @@ endif;
 function hestia_testimonials_content( $hestia_testimonials_content, $is_callback = false ) {
 
 	if ( ! $is_callback ) {
-	?>
-		<div class="hestia-testimonials-content">
+		?>
+        <div class="hestia-testimonials-content">
 		<?php
 	}
 	if ( ! empty( $hestia_testimonials_content ) ) :
@@ -96,37 +96,37 @@ function hestia_testimonials_content( $hestia_testimonials_content, $is_callback
 				$text = ! empty( $testimonial_item->text ) ? apply_filters( 'hestia_translate_single_string', $testimonial_item->text, 'Testimonials section' ) : '';
 				$link = ! empty( $testimonial_item->link ) ? apply_filters( 'hestia_translate_single_string', $testimonial_item->link, 'Testimonials section' ) : '';
 				?>
-				<div class="col-md-4">
-					<div class="card card-testimonial card-plain">
+                <div class="col-md-4">
+                    <div class="card card-testimonial card-plain">
 						<?php if ( ! empty( $image ) ) : ?>
-							<div class="card-avatar">
+                            <div class="card-avatar">
 								<?php if ( ! empty( $link ) ) : ?>
-								<a href="<?php echo esc_url( $link ); ?>">
+                                <a href="<?php echo esc_url( $link ); ?>">
 									<?php endif; ?>
-									<img class="img"
-										 src="<?php echo esc_url( $image ); ?>"
+                                    <img class="img"
+                                         src="<?php echo esc_url( $image ); ?>"
 										<?php
 										if ( ! empty( $title ) ) :
 											?>
-											alt="<?php echo esc_attr( $title ); ?>" title="<?php echo esc_attr( $title ); ?>" <?php endif; ?> />
+                                            alt="<?php echo esc_attr( $title ); ?>" title="<?php echo esc_attr( $title ); ?>" <?php endif; ?> />
 									<?php if ( ! empty( $link ) ) : ?>
-								</a>
+                                </a>
 							<?php endif; ?>
-							</div>
+                            </div>
 						<?php endif; ?>
-						<div class="content">
+                        <div class="content">
 							<?php if ( ! empty( $title ) ) : ?>
-								<h4 class="card-title"><?php echo esc_html( $title ); ?></h4>
+                                <h4 class="card-title"><?php echo esc_html( $title ); ?></h4>
 							<?php endif; ?>
 							<?php if ( ! empty( $subtitle ) ) : ?>
-								<h6 class="category text-muted"><?php echo esc_html( $subtitle ); ?></h6>
+                                <h6 class="category text-muted"><?php echo esc_html( $subtitle ); ?></h6>
 							<?php endif; ?>
 							<?php if ( ! empty( $text ) ) : ?>
-								<p class="card-description"><?php echo wp_kses_post( html_entity_decode( $text ) ); ?></p>
+                                <p class="card-description"><?php echo wp_kses_post( html_entity_decode( $text ) ); ?></p>
 							<?php endif; ?>
-						</div>
-					</div>
-				</div>
+                        </div>
+                    </div>
+                </div>
 				<?php
 				if ( $i % 3 == 0 ) {
 					echo '</div><!-- /.row -->';
@@ -138,8 +138,8 @@ function hestia_testimonials_content( $hestia_testimonials_content, $is_callback
 		}// End if().
 	endif;
 	if ( ! $is_callback ) {
-	?>
-		</div>
+		?>
+        </div>
 		<?php
 	}
 }
