@@ -7,31 +7,30 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Enhances ThemeIsle's themes with extra functionality.
+Enhance your website with extra functionality through modules like: social media share buttons & icons, reporting, analytics(upcoming), security(upcoming) and caching(upcoming).
 
 == Description ==
 
-Extend your theme functionality with <a href="https://themeisle.com/plugins/orbit-fox-companion/" rel="nofollow">Orbit Fox Companion</a> with various modules for sharing, reporting, analytics(upcoming), security(upcoming) and caching(upcoming).
+Extend your theme functionality with <a href="https://themeisle.com/plugins/orbit-fox-companion/" rel="nofollow">Orbit Fox Companion</a> with various modules like Social Media Share Buttons & Icons, reporting, analytics(upcoming), security(upcoming) and caching(upcoming).
 
-This is an easy-to-use WordPress plugin with features that are loaded only if you need them or they are compatible with your current WordPress theme and plugins.
+Orbit Fox is a user-centred plugin with an easy-to-use admin panel. One of the most important features is that modules will only be loaded if they meet two conditions. If they are needed and if they are compatible with your existing themes and plugins. This will cut down on the unnecessary bloating of your website. 
 
-**Why should i use this with Zerif/Hestia themes:**
+**Why should I use this with Zerif/Hestia themes:** 
 
- - More widgets & sections
-
-By using it along with our themes you gain access to a lot of useful widgets like **Testimonials**, **Our Focus**, **About Us** and more other.
+ - By using it along with our themes you gain access to a lot of useful widgets like **Testimonials**, **Our Focus**, **About Us** and more other.
 
 
 **Why use our sharing module:**
 
 - It's easy to use
 
-Enable sharing networks right from your admin dashboard and choose for what kind of mobile device you would like to use.
+- Enable sharing networks right from your admin dashboard and choose on what kind of devices you would like to show them.
 
-- It's fully customizable
+- It’s fully customizable: You can easily optimise button location for according to the device your visitors will use. 
 
-Choose from more than 20+ social networks to share with full control for every device that your visitors use. You can have a set of sharing options for mobile and a different one for desktop, all of them switched on/off from your WordPress instance.
+Choose from more than 20+ social networks to share with full control for every device that your visitors use.
 
+The sharing options can be positioned for the maximum effect according to whether the visitor is using a mobile device or desktop. Best of all they can be switched on/off from your WordPress instance.
 
 
 
@@ -49,11 +48,11 @@ We've also built some fantastic <a href="http://themeisle.com/wordpress-themes/f
 
 == Frequently Asked Questions ==
 
-= How I can get support for this contact form plugin ? =
+= How I can get support for this plugin ? =
 
 You can learn more about Orbit Fox Companion and ask for help by <a href="https://themeisle.com/contact/"  >visiting ThemeIsle website</a>.
 
-= What can i do with this plugin =
+= What can I do with this plugin =
 
 This plugin extends the features of your themes by adding numerous widgets if you are using Zerif and Hestia themes and some modules for sharing and reporting for general use.
 
@@ -77,6 +76,22 @@ Activating the Orbit Fox Companion plugin is just like any other plugin. If you'
 3. Screenshot 3. How reports module is looking
 
 == Changelog ==
+= 2.0.3 - 2017-08-24  = 
+
+* Improved compatibility with the new Hestia version.
+
+
+= 2.0.2 - 2017-08-16  = 
+
+* Fix accordion not opening to display save buttons for modules
+
+
+= 2.0.1 - 2017-08-14  = 
+
+* Fixed issues with grey icons in Hestia.
+* Fixed Recommended Actions flags in customizer.
+
+
 
 = 1.0.3 =
 

@@ -7,8 +7,8 @@
  * @author	ThemeIsle
  * Extends Spectre.css Library
  */
-/*
-    Version: 2.0.2
+/* 
+  Version: 2.0.3  
  */
 
 /* Document
@@ -1600,8 +1600,8 @@ html {
 }
 
 .obfx-header h1 {
-	letter-spacing: -0.025em;
 	margin-bottom: 0 !important;
+	letter-spacing: -0.025em;
 }
 
 @media screen and (max-width: 1280px) {
