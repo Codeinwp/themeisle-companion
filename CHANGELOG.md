@@ -1,4 +1,9 @@
 
+ ### v2.0.4 - 2017-09-11 
+ **Changes:** 
+ * Adds PHP minimum requirement. 
+* Fix for admin styles loading screen.
+ 
  ### v2.0.3 - 2017-08-24 
  **Changes:** 
  * Improved compatibility with the new Hestia version.

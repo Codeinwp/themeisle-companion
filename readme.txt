@@ -77,6 +77,12 @@ Activating the Orbit Fox Companion plugin is just like any other plugin. If you'
 3. Screenshot 3. How reports module is looking
 
 == Changelog ==
+= 2.0.4 - 2017-09-11  = 
+
+* Adds PHP minimum requirement. 
+* Fix for admin styles loading screen.
+
+
 = 2.0.3 - 2017-08-24  = 
 
 * Improved compatibility with the new Hestia version.
