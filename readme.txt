@@ -3,6 +3,7 @@ Contributors: themeisle, codeinwp, rodicaelena, baicusandrei
 Tags: widget, admin, widgets, sharing, reporting, sections, themes
 Requires at least: 3.0
 Tested up to: 4.8
+Requires PHP: 5.3
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
