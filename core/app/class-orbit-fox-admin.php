@@ -71,9 +71,11 @@ class Orbit_Fox_Admin {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . '../assets/css/orbit-fox-admin.css', array(), $this->version, 'all' );
-		do_action( 'obfx_admin_enqueue_styles' );
+		$screen = get_current_screen();
+		if ( in_array( $screen->id, array( 'tools_page_obfx_companion' ) ) ) {
+		    wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . '../assets/css/orbit-fox-admin.css', array(), $this->version, 'all' );
+			do_action( 'obfx_admin_enqueue_styles' );
+		}
 	}
 
 	/**
@@ -95,8 +97,11 @@ class Orbit_Fox_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . '../assets/js/orbit-fox-admin.js', array( 'jquery' ), $this->version, false );
-		do_action( 'obfx_admin_enqueue_scripts' );
+		$screen = get_current_screen();
+		if ( in_array( $screen->id, array( 'tools_page_obfx_companion' ) ) ) {
+			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . '../assets/js/orbit-fox-admin.js', array( 'jquery' ), $this->version, false );
+			do_action( 'obfx_admin_enqueue_scripts' );
+		}
 	}
 
 	/**

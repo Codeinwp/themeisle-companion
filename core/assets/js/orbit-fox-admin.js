@@ -95,7 +95,7 @@ var obfx_admin = function( $ ) {
 			} else {
 				$( this ).addClass( 'active' );
 				$( this ).closest( '.panel-header' ).siblings( '.obfx-module-form' ).addClass( 'active' );
-				$( this ).closest( '.panel.options' ).css( 'height', ( $( this ).closest( '.panel-header' ).siblings( '.obfx-module-form' ).height()*1 + 80 ) + 'px' );
+				$( this ).closest( '.panel.options' ).css( 'height', ( $( this ).closest( '.panel-header' ).siblings( '.obfx-module-form' ).height() * 1 + 80 ) + 'px' );
 			}
 		} );
 
