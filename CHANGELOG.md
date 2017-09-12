@@ -1,4 +1,8 @@
 
+ ### v2.0.5 - 2017-09-12 
+ **Changes:** 
+ * Added new Ribbon and Clients Bar sections in Hestia
+ 
  ### v2.0.4 - 2017-09-11 
  **Changes:** 
  * Adds PHP minimum requirement. 
