@@ -10,51 +10,50 @@
  * Include sections from Companion plugin
  */
 function themeisle_hestia_require() {
-
 	if ( function_exists( 'hestia_setup_theme' ) ) {
+		$sections_paths = apply_filters( 'themeisle_companion_hestia_sections',array(
+			'hestia/inc/features/import-zerif-content.php',
+			'hestia/inc/sections/hestia-features-section.php',
+			'hestia/inc/sections/hestia-testimonials-section.php',
+			'hestia/inc/sections/hestia-team-section.php',
+			'hestia/inc/sections/hestia-ribbon-section.php',
+			'hestia/inc/sections/hestia-clients-bar-section.php',
+		) );
+		themeisle_hestia_require_files( $sections_paths );
+	}
+}
 
-		// Require Zerif > Hestia content importer if it exists.
-		$zerif_importer_path      = THEMEISLE_COMPANION_PATH . 'hestia/inc/features/import-zerif-content.php';
-		if ( file_exists( $zerif_importer_path ) ) {
-			require_once( $zerif_importer_path );
-		}
 
-		// Require Hestia Features section and customizer settings.
-		$features_path            = THEMEISLE_COMPANION_PATH . 'hestia/inc/features/feature-features-section.php';
-		$customizer_features_path = THEMEISLE_COMPANION_PATH . 'hestia/inc/sections/hestia-features-section.php';
-		if ( file_exists( $features_path ) ) {
-			require_once( $features_path );
-		}
-		if ( file_exists( $customizer_features_path ) ) {
-			require_once( $customizer_features_path );
-		}
+/**
+ * Include customizer controls in customizer
+ */
+function themeisle_hestia_load_controls() {
+	if ( function_exists( 'hestia_setup_theme' ) ) {
+		$features_paths = apply_filters( 'themeisle_companion_hestia_controls',array(
+			'hestia/inc/features/feature-features-section.php',
+			'hestia/inc/features/feature-testimonials-section.php',
+			'hestia/inc/features/feature-team-section.php',
+			'hestia/inc/features/feature-ribbon-section.php',
+			'hestia/inc/features/feature-clients-bar-section.php',
+			'hestia/inc/customizer.php',
+		) );
+		themeisle_hestia_require_files( $features_paths );
+	}
+}
 
-		// Require Hestia Testimonials section and customizer settings.
-		$testimonials_path            = THEMEISLE_COMPANION_PATH . 'hestia/inc/features/feature-testimonials-section.php';
-		$customizer_testimonials_path = THEMEISLE_COMPANION_PATH . 'hestia/inc/sections/hestia-testimonials-section.php';
-		if ( file_exists( $testimonials_path ) ) {
-			require_once( $testimonials_path );
+/**
+ * This function iterates thorough an array of file paths, checks if the file exist and if it does, it require the
+ * file in plugin.
+ *
+ * @param array $array Array of files to require.
+ */
+function themeisle_hestia_require_files( $array ) {
+	foreach ( $array as $path ) {
+		$file_path = trailingslashit( THEMEISLE_COMPANION_PATH ) . $path;
+		if ( file_exists( $file_path ) ) {
+			require_once( $file_path );
 		}
-		if ( file_exists( $customizer_testimonials_path ) ) {
-			require_once( $customizer_testimonials_path );
-		}
-
-		// Require Hestia Team section and customizer settings.
-		$team_path            = THEMEISLE_COMPANION_PATH . 'hestia/inc/features/feature-team-section.php';
-		$customizer_team_path = THEMEISLE_COMPANION_PATH . 'hestia/inc/sections/hestia-team-section.php';
-		if ( file_exists( $team_path ) ) {
-			require_once( $team_path );
-		}
-		if ( file_exists( $customizer_team_path ) ) {
-			require_once( $customizer_team_path );
-		}
-
-		// Require Hestia Customizer extension.
-		$customizer_path = THEMEISLE_COMPANION_PATH . 'hestia/inc/customizer.php';
-		if ( file_exists( $customizer_path ) ) {
-			require_once( $customizer_path );
-		}
-	}// End if().
+	}
 }
 
 /**

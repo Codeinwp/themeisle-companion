@@ -172,6 +172,16 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	}
 
 	/**
+	 * Wrapper method for themeisle_hestia_load_controls function call.
+	 *
+	 * @since   2.0.4
+	 * @access  public
+	 */
+	public function hestia_require_customizer(){
+		themeisle_hestia_load_controls();
+	}
+
+	/**
 	 * Wrapper method for themeisle_hestia_set_frontpage function call.
 	 *
 	 * @since   1.0.0
@@ -211,6 +221,7 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		if ( $this->is_hestia() ) {
 		    define( 'THEMEISLE_COMPANION_VERSION', '2.0.0' );
 			$this->loader->add_action( 'after_setup_theme', $this, 'hestia_require' );
+			$this->loader->add_action( 'customize_register', $this, 'hestia_require_customizer', 0 );
 			$this->loader->add_action( 'after_switch_theme', $this, 'hestia_set_front_page' );
 		}
 	}
