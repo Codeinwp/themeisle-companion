@@ -117,7 +117,7 @@ function hestia_register_testimonials_partials( $wp_customize ) {
 
 	$wp_customize->selective_refresh->add_partial(
 		'hestia_testimonials_title', array(
-			'selector' => '#testimonials h2.title',
+			'selector' => '#testimonials h2.hestia-title',
 			'settings' => 'hestia_testimonials_title',
 			'render_callback' => 'hestia_testimonials_title_callback',
 		)

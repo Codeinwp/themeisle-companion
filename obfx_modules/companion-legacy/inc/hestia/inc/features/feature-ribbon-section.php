@@ -16,6 +16,7 @@ if ( ! function_exists( 'hestia_ribbon_customize_register' ) ) :
 	 * @since 1.1.47
 	 */
 	function hestia_ribbon_customize_register( $wp_customize ) {
+
 		$selective_refresh = isset( $wp_customize->selective_refresh ) ? true : false;
 		$wp_customize->add_section(
 			'hestia_ribbon', array(
