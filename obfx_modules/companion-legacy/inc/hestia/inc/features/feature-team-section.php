@@ -118,7 +118,7 @@ function hestia_register_team_partials( $wp_customize ) {
 
 	$wp_customize->selective_refresh->add_partial(
 		'hestia_team_title', array(
-			'selector' => '#team h2.title',
+			'selector' => '#team h2.hestia-title',
 			'settings' => 'hestia_team_title',
 			'render_callback' => 'hestia_team_title_callback',
 		)
