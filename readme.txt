@@ -77,6 +77,11 @@ Activating the Orbit Fox Companion plugin is just like any other plugin. If you'
 3. Screenshot 3. How reports module is looking
 
 == Changelog ==
+= 2.0.6 - 2017-09-19  = 
+
+* Added selective refresh for titles options in the frontpage sections in Hestia
+
+
 = 2.0.5 - 2017-09-12  = 
 
 * Added new Ribbon and Clients Bar sections in Hestia
