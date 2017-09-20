@@ -13,9 +13,9 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 	 *
 	 * @return string
 	 */
-	public function get_id() {
-		return 'obfx-widget-pricing-table';
-	}
+//	public function get_id() {
+//		return 'obfx-widget-pricing-table';
+//	}
 
 	/**
 	 * Widget title.
@@ -187,8 +187,8 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 				'label'       => __( 'Period', 'themeisle-companion' ),
 				'placeholder' => __( '/month', 'themeisle-companion' ),
 				'default'     => __( '/month', 'themeisle-companion' ),
-			    'separator'   => 'before'
-            ]
+				'separator'   => 'before'
+			]
 		);
 		$this->end_controls_section(); // end section-price-tag
 
@@ -307,8 +307,8 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 					'button_icon!' => '',
 				],
 				'selectors' => [
-					'{{WRAPPER}} .eae-pt-action-button .eae-pt-align-icon-right' => 'margin-left: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .eae-pt-action-button .eae-pt-align-icon-left'  => 'margin-right: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .obfx-pricing-table-button-wrapper .obfx-button-icon-align-right' => 'margin-left: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .obfx-pricing-table-button-wrapper .obfx-button-icon-align-left'  => 'margin-right: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -648,7 +648,7 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#fff',
 				'selectors' => [
-					'{{WRAPPER}} .eae-pt-action-button' => 'color: {{VALUE}};',
+						'{{WRAPPER}} .eae-pt-action-button' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -777,15 +777,17 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 		$this->end_controls_section();
 	}
 
+	/**
+	 * Render function to output the control on the front end.
+	 */
 	protected function render() {
 		$settings = $this->get_settings();
 
 		$this->add_render_attribute( 'title', 'class', 'obfx-pricing-table-title' );
 		$this->add_render_attribute( 'subtitle', 'class', 'obfx-pricing-table-subtitle' );
 		$this->add_render_attribute( 'button', 'class', 'obfx-pricing-table-button' );
-		$this->add_render_attribute( 'icon-align', 'class', 'obfx-pricing-table-align' . $settings['icon_align'] );
-
-//		var_dump($settings);
+		$this->add_render_attribute( 'button_icon', 'class', $settings['button_icon'] );
+		$this->add_render_attribute( 'button_icon_align', 'class', 'obfx-button-icon-align-' . $settings['button_icon_align'] );
 
 		if ( ! empty( $settings['link']['url'] ) ) {
 			$this->add_render_attribute( 'button', 'href', $settings['link']['url'] );
@@ -803,23 +805,23 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 			$output .= '<div class="obfx-title-wrapper">';
 			if ( ! empty( $settings['title'] ) ) {
 				// Start of title tag.
-				$output .= '<' . $settings['title_tag'] . $this->get_render_attribute_string( 'title' ) . '>';
+				$output .= '<' . esc_html( $settings['title_tag'] ) . ' ' . $this->get_render_attribute_string( 'title' ) . '>';
 
 				// Title string.
-				$output .= $settings['title'];
+				$output .= esc_html( $settings['title'] );
 
 				// End of title tag.
-				$output .= '</' . $settings['title_tag'] . '>';
+				$output .= '</' . esc_html( $settings['title_tag'] ) . '>';
 			}
 			if ( ! empty( $settings['subtitle'] ) ) {
 				// Start of subtitle tag.
-				$output .= '<' . $settings['subtitle_tag'] . $this->get_render_attribute_string( 'subtitle' ) . '>';
+				$output .= '<' . esc_html( $settings['subtitle_tag'] ) . ' ' . $this->get_render_attribute_string( 'subtitle' ) . '>';
 
 				// Subtitle string.
-				$output .= $settings['subtitle'];
+				$output .= esc_html( $settings['subtitle'] );
 
 				// End of subtitle tag.
-				$output .= '</' . $settings['subtitle_tag'] . '>';
+				$output .= '</' . esc_html( $settings['subtitle_tag'] ) . '>';
 
 			}
 
@@ -830,91 +832,54 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 			$output .= '<div class="obfx-price-wrapper">';
 
 			if ( ! empty( $settings['price_tag_currency'] ) ) {
-				$output .= '<span class="obfx-price-currency">' . $settings['price_tag_currency'] . '</span>';
+				$output .= '<span class="obfx-price-currency">' . esc_html( $settings['price_tag_currency'] ) . '</span>';
 			}
 
 			if ( ! empty( $settings['price_tag_text'] ) ) {
-				$output .= '<span class="obfx-price">' . $settings['price_tag_text'] . '</span>';
+				$output .= '<span class="obfx-price">' . esc_html( $settings['price_tag_text'] ). '</span>';
 			}
 
 			if ( ! empty( $settings['price_tag_period'] ) ) {
-				$output .= '<span class="obfx-pricing-period">' . $settings['price_tag_period'] . '</span>';
+				$output .= '<span class="obfx-pricing-period">' . esc_html( $settings['price_tag_period'] ) . '</span>';
 			}
 
 			$output .= '</div> <!-- /.obfx-price-wrapper -->';
 		}
-            </div>
 
-		if ( count( $settings['feature-list'] ) ) {
-			?>
-            <div class="plan-features-wrapper">
-                <ul class="eae-pt-feature-list">
-					<?php
-					foreach ( $settings['feature-list'] as $feature ) {
-						?>
-                        <li class="<?php echo ( $feature['available'] == 'yes' ) ? '' : 'strike-feature'; ?>"><?php echo $feature['text']; ?></li>
-						<?php
-					}
-					?>
-                </ul>
-            </div>
-			<?php
+
+		if ( count( $settings['feature_list'] ) ) {
+			$output .= '<ul class="obfx-feature-list">';
+			foreach ( $settings['feature_list'] as $feature ) {
+				$output .= '<li>';
+				if( ! empty( $feature['accent'] ) ) {
+					$output .=  '<span class="obfx-pricing-table-accented">' . esc_html( $feature['accent'] ) . '</span>';
+					$output .= ' ';
+				}
+				if( ! empty( $feature['text'] ) ) {
+					$output .= '<span class="obfx-pricing-table-feature">' . esc_html( $feature['text'] ) . '</span>';
+				}
+				$output .= '</li>';
+			}
+			$output .= '</ul>';
 		}
 
-		if ( ! empty( $settings['action_text'] ) ) {
-			?>
-            <div class="eae-pt-button-wrapper">
-                <a <?php echo $this->get_render_attribute_string( 'button' ); ?>>
-                    <span <?php echo $this->get_render_attribute_string( 'content-wrapper' ); ?>>
-                        <?php if ( ! empty( $settings['icon'] ) ) : ?>
-                            <span <?php echo $this->get_render_attribute_string( 'icon-align' ); ?>>
-                                <i class="<?php echo esc_attr( $settings['icon'] ); ?>"></i>
-                            </span>
-                        <?php endif; ?>
-                        <span class="elementor-button-text"><?php echo $settings['action_text']; ?></span>
-                    </span>
-                </a>
-            </div>
-			<?php
+		if ( ! empty( $settings['button_text'] ) ) {
+			$output .= '<div class="obfx-pricing-table-button-wrapper">';
+
+			$output .= '<a ' . $this->get_render_attribute_string( 'button' ) . '>';
+			var_dump($settings['button_icon']);
+
+			if ( ! empty( $settings['button_icon'] ) ) {
+				$output .= '<span ' . $this->get_render_attribute_string( 'button_icon_align' ) . ' >';
+				$output .= '<i ' . $this->get_render_attribute_string( 'button_icon' ) . '></i>';
+			}
+
+			$output .= '<span class="elementor-button-text">' . esc_html( $settings['button_text'] ) . '</span>';
+			$output .= '</a>';
+			$output .= '</div> <!-- /.obfx-pricing-table-button-wrapper -->';
 		}
-		?>
-        </div> <!-- close .obfx-pricing-table-wrapper -->
-		<?php
+		$output .= '</div> <!-- close .obfx-pricing-table-wrapper -->';
+
+		echo $output;
 	}
-
-	protected function content_template() {
-		?>
-
-        <#
-
-                box_html = '';
-
-                print( separator_html );
-                #>
-
-            <#
-                    var html = '
-            <
-            div class="elementor-alert elementor-alert-' + settings.alert_type + '" role="alert">';
-            if ( '' !== settings.title ) {
-            html += '<span class="elementor-alert-title">' + settings.alert_title + '</span>';
-
-            if ( '' !== settings.description ) {
-            html += '<span class="elementor-alert-description">' + settings.alert_description + '</span>';
-            }
-
-            if ( 'show' === settings.show_dismiss ) {
-            html += '
-            <button type="button" class="elementor-alert-dismiss">X</button>
-            ';
-            }
-
-            html += '</div>';
-
-            print( html );
-            }
-            #>
-		<?php
-	}
-
 }
