@@ -58,6 +58,24 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 	 * Register Elementor Controls
 	 */
 	protected function _register_controls() {
+		$this->plan_title_section();
+
+		$this->plan_price_tag_section();
+
+		$this->features_section();
+
+		$this->button_section();
+
+		$this->header_style_section();
+
+		$this->price_tag_style_section();
+
+		$this->features_style_section();
+
+		$this->button_style_section();
+	}
+
+	private function plan_title_section() {
 		$this->start_controls_section(
 			'section_title',
 			[
@@ -122,7 +140,9 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 			]
 		);
 		$this->end_controls_section(); //end section-title
+	}
 
+	private function plan_price_tag_section() {
 		$this->start_controls_section(
 			'section_price_tag',
 			[
@@ -166,21 +186,6 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 		);
 
 		$this->add_control(
-			'price_tag_currency_transform',
-			[
-				'type'    => Controls_Manager::SELECT,
-				'label'   => __( 'Currency Transform', 'themeisle-companion' ),
-				'default' => 'sup',
-				'options' => [
-					'sup'  => __( 'Suprascript', 'themeisle-companion' ),
-					'sub'  => __( 'Subscript', 'themeisle-companion' ),
-					'none' => __( 'Normal', 'themeisle-companion' ),
-				],
-			]
-		);
-
-
-		$this->add_control(
 			'price_tag_period',
 			[
 				'type'        => Controls_Manager::TEXT,
@@ -191,7 +196,9 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 			]
 		);
 		$this->end_controls_section(); // end section-price-tag
+	}
 
+	private function features_section() {
 		$this->start_controls_section(
 			'section_features',
 			[
@@ -240,7 +247,9 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 			]
 		);
 		$this->end_controls_section(); // end section-features
+	}
 
+	private function button_section() {
 		$this->start_controls_section(
 			'section_button',
 			[
@@ -307,95 +316,47 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 					'button_icon!' => '',
 				],
 				'selectors' => [
-					'{{WRAPPER}} .obfx-pricing-table-button-wrapper .obfx-button-icon-align-right' => 'margin-left: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .obfx-pricing-table-button-wrapper .obfx-button-icon-align-left'  => 'margin-right: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .obfx-button-icon-align-right i' => 'margin-left: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .obfx-button-icon-align-left i'  => 'margin-right: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
-		$this->end_controls_section(); // end section-button
+		$this->end_controls_section(); // end section_button
+	}
 
-
+	private function header_style_section() {
 		$this->start_controls_section(
-			'section-box-style',
+			'section_header_style',
 			[
-				'label' => __( 'Box Style', 'elementor' ),
+				'label' => __( 'Header', 'themeisle-companion' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
 
-		$this->add_control(
-			'box-color',
+		$this->add_responsive_control(
+			'header_padding',
 			[
-				'label'     => __( 'Box Color', 'elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'scheme'    => [
-					'type'  => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_1,
-				],
-				'default'   => '#93C64F',
-				'selectors' => [
-					'{{WRAPPER}} .wts-price-box-wrapper' => 'background-color: {{VALUE}};',
-				],
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Border::get_type(),
-			[
-				'name'        => 'box_border',
-				'label'       => __( 'Box Border', 'elementor' ),
-				'placeholder' => '1px',
-				'default'     => '1px',
-				'selector'    => '{{WRAPPER}} .wts-price-box-wrapper',
-			]
-		);
-
-
-		$this->add_control(
-			'box-border-radius',
-			[
-				'label'      => __( 'Border Radius', 'elementor' ),
+				'label'      => __( 'Header Padding', 'themeisle-companion' ),
 				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%' ],
+				'size_units' => [ 'px', 'em', '%' ],
 				'selectors'  => [
-					'{{WRAPPER}} .wts-price-box-wrapper'                   => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-					'{{WRAPPER}} .wts-price-box-wrapper > div:first-child' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} 0 0;',
-					'{{WRAPPER}} .wts-price-box-wrapper > div:last-child'  => 'border-radius: 0 0  {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				]
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Box_Shadow::get_type(),
-			[
-				'name'     => 'box_box_shadow',
-				'selector' => '{{WRAPPER}} .wts-price-box-wrapper',
-			]
-		);
-
-
-		$this->end_controls_section();
-
-		$this->start_controls_section(
-			'section-plan-heading-style',
-			[
-				'label' => __( 'Plan Heading', 'elementor' ),
-				'tab'   => Controls_Manager::TAB_STYLE,
+					'{{WRAPPER}} .obfx-title-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
 			]
 		);
 
 		$this->add_control(
-			'plan_heading_color',
+			'plan_title_color',
 			[
-				'label'     => __( 'Heading Color', 'elementor' ),
 				'type'      => Controls_Manager::COLOR,
+				'label'     => __( 'Title Color', 'themeisle-companion' ),
 				'scheme'    => [
 					'type'  => Scheme_Color::get_type(),
 					'value' => Scheme_Color::COLOR_1,
 				],
-				'default'   => '#FFF',
+				'default'   => '#464959',
 				'selectors' => [
-					'{{WRAPPER}} .eae-pt-heading' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .obfx-pricing-table-title' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -403,24 +364,24 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
-				'name'     => 'plan_heading_typography',
+				'name'     => 'plan_title_typography',
 				'scheme'   => Scheme_Typography::TYPOGRAPHY_1,
-				'selector' => '{{WRAPPER}} .eae-pt-heading',
+				'selector' => '{{WRAPPER}} .obfx-pricing-table-title',
 			]
 		);
 
 		$this->add_control(
-			'plan_sub_heading_color',
+			'plan_subtitle_color',
 			[
-				'label'     => __( 'Sub Heading Color', 'elementor' ),
 				'type'      => Controls_Manager::COLOR,
+				'label'     => __( 'Subtitle Color', 'themeisle-companion' ),
 				'scheme'    => [
 					'type'  => Scheme_Color::get_type(),
 					'value' => Scheme_Color::COLOR_1,
 				],
-				'default'   => '#FFF',
+				'default'   => '#60647d',
 				'selectors' => [
-					'{{WRAPPER}} .eae-pt-sub-heading' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .obfx-pricing-table-subtitle' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -428,9 +389,9 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
-				'name'     => 'plan_sub_heading_typography',
+				'name'     => 'plan_subtitle_typography',
 				'scheme'   => Scheme_Typography::TYPOGRAPHY_1,
-				'selector' => '{{WRAPPER}} .eae-pt-sub-heading',
+				'selector' => '{{WRAPPER}} .obfx-pricing-table-subtitle',
 			]
 		);
 
@@ -439,43 +400,72 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 			Group_Control_Background::get_type(),
 			[
 				'name'     => 'heading_section_bg',
-				'label'    => __( 'Section Background', 'elementor' ),
+				'label'    => __( 'Section Background', 'themeisle-companion' ),
 				'types'    => [ 'classic', 'gradient' ],
-				'selector' => '{{WRAPPER}} .heading-wrapper',
+				'selector' => '{{WRAPPER}} .obfx-title-wrapper',
+				'default'  => [
+					'color'      => '#333333',
+					'background' => 'classic',
+				]
 			]
+
 		);
+		$this->end_controls_section(); // end section_header_style
+	}
 
-		$this->end_controls_section();
-
+	private function price_tag_style_section() {
 		$this->start_controls_section(
-			'section-price-box',
+			'section_price_box',
 			[
-				'label' => __( 'Price Box', 'elementor' ),
+				'label' => __( 'Price Tag', 'themeisle-companion' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
 
-		$this->add_control(
-			'pb_content_settings',
+		$this->add_responsive_control(
+			'price_box_padding',
 			[
-				'label'     => __( 'Content Settings', 'elementor' ),
-				'type'      => Controls_Manager::HEADING,
+				'type'       => Controls_Manager::DIMENSIONS,
+				'label'      => __( 'Price Box Padding', 'themeisle-companion' ),
+				'size_units' => [ 'px', 'em', '%' ],
+				'selectors'  => [
+					'{{WRAPPER}} .obfx-price-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name'     => 'pricing_section_bg',
+				'label'    => __( 'Section Background', 'themeisle-companion' ),
+				'types'    => [ 'classic', 'gradient' ],
+				'selector' => '{{WRAPPER}} .obfx-price-wrapper',
+			]
+		);
+
+		$this->add_control(
+			'price_tag_heading_currency',
+			[
+				'label' => __( 'Currency', 'themeisle-companion' ),
+				'type' => Controls_Manager::HEADING,
 				'separator' => 'before',
 			]
 		);
 
 		$this->add_control(
-			'price_text_color',
+			'currency_color',
 			[
-				'label'     => __( 'Price Text Color', 'elementor' ),
+				'label'     => __( 'Currency Color', 'themeisle-companion' ),
 				'type'      => Controls_Manager::COLOR,
 				'scheme'    => [
 					'type'  => Scheme_Color::get_type(),
 					'value' => Scheme_Color::COLOR_1,
 				],
-				'default'   => '#FFF',
+				'default'   => '#60647d',
 				'selectors' => [
-					'{{WRAPPER}} .plan-price-shape-inner .price-text' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .obfx-price-currency' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -483,25 +473,67 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
-				'name'     => 'price_text_typography',
+				'name'     => 'currency_typography',
 				'scheme'   => Scheme_Typography::TYPOGRAPHY_1,
-				'selector' => '{{WRAPPER}} .plan-price-shape-inner .price-text',
+				'selector' => '{{WRAPPER}} .obfx-price-currency',
 			]
 		);
 
+		$this->add_control(
+			'price_tag_heading_price',
+			[
+				'label' => __( 'Price', 'themeisle-companion' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
 
 		$this->add_control(
-			'price_sub_text_color',
+			'price_text_color',
 			[
-				'label'     => __( 'Sub Text Color', 'elementor' ),
+				'label'     => __( 'Price Color', 'themeisle-companion' ),
 				'type'      => Controls_Manager::COLOR,
 				'scheme'    => [
 					'type'  => Scheme_Color::get_type(),
 					'value' => Scheme_Color::COLOR_1,
 				],
-				'default'   => '#FFF',
+				'default'   => '#60647d',
 				'selectors' => [
-					'{{WRAPPER}} .plan-price-shape-inner .price-subtext' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .obfx-price' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'price_typography',
+				'scheme'   => Scheme_Typography::TYPOGRAPHY_1,
+				'selector' => '{{WRAPPER}} .obfx-price',
+			]
+		);
+
+		$this->add_control(
+			'price_tag_heading_period',
+			[
+				'label' => __( 'Period', 'themeisle-companion' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_control(
+			'period_color',
+			[
+				'label'     => __( 'Period Color', 'themeisle-companion' ),
+				'type'      => Controls_Manager::COLOR,
+				'scheme'    => [
+					'type'  => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_1,
+				],
+				'default'   => '#60647d',
+				'selectors' => [
+					'{{WRAPPER}} .obfx-pricing-period' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -514,68 +546,31 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 				'selector' => '{{WRAPPER}} .plan-price-shape-inner .price-subtext',
 			]
 		);
+		$this->end_controls_section(); // end pricing-section
+	}
 
-		$this->add_control(
-			'pb_box_settings',
-			[
-				'label'     => __( 'Box Settings', 'elementor' ),
-				'type'      => Controls_Manager::HEADING,
-				'separator' => 'before',
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Border::get_type(),
-			[
-				'name'     => 'price_box_border',
-				'label'    => __( 'Price Box Border', 'elementor' ),
-				'selector' => '{{WRAPPER}} .plan-price-shape',
-			]
-		);
-
-		$this->add_control(
-			'price_box_border_radius',
-			[
-				'label'      => __( 'Border Radius', 'elementor' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%' ],
-				'selectors'  => [
-					'{{WRAPPER}} .plan-price-shape' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};'
-				],
-			]
-		);
-
-		$this->add_responsive_control(
-			'price_box_padding',
-			[
-				'label'      => __( 'Price Box Padding', 'elementor' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', 'em', '%' ],
-				'selectors'  => [
-					'{{WRAPPER}} .plan-price-shape-inner' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
-
-		$this->add_group_control(
-			Group_Control_Background::get_type(),
-			[
-				'name'     => 'price_box_section_bg',
-				'label'    => __( 'Section Background', 'elementor' ),
-				'types'    => [ 'classic', 'gradient' ],
-				'selector' => '{{WRAPPER}} .plan-price-block',
-			]
-		);
-
-
-		$this->end_controls_section();
-
+	private function features_style_section() {
 		$this->start_controls_section(
-			'section-features-style',
+			'section_features_style',
 			[
-				'label' => __( 'Feature List', 'elementor' ),
+				'label' => __( 'Features', 'themeisle-companion' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_control(
+			'features_accented_text_color',
+			[
+				'type'      => Controls_Manager::COLOR,
+				'label'     => __( 'Accented Color', 'themeisle-companion' ),
+				'scheme'    => [
+					'type'  => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_1,
+				],
+				'default'   => '#60647d',
+				'selectors' => [
+					'{{WRAPPER}} .obfx-pricing-table-accented' => 'color: {{VALUE}};',
+				],
 			]
 		);
 
@@ -588,9 +583,9 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 					'type'  => Scheme_Color::get_type(),
 					'value' => Scheme_Color::COLOR_1,
 				],
-				'default'   => '#FFF',
+				'default'   => '#b1b3c0',
 				'selectors' => [
-					'{{WRAPPER}} .eae-pt-feature-list li' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .obfx-pricing-table-feature' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -600,7 +595,7 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 			[
 				'name'     => 'features_typography',
 				'scheme'   => Scheme_Typography::TYPOGRAPHY_1,
-				'selector' => '{{WRAPPER}} .eae-pt-feature-list li',
+				'selector' => '{{WRAPPER}} .obfx-feature-list li',
 			]
 		);
 
@@ -608,48 +603,43 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 		$this->add_group_control(
 			Group_Control_Background::get_type(),
 			[
-				'name'     => 'feature_section_bg',
+				'name'     => 'features_section_bg',
 				'label'    => __( 'Section Background', 'elementor' ),
 				'types'    => [ 'classic', 'gradient' ],
-				'selector' => '{{WRAPPER}} .plan-features-wrapper',
+				'selector' => '{{WRAPPER}} .obfx-feature-list',
 			]
 		);
 
-		$this->end_controls_section();
 
-		$this->start_controls_section(
-			'section-action-button',
+		$this->add_responsive_control(
+			'price_box_padding',
 			[
-				'label' => __( 'Action Button', 'elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'label'      => __( 'Features List Padding', 'themeisle-companion' ),
+				'size_units' => [ 'px', 'em', '%' ],
+				'selectors'  => [
+					'{{WRAPPER}} .obfx-feature-list' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+		$this->end_controls_section(); // end section_features_style
+	}
+
+	private function button_style_section() {
+		$this->start_controls_section(
+			'section_button_style',
+			[
+				'label' => __( 'Button', 'themeisle-companion' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
 
-		$this->add_control(
-			'button-section-bg',
-			[
-				'label'     => __( 'Section Background', 'elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'scheme'    => [
-					'type'  => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_1,
-				],
-				'default'   => '#333333',
-				'selectors' => [
-					'{{WRAPPER}} .eae-pt-button-wrapper' => 'background-color: {{VALUE}};',
-				],
-			]
-		);
-
-		$this->add_control(
-			'button_text_color',
-			[
-				'label'     => __( 'Text Color', 'elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'default'   => '#fff',
-				'selectors' => [
-						'{{WRAPPER}} .eae-pt-action-button' => 'color: {{VALUE}};',
-				],
+		$this->add_group_control(
+			Group_Control_Background::get_type(), [
+				'name'     => 'button_section_bg',
+				'label'    => __( 'Section Background', 'themeisle-companion' ),
+				'types'    => [ 'classic', 'gradient' ],
+				'selector' => '{{WRAPPER}} .obfx-pricing-table-button-wrapper',
 			]
 		);
 
@@ -657,61 +647,24 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name'     => 'typography',
-				'label'    => __( 'Typography', 'elementor' ),
+				'label'    => __( 'Typography', 'themeisle-companion' ),
 				'scheme'   => Scheme_Typography::TYPOGRAPHY_4,
-				'selector' => '{{WRAPPER}} .eae-pt-action-button',
+				'selector' => '{{WRAPPER}} .obfx-pricing-table-button-wrapper',
 			]
 		);
 
-		$this->add_control(
-			'background_color',
-			[
-				'label'     => __( 'Background Color', 'elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'scheme'    => [
-					'type'  => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_4,
-				],
-				'default'   => '#93C64F',
-				'selectors' => [
-					'{{WRAPPER}} .eae-pt-action-button' => 'background-color: {{VALUE}};',
-				],
-			]
-		);
+		// Add the tabbed control.
+		$this->tabbed_button_controls();
 
-		$this->add_group_control(
-			Group_Control_Background::get_type(),
-			[
-				'name'     => 'action_section_bg',
-				'label'    => __( 'Section Background', 'elementor' ),
-				'types'    => [ 'classic', 'gradient' ],
-				'selector' => '{{WRAPPER}} .eae-pt-button-wrapper',
-				'default'  => [
-					'background' => 'classic',
-					'color'      => '#555'
-				]
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Border::get_type(),
-			[
-				'name'        => 'border',
-				'label'       => __( 'Border', 'elementor' ),
-				'placeholder' => '1px',
-				'default'     => '1px',
-				'selector'    => '{{WRAPPER}} .eae-pt-action-button',
-			]
-		);
 
 		$this->add_control(
 			'border_radius',
 			[
-				'label'      => __( 'Border Radius', 'elementor' ),
+				'label'      => __( 'Border Radius', 'themeisle-companion' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors'  => [
-					'{{WRAPPER}} .eae-pt-action-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .obfx-pricing-table-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -719,62 +672,123 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 		$this->add_control(
 			'text_padding',
 			[
-				'label'      => __( 'Text Padding', 'elementor' ),
+				'label'      => __( 'Padding', 'themeisle-companion' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', 'em', '%' ],
 				'selectors'  => [
-					'{{WRAPPER}} .eae-pt-action-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .obfx-pricing-table-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
+		$this->end_controls_section(); // end section_button_style
+	}
 
-		$this->end_controls_section();
+	private function tabbed_button_controls() {
+		$this->start_controls_tabs( 'tabs_background' );
 
-		$this->start_controls_section(
-			'section_hover',
+		$this->start_controls_tab(
+			'tab_background_normal',
 			[
-				'label' => __( 'Button Hover', 'elementor' ),
-				'type'  => Controls_Manager::SECTION,
-				'tab'   => Controls_Manager::TAB_STYLE,
+				'label' => __( 'Normal', 'themeisle-companion' ),
 			]
 		);
 
 		$this->add_control(
-			'hover_color',
+			'button_text_color',
 			[
-				'label'     => __( 'Text Color', 'elementor' ),
 				'type'      => Controls_Manager::COLOR,
+				'label'     => __( 'Text Color', 'themeisle-companion' ),
+				'scheme'    => [
+					'type'  => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_1,
+				],
+				'default'   => '#fff',
 				'selectors' => [
-					'{{WRAPPER}} .eae-pt-action-button:hover' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .obfx-pricing-table-button' => 'color: {{VALUE}};',
+				],
+			]
+		);
+		$this->add_control(
+			'button_bg_color',
+			[
+				'type'      => Controls_Manager::COLOR,
+				'label'     => __( 'Background Color', 'themeisle-companion' ),
+				'scheme'    => [
+					'type'  => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_1,
+				],
+				'default'   => '#93c64f',
+				'selectors' => [
+					'{{WRAPPER}} .obfx-pricing-table-button' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'tab_background_hover',
+			[
+				'label' => __( 'Hover', 'themeisle-companion' ),
+			]
+		);
+
+
+		$this->add_control(
+			'button_hover_text_color',
+			[
+				'type'      => Controls_Manager::COLOR,
+				'label'     => __( 'Text Color', 'themeisle-companion' ),
+				'scheme'    => [
+					'type'  => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_1,
+				],
+				'default'   => '#fff',
+				'selectors' => [
+					'{{WRAPPER}} .obfx-pricing-table-button:hover' => 'color: {{VALUE}};',
+				],
+			]
+		);
+		$this->add_control(
+			'button_hover_bg_color',
+			[
+				'type'      => Controls_Manager::COLOR,
+				'label'     => __( 'Background Color', 'themeisle-companion' ),
+				'scheme'    => [
+					'type'  => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_1,
+				],
+				'default'   => '#74c600',
+				'selectors' => [
+					'{{WRAPPER}} .obfx-pricing-table-button:hover' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
 
 		$this->add_control(
-			'button_background_hover_color',
+			'background_hover_transition',
 			[
-				'label'     => __( 'Background Color', 'elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .eae-pt-action-button:hover' => 'background-color: {{VALUE}};',
+				'label'       => __( 'Transition Duration', 'themeisle-companion' ),
+				'type'        => Controls_Manager::SLIDER,
+				'default'     => [
+					'size' => 0.3,
 				],
+				'range'       => [
+					'px' => [
+						'max'  => 3,
+						'step' => 0.1,
+					],
+				],
+				'render_type' => 'ui',
+				'selectors'   => [
+					'{{WRAPPER}} .obfx-pricing-table-button' => 'transition: all {{VALUE}} ease;',
+				]
 			]
 		);
 
-		$this->add_control(
-			'button_hover_border_color',
-			[
-				'label'     => __( 'Border Color', 'elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'condition' => [
-					'border_border!' => '',
-				],
-				'selectors' => [
-					'{{WRAPPER}} .eae-pt-action-button:hover' => 'border-color: {{VALUE}};',
-				],
-			]
-		);
-		$this->end_controls_section();
+		$this->end_controls_tab();
+
+		$this->end_controls_tabs();
 	}
 
 	/**
@@ -782,13 +796,11 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 	 */
 	protected function render() {
 		$settings = $this->get_settings();
-
 		$this->add_render_attribute( 'title', 'class', 'obfx-pricing-table-title' );
 		$this->add_render_attribute( 'subtitle', 'class', 'obfx-pricing-table-subtitle' );
 		$this->add_render_attribute( 'button', 'class', 'obfx-pricing-table-button' );
 		$this->add_render_attribute( 'button_icon', 'class', $settings['button_icon'] );
 		$this->add_render_attribute( 'button_icon_align', 'class', 'obfx-button-icon-align-' . $settings['button_icon_align'] );
-
 		if ( ! empty( $settings['link']['url'] ) ) {
 			$this->add_render_attribute( 'button', 'href', $settings['link']['url'] );
 
@@ -831,12 +843,16 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 		if ( ! empty( $settings['price_tag_text'] ) || ! empty( $settings['price_tag_currency'] ) || ! empty( $settings['price_tag_period'] ) ) {
 			$output .= '<div class="obfx-price-wrapper">';
 
-			if ( ! empty( $settings['price_tag_currency'] ) ) {
+			if ( ! empty( $settings['price_tag_currency'] ) && ( $settings['price_tag_currency_position'] == 'left' ) ) {
 				$output .= '<span class="obfx-price-currency">' . esc_html( $settings['price_tag_currency'] ) . '</span>';
 			}
 
 			if ( ! empty( $settings['price_tag_text'] ) ) {
-				$output .= '<span class="obfx-price">' . esc_html( $settings['price_tag_text'] ). '</span>';
+				$output .= '<span class="obfx-price">' . esc_html( $settings['price_tag_text'] ) . '</span>';
+			}
+
+			if ( ! empty( $settings['price_tag_currency'] ) && ( $settings['price_tag_currency_position'] == 'right' ) ) {
+				$output .= '<span class="obfx-price-currency">' . esc_html( $settings['price_tag_currency'] ) . '</span>';
 			}
 
 			if ( ! empty( $settings['price_tag_period'] ) ) {
@@ -846,16 +862,15 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 			$output .= '</div> <!-- /.obfx-price-wrapper -->';
 		}
 
-
 		if ( count( $settings['feature_list'] ) ) {
 			$output .= '<ul class="obfx-feature-list">';
 			foreach ( $settings['feature_list'] as $feature ) {
 				$output .= '<li>';
-				if( ! empty( $feature['accent'] ) ) {
-					$output .=  '<span class="obfx-pricing-table-accented">' . esc_html( $feature['accent'] ) . '</span>';
+				if ( ! empty( $feature['accent'] ) ) {
+					$output .= '<span class="obfx-pricing-table-accented">' . esc_html( $feature['accent'] ) . '</span>';
 					$output .= ' ';
 				}
-				if( ! empty( $feature['text'] ) ) {
+				if ( ! empty( $feature['text'] ) ) {
 					$output .= '<span class="obfx-pricing-table-feature">' . esc_html( $feature['text'] ) . '</span>';
 				}
 				$output .= '</li>';
@@ -867,18 +882,24 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 			$output .= '<div class="obfx-pricing-table-button-wrapper">';
 
 			$output .= '<a ' . $this->get_render_attribute_string( 'button' ) . '>';
-			var_dump($settings['button_icon']);
 
-			if ( ! empty( $settings['button_icon'] ) ) {
+			if ( ! empty( $settings['button_icon'] ) && ( $settings['button_icon_align'] == 'left' ) ) {
 				$output .= '<span ' . $this->get_render_attribute_string( 'button_icon_align' ) . ' >';
 				$output .= '<i ' . $this->get_render_attribute_string( 'button_icon' ) . '></i>';
 			}
 
 			$output .= '<span class="elementor-button-text">' . esc_html( $settings['button_text'] ) . '</span>';
+
+			if ( ! empty( $settings['button_icon'] ) && ( $settings['button_icon_align'] == 'right' ) ) {
+				$output .= '<span ' . $this->get_render_attribute_string( 'button_icon_align' ) . ' >';
+				$output .= '<i ' . $this->get_render_attribute_string( 'button_icon' ) . '></i>';
+			}
+
 			$output .= '</a>';
 			$output .= '</div> <!-- /.obfx-pricing-table-button-wrapper -->';
+
 		}
-		$output .= '</div> <!-- close .obfx-pricing-table-wrapper -->';
+		$output .= '</div> <!-- /.obfx-pricing-table-wrapper -->';
 
 		echo $output;
 	}

@@ -1,0 +1,57 @@
+.obfx-pricing-table-wrapper {
+    text-align: center;
+}
+
+.obfx-title-wrapper {
+    padding: 15px;
+    background-color: #f9f9f9;
+}
+
+.obfx-pricing-table-title {
+    font-weight: 600;
+}
+
+.obfx-pricing-table-wrapper .obfx-feature-list {
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+}
+
+.obfx-pricing-table-wrapper .obfx-feature-list li {
+    font-size: 16px;
+}
+
+.obfx-price-wrapper {
+    padding: 20px 0;
+}
+
+.obfx-price {
+    line-height: normal;
+    font-size: 80px;
+    font-weight: 600;
+}
+
+.obfx-pricing-period,
+.obfx-price-currency {
+    font-size: 21px;
+}
+
+.obfx-button-icon-align-right i {
+    margin-left: 5px;
+}
+.obfx-button-icon-align-left i {
+    margin-right: 5px;
+}
+
+.obfx-pricing-table-accented {
+    font-weight: 600;
+}
+
+.obfx-pricing-table-button-wrapper {
+    padding: 20px 0;
+}
+
+.obfx-pricing-table-button {
+    padding: 10px 20px;
+    border-radius: 5px;
+}
