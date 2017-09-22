@@ -25,9 +25,9 @@ if ( ! function_exists( 'hestia_clients_bar' ) ) :
 			return;
 		}
 		?>
-		<section class="hestia-clients-bar text-center">
-			<div class="container">
-				<div class="row">
+        <section class="hestia-clients-bar text-center">
+            <div class="container">
+                <div class="row">
 					<?php
 					$i = 1;
 					$array_length = sizeof( $hestia_clients_bar_content_decoded );
@@ -44,7 +44,12 @@ if ( ! function_exists( 'hestia_clients_bar' ) ) :
 						if ( ! empty( $image ) ) {
 							echo '<div class="col-md-3">';
 							if ( ! empty( $link ) ) {
-								echo '<a href="' . esc_url( $link ) . '">';
+								$link_html = '<a href="' . esc_url( $link ) . '"';
+								if ( function_exists( 'hestia_is_external_url' ) ) {
+									$link_html .= hestia_is_external_url( $link );
+								}
+								$link_html .= '>';
+								echo wp_kses_post( $link_html );
 							}
 							echo '<img src="' . esc_url( $image ) . '" ' . wp_kses_post( $alt_text ) . '>';
 							if ( ! empty( $link ) ) {
@@ -60,9 +65,9 @@ if ( ! function_exists( 'hestia_clients_bar' ) ) :
 						$i++;
 					}
 					?>
-				</div>
-			</div>
-		</section>
+                </div>
+            </div>
+        </section>
 		<?php
 	}
 

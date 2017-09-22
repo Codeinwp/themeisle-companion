@@ -14,17 +14,31 @@ if ( ! function_exists( 'hestia_ribbon_customize_register' ) ) :
 	 *
 	 * @param WP_Customize_Manager $wp_customize Customizer manager.
 	 * @since 1.1.47
+	 * @modified 1.1.49
 	 */
 	function hestia_ribbon_customize_register( $wp_customize ) {
 
 		$selective_refresh = isset( $wp_customize->selective_refresh ) ? true : false;
-		$wp_customize->add_section(
-			'hestia_ribbon', array(
-				'title'    => esc_html__( 'Ribbon', 'themeisle-companion' ),
-				'panel'    => 'hestia_frontpage_sections',
-				'priority' => apply_filters( 'hestia_section_priority', 35, 'hestia_ribbon' ),
-			)
-		);
+		if ( class_exists( 'Hestia_Hiding_Section' ) ) {
+			$wp_customize->add_section(
+				new Hestia_Hiding_Section(
+					$wp_customize, 'hestia_ribbon', array(
+						'title'          => esc_html__( 'Ribbon', 'themeisle-companion' ),
+						'panel'          => 'hestia_frontpage_sections',
+						'priority'       => apply_filters( 'hestia_section_priority', 35, 'hestia_ribbon' ),
+						'hiding_control' => 'hestia_ribbon_hide',
+					)
+				)
+			);
+		} else {
+			$wp_customize->add_section(
+				'hestia_ribbon', array(
+					'title'    => esc_html__( 'Ribbon', 'themeisle-companion' ),
+					'panel'    => 'hestia_frontpage_sections',
+					'priority' => apply_filters( 'hestia_section_priority', 35, 'hestia_ribbon' ),
+				)
+			);
+		}
 
 		$wp_customize->add_setting(
 			'hestia_ribbon_hide', array(
