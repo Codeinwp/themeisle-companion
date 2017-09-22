@@ -109,6 +109,9 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		return $options;
 	}
 
+	/**
+	 * Add the Category for Orbit Fox Widgets.
+	 */
 	public function add_elementor_category() {
 		\Elementor\Plugin::instance()->elements_manager->add_category(
 			'obfx-elementor-widgets',
@@ -119,12 +122,14 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			1 );
 	}
 
+	/**
+	 * Require and instantiate Elementor Widgets.
+	 *
+	 * @param $widgets_manager
+	 */
 	public function add_elementor_widgets( $widgets_manager ) {
 
-		require_once $this->get_dir() . '/widgets/widget-dummy.php';
-		$widget = new Elementor\OBFX_Elementor_Widget_Dummy();
-		$widgets_manager->register_widget_type( $widget );
-
+		// Add the Pricing Table Widget.
 		require_once $this->get_dir() . '/widgets/widget-pricing-table.php';
 		$widget = new Elementor\OBFX_Elementor_Widget_Pricing_Table();
 		$widgets_manager->register_widget_type( $widget );

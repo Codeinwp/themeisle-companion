@@ -1,10 +1,14 @@
+/* Pricing Table Base CSS */
 .obfx-pricing-table-wrapper {
     text-align: center;
 }
 
+.obfx-pricing-table-wrapper a {
+    cursor: pointer;
+}
+
 .obfx-title-wrapper {
     padding: 15px;
-    background-color: #f9f9f9;
 }
 
 .obfx-pricing-table-title {
@@ -13,7 +17,7 @@
 
 .obfx-pricing-table-wrapper .obfx-feature-list {
     list-style: none;
-    padding: 10px 0;
+    padding: 10px 50px;
     margin: 0;
 }
 
@@ -55,3 +59,4 @@
     padding: 10px 20px;
     border-radius: 5px;
 }
+/* End Of Pricing Table Base CSS */
