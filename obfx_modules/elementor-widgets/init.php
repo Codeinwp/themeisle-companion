@@ -61,6 +61,7 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		if ( $this->has_elementor() ) {
 			return true;
 		}
+		return false;
 	}
 
 	/**
