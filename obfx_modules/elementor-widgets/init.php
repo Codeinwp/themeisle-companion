@@ -18,6 +18,15 @@
 class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 	/**
+	 * Elementor Widgets File Names
+	 *
+	 * @var array
+	 */
+	private $elementor_widgets = array(
+		'class-obfx-elementor-widget-pricing-table',
+	);
+
+	/**
 	 * Elementor_Widgets_OBFX_Module  constructor.
 	 *
 	 * @since   1.0.0
@@ -34,6 +43,18 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	}
 
 	/**
+	 * Check if Elementor exists.
+	 *
+	 * @return bool
+	 */
+	private function has_elementor() {
+		if ( defined( 'ELEMENTOR_VERSION' ) ) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
 	 * Determine if module should be loaded.
 	 *
 	 * @since   1.0.0
@@ -41,7 +62,9 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return bool
 	 */
 	public function enable_module() {
-		return true;
+		if ( $this->has_elementor() ) {
+			return true;
+		}
 	}
 
 	/**
@@ -128,9 +151,10 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @param $widgets_manager
 	 */
 	public function add_elementor_widgets( $widgets_manager ) {
+		foreach ( $this->elementor_widgets as $widget ) {
+			require_once $this->get_dir() . '/widgets/'. $widget .'.php';
+		}
 
-		// Add the Pricing Table Widget.
-		require_once $this->get_dir() . '/widgets/widget-pricing-table.php';
 		$widget = new Elementor\OBFX_Elementor_Widget_Pricing_Table();
 		$widgets_manager->register_widget_type( $widget );
 	}

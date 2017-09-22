@@ -1062,3 +1062,4 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 		echo $output;
 	}
 }
+
