@@ -36,10 +36,6 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		parent::__construct();
 		$this->name        = __( 'Elementor Modules', 'themeisle-companion' );
 		$this->description = __( 'Adds new Elementor Widgets.', 'themeisle-companion' );
-
-		if ( defined( 'ELEMENTOR_VERSION' ) ) {
-
-		}
 	}
 
 	/**
