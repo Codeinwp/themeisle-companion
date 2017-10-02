@@ -44,7 +44,7 @@ if ( ! function_exists( 'hestia_testimonials' ) ) :
 
 		hestia_before_testimonials_section_trigger();
 		?>
-        <section class="testimonials hestia-testimonials" id="testimonials" data-sorder="hestia_testimonials">
+        <section class="hestia-testimonials" id="testimonials" data-sorder="hestia_testimonials">
 			<?php hestia_before_testimonials_section_content_trigger(); ?>
             <div class="<?php echo esc_attr( $class_to_add ); ?>">
 				<?php hestia_top_testimonials_section_content_trigger(); ?>
@@ -100,18 +100,25 @@ function hestia_testimonials_content( $hestia_testimonials_content, $is_callback
                     <div class="card card-testimonial card-plain">
 						<?php if ( ! empty( $image ) ) : ?>
                             <div class="card-avatar">
+								<?php
+								if ( ! empty( $link ) ) :
+									$link_html = '<a href="' . esc_url( $link ) . '"';
+									if ( function_exists( 'hestia_is_external_url' ) ) {
+										$link_html .= hestia_is_external_url( $link );
+									}
+									$link_html .= '>';
+									echo wp_kses_post( $link_html );
+								endif;
+								?>
+                                <img class="img"
+                                     src="<?php echo esc_url( $image ); ?>"
+									<?php
+									if ( ! empty( $title ) ) :
+										?>
+                                        alt="<?php echo esc_attr( $title ); ?>" title="<?php echo esc_attr( $title ); ?>" <?php endif; ?> />
 								<?php if ( ! empty( $link ) ) : ?>
-                                <a href="<?php echo esc_url( $link ); ?>">
-									<?php endif; ?>
-                                    <img class="img"
-                                         src="<?php echo esc_url( $image ); ?>"
-										<?php
-										if ( ! empty( $title ) ) :
-											?>
-                                            alt="<?php echo esc_attr( $title ); ?>" title="<?php echo esc_attr( $title ); ?>" <?php endif; ?> />
-									<?php if ( ! empty( $link ) ) : ?>
-                                </a>
-							<?php endif; ?>
+                                    </a>
+								<?php endif; ?>
                             </div>
 						<?php endif; ?>
                         <div class="content">

@@ -28,31 +28,36 @@ if ( ! function_exists( 'hestia_ribbon' ) ) :
 		$default                  = ( current_user_can( 'edit_theme_options' ) ? '#' : false );
 		$hestia_ribbon_button_url = get_theme_mod( 'hestia_ribbon_button_url', $default );
 		?>
-		<section class="hestia-ribbon section section-image" >
+        <section class="hestia-ribbon section section-image" >
 			<?php hestia_ribbon_background(); ?>
-			<div class="container">
-				<div class="row hestia-xs-text-center hestia-like-table">
-					<div class="col-md-8">
+            <div class="container">
+                <div class="row hestia-xs-text-center hestia-like-table">
+                    <div class="col-md-8">
 						<?php if ( ! empty( $hestia_ribbon_text ) ) { ?>
-							<h2 class="hestia-title" style="margin:0;">
+                            <h2 class="hestia-title" style="margin:0;">
 								<?php echo wp_kses_post( $hestia_ribbon_text ); ?>
-							</h2>
+                            </h2>
 							<?php
-}
-?>
-					</div>
-					<div class="col-md-4 text-center">
-						<?php if ( ! empty( $hestia_ribbon_button_text ) && ! empty( $hestia_ribbon_button_url ) ) { ?>
-							<a href="<?php echo esc_url( $hestia_ribbon_button_url ); ?>" class="btn btn-md btn-primary hestia-subscribe-button">
-								<?php echo wp_kses_post( $hestia_ribbon_button_text ); ?>
-							</a>
-							<?php
-}
+						}
 						?>
-					</div>
-				</div>
-			</div>
-		</section>
+                    </div>
+                    <div class="col-md-4 text-center">
+						<?php if ( ! empty( $hestia_ribbon_button_text ) && ! empty( $hestia_ribbon_button_url ) ) { ?>
+                            <a href="<?php echo esc_url( $hestia_ribbon_button_url ); ?>"
+								<?php
+								if ( function_exists( 'hestia_is_external_url' ) ) {
+									echo hestia_is_external_url( $hestia_ribbon_button_url ); }
+								?>
+                               class="btn btn-md btn-primary hestia-subscribe-button">
+								<?php echo wp_kses_post( $hestia_ribbon_button_text ); ?>
+                            </a>
+							<?php
+						}
+						?>
+                    </div>
+                </div>
+            </div>
+        </section>
 		<?php
 	}
 endif;
@@ -66,15 +71,15 @@ function hestia_ribbon_background() {
 	$default                  = ( current_user_can( 'edit_theme_options' ) ? get_template_directory_uri() . '/assets/img/contact.jpg' : false );
 	$hestia_ribbon_background = get_theme_mod( 'hestia_ribbon_background', $default );
 	?>
-	<div class="hestia-ribbon-style">
-		<style>
-			<?php
+    <div class="hestia-ribbon-style">
+        <style>
+            <?php
 			if ( ! empty( $hestia_ribbon_background ) ) {
 				echo '.hestia-ribbon{ background-image: url(\'' . esc_url( $hestia_ribbon_background ) . '\'); }';
 			}
 			?>
-		</style>
-	</div>
+        </style>
+    </div>
 	<?php
 }
 

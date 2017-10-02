@@ -45,7 +45,7 @@ if ( ! function_exists( 'hestia_team' ) ) :
 		}
 		hestia_before_team_section_trigger();
 		?>
-        <section class="team hestia-team" id="team" data-sorder="hestia_team">
+        <section class="hestia-team" id="team" data-sorder="hestia_team">
 			<?php hestia_before_team_section_content_trigger(); ?>
             <div class="<?php echo esc_attr( $class_to_add ); ?>">
 				<?php hestia_top_team_section_content_trigger(); ?>
@@ -105,9 +105,16 @@ function hestia_team_content( $hestia_team_content, $is_callback = false ) {
                         <div class="col-md-5">
                             <div class="card-image">
 								<?php if ( ! empty( $image ) ) : ?>
-									<?php if ( ! empty( $link ) ) : ?>
-                                        <a href="<?php echo esc_url( $link ); ?>">
-									<?php endif; ?>
+									<?php
+									if ( ! empty( $link ) ) :
+										$link_html = '<a href="' . esc_url( $link ) . '"';
+										if ( function_exists( 'hestia_is_external_url' ) ) {
+											$link_html .= hestia_is_external_url( $link );
+										}
+										$link_html .= '>';
+										echo wp_kses_post( $link_html );
+									endif;
+									?>
                                     <img class="img"
                                          src="<?php echo esc_url( $image ); ?>"
 										<?php
