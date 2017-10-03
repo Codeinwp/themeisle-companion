@@ -1,4 +1,8 @@
 
+ ### v2.0.7 - 2017-10-02 
+ **Changes:** 
+ * New improved options for frontpage sections ordering/disabling in Hestia
+ 
  ### v2.0.6 - 2017-09-19 
  **Changes:** 
  * Added selective refresh for titles options in the frontpage sections in Hestia

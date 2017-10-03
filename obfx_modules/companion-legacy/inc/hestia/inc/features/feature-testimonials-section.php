@@ -11,18 +11,31 @@ if ( ! function_exists( 'hestia_testimonials_customize_register' ) ) :
 	 * Hook controls for Testimonials section to Customizer.
 	 *
 	 * @since Hestia 1.0
-	 * @modified 1.1.30
+	 * @modified 1.1.49
 	 */
 	function hestia_testimonials_customize_register( $wp_customize ) {
 
 		$selective_refresh = isset( $wp_customize->selective_refresh ) ? true : false;
-		$wp_customize->add_section(
-			'hestia_testimonials', array(
-				'title'    => esc_html__( 'Testimonials', 'themeisle-companion' ),
-				'panel'    => 'hestia_frontpage_sections',
-				'priority' => apply_filters( 'hestia_section_priority', 45, 'hestia_testimonials' ),
-			)
-		);
+		if ( class_exists( 'Hestia_Hiding_Section' ) ) {
+			$wp_customize->add_section(
+				new Hestia_Hiding_Section(
+					$wp_customize, 'hestia_testimonials', array(
+						'title'          => esc_html__( 'Testimonials', 'themeisle-companion' ),
+						'panel'          => 'hestia_frontpage_sections',
+						'priority'       => apply_filters( 'hestia_section_priority', 40, 'hestia_testimonials' ),
+						'hiding_control' => 'hestia_testimonials_hide',
+					)
+				)
+			);
+		} else {
+			$wp_customize->add_section(
+				'hestia_testimonials', array(
+					'title'    => esc_html__( 'Testimonials', 'themeisle-companion' ),
+					'panel'    => 'hestia_frontpage_sections',
+					'priority' => apply_filters( 'hestia_section_priority', 45, 'hestia_testimonials' ),
+				)
+			);
+		}
 
 		$wp_customize->add_setting(
 			'hestia_testimonials_hide', array(

@@ -1,16 +1,16 @@
-=== Orbit Fox Companion ===
-Contributors: themeisle, codeinwp, rodicaelena, baicusandrei
-Tags: widget, admin, widgets, sharing, reporting, sections, themes
-Requires at least: 3.0
-Tested up to: 4.8
-Requires PHP: 5.3
-Stable tag: trunk
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+# Orbit Fox Companion #
+**Contributors:** [themeisle](https://profiles.wordpress.org/themeisle), [codeinwp](https://profiles.wordpress.org/codeinwp), [rodicaelena](https://profiles.wordpress.org/rodicaelena), [baicusandrei](https://profiles.wordpress.org/baicusandrei)  
+**Tags:** widget, admin, widgets, sharing, reporting, sections, themes  
+**Requires at least:** 3.0  
+**Tested up to:** 4.8  
+**Requires PHP:** 5.3  
+**Stable tag:** trunk  
+**License:** GPLv2 or later  
+**License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
-Enhance your website with extra functionality through modules like: social media share buttons & icons, reporting, analytics(upcoming), security(upcoming) and caching(upcoming).
+**Enhance your website with extra functionality through modules like:** social media share buttons & icons, reporting, analytics(upcoming), security(upcoming) and caching(upcoming).  
 
-== Description ==
+## Description ##
 
 Extend your theme functionality with <a href="https://themeisle.com/plugins/orbit-fox-companion/" rel="nofollow">Orbit Fox Companion</a> with various modules like Social Media Share Buttons & Icons, reporting, analytics(upcoming), security(upcoming) and caching(upcoming).
 
@@ -47,18 +47,18 @@ We've also built some fantastic <a href="http://themeisle.com/wordpress-themes/f
 
 
 
-== Frequently Asked Questions ==
+## Frequently Asked Questions ##
 
-= How I can get support for this plugin ? =
+### How I can get support for this plugin ? ###
 
 You can learn more about Orbit Fox Companion and ask for help by <a href="https://themeisle.com/contact/"  >visiting ThemeIsle website</a>.
 
-= What can I do with this plugin =
+### What can I do with this plugin ###
 
 This plugin extends the features of your themes by adding numerous widgets if you are using Zerif and Hestia themes and some modules for sharing and reporting for general use.
 
 
-== Installation ==
+## Installation ##
 
 Activating the Orbit Fox Companion plugin is just like any other plugin. If you've uploaded the plugin package to your server already, skip to step 5 below:
 
@@ -70,60 +70,60 @@ Activating the Orbit Fox Companion plugin is just like any other plugin. If you'
 6. Make the changes desired, then click the **Save changes** button at the bottom
 
 
-== Screenshots ==
+## Screenshots ##
 
 1. Screenshot 1. How you can enable/disable modules
 2. Screenshot 2. How the sharing module is looking
 3. Screenshot 3. How reports module is looking
 
-== Changelog ==
-= 2.0.7 - 2017-10-02  = 
+## Changelog ##
+### 2.0.7 - 2017-10-02  ###
 
 * New improved options for frontpage sections ordering/disabling in Hestia
 
 
-= 2.0.6 - 2017-09-19  = 
+### 2.0.6 - 2017-09-19  ###
 
 * Added selective refresh for titles options in the frontpage sections in Hestia
 
 
-= 2.0.5 - 2017-09-12  = 
+### 2.0.5 - 2017-09-12  ###
 
 * Added new Ribbon and Clients Bar sections in Hestia
 
 
-= 2.0.4 - 2017-09-11  = 
+### 2.0.4 - 2017-09-11  ###
 
 * Adds PHP minimum requirement. 
 * Fix for admin styles loading screen.
 
 
-= 2.0.3 - 2017-08-24  = 
+### 2.0.3 - 2017-08-24  ###
 
 * Improved compatibility with the new Hestia version.
 
 
-= 2.0.2 - 2017-08-16  = 
+### 2.0.2 - 2017-08-16  ###
 
 * Fix accordion not opening to display save buttons for modules
 
 
-= 2.0.1 - 2017-08-14  = 
+### 2.0.1 - 2017-08-14  ###
 
 * Fixed issues with grey icons in Hestia.
 * Fixed Recommended Actions flags in customizer.
 
 
 
-= 1.0.3 =
+### 1.0.3 ###
 
 * New widgets for Rhea child theme
 * Improved front page selection mechanism for Hestia
 
-= 1.0.1 =
+### 1.0.1 ###
 
 * Changed tested up to
 
-= 1.0.0 =
+### 1.0.0 ###
 
 * First version of the plugin

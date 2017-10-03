@@ -11,18 +11,31 @@ if ( ! function_exists( 'hestia_team_customize_register' ) ) :
 	 * Hook controls for Team section to Customizer.
 	 *
 	 * @since Hestia 1.0
-	 * @modified 1.1.30
+	 * @modified 1.1.49
 	 */
 	function hestia_team_customize_register( $wp_customize ) {
 
 		$selective_refresh = isset( $wp_customize->selective_refresh ) ? true : false;
-		$wp_customize->add_section(
-			'hestia_team', array(
-				'title'    => esc_html__( 'Team', 'themeisle-companion' ),
-				'panel'    => 'hestia_frontpage_sections',
-				'priority' => apply_filters( 'hestia_section_priority', 30, 'hestia_team' ),
-			)
-		);
+		if ( class_exists( 'Hestia_Hiding_Section' ) ) {
+			$wp_customize->add_section(
+				new Hestia_Hiding_Section(
+					$wp_customize, 'hestia_team', array(
+						'title'          => esc_html__( 'Team', 'themeisle-companion' ),
+						'panel'          => 'hestia_frontpage_sections',
+						'priority'       => apply_filters( 'hestia_section_priority', 30, 'hestia_team' ),
+						'hiding_control' => 'hestia_team_hide',
+					)
+				)
+			);
+		} else {
+			$wp_customize->add_section(
+				'hestia_team', array(
+					'title'    => esc_html__( 'Team', 'themeisle-companion' ),
+					'panel'    => 'hestia_frontpage_sections',
+					'priority' => apply_filters( 'hestia_section_priority', 30, 'hestia_team' ),
+				)
+			);
+		}
 
 		$wp_customize->add_setting(
 			'hestia_team_hide', array(
