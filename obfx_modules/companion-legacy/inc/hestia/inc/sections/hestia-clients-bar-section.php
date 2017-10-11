@@ -10,22 +10,36 @@ if ( ! function_exists( 'hestia_clients_bar' ) ) :
 
 	/**
 	 * Clients bar section content.
+	 * This function can be called from a shortcode too.
+	 * When it's called as shortcode, the title and the subtitle shouldn't appear and it should be visible all the time,
+	 * it shouldn't matter if is disable on front page.
 	 *
 	 * @since Hestia 1.1.47
+	 * @modified 1.1.51
 	 */
-	function hestia_clients_bar() {
-		$hestia_clients_bar_hide = get_theme_mod( 'hestia_clients_bar_hide', true );
+	function hestia_clients_bar( $is_shortcode = false ) {
+
+		// When this function is called from selective refresh, $is_shortcode gets the value of WP_Customize_Selective_Refresh object. We don't need that.
+		if ( ! is_bool( $is_shortcode ) ) {
+			$is_shortcode = false;
+		}
+
+		$hide_section = get_theme_mod( 'hestia_clients_bar_hide', true );
 		$hestia_clients_bar_content = get_theme_mod( 'hestia_clients_bar_content' );
-		if ( (bool) $hestia_clients_bar_hide === true || empty( $hestia_clients_bar_content ) ) {
+		$hestia_clients_bar_content_decoded = json_decode( $hestia_clients_bar_content );
+
+		/* Don't show section if Disable section is checked or it doesn't have any content. Show it if it's called as a shortcode */
+		if ( $is_shortcode === false && ( empty( $hestia_clients_bar_content ) || (bool) $hide_section === true ) || empty( $hestia_clients_bar_content_decoded ) ) {
+			if ( is_customize_preview() ) {
+				echo '<section class="hestia-clients-bar text-center" data-sorder="hestia_clients_bar" style="display: none"></section>';
+			}
 			return;
 		}
 
-		$hestia_clients_bar_content_decoded = json_decode( $hestia_clients_bar_content );
-		if ( empty( $hestia_clients_bar_content_decoded ) ) {
-			return;
-		}
+		$wrapper_class = $is_shortcode === true ? 'is-shortcode' : '';
+
 		?>
-        <section class="hestia-clients-bar text-center">
+        <section class="hestia-clients-bar text-center <?php echo esc_attr( $wrapper_class ); ?>" data-sorder="hestia_clients_bar">
             <div class="container">
                 <div class="row">
 					<?php

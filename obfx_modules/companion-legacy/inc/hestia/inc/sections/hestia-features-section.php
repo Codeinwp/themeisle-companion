@@ -7,63 +7,72 @@
  */
 
 if ( ! function_exists( 'hestia_features' ) ) :
+
 	/**
 	 * Features section content.
+	 * This function can be called from a shortcode too.
+	 * When it's called as shortcode, the title and the subtitle shouldn't appear and it should be visible all the time,
+	 * it shouldn't matter if is disable on front page.
 	 *
 	 * @since Hestia 1.0
-	 * @modified 1.1.34
+	 * @modified 1.1.51
 	 */
 	function hestia_features( $is_shortcode = false ) {
-		$hide_section                 = get_theme_mod( 'hestia_features_hide', false );
 
-		$default_title = false;
-		$default_subtitle = false;
-		$default_content = false;
-
-		if ( current_user_can( 'edit_theme_options' ) ) {
-			$default_title = esc_html__( 'Why our product is the best', 'themeisle-companion' );
-			$default_subtitle = esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'themeisle-companion' );
-			$default_content = hestia_get_features_default();
+		// When this function is called from selective refresh, $is_shortcode gets the value of WP_Customize_Selective_Refresh object. We don't need that.
+		if ( ! is_bool( $is_shortcode ) ) {
+			$is_shortcode = false;
 		}
 
+		$hide_section = get_theme_mod( 'hestia_features_hide', false );
+		$default_title = current_user_can( 'edit_theme_options' ) ? esc_html__( 'Why our product is the best', 'themeisle-companion' ) : false;
+		$default_subtitle = current_user_can( 'edit_theme_options' ) ? esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'themeisle-companion' ) : false;
+		$default_content = current_user_can( 'edit_theme_options' ) ? hestia_get_features_default() : false;
 		$hestia_features_title    = get_theme_mod( 'hestia_features_title', $default_title );
 		$hestia_features_subtitle = get_theme_mod( 'hestia_features_subtitle', $default_subtitle );
-		if ( $is_shortcode ) {
-			$hestia_features_title = '';
-			$hestia_features_subtitle = '';
-		}
 		$hestia_features_content  = get_theme_mod( 'hestia_features_content', $default_content );
+		$section_is_empty = empty( $hestia_features_content ) && empty( $hestia_features_subtitle ) && empty( $hestia_features_title );
 
-		if ( ! $is_shortcode && ( is_front_page() && ( (bool) $hide_section === true ) ) || ((empty( $hestia_features_title )) && (empty( $hestia_features_subtitle )) && (empty( $hestia_features_content ))) ) {
+		/* Don't show section if Disable section is checked or it doesn't have any content. Show it if it's called as a shortcode */
+		if ( $is_shortcode === false && ( $section_is_empty || (bool) $hide_section === true ) ) {
+			if ( is_customize_preview() ) {
+				echo '<section class="hestia-features" id="features" data-sorder="hestia_features" style="display: none"></section>';
+			}
 			return;
 		}
 
-		$class_to_add = 'container';
-		if ( $is_shortcode ) {
-			$class_to_add = '';
-		}
+		$wrapper_class = $is_shortcode === true ? 'is-shortcode' : '';
+		$container_class = $is_shortcode === true ? '' : 'container';
 
 		hestia_before_features_section_trigger();
 		?>
-        <section class="features hestia-features" id="features" data-sorder="hestia_features">
+		<section class="hestia-features <?php echo esc_attr( $wrapper_class ); ?>" id="features" data-sorder="hestia_features">
 			<?php hestia_before_features_section_content_trigger(); ?>
-            <div class="<?php echo esc_attr( $class_to_add ); ?>">
-				<?php hestia_top_features_section_content_trigger(); ?>
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-						<?php if ( ! empty( $hestia_features_title ) || is_customize_preview() ) : ?>
-                            <h2 class="hestia-title"><?php echo esc_html( $hestia_features_title ); ?></h2>
-						<?php endif; ?>
-						<?php if ( ! empty( $hestia_features_subtitle ) || is_customize_preview() ) : ?>
-                            <h5 class="description"><?php echo esc_html( $hestia_features_subtitle ); ?></h5>
-						<?php endif; ?>
-                    </div>
-                </div>
-				<?php hestia_features_content( $hestia_features_content ); ?>
+			<div class="<?php echo esc_attr( $container_class ); ?>">
+				<?php
+				hestia_top_features_section_content_trigger();
+				if ( $is_shortcode === false ) {
+				?>
+					<div class="row">
+						<div class="col-md-8 col-md-offset-2">
+							<?php
+							if ( ! empty( $hestia_features_title ) || is_customize_preview() ) {
+								echo '<h2 class="hestia-title">' . esc_html( $hestia_features_title ) . '</h2>';
+							}
+							if ( ! empty( $hestia_features_subtitle ) || is_customize_preview() ) {
+								echo '<h5 class="description">' . esc_html( $hestia_features_subtitle ) . '</h5>';
+							}
+							?>
+						</div>
+					</div>
+					<?php
+				}
+				hestia_features_content( $hestia_features_content );
+				?>
 				<?php hestia_bottom_features_section_content_trigger(); ?>
-            </div>
+			</div>
 			<?php hestia_after_features_section_content_trigger(); ?>
-        </section>
+		</section>
 		<?php
 		hestia_after_features_section_trigger();
 	}
@@ -80,8 +89,8 @@ endif;
  */
 function hestia_features_content( $hestia_features_content, $is_callback = false ) {
 	if ( ! $is_callback ) {
-		?>
-        <div class="hestia-features-content">
+	?>
+		<div class="hestia-features-content">
 		<?php
 	}
 	if ( ! empty( $hestia_features_content ) ) :
@@ -99,47 +108,52 @@ function hestia_features_content( $hestia_features_content, $is_callback = false
 				$color = ! empty( $features_item->color ) ? $features_item->color : '';
 				$choice = ! empty( $features_item->choice ) ? $features_item->choice : 'customizer_repeater_icon';
 				?>
-                <div class="col-md-4 feature-box">
-                    <div class="info hestia-info">
-						<?php if ( ! empty( $link ) ) : ?>
-                        <a href="<?php echo esc_url( $link ); ?>">
-							<?php
-							endif;
-
-							switch ( $choice ) {
-								case 'customizer_repeater_image':
-									if ( ! empty( $image ) ) {
-										?>
-                                        <div class="card card-plain">
-                                            <img src="<?php echo esc_url( $image ); ?>"/>
-                                        </div>
-										<?php
-									}
-									break;
-								case 'customizer_repeater_icon':
-									if ( ! empty( $icon ) ) {
-										?>
-                                        <div class="icon" <?php echo ( ! empty( $color ) ? 'style="color:' . $color . '"' : '' ); ?>>
-                                            <i class="fa <?php echo esc_html( $icon ); ?>"></i>
-                                        </div>
-										<?php
-									}
-									break;
+				<div class="<?php echo apply_filters( 'hestia_features_per_row_class','col-md-4' ); ?> feature-box">
+					<div class="hestia-info">
+						<?php
+						if ( ! empty( $link ) ) {
+							$link_html = '<a href="' . esc_url( $link ) . '"';
+							if ( function_exists( 'hestia_is_external_url' ) ) {
+								$link_html .= hestia_is_external_url( $link );
 							}
+							$link_html .= '>';
+							echo wp_kses_post( $link_html );
+						}
+
+						switch ( $choice ) {
+							case 'customizer_repeater_image':
+								if ( ! empty( $image ) ) {
+									?>
+									<div class="card card-plain">
+										<img src="<?php echo esc_url( $image ); ?>"/>
+										</div>
+										<?php
+								}
+								break;
+							case 'customizer_repeater_icon':
+								if ( ! empty( $icon ) ) {
+									?>
+									<div class="icon" <?php echo ( ! empty( $color ) ? 'style="color:' . $color . '"' : '' ); ?>>
+				<i class="fa <?php echo esc_html( $icon ); ?>"></i>
+										</div>
+										<?php
+								}
+								break;
+						}
 							?>
 							<?php if ( ! empty( $title ) ) : ?>
-                                <h4 class="info-title"><?php echo esc_html( $title ); ?></h4>
+								<h4 class="info-title"><?php echo esc_html( $title ); ?></h4>
 							<?php endif; ?>
 							<?php if ( ! empty( $link ) ) : ?>
-                        </a>
+						</a>
 					<?php endif; ?>
-						<?php if ( ! empty( $text ) ) : ?>
-                            <p><?php echo wp_kses_post( html_entity_decode( $text ) ); ?></p>
+			<?php if ( ! empty( $text ) ) : ?>
+							<p><?php echo wp_kses_post( html_entity_decode( $text ) ); ?></p>
 						<?php endif; ?>
-                    </div>
-                </div>
+					</div>
+				</div>
 				<?php
-				if ( $i % 3 == 0 ) {
+				if ( $i % apply_filters( 'hestia_features_per_row_no', 3 ) == 0 ) {
 					echo '</div><!-- /.row -->';
 					echo '<div class="row">';
 				}
@@ -148,10 +162,10 @@ function hestia_features_content( $hestia_features_content, $is_callback = false
 			endforeach;
 			echo '</div>';
 		}// End if().
-	endif;
+		endif;
 	if ( ! $is_callback ) {
-		?>
-        </div>
+	?>
+		</div>
 		<?php
 	}
 }

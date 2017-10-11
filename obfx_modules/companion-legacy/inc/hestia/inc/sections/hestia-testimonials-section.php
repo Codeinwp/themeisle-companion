@@ -9,11 +9,19 @@
 if ( ! function_exists( 'hestia_testimonials' ) ) :
 	/**
 	 * Testimonials section content.
+	 * This function can be called from a shortcode too.
+	 * When it's called as shortcode, the title and the subtitle shouldn't appear and it should be visible all the time,
+	 * it shouldn't matter if is disable on front page.
 	 *
 	 * @since Hestia 1.0
-	 * @modified 1.1.34
+	 * @modified 1.1.51
 	 */
 	function hestia_testimonials( $is_shortcode = false ) {
+
+		// When this function is called from selective refresh, $is_shortcode gets the value of WP_Customize_Selective_Refresh object. We don't need that.
+		if ( ! is_bool( $is_shortcode ) ) {
+			$is_shortcode = false;
+		}
 
 		$default_title = '';
 		$default_subtitle = '';
@@ -33,36 +41,48 @@ if ( ! function_exists( 'hestia_testimonials' ) ) :
 		$hestia_testimonials_content  = get_theme_mod( 'hestia_testimonials_content', $default_content );
 
 		$hide_section = get_theme_mod( 'hestia_testimonials_hide', false );
-		if ( ! $is_shortcode && ( (bool) $hide_section === true ) || ( empty( $hestia_testimonials_title ) && empty( $hestia_testimonials_subtitle ) && empty( $hestia_testimonials_content ) ) ) {
+		$section_is_empty = empty( $hestia_testimonials_title ) && empty( $hestia_testimonials_subtitle ) && empty( $hestia_testimonials_content );
+
+		/* Don't show section if Disable section is checked or it doesn't have any content. Show it if it's called as a shortcode */
+		if ( ( $is_shortcode === false ) && ( $section_is_empty || (bool) $hide_section === true ) ) {
+			if ( is_customize_preview() ) {
+				echo '<section class="hestia-testimonials" id="testimonials" data-sorder="hestia_testimonials" style="display: none"></section>';
+			}
 			return;
 		}
 
-		$class_to_add = 'container';
-		if ( $is_shortcode ) {
-			$class_to_add = '';
-		}
+		$wrapper_class = $is_shortcode === true ? 'is-shortcode' : '';
+		$container_class = $is_shortcode === true ? '' : 'container';
 
 		hestia_before_testimonials_section_trigger();
 		?>
-        <section class="testimonials hestia-testimonials" id="testimonials" data-sorder="hestia_testimonials">
+		<section class="hestia-testimonials <?php echo esc_attr( $wrapper_class ); ?>" id="testimonials" data-sorder="hestia_testimonials">
 			<?php hestia_before_testimonials_section_content_trigger(); ?>
-            <div class="<?php echo esc_attr( $class_to_add ); ?>">
-				<?php hestia_top_testimonials_section_content_trigger(); ?>
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2 text-center">
-						<?php if ( ! empty( $hestia_testimonials_title ) || is_customize_preview() ) : ?>
-                            <h2 class="hestia-title"><?php echo esc_html( $hestia_testimonials_title ); ?></h2>
-						<?php endif; ?>
-						<?php if ( ! empty( $hestia_testimonials_subtitle ) || is_customize_preview() ) : ?>
-                            <h5 class="description"><?php echo esc_html( $hestia_testimonials_subtitle ); ?></h5>
-						<?php endif; ?>
-                    </div>
-                </div>
-				<?php hestia_testimonials_content( $hestia_testimonials_content ); ?>
-				<?php hestia_bottom_testimonials_section_content_trigger(); ?>
-            </div>
+			<div class="<?php echo esc_attr( $container_class ); ?>">
+				<?php
+				hestia_top_testimonials_section_content_trigger();
+				if ( $is_shortcode === false ) {
+				?>
+					<div class="row">
+						<div class="col-md-8 col-md-offset-2">
+							<?php
+							if ( ! empty( $hestia_testimonials_title ) || is_customize_preview() ) {
+								echo '<h2 class="hestia-title">' . esc_html( $hestia_testimonials_title ) . '</h2>';
+							}
+							if ( ! empty( $hestia_testimonials_subtitle ) || is_customize_preview() ) {
+								echo '<h5 class="description">' . esc_html( $hestia_testimonials_subtitle ) . '</h5>';
+							}
+							?>
+						</div>
+					</div>
+					<?php
+				}
+				hestia_testimonials_content( $hestia_testimonials_content );
+				hestia_bottom_testimonials_section_content_trigger();
+				?>
+			</div>
 			<?php hestia_after_testimonials_section_content_trigger(); ?>
-        </section>
+		</section>
 		<?php
 		hestia_after_testimonials_section_trigger();
 	}
@@ -80,8 +100,8 @@ endif;
 function hestia_testimonials_content( $hestia_testimonials_content, $is_callback = false ) {
 
 	if ( ! $is_callback ) {
-		?>
-        <div class="hestia-testimonials-content">
+	?>
+		<div class="hestia-testimonials-content">
 		<?php
 	}
 	if ( ! empty( $hestia_testimonials_content ) ) :
@@ -96,39 +116,46 @@ function hestia_testimonials_content( $hestia_testimonials_content, $is_callback
 				$text = ! empty( $testimonial_item->text ) ? apply_filters( 'hestia_translate_single_string', $testimonial_item->text, 'Testimonials section' ) : '';
 				$link = ! empty( $testimonial_item->link ) ? apply_filters( 'hestia_translate_single_string', $testimonial_item->link, 'Testimonials section' ) : '';
 				?>
-                <div class="col-md-4">
-                    <div class="card card-testimonial card-plain">
+				<div class="<?php echo apply_filters( 'hestia_testimonials_per_row_class','col-md-4' ); ?>">
+					<div class="card card-testimonial card-plain">
 						<?php if ( ! empty( $image ) ) : ?>
-                            <div class="card-avatar">
-								<?php if ( ! empty( $link ) ) : ?>
-                                <a href="<?php echo esc_url( $link ); ?>">
-									<?php endif; ?>
-                                    <img class="img"
-                                         src="<?php echo esc_url( $image ); ?>"
+							<div class="card-avatar">
+								<?php
+								if ( ! empty( $link ) ) :
+									$link_html = '<a href="' . esc_url( $link ) . '"';
+									if ( function_exists( 'hestia_is_external_url' ) ) {
+										$link_html .= hestia_is_external_url( $link );
+									}
+									$link_html .= '>';
+									echo wp_kses_post( $link_html );
+								endif;
+								?>
+									<img class="img"
+										 src="<?php echo esc_url( $image ); ?>"
 										<?php
 										if ( ! empty( $title ) ) :
 											?>
-                                            alt="<?php echo esc_attr( $title ); ?>" title="<?php echo esc_attr( $title ); ?>" <?php endif; ?> />
+											alt="<?php echo esc_attr( $title ); ?>" title="<?php echo esc_attr( $title ); ?>" <?php endif; ?> />
 									<?php if ( ! empty( $link ) ) : ?>
-                                </a>
+								</a>
 							<?php endif; ?>
-                            </div>
+							</div>
 						<?php endif; ?>
-                        <div class="content">
+						<div class="content">
 							<?php if ( ! empty( $title ) ) : ?>
-                                <h4 class="card-title"><?php echo esc_html( $title ); ?></h4>
+								<h4 class="card-title"><?php echo esc_html( $title ); ?></h4>
 							<?php endif; ?>
 							<?php if ( ! empty( $subtitle ) ) : ?>
-                                <h6 class="category text-muted"><?php echo esc_html( $subtitle ); ?></h6>
+								<h6 class="category text-muted"><?php echo esc_html( $subtitle ); ?></h6>
 							<?php endif; ?>
 							<?php if ( ! empty( $text ) ) : ?>
-                                <p class="card-description"><?php echo wp_kses_post( html_entity_decode( $text ) ); ?></p>
+								<p class="card-description"><?php echo wp_kses_post( html_entity_decode( $text ) ); ?></p>
 							<?php endif; ?>
-                        </div>
-                    </div>
-                </div>
+						</div>
+					</div>
+				</div>
 				<?php
-				if ( $i % 3 == 0 ) {
+				if ( $i % apply_filters( 'hestia_testimonials_per_row_no', 3 ) == 0 ) {
 					echo '</div><!-- /.row -->';
 					echo '<div class="row">';
 				}
@@ -138,8 +165,8 @@ function hestia_testimonials_content( $hestia_testimonials_content, $is_callback
 		}// End if().
 	endif;
 	if ( ! $is_callback ) {
-		?>
-        </div>
+	?>
+		</div>
 		<?php
 	}
 }
