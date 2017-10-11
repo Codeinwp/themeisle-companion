@@ -77,6 +77,12 @@ function run_orbit_fox() {
 			return $products;
 		}
 	);
+
+	add_filter(
+		'themeisle_companion_friendly_name', function( $name ) {
+			return 'Orbit Fox ( former ThemeIsle Companion )';
+		}
+	);
 }
 
 require( 'class-autoloader.php' );
