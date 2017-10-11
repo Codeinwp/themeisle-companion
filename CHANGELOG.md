@@ -1,4 +1,9 @@
 
+ ### v2.0.8 - 2017-10-11 
+ **Changes:** 
+ * Fixed bug with URL protocols filter priority.
+* Fixed bug with icons background styled by URL address.
+ 
  ### v2.0.7 - 2017-10-02 
  **Changes:** 
  * New improved options for frontpage sections ordering/disabling in Hestia
