@@ -96,7 +96,7 @@ function hestia_testimonials_content( $hestia_testimonials_content, $is_callback
 				$text = ! empty( $testimonial_item->text ) ? apply_filters( 'hestia_translate_single_string', $testimonial_item->text, 'Testimonials section' ) : '';
 				$link = ! empty( $testimonial_item->link ) ? apply_filters( 'hestia_translate_single_string', $testimonial_item->link, 'Testimonials section' ) : '';
 				?>
-                <div class="col-md-4">
+                <div class="col-md-4 col-ms-6">
                     <div class="card card-testimonial card-plain">
 						<?php if ( ! empty( $image ) ) : ?>
                             <div class="card-avatar">

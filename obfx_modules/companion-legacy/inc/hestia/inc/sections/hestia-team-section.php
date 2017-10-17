@@ -100,7 +100,7 @@ function hestia_team_content( $hestia_team_content, $is_callback = false ) {
 				$text = ! empty( $team_item->text ) ? apply_filters( 'hestia_translate_single_string', $team_item->text, 'Team section' ) : '';
 				$link = ! empty( $team_item->link ) ? apply_filters( 'hestia_translate_single_string', $team_item->link, 'Team section' ) : '';
 				?>
-                <div class="col-md-6">
+                <div class="col-md-6 col-ms-6 ">
                     <div class="card card-profile card-plain">
                         <div class="col-md-5">
                             <div class="card-image">
