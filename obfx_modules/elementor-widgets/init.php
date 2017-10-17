@@ -24,6 +24,7 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	private $elementor_widgets = array(
 		'class-obfx-elementor-widget-pricing-table',
+		'class-obfx-elementor-widget-posts-grid',
 	);
 
 	/**
@@ -148,10 +149,16 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function add_elementor_widgets( $widgets_manager ) {
 		foreach ( $this->elementor_widgets as $widget ) {
-			require_once $this->get_dir() . '/widgets/'. $widget .'.php';
+			require_once $this->get_dir() . '/widgets/' . $widget . '.php';
 		}
 
+		// Pricing table
 		$widget = new Elementor\OBFX_Elementor_Widget_Pricing_Table();
 		$widgets_manager->register_widget_type( $widget );
+
+		// Posts grid
+		$widget = new Elementor\OBFX_Elementor_Widget_Posts_Grid();
+		$widgets_manager->register_widget_type( $widget );
+
 	}
 }
