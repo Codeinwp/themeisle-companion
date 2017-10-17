@@ -1,4 +1,8 @@
 
+ ### v2.0.9 - 2017-10-17 
+ **Changes:** 
+ * Enhanced layout for Hestia sections.
+ 
  ### v2.0.8 - 2017-10-11 
  **Changes:** 
  * Fixed bug with URL protocols filter priority.
