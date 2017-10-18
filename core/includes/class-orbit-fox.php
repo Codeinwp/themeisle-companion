@@ -68,6 +68,7 @@ class Orbit_Fox {
 	public function __construct() {
 
 		$this->plugin_name = 'orbit-fox';
+    
 		$this->version = '2.0.9';
 
 		$this->load_dependencies();
