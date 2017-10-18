@@ -47,6 +47,7 @@ if ( ! function_exists( 'hestia_features' ) ) :
 		hestia_before_features_section_trigger();
 		?>
 		<section class="hestia-features <?php echo esc_attr( $wrapper_class ); ?>" id="features" data-sorder="hestia_features">
+
 			<?php hestia_before_features_section_content_trigger(); ?>
 			<div class="<?php echo esc_attr( $container_class ); ?>">
 				<?php
