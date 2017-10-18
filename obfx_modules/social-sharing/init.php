@@ -159,7 +159,7 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
      * @return mixed | array
      */
     public function hooks() {
-	    $this->loader->add_filter('kses_allowed_protocols', $this, 'custom_allowed_protocols' );
+	    $this->loader->add_filter('kses_allowed_protocols', $this, 'custom_allowed_protocols', 1000 );
 
 	    if( $this -> get_option( 'socials_position' ) == 2 ) {
 		    $this->loader->add_filter('hestia_filter_blog_social_icons', $this, 'social_sharing_function' );
@@ -224,6 +224,8 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
     /**
      * Add extra protocols to list of allowed protocols.
+     *
+	 * @param array $protocols List of protocols from core.
      *
      * @return array Updated list including extra protocols added.
      */
