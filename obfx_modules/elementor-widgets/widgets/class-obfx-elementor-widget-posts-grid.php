@@ -127,7 +127,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			'grid_post_type',
 			[
 				'type'    => Controls_Manager::SELECT,
-				'label'   => __( 'Post Type', 'themeisle-companion' ),
+				'label'   => '<i class="fa fa-tag"></i> ' . __( 'Post Type', 'themeisle-companion' ),
 				'default' => 'post',
 				'options' => $this->grid_get_all_post_types(),
 			]
@@ -138,7 +138,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			'grid_items',
 			[
 				'type'        => Controls_Manager::NUMBER,
-				'label'       => __( 'Items', 'themeisle-companion' ),
+				'label'       => '<i class="fa fa-th-large"></i> ' . __( 'Items', 'themeisle-companion' ),
 				'placeholder' => __( 'How many items?', 'themeisle-companion' ),
 				'default'     => __( '3', 'themeisle-companion' ),
 			]
@@ -149,7 +149,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			'grid_columns',
 			[
 				'type'        => Controls_Manager::SELECT,
-				'label'       => __( 'Columns', 'themeisle-companion' ),
+				'label'       => '<i class="fa fa-columns"></i> ' . __( 'Columns', 'themeisle-companion' ),
 				'default'     => 3,
 				'options' => [
 					1 => 1,
@@ -165,7 +165,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			'grid_order_by',
 			[
 				'type'    => Controls_Manager::SELECT,
-				'label'   => __( 'Order by', 'themeisle-companion' ),
+				'label'   => '<i class="fa fa-sort"></i> ' . __( 'Order by', 'themeisle-companion' ),
 				'default' => 'date',
 				'options' => [
 					'date'          => __( 'Date', 'themeisle-companion' ),
@@ -182,7 +182,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			'grid_order',
 			[
 				'type'    => Controls_Manager::SELECT,
-				'label'   => __( 'Order', 'themeisle-companion' ),
+				'label'   => '<i class="fa fa-sort-numeric-desc"></i> ' . __( 'Order', 'themeisle-companion' ),
 				'default' => 'DESC',
 				'options' => [
 					'ASC'  => __( 'Ascendent', 'themeisle-companion' ),
@@ -206,21 +206,21 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 
 		);
 
-		// Hide
+		// Hide image
 		$this->add_control(
 			'grid_image_hide',
 			[
-				'label' => __( 'Hide', 'themeisle-companion' ),
+				'label' => '<i class="fa fa-minus-circle"></i> ' . __( 'Hide', 'themeisle-companion' ),
 				'type' => Controls_Manager::SWITCHER,
 				'default' => '',
 			]
 		);
 
-		// Link
+		// Image link
 		$this->add_control(
 			'grid_image_link',
 			[
-				'label' => __( 'Link', 'themeisle-companion' ),
+				'label' => '<i class="fa fa-link"></i> ' . __( 'Link', 'themeisle-companion' ),
 				'type' => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 			]
@@ -241,11 +241,11 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 
 		);
 
-		// Hide
+		// Hide title
 		$this->add_control(
 			'grid_title_hide',
 			[
-				'label' => __( 'Hide', 'themeisle-companion' ),
+				'label' => '<i class="fa fa-minus-circle"></i> ' . __( 'Hide', 'themeisle-companion' ),
 				'type' => Controls_Manager::SWITCHER,
 				'default' => '',
 			]
@@ -256,7 +256,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			'grid_title_tag',
 			[
 				'type'    => Controls_Manager::SELECT,
-				'label'   => __( 'Tag', 'themeisle-companion' ),
+				'label'   => '<i class="fa fa-code"></i> ' . __( 'Tag', 'themeisle-companion' ),
 				'default' => 'h2',
 				'options' => [
 					'h1' => 'h1',
@@ -270,10 +270,21 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
+		// Title link
+		$this->add_control(
+			'grid_title_link',
+			[
+				'label' => '<i class="fa fa-link"></i> ' . __( 'Link', 'themeisle-companion' ),
+				'type' => Controls_Manager::SWITCHER,
+				'default' => 'yes',
+			]
+		);
+
+		// Title alignment
 		$this->add_responsive_control(
 			'grid_title_alignment',
 			[
-				'label'     => __( 'Alignment', 'themeisle-companion' ),
+				'label'     => '<i class="fa fa-align-right"></i> ' . __( 'Alignment', 'themeisle-companion' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => [
 					'left'    => [
@@ -300,16 +311,6 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
-		// Link
-		$this->add_control(
-			'grid_title_link',
-			[
-				'label' => __( 'Link', 'themeisle-companion' ),
-				'type' => Controls_Manager::SWITCHER,
-				'default' => 'yes',
-			]
-		);
-
 		$this->end_controls_section();
 	}
 
@@ -325,20 +326,48 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 
 		);
 
-		// Hide
+		// Hide content
 		$this->add_control(
 			'grid_content_hide',
 			[
-				'label' => __( 'Hide', 'themeisle-companion' ),
+				'label' => '<i class="fa fa-minus-circle"></i> ' . __( 'Hide', 'themeisle-companion' ),
 				'type' => Controls_Manager::SWITCHER,
 				'default' => '',
 			]
 		);
 
-		$this->add_responsive_control(
-			'grid_content_alignment',
+		// Author
+		$this->add_control(
+			'grid_content_author',
 			[
-				'label'     => __( 'Alignment', 'themeisle-companion' ),
+				'label' => '<i class="fa fa-user"></i> ' . __( 'Author', 'themeisle-companion' ),
+				'type' => Controls_Manager::SWITCHER,
+				'default' => '',
+				'condition' => [
+					'section_grid.grid_post_type!' => 'product',
+				],
+			]
+		);
+
+		// Author before text
+		$this->add_control(
+			'grid_content_author_before_text',
+			[
+				'type'        => Controls_Manager::TEXT,
+				'label'       => __( 'Text before', 'themeisle-companion' ),
+				'placeholder' => __( 'Text before author', 'themeisle-companion'),
+				'default'     => '',
+				'condition' => [
+					'grid_content_author' => 'yes',
+				],
+			]
+		);
+
+		// Author alignment
+		$this->add_responsive_control(
+			'grid_content_author_alignment',
+			[
+				'label'     => __( 'Author alignment', 'themeisle-companion' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => [
 					'left'    => [
@@ -358,26 +387,153 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 						'icon'  => 'fa fa-align-justify',
 					],
 				],
-				'default'   => 'left',
+				'default'   => 'center',
 				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-item-content' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}} .obfx-grid-item-author' => 'text-align: {{VALUE}};',
+				],
+				'condition' => [
+					'grid_content_author' => 'yes',
 				],
 			]
 		);
 
-		// Button hide
+		// Date
+		$this->add_control(
+			'grid_content_date',
+			[
+				'label' => '<i class="fa fa-calendar-o"></i> ' . __( 'Date', 'themeisle-companion' ),
+				'type' => Controls_Manager::SWITCHER,
+				'default' => '',
+				'condition' => [
+					'section_grid.grid_post_type!' => 'product',
+				],
+			]
+		);
+
+		// Date before text
+		$this->add_control(
+			'grid_content_date_before_text',
+			[
+				'type'        => Controls_Manager::TEXT,
+				'label'       => __( 'Text before', 'themeisle-companion' ),
+				'placeholder' => __( 'Text before date', 'themeisle-companion'),
+				'default'     => '',
+				'condition' => [
+					'grid_content_date' => 'yes',
+				],
+			]
+		);
+
+		// Date alignment
+		$this->add_responsive_control(
+			'grid_content_date_alignment',
+			[
+				'label'     => __( 'Date alignment', 'themeisle-companion' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => [
+					'left'    => [
+						'title' => __( 'Left', 'themeisle-companion' ),
+						'icon'  => 'fa fa-align-left',
+					],
+					'center'  => [
+						'title' => __( 'Center', 'themeisle-companion' ),
+						'icon'  => 'fa fa-align-center',
+					],
+					'right'   => [
+						'title' => __( 'Right', 'themeisle-companion' ),
+						'icon'  => 'fa fa-align-right',
+					],
+					'justify' => [
+						'title' => __( 'Justified', 'themeisle-companion' ),
+						'icon'  => 'fa fa-align-justify',
+					],
+				],
+				'default'   => 'center',
+				'selectors' => [
+					'{{WRAPPER}} .obfx-grid-item-date' => 'text-align: {{VALUE}};',
+				],
+				'condition' => [
+					'grid_content_date' => 'yes',
+				],
+			]
+		);
+
+		// Price
+		$this->add_control(
+			'grid_content_price',
+			[
+				'label' => '<i class="fa fa-usd"></i> ' . __( 'Price', 'themeisle-companion' ),
+				'type' => Controls_Manager::SWITCHER,
+				'default' => 'yes',
+				'condition' => [
+					'section_grid.grid_post_type' => 'product',
+				],
+			]
+		);
+
+		// Price alignment
+		$this->add_responsive_control(
+			'grid_content_price_alignment',
+			[
+				'label'     => __( 'Price alignment', 'themeisle-companion' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => [
+					'left'    => [
+						'title' => __( 'Left', 'themeisle-companion' ),
+						'icon'  => 'fa fa-align-left',
+					],
+					'center'  => [
+						'title' => __( 'Center', 'themeisle-companion' ),
+						'icon'  => 'fa fa-align-center',
+					],
+					'right'   => [
+						'title' => __( 'Right', 'themeisle-companion' ),
+						'icon'  => 'fa fa-align-right',
+					],
+					'justify' => [
+						'title' => __( 'Justified', 'themeisle-companion' ),
+						'icon'  => 'fa fa-align-justify',
+					],
+				],
+				'default'   => 'center',
+				'selectors' => [
+					'{{WRAPPER}} .obfx-grid-item-price' => 'text-align: {{VALUE}};',
+				],
+				'condition' => [
+					'grid_content_price!' => '',
+                    'grid_section.grid_post_type' => 'product',
+				],
+			]
+		);
+
+		// Read more button hide
 		$this->add_control(
 			'grid_content_btn',
 			[
-				'label' => __( 'Button', 'themeisle-companion' ),
+				'label' => '<i class="fa fa-check-square"></i> ' . __( 'Button', 'themeisle-companion' ),
 				'type' => Controls_Manager::SWITCHER,
 				'default' => '',
 			]
 		);
 
-		// Button text
+		// Default button text
 		$this->add_control(
-			'grid_content_btn_text',
+			'grid_content_default_btn_text',
+			[
+				'type'        => Controls_Manager::TEXT,
+				'label'       => __( 'Button text', 'themeisle-companion' ),
+				'placeholder' => __( 'Read more', 'themeisle-companion'),
+				'default'     => __( 'Read more', 'themeisle-companion'),
+				'condition' => [
+                    'grid_content_btn!' => '',
+					'section_grid.grid_post_type!' => 'product',
+				],
+			]
+		);
+
+		// Product button text
+		$this->add_control(
+			'grid_content_product_btn_text',
 			[
 				'type'        => Controls_Manager::TEXT,
 				'label'       => __( 'Button text', 'themeisle-companion' ),
@@ -385,9 +541,9 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				'default'     => __( 'View product', 'themeisle-companion'),
 				'condition' => [
 					'grid_content_btn!' => '',
+					'section_grid.grid_post_type' => 'product',
 				],
 			]
-
 		);
 
 		// Button alignment
@@ -416,10 +572,40 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				],
 				'default'   => 'left',
 				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-item-btn-wrapper' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}} .obfx-grid-item-btn' => 'text-align: {{VALUE}};',
 				],
 				'condition' => [
 					'grid_content_btn!' => '',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'grid_content_alignment',
+			[
+				'label'     => '<i class="fa fa-align-right"></i> ' . __( 'Alignment', 'themeisle-companion' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => [
+					'left'    => [
+						'title' => __( 'Left', 'themeisle-companion' ),
+						'icon'  => 'fa fa-align-left',
+					],
+					'center'  => [
+						'title' => __( 'Center', 'themeisle-companion' ),
+						'icon'  => 'fa fa-align-center',
+					],
+					'right'   => [
+						'title' => __( 'Right', 'themeisle-companion' ),
+						'icon'  => 'fa fa-align-right',
+					],
+					'justify' => [
+						'title' => __( 'Justified', 'themeisle-companion' ),
+						'icon'  => 'fa fa-align-justify',
+					],
+				],
+				'default'   => 'left',
+				'selectors' => [
+					'{{WRAPPER}} .obfx-grid-item-content' => 'text-align: {{VALUE}};',
 				],
 			]
 		);
@@ -518,17 +704,45 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
                             </<?php echo $settings['grid_title_tag']; ?>>
                         <?php }
 
+                        if ( $settings['grid_post_type'] !== 'product' ) { ?>
+                            <div class="row obfx-grid-item-meta">
+                                <?php if ( $settings['grid_content_author'] == 'yes' ) { ?>
+                                    <div class="obfx-grid-item-author">
+                                        <?php echo ( ! empty( $settings['grid_content_author_before_text']) ? esc_html( $settings['grid_content_author_before_text'] )
+                                                : '' ) . get_the_author(); ?>
+                                    </div>
+                                <?php
+                                }
+
+                                if ( $settings['grid_content_date'] == 'yes' ) { ?>
+                                    <div class="obfx-grid-item-date">
+                                        <?php echo ( ! empty( $settings['grid_content_date_before_text']) ? esc_html( $settings['grid_content_date_before_text'] )
+                                                : '' ) . get_the_date(); ?>
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        <?php }
+
+                        // Price
+		                if ( class_exists( 'WooCommerce' ) ) {
+	                        if ( $settings['grid_post_type'] == 'product' && $settings['grid_content_price'] == 'yes' ) { ?>
+                                <div class="obfx-grid-item-price">
+			                        <?php echo wc_price(wc_get_product()->price); ?>
+                                </div>
+	                        <?php }
+                        }
+
                         // Content
                         if ( $settings['grid_content_hide'] !== 'yes' ) { ?>
                         <div class="obfx-grid-item-content"><?php the_excerpt(); ?></div>
                         <?php }
 
                         // Button
-		                if ( $settings['grid_content_btn'] == 'yes' && ! empty ( $settings['grid_content_btn_text']
-                            ) ) { ?>
-                        <div class="obfx-grid-item-btn-wrapper">
-                            <a href="<?php the_permalink(); ?>" title="<?php echo $settings['grid_content_btn_text']; ?>"><?php echo $settings['grid_content_btn_text']; ?></a>
-                        </div>
+		                if ( $settings['grid_content_btn'] == 'yes' && ( ! empty ( $settings['grid_content_default_btn_text']
+			                ) || ! empty ( $settings['grid_content_product_btn_text'] ) ) ) { ?>
+                            <div class="obfx-grid-item-btn">
+                                <a href="<?php the_permalink(); ?>" title="<?php echo ( $settings['grid_post_type'] == 'product' ? $settings['grid_content_product_btn_text'] : $settings['grid_content_default_btn_text'] ); ?>"><?php echo ( $settings['grid_post_type'] == 'product' ? $settings['grid_content_product_btn_text'] : $settings['grid_content_default_btn_text'] ); ?></a>
+                            </div>
 		                <?php } ?>
 
                     </div>
