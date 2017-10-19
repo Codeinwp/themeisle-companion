@@ -61,7 +61,7 @@ if ( ! function_exists( 'hestia_team' ) ) :
 				if ( $is_shortcode === false ) {
 				?>
 					<div class="row">
-						<div class="col-md-8 col-md-offset-2">
+						<div class="col-md-8 col-md-offset-2 text-center">
 							<?php
 							if ( ! empty( $hestia_team_title ) || is_customize_preview() ) {
 								echo '<h2 class="hestia-title">' . esc_html( $hestia_team_title ) . '</h2>';
@@ -116,11 +116,12 @@ function hestia_team_content( $hestia_team_content, $is_callback = false ) {
 					$text = ! empty( $team_item->text ) ? apply_filters( 'hestia_translate_single_string', $team_item->text, 'Team section' ) : '';
 					$link = ! empty( $team_item->link ) ? apply_filters( 'hestia_translate_single_string', $team_item->link, 'Team section' ) : '';
 					?>
-					<div class="col-md-6 col-ms-6 ">
+					<div class="col-xs-12 col-ms-6 col-sm-6">
 						<div class="card card-profile card-plain">
 							<div class="col-md-5">
 								<div class="card-image">
-									<?php if ( ! empty( $image ) ) :
+									<?php if ( ! empty( $image ) ) : ?>
+										<?php
 										if ( ! empty( $link ) ) :
 											$link_html = '<a href="' . esc_url( $link ) . '"';
 											if ( function_exists( 'hestia_is_external_url' ) ) {

@@ -64,7 +64,7 @@ if ( ! function_exists( 'hestia_testimonials' ) ) :
 				if ( $is_shortcode === false ) {
 				?>
 					<div class="row">
-						<div class="col-md-8 col-md-offset-2">
+						<div class="col-md-8 col-md-offset-2 text-center">
 							<?php
 							if ( ! empty( $hestia_testimonials_title ) || is_customize_preview() ) {
 								echo '<h2 class="hestia-title">' . esc_html( $hestia_testimonials_title ) . '</h2>';
@@ -116,7 +116,7 @@ function hestia_testimonials_content( $hestia_testimonials_content, $is_callback
 				$text = ! empty( $testimonial_item->text ) ? apply_filters( 'hestia_translate_single_string', $testimonial_item->text, 'Testimonials section' ) : '';
 				$link = ! empty( $testimonial_item->link ) ? apply_filters( 'hestia_translate_single_string', $testimonial_item->link, 'Testimonials section' ) : '';
 				?>
-				<div class="<?php echo apply_filters( 'hestia_testimonials_per_row_class','col-md-4' ); ?> col-ms-6">
+				<div class="col-xs-12 col-ms-6 col-sm-6 <?php echo apply_filters( 'hestia_testimonials_per_row_class','col-md-4' ); ?>">
 					<div class="card card-testimonial card-plain">
 						<?php if ( ! empty( $image ) ) : ?>
 							<div class="card-avatar">

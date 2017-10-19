@@ -39,9 +39,9 @@ if ( ! function_exists( 'hestia_clients_bar' ) ) :
 		$wrapper_class = $is_shortcode === true ? 'is-shortcode' : '';
 
 		?>
-        <section class="hestia-clients-bar text-center <?php echo esc_attr( $wrapper_class ); ?>" data-sorder="hestia_clients_bar">
-            <div class="container">
-                <div class="row">
+		<section class="hestia-clients-bar text-center <?php echo esc_attr( $wrapper_class ); ?>" data-sorder="hestia_clients_bar">
+			<div class="container">
+				<div class="row">
 					<?php
 					$i = 1;
 					$array_length = sizeof( $hestia_clients_bar_content_decoded );
@@ -79,9 +79,9 @@ if ( ! function_exists( 'hestia_clients_bar' ) ) :
 						$i++;
 					}
 					?>
-                </div>
-            </div>
-        </section>
+				</div>
+			</div>
+		</section>
 		<?php
 	}
 
