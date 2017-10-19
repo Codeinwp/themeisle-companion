@@ -1,4 +1,8 @@
 
+ ### v2.0.11 - 2017-10-19 
+ **Changes:** 
+ * Fixed alignment issue for titles in Hestia
+ 
  ### v2.0.10 - 2017-10-18 
  **Changes:** 
  * Added selective refresh options for the Show/Hide frontpage controls in Hestia
