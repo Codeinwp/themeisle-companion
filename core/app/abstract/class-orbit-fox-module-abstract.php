@@ -417,17 +417,28 @@ abstract class Orbit_Fox_Module_Abstract {
 		if ( ! empty( $enqueue ) ) {
 			if ( isset( $enqueue['css'] ) && ! empty( $enqueue['css'] ) ) {
 				$order = 0;
+				$map	= array();
 				foreach ( $enqueue['css'] as $file_name => $dependencies ) {
 					if ( $dependencies == false ) {
 						$dependencies = array();
+					} else {
+						// check if any dependency has been loaded by us. If yes, then use that id as the dependency.
+						foreach ( $dependencies as $index => $dep ) {
+							if ( array_key_exists( $dep, $map ) ) {
+								unset( $dependencies[ $index ] );
+								$dependencies[ $index ] = $map[ $dep ];
+							}
+						}
 					}
 					$url = filter_var( $file_name, FILTER_SANITIZE_URL );
 					$resource = plugin_dir_url( $this->get_dir() ) . $module_dir . '/css/' . $file_name . '.css';
 					if ( ! filter_var( $url, FILTER_VALIDATE_URL ) === false ) {
 						$resource = $url;
 					}
+					$id		= 'obfx-module-css-' . str_replace( ' ', '-', strtolower( $this->name ) ) . '-' . $order;
+					$map[$file_name]	= $id;
 					wp_enqueue_style(
-						'obfx-module-css-' . str_replace( ' ', '-', strtolower( $this->name ) ) . '-' . $order,
+						$id,
 						$resource,
 						$dependencies,
 						$this->version,
@@ -453,17 +464,28 @@ abstract class Orbit_Fox_Module_Abstract {
 		if ( ! empty( $enqueue ) ) {
 			if ( isset( $enqueue['js'] ) && ! empty( $enqueue['js'] ) ) {
 				$order = 0;
+				$map	= array();
 				foreach ( $enqueue['js'] as $file_name => $dependencies ) {
 					if ( $dependencies == false ) {
 						$dependencies = array();
+					} else {
+						// check if any dependency has been loaded by us. If yes, then use that id as the dependency.
+						foreach ( $dependencies as $index => $dep ) {
+							if ( array_key_exists( $dep, $map ) ) {
+								unset( $dependencies[ $index ] );
+								$dependencies[ $index ] = $map[ $dep ];
+							}
+						}
 					}
 					$url = filter_var( $file_name, FILTER_SANITIZE_URL );
 					$resource = plugin_dir_url( $this->get_dir() ) . $module_dir . '/js/' . $file_name . '.js';
 					if ( ! filter_var( $url, FILTER_VALIDATE_URL ) === false ) {
 						$resource = $url;
 					}
+					$id		= 'obfx-module-js-' . str_replace( ' ', '-', strtolower( $this->name ) ) . '-' . $order;
+					$map[$file_name]	= $id;
 					wp_enqueue_script(
-						'obfx-module-js-' . str_replace( ' ', '-', strtolower( $this->name ) ) . '-' . $order,
+						$id,
 						$resource,
 						$dependencies,
 						$this->version,
