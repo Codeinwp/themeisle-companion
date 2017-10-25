@@ -7,6 +7,8 @@
  * @author    ThemeIsle
  */
 
+ /* global menu_icons */
+
 var obfx_menuicons_module_admin = function( $, menu_icons ) {
 	'use strict';
 
