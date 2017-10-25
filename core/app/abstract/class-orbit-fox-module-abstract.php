@@ -430,15 +430,17 @@ abstract class Orbit_Fox_Module_Abstract {
 	 *
 	 * @since   1.0.0
 	 * @access  private
+	 * @param   array  $enqueue The array of files to enqueue.
+	 * @param   string $prefix The string to prefix in the enqueued name.
 	 */
 	private function set_scripts( $enqueue, $prefix ) {
-		$sanitized	= str_replace( ' ', '-', strtolower( $this->name ) );
+		$sanitized  = str_replace( ' ', '-', strtolower( $this->name ) );
 
 		$module_dir = $this->slug;
 		if ( ! empty( $enqueue ) ) {
 			if ( isset( $enqueue['js'] ) && ! empty( $enqueue['js'] ) ) {
 				$order = 0;
-				$map	= array();
+				$map    = array();
 				foreach ( $enqueue['js'] as $file_name => $dependencies ) {
 					if ( $dependencies == false ) {
 						$dependencies = array();
@@ -456,8 +458,8 @@ abstract class Orbit_Fox_Module_Abstract {
 					if ( ! filter_var( $url, FILTER_VALIDATE_URL ) === false ) {
 						$resource = $url;
 					}
-					$id		= 'obfx-module-' . $prefix . '-js-' . $sanitized . '-' . $order;
-					$map[$file_name]	= $id;
+					$id     = 'obfx-module-' . $prefix . '-js-' . $sanitized . '-' . $order;
+					$map[ $file_name ]    = $id;
 
 					wp_enqueue_script(
 						$id,
@@ -488,13 +490,15 @@ abstract class Orbit_Fox_Module_Abstract {
 	 *
 	 * @since   1.0.0
 	 * @access  private
+	 * @param   array  $enqueue The array of files to enqueue.
+	 * @param   string $prefix The string to prefix in the enqueued name.
 	 */
 	private function set_styles( $enqueue, $prefix ) {
 		$module_dir = $this->slug;
 		if ( ! empty( $enqueue ) ) {
 			if ( isset( $enqueue['css'] ) && ! empty( $enqueue['css'] ) ) {
 				$order = 0;
-				$map	= array();
+				$map    = array();
 				foreach ( $enqueue['css'] as $file_name => $dependencies ) {
 					if ( $dependencies == false ) {
 						$dependencies = array();
@@ -512,8 +516,8 @@ abstract class Orbit_Fox_Module_Abstract {
 					if ( ! filter_var( $url, FILTER_VALIDATE_URL ) === false ) {
 						$resource = $url;
 					}
-					$id		= 'obfx-module-' . $prefix . '-css-' . str_replace( ' ', '-', strtolower( $this->name ) ) . '-' . $order;
-					$map[$file_name]	= $id;
+					$id     = 'obfx-module-' . $prefix . '-css-' . str_replace( ' ', '-', strtolower( $this->name ) ) . '-' . $order;
+					$map[ $file_name ]    = $id;
 					wp_enqueue_style(
 						$id,
 						$resource,

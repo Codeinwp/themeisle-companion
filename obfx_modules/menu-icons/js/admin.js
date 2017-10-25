@@ -25,6 +25,7 @@ var obfx_menuicons_module_admin = function( $, menu_icons ) {
             ));
         });
         $('.obfx-menu-icon').iconpicker({
+            // added blank icon for deselection.
             icons: $.merge(['fa-blank'], $.merge(menu_icons.icons, $.iconpicker.defaultOptions.icons)),
             fullClassFormatter: function(val){
                 if(val.match(/^fa-/)){

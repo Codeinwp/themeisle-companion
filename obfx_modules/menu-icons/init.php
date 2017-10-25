@@ -82,7 +82,7 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 	public function custom_walker( $walker ) {
 		if ( ! class_exists( 'Menu_Icons_OBFX_Walker' ) ) {
-			require_once $this->get_dir() . DIRECTORY_SEPARATOR . 'inc' . DIRECTORY_SEPARATOR . 'class-nav-menu-edit-walker.php';
+			require_once $this->get_dir() . DIRECTORY_SEPARATOR . 'inc' . DIRECTORY_SEPARATOR . 'class-menu-icons-obfx-walker.php';
 		}
 		$walker = 'Menu_Icons_OBFX_Walker';
 		return $walker;
