@@ -20,7 +20,7 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	/**
 	 * The default icon to use.
 	 */
-	const DEFAULT_ICON	= 'glyphicon-cog';
+	const DEFAULT_ICON	= 'dashicons-plus';
 
 	/**
 	 * Menu_Icons_OBFX_Module constructor.
@@ -147,8 +147,7 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		return array(
 			'css' => array(
-				'vendor/bootstrap.min' => false,
-				'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' => array( 'vendor/bootstrap.min' ),
+				'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' => false,
 				'vendor/fontawesome-iconpicker.min' => array( 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' ),
 				'admin' => array( 'vendor/fontawesome-iconpicker.min' ),
 			),

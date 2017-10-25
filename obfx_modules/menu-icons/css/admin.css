@@ -1,0 +1,3 @@
+.obfx-menu-icon-container ~ .popover {
+	z-index: 999999;
+}

@@ -31,13 +31,15 @@ var obfx_menuicons_module_admin = function( $, menu_icons ) {
         $('li.menu-item').each(function(i, x){
             var item_id = $(x).find('input.menu-item-data-db-id').val();
             var icon    = $('#menu-item-icon-' + item_id).val();
+            var no_icon_class = '';
             if('' === icon){
                 icon    = default_icon;
+                no_icon_class = 'obfx-menu-icon-none';
             }
             var prefix  = get_prefix(icon);
 
             $(x).find('.menu-item-bar .menu-item-handle .item-title').prepend($(
-            '<div class="input-group" style="display: inline-block"><input class="form-control obfx-menu-icon" value="' + icon + '" style="display: none" type="text" data-menu-item-id="' + item_id + '"><span class="input-group-addon" style="cursor: pointer"><i class="' + prefix + icon + '"></i></span></div>'
+            '<div class="input-group obfx-menu-icon-container" style="display: inline-block"><input class="form-control obfx-menu-icon ' + no_icon_class + '" value="' + icon + '" style="display: none" type="text" data-menu-item-id="' + item_id + '"><span class="input-group-addon" style="cursor: pointer"><i class="' + prefix + icon + '"></i></span></div>'
             ));
         });
         $('.obfx-menu-icon').iconpicker({
@@ -47,7 +49,8 @@ var obfx_menuicons_module_admin = function( $, menu_icons ) {
                 return get_prefix(val) + val;
             },
             hideOnSelect: true,
-            placement: 'bottomLeft'
+            placement: 'bottomLeft',
+            selectedCustomClass: 'obfx-menu-icon-selected'
         });
         // add the selected icon to the hidden element.
         $('.obfx-menu-icon').on('iconpickerSelected', function(e) {
