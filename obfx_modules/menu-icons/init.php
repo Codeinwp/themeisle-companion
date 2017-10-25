@@ -17,6 +17,10 @@
  */
 class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
+	/**
+	 * The default icon to use.
+	 */
+	const DEFAULT_ICON	= 'glyphicon-cog';
 
 	/**
 	 * Menu_Icons_OBFX_Module constructor.
@@ -137,6 +141,7 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$this->localized	= array(
 			'admin'		=> array(
 				'icons'	=> apply_filters( 'obfx_menu_icons_icon_list', $this->get_dashicons() ),
+				'icon_default' => self::DEFAULT_ICON,
 			),
 		);
 
@@ -198,7 +203,11 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		check_admin_referer( 'update-nav_menu', 'update-nav-menu-nonce' );
 
 		if ( isset( $_POST['menu-item-icon'][ $menu_item_db_id ] ) ) {
-			update_post_meta( $menu_item_db_id, 'obfx_menu_icon', $_POST['menu-item-icon'][ $menu_item_db_id ] );
+			$icon	= $_POST['menu-item-icon'][ $menu_item_db_id ];
+			if ( self::DEFAULT_ICON === $icon ) {
+				$icon	= '';
+			}
+			update_post_meta( $menu_item_db_id, 'obfx_menu_icon', $icon );
 		}
 
 	}

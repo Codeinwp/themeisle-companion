@@ -12,6 +12,18 @@
 var obfx_menuicons_module_admin = function( $, menu_icons ) {
 	'use strict';
 
+    var default_icon = menu_icons.icon_default;
+
+    function get_prefix(icon){
+        if(icon.match(/^fa-/)){
+            return 'fa ';
+        }else if(icon.match(/^dashicons-/)){
+            return 'dashicons ';
+        }else if(icon.match(/glyphicon-/)){
+            return 'glyphicon ';
+        }
+    }
+
 	$( function() {
         // ensure the popover comes over the menu bar.
         $('.menu-item-bar .menu-item-handle').css('overflow', 'initial');
@@ -20,22 +32,22 @@ var obfx_menuicons_module_admin = function( $, menu_icons ) {
             var item_id = $(x).find('input.menu-item-data-db-id').val();
             var icon    = $('#menu-item-icon-' + item_id).val();
             if('' === icon){
-                icon    = 'fa-blank'; // default.
+                icon    = default_icon;
             }
+            var prefix  = get_prefix(icon);
+
             $(x).find('.menu-item-bar .menu-item-handle .item-title').prepend($(
-            '<div class="btn-group"><button type="button" class="btn btn-primary iconpicker-component"><i class="fa fa-fw fa-heart"></i></button><button type="button" class="obfx-menu-icon btn btn-primary dropdown-toggle" data-menu-item-id="' + item_id + '" data-selected="' + icon + '" data-toggle="dropdown"><span class="caret"></span></button><div class="dropdown-menu"></div></div>&nbsp;'
+            '<div class="input-group" style="display: inline-block"><input class="form-control obfx-menu-icon" value="' + icon + '" style="display: none" type="text" data-menu-item-id="' + item_id + '"><span class="input-group-addon" style="cursor: pointer"><i class="' + prefix + icon + '"></i></span></div>'
             ));
         });
         $('.obfx-menu-icon').iconpicker({
             // added blank icon for deselection.
-            icons: $.merge(['fa-blank'], $.merge(menu_icons.icons, $.iconpicker.defaultOptions.icons)),
+            icons: $.merge([default_icon], $.merge(menu_icons.icons, $.iconpicker.defaultOptions.icons)),
             fullClassFormatter: function(val){
-                if(val.match(/^fa-/)){
-                    return 'fa '+ val;
-                }else{
-                    return 'dashicons '+ val;
-                }
-            }
+                return get_prefix(val) + val;
+            },
+            hideOnSelect: true,
+            placement: 'bottomLeft'
         });
         // add the selected icon to the hidden element.
         $('.obfx-menu-icon').on('iconpickerSelected', function(e) {
