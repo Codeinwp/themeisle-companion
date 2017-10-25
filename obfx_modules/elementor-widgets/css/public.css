@@ -60,3 +60,82 @@
     border-radius: 5px;
 }
 /* End Of Pricing Table Base CSS */
+
+/* Post Type Grid Base CSS */
+.obfx-grid-container {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.obfx-grid-col {
+    display: inline-block;
+    float: left;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+}
+
+.obfx-grid-desktop-1 .obfx-grid-col {
+    width: 100%;
+}
+
+.obfx-grid-desktop-2 .obfx-grid-col {
+    width: 50%;
+}
+
+.obfx-grid-desktop-3 .obfx-grid-col {
+    width: 33.333%;
+}
+
+.obfx-grid-desktop-4 .obfx-grid-col {
+    width: 25%;
+}
+
+.obfx-grid-desktop-5 .obfx-grid-col {
+    width: 20%;
+}
+
+@media (max-width: 992px) {
+    .obfx-grid-tablet-1 .obfx-grid-col {
+        width: 100%;
+    }
+
+    .obfx-grid-tablet-2 .obfx-grid-col {
+        width: 50%;
+    }
+
+    .obfx-grid-tablet-3 .obfx-grid-col {
+        width: 33.333%;
+    }
+
+    .obfx-grid-tablet-4 .obfx-grid-col {
+        width: 25%;
+    }
+
+    .obfx-grid-tablet-5 .obfx-grid-col {
+        width: 20%;
+    }
+}
+
+@media (max-width: 767px) {
+    .obfx-grid-mobile-1 .obfx-grid-col {
+        width: 100%;
+    }
+
+    .obfx-grid-mobile-2 .obfx-grid-col {
+        width: 50%;
+    }
+
+    .obfx-grid-mobile-3 .obfx-grid-col {
+        width: 33.333%;
+    }
+
+    .obfx-grid-mobile-4 .obfx-grid-col {
+        width: 25%;
+    }
+
+    .obfx-grid-mobile-5 .obfx-grid-col {
+        width: 20%;
+    }
+}
+/* End Of Post Type Grid Base CSS */

@@ -58,7 +58,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 	}
 
 	/**
-	 * Widget Category
+	 * Widget Category.
 	 *
 	 * @return array
 	 */
@@ -67,7 +67,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 	}
 
 	/**
-	 * Get post types
+	 * Get post types.
 	 */
 	private function grid_get_all_post_types() {
 		$options = array();
@@ -78,17 +78,17 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 		);
 
 		foreach ( get_post_types( $args, 'objects' ) as $post_type ) {
-			// Check if post type name exists
+			// Check if post type name exists.
 			if ( ! isset( $post_type->name ) ) {
 				continue;
 			}
 
-			// Check if post type label exists
+			// Check if post type label exists.
 			if ( ! isset( $post_type->label ) ) {
 				continue;
 			}
 
-			// Check if post type is excluded
+			// Check if post type is excluded.
 			if ( in_array( $post_type->name, $exclude ) === true ) {
 				continue;
 			}
@@ -100,18 +100,19 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 	}
 
 	/**
-	 * Register Elementor Controls
+	 * Register Elementor Controls.
 	 */
 	protected function _register_controls() {
 		$this->grid_options_section();
 		$this->grid_image_section();
 		$this->grid_title_section();
+		$this->grid_meta_section();
 		$this->grid_content_section();
 
 	}
 
 	/**
-	 * Content > Grid
+	 * Content > Grid.
 	 */
 	private function grid_options_section() {
 		$this->start_controls_section(
@@ -122,7 +123,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 
 		);
 
-		// Post type
+		// Post type.
 		$this->add_control(
 			'grid_post_type',
 			[
@@ -133,7 +134,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
-		// Items
+		// Items.
 		$this->add_control(
 			'grid_items',
 			[
@@ -144,23 +145,26 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
-		// Columns
-		$this->add_control(
+		// Columns.
+		$this->add_responsive_control(
 			'grid_columns',
 			[
 				'type'        => Controls_Manager::SELECT,
 				'label'       => '<i class="fa fa-columns"></i> ' . __( 'Columns', 'themeisle-companion' ),
-				'default'     => 3,
+				'default' => 3,
+                'tablet_default' => 2,
+                'mobile_default'=> 1,
 				'options' => [
 					1 => 1,
 					2 => 2,
 					3 => 3,
 					4 => 4,
+					5 => 5,
 				],
 			]
 		);
 
-		// Order by
+		// Order by.
 		$this->add_control(
 			'grid_order_by',
 			[
@@ -177,7 +181,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
-		// Order
+		// Order.
 		$this->add_control(
 			'grid_order',
 			[
@@ -206,7 +210,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 
 		);
 
-		// Hide image
+		// Hide image.
 		$this->add_control(
 			'grid_image_hide',
 			[
@@ -216,7 +220,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
-		// Image link
+		// Image link.
 		$this->add_control(
 			'grid_image_link',
 			[
@@ -241,7 +245,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 
 		);
 
-		// Hide title
+		// Hide title.
 		$this->add_control(
 			'grid_title_hide',
 			[
@@ -251,7 +255,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
-		// Title tag
+		// Title tag.
 		$this->add_control(
 			'grid_title_tag',
 			[
@@ -270,7 +274,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
-		// Title link
+		// Title link.
 		$this->add_control(
 			'grid_title_link',
 			[
@@ -280,33 +284,45 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
-		// Title alignment
-		$this->add_responsive_control(
-			'grid_title_alignment',
+		$this->end_controls_section();
+	}
+
+	/**
+	 * Content > Meta Options.
+	 */
+	private function grid_meta_section() {
+		$this->start_controls_section(
+			'section_grid_meta',
 			[
-				'label'     => '<i class="fa fa-align-right"></i> ' . __( 'Alignment', 'themeisle-companion' ),
-				'type'      => Controls_Manager::CHOOSE,
-				'options'   => [
-					'left'    => [
-						'title' => __( 'Left', 'themeisle-companion' ),
-						'icon'  => 'fa fa-align-left',
-					],
-					'center'  => [
-						'title' => __( 'Center', 'themeisle-companion' ),
-						'icon'  => 'fa fa-align-center',
-					],
-					'right'   => [
-						'title' => __( 'Right', 'themeisle-companion' ),
-						'icon'  => 'fa fa-align-right',
-					],
-					'justify' => [
-						'title' => __( 'Justified', 'themeisle-companion' ),
-						'icon'  => 'fa fa-align-justify',
-					],
-				],
-				'default'   => 'left',
-				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-item-title' => 'text-align: {{VALUE}};',
+				'label'     => __( 'Meta', 'themeisle-companion' ),
+			]
+
+		);
+
+		// Hide content.
+		$this->add_control(
+			'grid_meta_hide',
+			[
+				'label' => '<i class="fa fa-minus-circle"></i> ' . __( 'Hide', 'themeisle-companion' ),
+				'type' => Controls_Manager::SWITCHER,
+				'default' => '',
+			]
+		);
+
+		// Meta.
+		$this->add_control(
+			'meta_data',
+			[
+				'label' => __( 'Display', 'themeisle-companion' ),
+				'label_block' => true,
+				'type' => Controls_Manager::SELECT2,
+				'default' => [ 'date', 'comments' ],
+				'multiple' => true,
+				'options' => [
+					'author' => __( 'Author', 'themeisle-companion' ),
+					'date' => __( 'Date', 'themeisle-companion' ),
+					'time' => __( 'Time', 'themeisle-companion' ),
+					'comments' => __( 'Comments', 'themeisle-companion' ),
 				],
 			]
 		);
@@ -326,7 +342,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 
 		);
 
-		// Hide content
+		// Hide content.
 		$this->add_control(
 			'grid_content_hide',
 			[
@@ -336,8 +352,8 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
-		// Author
-		$this->add_control(
+		// Author.
+		/*$this->add_control(
 			'grid_content_author',
 			[
 				'label' => '<i class="fa fa-user"></i> ' . __( 'Author', 'themeisle-companion' ),
@@ -347,58 +363,10 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 					'section_grid.grid_post_type!' => 'product',
 				],
 			]
-		);
+		);*/
 
-		// Author before text
-		$this->add_control(
-			'grid_content_author_before_text',
-			[
-				'type'        => Controls_Manager::TEXT,
-				'label'       => __( 'Text before', 'themeisle-companion' ),
-				'placeholder' => __( 'Text before author', 'themeisle-companion'),
-				'default'     => '',
-				'condition' => [
-					'grid_content_author' => 'yes',
-				],
-			]
-		);
-
-		// Author alignment
-		$this->add_responsive_control(
-			'grid_content_author_alignment',
-			[
-				'label'     => __( 'Author alignment', 'themeisle-companion' ),
-				'type'      => Controls_Manager::CHOOSE,
-				'options'   => [
-					'left'    => [
-						'title' => __( 'Left', 'themeisle-companion' ),
-						'icon'  => 'fa fa-align-left',
-					],
-					'center'  => [
-						'title' => __( 'Center', 'themeisle-companion' ),
-						'icon'  => 'fa fa-align-center',
-					],
-					'right'   => [
-						'title' => __( 'Right', 'themeisle-companion' ),
-						'icon'  => 'fa fa-align-right',
-					],
-					'justify' => [
-						'title' => __( 'Justified', 'themeisle-companion' ),
-						'icon'  => 'fa fa-align-justify',
-					],
-				],
-				'default'   => 'center',
-				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-item-author' => 'text-align: {{VALUE}};',
-				],
-				'condition' => [
-					'grid_content_author' => 'yes',
-				],
-			]
-		);
-
-		// Date
-		$this->add_control(
+		// Date.
+		/*$this->add_control(
 			'grid_content_date',
 			[
 				'label' => '<i class="fa fa-calendar-o"></i> ' . __( 'Date', 'themeisle-companion' ),
@@ -408,57 +376,9 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 					'section_grid.grid_post_type!' => 'product',
 				],
 			]
-		);
+		);*/
 
-		// Date before text
-		$this->add_control(
-			'grid_content_date_before_text',
-			[
-				'type'        => Controls_Manager::TEXT,
-				'label'       => __( 'Text before', 'themeisle-companion' ),
-				'placeholder' => __( 'Text before date', 'themeisle-companion'),
-				'default'     => '',
-				'condition' => [
-					'grid_content_date' => 'yes',
-				],
-			]
-		);
-
-		// Date alignment
-		$this->add_responsive_control(
-			'grid_content_date_alignment',
-			[
-				'label'     => __( 'Date alignment', 'themeisle-companion' ),
-				'type'      => Controls_Manager::CHOOSE,
-				'options'   => [
-					'left'    => [
-						'title' => __( 'Left', 'themeisle-companion' ),
-						'icon'  => 'fa fa-align-left',
-					],
-					'center'  => [
-						'title' => __( 'Center', 'themeisle-companion' ),
-						'icon'  => 'fa fa-align-center',
-					],
-					'right'   => [
-						'title' => __( 'Right', 'themeisle-companion' ),
-						'icon'  => 'fa fa-align-right',
-					],
-					'justify' => [
-						'title' => __( 'Justified', 'themeisle-companion' ),
-						'icon'  => 'fa fa-align-justify',
-					],
-				],
-				'default'   => 'center',
-				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-item-date' => 'text-align: {{VALUE}};',
-				],
-				'condition' => [
-					'grid_content_date' => 'yes',
-				],
-			]
-		);
-
-		// Price
+		// Price.
 		$this->add_control(
 			'grid_content_price',
 			[
@@ -471,42 +391,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
-		// Price alignment
-		$this->add_responsive_control(
-			'grid_content_price_alignment',
-			[
-				'label'     => __( 'Price alignment', 'themeisle-companion' ),
-				'type'      => Controls_Manager::CHOOSE,
-				'options'   => [
-					'left'    => [
-						'title' => __( 'Left', 'themeisle-companion' ),
-						'icon'  => 'fa fa-align-left',
-					],
-					'center'  => [
-						'title' => __( 'Center', 'themeisle-companion' ),
-						'icon'  => 'fa fa-align-center',
-					],
-					'right'   => [
-						'title' => __( 'Right', 'themeisle-companion' ),
-						'icon'  => 'fa fa-align-right',
-					],
-					'justify' => [
-						'title' => __( 'Justified', 'themeisle-companion' ),
-						'icon'  => 'fa fa-align-justify',
-					],
-				],
-				'default'   => 'center',
-				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-item-price' => 'text-align: {{VALUE}};',
-				],
-				'condition' => [
-					'grid_content_price!' => '',
-                    'grid_section.grid_post_type' => 'product',
-				],
-			]
-		);
-
-		// Read more button hide
+		// Read more button hide.
 		$this->add_control(
 			'grid_content_btn',
 			[
@@ -516,7 +401,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
-		// Default button text
+		// Default button text.
 		$this->add_control(
 			'grid_content_default_btn_text',
 			[
@@ -531,14 +416,14 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
-		// Product button text
+		// Product button text.
 		$this->add_control(
 			'grid_content_product_btn_text',
 			[
 				'type'        => Controls_Manager::TEXT,
 				'label'       => __( 'Button text', 'themeisle-companion' ),
-				'placeholder' => __( 'View product', 'themeisle-companion'),
-				'default'     => __( 'View product', 'themeisle-companion'),
+				'placeholder' => __( 'Add to Cart', 'themeisle-companion'),
+				'default'     => __( 'Add to Cart', 'themeisle-companion'),
 				'condition' => [
 					'grid_content_btn!' => '',
 					'section_grid.grid_post_type' => 'product',
@@ -546,7 +431,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
-		// Button alignment
+		// Button alignment.
 		$this->add_responsive_control(
 			'grid_content_btn_alignment',
 			[
@@ -571,6 +456,8 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 					],
 				],
 				'default'   => 'left',
+				'tablet_default'   => 'left',
+				'mobile_default'   => 'center',
 				'selectors' => [
 					'{{WRAPPER}} .obfx-grid-item-btn' => 'text-align: {{VALUE}};',
 				],
@@ -580,6 +467,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
+		// Content alignment.
 		$this->add_responsive_control(
 			'grid_content_alignment',
 			[
@@ -604,6 +492,8 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 					],
 				],
 				'default'   => 'left',
+				'tablet_default'   => 'left',
+				'mobile_default'   => 'center',
 				'selectors' => [
 					'{{WRAPPER}} .obfx-grid-item-content' => 'text-align: {{VALUE}};',
 				],
@@ -614,163 +504,183 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 	}
 
 	/**
-	 * Render function to output the pricing table.
+	 * Render image of post type.
 	 */
-	protected function render() {
+	protected function renderImage() {
 		$settings = $this->get_settings();
 
-		$output = '';
+		if ( $settings['grid_image_hide'] !== 'yes' ) {
+			// Check if post type has featured image.
+			if ( has_post_thumbnail() ) { ?>
 
-		// Output
-		$output .= '<div class="obfx-grid">';
-		$output .= '<div class="container">';
+				<?php if ( $settings['grid_image_link'] == 'yes' ) { ?>
+                    <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="obfx-grid-item-image"><?php the_post_thumbnail(); ?></a>
+				<?php } else { ?>
+                    <div class="obfx-grid-item-image"><?php the_post_thumbnail(); ?></div>
+				<?php }
+			}
+		}
+    }
 
-		// Arguments for query
+	/**
+	 * Render title of post type.
+	 */
+	protected function renderTitle() {
+		$settings = $this->get_settings();
+
+		if ( $settings['grid_title_hide'] !== 'yes' ) { ?>
+            <<?php echo $settings['grid_title_tag']; ?> class="obfx-grid-item-title">
+			<?php if ( $settings['grid_title_link'] == 'yes' ) { ?>
+                <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title();
+					?></a>
+			<?php } else {
+				the_title();
+			} ?>
+            </<?php echo $settings['grid_title_tag']; ?>>
+		<?php }
+    }
+
+	/**
+	 * Render meta of post type.
+	 */
+	protected function renderMeta() {
+		$settings = $this->get_settings();
+
+		if ( $settings['grid_post_type'] !== 'product' ) { ?>
+            <div class="row obfx-grid-item-meta">
+				<?php if ( $settings['grid_content_author'] == 'yes' ) { ?>
+                    <div class="obfx-grid-item-author">
+						<?php echo get_the_author(); ?>
+                    </div>
+					<?php
+				}
+
+				if ( $settings['grid_content_date'] == 'yes' ) { ?>
+                    <div class="obfx-grid-item-date">
+						<?php echo get_the_date(); ?>
+                    </div>
+				<?php } ?>
+            </div>
+		<?php }
+	}
+
+	/**
+	 * Render price if post type is product.
+	 */
+    protected function renderPrice() {
+	    if ( class_exists( 'WooCommerce' ) ) {
+		    $settings = $this->get_settings();
+
+		    if ( $settings['grid_post_type'] == 'product' && $settings['grid_content_price'] == 'yes' ) { ?>
+                <div class="obfx-grid-item-price">
+				    <?php echo wc_price(wc_get_product()->price); ?>
+                </div>
+		    <?php
+		    }
+	    }
+    }
+
+	/**
+	 * Render content of post type.
+	 */
+	protected function renderContent() {
+		$settings = $this->get_settings();
+
+		if ( $settings['grid_content_hide'] !== 'yes' ) { ?>
+            <div class="obfx-grid-item-content">
+                <?php the_excerpt(); ?>
+            </div>
+		<?php }
+    }
+
+	/**
+	 * Render button of post type.
+	 */
+	protected function renderButton() {
+		$settings = $this->get_settings();
+
+		if ( $settings['grid_content_btn'] == 'yes' && ( ! empty ( $settings['grid_content_default_btn_text']
+				) || ! empty ( $settings['grid_content_product_btn_text'] ) ) ) { ?>
+            <div class="obfx-grid-item-btn">
+                <a href="<?php the_permalink(); ?>" title="<?php echo ( $settings['grid_post_type'] == 'product' ? $settings['grid_content_product_btn_text'] : $settings['grid_content_default_btn_text'] ); ?>"><?php echo ( $settings['grid_post_type'] == 'product' ? $settings['grid_content_product_btn_text'] : $settings['grid_content_default_btn_text'] ); ?></a>
+            </div>
+		<?php }
+    }
+
+	/**
+	 * Render function to output the post type grid.
+	 */
+	protected function render() {
+        // Get settings.
+		$settings = $this->get_settings();
+
+		// Output.
+		echo '<div class="obfx-grid">';
+		echo '<div class="obfx-grid-container' . ( ! empty( $settings['grid_columns_mobile'] ) ? ' obfx-grid-mobile-' . $settings['grid_columns_mobile'] : '' ) . ( ! empty( $settings['grid_columns_tablet'] ) ? ' obfx-grid-tablet-' . $settings['grid_columns_tablet'] : '' ) . ( ! empty( $settings['grid_columns'] ) ? ' obfx-grid-desktop-' . $settings['grid_columns'] : '' ) .'">';
+
+		// Arguments for query.
 		$args = array();
 
-		// Check if post type exists
+		// Check if post type exists.
 		if ( ! empty( $settings['grid_post_type'] ) && post_type_exists( $settings['grid_post_type'] ) ) {
 		    $args['post_type'] = $settings['grid_post_type'];
 		}
 
-		// Items to display
+		// Items to display.
 		if ( ! empty( $settings['grid_items'] ) &&  intval( $settings['grid_items'] ) == $settings['grid_items']  ) {
 			$args['posts_per_page'] = $settings['grid_items'];
 		}
 
-		// Order by
+		// Order by.
 		if ( ! empty( $settings['grid_order_by'] ) ) {
 			$args['orderby'] = $settings['grid_order_by'];
 		}
 
-		// Order
+		// Order.
 		if ( ! empty( $settings['grid_order'] ) ) {
 			$args['order'] = $settings['grid_order'];
 		}
 
-        // Query
+		var_dump($args);
+
+        // Query.
         $query = new \WP_Query( $args );
 
-        // Query results
+        // Query results.
         if ( $query->have_posts() ) {
-            $item_id = 1;
-        ?>
-            <div class="row">
-                <?php while ( $query->have_posts() ) {
-	                $query->the_post();
+            while ( $query->have_posts() ) {
+                $query->the_post();
 
-	                // Add specific classes
-                    $col_class = 'col-sm-4'; // default 3 cols
-		            if ( ! empty( $settings['grid_columns'] ) ) {
-		                switch ( $settings['grid_columns'] ) {
-                            case 1:
-	                            $col_class = '';
-                            break;
-			                case 2:
-				                $col_class = 'col-sm-6';
-                            break;
-			                case 4:
-				                $col_class = 'col-sm-6 col-md-3';
-                            break;
-                            default:
-	                            $col_class = 'col-sm-4';
-                        }
-		            }
-	                ?>
-                    <div class="col-xs-12 <?php echo esc_attr($col_class); ?> obfx-grid-item">
-		                <?php
-		                // Image
-		                if ( $settings['grid_image_hide'] !== 'yes' ) {
-			                // Check if post type has featured image
-			                if ( has_post_thumbnail() ) { ?>
+	            echo '<div class="obfx-grid-col">';
 
-				                <?php if ( $settings['grid_image_link'] == 'yes' ) { ?>
-                                    <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="obfx-grid-item-image"><?php the_post_thumbnail(); ?></a>
-                                <?php } else { ?>
-                                    <div class="obfx-grid-item-image"><?php the_post_thumbnail(); ?></div>
-			                <?php }
-                            }
-		                }
+                // Image.
+	            $this->renderImage();
 
-		                // Title
-		                if ( $settings['grid_title_hide'] !== 'yes' ) { ?>
-                            <<?php echo $settings['grid_title_tag']; ?> class="obfx-grid-item-title">
-                                <?php if ( $settings['grid_title_link'] == 'yes' ) { ?>
-                                <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title();
-                                    ?></a>
-                                <?php } else {
-                                    the_title();
-                                } ?>
-                            </<?php echo $settings['grid_title_tag']; ?>>
-                        <?php }
+                // Title.
+                $this->renderTitle();
 
-                        if ( $settings['grid_post_type'] !== 'product' ) { ?>
-                            <div class="row obfx-grid-item-meta">
-                                <?php if ( $settings['grid_content_author'] == 'yes' ) { ?>
-                                    <div class="obfx-grid-item-author">
-                                        <?php echo ( ! empty( $settings['grid_content_author_before_text']) ? esc_html( $settings['grid_content_author_before_text'] )
-                                                : '' ) . get_the_author(); ?>
-                                    </div>
-                                <?php
-                                }
+                // Price.
+                $this->renderPrice();
 
-                                if ( $settings['grid_content_date'] == 'yes' ) { ?>
-                                    <div class="obfx-grid-item-date">
-                                        <?php echo ( ! empty( $settings['grid_content_date_before_text']) ? esc_html( $settings['grid_content_date_before_text'] )
-                                                : '' ) . get_the_date(); ?>
-                                    </div>
-                                <?php } ?>
-                            </div>
-                        <?php }
+                // Meta.
+                //$this->renderMeta();
 
-                        // Price
-		                if ( class_exists( 'WooCommerce' ) ) {
-	                        if ( $settings['grid_post_type'] == 'product' && $settings['grid_content_price'] == 'yes' ) { ?>
-                                <div class="obfx-grid-item-price">
-			                        <?php echo wc_price(wc_get_product()->price); ?>
-                                </div>
-	                        <?php }
-                        }
+                // Content.
+                $this->renderContent();
 
-                        // Content
-                        if ( $settings['grid_content_hide'] !== 'yes' ) { ?>
-                        <div class="obfx-grid-item-content"><?php the_excerpt(); ?></div>
-                        <?php }
+                // Button.
+                $this->renderButton();
 
-                        // Button
-		                if ( $settings['grid_content_btn'] == 'yes' && ( ! empty ( $settings['grid_content_default_btn_text']
-			                ) || ! empty ( $settings['grid_content_product_btn_text'] ) ) ) { ?>
-                            <div class="obfx-grid-item-btn">
-                                <a href="<?php the_permalink(); ?>" title="<?php echo ( $settings['grid_post_type'] == 'product' ? $settings['grid_content_product_btn_text'] : $settings['grid_content_default_btn_text'] ); ?>"><?php echo ( $settings['grid_post_type'] == 'product' ? $settings['grid_content_product_btn_text'] : $settings['grid_content_default_btn_text'] ); ?></a>
-                            </div>
-		                <?php } ?>
+                echo '</div>';
 
-                    </div>
-	                <?php
-	                // Add rows
-                    if ( ! empty( $settings['grid_columns'] ) ) {
-                        if ( $settings['grid_columns'] == $item_id ) { ?>
-                            </div><!-- .row -->
-                            <div class="row">
-                        <?php
-                            $item_id = 0;
-                        }
-                    }
+            } // end while;
+        } // end if;
 
-		            $item_id++;
-                }
-                ?>
-            </div><!-- .row -->
-        <?php
-        }
-
-        // Restore original data
+        // Restore original data.
         wp_reset_postdata();
 
-		$output .= '</div><!-- .container -->';
-		$output .= '</div><!-- .obfx-grid -->';
-
-		echo $output;
+		echo '</div><!-- .obfx-grid-container -->';
+		echo '</div><!-- .obfx-grid -->';
 	}
 }
 
