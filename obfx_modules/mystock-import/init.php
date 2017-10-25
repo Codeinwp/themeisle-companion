@@ -17,6 +17,11 @@
  */
 class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
+	/**
+	 * The default icon to use.
+	 */
+	const API_KEY	= 'e5316d0a32404a2eb9d4d761c9f20ef6';
+
 
 	/**
 	 * Mystock_Import_OBFX_Module constructor.
@@ -91,6 +96,12 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			return array();
 		}
 
+		require_once $this->get_dir() . '/vendor/phpflickr/phpFlickr.php';
+		$f		= new phpFlickr(self::API_KEY);
+		$user	= $f->people_findByUsername('themeisle');
+		error_log(print_r($user,true));
+		//$photos	= $f->photos_search();
+		//error_log(print_r($photos,true));
 	}
 
 	/**
