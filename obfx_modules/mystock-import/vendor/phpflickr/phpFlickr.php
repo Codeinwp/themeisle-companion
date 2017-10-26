@@ -45,6 +45,28 @@ if ( !class_exists('phpFlickr') ) {
 		var $token;
 		var $php_version;
 		var $custom_post = null, $custom_cache_get = null, $custom_cache_set = null;
+		var $sizes = array(
+				"square" => "_s",
+				"square_75" => "_s",
+				"square_150" => "_q",
+				"thumbnail" => "_t",
+				"small" => "_m",
+				"small_240" => "_m",
+				"small_320" => "_n",
+				"medium" => "",
+				"medium_500" => "",
+				"medium_640" => "_z",
+				"medium_800" => "_c",
+				"large" => "_b",
+				"large_1024" => "_b",
+				"large_1600" => "_h",
+				"large_2048" => "_k",
+				"original" => "_o",
+			);
+
+		public function get_sizes() {
+			return $this->sizes;
+		}
 
 		/*
 		 * When your database cache table hits this many rows, a cleanup
@@ -225,6 +247,7 @@ if ( !class_exists('phpFlickr') ) {
 				curl_setopt($curl, CURLOPT_POST, true);
 				curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
 				curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 				$response = curl_exec($curl);
 				curl_close($curl);
 			} else {
@@ -368,24 +391,7 @@ if ( !class_exists('phpFlickr') ) {
 			//receives an array (can use the individual photo data returned
 			//from an API call) and returns a URL (doesn't mean that the
 			//file size exists)
-			$sizes = array(
-				"square" => "_s",
-				"square_75" => "_s",
-				"square_150" => "_q",
-				"thumbnail" => "_t",
-				"small" => "_m",
-				"small_240" => "_m",
-				"small_320" => "_n",
-				"medium" => "",
-				"medium_500" => "",
-				"medium_640" => "_z",
-				"medium_800" => "_c",
-				"large" => "_b",
-				"large_1024" => "_b",
-				"large_1600" => "_h",
-				"large_2048" => "_k",
-				"original" => "_o",
-			);
+			$sizes = $this->sizes;
 
 			$size = strtolower($size);
 			if (!array_key_exists($size, $sizes)) {
