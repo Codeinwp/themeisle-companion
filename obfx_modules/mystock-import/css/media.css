@@ -1,0 +1,5 @@
+#obfx_mystock ul.obfx_mystock_photos li.obfx_mystock_photo {
+	display: inline-block;
+	float: left;
+	cursor: pointer;
+}

@@ -91,6 +91,14 @@ abstract class Orbit_Fox_Module_Abstract {
 	protected $version;
 
 	/**
+	 * Stores the localized arrays for both public and admin JS files that need to be loaded.
+	 *
+	 * @access  protected
+	 * @var     array $localized The localized arrays for both public and admin JS files that need to be loaded.
+	 */
+	protected $localized = array();
+
+	/**
 	 * Orbit_Fox_Module_Abstract constructor.
 	 *
 	 * @since   1.0.0
@@ -112,6 +120,18 @@ abstract class Orbit_Fox_Module_Abstract {
 	protected function get_dir() {
 		$reflector = new ReflectionClass( get_class( $this ) );
 		return dirname( $reflector->getFileName() );
+	}
+
+	/**
+	 * Method to return URL to child class in a Reflective Way.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @access  protected
+	 * @return string
+	 */
+	protected function get_url() {
+		return plugin_dir_url( $this->get_dir() ) . $this->slug;
 	}
 
 	/**
@@ -412,22 +432,106 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function set_admin_styles() {
-		$enqueue = $this->admin_enqueue();
+		$this->set_styles( $this->admin_enqueue(), 'adm' );
+	}
+
+	/**
+	 * Actually sets the scripts.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @since   1.0.0
+	 * @access  private
+	 * @param   array  $enqueue The array of files to enqueue.
+	 * @param   string $prefix The string to prefix in the enqueued name.
+	 */
+	private function set_scripts( $enqueue, $prefix ) {
+		$sanitized  = str_replace( ' ', '-', strtolower( $this->name ) );
+
+		$module_dir = $this->slug;
+		if ( ! empty( $enqueue ) ) {
+			if ( isset( $enqueue['js'] ) && ! empty( $enqueue['js'] ) ) {
+				$order = 0;
+				$map    = array();
+				foreach ( $enqueue['js'] as $file_name => $dependencies ) {
+					if ( $dependencies == false ) {
+						$dependencies = array();
+					} else {
+						// check if any dependency has been loaded by us. If yes, then use that id as the dependency.
+						foreach ( $dependencies as $index => $dep ) {
+							if ( array_key_exists( $dep, $map ) ) {
+								unset( $dependencies[ $index ] );
+								$dependencies[ $index ] = $map[ $dep ];
+							}
+						}
+					}
+					$url = filter_var( $file_name, FILTER_SANITIZE_URL );
+					$resource = plugin_dir_url( $this->get_dir() ) . $module_dir . '/js/' . $file_name . '.js';
+					if ( ! filter_var( $url, FILTER_VALIDATE_URL ) === false ) {
+						$resource = $url;
+					}
+					$id     = 'obfx-module-' . $prefix . '-js-' . $sanitized . '-' . $order;
+					$map[ $file_name ]    = $id;
+
+					wp_enqueue_script(
+						$id,
+						$resource,
+						$dependencies,
+						$this->version,
+						false
+					);
+
+					// check if we need to enqueue or localize.
+					if ( array_key_exists( $file_name, $this->localized ) ) {
+						wp_localize_script(
+							$id,
+							str_replace( '-', '_', $sanitized ),
+							$this->localized[ $file_name ]
+						);
+					}
+					$order++;
+				}
+			}
+		}
+	}
+
+	/**
+	 * Actually sets the styles.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @since   1.0.0
+	 * @access  private
+	 * @param   array  $enqueue The array of files to enqueue.
+	 * @param   string $prefix The string to prefix in the enqueued name.
+	 */
+	private function set_styles( $enqueue, $prefix ) {
 		$module_dir = $this->slug;
 		if ( ! empty( $enqueue ) ) {
 			if ( isset( $enqueue['css'] ) && ! empty( $enqueue['css'] ) ) {
 				$order = 0;
+				$map    = array();
 				foreach ( $enqueue['css'] as $file_name => $dependencies ) {
 					if ( $dependencies == false ) {
 						$dependencies = array();
+					} else {
+						// check if any dependency has been loaded by us. If yes, then use that id as the dependency.
+						foreach ( $dependencies as $index => $dep ) {
+							if ( array_key_exists( $dep, $map ) ) {
+								unset( $dependencies[ $index ] );
+								$dependencies[ $index ] = $map[ $dep ];
+							}
+						}
 					}
 					$url = filter_var( $file_name, FILTER_SANITIZE_URL );
 					$resource = plugin_dir_url( $this->get_dir() ) . $module_dir . '/css/' . $file_name . '.css';
 					if ( ! filter_var( $url, FILTER_VALIDATE_URL ) === false ) {
 						$resource = $url;
 					}
+					$id     = 'obfx-module-' . $prefix . '-css-' . str_replace( ' ', '-', strtolower( $this->name ) ) . '-' . $order;
+					$map[ $file_name ]    = $id;
 					wp_enqueue_style(
-						'obfx-module-css-' . str_replace( ' ', '-', strtolower( $this->name ) ) . '-' . $order,
+						$id,
 						$resource,
 						$dependencies,
 						$this->version,
@@ -448,31 +552,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function set_admin_scripts() {
-		$enqueue = $this->admin_enqueue();
-		$module_dir = $this->slug;
-		if ( ! empty( $enqueue ) ) {
-			if ( isset( $enqueue['js'] ) && ! empty( $enqueue['js'] ) ) {
-				$order = 0;
-				foreach ( $enqueue['js'] as $file_name => $dependencies ) {
-					if ( $dependencies == false ) {
-						$dependencies = array();
-					}
-					$url = filter_var( $file_name, FILTER_SANITIZE_URL );
-					$resource = plugin_dir_url( $this->get_dir() ) . $module_dir . '/js/' . $file_name . '.js';
-					if ( ! filter_var( $url, FILTER_VALIDATE_URL ) === false ) {
-						$resource = $url;
-					}
-					wp_enqueue_script(
-						'obfx-module-js-' . str_replace( ' ', '-', strtolower( $this->name ) ) . '-' . $order,
-						$resource,
-						$dependencies,
-						$this->version,
-						false
-					);
-					$order++;
-				}
-			}
-		}
+		$this->set_scripts( $this->admin_enqueue(), 'adm' );
 	}
 
 	/**
@@ -484,31 +564,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function set_public_styles() {
-		$enqueue = $this->public_enqueue();
-		$module_dir = $this->slug;
-		if ( ! empty( $enqueue ) ) {
-			if ( isset( $enqueue['css'] ) && ! empty( $enqueue['css'] ) ) {
-				$order = 0;
-				foreach ( $enqueue['css'] as $file_name => $dependencies ) {
-					if ( $dependencies == false ) {
-						$dependencies = array();
-					}
-					$url = filter_var( $file_name, FILTER_SANITIZE_URL );
-					$resource = plugin_dir_url( $this->get_dir() ) . $module_dir . '/css/' . $file_name . '.css';
-					if ( ! filter_var( $url, FILTER_VALIDATE_URL ) === false ) {
-						$resource = $url;
-					}
-					wp_enqueue_style(
-						'obfx-module-pub-css-' . str_replace( ' ', '-', strtolower( $this->name ) ) . '-' . $order,
-						$resource,
-						$dependencies,
-						$this->version,
-						'all'
-					);
-					$order++;
-				}
-			}
-		}
+		$this->set_styles( $this->public_enqueue(), 'pub' );
 	}
 
 	/**
@@ -520,32 +576,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function set_public_scripts() {
-		$enqueue = $this->public_enqueue();
-		$module_dir = $this->slug;
-		if ( ! empty( $enqueue ) ) {
-			if ( isset( $enqueue['js'] ) && ! empty( $enqueue['js'] ) ) {
-				$order = 0;
-				foreach ( $enqueue['js'] as $file_name => $dependencies ) {
-					if ( $dependencies == false ) {
-						$dependencies = array();
-					}
-					$url = filter_var( $file_name, FILTER_SANITIZE_URL );
-					$resource = plugin_dir_url( $this->get_dir() ) . $module_dir . '/js/' . $file_name . '.js';
-					if ( ! filter_var( $url, FILTER_VALIDATE_URL ) === false ) {
-						$resource = $url;
-					}
-
-					wp_enqueue_script(
-						'obfx-module-pub-js-' . str_replace( ' ', '-', strtolower( $this->name ) ) . '-' . $order,
-						$resource,
-						$dependencies,
-						$this->version,
-						false
-					);
-					$order++;
-				}
-			}
-		}
+		$this->set_scripts( $this->public_enqueue(), 'pub' );
 	}
 
 	/**
