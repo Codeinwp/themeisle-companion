@@ -20,7 +20,7 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	/**
 	 * The default icon to use.
 	 */
-	const DEFAULT_ICON	= 'dashicons-plus';
+	const DEFAULT_ICON	= 'dashicons-obfx-default-icon';
 
 	/**
 	 * Menu_Icons_OBFX_Module constructor.
@@ -154,7 +154,7 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			'js' => array(
 				'vendor/bootstrap.min' => array( 'jquery' ),
 				'vendor/fontawesome-iconpicker.min' => array( 'vendor/bootstrap.min' ),
-				'admin' => array( 'vendor/fontawesome-iconpicker.min' ),
+				'admin' => array( 'vendor/fontawesome-iconpicker.min', 'jquery' ),
 			),
 		);
 	}
