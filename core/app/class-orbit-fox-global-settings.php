@@ -64,6 +64,8 @@ class Orbit_Fox_Global_Settings {
 					'stats',
 					'social-sharing',
 					'companion-legacy',
+					'menu-icons',
+					'mystock-import',
 				)
 			);
 		}// End if().
