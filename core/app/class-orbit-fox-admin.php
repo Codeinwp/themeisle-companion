@@ -78,8 +78,8 @@ class Orbit_Fox_Admin {
 		}
 		if ( in_array( $screen->id, array( 'tools_page_obfx_companion' ) ) ) {
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . '../assets/css/orbit-fox-admin.css', array(), $this->version, 'all' );
-			do_action( 'obfx_admin_enqueue_styles' );
 		}
+		do_action( 'obfx_admin_enqueue_styles' );
 	}
 
 	/**

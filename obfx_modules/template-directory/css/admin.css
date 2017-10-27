@@ -1,0 +1,43 @@
+.obfx-template-dir .obfx-template img {
+    max-width: 100%;
+    border: 1px solid #ddd;
+    border-left: none;
+    border-right: none;
+    float: left;
+}
+
+.obfx-template-browser {
+    padding: 35px 0 0;
+}
+
+.obfx-template-browser .template-name{
+    font-weight: 400;
+    font-size: 20px;
+    margin: 0;
+    padding: 15px;
+}
+
+.obfx-template-dir .obfx-template {
+    width: 22.7%;
+    margin: 0 3% 3% 0;
+    cursor: pointer;
+    float: left;
+    position: relative;
+    border: 1px solid #ddd;
+    background: #fff;
+    -webkit-box-shadow: 0 1px 1px -1px rgba(0,0,0,.1);
+    box-shadow: 0 1px 1px -1px rgba(0,0,0,.1);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.obfx-template-actions {
+    float: right;
+    padding: 10px;
+}
+
+.obfx-template-screenshot .more-details {
+    position: absolute;
+    display: none;
+}
