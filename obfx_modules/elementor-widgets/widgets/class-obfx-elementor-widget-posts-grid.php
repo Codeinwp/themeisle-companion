@@ -103,12 +103,15 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 	 * Register Elementor Controls.
 	 */
 	protected function _register_controls() {
+	    // Content.
 		$this->grid_options_section();
 		$this->grid_image_section();
 		$this->grid_title_section();
 		$this->grid_meta_section();
 		$this->grid_content_section();
-
+		// Style.
+		$this->grid_options_style_section();
+		$this->grid_image_style_section();
 	}
 
 	/**
@@ -205,7 +208,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 		$this->start_controls_section(
 			'section_grid_image',
 			[
-				'label'     => __( 'Image', 'themeisle-companion' ),
+				'label' => __( 'Image', 'themeisle-companion' ),
 			]
 
 		);
@@ -217,6 +220,67 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				'label' => '<i class="fa fa-minus-circle"></i> ' . __( 'Hide', 'themeisle-companion' ),
 				'type' => Controls_Manager::SWITCHER,
 				'default' => '',
+			]
+		);
+
+		$this->add_responsive_control(
+			'grid_image_ratio',
+			[
+				'label' => __( 'Image Ratio', 'themeisle-companion' ),
+				'type' => Controls_Manager::SLIDER,
+				'default' => [
+					'size' => 0.66,
+				],
+				'tablet_default' => [
+					'size' => '',
+				],
+				'mobile_default' => [
+					'size' => 0.5,
+				],
+				'range' => [
+					'px' => [
+						'min' => 0.1,
+						'max' => 2,
+						'step' => 0.01,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .obfx-grid-item-image' => 'padding-bottom: calc( {{SIZE}} * 100% );',
+				],
+			]
+		);
+
+		$this->add_responsive_control(
+			'grid_image_width',
+			[
+				'label' => __( 'Image Width', 'themeisle-companion' ),
+				'type' => Controls_Manager::SLIDER,
+				'range' => [
+					'%' => [
+						'min' => 10,
+						'max' => 100,
+					],
+					'px' => [
+						'min' => 10,
+						'max' => 600,
+					],
+				],
+				'default' => [
+					'size' => 100,
+					'unit' => '%',
+				],
+				'tablet_default' => [
+					'size' => '',
+					'unit' => '%',
+				],
+				'mobile_default' => [
+					'size' => 100,
+					'unit' => '%',
+				],
+				'size_units' => [ '%', 'px' ],
+				'selectors' => [
+					'{{WRAPPER}} .obfx-grid-item-image' => 'width: {{SIZE}}{{UNIT}};',
+				],
 			]
 		);
 
@@ -447,21 +511,6 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
-		// Product button text.
-		$this->add_control(
-			'grid_content_product_btn_text',
-			[
-				'type'        => Controls_Manager::TEXT,
-				'label'       => __( 'Button text', 'themeisle-companion' ),
-				'placeholder' => __( 'Add to Cart', 'themeisle-companion'),
-				'default'     => __( 'Add to Cart', 'themeisle-companion'),
-				'condition' => [
-					'grid_content_product_btn!' => '',
-					'section_grid.grid_post_type' => 'product',
-				],
-			]
-		);
-
 		// Button alignment.
 		$this->add_responsive_control(
 			'grid_content_btn_alignment',
@@ -517,16 +566,130 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 						'title' => __( 'Right', 'themeisle-companion' ),
 						'icon'  => 'fa fa-align-right',
 					],
-					'justify' => [
-						'title' => __( 'Justified', 'themeisle-companion' ),
-						'icon'  => 'fa fa-align-justify',
-					],
 				],
 				'default'   => 'left',
 				'tablet_default'   => 'left',
 				'mobile_default'   => 'center',
 				'selectors' => [
 					'{{WRAPPER}} .obfx-grid-col' => 'text-align: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->end_controls_section();
+	}
+
+	/**
+	 * Style > Grid options.
+	 */
+	private function grid_options_style_section() {
+	    // Tab.
+		$this->start_controls_section(
+			'section_grid_style',
+			[
+				'label' => __( 'Grid Options', 'themeisle-companion' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		// Columns margin.
+		$this->add_control(
+			'grid_style_columns_margin',
+			[
+				'label'     => __( 'Columns margin', 'elementor-pro' ),
+				'type'      => Controls_Manager::SLIDER,
+				'default'   => [
+					'size' => 15,
+				],
+				'range'     => [
+					'px' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .obfx-grid-col' => 'padding-right: calc( {{SIZE}}{{UNIT}}/2 ); padding-left: calc( {{SIZE}}{{UNIT}}/2 );',
+					'{{WRAPPER}} .obfx-grid-container' => 'margin-left: calc( -{{SIZE}}{{UNIT}}/2 ); margin-right: calc( -{{SIZE}}{{UNIT}}/2 );',
+				],
+			]
+		);
+
+		// Row margin.
+		$this->add_control(
+			'grid_style_rows_margin',
+			[
+				'label'     => __( 'Rows margin', 'elementor-pro' ),
+				'type'      => Controls_Manager::SLIDER,
+				'default'   => [
+					'size' => 30,
+				],
+				'range'     => [
+					'px' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .obfx-grid-col' => 'padding-bottom: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		// Background.
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name'     => 'grid_style_background',
+				'types'    => [ 'classic', 'gradient' ],
+				'selector' => '{{WRAPPER}} .obfx-grid',
+			]
+		);
+
+		$this->end_controls_section();
+	}
+
+	/**
+	 * Style > Image.
+	 */
+	private function grid_image_style_section() {
+		// Tab.
+		$this->start_controls_section(
+			'section_grid_image_style',
+			[
+				'label' => __( 'Image', 'themeisle-companion' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_control(
+			'grid_image_style_border_radius',
+			[
+				'label'      => __( 'Border Radius', 'themeisle-companion' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors'  => [
+					'{{WRAPPER}} .obfx-grid-item-image' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'grid_image_style_spacing',
+			[
+				'label'     => __( 'Bottom space', 'themeisle-companion' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => [
+					'px' => [
+						'max' => 100,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}}.elementor-posts--thumbnail-left .elementor-post__thumbnail__link'  => 'margin-right: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}}.elementor-posts--thumbnail-right .elementor-post__thumbnail__link' => 'margin-left: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}}.elementor-posts--thumbnail-top .elementor-post__thumbnail__link'   => 'margin-bottom: {{SIZE}}{{UNIT}}',
+				],
+				'default'   => [
+					'size' => 20,
 				],
 			]
 		);
@@ -677,18 +840,43 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 	}
 
 	/**
-	 * Render price if post type is product.
+	 * Display price if post type is product.
 	 */
     protected function renderPrice() {
         $settings = $this->get_settings();
+        $product = wc_get_product( get_the_ID() );
 
         if ( $settings['grid_post_type'] == 'product' && $settings['grid_content_price'] == 'yes' ) { ?>
             <div class="obfx-grid-col-price">
-                <?php echo wc_price(wc_get_product()->price); ?>
+                <?php
+					$price = $product->get_price_html();
+					if ( ! empty( $price ) ) {
+						echo wp_kses( $price, array(
+							'span' => array(
+								'class' => array(),
+							),
+							'del' => array(),
+						) );
+					}
+                ?>
             </div>
         <?php
         }
     }
+
+	/**
+	 * Display Add to Cart button.
+	 */
+	protected function renderAddToCart() {
+		$product = wc_get_product( get_the_ID() );
+
+		echo apply_filters( 'woocommerce_loop_add_to_cart_link',
+			sprintf( '<a href="%s" title="%s" rel="nofollow" class="button"><i class="fa fa-cart-plus"></i> %s</a>',
+				esc_url( $product->add_to_cart_url() ),
+				esc_attr( $product->add_to_cart_text() ),
+				esc_html( $product->add_to_cart_text() )
+			), $product );
+	}
 
 	/**
 	 * Render content of post type.
@@ -714,11 +902,14 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 	protected function renderButton() {
 		$settings = $this->get_settings();
 
-		if ( ( $settings['grid_content_default_btn'] == 'yes' || $settings['grid_content_product_btn'] == 'yes' ) && ( ! empty ( $settings['grid_content_default_btn_text'] ) || ! empty ( $settings['grid_content_product_btn_text'] ) ) ) { ?>
+		if ( $settings['grid_post_type'] == 'product' && $settings['grid_content_product_btn'] == 'yes' && ! empty ( $settings['grid_content_product_btn_text'] ) ) {
+            $this->renderAddToCart();
+		} else { ?>
             <div class="obfx-grid-col-footer">
-                <a href="<?php echo ($settings['grid_post_type'] == 'product') ? '?add-to-cart=' . get_the_ID() : get_the_permalink(); ?>" title="<?php echo ( $settings['grid_post_type'] == 'product' ? $settings['grid_content_product_btn_text'] : $settings['grid_content_default_btn_text'] ); ?>"><?php echo ( $settings['grid_post_type'] == 'product' ? $settings['grid_content_product_btn_text'] : $settings['grid_content_default_btn_text'] ); ?></a>
+                <a href="<?php echo get_the_permalink(); ?>" title="<?php echo $settings['grid_content_default_btn_text']; ?>"><?php echo $settings['grid_content_default_btn_text']; ?></a>
             </div>
-		<?php }
+        <?php
+		}
     }
 
 	/**
@@ -754,8 +945,6 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 		if ( ! empty( $settings['grid_order'] ) ) {
 			$args['order'] = $settings['grid_order'];
 		}
-
-		var_dump($args);
 
         // Query.
         $query = new \WP_Query( $args );
