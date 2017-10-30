@@ -112,6 +112,9 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 		// Style.
 		$this->grid_options_style_section();
 		$this->grid_image_style_section();
+		$this->grid_title_style_section();
+		$this->grid_meta_style_section();
+		$this->grid_content_style_section();
 	}
 
 	/**
@@ -224,36 +227,9 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 		);
 
 		$this->add_responsive_control(
-			'grid_image_ratio',
-			[
-				'label' => __( 'Image Ratio', 'themeisle-companion' ),
-				'type' => Controls_Manager::SLIDER,
-				'default' => [
-					'size' => 0.66,
-				],
-				'tablet_default' => [
-					'size' => '',
-				],
-				'mobile_default' => [
-					'size' => 0.5,
-				],
-				'range' => [
-					'px' => [
-						'min' => 0.1,
-						'max' => 2,
-						'step' => 0.01,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-item-image' => 'padding-bottom: calc( {{SIZE}} * 100% );',
-				],
-			]
-		);
-
-		$this->add_responsive_control(
 			'grid_image_width',
 			[
-				'label' => __( 'Image Width', 'themeisle-companion' ),
+				'label' => '<i class="fa fa-arrows-h"></i> ' . __( 'Width', 'themeisle-companion' ),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'%' => [
@@ -279,7 +255,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				],
 				'size_units' => [ '%', 'px' ],
 				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-item-image' => 'width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .obfx-grid-col-image' => 'width: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -539,7 +515,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				'tablet_default'   => 'left',
 				'mobile_default'   => 'center',
 				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-item-btn' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}} .obfx-grid-col-footer' => 'text-align: {{VALUE}};',
 				],
 				'condition' => [
 					'grid_content_btn!' => '',
@@ -658,6 +634,9 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			[
 				'label' => __( 'Image', 'themeisle-companion' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
+				'condition' => [
+					'section_grid_image.grid_image_hide' => '',
+				],
 			]
 		);
 
@@ -668,15 +647,15 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors'  => [
-					'{{WRAPPER}} .obfx-grid-item-image' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .obfx-grid-col-image' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
 
 		$this->add_control(
-			'grid_image_style_spacing',
+			'grid_image_style_margin',
 			[
-				'label'     => __( 'Bottom space', 'themeisle-companion' ),
+				'label'     => __( 'Bottom margin', 'themeisle-companion' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => [
 					'px' => [
@@ -684,17 +663,484 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}}.elementor-posts--thumbnail-left .elementor-post__thumbnail__link'  => 'margin-right: {{SIZE}}{{UNIT}}',
-					'{{WRAPPER}}.elementor-posts--thumbnail-right .elementor-post__thumbnail__link' => 'margin-left: {{SIZE}}{{UNIT}}',
-					'{{WRAPPER}}.elementor-posts--thumbnail-top .elementor-post__thumbnail__link'   => 'margin-bottom: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}} .obfx-grid-col-image'   => 'margin-bottom: {{SIZE}}{{UNIT}}',
 				],
 				'default'   => [
-					'size' => 20,
+					'size' => 15,
 				],
 			]
 		);
 
 		$this->end_controls_section();
+	}
+
+	/**
+	 * Style > Title.
+	 */
+	private function grid_title_style_section() {
+		// Tab.
+		$this->start_controls_section(
+			'section_grid_title_style',
+			[
+				'label' => __( 'Title', 'themeisle-companion' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+				'condition' => [
+					'section_grid_title.grid_title_hide' => '',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'grid_title_style_typography',
+				'scheme'   => Scheme_Typography::TYPOGRAPHY_1,
+				'selector' => '{{WRAPPER}} .obfx-grid-col-title',
+			]
+		);
+
+		$this->add_control(
+			'grid_title_style_color',
+			[
+				'type'      => Controls_Manager::COLOR,
+				'label'     => __( 'Color', 'themeisle-companion' ),
+				'scheme'    => [
+					'type'  => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_1,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .obfx-grid-col-title' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .obfx-grid-col-title a' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'grid_title_style_margin',
+			[
+				'label'     => __( 'Bottom margin', 'themeisle-companion' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => [
+					'px' => [
+						'max' => 100,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .obfx-grid-col-title'   => 'margin-bottom: {{SIZE}}{{UNIT}}',
+				],
+				'default'   => [
+					'size' => 15,
+				],
+			]
+		);
+
+		$this->end_controls_section();
+	}
+
+	/**
+	 * Style > Meta.
+	 */
+	private function grid_meta_style_section() {
+		// Tab.
+		$this->start_controls_section(
+			'section_grid_meta_style',
+			[
+				'label' => __( 'Meta', 'themeisle-companion' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+				'condition' => [
+					'section_grid_meta.grid_meta_hide' => '',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'grid_meta_style_typography',
+				'scheme'   => Scheme_Typography::TYPOGRAPHY_1,
+				'selector' => '{{WRAPPER}} .obfx-grid-col-meta',
+			]
+		);
+
+		$this->add_control(
+			'grid_meta_style_color',
+			[
+				'type'      => Controls_Manager::COLOR,
+				'label'     => __( 'Color', 'themeisle-companion' ),
+				'scheme'    => [
+					'type'  => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_1,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .obfx-grid-col-meta' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .obfx-grid-col-meta a' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'grid_meta_style_margin',
+			[
+				'label'     => __( 'Bottom margin', 'themeisle-companion' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => [
+					'px' => [
+						'max' => 100,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .obfx-grid-col-meta'   => 'margin-bottom: {{SIZE}}{{UNIT}}',
+				],
+				'default'   => [
+					'size' => 15,
+				],
+			]
+		);
+
+		$this->end_controls_section();
+	}
+
+	/**
+	 * Style > Content.
+	 */
+	private function grid_content_style_section() {
+		// Tab.
+		$this->start_controls_section(
+			'section_grid_content_style',
+			[
+				'label' => __( 'Content', 'themeisle-companion' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		// Content typography.
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'grid_content_style_typography',
+				'scheme'   => Scheme_Typography::TYPOGRAPHY_1,
+				'selector' => '{{WRAPPER}} .obfx-grid-col-content',
+				'condition' => [
+					'section_grid_content.grid_content_hide' => '',
+				],
+			]
+		);
+
+		// Content color.
+		$this->add_control(
+			'grid_content_style_color',
+			[
+				'type'      => Controls_Manager::COLOR,
+				'label'     => __( 'Color', 'themeisle-companion' ),
+				'scheme'    => [
+					'type'  => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_1,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .obfx-grid-col-content' => 'color: {{VALUE}};',
+				],
+				'condition' => [
+					'section_grid_content.grid_content_hide' => '',
+				],
+			]
+		);
+
+		// Content bottom margin
+		$this->add_control(
+			'grid_content_style_margin',
+			[
+				'label'     => __( 'Bottom margin', 'themeisle-companion' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => [
+					'px' => [
+						'max' => 100,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .obfx-grid-col-content'   => 'margin-bottom: {{SIZE}}{{UNIT}}',
+				],
+				'default'   => [
+					'size' => 15,
+				],
+				'condition' => [
+					'section_grid_content.grid_content_hide' => '',
+				],
+			]
+		);
+
+		// Heading for price options.
+		$this->add_control(
+			'grid_content_price_style_heading',
+			[
+				'label'   => __( 'Price', 'themeisle-companion' ),
+				'type'    => Controls_Manager::HEADING,
+				'separator' => 'before',
+				'condition' => [
+					'section_grid_content.grid_content_price' => 'yes',
+					'section_grid.grid_post_type' => 'product',
+				],
+			]
+		);
+
+		// Price typography.
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'grid_content_price_style_typography',
+				'scheme'   => Scheme_Typography::TYPOGRAPHY_1,
+				'selector' => '{{WRAPPER}} .obfx-grid-col-price',
+				'condition' => [
+					'section_grid_content.grid_content_price' => 'yes',
+					'section_grid.grid_post_type' => 'product',
+				],
+			]
+		);
+
+		// Price color.
+		$this->add_control(
+			'grid_content_price_style_color',
+			[
+				'type'      => Controls_Manager::COLOR,
+				'label'     => __( 'Color', 'themeisle-companion' ),
+				'scheme'    => [
+					'type'  => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_1,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .obfx-grid-col-price' => 'color: {{VALUE}};',
+				],
+				'condition' => [
+					'section_grid_content.grid_content_price' => 'yes',
+					'section_grid.grid_post_type' => 'product',
+				],
+			]
+		);
+
+		// Price bottom margin.
+		$this->add_control(
+			'grid_content_price_style_margin',
+			[
+				'label'     => __( 'Bottom margin', 'themeisle-companion' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => [
+					'px' => [
+						'max' => 100,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .obfx-grid-col-price'   => 'margin-bottom: {{SIZE}}{{UNIT}}',
+				],
+				'default'   => [
+					'size' => 15,
+				],
+				'condition' => [
+					'section_grid_content.grid_content_price' => 'yes',
+					'section_grid.grid_post_type' => 'product',
+				],
+			]
+		);
+
+		// Buttons options.
+		$this->grid_content_style_button();
+
+		$this->end_controls_section();
+	}
+
+	/**
+	 * Tabs for the Style > Button section.
+	 */
+	private function grid_content_style_button() {
+	    // Heading for button options.
+		$this->add_control(
+			'grid_button_style_heading',
+			[
+				'label'   => __( 'Button', 'themeisle-companion' ),
+				'type'    => Controls_Manager::HEADING,
+				'separator' => 'before',
+				'condition' => [
+					'section_grid_content.grid_content_default_btn!' => '',
+					'section_grid_content.grid_content_product_btn!' => '',
+				],
+			]
+		);
+
+		$this->start_controls_tabs( 'grid_button_style' );
+
+		// Normal tab.
+		$this->start_controls_tab(
+			'grid_button_style_normal',
+			[
+				'label' => __( 'Normal', 'themeisle-companion' ),
+				'condition' => [
+					'section_grid_content.grid_content_default_btn!' => '',
+					'section_grid_content.grid_content_product_btn!' => '',
+				],
+			]
+		);
+
+		// Normal text color.
+		$this->add_control(
+			'grid_button_style_normal_text_color',
+			[
+				'type'      => Controls_Manager::COLOR,
+				'label'     => __( 'Text Color', 'themeisle-companion' ),
+				'scheme'    => [
+					'type'  => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_1,
+				],
+				'separator' => '',
+				'selectors' => [
+					'{{WRAPPER}} .obfx-grid-col-footer a' => 'color: {{VALUE}};',
+				],
+				'condition' => [
+					'section_grid_content.grid_content_default_btn!' => '',
+					'section_grid_content.grid_content_product_btn!' => '',
+				],
+			]
+		);
+
+		// Normal background color.
+		$this->add_control(
+			'grid_button_style_normal_bg_color',
+			[
+				'type'      => Controls_Manager::COLOR,
+				'label'     => __( 'Background Color', 'themeisle-companion' ),
+				'scheme'    => [
+					'type'  => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_1,
+				],
+				'separator' => '',
+				'selectors' => [
+					'{{WRAPPER}} .obfx-grid-col-footer a' => 'background-color: {{VALUE}};',
+				],
+				'condition' => [
+					'section_grid_content.grid_content_default_btn!' => '',
+					'section_grid_content.grid_content_product_btn!' => '',
+				],
+			]
+		);
+
+		// Normal box shadow.
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name'      => 'grid_button_style_normal_box_shadow',
+				'selector'  => '{{WRAPPER}} .obfx-grid-col-footer a',
+				'separator' => '',
+				'condition' => [
+					'section_grid_content.grid_content_default_btn!' => '',
+					'section_grid_content.grid_content_product_btn!' => '',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		// Hover tab.
+		$this->start_controls_tab(
+			'grid_button_style_hover',
+			[
+				'label' => __( 'Hover', 'themeisle-companion' ),
+				'condition' => [
+					'section_grid_content.grid_content_default_btn!' => '',
+					'section_grid_content.grid_content_product_btn!' => '',
+				],
+			]
+		);
+
+		// Hover text color.
+		$this->add_control(
+			'grid_button_style_hover_text_color',
+			[
+				'type'      => Controls_Manager::COLOR,
+				'label'     => __( 'Text Color', 'themeisle-companion' ),
+				'scheme'    => [
+					'type'  => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_1,
+				],
+				'separator' => '',
+				'selectors' => [
+					'{{WRAPPER}} .obfx-grid-col-footer a:hover' => 'color: {{VALUE}};',
+				],
+				'condition' => [
+					'section_grid_content.grid_content_default_btn!' => '',
+					'section_grid_content.grid_content_product_btn!' => '',
+				],
+			]
+		);
+
+		// Hover background color.
+		$this->add_control(
+			'grid_button_style_hover_bg_color',
+			[
+				'type'      => Controls_Manager::COLOR,
+				'label'     => __( 'Background Color', 'themeisle-companion' ),
+				'scheme'    => [
+					'type'  => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_1,
+				],
+				'separator' => '',
+				'selectors' => [
+					'{{WRAPPER}} .obfx-grid-col-footer a:hover' => 'background-color: {{VALUE}};',
+				],
+				'condition' => [
+					'section_grid_content.grid_content_default_btn!' => '',
+					'section_grid_content.grid_content_product_btn!' => '',
+				],
+			]
+		);
+
+		// Hover box shadow.
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name'      => 'grid_button_style_hover_box_shadow',
+				'selector'  => '{{WRAPPER}} .obfx-grid-col-footer a:hover',
+				'separator' => '',
+				'condition' => [
+					'section_grid_content.grid_content_default_btn!' => '',
+					'section_grid_content.grid_content_product_btn!' => '',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->end_controls_tabs();
+
+		// Button padding.
+		$this->add_control(
+			'grid_button_style_padding',
+			[
+				'label'      => __( 'Button padding', 'themeisle-companion' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px' ],
+				'selectors'  => [
+					'{{WRAPPER}} .obfx-grid-col-footer a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+				'condition' => [
+					'section_grid_content.grid_content_default_btn!' => '',
+					'section_grid_content.grid_content_product_btn!' => '',
+				],
+			]
+		);
+
+		// Button border radius.
+		$this->add_control(
+			'grid_button_style_border_radius',
+			[
+				'label'      => __( 'Button border radius', 'themeisle-companion' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors'  => [
+					'{{WRAPPER}} .obfx-grid-col-footer a' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+				'condition' => [
+					'section_grid_content.grid_content_default_btn!' => '',
+					'section_grid_content.grid_content_product_btn!' => '',
+				],
+			]
+		);
 	}
 
 	/**
@@ -753,12 +1199,16 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 
 		if ( $settings['grid_image_hide'] !== 'yes' ) {
 			// Check if post type has featured image.
-			if ( has_post_thumbnail() ) { ?>
+			if ( has_post_thumbnail() ) {
+
+			    // Get image date
+				$image = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID()),'full' );
+			    ?>
 
 				<?php if ( $settings['grid_image_link'] == 'yes' ) { ?>
-                    <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="obfx-grid-item-image"><?php the_post_thumbnail(); ?></a>
+                    <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="obfx-grid-col-image<?php echo ( $image[1] > $image[2] ) ? ' obfx-fit-height' : ''; ?>"><img src="<?php echo esc_url( $image[0] ); ?>" alt="<?php the_title(); ?>"/></a>
 				<?php } else { ?>
-                    <div class="obfx-grid-item-image"><?php the_post_thumbnail(); ?></div>
+                    <div class="obfx-grid-col-image<?php echo ( $image[1] > $image[2] ) ? ' obfx-fit-height' : ''; ?>"><img src="<?php echo esc_url( $image[0] ); ?>" alt="<?php the_title(); ?>"/></div>
 				<?php }
 			}
 		}
@@ -771,7 +1221,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 		$settings = $this->get_settings();
 
 		if ( $settings['grid_title_hide'] !== 'yes' ) { ?>
-            <<?php echo $settings['grid_title_tag']; ?> class="obfx-grid-item-title">
+            <<?php echo $settings['grid_title_tag']; ?> class="obfx-grid-col-title">
 			<?php if ( $settings['grid_title_link'] == 'yes' ) { ?>
                 <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title();
 					?></a>
@@ -902,9 +1352,11 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 	protected function renderButton() {
 		$settings = $this->get_settings();
 
-		if ( $settings['grid_post_type'] == 'product' && $settings['grid_content_product_btn'] == 'yes' && ! empty ( $settings['grid_content_product_btn_text'] ) ) {
-            $this->renderAddToCart();
-		} else { ?>
+		if ( $settings['grid_post_type'] == 'product' && $settings['grid_content_product_btn'] == 'yes' && ! empty ( $settings['grid_content_product_btn_text'] ) ) { ?>
+            <div class="obfx-grid-col-footer">
+                <?php $this->renderAddToCart(); ?>
+            </div>
+        <?php } else if ( $settings['grid_content_default_btn'] == 'yes' && ! empty ( $settings['grid_content_default_btn_text'] ) ) { ?>
             <div class="obfx-grid-col-footer">
                 <a href="<?php echo get_the_permalink(); ?>" title="<?php echo $settings['grid_content_default_btn_text']; ?>"><?php echo $settings['grid_content_default_btn_text']; ?></a>
             </div>
