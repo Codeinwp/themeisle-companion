@@ -450,6 +450,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	public function set_admin_scripts() {
 		$enqueue = $this->admin_enqueue();
 		$module_dir = $this->slug;
+
 		if ( ! empty( $enqueue ) ) {
 			if ( isset( $enqueue['js'] ) && ! empty( $enqueue['js'] ) ) {
 				$order = 0;

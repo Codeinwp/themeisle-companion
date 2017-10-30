@@ -1,23 +1,15 @@
-.obfx-template-dir .obfx-template img {
-    max-width: 100%;
-    border: 1px solid #ddd;
-    border-left: none;
-    border-right: none;
-    float: left;
-}
-
 .obfx-template-browser {
     padding: 35px 0 0;
 }
 
-.obfx-template-browser .template-name{
-    font-weight: 400;
-    font-size: 20px;
+.obfx-template-browser .template-name {
+    font-weight: 600;
+    font-size: 16px;
     margin: 0;
     padding: 15px;
 }
 
-.obfx-template-dir .obfx-template {
+.obfx-template {
     width: 22.7%;
     margin: 0 3% 3% 0;
     cursor: pointer;
@@ -25,11 +17,15 @@
     position: relative;
     border: 1px solid #ddd;
     background: #fff;
-    -webkit-box-shadow: 0 1px 1px -1px rgba(0,0,0,.1);
-    box-shadow: 0 1px 1px -1px rgba(0,0,0,.1);
+    -webkit-box-shadow: 0 1px 1px -1px rgba(0, 0, 0, .1);
+    box-shadow: 0 1px 1px -1px rgba(0, 0, 0, .1);
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+}
+
+.obfx-template:nth-child(4n) {
+    margin-right: 0;
 }
 
 .obfx-template-actions {
@@ -37,7 +33,37 @@
     padding: 10px;
 }
 
-.obfx-template-screenshot .more-details {
-    position: absolute;
-    display: none;
+.obfx-template-screenshot {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    border-left: none;
+    border-right: none;
+}
+
+.obfx-template img {
+    max-width: 100%;
+    float: left;
+    transition: all 300ms ease;
+}
+
+.obfx-template:hover img {
+    -webkit-transform: scale(1.025);
+    -moz-transform: scale(1.025);
+    -ms-transform: scale(1.025);
+    -o-transform: scale(1.025);
+    transform: scale(1.025);
+}
+
+.obfx-template-browser.customizer .obfx-template {
+    width: 100%;
+    margin: 0 0 20px 0;
+    float: none;
+    display: inline-block;
+}
+
+.obfx-template-browser.customizer {
+    padding: 0 10px;
+    display: block !important;
 }
