@@ -75,6 +75,7 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function hooks() {
         $this->loader->add_action( 'media_upload_obfx_mystock', $this, 'media_upload_picker' );
         $this->loader->add_action( 'wp_ajax_' . $this->slug, $this, 'ajax' );
+        $this->loader->add_action( 'wp_ajax_infinite-' . $this->slug, $this, 'infinite_scroll' );
         $this->loader->add_action( 'media_buttons', $this, 'media_buttons', 15 );
         //$this->loader->add_action( 'wp_enqueue_media', $this, 'enqueue_media' );
 
@@ -111,16 +112,61 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
             'slug'          => $this->slug,
         ) );
 
-        wp_register_style( 'obfx_mystock', $this->get_url() . '/css/media.css' );
+        wp_register_style( 'obfx_mystock', $this->get_url() . '/css/media.css', array(),'1.0.0' );
         wp_enqueue_style( 'obfx_mystock' );
 
         wp_iframe( array( $this, 'obfx_mystock_iframe' ), $post_id, $file_id );
     }
 
     public function obfx_mystock_iframe( $post_id = false, $file_id = false ) {
-		list( $urls, $sizes)	= $this->get_images();
+//	    $this->obfx_mystock_handle_request();
 		media_upload_header();
+
+
+
+	    if ( false ===  ( $value = get_transient( 'mystock_photos' ) ) ) {
+	        $url = $this->cache_images();
+		    if( !empty( $urls ) ){
+			    $urls['lastpage'] = 1;
+			    set_transient( 'mystock_photos', $url, 60*60*24*7 );
+		    }
+	    }
+
+
+
         require $this->get_dir() . "/inc/photos.php";
+    }
+
+    private function obfx_mystock_handle_request(){
+	    if( !isset( $_POST['imagesizes']) ){
+		    return;
+	    }
+	    $image_url = $_POST['imagesizes'];
+	    $filename = basename($image_url);
+
+	    $uploaddir = wp_upload_dir();
+	    $uploadfile = $uploaddir['path'] . '/' . $filename;
+	    $contents= file_get_contents( $image_url );
+	    $savefile = fopen($uploadfile, 'w');
+	    fwrite($savefile, $contents);
+	    fclose($savefile);
+
+
+	    $wp_filetype = wp_check_filetype(basename($filename), null );
+
+	    $attachment = array(
+		    'post_mime_type' => $wp_filetype['type'],
+		    'post_title' => $filename,
+		    'post_content' => '',
+		    'post_status' => 'inherit'
+	    );
+
+	    $attach_id = wp_insert_attachment( $attachment, $uploadfile );
+
+	    $imagenew = get_post( $attach_id );
+	    $fullsizepath = get_attached_file( $imagenew->ID );
+	    $attach_data = wp_generate_attachment_metadata( $attach_id, $fullsizepath );
+	    wp_update_attachment_metadata( $attach_id, $attach_data );
     }
 
 	/**
@@ -162,23 +208,76 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		);
 	}
 
-	private function get_images() {
+	private function cache_images( $page = 1 ) {
+
 		require_once $this->get_dir() . '/vendor/phpflickr/phpflickr.php';
 		$api	= new phpFlickr( self::API_KEY );
 		$user	= $api->people_findByUsername( self::USER_NAME );
 		$urls	= array();
 		if ( $user && isset( $user['nsid'] ) ) {
-			$photos	= $api->people_getPhotos($user['nsid'], array( 'per_page' => self::MAX_IMAGES ) );
+			$photos	= $api->people_getPhotos($user['nsid'], array( 'per_page' => self::MAX_IMAGES, 'page' => $page ) );
 			if ( $photos && $photos['photos']['photo'] ) {
 				foreach ( $photos['photos']['photo'] as $photo ) {
-					$urls[]	= $api->buildPhotoURL( $photo, 'square_150' );
+					$photo_id =  $photo['id'];
+					$photo_sizes = $api->photos_getSizes( $photo_id );
+					$urls[$photo_id]	= $photo_sizes;
 				}
 			}
 		}
-		return array(
-			$urls,
-			$api->get_sizes(),
-		);
+		return $urls;
+	}
+
+
+
+	function infinite_scroll(){
+		if( !isset( $_POST['page'] ) ){
+			wp_die();
+		}
+		$oldphotos = get_transient( 'mystock_photos' );
+
+		$req_page = (int)$_POST['page'] + 1;
+		$urls = $this->cache_images($req_page);
+		$urls['lastpage'] = $req_page;
+
+
+		if( is_array($oldphotos) && is_array($urls) ){
+			$data = array_merge($oldphotos,$urls);
+			if( !empty( $data ) ){
+				set_transient( 'mystock_photos', $data, 60*60*24*7 );
+			}
+		}
+
+		require $this->get_dir() . "/inc/photos.php";
+		wp_die();
+	}
+
+
+	function ajax(){
+
+		$photo_id = $_POST['pid'];
+		$data = get_transient('mystock_photos');
+		if( empty( $photo_id ) || empty( $data[$photo_id] ) ){
+			wp_die();
+		}
+		$photo_sizes = $data[$photo_id];
+
+		/**
+		 * Creating response for selected image
+		 */
+		$response = '<form id="importmsp" method="post">';
+		$response .= '<select name="imagesizes">';
+		foreach( $photo_sizes as $photo ){
+			$label = $photo['label'] . ' ' . $photo['width'] . ' x ' . $photo['height'];
+			$value = $photo['source'];
+			$response .= '<option value="'. esc_url( $value ) .'">'. esc_html( $label ). '</option>';
+		}
+		$response .= '</select>';
+		$response .= '<input type="submit" class="button obfx-import-media" value="Import media"/>';
+		$response .= '</form>';
+
+
+		echo $response;
+		wp_die();
 	}
 
 	/**
