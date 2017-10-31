@@ -1,4 +1,10 @@
 <?php
+/**
+ * Orbit fox template directory customizer section.
+ *
+ * @package    Orbit_Fox_Modules
+ * @subpackage Orbit_Fox_Modules/template-directory
+ */
 
 /**
  * The Orbit Fox Template Directory Customizer Section.
@@ -33,17 +39,13 @@ class OBFX_Template_Directory_Customizer_Section extends WP_Customize_Section {
 	 * Hestia_Hiding_Section constructor.
 	 *
 	 * @param WP_Customize_Manager $manager Customizer Manager.
-	 * @param string $id Control id.
-	 * @param array $args Arguments.
+	 * @param string               $id Control id.
+	 * @param array                $args Arguments.
 	 */
 	public function __construct( WP_Customize_Manager $manager, $id, array $args = array() ) {
 		parent::__construct( $manager, $id, $args );
 
 		$this->module_dir = $args['module_directory'];
-	}
-
-	public function enqueue() {
-
 	}
 
 	/**
@@ -55,17 +57,17 @@ class OBFX_Template_Directory_Customizer_Section extends WP_Customize_Section {
 	 */
 	protected function render() {
 		?>
-        <div class="obfx-template-browser customizer">
-            <div class="obfx-template">
-                <h2 class="template-name template-header">Hestia About Page</h2>
-                <div class="obfx-template-screenshot">
-                    <img src="https://i0.wp.com/themes.svn.wordpress.org/hestia/1.1.52/screenshot.png" alt="">
-                </div>
-                <div class="obfx-template-details">
-                    <p>This should be the template description.</p>
-                </div><!-- /.obfx-template-details -->
-            </div><!-- /.obfx-template -->
-        </div> <!-- /.obfx-template-browser -->
+		<div class="obfx-template-browser customizer">
+			<div class="obfx-template">
+				<h2 class="template-name template-header">Hestia About Page</h2>
+				<div class="obfx-template-screenshot">
+					<img src="https://i0.wp.com/themes.svn.wordpress.org/hestia/1.1.52/screenshot.png" alt="">
+				</div>
+				<div class="obfx-template-details">
+					<p>This should be the template description.</p>
+				</div><!-- /.obfx-template-details -->
+			</div><!-- /.obfx-template -->
+		</div> <!-- /.obfx-template-browser -->
 		<?php
 	}
 }
