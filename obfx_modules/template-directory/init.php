@@ -64,46 +64,24 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		//Add template redirect.
 		$this->loader->add_action( 'template_redirect', $this, 'demo_listing' );
 		//Remove customizer controls.
-		$this->loader->add_action( 'customize_register', $this, 'remove_customizer' ,9999);
-		//Add customizer section.
-		$this->loader->add_action( 'customize_register', $this, 'add_customizer_section', 1000 );
-
+		$this->loader->add_action( 'customize_register', $this, 'adjust_customizer' ,1000 );
 	}
 
-	/**
-	 * Add customizer section to show templates.
-	 *
-	 * @param $wp_customize
-	 */
-	public function add_customizer_section( $wp_customize ) {
-
-		$module_directory = $this->get_dir();
-		require_once( $module_directory . '/inc/class-obfx-template-directory-customizer-section.php' );
-		if ( class_exists( 'OBFX_Template_Directory_Customizer_Section' ) ) {
-			$wp_customize->add_section(
-				new OBFX_Template_Directory_Customizer_Section(
-					$wp_customize, 'obfx-templates', array(
-						'title'            => esc_html__( 'Mue', 'themeisle-companion' ),
-						'priority'         => 0,
-						'module_directory' => $this->get_dir(),
-					)
-				)
-			);
-		}
-	}
 
 	/**
-	 * Remove the customizer controls.
+	 * Remove the customizer controls and add the template listing control.
 	 */
-	public function remove_customizer() {
+	public function adjust_customizer( $wp_customize ) {
+		//Check the URL parameter and bail if not on 'obfx_templates'.
 		$current = urldecode( isset( $_GET['url'] ) ? $_GET['url'] : '' );
-		$flag    = add_query_arg( 'obfx_themes', '', trailingslashit( home_url() ) );
+		$flag    = add_query_arg( 'obfx_templates', '', trailingslashit( home_url() ) );
 		$current = str_replace( '/', '', $current );
 		$flag    = str_replace( '/', '', $flag );
 		if ( $flag !== $current ) {
 			return;
 		}
-		global $wp_customize;
+
+		//Remove all customizer sections and panels except 'obfx-templates'.
 		foreach ($wp_customize->sections() as $section){
 			if ( $section->id !== 'obfx-templates' ) {
 				$wp_customize->remove_section( $section->id );
@@ -112,13 +90,30 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		foreach ($wp_customize->panels() as $panel){
 			$wp_customize->remove_panel( $panel->id );
 		}
+
+		//Get the module directory to later pass it for scripts enqueueing in the Orbit Fox customizer section.
+		$module_directory = $this->get_dir();
+
+		//Include the customizer section custom class and add the section.
+		require_once( $module_directory . '/inc/class-obfx-template-directory-customizer-section.php' );
+		if ( class_exists( 'OBFX_Template_Directory_Customizer_Section' ) ) {
+			$wp_customize->add_section(
+				new OBFX_Template_Directory_Customizer_Section(
+					$wp_customize, 'obfx-templates', array(
+						'priority'         => 0,
+						'module_directory' => $this->get_dir(),
+					)
+				)
+			);
+		}
+
 	}
 
 	/**
 	 * Register endpoint for themes page.
 	 */
 	public function demo_listing_register() {
-		add_rewrite_endpoint( 'obfx_themes', EP_ROOT );
+		add_rewrite_endpoint( 'obfx_templates', EP_ROOT );
 	}
 
 	/**
@@ -127,7 +122,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return bool|string
 	 */
 	public function demo_listing() {
-		$flag = get_query_var( 'obfx_themes', false );
+		$flag = get_query_var( 'obfx_templates', false );
 
 		if ( $flag !== '' ) {
 			return false;
@@ -142,6 +137,9 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		return $this->render_view( 'template-directory-render-template' );
 	}
 
+	/**
+	 * Add the 'Template Directory' page to the dashboard menu.
+	 */
 	public function add_menu_page() {
 		add_management_page(
 			__( 'Orbit Fox Template Directory', 'themeisle-companion' ), __( 'Template Directory', 'themeisle-companion' ), 'manage_options', 'obfx_template_dir',
@@ -183,7 +181,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			return array();
 		}
 
-		if ( ! $current_screen->id == 'tools_page_obfx_template_dir' && ! $current_screen == 'customize' ) {
+		if ( ! ( $current_screen->id == 'tools_page_obfx_template_dir' ) && ( ! $current_screen == 'customize' ) ) {
 			return array();
 		}
 
@@ -192,14 +190,14 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'admin' => array(),
 			),
 			'js'  => array(
-				'customizer' => array('customize-preview')
+				'customizer' => array('customize-preview'),
 			),
 		);
 
 	}
 
 	/**
-	 *
+	 * Options array for the Orbit Fox module.
 	 *
 	 * @return array
 	 */

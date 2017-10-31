@@ -45,25 +45,85 @@
 .obfx-template img {
     max-width: 100%;
     float: left;
-    transition: all 300ms ease;
 }
 
-.obfx-template:hover img {
-    -webkit-transform: scale(1.025);
-    -moz-transform: scale(1.025);
-    -ms-transform: scale(1.025);
-    -o-transform: scale(1.025);
-    transform: scale(1.025);
+.obfx-template-browser.customizer {
+    padding: 10px 20px 60px;
+    display: block !important;
 }
+
+#customize-header-actions input.save {
+    display: none;
+}
+
+.obfx-next-prev {
+    position: absolute;
+    left: 45px;
+}
+
+.obfx-next-prev span:hover {
+    background: #ddd;
+    border-color: #ccc;
+    color: #000;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.obfx-next-prev .previous-template, .obfx-next-prev  .next-template {
+    display: block;
+    position: relative;
+    float: left;
+    width: 45px;
+    height: 45px;
+    padding-right: 2px;
+    background: #eee;
+    color: #444;
+    cursor: pointer;
+    text-decoration: none;
+    -webkit-transition: color .1s ease-in-out,background .1s ease-in-out;
+    transition: color .1s ease-in-out,background .1s ease-in-out;
+    border: none;
+    border-right: 1px solid #ddd;
+}
+
+.obfx-next-prev .previous-template {
+    border-left: 1px solid #ddd;
+}
+
+.obfx-next-prev .next-template:before {
+    font: 400 20px/1 dashicons;
+    content: "\f345";
+    position: relative;
+    top: 6px;
+    left: 14px;
+}
+.obfx-next-prev .previous-template:before {
+    font: 400 20px/1 dashicons;
+    content: "\f341";
+    position: relative;
+    top: 6px;
+    left: 14px;
+}
+
+.obfx-custom-customizer {
+    background: #fff;
+}
+
 
 .obfx-template-browser.customizer .obfx-template {
     width: 100%;
     margin: 0 0 20px 0;
     float: none;
     display: inline-block;
+    border: none;
+    cursor: default;
 }
 
-.obfx-template-browser.customizer {
-    padding: 0 10px;
-    display: block !important;
+.obfx-template-browser.customizer .template-name {
+    padding-left: 0;
+}
+
+.obfx-template-browser.customizer .obfx-template-screenshot {
+    border: 1px solid #ddd;
 }

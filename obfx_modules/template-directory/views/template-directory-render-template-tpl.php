@@ -12,6 +12,4 @@
 
 ?>
 
-<div id="obfx-template-preview-object"><h1>Template for customizer. Replace with template demo.</h1></div>
-
 <?php die(); ?>
