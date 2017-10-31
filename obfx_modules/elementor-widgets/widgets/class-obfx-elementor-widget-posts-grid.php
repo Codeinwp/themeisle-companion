@@ -584,7 +584,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-col' => 'padding-right: calc( {{SIZE}}{{UNIT}}/2 ); padding-left: calc( {{SIZE}}{{UNIT}}/2 );',
+					'{{WRAPPER}} .obfx-grid-wrapper' => 'padding-right: calc( {{SIZE}}{{UNIT}}/2 ); padding-left: calc( {{SIZE}}{{UNIT}}/2 );',
 					'{{WRAPPER}} .obfx-grid-container' => 'margin-left: calc( -{{SIZE}}{{UNIT}}/2 ); margin-right: calc( -{{SIZE}}{{UNIT}}/2 );',
 				],
 			]
@@ -606,7 +606,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-col' => 'padding-bottom: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .obfx-grid-wrapper' => 'padding-bottom: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -618,6 +618,52 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				'name'     => 'grid_style_background',
 				'types'    => [ 'classic', 'gradient' ],
 				'selector' => '{{WRAPPER}} .obfx-grid',
+			]
+		);
+
+		// Items options.
+		$this->add_control(
+			'grid_items_style_heading',
+			[
+				'label'   => __( 'Items', 'themeisle-companion' ),
+				'type'    => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		// Items internal padding.
+		$this->add_control(
+			'grid_items_style_padding',
+			[
+				'label'      => __( 'Padding', 'themeisle-companion' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors'  => [
+					'{{WRAPPER}} .obfx-grid-col' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		// Items border radius.
+		$this->add_control(
+			'grid_items_style_border_radius',
+			[
+				'label'      => __( 'Border Radius', 'themeisle-companion' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors'  => [
+					'{{WRAPPER}} .obfx-grid-col' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		// Background for items options.
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name'     => 'grid_items_style_background',
+				'types'    => [ 'classic', 'gradient' ],
+				'selector' => '{{WRAPPER}} .obfx-grid-col',
 			]
 		);
 
@@ -640,6 +686,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
+		// Image border radius.
 		$this->add_control(
 			'grid_image_style_border_radius',
 			[
@@ -652,6 +699,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
+		// Image bottom margin.
 		$this->add_control(
 			'grid_image_style_margin',
 			[
@@ -690,6 +738,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
+		// Title typography.
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
@@ -699,6 +748,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
+		// Title color.
 		$this->add_control(
 			'grid_title_style_color',
 			[
@@ -708,6 +758,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 					'type'  => Scheme_Color::get_type(),
 					'value' => Scheme_Color::COLOR_1,
 				],
+                'default' => '#ffffff',
 				'selectors' => [
 					'{{WRAPPER}} .obfx-grid-col-title' => 'color: {{VALUE}};',
 					'{{WRAPPER}} .obfx-grid-col-title a' => 'color: {{VALUE}};',
@@ -715,6 +766,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
+		// Title bottom margin.
 		$this->add_control(
 			'grid_title_style_margin',
 			[
@@ -753,6 +805,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
+		// Meta typography.
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
@@ -762,6 +815,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
+		// Meta color.
 		$this->add_control(
 			'grid_meta_style_color',
 			[
@@ -778,6 +832,27 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
+		// Meta margin between elements.
+		$this->add_control(
+			'grid_meta_style_margin_between_elements',
+			[
+				'label'     => __( 'Margin between', 'themeisle-companion' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => [
+					'px' => [
+						'max' => 100,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .obfx-grid-col-meta > span'   => 'margin-right: {{SIZE}}{{UNIT}}',
+				],
+				'default'   => [
+					'size' => 10,
+				],
+			]
+		);
+
+		// Meta bottom margin.
 		$this->add_control(
 			'grid_meta_style_margin',
 			[
@@ -1108,6 +1183,20 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 
 		$this->end_controls_tabs();
 
+		// Title typography.
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'grid_button_style_typography',
+				'scheme'   => Scheme_Typography::TYPOGRAPHY_1,
+				'selector' => '{{WRAPPER}} .obfx-grid-col-footer a',
+				'condition' => [
+					'section_grid_content.grid_content_default_btn!' => '',
+					'section_grid_content.grid_content_product_btn!' => '',
+				],
+			]
+		);
+
 		// Button padding.
 		$this->add_control(
 			'grid_button_style_padding',
@@ -1283,7 +1372,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
                         break; endswitch;
 			    } // end foreach ?>
 
-            </div>
+                </div>
             <?php
 		    }
 		}
@@ -1406,7 +1495,8 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
             while ( $query->have_posts() ) {
                 $query->the_post();
 
-	            echo '<div class="obfx-grid-col">';
+	            echo '<div class="obfx-grid-wrapper">';
+                echo '<article class="obfx-grid-col">';
 
                 // Image.
 	            $this->renderImage();
@@ -1428,7 +1518,8 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
                 // Button.
                 $this->renderButton();
 
-                echo '</div>';
+                echo '</article>';
+	            echo '</div>';
 
             } // end while;
         } // end if;
