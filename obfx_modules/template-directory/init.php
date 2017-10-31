@@ -72,12 +72,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * Remove the customizer controls and add the template listing control.
 	 */
 	public function adjust_customizer( $wp_customize ) {
-		//Check the URL parameter and bail if not on 'obfx_templates'.
-		$current = urldecode( isset( $_GET['url'] ) ? $_GET['url'] : '' );
-		$flag    = add_query_arg( 'obfx_templates', '', trailingslashit( home_url() ) );
-		$current = str_replace( '/', '', $current );
-		$flag    = str_replace( '/', '', $flag );
-		if ( $flag !== $current ) {
+		if ( ! $this->is_template_dir_customize() ) {
 			return;
 		}
 
@@ -185,15 +180,16 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			return array();
 		}
 
-		return array(
+		$enqueue = array(
 			'css' => array(
 				'admin' => array(),
 			),
-			'js'  => array(
-				'customizer' => array('customize-preview'),
-			),
 		);
 
+		if( $this->is_template_dir_customize() ) {
+			$enqueue['js'] = array( 'customizer' => array('customize-preview') );
+		}
+		return $enqueue;
 	}
 
 	/**
@@ -203,5 +199,23 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function options() {
 		return array();
+	}
+
+
+	/**
+	 * Utility method to check if it's the customizer instance for the Template Directory Preview.
+	 *
+	 * @return bool
+	 */
+	public function is_template_dir_customize() {
+		//Check the URL parameter and bail if not on 'obfx_templates'.
+		$current = urldecode( isset( $_GET['url'] ) ? $_GET['url'] : '' );
+		$flag    = add_query_arg( 'obfx_templates', '', trailingslashit( home_url() ) );
+		$current = str_replace( '/', '', $current );
+		$flag    = str_replace( '/', '', $flag );
+		if ( $flag !== $current ) {
+			return false;
+		}
+		return true;
 	}
 }
