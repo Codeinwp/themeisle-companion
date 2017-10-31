@@ -62,9 +62,6 @@
 /* End Of Pricing Table Base CSS */
 
 /* Post Type Grid Base CSS */
-.obfx-grid {
-    display: inline-block;
-}
 
 .obfx-grid:after {
     visibility: hidden;
@@ -76,16 +73,18 @@
 }
 
 .obfx-grid-container {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+    width: 100%;
     margin-left: -15px;
     margin-right: -15px;
 }
 
 .obfx-grid-col {
-    display: inline-block;
-    float: left;
     padding-left: 15px;
     padding-right: 15px;
-    width: 100%;
 }
 
 .obfx-grid .obfx-grid-col-image {
@@ -114,36 +113,11 @@
     height: 150px; /* temporary */
     width: 100%;
 }
-
+/*
 .obfx-grid .obfx-grid-col-image.obfx-fit-height img {
     height: 100%;
     width: auto;
-}
-
-.obfx-grid .obfx-grid-col-title {
-    display: inline-block;
-    margin: 0;
-}
-
-.obfx-grid-desktop-1 .obfx-grid-col {
-    width: 100%;
-}
-
-.obfx-grid-desktop-2 .obfx-grid-col {
-    width: 50%;
-}
-
-.obfx-grid-desktop-3 .obfx-grid-col {
-    width: 33.333%;
-}
-
-.obfx-grid-desktop-4 .obfx-grid-col {
-    width: 25%;
-}
-
-.obfx-grid-desktop-5 .obfx-grid-col {
-    width: 20%;
-}
+}*/
 
 .obfx-grid-col-meta > span {
     margin-right: 10px;
@@ -177,6 +151,31 @@
 .obfx-grid-col-tags-item:last-of-type:after {
     content: '';
     display: none;
+}
+
+.obfx-grid .obfx-grid-col-title {
+    display: inline-block;
+    margin: 0;
+}
+
+.obfx-grid-desktop-1 .obfx-grid-col {
+    width: 100%;
+}
+
+.obfx-grid-desktop-2 .obfx-grid-col {
+    width: 50%;
+}
+
+.obfx-grid-desktop-3 .obfx-grid-col {
+    width: 33.333%;
+}
+
+.obfx-grid-desktop-4 .obfx-grid-col {
+    width: 25%;
+}
+
+.obfx-grid-desktop-5 .obfx-grid-col {
+    width: 20%;
 }
 
 @media (max-width: 992px) {
