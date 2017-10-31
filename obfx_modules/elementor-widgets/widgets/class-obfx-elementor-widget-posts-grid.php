@@ -7,7 +7,6 @@
  *
  * @package    Elementor_Widgets_OBFX_Module
  */
-
 namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -226,7 +225,8 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
-		$this->add_responsive_control(
+		// Image width.
+		$this->add_control(
 			'grid_image_width',
 			[
 				'label' => '<i class="fa fa-arrows-h"></i> ' . __( 'Width', 'themeisle-companion' ),
@@ -238,24 +238,39 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 					],
 					'px' => [
 						'min' => 10,
-						'max' => 600,
+						'max' => 1000,
 					],
 				],
 				'default' => [
 					'size' => 100,
 					'unit' => '%',
 				],
-				'tablet_default' => [
-					'size' => '',
-					'unit' => '%',
-				],
-				'mobile_default' => [
-					'size' => 100,
-					'unit' => '%',
-				],
 				'size_units' => [ '%', 'px' ],
 				'selectors' => [
 					'{{WRAPPER}} .obfx-grid-col-image' => 'width: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		// Image height.
+		$this->add_control(
+			'grid_image_height',
+			[
+				'label' => '<i class="fa fa-arrows-v"></i> ' . __( 'Height', 'themeisle-companion' ),
+				'type' => Controls_Manager::SLIDER,
+				'range' => [
+					'px' => [
+						'min' => 10,
+						'max' => 1000,
+					],
+				],
+				'default' => [
+					'size' => 150,
+					'unit' => 'px',
+				],
+				'size_units' => [ 'px' ],
+				'selectors' => [
+					'{{WRAPPER}} .obfx-grid-col-image' => 'height: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -1286,21 +1301,35 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 	protected function renderImage() {
 		$settings = $this->get_settings();
 
-		if ( $settings['grid_image_hide'] !== 'yes' ) {
+		// Only in editor.
+		if ( $settings['grid_image_hide'] !== 'yes' && Plugin::$instance->editor->is_edit_mode() ) {
 			// Check if post type has featured image.
 			if ( has_post_thumbnail() ) {
 
 			    // Get image date
 				$image = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID()),'full' );
-			    ?>
 
-				<?php if ( $settings['grid_image_link'] == 'yes' ) { ?>
+				if ( $settings['grid_image_link'] == 'yes' ) { ?>
+                    <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="obfx-grid-col-image<?php echo ( $settings['grid_image_height'] >= $image[2] ) ? ' obfx-fit-height' : ''; ?>"><img src="<?php echo esc_url( $image[0] ); ?>" alt="<?php the_title(); ?>"/></a>
+				<?php } else { ?>
+                    <div class="obfx-grid-col-image<?php echo ( $settings['grid_image_height'] >= $image[2] ) ? ' obfx-fit-height' : ''; ?>"><img src="<?php echo esc_url( $image[0] ); ?>" alt="<?php the_title(); ?>"/></div>
+				<?php }
+			}
+        // Not editor.
+		} else {
+			// Check if post type has featured image.
+			if ( has_post_thumbnail() ) {
+
+				// Get image date.
+				$image = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID()),'thumbnail' );
+
+				if ( $settings['grid_image_link'] == 'yes' ) { ?>
                     <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="obfx-grid-col-image<?php echo ( $image[1] > $image[2] ) ? ' obfx-fit-height' : ''; ?>"><img src="<?php echo esc_url( $image[0] ); ?>" alt="<?php the_title(); ?>"/></a>
 				<?php } else { ?>
                     <div class="obfx-grid-col-image<?php echo ( $image[1] > $image[2] ) ? ' obfx-fit-height' : ''; ?>"><img src="<?php echo esc_url( $image[0] ); ?>" alt="<?php the_title(); ?>"/></div>
 				<?php }
 			}
-		}
+        }
     }
 
 	/**

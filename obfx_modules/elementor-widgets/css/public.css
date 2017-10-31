@@ -109,14 +109,14 @@
 }
 
 .obfx-grid .obfx-grid-col-image {
-    height: 150px; /* temporary */
+    height: 150px;
     width: 100%;
 }
-/*
+
 .obfx-grid .obfx-grid-col-image.obfx-fit-height img {
     height: 100%;
     width: auto;
-}*/
+}
 
 .obfx-grid-col-meta > span {
     margin-right: 10px;
