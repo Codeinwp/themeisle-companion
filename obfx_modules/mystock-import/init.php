@@ -25,7 +25,7 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	/**
 	 * The number of images to fetch. Only the first page will be fetched.
 	 */
-	const MAX_IMAGES	= 2;
+	const MAX_IMAGES	= 14;
 
 	/**
 	 * The username of the flickr account.
@@ -74,14 +74,16 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function hooks() {
         $this->loader->add_action( 'media_upload_obfx_mystock', $this, 'media_upload_picker' );
-        $this->loader->add_action( 'wp_ajax_' . $this->slug, $this, 'ajax' );
+        $this->loader->add_action( 'wp_ajax_' . $this->slug, $this, 'display_photo_sizes' );
         $this->loader->add_action( 'wp_ajax_infinite-' . $this->slug, $this, 'infinite_scroll' );
+        $this->loader->add_action( 'wp_ajax_handle-request-' . $this->slug, $this, 'handle_request' );
         $this->loader->add_action( 'media_buttons', $this, 'media_buttons', 15 );
         //$this->loader->add_action( 'wp_enqueue_media', $this, 'enqueue_media' );
 
         $this->loader->add_filter( 'media_upload_tabs', $this, 'upload_tabs' );
         $this->loader->add_filter(' image_send_to_editor', $this, 'image_send_to_editor', 9, 8 );
 	}
+
 
     function upload_tabs( $tabs ) {
 	    $tabs['obfx_mystock']    = __( 'Add from Mystock', 'themeisle-companion' );
@@ -118,55 +120,65 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
         wp_iframe( array( $this, 'obfx_mystock_iframe' ), $post_id, $file_id );
     }
 
+	/**
+	 * Display iframe of photos.
+	 *
+	 * @param bool $post_id
+	 * @param bool $file_id
+	 */
     public function obfx_mystock_iframe( $post_id = false, $file_id = false ) {
-//	    $this->obfx_mystock_handle_request();
+
 		media_upload_header();
 
-
-
 	    if ( false ===  ( $value = get_transient( 'mystock_photos' ) ) ) {
-	        $url = $this->cache_images();
+            $urls = $this->get_images();
 		    if( !empty( $urls ) ){
 			    $urls['lastpage'] = 1;
-			    set_transient( 'mystock_photos', $url, 60*60*24*7 );
+		    	set_transient( 'mystock_photos', $urls, 60*60*24*7 );
 		    }
+	    } else {
+		    $urls = get_transient( 'mystock_photos' );
 	    }
-
-
-
         require $this->get_dir() . "/inc/photos.php";
     }
 
-    private function obfx_mystock_handle_request(){
-	    if( !isset( $_POST['imagesizes']) ){
-		    return;
+
+	/**
+	 *
+	 */
+    function handle_request(){
+	    if( !isset( $_POST['formdata']) ){
+		    echo esc_html__( 'Image failed to upload', 'themeisle-companion');
+		    wp_die();
 	    }
-	    $image_url = $_POST['imagesizes'];
-	    $filename = basename($image_url);
 
-	    $uploaddir = wp_upload_dir();
-	    $uploadfile = $uploaddir['path'] . '/' . $filename;
-	    $contents= file_get_contents( $image_url );
-	    $savefile = fopen($uploadfile, 'w');
-	    fwrite($savefile, $contents);
-	    fclose($savefile);
-
-
-	    $wp_filetype = wp_check_filetype(basename($filename), null );
-
-	    $attachment = array(
-		    'post_mime_type' => $wp_filetype['type'],
-		    'post_title' => $filename,
-		    'post_content' => '',
-		    'post_status' => 'inherit'
-	    );
-
-	    $attach_id = wp_insert_attachment( $attachment, $uploadfile );
-
-	    $imagenew = get_post( $attach_id );
-	    $fullsizepath = get_attached_file( $imagenew->ID );
-	    $attach_data = wp_generate_attachment_metadata( $attach_id, $fullsizepath );
-	    wp_update_attachment_metadata( $attach_id, $attach_data );
+	    $data = array();
+	    parse_str($_POST['formdata'], $data);
+	    if( empty( $data['imagesizes'] ) ){
+		    echo esc_html__( 'Image failed to upload', 'themeisle-companion');
+	    	wp_die();
+	    }
+	    $url = $data['imagesizes'];
+	    $name = basename($url);
+	    $tmp_file = download_url( $url );
+	    if ( is_wp_error( $tmp_file ) ) {
+		    echo esc_html__( 'Image failed to upload', 'themeisle-companion');
+			wp_die();
+	    }
+	    $file             = array();
+	    $file['name']     = $name;
+	    $file['tmp_name'] = $tmp_file;
+	    $image_id = media_handle_sideload( $file, 0 );
+	    if ( is_wp_error( $image_id ) ) {
+		    echo esc_html__( 'Image failed to upload', 'themeisle-companion');
+	    	wp_die();
+	    }
+	    $attach_data = wp_generate_attachment_metadata( $image_id, get_attached_file( $image_id ) );
+	    if ( is_wp_error( $attach_data ) ) {
+	    	echo esc_html__( 'Image failed to upload', 'themeisle-companion');
+		    wp_die();
+	    }
+	    wp_update_attachment_metadata( $image_id, $attach_data );
     }
 
 	/**
@@ -208,74 +220,106 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		);
 	}
 
-	private function cache_images( $page = 1 ) {
-
+	/**
+	 * Request images from flickr.
+	 *
+	 * @param int $page Page to load.
+	 *
+	 * @return array
+	 */
+	private function get_images( $page = 1 ) {
 		require_once $this->get_dir() . '/vendor/phpflickr/phpflickr.php';
 		$api	= new phpFlickr( self::API_KEY );
 		$user	= $api->people_findByUsername( self::USER_NAME );
-		$urls	= array();
+		$photos	= array();
 		if ( $user && isset( $user['nsid'] ) ) {
-			$photos	= $api->people_getPhotos($user['nsid'], array( 'per_page' => self::MAX_IMAGES, 'page' => $page ) );
-			if ( $photos && $photos['photos']['photo'] ) {
-				foreach ( $photos['photos']['photo'] as $photo ) {
-					$photo_id =  $photo['id'];
-					$photo_sizes = $api->photos_getSizes( $photo_id );
-					$urls[$photo_id]	= $photo_sizes;
-				}
+			$photos	= $api->people_getPublicPhotos($user['nsid'], NULL, 'url_sq, url_t, url_s, url_q, url_m, url_n, url_z, url_c, url_l, url_o', self::MAX_IMAGES, $page );
+			if( !empty( $photos ) ){
+				return $photos['photos']['photo'];
 			}
 		}
-		return $urls;
+		return $photos;
 	}
 
-
-
+	/**
+	 * Ajax function to load new images.
+	 */
 	function infinite_scroll(){
 		if( !isset( $_POST['page'] ) ){
 			wp_die();
 		}
-		$oldphotos = get_transient( 'mystock_photos' );
 
+		//Get cached photos
+		$cached_photos = get_transient( 'mystock_photos' );
+
+		//Update last page that was loaded
 		$req_page = (int)$_POST['page'] + 1;
-		$urls = $this->cache_images($req_page);
-		$urls['lastpage'] = $req_page;
 
 
-		if( is_array($oldphotos) && is_array($urls) ){
-			$data = array_merge($oldphotos,$urls);
-			if( !empty( $data ) ){
-				set_transient( 'mystock_photos', $data, 60*60*24*7 );
+		//Request new page
+		$response = '';
+		$new_request = $this->get_images($req_page);
+		if( !empty( $new_request ) ){
+			foreach ( $new_request as $photo ){
+				$response .= '<li class="attachment obfx_mystock_photo" data-pid="'. esc_attr( $photo['id'] ) .'">';
+				$response .= '<div class="attachment-preview"><div class="thumbnail"><div class="centered">';
+				$response .= '<img src="'. esc_url( $photo['url_m'] ) .'">';
+				$response .= '</div></div></div>';
+				$response .= '<button type="button" class="check obfx_check" tabindex="0"><span class="media-modal-icon"></span><span class="screen-reader-text">'.esc_html__('Deselect','themeisle-companion') .'</span></button>';
+				$response .= '</li>';
 			}
 		}
 
-		require $this->get_dir() . "/inc/photos.php";
+		// Update transient
+		$new_data = array_merge( $cached_photos, $new_request);
+		$new_data['lastpage'] = $req_page;
+		if( !empty( $new_data ) ) {
+			set_transient( 'mystock_photos', $new_data, 60 * 60 * 24 * 7 );
+		}
+
+		echo $response;
 		wp_die();
 	}
 
-
-	function ajax(){
-
+	/**
+	 * Ajax function to display image sizes.
+	 */
+	function display_photo_sizes(){
 		$photo_id = $_POST['pid'];
 		$data = get_transient('mystock_photos');
-		if( empty( $photo_id ) || empty( $data[$photo_id] ) ){
+		if( empty( $photo_id ) ){
 			wp_die();
 		}
-		$photo_sizes = $data[$photo_id];
+		$photo = array_filter( $data, function ($e) use ( $photo_id )  { return $e['id'] === $photo_id; }, true );
+		$photo = array_pop(array_reverse($photo));
+		if( empty( $photo ) ){
+			wp_die();
+		}
+		$photo_sizes = array(
+			'url_sq' => __('Square','themeisle-companion'),
+			'url_q' => __('Large Square','themeisle-companion'),
+			'url_t' => __('Thumbnail','themeisle-companion'),
+			'url_s' => __('Small','themeisle-companion'),
+			'url_n' => __('Small 320','themeisle-companion'),
+			'url_m' => __('Medium','themeisle-companion'),
+			'url_z' => __('Medium 640','themeisle-companion'),
+			'url_c' => __('Medium 800','themeisle-companion'),
+			'url_l' => __('Large','themeisle-companion'),
+			'url_o' => __('Original','themeisle-companion'),
+		);
+
 
 		/**
 		 * Creating response for selected image
 		 */
 		$response = '<form id="importmsp" method="post">';
 		$response .= '<select name="imagesizes">';
-		foreach( $photo_sizes as $photo ){
-			$label = $photo['label'] . ' ' . $photo['width'] . ' x ' . $photo['height'];
-			$value = $photo['source'];
-			$response .= '<option value="'. esc_url( $value ) .'">'. esc_html( $label ). '</option>';
+		foreach( $photo_sizes as $key => $label ){
+			$response .= '<option value="'. esc_url( $photo[$key] ) .'">'. esc_html( $label ). '</option>';
 		}
 		$response .= '</select>';
 		$response .= '<input type="submit" class="button obfx-import-media" value="Import media"/>';
 		$response .= '</form>';
-
-
 		echo $response;
 		wp_die();
 	}
