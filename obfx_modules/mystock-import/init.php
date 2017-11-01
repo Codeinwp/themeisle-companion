@@ -73,7 +73,13 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function hooks() {
+
         $this->loader->add_action( 'media_upload_obfx_mystock', $this, 'media_upload_picker' );
+
+        /*Get tab content*/
+        $this->loader->add_action( 'wp_ajax_get-tab-'.$this->slug, $this,'get_tab_content');
+
+
         $this->loader->add_action( 'wp_ajax_' . $this->slug, $this, 'display_photo_sizes' );
         $this->loader->add_action( 'wp_ajax_infinite-' . $this->slug, $this, 'infinite_scroll' );
         $this->loader->add_action( 'wp_ajax_handle-request-' . $this->slug, $this, 'handle_request' );
@@ -81,6 +87,27 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
         $this->loader->add_filter( 'media_upload_tabs', $this, 'upload_tabs' );
         $this->loader->add_filter(' image_send_to_editor', $this, 'image_send_to_editor', 9, 8 );
 	}
+
+
+	function get_tab_content(){
+
+		if ( false ===  ( $value = get_transient( 'mystock_photos' ) ) ) {
+			$urls = $this->get_images();
+			if( !empty( $urls ) ){
+				$urls['lastpage'] = 1;
+				set_transient( 'mystock_photos', $urls, 60*60*24*7 );
+			}
+		} else {
+			$urls = get_transient( 'mystock_photos' );
+		}
+		require $this->get_dir() . "/inc/photos.php";
+		wp_die();
+	}
+
+
+
+
+
 
 
     function upload_tabs( $tabs ) {
@@ -204,6 +231,20 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		if ( ! in_array( $current_screen->id, array( 'post', 'post-new', 'upload' ) ) ) {
 			return array();
 		}
+
+		$this->localized	= array(
+			'admin'		=> array(
+				'ajaxurl'        => admin_url( 'admin-ajax.php' ),
+				'nonce'          => wp_create_nonce( $this->slug . filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ) ),
+				'l10n'           => array(
+					'fetch_image_sizes' => esc_html__( 'Fetching data', 'themeisle-companion' ),
+					'upload_image' => esc_html__( 'Uploading image. Please wait...', 'themeisle-companion'),
+					'load_more' => esc_html__( 'Loading more photos...', 'themeisle-companion'),
+					'tab_name' => esc_html__( 'MyStock Library', 'themeisle-companion'),
+				),
+				'slug'          => $this->slug,
+			),
+		);
 
 		return array(
 			'js'	=> array(
