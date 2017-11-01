@@ -77,8 +77,6 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
         $this->loader->add_action( 'wp_ajax_' . $this->slug, $this, 'display_photo_sizes' );
         $this->loader->add_action( 'wp_ajax_infinite-' . $this->slug, $this, 'infinite_scroll' );
         $this->loader->add_action( 'wp_ajax_handle-request-' . $this->slug, $this, 'handle_request' );
-        $this->loader->add_action( 'media_buttons', $this, 'media_buttons', 15 );
-        //$this->loader->add_action( 'wp_enqueue_media', $this, 'enqueue_media' );
 
         $this->loader->add_filter( 'media_upload_tabs', $this, 'upload_tabs' );
         $this->loader->add_filter(' image_send_to_editor', $this, 'image_send_to_editor', 9, 8 );
@@ -86,30 +84,24 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 
     function upload_tabs( $tabs ) {
-	    $tabs['obfx_mystock']    = __( 'Add from Mystock', 'themeisle-companion' );
+	    $tabs['obfx_mystock']    = esc_html__( 'Add from Mystock', 'themeisle-companion' );
 	    return $tabs;
-    }
-
-    function media_buttons() {
-        global $post;
-        add_thickbox();
-        echo '<button type="button" id="obfx_mystock-picker" class="button insert-media-obfx_mystock add_media" data-editor="content" data-url="' . add_query_arg( array( 'chromeless' => true, "tab" => "obfx_mystock", "TB_iframe" => true), admin_url('media-upload.php')) . '"><span class="wp-media-buttons-icon"></span>' . __("Add Media from Mystock", 'themeisle-companion' ) . '</button>';
-        echo '<a href="" id="obfx_mystock_tb" class="thickbox" data-post="' . $post->ID . '" data-active="0"></a>';
     }
 
     function media_upload_picker() {
         $post_id = filter_input( INPUT_GET, 'post_id', FILTER_VALIDATE_INT, array( 'options' => array( 'min_range' => 1 ) ) );
         $file_id  = filter_input( INPUT_GET, 'file' );
-        $send_to_editor = false;
-        
+
         wp_enqueue_media();
 
         wp_enqueue_script( 'obfx_mystock', $this->get_url() . '/js/admin.js' );
         wp_localize_script( 'obfx_mystock', 'obfx_mystock', array(
-            'send_to_editor' => $send_to_editor,
             'ajaxurl'        => admin_url( 'admin-ajax.php' ),
             'nonce'          => wp_create_nonce( $this->slug . filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ) ),
             'l10n'           => array(
+	            'fetch_image_sizes' => esc_html__( 'Fetching data', 'themeisle-companion' ),
+	            'upload_image' => esc_html__( 'Uploading image. Please wait...', 'themeisle-companion'),
+	            'load_more' => esc_html__( 'Loading more photos...', 'themeisle-companion')
             ),
             'slug'          => $this->slug,
         ) );
@@ -147,6 +139,8 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 *
 	 */
     function handle_request(){
+	    check_ajax_referer( $this->slug . filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ), 'security' );
+
 	    if( !isset( $_POST['formdata']) ){
 		    echo esc_html__( 'Image failed to upload', 'themeisle-companion');
 		    wp_die();
@@ -245,6 +239,8 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * Ajax function to load new images.
 	 */
 	function infinite_scroll(){
+		check_ajax_referer( $this->slug . filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ), 'security' );
+
 		if( !isset( $_POST['page'] ) ){
 			wp_die();
 		}
@@ -285,6 +281,7 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * Ajax function to display image sizes.
 	 */
 	function display_photo_sizes(){
+		check_ajax_referer( $this->slug . filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ), 'security' );
 		$photo_id = $_POST['pid'];
 		$data = get_transient('mystock_photos');
 		if( empty( $photo_id ) ){
@@ -312,14 +309,21 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		/**
 		 * Creating response for selected image
 		 */
-		$response = '<form id="importmsp" method="post">';
+		$response = '<div class="attachment-details">';
+		$response .= '<form id="importmsp" method="post">';
+		$response .= '<h2>'.esc_html__('Attachement display settings'). '</h2><hr/>';
+		$response .= '<label class="attachement-settings">';
+		$response .= '<span class="name">'. esc_html__('Size') . '</span>';
 		$response .= '<select name="imagesizes">';
 		foreach( $photo_sizes as $key => $label ){
 			$response .= '<option value="'. esc_url( $photo[$key] ) .'">'. esc_html( $label ). '</option>';
 		}
 		$response .= '</select>';
+		$response .= '</label>';
+
 		$response .= '<input type="submit" class="button obfx-import-media" value="Import media"/>';
 		$response .= '</form>';
+		$response .= '</div>';
 		echo $response;
 		wp_die();
 	}

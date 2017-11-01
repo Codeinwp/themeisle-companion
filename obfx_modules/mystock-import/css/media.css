@@ -6,3 +6,30 @@
 #obfx_mystock ul.obfx_mystock_photos {
 	top: 0 ;
 }
+
+.wp-core-ui .button.obfx-import-media{
+	float: right;
+	margin-top: 10px;
+}
+
+.attachement-settings{
+	width: 100%;
+	float: right;
+}
+
+.attachement-settings .name{
+	padding-right: 10px;
+}
+
+.attachement-loading{
+	width: 100%;
+	float: left;
+	text-align: center;
+}
+
+.attachement-loading .spinner{
+	float: none;
+	width: auto;
+	height: auto;
+	padding: 10px;
+}
