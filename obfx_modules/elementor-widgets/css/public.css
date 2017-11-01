@@ -158,6 +158,10 @@
     margin: 0;
 }
 
+.obfx-grid-footer a {
+    display: inline-block;
+}
+
 .obfx-grid-container.obfx-grid-style-list  .obfx-grid-col {
     display: -webkit-flex;
     display: flex;

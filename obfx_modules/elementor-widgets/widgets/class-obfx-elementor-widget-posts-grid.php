@@ -663,22 +663,6 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
-		// Image margin.
-		$this->add_control(
-			'grid_image_style_margin',
-			[
-				'label'      => __( 'Margin', 'themeisle-companion' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px' ],
-				'selectors'  => [
-					'{{WRAPPER}} .obfx-grid-col-image' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-				'condition' => [
-					'section_grid_image.grid_image_hide' => '',
-				],
-			]
-		);
-
 		// Image border radius.
 		$this->add_control(
 			'grid_image_style_border_radius',
@@ -702,6 +686,22 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				'name'      => 'grid_image_style_box_shadow',
 				'selector'  => '{{WRAPPER}} .obfx-grid-col-image',
 				'separator' => '',
+				'condition' => [
+					'section_grid_image.grid_image_hide' => '',
+				],
+			]
+		);
+
+		// Image margin.
+		$this->add_control(
+			'grid_image_style_margin',
+			[
+				'label'      => __( 'Margin', 'themeisle-companion' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px' ],
+				'selectors'  => [
+					'{{WRAPPER}} .obfx-grid-col-image' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
 				'condition' => [
 					'section_grid_image.grid_image_hide' => '',
 				],
@@ -747,7 +747,6 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 					'type'  => Scheme_Color::get_type(),
 					'value' => Scheme_Color::COLOR_1,
 				],
-                'default' => '#ffffff',
 				'selectors' => [
 					'{{WRAPPER}} .obfx-grid-title' => 'color: {{VALUE}};',
 					'{{WRAPPER}} .obfx-grid-title a' => 'color: {{VALUE}};',
@@ -755,22 +754,15 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
-		// Title bottom margin.
+		// Title margin.
 		$this->add_control(
 			'grid_title_style_margin',
 			[
-				'label'     => __( 'Bottom margin', 'themeisle-companion' ),
-				'type'      => Controls_Manager::SLIDER,
-				'range'     => [
-					'px' => [
-						'max' => 100,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-title'   => 'margin-bottom: {{SIZE}}{{UNIT}}',
-				],
-				'default'   => [
-					'size' => 15,
+				'label'      => __( 'Margin', 'themeisle-companion' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px' ],
+				'selectors'  => [
+					'{{WRAPPER}} .obfx-grid-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -821,42 +813,15 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
-		// Meta margin between elements.
-		$this->add_control(
-			'grid_meta_style_margin_between_elements',
-			[
-				'label'     => __( 'Margin between', 'themeisle-companion' ),
-				'type'      => Controls_Manager::SLIDER,
-				'range'     => [
-					'px' => [
-						'max' => 100,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-meta > span'   => 'margin-right: {{SIZE}}{{UNIT}}',
-				],
-				'default'   => [
-					'size' => 10,
-				],
-			]
-		);
-
-		// Meta bottom margin.
+		// Meta margin.
 		$this->add_control(
 			'grid_meta_style_margin',
 			[
-				'label'     => __( 'Bottom margin', 'themeisle-companion' ),
-				'type'      => Controls_Manager::SLIDER,
-				'range'     => [
-					'px' => [
-						'max' => 100,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-meta'   => 'margin-bottom: {{SIZE}}{{UNIT}}',
-				],
-				'default'   => [
-					'size' => 15,
+				'label'      => __( 'Margin', 'themeisle-companion' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px' ],
+				'selectors'  => [
+					'{{WRAPPER}} .obfx-grid-meta' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -909,22 +874,15 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
-		// Content bottom margin
+		// Content margin
 		$this->add_control(
 			'grid_content_style_margin',
 			[
-				'label'     => __( 'Bottom margin', 'themeisle-companion' ),
-				'type'      => Controls_Manager::SLIDER,
-				'range'     => [
-					'px' => [
-						'max' => 100,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-content'   => 'margin-bottom: {{SIZE}}{{UNIT}}',
-				],
-				'default'   => [
-					'size' => 15,
+				'label'      => __( 'Margin', 'themeisle-companion' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px' ],
+				'selectors'  => [
+					'{{WRAPPER}} .obfx-grid-content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 				'condition' => [
 					'section_grid_content.grid_content_hide' => '',
@@ -984,18 +942,11 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 		$this->add_control(
 			'grid_content_price_style_margin',
 			[
-				'label'     => __( 'Bottom margin', 'themeisle-companion' ),
-				'type'      => Controls_Manager::SLIDER,
-				'range'     => [
-					'px' => [
-						'max' => 100,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-price'   => 'margin-bottom: {{SIZE}}{{UNIT}}',
-				],
-				'default'   => [
-					'size' => 15,
+				'label'      => __( 'Margin', 'themeisle-companion' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px' ],
+				'selectors'  => [
+					'{{WRAPPER}} .obfx-grid-price' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 				'condition' => [
 					'section_grid_content.grid_content_price' => 'yes',
@@ -1172,20 +1123,6 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 
 		$this->end_controls_tabs();
 
-		// Title typography.
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name'     => 'grid_button_style_typography',
-				'scheme'   => Scheme_Typography::TYPOGRAPHY_1,
-				'selector' => '{{WRAPPER}} .obfx-grid-footer a',
-				'condition' => [
-					'section_grid_content.grid_content_default_btn!' => '',
-					'section_grid_content.grid_content_product_btn!' => '',
-				],
-			]
-		);
-
 		// Button padding.
 		$this->add_control(
 			'grid_button_style_padding',
@@ -1319,7 +1256,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 		$settings = $this->get_settings();
 
 		if ( $settings['grid_title_hide'] !== 'yes' ) { ?>
-            <<?php echo $settings['grid_title_tag']; ?> class="obfx-grid-title">
+            <<?php echo $settings['grid_title_tag']; ?> class="entry-title obfx-grid-title">
 			<?php if ( $settings['grid_title_link'] == 'yes' ) { ?>
                 <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title();
 					?></a>
@@ -1338,7 +1275,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 
 		if ( $settings['grid_meta_hide'] !== 'yes' ) {
 		    if ( ! empty( $settings['grid_meta_display'] ) ) { ?>
-                <div class="obfx-grid-meta">
+                <div class="entry-meta obfx-grid-meta">
 
 		        <?php foreach ( $settings['grid_meta_display'] as $meta ) {
 
@@ -1439,7 +1376,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 		$settings = $this->get_settings();
 
 		if ( $settings['grid_content_hide'] !== 'yes' ) { ?>
-            <div class="obfx-grid-content">
+            <div class="entry-content obfx-grid-content">
                 <?php if ( empty ( $settings['grid_content_length'] ) ) {
 	                the_excerpt();
                 } else {
