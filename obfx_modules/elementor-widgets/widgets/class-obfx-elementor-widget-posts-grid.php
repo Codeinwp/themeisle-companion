@@ -139,6 +139,20 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
+		// Style.
+		$this->add_control(
+			'grid_style',
+			[
+				'type'    => Controls_Manager::SELECT,
+				'label'   => '<i class="fa fa-paint-brush"></i> ' . __( 'Style', 'themeisle-companion' ),
+				'default' => 'grid',
+				'options' => [
+					'grid'  => __( 'Grid', 'themeisle-companion' ),
+					'list' => __( 'List', 'themeisle-companion' ),
+				],
+			]
+		);
+
 		// Items.
 		$this->add_control(
 			'grid_items',
@@ -186,20 +200,6 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
-		// Order.
-		$this->add_control(
-			'grid_order',
-			[
-				'type'    => Controls_Manager::SELECT,
-				'label'   => '<i class="fa fa-sort-numeric-desc"></i> ' . __( 'Order', 'themeisle-companion' ),
-				'default' => 'DESC',
-				'options' => [
-					'ASC'  => __( 'Ascendent', 'themeisle-companion' ),
-					'DESC' => __( 'Descendent', 'themeisle-companion' ),
-				],
-			]
-		);
-
 		$this->end_controls_section();
 	}
 
@@ -225,55 +225,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
-		// Image width.
-		$this->add_control(
-			'grid_image_width',
-			[
-				'label' => '<i class="fa fa-arrows-h"></i> ' . __( 'Width', 'themeisle-companion' ),
-				'type' => Controls_Manager::SLIDER,
-				'range' => [
-					'%' => [
-						'min' => 10,
-						'max' => 100,
-					],
-					'px' => [
-						'min' => 10,
-						'max' => 1000,
-					],
-				],
-				'default' => [
-					'size' => 100,
-					'unit' => '%',
-				],
-				'size_units' => [ '%', 'px' ],
-				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-col-image' => 'width: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
 
-		// Image height.
-		$this->add_control(
-			'grid_image_height',
-			[
-				'label' => '<i class="fa fa-arrows-v"></i> ' . __( 'Height', 'themeisle-companion' ),
-				'type' => Controls_Manager::SLIDER,
-				'range' => [
-					'px' => [
-						'min' => 10,
-						'max' => 1000,
-					],
-				],
-				'default' => [
-					'size' => 150,
-					'unit' => 'px',
-				],
-				'size_units' => [ 'px' ],
-				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-col-image' => 'height: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
 
 		// Image link.
 		$this->add_control(
@@ -412,6 +364,16 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
+		// Remove meta icons.
+		$this->add_control(
+			'grid_meta_remove_icons',
+			[
+				'label' => '<i class="fa fa-minus-circle"></i> ' . __( 'Remove icons', 'themeisle-companion' ),
+				'type' => Controls_Manager::SWITCHER,
+				'default' => '',
+			]
+		);
+
 		$this->end_controls_section();
 	}
 
@@ -530,7 +492,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				'tablet_default'   => 'left',
 				'mobile_default'   => 'center',
 				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-col-footer' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}} .obfx-grid-footer' => 'text-align: {{VALUE}};',
 				],
 				'condition' => [
 					'grid_content_btn!' => '',
@@ -562,7 +524,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				'tablet_default'   => 'left',
 				'mobile_default'   => 'center',
 				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-col' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}} .obfx-grid-col-content' => 'text-align: {{VALUE}};',
 				],
 			]
 		);
@@ -701,6 +663,22 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
+		// Image margin.
+		$this->add_control(
+			'grid_image_style_margin',
+			[
+				'label'      => __( 'Margin', 'themeisle-companion' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px' ],
+				'selectors'  => [
+					'{{WRAPPER}} .obfx-grid-col-image' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+				'condition' => [
+					'section_grid_image.grid_image_hide' => '',
+				],
+			]
+		);
+
 		// Image border radius.
 		$this->add_control(
 			'grid_image_style_border_radius',
@@ -711,25 +689,21 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				'selectors'  => [
 					'{{WRAPPER}} .obfx-grid-col-image' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
+				'condition' => [
+					'section_grid_image.grid_image_hide' => '',
+				],
 			]
 		);
 
-		// Image bottom margin.
-		$this->add_control(
-			'grid_image_style_margin',
+		// Image box shadow.
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
 			[
-				'label'     => __( 'Bottom margin', 'themeisle-companion' ),
-				'type'      => Controls_Manager::SLIDER,
-				'range'     => [
-					'px' => [
-						'max' => 100,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-col-image'   => 'margin-bottom: {{SIZE}}{{UNIT}}',
-				],
-				'default'   => [
-					'size' => 15,
+				'name'      => 'grid_image_style_box_shadow',
+				'selector'  => '{{WRAPPER}} .obfx-grid-col-image',
+				'separator' => '',
+				'condition' => [
+					'section_grid_image.grid_image_hide' => '',
 				],
 			]
 		);
@@ -759,7 +733,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			[
 				'name'     => 'grid_title_style_typography',
 				'scheme'   => Scheme_Typography::TYPOGRAPHY_1,
-				'selector' => '{{WRAPPER}} .obfx-grid-col-title',
+				'selector' => '{{WRAPPER}} .obfx-grid-title',
 			]
 		);
 
@@ -775,8 +749,8 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				],
                 'default' => '#ffffff',
 				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-col-title' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .obfx-grid-col-title a' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .obfx-grid-title' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .obfx-grid-title a' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -793,7 +767,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-col-title'   => 'margin-bottom: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}} .obfx-grid-title'   => 'margin-bottom: {{SIZE}}{{UNIT}}',
 				],
 				'default'   => [
 					'size' => 15,
@@ -826,7 +800,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			[
 				'name'     => 'grid_meta_style_typography',
 				'scheme'   => Scheme_Typography::TYPOGRAPHY_1,
-				'selector' => '{{WRAPPER}} .obfx-grid-col-meta',
+				'selector' => '{{WRAPPER}} .obfx-grid-meta',
 			]
 		);
 
@@ -841,8 +815,8 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 					'value' => Scheme_Color::COLOR_1,
 				],
 				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-col-meta' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .obfx-grid-col-meta a' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .obfx-grid-meta' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .obfx-grid-meta a' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -859,7 +833,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-col-meta > span'   => 'margin-right: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}} .obfx-grid-meta > span'   => 'margin-right: {{SIZE}}{{UNIT}}',
 				],
 				'default'   => [
 					'size' => 10,
@@ -879,7 +853,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-col-meta'   => 'margin-bottom: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}} .obfx-grid-meta'   => 'margin-bottom: {{SIZE}}{{UNIT}}',
 				],
 				'default'   => [
 					'size' => 15,
@@ -909,7 +883,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			[
 				'name'     => 'grid_content_style_typography',
 				'scheme'   => Scheme_Typography::TYPOGRAPHY_1,
-				'selector' => '{{WRAPPER}} .obfx-grid-col-content',
+				'selector' => '{{WRAPPER}} .obfx-grid-content',
 				'condition' => [
 					'section_grid_content.grid_content_hide' => '',
 				],
@@ -927,7 +901,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 					'value' => Scheme_Color::COLOR_1,
 				],
 				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-col-content' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .obfx-grid-content' => 'color: {{VALUE}};',
 				],
 				'condition' => [
 					'section_grid_content.grid_content_hide' => '',
@@ -947,7 +921,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-col-content'   => 'margin-bottom: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}} .obfx-grid-content'   => 'margin-bottom: {{SIZE}}{{UNIT}}',
 				],
 				'default'   => [
 					'size' => 15,
@@ -978,7 +952,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			[
 				'name'     => 'grid_content_price_style_typography',
 				'scheme'   => Scheme_Typography::TYPOGRAPHY_1,
-				'selector' => '{{WRAPPER}} .obfx-grid-col-price',
+				'selector' => '{{WRAPPER}} .obfx-grid-price',
 				'condition' => [
 					'section_grid_content.grid_content_price' => 'yes',
 					'section_grid.grid_post_type' => 'product',
@@ -997,7 +971,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 					'value' => Scheme_Color::COLOR_1,
 				],
 				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-col-price' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .obfx-grid-price' => 'color: {{VALUE}};',
 				],
 				'condition' => [
 					'section_grid_content.grid_content_price' => 'yes',
@@ -1018,7 +992,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-col-price'   => 'margin-bottom: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}} .obfx-grid-price'   => 'margin-bottom: {{SIZE}}{{UNIT}}',
 				],
 				'default'   => [
 					'size' => 15,
@@ -1080,7 +1054,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				],
 				'separator' => '',
 				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-col-footer a' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .obfx-grid-footer a' => 'color: {{VALUE}};',
 				],
 				'condition' => [
 					'section_grid_content.grid_content_default_btn!' => '',
@@ -1101,7 +1075,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				],
 				'separator' => '',
 				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-col-footer a' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .obfx-grid-footer a' => 'background-color: {{VALUE}};',
 				],
 				'condition' => [
 					'section_grid_content.grid_content_default_btn!' => '',
@@ -1115,7 +1089,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			Group_Control_Box_Shadow::get_type(),
 			[
 				'name'      => 'grid_button_style_normal_box_shadow',
-				'selector'  => '{{WRAPPER}} .obfx-grid-col-footer a',
+				'selector'  => '{{WRAPPER}} .obfx-grid-footer a',
 				'separator' => '',
 				'condition' => [
 					'section_grid_content.grid_content_default_btn!' => '',
@@ -1150,7 +1124,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				],
 				'separator' => '',
 				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-col-footer a:hover' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .obfx-grid-footer a:hover' => 'color: {{VALUE}};',
 				],
 				'condition' => [
 					'section_grid_content.grid_content_default_btn!' => '',
@@ -1171,7 +1145,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				],
 				'separator' => '',
 				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-col-footer a:hover' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .obfx-grid-footer a:hover' => 'background-color: {{VALUE}};',
 				],
 				'condition' => [
 					'section_grid_content.grid_content_default_btn!' => '',
@@ -1185,7 +1159,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			Group_Control_Box_Shadow::get_type(),
 			[
 				'name'      => 'grid_button_style_hover_box_shadow',
-				'selector'  => '{{WRAPPER}} .obfx-grid-col-footer a:hover',
+				'selector'  => '{{WRAPPER}} .obfx-grid-footer a:hover',
 				'separator' => '',
 				'condition' => [
 					'section_grid_content.grid_content_default_btn!' => '',
@@ -1204,7 +1178,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			[
 				'name'     => 'grid_button_style_typography',
 				'scheme'   => Scheme_Typography::TYPOGRAPHY_1,
-				'selector' => '{{WRAPPER}} .obfx-grid-col-footer a',
+				'selector' => '{{WRAPPER}} .obfx-grid-footer a',
 				'condition' => [
 					'section_grid_content.grid_content_default_btn!' => '',
 					'section_grid_content.grid_content_product_btn!' => '',
@@ -1220,7 +1194,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px' ],
 				'selectors'  => [
-					'{{WRAPPER}} .obfx-grid-col-footer a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .obfx-grid-footer a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 				'condition' => [
 					'section_grid_content.grid_content_default_btn!' => '',
@@ -1237,7 +1211,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => [ 'px', '%' ],
 				'selectors'  => [
-					'{{WRAPPER}} .obfx-grid-col-footer a' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .obfx-grid-footer a' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 				'condition' => [
 					'section_grid_content.grid_content_default_btn!' => '',
@@ -1257,12 +1231,14 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 		$i = 0; // counter
 
 		if ( $post_type_category ) { ?>
-			<span class="obfx-grid-col-categories">
-                <i class="fa fa-bookmark"></i>
-                <?php foreach ( $post_type_category as $category ) {
+			<span class="obfx-grid-categories">
+                <?php
+                echo ( $settings['grid_meta_remove_icons'] == '' ) ? '<i class="fa fa-bookmark"></i>' : '';
+
+                foreach ( $post_type_category as $category ) {
                     if ( $i == $maxCategories ) break;
                     ?>
-                    <span class="obfx-grid-col-categories-item"><a href="<?php echo get_category_link( $category->term_id ); ?>" title="<?php echo $category->name; ?>"><?php echo $category->name; ?></a></span>
+                    <span class="obfx-grid-categories-item"><a href="<?php echo get_category_link( $category->term_id ); ?>" title="<?php echo $category->name; ?>"><?php echo $category->name; ?></a></span>
                     <?php
                     $i++;
                 } ?>
@@ -1281,12 +1257,14 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 		$i = 0; // counter
 
 		if ( $post_type_tags ) { ?>
-            <span class="obfx-grid-col-tags">
-                <i class="fa fa-tags"></i>
-				<?php foreach ( $post_type_tags as $tag ) {
+            <span class="obfx-grid-tags">
+                <?php
+                echo ( $settings['grid_meta_remove_icons'] == '' ) ? '<i class="fa fa-tags"></i>' : '';
+
+				foreach ( $post_type_tags as $tag ) {
 					if ( $i == $maxTags )  break;
 					?>
-                    <span class="obfx-grid-col-tags-item"><a href="<?php echo get_tag_link( $tag->term_id ); ?>" title="<?php echo $tag->name; ?>"><?php echo $tag->name; ?></a></span>
+                    <span class="obfx-grid-tags-item"><a href="<?php echo get_tag_link( $tag->term_id ); ?>" title="<?php echo $tag->name; ?>"><?php echo $tag->name; ?></a></span>
 					<?php
 					$i++;
 				} ?>
@@ -1302,33 +1280,35 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 		$settings = $this->get_settings();
 
 		// Only in editor.
-		if ( $settings['grid_image_hide'] !== 'yes' && Plugin::$instance->editor->is_edit_mode() ) {
-			// Check if post type has featured image.
-			if ( has_post_thumbnail() ) {
+		if ( $settings['grid_image_hide'] !== 'yes' ) {
+		    /*if ( Plugin::$instance->editor->is_edit_mode() ) {*/
+            // Check if post type has featured image.
+            if ( has_post_thumbnail() ) {
 
-			    // Get image date
-				$image = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID()),'full' );
-
-				if ( $settings['grid_image_link'] == 'yes' ) { ?>
-                    <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="obfx-grid-col-image<?php echo ( $settings['grid_image_height'] >= $image[2] ) ? ' obfx-fit-height' : ''; ?>"><img src="<?php echo esc_url( $image[0] ); ?>" alt="<?php the_title(); ?>"/></a>
-				<?php } else { ?>
-                    <div class="obfx-grid-col-image<?php echo ( $settings['grid_image_height'] >= $image[2] ) ? ' obfx-fit-height' : ''; ?>"><img src="<?php echo esc_url( $image[0] ); ?>" alt="<?php the_title(); ?>"/></div>
-				<?php }
-			}
-        // Not editor.
-		} else {
-			// Check if post type has featured image.
-			if ( has_post_thumbnail() ) {
-
-				// Get image date.
-				$image = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID()),'thumbnail' );
-
-				if ( $settings['grid_image_link'] == 'yes' ) { ?>
-                    <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" class="obfx-grid-col-image<?php echo ( $image[1] > $image[2] ) ? ' obfx-fit-height' : ''; ?>"><img src="<?php echo esc_url( $image[0] ); ?>" alt="<?php the_title(); ?>"/></a>
-				<?php } else { ?>
-                    <div class="obfx-grid-col-image<?php echo ( $image[1] > $image[2] ) ? ' obfx-fit-height' : ''; ?>"><img src="<?php echo esc_url( $image[0] ); ?>" alt="<?php the_title(); ?>"/></div>
-				<?php }
-			}
+                if ( $settings['grid_image_link'] == 'yes' ) { ?>
+                    <div class="obfx-grid-col-image">
+                        <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+	                        <?php
+	                        the_post_thumbnail( 'full', array(
+			                        'class' => 'img-responsive',
+			                        'alt'	=> get_the_title( get_post_thumbnail_id() )
+		                        )
+	                        );
+	                        ?>
+                        </a>
+                    </div>
+                <?php } else { ?>
+                    <div class="obfx-grid-col-image">
+	                    <?php
+	                    the_post_thumbnail( 'full', array(
+			                    'class' => 'img-responsive',
+			                    'alt'	=> get_the_title( get_post_thumbnail_id() )
+		                    )
+	                    );
+	                    ?>
+                    </div>
+                <?php }
+            }
         }
     }
 
@@ -1339,7 +1319,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 		$settings = $this->get_settings();
 
 		if ( $settings['grid_title_hide'] !== 'yes' ) { ?>
-            <<?php echo $settings['grid_title_tag']; ?> class="obfx-grid-col-title">
+            <<?php echo $settings['grid_title_tag']; ?> class="obfx-grid-title">
 			<?php if ( $settings['grid_title_link'] == 'yes' ) { ?>
                 <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title();
 					?></a>
@@ -1358,23 +1338,28 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 
 		if ( $settings['grid_meta_hide'] !== 'yes' ) {
 		    if ( ! empty( $settings['grid_meta_display'] ) ) { ?>
-                <div class="obfx-grid-col-meta">
+                <div class="obfx-grid-meta">
 
 		        <?php foreach ( $settings['grid_meta_display'] as $meta ) {
 
 		            switch ( $meta ):
                         // Author
                         case 'author': ?>
-                            <span class="obfx-grid-col-author">
-                                <i class="fa fa-user"></i>
-                                <?php echo get_the_author(); ?>
+                            <span class="obfx-grid-author">
+                                <?php
+                                echo ( $settings['grid_meta_remove_icons'] == '' ) ? '<i class="fa fa-user"></i>' : '';
+
+                                echo get_the_author();
+                                ?>
                             </span>
                         <?php
                         // Date
                         break; case 'date' : ?>
-                            <span class="obfx-grid-col-date">
-                                <i class="fa fa-calendar"></i>
-                                <?php echo get_the_date(); ?>
+                            <span class="obfx-grid-date">
+                                <?php
+                                echo ( $settings['grid_meta_remove_icons'] == '' ) ? '<i class="fa fa-calendar"></i>' : '';
+
+                                echo get_the_date(); ?>
                             </span>
 			            <?php
                         // Category
@@ -1387,9 +1372,10 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 
                         // Comments/Reviews
                         break; case 'comments' : ?>
-                            <span class="obfx-grid-col-comments">
-                                <i class="fa fa-comment"></i>
+                            <span class="obfx-grid-comments">
                                 <?php
+                                echo ( $settings['grid_meta_remove_icons'] == '' ) ? '<i class="fa fa-comment"></i>' : '';
+
                                 if ( $settings['grid_post_type'] == 'product' ) {
 	                                echo comments_number( __( 'No reviews','themeisle-companion' ), __( '1 review','themeisle-companion' ), __( '% reviews','themeisle-companion' ));
                                 } else {
@@ -1415,7 +1401,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
         $product = wc_get_product( get_the_ID() );
 
         if ( $settings['grid_post_type'] == 'product' && $settings['grid_content_price'] == 'yes' ) { ?>
-            <div class="obfx-grid-col-price">
+            <div class="obfx-grid-price">
                 <?php
 					$price = $product->get_price_html();
 					if ( ! empty( $price ) ) {
@@ -1453,7 +1439,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 		$settings = $this->get_settings();
 
 		if ( $settings['grid_content_hide'] !== 'yes' ) { ?>
-            <div class="obfx-grid-col-content">
+            <div class="obfx-grid-content">
                 <?php if ( empty ( $settings['grid_content_length'] ) ) {
 	                the_excerpt();
                 } else {
@@ -1471,11 +1457,11 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 		$settings = $this->get_settings();
 
 		if ( $settings['grid_post_type'] == 'product' && $settings['grid_content_product_btn'] == 'yes' && ! empty ( $settings['grid_content_product_btn_text'] ) ) { ?>
-            <div class="obfx-grid-col-footer">
+            <div class="obfx-grid-footer">
                 <?php $this->renderAddToCart(); ?>
             </div>
         <?php } else if ( $settings['grid_content_default_btn'] == 'yes' && ! empty ( $settings['grid_content_default_btn_text'] ) ) { ?>
-            <div class="obfx-grid-col-footer">
+            <div class="obfx-grid-footer">
                 <a href="<?php echo get_the_permalink(); ?>" title="<?php echo $settings['grid_content_default_btn_text']; ?>"><?php echo $settings['grid_content_default_btn_text']; ?></a>
             </div>
         <?php
@@ -1491,7 +1477,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 
 		// Output.
 		echo '<div class="obfx-grid">';
-		echo '<div class="obfx-grid-container' . ( ! empty( $settings['grid_columns_mobile'] ) ? ' obfx-grid-mobile-' . $settings['grid_columns_mobile'] : '' ) . ( ! empty( $settings['grid_columns_tablet'] ) ? ' obfx-grid-tablet-' . $settings['grid_columns_tablet'] : '' ) . ( ! empty( $settings['grid_columns'] ) ? ' obfx-grid-desktop-' . $settings['grid_columns'] : '' ) .'">';
+		echo '<div class="obfx-grid-container' . ( ! empty( $settings['grid_style'] ) && $settings['grid_style'] == 'list'  ? ' obfx-grid-style-' . $settings['grid_style'] : '' ) . ( ! empty( $settings['grid_columns_mobile'] ) ? ' obfx-grid-mobile-' . $settings['grid_columns_mobile'] : '' ) . ( ! empty( $settings['grid_columns_tablet'] ) ? ' obfx-grid-tablet-' . $settings['grid_columns_tablet'] : '' ) . ( ! empty( $settings['grid_columns'] ) ? ' obfx-grid-desktop-' . $settings['grid_columns'] : '' ) .'">';
 
 		// Arguments for query.
 		$args = array();
@@ -1511,11 +1497,6 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			$args['orderby'] = $settings['grid_order_by'];
 		}
 
-		// Order.
-		if ( ! empty( $settings['grid_order'] ) ) {
-			$args['order'] = $settings['grid_order'];
-		}
-
         // Query.
         $query = new \WP_Query( $args );
 
@@ -1530,6 +1511,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
                 // Image.
 	            $this->renderImage();
 
+	            echo '<div class="obfx-grid-col-content">';
                 // Title.
                 $this->renderTitle();
 
@@ -1547,6 +1529,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
                 // Button.
                 $this->renderButton();
 
+	            echo '</div><!-- .obfx-grid-col-content -->';
                 echo '</article>';
 	            echo '</div>';
 
