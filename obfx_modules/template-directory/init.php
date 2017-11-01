@@ -65,16 +65,18 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$this->loader->add_action( 'template_redirect', $this, 'demo_listing' );
 		//Remove customizer controls.
 		$this->loader->add_action( 'customize_register', $this, 'adjust_customizer' ,1000 );
+		//Remove components that give notice if they're not loaded.
 	}
-
 
 	/**
 	 * Remove the customizer controls and add the template listing control.
 	 */
 	public function adjust_customizer( $wp_customize ) {
+
 		if ( ! $this->is_template_dir_customize() ) {
 			return;
 		}
+		add_filter('customize_loaded_components', '__return_empty_array' );
 
 		//Remove all customizer sections and panels except 'obfx-templates'.
 		foreach ($wp_customize->sections() as $section){
@@ -83,7 +85,9 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			}
 		}
 		foreach ($wp_customize->panels() as $panel){
-			$wp_customize->remove_panel( $panel->id );
+			if ( $panel->id!== 'widgets' && $panel->id !== 'nav_menus' ) {
+				$wp_customize->remove_panel( $panel->id );
+			}
 		}
 
 		//Get the module directory to later pass it for scripts enqueueing in the Orbit Fox customizer section.
@@ -97,6 +101,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 					$wp_customize, 'obfx-templates', array(
 						'priority'         => 0,
 						'module_directory' => $this->get_dir(),
+						'templates'        => $this->templates_list(),
 					)
 				)
 			);
@@ -146,7 +151,11 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * Render the template directory admin page.
 	 */
 	public function render_admin_page() {
-		echo $this->render_view( 'template-directory-page' );
+		$data = array(
+			'templates_array' => $this->templates_list(),
+		);
+
+		echo $this->render_view( 'template-directory-page', $data );
 	}
 
 	/**
@@ -217,5 +226,53 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			return false;
 		}
 		return true;
+	}
+
+	public function templates_list() {
+		$repository_raw_url = 'https://raw.githubusercontent.com/Codeinwp/obfx-templates/master/';
+		$defaults_if_empty  = array(
+			'title'       => __( 'A new Orbit Fox Template', 'themeisle-companion' ),
+			'screenshot'  => esc_url( 'https://raw.githubusercontent.com/Codeinwp/obfx-templates/master/placeholder.png' ),
+			'description' => __( 'This is an awesome Orbit Fox Template.', 'themeisle-companion' ),
+			'demo_url'    => esc_url( 'https://demo.themeisle.com/hestia-pro-demo-content/demo-placeholder/' ),
+			'import_file' => '',
+		);
+
+		$templates_list = array(
+			'about-our-business-elementor' => array(
+				'title'       => __( 'About Our Business', 'themeisle-companion' ),
+				'description' => __( 'A fancy description here', 'themeisle-companion' ),
+				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/about-our-business-elementor/',
+				'screenshot'  => esc_url( $repository_raw_url . 'about-our-business-elementor/screenshot.png' ),
+				'import_file' => esc_url( $repository_raw_url . 'about-our-business-elementor/template.json' ),
+			),
+			'contact-us-elementor'         => array(
+				'title'       => __( 'Contact Us', 'themeisle-companion' ),
+				'description' => __( 'A fancy description here', 'themeisle-companion' ),
+				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/contact-us-elementor/',
+				'screenshot'  => esc_url( $repository_raw_url . 'contact-us-elementor/screenshot.png' ),
+				'import_file' => esc_url( $repository_raw_url . 'contact-us-elementor/template.json' ),
+			),
+			'placeholder-template'         => array(),
+			'placeholder-template1'        => array(),
+			'placeholder-template2'        => array(),
+			'placeholder-template3'        => array(),
+			'placeholder-template4'        => array(),
+		);
+
+		foreach ( $templates_list as $template => $properties ) {
+			$templates_list[ $template ] = wp_parse_args( $properties, $defaults_if_empty );
+		}
+
+		return $templates_list;
+	}
+
+	public function import() {
+		$elementor = new Elementor\TemplateLibrary\Source_Local;
+		$elementor->import_template();
+		?>
+
+		<?php
+
 	}
 }

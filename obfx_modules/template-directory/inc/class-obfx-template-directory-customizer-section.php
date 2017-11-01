@@ -36,16 +36,35 @@ class OBFX_Template_Directory_Customizer_Section extends WP_Customize_Section {
 	private $module_dir = '';
 
 	/**
+	 * Templates list.
+	 *
+	 * @var array
+	 */
+	private $templates = array();
+
+	/**
+	 * The previewed template slug.
+	 *
+	 * @var string
+	 */
+	private $called_template = '';
+
+	/**
 	 * Hestia_Hiding_Section constructor.
 	 *
 	 * @param WP_Customize_Manager $manager Customizer Manager.
-	 * @param string               $id Control id.
-	 * @param array                $args Arguments.
+	 * @param string $id Control id.
+	 * @param array $args Arguments.
 	 */
 	public function __construct( WP_Customize_Manager $manager, $id, array $args = array() ) {
 		parent::__construct( $manager, $id, $args );
 
 		$this->module_dir = $args['module_directory'];
+
+		if ( ! empty( $args['templates'] ) ) {
+			$this->templates = $args['templates'];
+		}
+		$this->called_template = isset( $_GET['obfx_template_id'] ) ? $_GET['obfx_template_id'] : '';
 	}
 
 	/**
@@ -56,18 +75,26 @@ class OBFX_Template_Directory_Customizer_Section extends WP_Customize_Section {
 	 * @return void
 	 */
 	protected function render() {
-		?>
-		<div class="obfx-template-browser customizer">
-			<div class="obfx-template">
-				<h2 class="template-name template-header">Hestia About Page</h2>
-				<div class="obfx-template-screenshot">
-					<img src="https://i0.wp.com/themes.svn.wordpress.org/hestia/1.1.52/screenshot.png" alt="">
-				</div>
-				<div class="obfx-template-details">
-					<p>This should be the template description.</p>
-				</div><!-- /.obfx-template-details -->
-			</div><!-- /.obfx-template -->
-		</div> <!-- /.obfx-template-browser -->
-		<?php
+		$html = '';
+		if ( ! empty( $this->templates ) ) {
+			$html .= '<div class="obfx-template-browser customizer">';
+			foreach ( $this->templates as $template => $properties ) {
+				$active = '';
+				if ( $template === $this->called_template ) {
+					$active = ' active';
+				}
+				$html .= '<div class="obfx-template' . esc_attr( $active ) . '" data-demo-url="' . esc_url( $properties['demo_url'] ) . '" data-slug="' . $template . '" data-file-url="' . esc_url( $properties['import_file'] ) . '">';
+				$html .= '<h2 class="template-name template-header">' . esc_html( $properties['title'] ) . '</h2>';
+				$html .= '<div class="obfx-template-screenshot">';
+				$html .= '<img src="' . esc_url( $properties['screenshot'] ) . '" alt="' . esc_html( $properties['title'] ) . '">';
+				$html .= '</div>';
+				$html .= '<div class="obfx-template-details">';
+				$html .= '<p>' . esc_html( $properties['description'] ) . '</p>';
+				$html .= '</div>'; //.obfx-template-details
+				$html .= '</div>'; //.obfx-template
+			}
+			$html .= '</div>'; //.obfx-template-browser
+		}
+		echo $html;
 	}
 }

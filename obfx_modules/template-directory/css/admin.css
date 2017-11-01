@@ -12,7 +12,6 @@
 .obfx-template {
     width: 22.7%;
     margin: 0 3% 3% 0;
-    cursor: pointer;
     float: left;
     position: relative;
     border: 1px solid #ddd;
@@ -33,6 +32,9 @@
     padding: 10px;
 }
 
+.obfx-template-actions .obfx-import-template {
+    margin-left: 5px;
+}
 .obfx-template-screenshot {
     position: relative;
     display: inline-block;
@@ -110,14 +112,17 @@
     background: #fff;
 }
 
-
 .obfx-template-browser.customizer .obfx-template {
+    display: none;
     width: 100%;
     margin: 0 0 20px 0;
     float: none;
-    display: inline-block;
     border: none;
     cursor: default;
+}
+
+.obfx-template-browser.customizer .obfx-template.active {
+    display: inline-block;
 }
 
 .obfx-template-browser.customizer .template-name {
@@ -126,4 +131,12 @@
 
 .obfx-template-browser.customizer .obfx-template-screenshot {
     border: 1px solid #ddd;
+}
+
+.obfx-hide {
+    display: none;
+}
+
+.obfx-import-elementor-hidden-form {
+    display: inline-block;
 }

@@ -10,7 +10,5 @@
  * @codeCoverageIgnore
  */
 
-?>
 
-<?php
 die();
