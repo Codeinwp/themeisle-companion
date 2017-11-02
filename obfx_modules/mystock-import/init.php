@@ -74,23 +74,17 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function hooks() {
 
-        $this->loader->add_action( 'media_upload_obfx_mystock', $this, 'media_upload_picker' );
-
         /*Get tab content*/
         $this->loader->add_action( 'wp_ajax_get-tab-'.$this->slug, $this,'get_tab_content');
-
-
         $this->loader->add_action( 'wp_ajax_' . $this->slug, $this, 'display_photo_sizes' );
         $this->loader->add_action( 'wp_ajax_infinite-' . $this->slug, $this, 'infinite_scroll' );
         $this->loader->add_action( 'wp_ajax_handle-request-' . $this->slug, $this, 'handle_request' );
-
-        $this->loader->add_filter( 'media_upload_tabs', $this, 'upload_tabs' );
-        $this->loader->add_filter(' image_send_to_editor', $this, 'image_send_to_editor', 9, 8 );
 	}
 
-
-	function get_tab_content(){
-
+	/**
+	 * Display tab content.
+	 */
+	public function get_tab_content(){
 		if ( false ===  ( $value = get_transient( 'mystock_photos' ) ) ) {
 			$urls = $this->get_images();
 			if( !empty( $urls ) ){
@@ -104,65 +98,8 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		wp_die();
 	}
 
-
-
-
-
-
-
-    function upload_tabs( $tabs ) {
-	    $tabs['obfx_mystock']    = esc_html__( 'Add from Mystock', 'themeisle-companion' );
-	    return $tabs;
-    }
-
-    function media_upload_picker() {
-        $post_id = filter_input( INPUT_GET, 'post_id', FILTER_VALIDATE_INT, array( 'options' => array( 'min_range' => 1 ) ) );
-        $file_id  = filter_input( INPUT_GET, 'file' );
-
-        wp_enqueue_media();
-
-        wp_enqueue_script( 'obfx_mystock', $this->get_url() . '/js/admin.js', array(), THEMEISLE_COMPANION_VERSION );
-        wp_localize_script( 'obfx_mystock', 'obfx_mystock', array(
-            'ajaxurl'        => admin_url( 'admin-ajax.php' ),
-            'nonce'          => wp_create_nonce( $this->slug . filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ) ),
-            'l10n'           => array(
-	            'fetch_image_sizes' => esc_html__( 'Fetching data', 'themeisle-companion' ),
-	            'upload_image' => esc_html__( 'Uploading image. Please wait...', 'themeisle-companion'),
-	            'load_more' => esc_html__( 'Loading more photos...', 'themeisle-companion')
-            ),
-            'slug'          => $this->slug,
-        ) );
-
-	    wp_enqueue_style( 'obfx_mystock', $this->get_url() . '/css/media.css', array(), THEMEISLE_COMPANION_VERSION);
-
-        wp_iframe( array( $this, 'obfx_mystock_iframe' ), $post_id, $file_id );
-    }
-
 	/**
-	 * Display iframe of photos.
-	 *
-	 * @param bool $post_id
-	 * @param bool $file_id
-	 */
-    public function obfx_mystock_iframe( $post_id = false, $file_id = false ) {
-
-		media_upload_header();
-
-	    if ( false ===  ( $value = get_transient( 'mystock_photos' ) ) ) {
-            $urls = $this->get_images();
-		    if( !empty( $urls ) ){
-			    $urls['lastpage'] = 1;
-		    	set_transient( 'mystock_photos', $urls, 60*60*24*7 );
-		    }
-	    } else {
-		    $urls = get_transient( 'mystock_photos' );
-	    }
-        require $this->get_dir() . "/inc/photos.php";
-    }
-
-
-	/**
-	 *
+	 * Upload image.
 	 */
     function handle_request(){
 	    check_ajax_referer( $this->slug . filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ), 'security' );
@@ -200,61 +137,6 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	    }
 	    wp_update_attachment_metadata( $image_id, $attach_data );
     }
-
-	/**
-	 * Method that returns an array of scripts and styles to be loaded
-	 * for the front end part.
-	 *
-	 * @since   1.0.0
-	 * @access  public
-	 * @return array
-	 */
-	public function public_enqueue() {
-		return array();
-	}
-
-	/**
-	 * Method that returns an array of scripts and styles to be loaded
-	 * for the admin part.
-	 *
-	 * @since   1.0.0
-	 * @access  public
-	 * @return array
-	 */
-	public function admin_enqueue() {
-		$current_screen = get_current_screen();
-
-		if ( ! isset( $current_screen->id ) ) {
-			return array();
-		}
-		if ( ! in_array( $current_screen->id, array( 'post', 'page', 'post-new', 'upload' ) ) ) {
-			return array();
-		}
-
-		$this->localized = array(
-			'admin'		=> array(
-				'ajaxurl'        => admin_url( 'admin-ajax.php' ),
-				'nonce'          => wp_create_nonce( $this->slug . filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ) ),
-				'l10n'           => array(
-					'fetch_image_sizes' => esc_html__( 'Fetching data', 'themeisle-companion' ),
-					'upload_image' => esc_html__( 'Uploading image. Please wait...', 'themeisle-companion'),
-					'upload_image_complete' => esc_html__( 'Your image was imported. Go to Media Library tab to insert it in post.', 'themeisle-companion'),
-					'load_more' => esc_html__( 'Loading more photos...', 'themeisle-companion'),
-					'tab_name' => esc_html__( 'MyStock Library', 'themeisle-companion'),
-				),
-				'slug'          => $this->slug,
-			),
-		);
-
-		return array(
-			'js'	=> array(
-				'admin'	=> array( 'media-views' ),
-			),
-			'css'	=> array(
-				'media' => array(),
-			),
-		);
-	}
 
 	/**
 	 * Request images from flickr.
@@ -322,8 +204,10 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	/**
 	 * Ajax function to display image sizes.
 	 */
-	function display_photo_sizes(){
+	public function display_photo_sizes(){
+
 		check_ajax_referer( $this->slug . filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ), 'security' );
+
 		$photo_id = $_POST['pid'];
 		$data = get_transient('mystock_photos');
 		if( empty( $photo_id ) ){
@@ -347,7 +231,6 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			'url_o' => __('Original','themeisle-companion'),
 		);
 
-
 		/**
 		 * Creating response for selected image
 		 */
@@ -368,6 +251,61 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$response .= '</div>';
 		echo $response;
 		wp_die();
+	}
+
+	/**
+	 * Method that returns an array of scripts and styles to be loaded
+	 * for the front end part.
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 * @return array
+	 */
+	public function public_enqueue() {
+		return array();
+	}
+
+	/**
+	 * Method that returns an array of scripts and styles to be loaded
+	 * for the admin part.
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 * @return array
+	 */
+	public function admin_enqueue() {
+		$current_screen = get_current_screen();
+
+		if ( ! isset( $current_screen->id ) ) {
+			return array();
+		}
+		if ( ! in_array( $current_screen->id, array( 'post', 'page', 'post-new', 'upload' ) ) ) {
+			return array();
+		}
+
+		$this->localized = array(
+			'admin'		=> array(
+				'ajaxurl'        => admin_url( 'admin-ajax.php' ),
+				'nonce'          => wp_create_nonce( $this->slug . filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ) ),
+				'l10n'           => array(
+					'fetch_image_sizes' => esc_html__( 'Fetching data', 'themeisle-companion' ),
+					'upload_image' => esc_html__( 'Downloading image. Please wait...', 'themeisle-companion'),
+					'upload_image_complete' => esc_html__( 'Your image was imported. Go to Media Library tab to use it.', 'themeisle-companion'),
+					'load_more' => esc_html__( 'Loading more photos...', 'themeisle-companion'),
+					'tab_name' => esc_html__( 'MyStock Library', 'themeisle-companion'),
+				),
+				'slug'          => $this->slug,
+			),
+		);
+
+		return array(
+			'js'	=> array(
+				'admin'	=> array( 'media-views' ),
+			),
+			'css'	=> array(
+				'media' => array(),
+			),
+		);
 	}
 
 	/**
