@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The Orbit Fox Template Directory Module.
  *
@@ -8,6 +9,7 @@
  * @package    Template_Directory_OBFX_Module
  */
 
+use  Elementor\TemplateLibrary\Classes;
 /**
  * The class defines a new module to be used by Orbit Fox plugin.
  *
@@ -26,7 +28,6 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		parent::__construct();
 		$this->name        = __( 'Template Directory Module', 'themeisle-companion' );
 		$this->description = __( 'The awesome template directory is aiming to provide a wide range of templates that you can import straight into your website.', 'themeisle-companion' );
-
 	}
 
 	/**
@@ -51,12 +52,54 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	}
 
 	/**
+	 * The templates list.
+	 *
+	 * @return array
+	 */
+	public function templates_list() {
+		$repository_raw_url = 'https://raw.githubusercontent.com/Codeinwp/obfx-templates/master/';
+		$defaults_if_empty  = array(
+			'title'       => __( 'A new Orbit Fox Template', 'themeisle-companion' ),
+			'screenshot'  => esc_url( 'https://raw.githubusercontent.com/Codeinwp/obfx-templates/master/placeholder.png' ),
+			'description' => __( 'This is an awesome Orbit Fox Template.', 'themeisle-companion' ),
+			'demo_url'    => esc_url( 'https://demo.themeisle.com/hestia-pro-demo-content/demo-placeholder/' ),
+			'import_file' => '',
+		);
+
+		$templates_list = array(
+			'about-our-business-elementor' => array(
+				'title'       => __( 'About Our Business', 'themeisle-companion' ),
+				'description' => __( 'A fancy description here', 'themeisle-companion' ),
+				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/about-our-business-elementor/',
+				'screenshot'  => esc_url( $repository_raw_url . 'about-our-business-elementor/screenshot.png' ),
+				'import_file' => esc_url( $repository_raw_url . 'about-our-business-elementor/template.json' ),
+			),
+			'contact-us-elementor'         => array(
+				'title'       => __( 'Contact Us', 'themeisle-companion' ),
+				'description' => __( 'A fancy description here', 'themeisle-companion' ),
+				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/contact-us-elementor/',
+				'screenshot'  => esc_url( $repository_raw_url . 'contact-us-elementor/screenshot.png' ),
+				'import_file' => esc_url( $repository_raw_url . 'contact-us-elementor/template.json' ),
+			),
+			'placeholder-template'         => array(),
+			'placeholder-template1'        => array(),
+		);
+
+		foreach ( $templates_list as $template => $properties ) {
+			$templates_list[ $template ] = wp_parse_args( $properties, $defaults_if_empty );
+		}
+
+		return $templates_list;
+	}
+
+	/**
 	 * Method to define hooks needed.
 	 *
 	 * @since   1.0.0
 	 * @access  public
 	 */
 	public function hooks() {
+		$this->loader->add_action( 'rest_api_init', $this, 'register_endpoints' );
 		//Add dashboard menu page.
 		$this->loader->add_action( 'admin_menu', $this, 'add_menu_page' );
 		//Add rewrite endpoint.
@@ -65,7 +108,90 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$this->loader->add_action( 'template_redirect', $this, 'demo_listing' );
 		//Remove customizer controls.
 		$this->loader->add_action( 'customize_register', $this, 'adjust_customizer' ,1000 );
-		//Remove components that give notice if they're not loaded.
+		//Enqueue admin scripts.
+		$this->loader->add_action( 'admin_enqueue_scripts', $this, 'enqueue_template_dir_scripts' );
+		$this->loader->add_action( 'customize_controls_enqueue_scripts', $this, 'enqueue_template_dir_scripts' );
+	}
+
+	/**
+	 * Enqueue the scripts for the dashboard page of the
+	 */
+	public function enqueue_template_dir_scripts() {
+		$script_handle = $this->slug . '-script';
+		wp_register_script( $script_handle, plugin_dir_url( $this->get_dir() ) . $this->slug . '/js/script.js', array( 'jquery' ), '1.0.0' );
+		wp_localize_script( $script_handle, 'importer_endpoint',
+			array(
+				'url'   => $this->get_endpoint_url( '/import_elementor' ),
+				'nonce' => wp_create_nonce( 'wp_rest' ),
+		) );
+		wp_enqueue_script( $script_handle );
+	}
+
+
+	/**
+	 * Method that returns an array of scripts and styles to be loaded
+	 * for the front end part.
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 * @return array
+	 */
+	public function public_enqueue() {
+		return array();
+	}
+
+	/**
+	 * Method that returns an array of scripts and styles to be loaded
+	 * for the admin part.
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 * @return array|boolean
+	 */
+	public function admin_enqueue() {
+		$current_screen = get_current_screen();
+
+		if ( ! isset( $current_screen->id ) ) {
+			return array();
+		}
+
+		if ( ! ( $current_screen->id == 'tools_page_obfx_template_dir' ) && ( ! $current_screen == 'customize' ) ) {
+			return array();
+		}
+
+		$enqueue = array(
+			'css' => array(
+				'admin' => array(),
+			),
+		);
+
+		// Enqueue template dir Previewer JS only on the preview screen.
+		if( $this->is_template_dir_customize() ) {
+			$enqueue['js'] = array( 'customizer' => array('customize-preview') );
+		}
+
+		return $enqueue;
+	}
+
+	/**
+	 *
+	 *
+	 * @param string $path
+	 *
+	 * @return string
+	 */
+	public function get_endpoint_url( $path = '' ) {
+		return rest_url( $this->slug . $path );
+	}
+
+	/**
+	 * Register Rest endpoint for requests.
+	 */
+	public function register_endpoints() {
+		register_rest_route( $this->slug, '/import_elementor', array(
+			'methods'  => 'POST',
+			'callback' => array( $this, 'import_elementor' ),
+		) );
 	}
 
 	/**
@@ -159,57 +285,27 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	}
 
 	/**
-	 * Method that returns an array of scripts and styles to be loaded
-	 * for the front end part.
-	 *
-	 * @since   1.0.0
-	 * @access  public
-	 * @return array
+	 * Utility method to call Elementor import routine.
 	 */
-	public function public_enqueue() {
-		return array();
-	}
+	public function import_elementor() {
+		require_once(ABSPATH . "wp-admin" . '/includes/file.php');
+		require_once(ABSPATH . "wp-admin" . '/includes/image.php');
 
-	/**
-	 * Method that returns an array of scripts and styles to be loaded
-	 * for the admin part.
-	 *
-	 * @since   1.0.0
-	 * @access  public
-	 * @return array|boolean
-	 */
-	public function admin_enqueue() {
-		$current_screen = get_current_screen();
+		$_FILES['file']['tmp_name'] = esc_url( $_POST['template_url'] );
+		$elementor = new Elementor\TemplateLibrary\Source_Local;
+		$elementor->import_template();
 
-		if ( ! isset( $current_screen->id ) ) {
-			return array();
-		}
-
-		if ( ! ( $current_screen->id == 'tools_page_obfx_template_dir' ) && ( ! $current_screen == 'customize' ) ) {
-			return array();
-		}
-
-		$enqueue = array(
-			'css' => array(
-				'admin' => array(),
-			),
+		// Create post object
+		$new_template_page = array(
+//			'post_type'     => 'page',
+//			'post_title'    => $post['template_name'],
+//			'post_status'   => 'publish',
+//			'post_author'   => 1,
 		);
-
-		if( $this->is_template_dir_customize() ) {
-			$enqueue['js'] = array( 'customizer' => array('customize-preview') );
-		}
-		return $enqueue;
+		wp_insert_post( $new_template_page );
+//		return('');
+		die();
 	}
-
-	/**
-	 * Options array for the Orbit Fox module.
-	 *
-	 * @return array
-	 */
-	public function options() {
-		return array();
-	}
-
 
 	/**
 	 * Utility method to check if it's the customizer instance for the Template Directory Preview.
@@ -228,51 +324,12 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		return true;
 	}
 
-	public function templates_list() {
-		$repository_raw_url = 'https://raw.githubusercontent.com/Codeinwp/obfx-templates/master/';
-		$defaults_if_empty  = array(
-			'title'       => __( 'A new Orbit Fox Template', 'themeisle-companion' ),
-			'screenshot'  => esc_url( 'https://raw.githubusercontent.com/Codeinwp/obfx-templates/master/placeholder.png' ),
-			'description' => __( 'This is an awesome Orbit Fox Template.', 'themeisle-companion' ),
-			'demo_url'    => esc_url( 'https://demo.themeisle.com/hestia-pro-demo-content/demo-placeholder/' ),
-			'import_file' => '',
-		);
-
-		$templates_list = array(
-			'about-our-business-elementor' => array(
-				'title'       => __( 'About Our Business', 'themeisle-companion' ),
-				'description' => __( 'A fancy description here', 'themeisle-companion' ),
-				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/about-our-business-elementor/',
-				'screenshot'  => esc_url( $repository_raw_url . 'about-our-business-elementor/screenshot.png' ),
-				'import_file' => esc_url( $repository_raw_url . 'about-our-business-elementor/template.json' ),
-			),
-			'contact-us-elementor'         => array(
-				'title'       => __( 'Contact Us', 'themeisle-companion' ),
-				'description' => __( 'A fancy description here', 'themeisle-companion' ),
-				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/contact-us-elementor/',
-				'screenshot'  => esc_url( $repository_raw_url . 'contact-us-elementor/screenshot.png' ),
-				'import_file' => esc_url( $repository_raw_url . 'contact-us-elementor/template.json' ),
-			),
-			'placeholder-template'         => array(),
-			'placeholder-template1'        => array(),
-			'placeholder-template2'        => array(),
-			'placeholder-template3'        => array(),
-			'placeholder-template4'        => array(),
-		);
-
-		foreach ( $templates_list as $template => $properties ) {
-			$templates_list[ $template ] = wp_parse_args( $properties, $defaults_if_empty );
-		}
-
-		return $templates_list;
-	}
-
-	public function import() {
-		$elementor = new Elementor\TemplateLibrary\Source_Local;
-		$elementor->import_template();
-		?>
-
-		<?php
-
+	/**
+	 * Options array for the Orbit Fox module.
+	 *
+	 * @return array
+	 */
+	public function options() {
+		return array();
 	}
 }

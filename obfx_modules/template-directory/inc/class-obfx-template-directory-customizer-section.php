@@ -83,7 +83,7 @@ class OBFX_Template_Directory_Customizer_Section extends WP_Customize_Section {
 				if ( $template === $this->called_template ) {
 					$active = ' active';
 				}
-				$html .= '<div class="obfx-template' . esc_attr( $active ) . '" data-demo-url="' . esc_url( $properties['demo_url'] ) . '" data-slug="' . $template . '" data-file-url="' . esc_url( $properties['import_file'] ) . '">';
+				$html .= '<div class="obfx-template' . esc_attr( $active ) . '" data-demo-url="' . esc_url( $properties['demo_url'] ) . '" data-slug="' . $template . '" data-template-file="' . esc_url( $properties['import_file'] ) . '">';
 				$html .= '<h2 class="template-name template-header">' . esc_html( $properties['title'] ) . '</h2>';
 				$html .= '<div class="obfx-template-screenshot">';
 				$html .= '<img src="' . esc_url( $properties['screenshot'] ) . '" alt="' . esc_html( $properties['title'] ) . '">';

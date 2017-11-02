@@ -1,7 +1,7 @@
 /**
  * Template Directory Customizer Public Script
  *
- * This handles the previewer - left side of the customizer.
+ * This handles the customizer.
  *
  * @since	1.0.0
  * @package obfx_modules/template-directory/js
@@ -12,31 +12,19 @@
 var obfx_template_directory_previewer = function( $ ) {
     'use strict';
 
-    $(function () {
-        $.templateDir = {
-            'init': function () {
-                this.setupCustomizer();
-                this.setupPreview();
-                changePreviewSource();
-            },
-
-            'setupCustomizer': function () {
-                $('head title').html('Orbit Fox Template Preview');
-                $('.wp-full-overlay-sidebar').addClass('obfx-custom-customizer');
-                var importBtn = '<a class="obfx-template-import button button-primary" href="#">Import</a>';
-                //Remove Save Button
-                $('input.save, .customize-info, #accordion-panel-widgets').remove();
-                $('#customize-header-actions').prepend(importBtn).append('<div class="obfx-next-prev"><span onclick="obfxHandleChange(\'prev\');" class="previous-template"></span><span onclick="obfxHandleChange(\'next\');" class="next-template"></span></div>');
-                $('#customize-preview').remove();
-            },
-            'setupPreview': function () {
-                var newFrame = '<div id="customize-preview" class="wp-full-overlay-main"><iframe src="" title="OBFX Template Preview" name="customize-preview-obfx-template"></iframe></div>';
-                $('.obfx-custom-customizer').after(newFrame);
-            }
-        };
-        $.templateDir.init();
-    });
-};
+    $( function () {
+        $( 'head title' ).html( 'Orbit Fox Template Preview' );
+        $( '.wp-full-overlay-sidebar' ).addClass( 'obfx-custom-customizer' );
+        var importBtn = '<span class="obfx-import-template button button-primary" href="#">Import</span>';
+        //Remove Save Button
+        $( 'input.save, .customize-info, #accordion-panel-widgets' ).remove();
+        $( '#customize-header-actions' ).prepend( importBtn ).append( '<div class="obfx-next-prev"><span onclick="obfxHandleChange(\'prev\');" class="previous-template"></span><span onclick="obfxHandleChange(\'next\');" class="next-template"></span></div>' );
+        $( '#customize-preview' ).remove();
+        var newFrame = '<div id="customize-preview" class="wp-full-overlay-main"><iframe src="" title="OBFX Template Preview" name="customize-preview-obfx-template"></iframe></div>';
+        $( '.obfx-custom-customizer' ).after( newFrame );
+        changePreviewSource();
+    } );
+}
 
 obfx_template_directory_previewer( jQuery );
 
@@ -61,6 +49,15 @@ function obfxHandleChange(direction) {
 }
 
 function changePreviewSource() {
-    var activeTemplate = jQuery('.obfx-template.active').attr('data-demo-url');
-    jQuery('#customize-preview iframe').attr('src', activeTemplate);
+    var previewUrl = jQuery('.obfx-template.active').data('demo-url');
+    jQuery('#customize-preview iframe').attr('src', previewUrl);
+    changeButtonProps();
+}
+
+function changeButtonProps() {
+    var templateFileUrl = jQuery('.obfx-template.active').data('template-file');
+    var importBtn = '<span class="obfx-import-template button button-primary" href="#">Import</span>';
+
+    jQuery('.obfx-done-import').replaceWith(importBtn);
+    jQuery('.obfx-import-template.button').attr('data-template-file', templateFileUrl);
 }

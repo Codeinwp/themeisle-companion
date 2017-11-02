@@ -39,7 +39,7 @@ if ( is_array( $templates_array ) ) {
 		}
 
 		if( ! empty( $properties['import_file'] ) ) {
-			$html .= obfx_render_hidden_elementor_import( $properties['import_file'] );
+			$html .= '<a class="button button-primary obfx-import-template" data-template-file="' . esc_url( $properties['import_file'] ) . '"> ' . __( 'Import', 'themeisle-companion' ) . '</a>';
 		}
 		$html .= '</div>'; //.obfx-template-actions
 		$html .= '</div>'; //.obfx-template
@@ -50,18 +50,15 @@ if ( is_array( $templates_array ) ) {
 
 echo $html;
 
-function obfx_render_hidden_elementor_import( $url ) {
+function obfx_import_elementor( $url ) {
 	$html = '';
 	if( ! empty( $url ) ) {
 		$html .= '<form class="obfx-import-elementor-hidden-form" method="post" action="' . admin_url( 'admin-ajax.php' ) . '" enctype="multipart/form-data" action="">';
 			$html .= '<input name="action" value="elementor_import_template" class="obfx-hide">';
 			$html .= '<fieldset id="obfx-import-elementor">';
 					$html .= '<input class="" type="file" name="file" accept=".json" value="'. esc_url( $url ) .'" class="obfx-hidden-input obfx-elementor-file-value" readonly>';
-					$html .= '<input type="submit" class="button button-primary obfx-import-template" value="' . __( 'Import', 'themeisle-companion' ) .'">';
 			$html .= '</fieldset>';
 		$html .= '</form>';
 	}
 	return $html;
 }
-?>
-

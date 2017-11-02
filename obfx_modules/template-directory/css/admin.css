@@ -32,7 +32,10 @@
     padding: 10px;
 }
 
-.obfx-template-actions .obfx-import-template {
+.obfx-template-actions .button .dashicons {
+    line-height: 27px;
+}
+.obfx-template-actions .button {
     margin-left: 5px;
 }
 .obfx-template-screenshot {
@@ -121,6 +124,10 @@
     cursor: default;
 }
 
+#customize-controls .obfx-template-actions{
+    padding:0;
+}
+
 .obfx-template-browser.customizer .obfx-template.active {
     display: inline-block;
 }
@@ -139,4 +146,16 @@
 
 .obfx-import-elementor-hidden-form {
     display: inline-block;
+}
+
+.obfx-done-import {
+    color: green;
+    margin: 0 10px;
+}
+
+.obfx-done-import .dashicons {
+    font-size: 30px;
+}
+#customize-controls .obfx-done-import .dashicons {
+    line-height: 50px;
 }
