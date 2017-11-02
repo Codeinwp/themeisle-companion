@@ -121,7 +121,7 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
         wp_enqueue_media();
 
-        wp_enqueue_script( 'obfx_mystock', $this->get_url() . '/js/admin.js' );
+        wp_enqueue_script( 'obfx_mystock', $this->get_url() . '/js/admin.js', array(), THEMEISLE_COMPANION_VERSION );
         wp_localize_script( 'obfx_mystock', 'obfx_mystock', array(
             'ajaxurl'        => admin_url( 'admin-ajax.php' ),
             'nonce'          => wp_create_nonce( $this->slug . filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ) ),
@@ -133,8 +133,7 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
             'slug'          => $this->slug,
         ) );
 
-        wp_register_style( 'obfx_mystock', $this->get_url() . '/css/media.css', array(),'1.0.0' );
-        wp_enqueue_style( 'obfx_mystock' );
+	    wp_enqueue_style( 'obfx_mystock', $this->get_url() . '/css/media.css', array(), THEMEISLE_COMPANION_VERSION);
 
         wp_iframe( array( $this, 'obfx_mystock_iframe' ), $post_id, $file_id );
     }
@@ -228,17 +227,18 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		if ( ! isset( $current_screen->id ) ) {
 			return array();
 		}
-		if ( ! in_array( $current_screen->id, array( 'post', 'post-new', 'upload' ) ) ) {
+		if ( ! in_array( $current_screen->id, array( 'post', 'page', 'post-new', 'upload' ) ) ) {
 			return array();
 		}
 
-		$this->localized	= array(
+		$this->localized = array(
 			'admin'		=> array(
 				'ajaxurl'        => admin_url( 'admin-ajax.php' ),
 				'nonce'          => wp_create_nonce( $this->slug . filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ) ),
 				'l10n'           => array(
 					'fetch_image_sizes' => esc_html__( 'Fetching data', 'themeisle-companion' ),
 					'upload_image' => esc_html__( 'Uploading image. Please wait...', 'themeisle-companion'),
+					'upload_image_complete' => esc_html__( 'Your image was imported. Go to Media Library tab to insert it in post.', 'themeisle-companion'),
 					'load_more' => esc_html__( 'Loading more photos...', 'themeisle-companion'),
 					'tab_name' => esc_html__( 'MyStock Library', 'themeisle-companion'),
 				),
@@ -251,6 +251,7 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'admin'	=> array( 'media-views' ),
 			),
 			'css'	=> array(
+				'media' => array(),
 			),
 		);
 	}
@@ -298,11 +299,11 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$new_request = $this->get_images($req_page);
 		if( !empty( $new_request ) ){
 			foreach ( $new_request as $photo ){
-				$response .= '<li class="attachment obfx_mystock_photo" data-pid="'. esc_attr( $photo['id'] ) .'">';
-				$response .= '<div class="attachment-preview"><div class="thumbnail"><div class="centered">';
+				$response .= '<li class="obfx-image" data-pid="'. esc_attr( $photo['id'] ) .'">';
+				$response .= '<div class="obfx-preview"><div class="thumbnail"><div class="centered">';
 				$response .= '<img src="'. esc_url( $photo['url_m'] ) .'">';
 				$response .= '</div></div></div>';
-				$response .= '<button type="button" class="check obfx_check" tabindex="0"><span class="media-modal-icon"></span><span class="screen-reader-text">'.esc_html__('Deselect','themeisle-companion') .'</span></button>';
+				$response .= '<button type="button" class="check obfx-image-check" tabindex="0"><span class="media-modal-icon"></span><span class="screen-reader-text">'.esc_html__('Deselect','themeisle-companion') .'</span></button>';
 				$response .= '</li>';
 			}
 		}

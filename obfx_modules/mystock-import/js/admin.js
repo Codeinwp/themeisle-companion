@@ -1,127 +1,4 @@
-/* global obfx_mystock */
-// jQuery(document).ready(function ($) {
-//     $.mspimport = {
-//         'init': function () {
-//             this.selectItem();
-//             this.deselectItem();
-//             this.displayDetails();
-//             this.infiniteScroll();
-//             this.handleRequest();
-//         },
-//
-//         'selectItem':function(){
-//             $('#obfx_mystock').on('click', '.obfx_mystock_photo', function () {
-//                 $('.obfx_mystock_photo').removeClass('selected details');
-//                 $(this).addClass('selected details');
-//             });
-//         },
-//
-//         'deselectItem':function () {
-//             $('#obfx_mystock').on('click', '.obfx_check', function (e) {
-//                 e.stopPropagation();
-//                 $(this).parent().removeClass('selected details');
-//             });
-//         },
-//
-//         'displayDetails': function () {
-//             $('#obfx_mystock').on('click', '.obfx_mystock_photo', function () {
-//                 var th = $(this);
-//
-//                 $.ajax({
-//                     type : 'POST',
-//                     data : {
-//                         'action': obfx_mystock.slug,
-//                         'pid' : $(this).data('pid'),
-//                         'security' : obfx_mystock.nonce
-//                     },
-//                     url : obfx_mystock.ajaxurl,
-//                     beforeSend : function () {
-//                         var text = obfx_mystock.l10n.fetch_image_sizes;
-//                         var data = '<div class="attachement-loading"><h2>'+ text +'</h2><div class="spinner is-active"></div></div>';
-//                         th.parent().next().html(data);
-//                     },
-//                     success : function(response) {
-//                         th.parent().next().html(response);
-//                     }
-//
-//                 });
-//             });
-//         },
-//
-//         'infiniteScroll': function () {
-//             $('.obfx_mystock_photos').on('scroll', function() {
-//                 if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
-//                     $.ajax({
-//                         type : 'POST',
-//                         data : {
-//                             'action': 'infinite-' + obfx_mystock.slug,
-//                             'page' : $('.obfx_mystock').data('pagenb'),
-//                             'security' : obfx_mystock.nonce
-//                         },
-//                         url : obfx_mystock.ajaxurl,
-//                         success : function(response) {
-//                             if( response ) {
-//                                 var imageList = $('.obfx_mystock_photos');
-//                                 var listWrapper = $('#obfx_mystock');
-//                                 var page = listWrapper.data('pagenb');
-//                                 var nextPage = parseInt(page) + 1;
-//                                 listWrapper.data('pagenb', nextPage);
-//                                 imageList.append(response);
-//                             }
-//                         }
-//
-//                     });
-//                 }
-//             })
-//         },
-//
-//         'handleRequest' : function () {
-//
-//             $('#obfx_mystock').on('submit','#importmsp', function (e) {
-//                 var mediaContainer = $('#obfx_mystock').find('.media-sidebar');
-//                 $.ajax({
-//                     type : 'POST',
-//                     data : {
-//                         'action': 'handle-request-' + obfx_mystock.slug,
-//                         'formdata' : $('#importmsp').serialize(),
-//                         'security' : obfx_mystock.nonce
-//                     },
-//                     url : obfx_mystock.ajaxurl,
-//                     beforeSend : function () {
-//                         var text = obfx_mystock.l10n.upload_image;
-//                         var data = '<div class="attachement-loading"><h2>'+ text +'</h2><div class="spinner is-active"></div></div>';
-//                         mediaContainer.html(data);
-//                     },
-//                     success : function() {
-//                         // get wp outside iframe
-//
-//                         var wp = parent.wp;
-//
-//                         // switch tabs (required for the code below)
-//
-//                         wp.media.frame.setState('insert');
-//
-//                         // refresh
-//
-//                         if( wp.media.frame.content.get() !== null) {
-//                             wp.media.frame.content.get().collection.props.set({ignore: (+ new Date())});
-//                             wp.media.frame.content.get().options.selection.reset();
-//                         } else {
-//                             wp.media.frame.library.props.set ({ignore: (+ new Date())});
-//                         }
-//                     }
-//                 });
-//                 e.preventDefault(); // avoid to execute the actual submit of the form.
-//             })
-//         }
-//     };
-//
-//     $.mspimport.init();
-//
-// });
-
 (function ($) {
-
     var media = wp.media,
         l10n = media.view.l10n = typeof _wpMediaViewsL10n === 'undefined' ? {} : _wpMediaViewsL10n;
 
@@ -133,36 +10,50 @@
             },
             browse: {
                 text: l10n.mediaLibraryTitle,
-                priority: 50
+                priority: 30
             },
             mystock: {
                 text: mystock_import.l10n.tab_name,
                 priority: 40
             }
         });
-        console.log(view);
-        // view.state = 'browse';
     };
 
-    var bindHandlers = media.view.MediaFrame.Select.prototype.bindHandlers,
-        dataTest, frame;
+    var bindHandlers = media.view.MediaFrame.Select.prototype.bindHandlers;
 
     media.view.MediaFrame.Select.prototype.bindHandlers = function () {
         bindHandlers.apply(this, arguments);
         this.on('content:create:mystock', this.mystockContent, this);
-        // frame = this;
     };
-    media.view.MediaFrame.Select.prototype.mystockContent = function (content) {
+
+    media.view.MediaFrame.Select.prototype.mystockContent = function ( contentRegion ) {
         var state = this.state();
+
         this.$el.removeClass('hide-toolbar');
-        dataTest = new media.view.dataTest({});
-        content.view = dataTest;
+
+        contentRegion.view = new wp.media.view.RemotePhotos({
+            controller: this,
+            collection: state.get('library'),
+            selection:  state.get('selection'),
+            model:      state,
+            sortable:   state.get('sortable'),
+            search:     state.get('searchable'),
+            filters:    state.get('filterable'),
+            date:       state.get('date'),
+            display:    state.has('display') ? state.get('display') : state.get('displaySettings'),
+            dragInfo:   state.get('dragInfo'),
+
+            idealColumnWidth: state.get('idealColumnWidth'),
+            suggestedWidth:   state.get('suggestedWidth'),
+            suggestedHeight:  state.get('suggestedHeight'),
+
+            AttachmentView: state.get('AttachmentView')
+        });
     };
 
-
-    media.view.dataTest = media.View.extend({
+    media.view.RemotePhotos = media.View.extend({
         tagName: 'div',
-        className: 'attachments-browser',
+        className: 'obfx-attachments-browser',
 
         initialize: function () {
             // _.defaults(this.options, {});
@@ -191,34 +82,35 @@
         },
 
         selectItem : function(){
-            $(document).on('click', '.obfx_mystock_photo', function () {
-                $('.obfx_mystock_photo').removeClass('selected details');
+            $(document).on('click', '.obfx-image', function () {
+                $('.obfx-image').removeClass('selected details');
                 $(this).addClass('selected details');
             });
         },
 
         deselectItem :function () {
-            $(document).on('click', '.obfx_check', function (e) {
+            $(document).on('click', '.obfx-image-check', function (e) {
                 e.stopPropagation();
                 $(this).parent().removeClass('selected details');
+                $('#obfx-mystock').find('.media-sidebar').html('');
             });
         },
 
         infiniteScroll : function () {
-            $('#obfx_mystock .obfx_mystock_photos').on('scroll',function() {
+            $('#obfx-mystock .obfx-image-list').on('scroll',function() {
                 if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
                     $.ajax({
                         type : 'POST',
                         data : {
                             'action': 'infinite-' + mystock_import.slug,
-                            'page' : $('.obfx_mystock').data('pagenb'),
+                            'page' : $('#obfx-mystock').data('pagenb'),
                             'security' : mystock_import.nonce
                         },
                         url : mystock_import.ajaxurl,
                         success : function(response) {
                             if( response ) {
-                                var imageList = $('.obfx_mystock_photos');
-                                var listWrapper = $('#obfx_mystock');
+                                var imageList = $('.obfx-image-list');
+                                var listWrapper = $('#obfx-mystock');
                                 var page = listWrapper.data('pagenb');
                                 var nextPage = parseInt(page) + 1;
                                 listWrapper.data('pagenb', nextPage);
@@ -232,7 +124,7 @@
         },
 
         displayDetails : function () {
-            $(document).on('click', '.obfx_mystock_photo', function () {
+            $(document).on('click', '.obfx-image', function () {
                 var th = $(this);
 
                 $.ajax({
@@ -257,8 +149,8 @@
         },
 
         handleRequest : function () {
-            $(document).on('submit','#obfx_mystock #importmsp', function (e) {
-                var mediaContainer = $('#obfx_mystock').find('.media-sidebar');
+            $(document).on('submit','#obfx-mystock #importmsp', function (e) {
+                var mediaContainer = $('#obfx-mystock').find('.media-sidebar');
                 $.ajax({
                     type : 'POST',
                     data : {
@@ -273,11 +165,14 @@
                         mediaContainer.html(data);
                     },
                     success : function() {
+                        var text = mystock_import.l10n.upload_image_complete;
+                        var data = '<div class="attachement-loading"><h2>'+ text +'</h2></div>';
+                        mediaContainer.html(data);
+                        wp.media.frame.content.get('library').collection.props.set({ '__ignore_force_update': (+ new Date()) });
                     }
                 });
                 e.preventDefault(); // avoid to execute the actual submit of the form.
             })
-        },
+        }
     });
-
 })(jQuery);
