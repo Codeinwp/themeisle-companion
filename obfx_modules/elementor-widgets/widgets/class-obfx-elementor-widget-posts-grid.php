@@ -225,7 +225,33 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
-
+		// Image ratio.
+		$this->add_responsive_control(
+			'item_ratio',
+			[
+				'label' => '<i class="fa fa-arrows-h"></i> ' . __( 'Image height', 'themeisle-companion' ),
+				'type' => Controls_Manager::SLIDER,
+				'default' => [
+					'size' => 240,
+				],
+				'tablet_default' => [
+					'size' => 240,
+				],
+				'mobile_default' => [
+					'size' => 240,
+				],
+				'range' => [
+					'px' => [
+						'min' => 1,
+						'max' => 1000,
+						'step' => 1,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .obfx-grid-col-image' => 'height: {{SIZE}}{{UNIT}};'
+				],
+			]
+		);
 
 		// Image link.
 		$this->add_control(
@@ -561,8 +587,8 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .obfx-grid-wrapper' => 'padding-right: calc( {{SIZE}}{{UNIT}}/2 ); padding-left: calc( {{SIZE}}{{UNIT}}/2 );',
-					'{{WRAPPER}} .obfx-grid-container' => 'margin-left: calc( -{{SIZE}}{{UNIT}}/2 ); margin-right: calc( -{{SIZE}}{{UNIT}}/2 );',
+					'{{WRAPPER}} .obfx-grid-wrapper' => 'padding-right: calc( {{SIZE}}{{UNIT}} ); padding-left: calc( {{SIZE}}{{UNIT}} );',
+					'{{WRAPPER}} .obfx-grid-container' => 'margin-left: calc( -{{SIZE}}{{UNIT}} ); margin-right: calc( -{{SIZE}}{{UNIT}} );',
 				],
 			]
 		);
@@ -1418,6 +1444,12 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 
 		// Arguments for query.
 		$args = array();
+
+		// Display only published posts.
+		$args['post_status'] = 'publish';
+
+		// Ignore sticky posts.
+		$args['ignore_sticky_posts'] = 1;
 
 		// Check if post type exists.
 		if ( ! empty( $settings['grid_post_type'] ) && post_type_exists( $settings['grid_post_type'] ) ) {
