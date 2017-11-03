@@ -167,7 +167,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		// Enqueue template dir Previewer JS only on the preview screen.
 		if( $this->is_template_dir_customize() ) {
-			$enqueue['js'] = array( 'customizer' => array('customize-preview') );
+			$enqueue['js'] = array( 'customizer' => array( 'customize-preview', 'jquery' ) );
 		}
 
 		return $enqueue;
@@ -291,9 +291,11 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		require_once( ABSPATH . "wp-admin" . '/includes/file.php' );
 		require_once( ABSPATH . "wp-admin" . '/includes/image.php' );
 
-		$_FILES['file']['tmp_name'] = esc_url( $_POST['template_url'] );
+		$template = download_url( esc_url( $_POST['template_url'] ) );
+		$_FILES['file']['tmp_name'] = $template;
 		$elementor                  = new Elementor\TemplateLibrary\Source_Local;
 		$elementor->import_template();
+		unlink( $template );
 
 		$args = array(
 			'post_type'        => 'elementor_library',

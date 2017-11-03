@@ -57,8 +57,13 @@
     display: block !important;
 }
 
-#customize-header-actions input.save {
+
+.obfx-custom-customizer #customize-header-actions input.save {
     display: none;
+}
+
+.obfx-custom-customizer .control-panel-widgets {
+    display: none !important;
 }
 
 .obfx-next-prev {
