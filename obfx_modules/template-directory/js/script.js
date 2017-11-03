@@ -28,9 +28,9 @@ var obfx_template_directory = function( $ ) {
                     template_name: template_name
                 },
                 type: 'POST',
-                success: function () {
+                success: function ( data ) {
                     $( '.obfx-updating' ).replaceWith( '<span class="obfx-done-import" style="float:right"><i class="dashicons-yes dashicons"></i></span>' );
-                    console.log( 'Template Imported' );
+                    location.href = data;
                 },
                 error: function ( error ) {
                     console.error( error );

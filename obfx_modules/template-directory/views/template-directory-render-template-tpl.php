@@ -10,5 +10,4 @@
  * @codeCoverageIgnore
  */
 
-
 die();

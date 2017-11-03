@@ -21,11 +21,13 @@ if ( is_array( $templates_array ) ) {
 
 	foreach ( $templates_array as $template => $properties ) {
 		$admin_url = admin_url() . 'customize.php';
-		$customizer_url = add_query_arg( array(
-			'url' => urlencode( $preview_url ),
-			'return' => admin_url() . 'tools.php?page=obfx_template_dir',
-			'obfx_template_id' => esc_html( $template )
-		),  $admin_url );
+		$customizer_url = add_query_arg(
+			array(
+				'url' => urlencode( $preview_url ),
+				'return' => admin_url() . 'tools.php?page=obfx_template_dir',
+				'obfx_template_id' => esc_html( $template ),
+			),  $admin_url
+		);
 
 		$html .= '<div class="obfx-template">';
 		$html .= '<h2 class="template-name template-header">' . esc_html( $properties['title'] ) . '</h2>';
@@ -38,27 +40,15 @@ if ( is_array( $templates_array ) ) {
 			$html .= '<a class="button obfx-preview-template" href="' . esc_url( $customizer_url ) . '" >' . __( 'Preview', 'themeisle-companion' ) . '</a>';
 		}
 
-		if( ! empty( $properties['import_file'] ) ) {
+		if ( ! empty( $properties['import_file'] ) ) {
 			$html .= '<a class="button button-primary obfx-import-template" data-template-file="' . esc_url( $properties['import_file'] ) . '"> ' . __( 'Import', 'themeisle-companion' ) . '</a>';
 		}
-		$html .= '</div>'; //.obfx-template-actions
-		$html .= '</div>'; //.obfx-template
+		$html .= '</div>'; // .obfx-template-actions
+		$html .= '</div>'; // .obfx-template
 	}
-	$html .= '</div>'; //.obfx-template-browser
-	$html .= '</div>'; //.obfx-template-dir
+	$html .= '</div>'; // .obfx-template-browser
+	$html .= '</div>'; // .obfx-template-dir
+	$html .= '<div class="wp-clearfix clearfix"></div>';
 }
 
 echo $html;
-
-function obfx_import_elementor( $url ) {
-	$html = '';
-	if( ! empty( $url ) ) {
-		$html .= '<form class="obfx-import-elementor-hidden-form" method="post" action="' . admin_url( 'admin-ajax.php' ) . '" enctype="multipart/form-data" action="">';
-			$html .= '<input name="action" value="elementor_import_template" class="obfx-hide">';
-			$html .= '<fieldset id="obfx-import-elementor">';
-					$html .= '<input class="" type="file" name="file" accept=".json" value="'. esc_url( $url ) .'" class="obfx-hidden-input obfx-elementor-file-value" readonly>';
-			$html .= '</fieldset>';
-		$html .= '</form>';
-	}
-	return $html;
-}

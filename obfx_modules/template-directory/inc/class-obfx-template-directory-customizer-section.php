@@ -53,8 +53,8 @@ class OBFX_Template_Directory_Customizer_Section extends WP_Customize_Section {
 	 * Hestia_Hiding_Section constructor.
 	 *
 	 * @param WP_Customize_Manager $manager Customizer Manager.
-	 * @param string $id Control id.
-	 * @param array $args Arguments.
+	 * @param string               $id Control id.
+	 * @param array                $args Arguments.
 	 */
 	public function __construct( WP_Customize_Manager $manager, $id, array $args = array() ) {
 		parent::__construct( $manager, $id, $args );
@@ -90,10 +90,10 @@ class OBFX_Template_Directory_Customizer_Section extends WP_Customize_Section {
 				$html .= '</div>';
 				$html .= '<div class="obfx-template-details">';
 				$html .= '<p>' . esc_html( $properties['description'] ) . '</p>';
-				$html .= '</div>'; //.obfx-template-details
-				$html .= '</div>'; //.obfx-template
+				$html .= '</div>'; // .obfx-template-details
+				$html .= '</div>'; // .obfx-template
 			}
-			$html .= '</div>'; //.obfx-template-browser
+			$html .= '</div>'; // .obfx-template-browser
 		}
 		echo $html;
 	}

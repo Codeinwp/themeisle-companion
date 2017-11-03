@@ -288,22 +288,76 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * Utility method to call Elementor import routine.
 	 */
 	public function import_elementor() {
-		require_once(ABSPATH . "wp-admin" . '/includes/file.php');
-		require_once(ABSPATH . "wp-admin" . '/includes/image.php');
+		require_once( ABSPATH . "wp-admin" . '/includes/file.php' );
+		require_once( ABSPATH . "wp-admin" . '/includes/image.php' );
 
 		$_FILES['file']['tmp_name'] = esc_url( $_POST['template_url'] );
-		$elementor = new Elementor\TemplateLibrary\Source_Local;
+		$elementor                  = new Elementor\TemplateLibrary\Source_Local;
 		$elementor->import_template();
+
+		$args = array(
+			'post_type'        => 'elementor_library',
+			'nopaging'         => true,
+			'posts_per_page'   => '1',
+			'orderby'          => 'date',
+			'order'            => 'DESC',
+			'suppress_filters' => true,
+		);
+
+		$query = new WP_Query( $args );
+
+		$last_template_added = $query->posts[0];
+		//get template id
+		$template_id = $last_template_added->ID;
+
+		wp_reset_query();
+		wp_reset_postdata();
+
+		//page content
+		$page_content = $last_template_added->post_content;
+		//meta fields
+		$elementor_data_meta      = get_post_meta( $template_id, '_elementor_data' );
+		$elementor_ver_meta       = get_post_meta( $template_id, '_elementor_version' );
+		$elementor_edit_mode_meta = get_post_meta( $template_id, '_elementor_edit_mode' );
+		$elementor_css_meta       = get_post_meta( $template_id, '_elementor_css' );
+
+		$elementor_metas = array(
+			'_elementor_data'      => ! empty( $elementor_data_meta[0] ) ? wp_slash( $elementor_data_meta[0] ) : '',
+			'_elementor_version'   => ! empty( $elementor_ver_meta[0] ) ? $elementor_ver_meta[0] : '',
+			'_elementor_edit_mode' => ! empty( $elementor_edit_mode_meta[0] ) ? $elementor_edit_mode_meta[0] : '',
+			'_elementor_css'       => $elementor_css_meta,
+		);
 
 		// Create post object
 		$new_template_page = array(
-//			'post_type'     => 'page',
-//			'post_title'    => $post['template_name'],
-//			'post_status'   => 'publish',
-//			'post_author'   => 1,
+			'post_type'    => 'page',
+			'post_title'   => $_POST['template_name'],
+			'post_status'  => 'publish',
+			'post_content' => $page_content,
+			'meta_input'   => $elementor_metas,
 		);
-		wp_insert_post( $new_template_page );
-//		return('');
+
+		$current_theme = wp_get_theme();
+		switch ( $current_theme->get_template() ) {
+			case 'hestia-pro':
+			case 'hestia':
+				$new_template_page['page_template'] = 'page-templates/template-pagebuilder-full-width.php';
+				break;
+			case 'zerif-lite':
+			case 'zerif-pro':
+			$new_template_page['page_template'] = 'template-fullwidth-no-title.php';
+				break;
+		}
+
+		$post_id = wp_insert_post( $new_template_page );
+
+		$redirect_url = add_query_arg( array(
+			'post'   => $post_id,
+			'action' => 'elementor',
+		), admin_url( 'post.php' ) );
+
+		return ( $redirect_url );
+
 		die();
 	}
 
