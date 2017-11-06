@@ -168,3 +168,8 @@
 .obfx-updating.updating-message.button.button-primary {
     padding: 0 4px 0 10px;
 }
+
+#customize-header-actions .button.obfx-import-template {
+    float: right;
+    margin-top: 8px;
+}
