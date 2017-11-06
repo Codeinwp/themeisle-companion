@@ -117,7 +117,7 @@ function hestia_register_features_partials( $wp_customize ) {
 
 	$wp_customize->selective_refresh->add_partial(
 		'hestia_features_title', array(
-			'selector' => '.hestia-features h2.title',
+			'selector' => '.hestia-features h2.hestia-title',
 			'settings' => 'hestia_features_title',
 			'render_callback' => 'hestia_features_title_callback',
 		)
