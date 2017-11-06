@@ -165,11 +165,6 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			),
 		);
 
-		// Enqueue template dir Previewer JS only on the preview screen.
-		if( $this->is_template_dir_customize() ) {
-			$enqueue['js'] = array( 'customizer' => array( 'customize-preview', 'jquery' ) );
-		}
-
 		return $enqueue;
 	}
 
@@ -226,7 +221,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				new OBFX_Template_Directory_Customizer_Section(
 					$wp_customize, 'obfx-templates', array(
 						'priority'         => 0,
-						'module_directory' => $this->get_dir(),
+						'module_directory' => plugin_dir_url( $this->get_dir() ),
 						'templates'        => $this->templates_list(),
 					)
 				)

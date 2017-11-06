@@ -164,3 +164,7 @@
 #customize-controls .obfx-done-import .dashicons {
     line-height: 50px;
 }
+
+.obfx-updating.updating-message.button.button-primary {
+    padding: 0 4px 0 10px;
+}

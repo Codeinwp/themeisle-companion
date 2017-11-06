@@ -58,13 +58,21 @@ class OBFX_Template_Directory_Customizer_Section extends WP_Customize_Section {
 	 */
 	public function __construct( WP_Customize_Manager $manager, $id, array $args = array() ) {
 		parent::__construct( $manager, $id, $args );
-
 		$this->module_dir = $args['module_directory'];
+
+		add_action( 'customize_controls_init', array( $this, 'enqueue' ) );
 
 		if ( ! empty( $args['templates'] ) ) {
 			$this->templates = $args['templates'];
 		}
 		$this->called_template = isset( $_GET['obfx_template_id'] ) ? $_GET['obfx_template_id'] : '';
+	}
+
+	/**
+	 * Enqueue scripts designated for this control.
+	 */
+	public function enqueue() {
+		wp_enqueue_script( 'obfx-template-dir-script', $this->module_dir . 'template-directory/js/customizer.js', array( 'jquery', 'customize-preview' ), '1.0.0', true );
 	}
 
 	/**
