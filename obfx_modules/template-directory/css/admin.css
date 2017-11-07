@@ -1,228 +1,228 @@
 .obfx-template-browser {
-    padding: 35px 0 0;
+	padding: 35px 0 0;
 }
 
 .obfx-template-browser .template-name {
-    font-weight: 600;
-    font-size: 16px;
-    margin: 0;
-    padding: 15px;
+	font-weight: 600;
+	font-size: 16px;
+	margin: 0;
+	padding: 15px;
 }
 
 .obfx-template {
-    width: 22.7%;
-    margin: 0 3% 3% 0;
-    float: left;
-    position: relative;
-    border: 1px solid #ddd;
-    background: #fff;
-    -webkit-box-shadow: 0 1px 1px -1px rgba(0, 0, 0, .1);
-    box-shadow: 0 1px 1px -1px rgba(0, 0, 0, .1);
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+	width: 22.7%;
+	margin: 0 3% 3% 0;
+	float: left;
+	position: relative;
+	border: 1px solid #ddd;
+	background: #fff;
+	-webkit-box-shadow: 0 1px 1px -1px rgba(0, 0, 0, .1);
+	box-shadow: 0 1px 1px -1px rgba(0, 0, 0, .1);
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 .obfx-template:nth-child(4n) {
-    margin-right: 0;
+	margin-right: 0;
 }
 
 .obfx-template-actions {
-    float: right;
-    padding: 10px;
+	float: right;
+	padding: 10px;
 }
 
 .obfx-template-actions .button .dashicons {
-    line-height: 27px;
+	line-height: 27px;
 }
 .obfx-template-actions .button {
-    margin-left: 5px;
+	margin-left: 5px;
 }
 .obfx-template-screenshot {
-    position: relative;
-    display: inline-block;
-    overflow: hidden;
-    border: 1px solid #ddd;
-    border-left: none;
-    border-right: none;
+	position: relative;
+	display: inline-block;
+	overflow: hidden;
+	border: 1px solid #ddd;
+	border-left: none;
+	border-right: none;
 }
 
 .obfx-template img {
-    max-width: 100%;
-    float: left;
+	max-width: 100%;
+	float: left;
 }
 
 .obfx-template-browser.customizer {
-    padding: 10px 20px 60px;
-    display: block !important;
+	padding: 10px 20px 60px;
+	display: block !important;
 }
 
 
 .obfx-custom-customizer #customize-header-actions input.save {
-    display: none;
+	display: none;
 }
 
 .obfx-custom-customizer .control-panel-widgets {
-    display: none !important;
+	display: none !important;
 }
 
 .obfx-next-prev {
-    position: absolute;
-    left: 45px;
+	position: absolute;
+	left: 45px;
 }
 
 .obfx-next-prev span:hover {
-    background: #ddd;
-    border-color: #ccc;
-    color: #000;
-    outline: 0;
-    -webkit-box-shadow: none;
-    box-shadow: none;
+	background: #ddd;
+	border-color: #ccc;
+	color: #000;
+	outline: 0;
+	-webkit-box-shadow: none;
+	box-shadow: none;
 }
 
 .obfx-next-prev .previous-template, .obfx-next-prev  .next-template {
-    display: block;
-    position: relative;
-    float: left;
-    width: 45px;
-    height: 45px;
-    padding-right: 2px;
-    background: #eee;
-    color: #444;
-    cursor: pointer;
-    text-decoration: none;
-    -webkit-transition: color .1s ease-in-out,background .1s ease-in-out;
-    transition: color .1s ease-in-out,background .1s ease-in-out;
-    border: none;
-    border-right: 1px solid #ddd;
+	display: block;
+	position: relative;
+	float: left;
+	width: 45px;
+	height: 45px;
+	padding-right: 2px;
+	background: #eee;
+	color: #444;
+	cursor: pointer;
+	text-decoration: none;
+	-webkit-transition: color .1s ease-in-out,background .1s ease-in-out;
+	transition: color .1s ease-in-out,background .1s ease-in-out;
+	border: none;
+	border-right: 1px solid #ddd;
 }
 
 .obfx-next-prev .previous-template {
-    border-left: 1px solid #ddd;
+	border-left: 1px solid #ddd;
 }
 
 .obfx-next-prev .next-template:before {
-    font: 400 20px/1 dashicons;
-    content: "\f345";
-    position: relative;
-    top: 6px;
-    left: 14px;
+	font: 400 20px/1 dashicons;
+	content: "\f345";
+	position: relative;
+	top: 6px;
+	left: 14px;
 }
 .obfx-next-prev .previous-template:before {
-    font: 400 20px/1 dashicons;
-    content: "\f341";
-    position: relative;
-    top: 6px;
-    left: 14px;
+	font: 400 20px/1 dashicons;
+	content: "\f341";
+	position: relative;
+	top: 6px;
+	left: 14px;
 }
 
 .obfx-custom-customizer {
-    background: #fff;
+	background: #fff;
 }
 
 .obfx-template-browser.customizer .obfx-template {
-    display: none;
-    width: 100%;
-    margin: 0 0 20px 0;
-    float: none;
-    border: none;
-    cursor: default;
+	display: none;
+	width: 100%;
+	margin: 0 0 20px 0;
+	float: none;
+	border: none;
+	cursor: default;
 }
 
 #customize-controls .obfx-template-actions{
-    padding:0;
+	padding:0;
 }
 
 .obfx-template-browser.customizer .obfx-template.active {
-    display: inline-block;
+	display: inline-block;
 }
 
 .customize-controls-preview-toggle {
-    position: relative;
-    float: left;
-    left: 120px;
+	position: relative;
+	float: left;
+	left: 120px;
 }
 .obfx-template-browser.customizer .template-name {
-    padding-left: 0;
+	padding-left: 0;
 }
 
 .obfx-template-browser.customizer .obfx-template-screenshot {
-    border: 1px solid #ddd;
+	border: 1px solid #ddd;
 }
 
 .obfx-hide {
-    display: none;
+	display: none;
 }
 
 .obfx-import-elementor-hidden-form {
-    display: inline-block;
+	display: inline-block;
 }
 
 .obfx-done-import {
-    color: green;
-    margin: 0 10px;
+	color: green;
+	margin: 0 10px;
 }
 
 .obfx-done-import .dashicons {
-    font-size: 30px;
+	font-size: 30px;
 }
 #customize-controls .obfx-done-import .dashicons {
-    line-height: 50px;
+	line-height: 50px;
 }
 
 .obfx-updating.updating-message.button.button-primary {
-    padding: 0 4px 0 10px;
+	padding: 0 4px 0 10px;
 }
 
 #customize-header-actions .button.obfx-import-template,
 #customize-header-actions .button.obfx-updating {
-    float: right;
-    margin-top: 8px;
+	float: right;
+	margin-top: 8px;
 }
 
 .obfx-no-elementor-modal-wrapper {
-    display:none;
-    position: fixed;
-    margin: 0 auto;
-    background: rgba(0, 0, 0, 0.8);
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 900000;
+	display:none;
+	position: fixed;
+	margin: 0 auto;
+	background: rgba(0, 0, 0, 0.8);
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 900000;
 }
 
 .obfx-no-elementor-modal {
-    background-color: #fff;
-    width: auto;
-    margin: 0 auto;
-    top: 50%;
-    transform: translateY(-50%);
-    position: relative;
-    max-width: 550px;
-    padding: 20px;
-    text-align: right;
+	background-color: #fff;
+	width: auto;
+	margin: 0 auto;
+	top: 50%;
+	transform: translateY(-50%);
+	position: relative;
+	max-width: 550px;
+	padding: 20px;
+	text-align: right;
 }
 .obfx-no-elementor-modal p {
-    margin: 30px 0 20px;
-    text-align: left;
+	margin: 30px 0 20px;
+	text-align: left;
 }
 .obfx-no-elementor-modal .modal-header{
-    width: 100%;
-    display: inline-block;
-    background: #e6e6e6;
-    height: 30px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-bottom: 1px solid #d4d4d4;
+	width: 100%;
+	display: inline-block;
+	background: #e6e6e6;
+	height: 30px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-bottom: 1px solid #d4d4d4;
 }
 
 .obfx-close-modal {
-    color: #7b7b7b;
-    float: right;
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    cursor: pointer;
+	color: #7b7b7b;
+	float: right;
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	cursor: pointer;
 }

@@ -45,7 +45,7 @@
 
 .dashicons-obfx-default-icon:before {
 	content: "\f132";
-    color: #909090;
+	color: #909090;
 }
 
 .obfx-menu-icon-container {
@@ -55,31 +55,31 @@
 .iconpicker-items .dashicons-obfx-default-icon {
 	transform: rotate(45deg);
 	-webkit-transform: rotate(45deg);
-    right: 1px;
-    top: 1px;
+	right: 1px;
+	top: 1px;
 }
 
 .iconpicker-items .dashicons-obfx-default-icon:before {
-    color: red;
+	color: red;
 }
 
 .iconpicker-item.obfx-menu-icon-selected .dashicons-obfx-default-icon:before{
-    color: #5eadd9;
+	color: #5eadd9;
 }
 
 .obfx-menu-icon-container ~ .iconpicker-popover.popover {
-    width: 252px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	width: 252px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 .obfx-menu-icon-container ~ .iconpicker-popover .iconpicker-item {
-    color: #9da3a9;
-    text-decoration: none;
-    padding: 7px 7px;
-    width: auto;
-    height: auto;
-    border: 1px solid #f5f5f5;
-    border-top: none;
-    border-left: none;
+	color: #9da3a9;
+	text-decoration: none;
+	padding: 7px 7px;
+	width: auto;
+	height: auto;
+	border: 1px solid #f5f5f5;
+	border-top: none;
+	border-left: none;
 }
 
 .obfx-menu-icon-container ~ .iconpicker-popover .iconpicker-item.obfx-menu-icon-selected {
@@ -88,48 +88,48 @@
 }
 
 .obfx-menu-icon-container ~ .iconpicker-popover .iconpicker-search {
-    width: 100%;
-    font-weight: 100;
-    padding-left: 25px;
+	width: 100%;
+	font-weight: 100;
+	padding-left: 25px;
 }
 
 .obfx-menu-icon-container ~ .iconpicker-popover .popover-title {
-    padding: 7px;
-    border-bottom: 1px solid #f5f5f5;
-    background-color: #ffffff;
+	padding: 7px;
+	border-bottom: 1px solid #f5f5f5;
+	background-color: #ffffff;
 }
 
 .obfx-menu-icon-container ~ .iconpicker-popover.popover.bottomLeft > .arrow {
-    display: none;
+	display: none;
 }
 
 .obfx-menu-icon-container ~ .iconpicker-popover .popover-title:before {
-    content: "\f002";
-    font-family: FontAwesome;
-    position: absolute;
-    font-size: 16px;
-    padding: 6px 0 0 7px;
-    color: #9da3a8;
+	content: "\f002";
+	font-family: FontAwesome;
+	position: absolute;
+	font-size: 16px;
+	padding: 6px 0 0 7px;
+	color: #9da3a8;
 }
 
 .obfx-menu-icon-container ~ .iconpicker-popover .iconpicker-item i {
-    width: 32px;
-    height: 32px;
-    font-size: 20px;
-    line-height: 32px;
-    -webkit-transition: all 200ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    transition:         all 200ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+	width: 32px;
+	height: 32px;
+	font-size: 20px;
+	line-height: 32px;
+	-webkit-transition: all 200ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+	transition:         all 200ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .obfx-menu-icon-container ~ .iconpicker-popover .iconpicker-item:not(.obfx-menu-icon-selected):hover {
-    background: transparent;
+	background: transparent;
 	color: #5eadd9;
 }
 
 .obfx-menu-icon-container ~ .iconpicker-popover .iconpicker-item:hover > i:not(.dashicons-obfx-default-icon) {
-    -webkit-transform: scale(1.4);
-    -moz-transform: scale(1.4);
-    -ms-transform: scale(1.4);
-    -o-transform: scale(1.4);
-    transform: scale(1.4);
+	-webkit-transform: scale(1.4);
+	-moz-transform: scale(1.4);
+	-ms-transform: scale(1.4);
+	-o-transform: scale(1.4);
+	transform: scale(1.4);
 }

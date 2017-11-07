@@ -294,7 +294,7 @@ class Orbit_Fox_Admin {
 						$checked = 'checked';
 					}
 
-					$data  = array(
+					$data   = array(
 						'slug'        => $slug,
 						'name'        => $module->name,
 						'description' => $module->description,

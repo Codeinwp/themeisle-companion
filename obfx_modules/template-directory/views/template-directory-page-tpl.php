@@ -20,13 +20,13 @@ if ( is_array( $templates_array ) ) {
 	$html .= '<div class="obfx-template-browser">';
 
 	foreach ( $templates_array as $template => $properties ) {
-		$admin_url = admin_url() . 'customize.php';
+		$admin_url      = admin_url() . 'customize.php';
 		$customizer_url = add_query_arg(
 			array(
-				'url' => urlencode( $preview_url ),
-				'return' => admin_url() . 'tools.php?page=obfx_template_dir',
+				'url'              => urlencode( $preview_url ),
+				'return'           => admin_url() . 'tools.php?page=obfx_template_dir',
 				'obfx_template_id' => esc_html( $template ),
-			),  $admin_url
+			), $admin_url
 		);
 
 		$html .= '<div class="obfx-template">';
