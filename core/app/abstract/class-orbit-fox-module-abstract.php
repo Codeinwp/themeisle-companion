@@ -123,6 +123,18 @@ abstract class Orbit_Fox_Module_Abstract {
 	}
 
 	/**
+	 * Method to return URL to child class in a Reflective Way.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @access  protected
+	 * @return string
+	 */
+	protected function get_url() {
+		return plugin_dir_url( $this->get_dir() ) . $this->slug;
+	}
+
+	/**
 	 * Utility method to return active theme dir name.
 	 *
 	 * @since   1.0.0
