@@ -16,6 +16,7 @@ var obfx_template_directory_previewer = function( $ ) {
         $( 'head title' ).html( 'Orbit Fox Template Preview' );
         $( '.wp-full-overlay-sidebar' ).addClass( 'obfx-custom-customizer' );
         var importBtn = '<span class="obfx-import-template button button-primary" href="#">Import</span>';
+        $('.customize-controls-preview-toggle .controls').html( 'Templates' );
         //Remove Save Button
         $( 'input.save, .customize-info, #accordion-panel-widgets' ).remove();
         $( '#customize-header-actions' ).prepend( importBtn ).append( '<div class="obfx-next-prev"><span onclick="obfxHandleChange(\'prev\');" class="previous-template"></span><span onclick="obfxHandleChange(\'next\');" class="next-template"></span></div>' );

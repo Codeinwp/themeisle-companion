@@ -118,6 +118,10 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function enqueue_template_dir_scripts() {
 		$script_handle = $this->slug . '-script';
+		if( ! defined( 'ELEMENTOR_VERSION' ) ) {
+			wp_enqueue_script( 'plugin-install' );
+			wp_enqueue_script( 'updates' );
+		}
 		wp_register_script( $script_handle, plugin_dir_url( $this->get_dir() ) . $this->slug . '/js/script.js', array( 'jquery' ), '1.0.0' );
 		wp_localize_script( $script_handle, 'importer_endpoint',
 			array(
@@ -126,7 +130,6 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		) );
 		wp_enqueue_script( $script_handle );
 	}
-
 
 	/**
 	 * Method that returns an array of scripts and styles to be loaded
@@ -164,6 +167,12 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'admin' => array(),
 			),
 		);
+
+		if( ! defined( 'ELEMENTOR_VERSION' ) ) {
+			$enqueue['js'] = array(
+				'plugin-install-helper' => array( 'jquery' ),
+			);
+		}
 
 		return $enqueue;
 	}
@@ -223,6 +232,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 						'priority'         => 0,
 						'module_directory' => plugin_dir_url( $this->get_dir() ),
 						'templates'        => $this->templates_list(),
+						'requires_plugins' => $this->render_view( 'template-plugin-install' ),
 					)
 				)
 			);
@@ -274,8 +284,8 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function render_admin_page() {
 		$data = array(
 			'templates_array' => $this->templates_list(),
+			'requires_plugins'=> $this->render_view( 'template-plugin-install' )
 		);
-
 		echo $this->render_view( 'template-directory-page', $data );
 	}
 
@@ -283,6 +293,10 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * Utility method to call Elementor import routine.
 	 */
 	public function import_elementor() {
+		if( ! defined( 'ELEMENTOR_VERSION' ) ) {
+			return 'no-elementor';
+		}
+
 		require_once( ABSPATH . "wp-admin" . '/includes/file.php' );
 		require_once( ABSPATH . "wp-admin" . '/includes/image.php' );
 
@@ -383,4 +397,68 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function options() {
 		return array();
 	}
+
+
+	/**
+	 * Check plugin state.
+	 *
+	 * @param string $slug plugin slug.
+	 *
+	 * @return bool
+	 */
+	public function check_plugin_state( $slug ) {
+		if ( file_exists( ABSPATH . 'wp-content/plugins/' . $slug . '/' . $slug . '.php' ) || file_exists( ABSPATH . 'wp-content/plugins/' . $slug . '/index.php' ) ) {
+			$needs = ( is_plugin_active( $slug . '/' . $slug . '.php' ) ||
+			           is_plugin_active( $slug . '/index.php' ) ) ?
+				'deactivate' : 'activate';
+			return $needs;
+		} else {
+			return 'install';
+		}
+	}
+
+	/**
+	 * Generate action button html.
+	 *
+	 * @param string $slug plugin slug.
+	 *
+	 * @return string
+	 */
+	public function get_button_html( $slug ) {
+		$button = '';
+		$state  = $this->check_plugin_state( $slug );
+		if ( ! empty( $slug ) ) {
+			switch ( $state ) {
+				case 'install':
+					$nonce  = wp_nonce_url(
+						add_query_arg(
+							array(
+								'action' => 'install-plugin',
+								'from'   => 'import',
+								'plugin' => $slug,
+							),
+							network_admin_url( 'update.php' )
+						),
+						'install-plugin_' . $slug
+					);
+					$button .= '<a data-slug="' . $slug . '" class="install-now obfx-install-plugin button button-primary" href="' . esc_url( $nonce ) . '" data-name="' . $slug . '" aria-label="Install ' . $slug . '">' . __( 'Install and activate', 'hestia-pro' ) . '</a>';
+					break;
+				case 'activate':
+					$plugin_link_suffix = $slug . '/' . $slug . '.php';
+					$nonce = add_query_arg(
+						array(
+							'action'        => 'activate',
+							'plugin'        => rawurlencode( $plugin_link_suffix ),
+							'plugin_status' => 'all',
+							'paged'         => '1',
+							'_wpnonce'      => wp_create_nonce( 'activate-plugin_' . $plugin_link_suffix ),
+						), network_admin_url( 'plugins.php' )
+					);
+					$button .= '<a data-slug="' . $slug . '" class="activate-now button button-primary" href="' . esc_url( $nonce ) . '" aria-label="Activate ' . $slug . '">' . __( 'Activate', 'hestia-pro' ) . '</a>';
+					break;
+			}// End switch().
+		}// End if().
+		return $button;
+	}
+
 }

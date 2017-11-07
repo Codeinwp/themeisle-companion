@@ -137,6 +137,11 @@
     display: inline-block;
 }
 
+.customize-controls-preview-toggle {
+    position: relative;
+    float: left;
+    left: 120px;
+}
 .obfx-template-browser.customizer .template-name {
     padding-left: 0;
 }
@@ -169,7 +174,55 @@
     padding: 0 4px 0 10px;
 }
 
-#customize-header-actions .button.obfx-import-template {
+#customize-header-actions .button.obfx-import-template,
+#customize-header-actions .button.obfx-updating {
     float: right;
     margin-top: 8px;
+}
+
+.obfx-no-elementor-modal-wrapper {
+    display:none;
+    position: fixed;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.8);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 900000;
+}
+
+.obfx-no-elementor-modal {
+    background-color: #fff;
+    width: auto;
+    margin: 0 auto;
+    top: 50%;
+    transform: translateY(-50%);
+    position: relative;
+    max-width: 550px;
+    padding: 20px;
+    text-align: right;
+}
+.obfx-no-elementor-modal p {
+    margin: 30px 0 20px;
+    text-align: left;
+}
+.obfx-no-elementor-modal .modal-header{
+    width: 100%;
+    display: inline-block;
+    background: #e6e6e6;
+    height: 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-bottom: 1px solid #d4d4d4;
+}
+
+.obfx-close-modal {
+    color: #7b7b7b;
+    float: right;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
 }

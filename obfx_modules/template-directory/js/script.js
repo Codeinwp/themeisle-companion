@@ -13,10 +13,10 @@ var obfx_template_directory = function( $ ) {
     'use strict';
 
     $( function () {
-        $( '.obfx-template-actions, #customize-header-actions' ).on( 'click', '.obfx-import-template', function () {
+           $( '.obfx-template-actions, #customize-header-actions' ).on( 'click', '.obfx-import-template', function () {
             var template_url = $( this ).data( 'template-file' );
             var template_name = get_the_template_name( this );
-            $( this ).replaceWith( '<span class="button button-primary obfx-updating updating-message"></span>' );
+            $( this ).hide().after( '<span class="button button-primary obfx-updating updating-message"></span>' );
             $.ajax( {
                 url: importer_endpoint.url,
                 beforeSend: function ( xhr ) {
@@ -29,8 +29,14 @@ var obfx_template_directory = function( $ ) {
                 },
                 type: 'POST',
                 success: function ( data ) {
-                    $( '.obfx-updating' ).replaceWith( '<span class="obfx-done-import" style="float:right"><i class="dashicons-yes dashicons"></i></span>' );
-                    location.href = data;
+                    if(data !== 'no-elementor') {
+                        $( '.obfx-updating' ).replaceWith( '<span class="obfx-done-import" style="float:right"><i class="dashicons-yes dashicons"></i></span>' );
+                        location.href = data;
+                    } else {
+                        $('.obfx-import-template').show();
+                        $( '.obfx-updating' ).remove();
+                        $('.obfx-no-elementor-modal-wrapper').fadeIn();
+                    }
                 },
                 error: function ( error ) {
                     console.error( error );

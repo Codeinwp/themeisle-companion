@@ -50,6 +50,13 @@ class OBFX_Template_Directory_Customizer_Section extends WP_Customize_Section {
 	private $called_template = '';
 
 	/**
+	 * The tempalte to render required plugins install button.
+	 *
+	 * @var string
+	 */
+	private $required_plugins = '';
+
+	/**
 	 * Hestia_Hiding_Section constructor.
 	 *
 	 * @param WP_Customize_Manager $manager Customizer Manager.
@@ -65,6 +72,10 @@ class OBFX_Template_Directory_Customizer_Section extends WP_Customize_Section {
 		if ( ! empty( $args['templates'] ) ) {
 			$this->templates = $args['templates'];
 		}
+		if ( ! empty( $args['requires_plugins'] ) ) {
+			$this->required_plugins = $args['requires_plugins'];
+		}
+
 		$this->called_template = isset( $_GET['obfx_template_id'] ) ? $_GET['obfx_template_id'] : '';
 	}
 
@@ -100,6 +111,9 @@ class OBFX_Template_Directory_Customizer_Section extends WP_Customize_Section {
 				$html .= '<p>' . esc_html( $properties['description'] ) . '</p>';
 				$html .= '</div>'; // .obfx-template-details
 				$html .= '</div>'; // .obfx-template
+			}
+			if( ! empty( $this->required_plugins ) ) {
+				$html .= $this->required_plugins;
 			}
 			$html .= '</div>'; // .obfx-template-browser
 		}
