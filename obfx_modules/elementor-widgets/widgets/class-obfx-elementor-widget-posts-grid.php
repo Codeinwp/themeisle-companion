@@ -108,12 +108,14 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 		$this->grid_title_section();
 		$this->grid_meta_section();
 		$this->grid_content_section();
+		$this->grid_pagination_section();
 		// Style.
 		$this->grid_options_style_section();
 		$this->grid_image_style_section();
 		$this->grid_title_style_section();
 		$this->grid_meta_style_section();
 		$this->grid_content_style_section();
+		$this->grid_pagination_style_section();
 	}
 
 	/**
@@ -200,6 +202,16 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
+		// Display pagination.
+		$this->add_control(
+			'grid_pagination',
+			[
+				'label' => '<i class="fa fa-arrow-circle-right"></i> ' . __( 'Pagination', 'themeisle-companion' ),
+				'type' => Controls_Manager::SWITCHER,
+				'default' => '',
+			]
+		);
+
 		$this->end_controls_section();
 	}
 
@@ -232,13 +244,13 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				'label' => '<i class="fa fa-arrows-h"></i> ' . __( 'Image height', 'themeisle-companion' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
-					'size' => 240,
+					'size' => 200,
 				],
 				'tablet_default' => [
-					'size' => 240,
+					'size' => 200,
 				],
 				'mobile_default' => [
-					'size' => 240,
+					'size' => 200,
 				],
 				'range' => [
 					'px' => [
@@ -551,6 +563,53 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				'mobile_default'   => 'center',
 				'selectors' => [
 					'{{WRAPPER}} .obfx-grid-col-content' => 'text-align: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->end_controls_section();
+	}
+
+	/**
+	 * Content > Pagination Options.
+	 */
+	private function grid_pagination_section() {
+		$this->start_controls_section(
+			'section_grid_pagination',
+			[
+				'label'     => __( 'Pagination', 'themeisle-companion' ),
+				'condition' => [
+					'section_grid.grid_pagination' => 'yes',
+				],
+			]
+
+		);
+
+		// Pagination alignment.
+		$this->add_responsive_control(
+			'grid_pagination_alignment',
+			[
+				'label'     => __( 'Alignment', 'themeisle-companion' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => [
+					'left'    => [
+						'title' => __( 'Left', 'themeisle-companion' ),
+						'icon'  => 'fa fa-align-left',
+					],
+					'center'  => [
+						'title' => __( 'Center', 'themeisle-companion' ),
+						'icon'  => 'fa fa-align-center',
+					],
+					'right'   => [
+						'title' => __( 'Right', 'themeisle-companion' ),
+						'icon'  => 'fa fa-align-right',
+					],
+				],
+				'default'   => 'center',
+				'tablet_default'   => 'center',
+				'mobile_default'   => 'center',
+				'selectors' => [
+					'{{WRAPPER}} .obfx-grid-pagination .pagination' => 'text-align: {{VALUE}};',
 				],
 			]
 		);
@@ -1185,6 +1244,38 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 	}
 
 	/**
+	 * Style > Pagination.
+	 */
+	private function grid_pagination_style_section() {
+		// Tab.
+		$this->start_controls_section(
+			'section_grid_pagination_style',
+			[
+				'label' => __( 'Pagination', 'themeisle-companion' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+				'condition' => [
+					'section_grid.grid_pagination' => 'yes',
+				],
+			]
+		);
+
+		// Image margin.
+		$this->add_control(
+			'grid_pagination_style_margin',
+			[
+				'label'      => __( 'Margin', 'themeisle-companion' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px' ],
+				'selectors'  => [
+					'{{WRAPPER}} .obfx-grid-pagination .pagination' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->end_controls_section();
+	}
+
+	/**
 	 * Display categories in meta section.
 	 */
 	protected function metaGridCategories() {
@@ -1466,6 +1557,12 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			$args['orderby'] = $settings['grid_order_by'];
 		}
 
+		// Pagination.
+		if ( ! empty( $settings['grid_pagination'] ) ) {
+		    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+			$args['paged'] = $paged;
+		}
+
         // Query.
         $query = new \WP_Query( $args );
 
@@ -1503,12 +1600,45 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 	            echo '</div>';
 
             } // end while;
+
+            // Pagination.
+	        if ( ! empty( $settings['grid_pagination'] ) ) {
+            ?>
+            <div class="obfx-grid-pagination">
+                <?php
+                $big = 999999999;
+                $totalpages = $query->max_num_pages;
+                $current = max( 1, $paged );
+                $paginate_args = array(
+                    'base'      => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+                    'format'    => '?paged=%#%',
+                    'current'   => $current,
+                    'total'     => $totalpages,
+                    'show_all'  => false,
+                    'end_size'  => 1,
+                    'mid_size'  => 3,
+                    'prev_next' => true,
+                    'prev_text' => esc_html__( 'Previous','themeisle-companion' ),
+                    'next_text' => esc_html__( 'Next','themeisle-companion' ),
+                    'type'      => 'plain',
+                    'add_args'  => false,
+                );
+
+                $pagination = paginate_links( $paginate_args );
+                ?>
+                <nav class="pagination">
+                    <?php echo $pagination; ?>
+                </nav>
+            </div>
+            <?php
+	        }
         } // end if;
 
         // Restore original data.
         wp_reset_postdata();
 
 		echo '</div><!-- .obfx-grid-container -->';
+
 		echo '</div><!-- .obfx-grid -->';
 	}
 }
