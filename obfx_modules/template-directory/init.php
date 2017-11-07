@@ -82,7 +82,6 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'import_file' => esc_url( $repository_raw_url . 'contact-us-elementor/template.json' ),
 			),
 			'placeholder-template'         => array(),
-			'placeholder-template1'        => array(),
 		);
 
 		foreach ( $templates_list as $template => $properties ) {

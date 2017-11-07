@@ -1,6 +1,7 @@
 var obfx_plugin_install_helper = function( $ ) {
     'use strict';
     $( function () {
+
         $( 'body' ).on( 'click', ' .obfx-install-plugin ', function () {
             var slug = $( this ).attr( 'data-slug' );
             wp.updates.installPlugin( {
@@ -30,6 +31,8 @@ var obfx_plugin_install_helper = function( $ ) {
                     url: url,
                     success: function () {
                         $('.obfx-no-elementor-modal-wrapper').fadeOut();
+                        $('.obfx-import-queue').trigger('click');
+
                     }
                 });
             }

@@ -14,6 +14,7 @@ var obfx_template_directory = function( $ ) {
 
     $( function () {
            $( '.obfx-template-actions, #customize-header-actions' ).on( 'click', '.obfx-import-template', function () {
+           $(this).addClass('obfx-import-queue');
             var template_url = $( this ).data( 'template-file' );
             var template_name = get_the_template_name( this );
             $( this ).hide().after( '<span class="button button-primary obfx-updating updating-message"></span>' );
