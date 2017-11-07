@@ -1,11 +1,16 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Andrei
- * Date: 07.11.2017
- * Time: 09:09
+ * The View for Rendering the Plugin install modal.
+ *
+ * @link       https://themeisle.com
+ * @since      2.0.0
+ *
+ * @package    Orbit_Fox_Modules
+ * @subpackage Orbit_Fox_Modules/template-directory
+ * @codeCoverageIgnore
  */
-if( ( $this->check_plugin_state( 'elementor' ) === 'activate' ) || ( $this->check_plugin_state( 'elementor' ) === 'install' ) ) {
+
+if ( ( $this->check_plugin_state( 'elementor' ) === 'activate' ) || ( $this->check_plugin_state( 'elementor' ) === 'install' ) ) {
 	$button = $this->get_button_html( 'elementor' );
 	$html .= '<div class="obfx-no-elementor-modal-wrapper"><div class="obfx-no-elementor-modal plugin-card-elementor">';
 	$html .= '<div class="modal-header"><span class="obfx-close-modal"><i class="dashicons dashicons-no"></i></span></div>';

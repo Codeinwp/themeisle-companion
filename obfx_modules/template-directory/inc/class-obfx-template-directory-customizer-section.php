@@ -112,7 +112,7 @@ class OBFX_Template_Directory_Customizer_Section extends WP_Customize_Section {
 				$html .= '</div>'; // .obfx-template-details
 				$html .= '</div>'; // .obfx-template
 			}
-			if( ! empty( $this->required_plugins ) ) {
+			if ( ! empty( $this->required_plugins ) ) {
 				$html .= $this->required_plugins;
 			}
 			$html .= '</div>'; // .obfx-template-browser

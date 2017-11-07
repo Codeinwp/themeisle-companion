@@ -49,7 +49,7 @@ if ( is_array( $templates_array ) ) {
 	$html .= '</div>'; // .obfx-template-browser
 	$html .= '</div>'; // .obfx-template-dir
 	$html .= '<div class="wp-clearfix clearfix"></div>';
-	if( ! defined( 'ELEMENTOR_VERSION' ) ) {
+	if ( ! defined( 'ELEMENTOR_VERSION' ) ) {
 		$html .= $requires_plugins;
 	}
 }
