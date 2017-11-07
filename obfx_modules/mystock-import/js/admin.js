@@ -1,4 +1,4 @@
-/* global _wpMediaViewsL10n, mystock_import */
+/* global _wpMediaViewsL10n, mystock_import, jQuery */
 (function ($) {
     var media = wp.media,
         l10n = media.view.l10n = typeof _wpMediaViewsL10n === 'undefined' ? {} : _wpMediaViewsL10n;
