@@ -88,6 +88,7 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		if ( false === ( $value = get_transient( 'mystock_photos' ) ) ) {
 			$urls = $this->get_images();
 			if ( ! empty( $urls ) ) {
+				$urls['lastpage'] = 1;
 				set_transient( 'mystock_photos', $urls, 60 * 60 * 24 * 7 );
 			}
 		} else {
