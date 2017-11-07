@@ -17,6 +17,10 @@
  */
 class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
+	/**
+	 * The default icon to use.
+	 */
+	const DEFAULT_ICON	= 'dashicons-obfx-default-icon';
 
 	/**
 	 * Menu_Icons_OBFX_Module constructor.
@@ -137,20 +141,20 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$this->localized	= array(
 			'admin'		=> array(
 				'icons'	=> apply_filters( 'obfx_menu_icons_icon_list', $this->get_dashicons() ),
+				'icon_default' => self::DEFAULT_ICON,
 			),
 		);
 
 		return array(
 			'css' => array(
-				'vendor/bootstrap.min' => false,
-				'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' => array( 'vendor/bootstrap.min' ),
+				'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' => false,
 				'vendor/fontawesome-iconpicker.min' => array( 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' ),
 				'admin' => array( 'vendor/fontawesome-iconpicker.min' ),
 			),
 			'js' => array(
 				'vendor/bootstrap.min' => array( 'jquery' ),
 				'vendor/fontawesome-iconpicker.min' => array( 'vendor/bootstrap.min' ),
-				'admin' => array( 'vendor/fontawesome-iconpicker.min' ),
+				'admin' => array( 'vendor/fontawesome-iconpicker.min', 'jquery' ),
 			),
 		);
 	}
@@ -198,7 +202,11 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		check_admin_referer( 'update-nav_menu', 'update-nav-menu-nonce' );
 
 		if ( isset( $_POST['menu-item-icon'][ $menu_item_db_id ] ) ) {
-			update_post_meta( $menu_item_db_id, 'obfx_menu_icon', $_POST['menu-item-icon'][ $menu_item_db_id ] );
+			$icon	= $_POST['menu-item-icon'][ $menu_item_db_id ];
+			if ( self::DEFAULT_ICON === $icon ) {
+				$icon	= '';
+			}
+			update_post_meta( $menu_item_db_id, 'obfx_menu_icon', $icon );
 		}
 
 	}
