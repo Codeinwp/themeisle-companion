@@ -9,6 +9,7 @@
  */
 namespace Elementor;
 
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 } // Exit if accessed directly
@@ -19,7 +20,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @package Elementor_Widgets_OBFX_Module
  */
 class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
-
 	/**
 	 * Set the widget ID
 	 *
@@ -227,7 +227,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 
 		// Image ratio.
 		$this->add_responsive_control(
-			'item_ratio',
+			'grid_image_height',
 			[
 				'label' => '<i class="fa fa-arrows-h"></i> ' . __( 'Image height', 'themeisle-companion' ),
 				'type' => Controls_Manager::SLIDER,
