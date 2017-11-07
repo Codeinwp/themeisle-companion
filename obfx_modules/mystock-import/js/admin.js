@@ -1,3 +1,4 @@
+/* global _wpMediaViewsL10n, mystock_import */
 (function ($) {
     var media = wp.media,
         l10n = media.view.l10n = typeof _wpMediaViewsL10n === 'undefined' ? {} : _wpMediaViewsL10n;
@@ -120,7 +121,7 @@
 
                     });
                 }
-            })
+            });
         },
 
         displayDetails : function () {
@@ -172,7 +173,7 @@
                     }
                 });
                 e.preventDefault(); // avoid to execute the actual submit of the form.
-            })
+            });
         }
     });
 })(jQuery);

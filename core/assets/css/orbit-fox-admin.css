@@ -76,7 +76,6 @@ html {
 .obfx-wrapper hr {
 	/* 1 */
 	overflow: visible;
-	-webkit-box-sizing: content-box;
 	box-sizing: content-box;
 	/* 1 */
 	height: 0;
@@ -291,7 +290,6 @@ html {
  */
 .obfx-wrapper legend {
 	display: table;
-	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	max-width: 100%;
 	padding: 0;
@@ -323,7 +321,6 @@ html {
  */
 .obfx-wrapper [type="checkbox"],
 .obfx-wrapper [type="radio"] {
-	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	/* 1 */
 	padding: 0;
@@ -416,12 +413,10 @@ html {
 .obfx-wrapper *,
 .obfx-wrapper *::before,
 .obfx-wrapper *::after {
-	-webkit-box-sizing: inherit;
 	box-sizing: inherit;
 }
 
 .obfx-wrapper {
-	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	font-size: 10px;
 	line-height: 1.42857143;
@@ -448,7 +443,6 @@ html {
 }
 
 .obfx-wrapper a:focus {
-	-webkit-box-shadow: 0 0 0 0.2rem rgba(87, 100, 198, 0.15);
 	box-shadow: 0 0 0 0.2rem rgba(87, 100, 198, 0.15);
 }
 
@@ -661,7 +655,6 @@ html {
 
 .obfx-wrapper .btn:focus {
 	background: #fbfbfe;
-	-webkit-box-shadow: 0 0 0 0.2rem rgba(87, 100, 198, 0.15);
 	box-shadow: 0 0 0 0.2rem rgba(87, 100, 198, 0.15);
 	text-decoration: none;
 }
@@ -877,7 +870,6 @@ html {
 
 .obfx-wrapper .form-input:focus {
 	border-color: #5764c6;
-	-webkit-box-shadow: 0 0 0 0.2rem rgba(87, 100, 198, 0.15);
 	box-shadow: 0 0 0 0.2rem rgba(87, 100, 198, 0.15);
 }
 
@@ -966,7 +958,6 @@ html {
 
 .obfx-wrapper .form-select:focus {
 	border-color: #5764c6;
-	-webkit-box-shadow: 0 0 0 0.2rem rgba(87, 100, 198, 0.15);
 	box-shadow: 0 0 0 0.2rem rgba(87, 100, 198, 0.15);
 }
 
@@ -997,7 +988,6 @@ html {
 .obfx-wrapper .has-success .form-select:focus,
 .obfx-wrapper .form-input.is-success:focus,
 .obfx-wrapper .form-select.is-success:focus {
-	-webkit-box-shadow: 0 0 0 0.2rem rgba(50, 182, 67, 0.15);
 	box-shadow: 0 0 0 0.2rem rgba(50, 182, 67, 0.15);
 }
 
@@ -1012,7 +1002,6 @@ html {
 .obfx-wrapper .has-error .form-select:focus,
 .obfx-wrapper .form-input.is-error:focus,
 .obfx-wrapper .form-select.is-error:focus {
-	-webkit-box-shadow: 0 0 0 0.2rem rgba(232, 86, 0, 0.15);
 	box-shadow: 0 0 0 0.2rem rgba(232, 86, 0, 0.15);
 }
 
@@ -1021,7 +1010,6 @@ html {
 }
 
 .obfx-wrapper .form-input:not(:placeholder-shown):invalid:focus {
-	-webkit-box-shadow: 0 0 0 0.2rem rgba(232, 86, 0, 0.15);
 	box-shadow: 0 0 0 0.2rem rgba(232, 86, 0, 0.15);
 }
 
@@ -1084,7 +1072,6 @@ html {
 .obfx-wrapper .form-radio input:focus + .form-icon,
 .obfx-wrapper .form-switch input:focus + .form-icon {
 	border-color: #5764c6;
-	-webkit-box-shadow: 0 0 0 0.2rem rgba(87, 100, 198, 0.15);
 	box-shadow: 0 0 0 0.2rem rgba(87, 100, 198, 0.15);
 }
 
@@ -2160,7 +2147,6 @@ html {
 
 .obfx-wrapper .form-autocomplete .form-autocomplete-input.is-focused {
 	border-color: #5764c6;
-	-webkit-box-shadow: 0 0 0 0.2rem rgba(87, 100, 198, 0.15);
 	box-shadow: 0 0 0 0.2rem rgba(87, 100, 198, 0.15);
 }
 
@@ -2170,7 +2156,6 @@ html {
 	height: 2.8rem;
 	padding: 0.3rem 0.8rem;
 	border-color: transparent;
-	-webkit-box-shadow: none;
 	box-shadow: none;
 
 	-webkit-box-flex: 1;
@@ -2275,7 +2260,6 @@ html {
 	color: #fff;
 	background: #5764c6;
 	background-clip: padding-box;
-	-webkit-box-shadow: 0 0 0 0.2rem #fff;
 	box-shadow: 0 0 0 0.2rem #fff;
 	content: attr(data-badge);
 	-webkit-transform: translate(-0.2rem, -1rem);
@@ -2411,7 +2395,6 @@ html {
 }
 
 .obfx-wrapper .bar-slider .bar-slider-btn:active {
-	-webkit-box-shadow: 0 0 0 0.2rem #5764c6;
 	box-shadow: 0 0 0 0.2rem #5764c6;
 }
 
@@ -2530,7 +2513,6 @@ html {
 	padding: 1rem;
 	border-radius: 0.2rem;
 	background: #fff;
-	-webkit-box-shadow: 0 0.1rem 0.4rem rgba(69, 77, 93, 0.3);
 	box-shadow: 0 0.1rem 0.4rem rgba(69, 77, 93, 0.3);
 	list-style: none;
 	-webkit-transform: translateY(0.5rem);
@@ -2637,7 +2619,6 @@ html {
 	padding: 0;
 	border-radius: 0.2rem;
 	background: #fff;
-	-webkit-box-shadow: 0 0.4rem 1rem rgba(69, 77, 93, 0.3);
 	box-shadow: 0 0.4rem 1rem rgba(69, 77, 93, 0.3);
 	text-align: left;
 }
@@ -2938,7 +2919,6 @@ html {
 
 .obfx-wrapper .popover .card {
 	border: 0;
-	-webkit-box-shadow: 0 0.4rem 1rem rgba(69, 77, 93, 0.3);
 	box-shadow: 0 0.4rem 1rem rgba(69, 77, 93, 0.3);
 }
 
@@ -3569,27 +3549,22 @@ html {
 }
 
 .obfx-wrapper .shadow-0 {
-	-webkit-box-shadow: 0 0 0.2rem rgba(69, 77, 93, 0.3);
 	box-shadow: 0 0 0.2rem rgba(69, 77, 93, 0.3);
 }
 
 .obfx-wrapper .shadow-1 {
-	-webkit-box-shadow: 0 0.1rem 0.4rem rgba(69, 77, 93, 0.3);
 	box-shadow: 0 0.1rem 0.4rem rgba(69, 77, 93, 0.3);
 }
 
 .obfx-wrapper .shadow-2 {
-	-webkit-box-shadow: 0 0.2rem 0.6rem rgba(69, 77, 93, 0.3);
 	box-shadow: 0 0.2rem 0.6rem rgba(69, 77, 93, 0.3);
 }
 
 .obfx-wrapper .shadow-3 {
-	-webkit-box-shadow: 0 0.3rem 0.8rem rgba(69, 77, 93, 0.3);
 	box-shadow: 0 0.3rem 0.8rem rgba(69, 77, 93, 0.3);
 }
 
 .obfx-wrapper .shadow-4 {
-	-webkit-box-shadow: 0 0.4rem 1rem rgba(69, 77, 93, 0.3);
 	box-shadow: 0 0.4rem 1rem rgba(69, 77, 93, 0.3);
 }
 

@@ -42,7 +42,7 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function __construct() {
 		parent::__construct();
 		$this->name        = __( 'Mystock Import', 'themeisle-companion' );
-		$this->description = __( 'Module to import images from mystock.', 'themeisle-companion' );
+		$this->description = __( 'Module to import images directly from', 'themeisle-companion' ). sprintf(' <a href="%s" target="_blank">mystock.photos</a>','https://mystock.photos');
 	}
 
 
@@ -236,9 +236,9 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		 */
 		$response = '<div class="attachment-details">';
 		$response .= '<form id="importmsp" method="post">';
-		$response .= '<h2>'.esc_html__('Attachement display settings'). '</h2><hr/>';
+		$response .= '<h2>'.esc_html__('Attachement display settings', 'themeisle-companion'). '</h2><hr/>';
 		$response .= '<label class="attachement-settings">';
-		$response .= '<span class="name">'. esc_html__('Size') . '</span>';
+		$response .= '<span class="name">'. esc_html__('Size', 'themeisle-companion') . '</span>';
 		$response .= '<select name="imagesizes">';
 		foreach( $photo_sizes as $key => $label ){
 			$response .= '<option value="'. esc_url( $photo[$key] ) .'">'. esc_html( $label ). '</option>';

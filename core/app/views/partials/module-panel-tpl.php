@@ -31,10 +31,10 @@ if ( ! isset( $options_fields ) ) {
 	$options_fields = __( 'No options provided.', 'themeisle-companion' );
 }
 
-$display = '';
+$display         = '';
 $disabled_fields = '';
 if ( ! $active ) {
-	$display = 'style="display: none;"';
+	$display         = 'style="display: none;"';
 	$disabled_fields = 'disabled';
 }
 ?>

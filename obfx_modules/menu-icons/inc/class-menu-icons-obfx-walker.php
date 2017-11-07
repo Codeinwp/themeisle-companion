@@ -21,7 +21,7 @@ class Menu_Icons_OBFX_Walker extends Walker_Nav_Menu_Edit {
 	 */
 	function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
 		parent::start_el( $output, $item, $depth, $args, $id );
-		$icon   = isset( $item->icon ) ? $item->icon : '';
+		$icon    = isset( $item->icon ) ? $item->icon : '';
 		$output .= sprintf( '<input type="hidden" name="menu-item-icon[%d]" id="menu-item-icon-%d" value="%s">', $item->ID, $item->ID, $icon );
 	}
 }
