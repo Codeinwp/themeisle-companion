@@ -65,6 +65,7 @@ class Orbit_Fox_Global_Settings {
 					'social-sharing',
 					'companion-legacy',
 					'template-directory',
+					'menu-icons',
 				)
 			);
 		}// End if().

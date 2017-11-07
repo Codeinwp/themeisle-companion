@@ -107,7 +107,6 @@ class Orbit_Fox_Admin {
 		}
 		if ( in_array( $screen->id, array( 'tools_page_obfx_companion' ) ) ) {
 			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . '../assets/js/orbit-fox-admin.js', array( 'jquery' ), $this->version, false );
-
 		}
 		do_action( 'obfx_admin_enqueue_scripts' );
 	}
