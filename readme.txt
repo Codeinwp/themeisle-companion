@@ -1,6 +1,6 @@
 === Orbit Fox Companion ===
 Contributors: themeisle, codeinwp, rodicaelena, baicusandrei
-Tags: widget, admin, widgets, sharing, reporting, sections, themes
+Tags: widget, admin, widgets, sharing, reporting, sections, themes, stock photos, custom icons, icons, menu icons, stock
 Requires at least: 3.0
 Tested up to: 4.8
 Requires PHP: 5.3
@@ -12,13 +12,20 @@ Enhance your website with extra functionality through modules like: social media
 
 == Description ==
 
-Extend your theme functionality with <a href="https://themeisle.com/plugins/orbit-fox-companion/" rel="nofollow">Orbit Fox Companion</a> with various modules like Social Media Share Buttons & Icons, reporting, analytics(upcoming), security(upcoming) and caching(upcoming).
+Extend your theme functionality with <a href="https://themeisle.com/plugins/orbit-fox-companion/" rel="nofollow">Orbit Fox Companion</a> with various modules like Social Media Share Buttons & Icons, reporting, custom menu-icons and free stock featured images.
 
 Orbit Fox is a user-centred plugin with an easy-to-use admin panel. One of the most important features is that modules will only be loaded if they meet two conditions. If they are needed and if they are compatible with your existing themes and plugins. This will cut down on the unnecessary bloating of your website. 
 
 **Why should I use this with Zerif/Hestia themes:** 
 
  - By using it along with our themes you gain access to a lot of useful widgets like **Testimonials**, **Our Focus**, **About Us** and more other.
+
+
+**Why use our custom icons module:**
+
+- Choose from a large variety of custom icons.
+
+- No coding needed, you can leverage the power of our dropdown icons selector and choose the right icon for your menu.
 
 
 **Why use our sharing module:**
@@ -41,6 +48,8 @@ We've also built some fantastic <a href="http://themeisle.com/wordpress-themes/f
 
 - Sharing module
 - Reporting module
+- Menu icons module
+- Free stock photos module
 - More widgets and sections for Hestia Theme
 - More widgets and sections for Zerif Theme
 

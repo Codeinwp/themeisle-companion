@@ -20,9 +20,9 @@ if ( trim( $desc ) != '' ) {
 	$html_desc = '<hr/><small>' . $desc . '</small>';
 }
 
-$posts_data = '';
+$posts_data    = '';
 $comments_data = '';
-$graph_shows = $this->get_option( 'graph_shows' );
+$graph_shows   = $this->get_option( 'graph_shows' );
 if ( $graph_shows == 0 || $graph_shows == 2 ) {
 	$posts_data = 'data-posts="' . json_encode( $posts_count ) . '"';
 }
