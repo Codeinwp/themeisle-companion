@@ -99,6 +99,36 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 	}
 
 	/**
+	 * Get post type categories.
+	 */
+//	private function grid_get_all_post_type_categories($post_type) {
+//		$options = array();
+//
+//		$customPostTaxonomies = get_object_taxonomies('product');
+//
+//		if(count($customPostTaxonomies) > 0)
+//		{
+//			foreach($customPostTaxonomies as $tax)
+//			{
+//				$args = array(
+//					'orderby' => 'name',
+//					'show_count' => 0,
+//					'pad_counts' => 0,
+//					'hierarchical' => 1,
+//					'taxonomy' => $tax,
+//					'title_li' => ''
+//				);
+//
+//				wp_list_categories( $args );
+//			}
+//		}
+//
+//		var_dump($customPostTaxonomies);
+
+		//return $options;
+	}
+
+	/**
 	 * Register Elementor Controls.
 	 */
 	protected function _register_controls() {
@@ -140,6 +170,16 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				'options' => $this->grid_get_all_post_types(),
 			]
 		);
+
+		// Post type categories.
+		/*$this->add_control(
+			'grid_post_type_category',
+			[
+				'type'    => Controls_Manager::SELECT,
+				'label'   => '<i class="fa fa-tag"></i> ' . __( 'Category', 'themeisle-companion' ),
+				'options' => $this->grid_get_all_post_type_categories('page'),
+			]
+		);*/
 
 		// Style.
 		$this->add_control(
@@ -1335,7 +1375,6 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 
 		// Only in editor.
 		if ( $settings['grid_image_hide'] !== 'yes' ) {
-		    /*if ( Plugin::$instance->editor->is_edit_mode() ) {*/
             // Check if post type has featured image.
             if ( has_post_thumbnail() ) {
 
