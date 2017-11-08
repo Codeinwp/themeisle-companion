@@ -1,75 +1,55 @@
-# Orbit Fox
-[![Build Status](https://travis-ci.org/Codeinwp/orbit-fox.svg?branch=master)](https://travis-ci.org/Codeinwp/orbit-fox)
-[![Code Climate](https://codeclimate.com/github/Codeinwp/orbit-fox/badges/gpa.svg)](https://codeclimate.com/github/Codeinwp/orbit-fox)
-[![Issue Count](https://codeclimate.com/github/Codeinwp/orbit-fox/badges/issue_count.svg)](https://codeclimate.com/github/Codeinwp/orbit-fox)
-[![Test Coverage](https://codeclimate.com/github/Codeinwp/orbit-fox/badges/coverage.svg)](https://codeclimate.com/github/Codeinwp/orbit-fox/coverage)
+# Orbit Fox Companion #
+**Contributors:** [themeisle](https://profiles.wordpress.org/themeisle), [codeinwp](https://profiles.wordpress.org/codeinwp), [rodicaelena](https://profiles.wordpress.org/rodicaelena), [baicusandrei](https://profiles.wordpress.org/baicusandrei)  
+**Tags:** widget, admin, widgets, sharing, reporting, sections, themes, stock photos, custom icons, icons, menu icons, stock  
+**Requires at least:** 3.0  
+**Tested up to:** 4.8  
+**Requires PHP:** 5.3  
+**Stable tag:** trunk  
+**License:** GPLv2 or later  
+**License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
-- **Author URI:** http://themeisle.com
-- **Requires at least:** 3.5
-- **Tested up to:** 4.8
-- **Stable tag:** trunk
-- **License:** GPLv2 or later
-- **License URI:** http://www.gnu.org/licenses/gpl-2.0.html
+**Enhance your website with extra functionality through modules like:** social media share buttons & icons, reporting, analytics(upcoming), security(upcoming) and caching(upcoming).  
 
-## Description
-> Orbit Fox is a plugin for WordPress that provides an abstraction layer on top of which you can 
-write modules to extend its functionality. The plugin provides some predefined workflows and 
-methods that work automagically. This means that you can focus more on the logic of your module 
-and less on the loading and display of data or files. 
+## Description ##
 
-### Goals
- 1. **Provide a framework like environment for writing modules:**
-    
-    Have a predefined set of rules and workflows that work out of the box. This should simplify 
-    the way a developer interacts with data, views or files.
+Extend your theme functionality with <a href="https://themeisle.com/plugins/orbit-fox-companion/" rel="nofollow">Orbit Fox Companion</a> with various modules like Social Media Share Buttons & Icons, reporting, custom menu-icons and free stock featured images.
 
- 2. **Accessibility:**
+Orbit Fox is a user-centred plugin with an easy-to-use admin panel. One of the most important features is that modules will only be loaded if they meet two conditions. If they are needed and if they are compatible with your existing themes and plugins. This will cut down on the unnecessary bloating of your website. 
 
-    Modules should be easy to write and deploy, also allow for loading of modules from third party 
-    developers.
+**Why should I use this with Zerif/Hestia themes:** 
 
-### Specifications
- Have a plugin that can be extended with modules bundled or built by third party developers inside 
- their own plugins. The modules must have an abstract class that defines the implemented methods 
- required and utility methods that simplify the module development.
+ - By using it along with our themes you gain access to a lot of useful widgets like **Testimonials**, **Our Focus**, **About Us** and more other.
 
-## Installation
- 1. Put the `orbit-fox` folder inside WordPress plugins folder.
- 2. Activate via the Plugins WordPress Dashboard.
 
-## Features
- - Easy extensability via modules
- - Support for third party modules
- - Reusable and Utility Classes for faster development
+**Why use our custom icons module:**
 
-## Development
-[Module development guidelines](docs/MODULE.md)
+- Choose from a large variety of custom icons.
 
-## Docs
+- No coding needed, you can leverage the power of our dropdown icons selector and choose the right icon for your menu.
 
-[Read the Project Documentation](https://docs.google.com/a/vertistudio.com/document/d/1fFepVs4if5rEmMqA8TiHUFp2WPnkUCW6JZohnsSNtKE/edit?usp=sharing)
 
-## Frequently Asked Questions
+**Why use our sharing module:**
 
-// TODO
+- It's easy to use
 
-## Change Log
+- Enable sharing networks right from your admin dashboard and choose on what kind of devices you would like to show them.
 
-**v.1.0.0a** 
-- Basic structure and module loading workflow. 
-- Support for 3rd party modules
-- Render Helper
-- Model Helper
-- Automagic classes
+- It’s fully customizable: You can easily optimise button location for according to the device your visitors will use. 
 
-### Contributors
-**Bogdan Preda** -- bogdan.themeisle.com
-**Marius Cristea** -- marius.cristea@vertistudio.com
+Choose from more than 20+ social networks to share with full control for every device that your visitors use.
+
+The sharing options can be positioned for the maximum effect according to whether the visitor is using a mobile device or desktop. Best of all they can be switched on/off from your WordPress instance.
+
+
+
+We've also built some fantastic <a href="http://themeisle.com/wordpress-themes/free/" rel="nofollow" target="_blank">free themes</a> that work well with Orbit Fox Companion, check them out.
 
 **Features:**
 
 - Sharing module
 - Reporting module
+- Menu icons module
+- Free stock photos module
 - More widgets and sections for Hestia Theme
 - More widgets and sections for Zerif Theme
 
@@ -106,6 +86,12 @@ Activating the Orbit Fox Companion plugin is just like any other plugin. If you'
 3. Screenshot 3. How reports module is looking
 
 ## Changelog ##
+### 2.1.0 - 2017-11-08  ###
+
+* Adds custom icons menu module.
+* Adds free stock images integration with mystock.photos .
+
+
 ### 2.0.11 - 2017-10-19  ###
 
 * Fixed alignment issue for titles in Hestia
@@ -179,4 +165,3 @@ Activating the Orbit Fox Companion plugin is just like any other plugin. If you'
 ### 1.0.0 ###
 
 * First version of the plugin
-
