@@ -1,4 +1,18 @@
 
+ ### v2.0.11 - 2017-10-19 
+ **Changes:** 
+ * Fixed alignment issue for titles in Hestia
+ 
+ ### v2.0.10 - 2017-10-18 
+ **Changes:** 
+ * Added selective refresh options for the Show/Hide frontpage controls in Hestia
+* Make external links open in new tab for the frontpage sections in Hestia
+* Added some new filters to control the number of items per row appear in the Features and Testimonials Frontpage section - http://docs.themeisle.com/article/669-how-to-add-4-feature-items-on-a-line-in-hestia
+ 
+ ### v2.0.9 - 2017-10-17 
+ **Changes:** 
+ * Enhanced layout for Hestia sections.
+ 
  ### v2.0.8 - 2017-10-11 
  **Changes:** 
  * Fixed bug with URL protocols filter priority.

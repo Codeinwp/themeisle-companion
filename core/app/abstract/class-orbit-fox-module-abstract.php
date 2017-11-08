@@ -123,6 +123,18 @@ abstract class Orbit_Fox_Module_Abstract {
 	}
 
 	/**
+	 * Method to return URL to child class in a Reflective Way.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @access  protected
+	 * @return string
+	 */
+	protected function get_url() {
+		return plugin_dir_url( $this->get_dir() ) . $this->slug;
+	}
+
+	/**
 	 * Utility method to return active theme dir name.
 	 *
 	 * @since   1.0.0
@@ -312,8 +324,8 @@ abstract class Orbit_Fox_Module_Abstract {
 	 */
 	final public function get_option( $key ) {
 		$default_options = $this->get_options_defaults();
-		$db_option = $this->model->get_module_option( $this->slug, $key );
-		$value = $db_option;
+		$db_option       = $this->model->get_module_option( $this->slug, $key );
+		$value           = $db_option;
 		if ( $db_option === false ) {
 			$value = $default_options[ $key ];
 		}
@@ -361,7 +373,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @return array
 	 */
 	final public function get_options_defaults() {
-		$options = $this->options();
+		$options  = $this->options();
 		$defaults = array();
 		foreach ( $options as $opt ) {
 			if ( ! isset( $opt['default'] ) ) {
@@ -383,10 +395,10 @@ abstract class Orbit_Fox_Module_Abstract {
 	 */
 	final public function get_options() {
 		$model_options = $this->options();
-		$options = array();
-		$index = 0;
+		$options       = array();
+		$index         = 0;
 		foreach ( $model_options as $opt ) {
-			$options[ $index ] = $opt;
+			$options[ $index ]          = $opt;
 			$options[ $index ]['value'] = $this->get_option( $opt['name'] );
 			$index++;
 		}
@@ -434,13 +446,13 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @param   string $prefix The string to prefix in the enqueued name.
 	 */
 	private function set_scripts( $enqueue, $prefix ) {
-		$sanitized  = str_replace( ' ', '-', strtolower( $this->name ) );
+		$sanitized = str_replace( ' ', '-', strtolower( $this->name ) );
 
 		$module_dir = $this->slug;
 		if ( ! empty( $enqueue ) ) {
 			if ( isset( $enqueue['js'] ) && ! empty( $enqueue['js'] ) ) {
 				$order = 0;
-				$map    = array();
+				$map   = array();
 				foreach ( $enqueue['js'] as $file_name => $dependencies ) {
 					if ( $dependencies == false ) {
 						$dependencies = array();
@@ -453,13 +465,13 @@ abstract class Orbit_Fox_Module_Abstract {
 							}
 						}
 					}
-					$url = filter_var( $file_name, FILTER_SANITIZE_URL );
+					$url      = filter_var( $file_name, FILTER_SANITIZE_URL );
 					$resource = plugin_dir_url( $this->get_dir() ) . $module_dir . '/js/' . $file_name . '.js';
 					if ( ! filter_var( $url, FILTER_VALIDATE_URL ) === false ) {
 						$resource = $url;
 					}
-					$id     = 'obfx-module-' . $prefix . '-js-' . $sanitized . '-' . $order;
-					$map[ $file_name ]    = $id;
+					$id                = 'obfx-module-' . $prefix . '-js-' . $sanitized . '-' . $order;
+					$map[ $file_name ] = $id;
 
 					wp_enqueue_script(
 						$id,
@@ -498,7 +510,7 @@ abstract class Orbit_Fox_Module_Abstract {
 		if ( ! empty( $enqueue ) ) {
 			if ( isset( $enqueue['css'] ) && ! empty( $enqueue['css'] ) ) {
 				$order = 0;
-				$map    = array();
+				$map   = array();
 				foreach ( $enqueue['css'] as $file_name => $dependencies ) {
 					if ( $dependencies == false ) {
 						$dependencies = array();
@@ -511,13 +523,13 @@ abstract class Orbit_Fox_Module_Abstract {
 							}
 						}
 					}
-					$url = filter_var( $file_name, FILTER_SANITIZE_URL );
+					$url      = filter_var( $file_name, FILTER_SANITIZE_URL );
 					$resource = plugin_dir_url( $this->get_dir() ) . $module_dir . '/css/' . $file_name . '.css';
 					if ( ! filter_var( $url, FILTER_VALIDATE_URL ) === false ) {
 						$resource = $url;
 					}
-					$id     = 'obfx-module-' . $prefix . '-css-' . str_replace( ' ', '-', strtolower( $this->name ) ) . '-' . $order;
-					$map[ $file_name ]    = $id;
+					$id                = 'obfx-module-' . $prefix . '-css-' . str_replace( ' ', '-', strtolower( $this->name ) ) . '-' . $order;
+					$map[ $file_name ] = $id;
 					wp_enqueue_style(
 						$id,
 						$resource,

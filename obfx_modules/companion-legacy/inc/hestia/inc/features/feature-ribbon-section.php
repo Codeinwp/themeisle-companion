@@ -18,7 +18,8 @@ if ( ! function_exists( 'hestia_ribbon_customize_register' ) ) :
 	 */
 	function hestia_ribbon_customize_register( $wp_customize ) {
 
-		$selective_refresh = isset( $wp_customize->selective_refresh ) ? true : false;
+		$selective_refresh = isset( $wp_customize->selective_refresh ) ? 'postMessage' : 'refresh';
+
 		if ( class_exists( 'Hestia_Hiding_Section' ) ) {
 			$wp_customize->add_section(
 				new Hestia_Hiding_Section(
@@ -44,6 +45,7 @@ if ( ! function_exists( 'hestia_ribbon_customize_register' ) ) :
 			'hestia_ribbon_hide', array(
 				'sanitize_callback' => 'hestia_sanitize_checkbox',
 				'default'           => true,
+				'transport'         => $selective_refresh,
 			)
 		);
 
@@ -61,7 +63,7 @@ if ( ! function_exists( 'hestia_ribbon_customize_register' ) ) :
 			'hestia_ribbon_background', array(
 				'sanitize_callback' => 'esc_url_raw',
 				'default'           => $default,
-				'transport'         => $selective_refresh ? 'postMessage' : 'refresh',
+				'transport'         => $selective_refresh,
 			)
 		);
 
@@ -80,7 +82,7 @@ if ( ! function_exists( 'hestia_ribbon_customize_register' ) ) :
 			'hestia_ribbon_text', array(
 				'sanitize_callback' => 'sanitize_text_field',
 				'default'           => $default,
-				'transport'         => $selective_refresh ? 'postMessage' : 'refresh',
+				'transport'         => $selective_refresh,
 			)
 		);
 
@@ -98,7 +100,7 @@ if ( ! function_exists( 'hestia_ribbon_customize_register' ) ) :
 			'hestia_ribbon_button_text', array(
 				'sanitize_callback' => 'sanitize_text_field',
 				'default' => $default,
-				'transport' => $selective_refresh ? 'postMessage' : 'refresh',
+				'transport' => $selective_refresh,
 			)
 		);
 
@@ -114,7 +116,7 @@ if ( ! function_exists( 'hestia_ribbon_customize_register' ) ) :
 		$wp_customize->add_setting(
 			'hestia_ribbon_button_url', array(
 				'sanitize_callback' => 'esc_url_raw',
-				'transport'         => $selective_refresh ? 'postMessage' : 'refresh',
+				'transport'         => $selective_refresh,
 				'default' => $default,
 			)
 		);
@@ -146,6 +148,15 @@ if ( ! function_exists( 'hestia_register_ribbon_partials' ) ) :
 		if ( ! isset( $wp_customize->selective_refresh ) ) {
 			return;
 		}
+
+		$wp_customize->selective_refresh->add_partial(
+			'hestia_ribbon_hide', array(
+				'selector' => '.hestia-ribbon:not(.is-shortcode)',
+				'container_inclusive' => true,
+				'render_callback' => 'hestia_ribbon',
+				'fallback_refresh' => false,
+			)
+		);
 
 		$wp_customize->selective_refresh->add_partial(
 			'hestia_ribbon_background', array(

@@ -15,7 +15,8 @@ if ( ! function_exists( 'hestia_testimonials_customize_register' ) ) :
 	 */
 	function hestia_testimonials_customize_register( $wp_customize ) {
 
-		$selective_refresh = isset( $wp_customize->selective_refresh ) ? true : false;
+		$selective_refresh = isset( $wp_customize->selective_refresh ) ? 'postMessage' : 'refresh';
+
 		if ( class_exists( 'Hestia_Hiding_Section' ) ) {
 			$wp_customize->add_section(
 				new Hestia_Hiding_Section(
@@ -41,6 +42,7 @@ if ( ! function_exists( 'hestia_testimonials_customize_register' ) ) :
 			'hestia_testimonials_hide', array(
 				'sanitize_callback' => 'hestia_sanitize_checkbox',
 				'default'           => false,
+				'transport'         => $selective_refresh,
 			)
 		);
 
@@ -56,7 +58,7 @@ if ( ! function_exists( 'hestia_testimonials_customize_register' ) ) :
 		$wp_customize->add_setting(
 			'hestia_testimonials_title', array(
 				'sanitize_callback' => 'sanitize_text_field',
-				'transport'         => $selective_refresh ? 'postMessage' : 'refresh',
+				'transport'         => $selective_refresh,
 			)
 		);
 
@@ -71,7 +73,7 @@ if ( ! function_exists( 'hestia_testimonials_customize_register' ) ) :
 		$wp_customize->add_setting(
 			'hestia_testimonials_subtitle', array(
 				'sanitize_callback' => 'sanitize_text_field',
-				'transport'         => $selective_refresh ? 'postMessage' : 'refresh',
+				'transport'         => $selective_refresh,
 			)
 		);
 
@@ -87,7 +89,7 @@ if ( ! function_exists( 'hestia_testimonials_customize_register' ) ) :
 			$wp_customize->add_setting(
 				'hestia_testimonials_content', array(
 					'sanitize_callback' => 'hestia_repeater_sanitize',
-					'transport'         => $selective_refresh ? 'postMessage' : 'refresh',
+					'transport'         => $selective_refresh,
 				)
 			);
 
@@ -129,10 +131,20 @@ function hestia_register_testimonials_partials( $wp_customize ) {
 	}
 
 	$wp_customize->selective_refresh->add_partial(
+		'hestia_testimonials_hide', array(
+			'selector' => '.hestia-testimonials:not(.is-shortcode)',
+			'render_callback' => 'hestia_testimonials',
+			'container_inclusive' => true,
+			'fallback_refresh' => false,
+		)
+	);
+
+	$wp_customize->selective_refresh->add_partial(
 		'hestia_testimonials_title', array(
 			'selector' => '#testimonials h2.hestia-title',
 			'settings' => 'hestia_testimonials_title',
 			'render_callback' => 'hestia_testimonials_title_callback',
+			'fallback_refresh' => false,
 		)
 	);
 
@@ -141,6 +153,7 @@ function hestia_register_testimonials_partials( $wp_customize ) {
 			'selector' => '#testimonials h5.description',
 			'settings' => 'hestia_testimonials_subtitle',
 			'render_callback' => 'hestia_testimonials_subtitle_callback',
+			'fallback_refresh' => false,
 		)
 	);
 

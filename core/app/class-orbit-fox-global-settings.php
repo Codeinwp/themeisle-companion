@@ -57,7 +57,7 @@ class Orbit_Fox_Global_Settings {
 	 */
 	public static function instance() {
 		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof Orbit_Fox_Global_Settings ) ) {
-			self::$instance = new Orbit_Fox_Global_Settings;
+			self::$instance          = new Orbit_Fox_Global_Settings;
 			self::$instance->modules = apply_filters(
 				'obfx_modules',
 				array(
@@ -65,6 +65,7 @@ class Orbit_Fox_Global_Settings {
 					'social-sharing',
 					'companion-legacy',
 					'menu-icons',
+					'mystock-import',
 				)
 			);
 		}// End if().

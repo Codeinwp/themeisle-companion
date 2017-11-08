@@ -36,6 +36,8 @@
         <exclude name="WordPress.WhiteSpace.PrecisionAlignment.Found" />
         <exclude name="Squiz.PHP.CommentedOutCode" />
         <exclude name="WordPress.WP.I18n.MissingTranslatorsComment" />
+        <exclude name="WordPress.PHP.YodaConditions.NotYoda" />
+        <exclude name="WordPress.WhiteSpace.PrecisionAlignment.Found" />
     </rule>
     <rule ref="WordPress-Docs">
 
