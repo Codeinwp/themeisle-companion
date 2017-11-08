@@ -6,7 +6,7 @@
  */
 
 ?>
-<div id='obfx-mystock' data-pagenb="<?php echo esc_attr( $urls['lastpage'] ); ?>">
+<div id='obfx-mystock' data-pagenb="1">
 	<ul class='obfx-image-list'>
 		<?php
 		if ( ! empty( $urls ) ) {
@@ -15,7 +15,7 @@
 				if ( ! empty( $pid ) ) {
 					$thumb = $photo['url_m'];
 					?>
-					<li class='obfx-image' data-pid="<?php echo esc_attr( $pid ); ?>">
+					<li class='obfx-image' data-page="1" data-pid="<?php echo esc_attr( $pid ); ?>">
 						<div class="obfx-preview">
 							<div class="thumbnail">
 								<div class="centered">
@@ -34,5 +34,6 @@
 		}
 		?>
 	</ul>
+	<div class="obfx_spinner"></div>
 	<div class="media-sidebar"></div>
 </div>

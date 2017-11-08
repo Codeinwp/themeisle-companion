@@ -59,6 +59,7 @@
         initialize: function () {
             // _.defaults(this.options, {});
             var container = this.$el;
+            $(container).html('<div class="obfx_spinner"></div>');
             this.loadContent( container,this );
             this.selectItem();
             this.deselectItem();
@@ -66,7 +67,14 @@
             this.handleRequest();
         },
 
+        showSpinner: function(container) {
+            $(container).find('.obfx_spinner').show();
+        },
+        hideSpinner: function(container) {
+            $(container).find('.obfx_spinner').hide();
+        },
         loadContent: function(container, frame){
+            this.showSpinner(container);
             $.ajax({
                 type : 'POST',
                 data : {
@@ -76,8 +84,7 @@
                 url : mystock_import.ajaxurl,
                 success : function(response) {
                     container.html(response);
-
-                    frame.infiniteScroll();
+                    frame.infiniteScroll(container, frame);
                 }
             });
         },
@@ -97,9 +104,10 @@
             });
         },
 
-        infiniteScroll : function () {
+        infiniteScroll : function (container, frame) {
             $('#obfx-mystock .obfx-image-list').on('scroll',function() {
-                if($(this).scrollTop() + $(this).innerHeight() >= $(this)[0].scrollHeight) {
+                if($(this).scrollTop() + $(this).innerHeight() + 10 >= $(this)[0].scrollHeight) {
+                    frame.showSpinner(container);
                     $.ajax({
                         type : 'POST',
                         data : {
@@ -117,6 +125,7 @@
                                 listWrapper.data('pagenb', nextPage);
                                 imageList.append(response);
                             }
+                            frame.hideSpinner(container);
                         }
 
                     });
@@ -133,16 +142,17 @@
                     data : {
                         'action': mystock_import.slug,
                         'pid' : $(this).data('pid'),
+                        'page' : $(this).data('page'),
                         'security' : mystock_import.nonce
                     },
                     url : mystock_import.ajaxurl,
                     beforeSend : function () {
                         var text = mystock_import.l10n.fetch_image_sizes;
                         var data = '<div class="attachement-loading"><h2>'+ text +'</h2><div class="spinner is-active"></div></div>';
-                        th.parent().next().html(data);
+                        th.parent().parent().find('.media-sidebar').html(data);
                     },
                     success : function(response) {
-                        th.parent().next().html(response);
+                        th.parent().parent().find('.media-sidebar').html(response);
                     }
 
                 });
