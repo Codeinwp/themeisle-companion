@@ -32,6 +32,11 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	const USER_NAME = 'themeisle';
 
+	/**
+	 * The cache time.
+	 */
+	const CACHE_DAYS = 7;
+
 
 	/**
 	 * Mystock_Import_OBFX_Module constructor.
@@ -85,15 +90,7 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * Display tab content.
 	 */
 	public function get_tab_content() {
-		if ( false === ( $value = get_transient( 'mystock_photos' ) ) ) {
-			$urls = $this->get_images();
-			if ( ! empty( $urls ) ) {
-				$urls['lastpage'] = 1;
-				set_transient( 'mystock_photos', $urls, 60 * 60 * 24 * 7 );
-			}
-		} else {
-			$urls = get_transient( 'mystock_photos' );
-		}
+		$urls = $this->get_images();
 		require $this->get_dir() . "/inc/photos.php";
 		wp_die();
 	}
@@ -106,15 +103,19 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return array
 	 */
 	private function get_images( $page = 1 ) {
-		require_once $this->get_dir() . '/vendor/phpflickr/phpflickr.php';
-		$api    = new phpFlickr( self::API_KEY );
-		$user   = $api->people_findByUsername( self::USER_NAME );
-		$photos = array();
-		if ( $user && isset( $user['nsid'] ) ) {
-			$photos = $api->people_getPublicPhotos( $user['nsid'], null, 'url_sq, url_t, url_s, url_q, url_m, url_n, url_z, url_c, url_l, url_o', self::MAX_IMAGES, $page );
-			if ( ! empty( $photos ) ) {
-				return $photos['photos']['photo'];
+		$photos	= get_transient( $this->slug . 'photos_' . self::MAX_IMAGES . '_' . $page );
+		if ( ! $photos ) {
+			require_once $this->get_dir() . '/vendor/phpflickr/phpflickr.php';
+			$api    = new phpFlickr( self::API_KEY );
+			$user   = $api->people_findByUsername( self::USER_NAME );
+			$photos = array();
+			if ( $user && isset( $user['nsid'] ) ) {
+				$photos = $api->people_getPublicPhotos( $user['nsid'], null, 'url_sq, url_t, url_s, url_q, url_m, url_n, url_z, url_c, url_l, url_o', self::MAX_IMAGES, $page );
+				if ( ! empty( $photos ) ) {
+					$photos	= $photos['photos']['photo'];
+				}
 			}
+			set_transient( $this->slug . 'photos_' . self::MAX_IMAGES . '_' . $page, $photos, self::CACHE_DAYS * DAY_IN_SECONDS );
 		}
 
 		return $photos;
@@ -170,9 +171,6 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			wp_die();
 		}
 
-		//Get cached photos
-		$cached_photos = get_transient( 'mystock_photos' );
-
 		//Update last page that was loaded
 		$req_page = (int) $_POST['page'] + 1;
 
@@ -181,20 +179,13 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$new_request = $this->get_images( $req_page );
 		if ( ! empty( $new_request ) ) {
 			foreach ( $new_request as $photo ) {
-				$response .= '<li class="obfx-image" data-pid="' . esc_attr( $photo['id'] ) . '">';
+				$response .= '<li class="obfx-image" data-page="' . esc_attr( $req_page ) . '" data-pid="' . esc_attr( $photo['id'] ) . '">';
 				$response .= '<div class="obfx-preview"><div class="thumbnail"><div class="centered">';
 				$response .= '<img src="' . esc_url( $photo['url_m'] ) . '">';
 				$response .= '</div></div></div>';
 				$response .= '<button type="button" class="check obfx-image-check" tabindex="0"><span class="media-modal-icon"></span><span class="screen-reader-text">' . esc_html__( 'Deselect', 'themeisle-companion' ) . '</span></button>';
 				$response .= '</li>';
 			}
-		}
-
-		// Update transient
-		$new_data             = array_merge( $cached_photos, $new_request );
-		$new_data['lastpage'] = $req_page;
-		if ( ! empty( $new_data ) ) {
-			set_transient( 'mystock_photos', $new_data, 60 * 60 * 24 * 7 );
 		}
 
 		echo $response;
@@ -209,10 +200,11 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		check_ajax_referer( $this->slug . filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ), 'security' );
 
 		$photo_id = $_POST['pid'];
-		$data     = get_transient( 'mystock_photos' );
-		if ( empty( $photo_id ) ) {
+		$page	  = $_POST['page'];
+		if ( empty( $photo_id ) || empty( $page ) ) {
 			wp_die();
 		}
+		$data     = $this->get_images( $page );
 		$photo = array_filter( $data, function ( $e ) use ( $photo_id ) {
 			return $e['id'] === $photo_id;
 		}, true );
