@@ -105,7 +105,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function __construct() {
-		$this->slug = str_replace( '_', '-',strtolower( str_replace( '_OBFX_Module', '', get_class( $this ) ) ) );
+		$this->slug = str_replace( '_', '-', strtolower( str_replace( '_OBFX_Module', '', get_class( $this ) ) ) );
 	}
 
 	/**
