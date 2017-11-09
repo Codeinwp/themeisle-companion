@@ -893,6 +893,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				],
 				'selectors' => [
 					'{{WRAPPER}} .obfx-grid-meta' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .obfx-grid-meta span' => 'color: {{VALUE}};',
 					'{{WRAPPER}} .obfx-grid-meta a' => 'color: {{VALUE}};',
 				],
 			]
