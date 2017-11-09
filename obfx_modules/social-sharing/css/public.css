@@ -90,88 +90,88 @@
 }
 
 /* Social icons color */
-.obfx-sharing-inline a[href*="facebook"],
-.obfx-sharing a[href*="facebook"] {
+.obfx-sharing-inline a.btn-facebook,
+.obfx-sharing a.facebook {
 	background-color: #3b5998;
 }
 
-.obfx-sharing-inline a[href*="twitter"],
-.obfx-sharing a[href*="twitter"] {
+.obfx-sharing-inline a.btn-twitter,
+.obfx-sharing a.twitter {
 	background-color: #1da1f2;
 }
 
-.obfx-sharing-inline a[href*="google"],
-.obfx-sharing a[href*="google"] {
+.obfx-sharing-inline a.btn-googleplus,
+.obfx-sharing a.googleplus {
 	background-color: #dd4b39;
 }
 
-.obfx-sharing-inline a[href*="pinterest"],
-.obfx-sharing a[href*="pinterest"] {
+.obfx-sharing-inline a.btn-pinterest,
+.obfx-sharing a.pinterest {
 	background-color: #bd081c;
 }
 
-.obfx-sharing-inline a[href*="linkedin"],
-.obfx-sharing a[href*="linkedin"] {
+.obfx-sharing-inline a.btn-linkedin,
+.obfx-sharing a.linkedin {
 	background-color: #0077b5;
 }
 
-.obfx-sharing-inline a[href*="tumblr"],
-.obfx-sharing a[href*="tumblr"] {
+.obfx-sharing-inline a.btn-tumblr,
+.obfx-sharing a.tumblr {
 	background-color: #35465c;
 }
 
-.obfx-sharing-inline a[href*="reddit"],
-.obfx-sharing a[href*="reddit"] {
+.obfx-sharing-inline a.btn-reddit,
+.obfx-sharing a.reddit {
 	background-color: #ff4500;
 }
 
-.obfx-sharing-inline a[href*="vk"],
-.obfx-sharing a[href*="vk"] {
+.obfx-sharing-inline a.btn-vkontakte,
+.obfx-sharing a.vkontakte {
 	background-color: #45668e;
 }
 
-.obfx-sharing-inline a[href*="ok.ru"],
-.obfx-sharing a[href*="ok.ru"] {
+.obfx-sharing-inline a.btn-odnoklassniki,
+.obfx-sharing a.odnoklassniki {
 	background-color: #f48420;
 }
 
-.obfx-sharing-inline a[href*="douban"],
-.obfx-sharing a[href*="douban"] {
+.obfx-sharing-inline a.btn-douban,
+.obfx-sharing a.douban {
 	background-color: #228a31;
 }
 
-.obfx-sharing-inline a[href*="baidu"],
-.obfx-sharing a[href*="baidu"] {
+.obfx-sharing-inline a.btn-baidu,
+.obfx-sharing a.baidu {
 	background-color: #de0f17;
 }
 
-.obfx-sharing-inline a[href*="xing"],
-.obfx-sharing a[href*="xing"] {
+.obfx-sharing-inline a.btn-xing,
+.obfx-sharing a.xing {
 	background-color: #026466;
 }
 
-.obfx-sharing-inline a[href*="renren"],
-.obfx-sharing a[href*="renren"] {
+.obfx-sharing-inline a.btn-renren,
+.obfx-sharing a.renren {
 	background-color: #227ec7;
 }
 
-.obfx-sharing-inline a[href*="weibo"],
-.obfx-sharing a[href*="weibo"] {
+.obfx-sharing-inline a.btn-weibo,
+.obfx-sharing a.weibo {
 	background-color: #e6162d;
 }
 
-.obfx-sharing-inline a[href*="sms"],
-.obfx-sharing a[href*="sms"] {
+.obfx-sharing-inline a.btn-viber,
+.obfx-sharing a.viber {
 	background-color: #00b901;
 }
 
-.obfx-sharing-inline a[href*="whatsapp"],
-.obfx-sharing a[href*="whatsapp"] {
+.obfx-sharing-inline a.btn-whatsapp,
+.obfx-sharing a.whatsapp {
 	background-color: #20b038;
 }
 
-.obfx-sharing-inline a[href*="mail"],
-.obfx-sharing a[href*="mail"] {
+.obfx-sharing-inline a.btn-mail,
+.obfx-sharing a.mail {
 	background-color: #58a9de;
 }
 
@@ -223,7 +223,6 @@
 		padding: 0;
 		border-radius: 0;
 		opacity: 1;
-		-webkit-box-shadow: none;
 		box-shadow: none;
 		line-height: 40px;
 	}

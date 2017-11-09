@@ -11,23 +11,38 @@ if ( ! function_exists( 'hestia_team_customize_register' ) ) :
 	 * Hook controls for Team section to Customizer.
 	 *
 	 * @since Hestia 1.0
-	 * @modified 1.1.30
+	 * @modified 1.1.49
 	 */
 	function hestia_team_customize_register( $wp_customize ) {
 
-		$selective_refresh = isset( $wp_customize->selective_refresh ) ? true : false;
-		$wp_customize->add_section(
-			'hestia_team', array(
-				'title'    => esc_html__( 'Team', 'themeisle-companion' ),
-				'panel'    => 'hestia_frontpage_sections',
-				'priority' => apply_filters( 'hestia_section_priority', 30, 'hestia_team' ),
-			)
-		);
+		$selective_refresh = isset( $wp_customize->selective_refresh ) ? 'postMessage' : 'refresh';
+
+		if ( class_exists( 'Hestia_Hiding_Section' ) ) {
+			$wp_customize->add_section(
+				new Hestia_Hiding_Section(
+					$wp_customize, 'hestia_team', array(
+						'title'          => esc_html__( 'Team', 'themeisle-companion' ),
+						'panel'          => 'hestia_frontpage_sections',
+						'priority'       => apply_filters( 'hestia_section_priority', 30, 'hestia_team' ),
+						'hiding_control' => 'hestia_team_hide',
+					)
+				)
+			);
+		} else {
+			$wp_customize->add_section(
+				'hestia_team', array(
+					'title'    => esc_html__( 'Team', 'themeisle-companion' ),
+					'panel'    => 'hestia_frontpage_sections',
+					'priority' => apply_filters( 'hestia_section_priority', 30, 'hestia_team' ),
+				)
+			);
+		}
 
 		$wp_customize->add_setting(
 			'hestia_team_hide', array(
 				'sanitize_callback' => 'hestia_sanitize_checkbox',
 				'default'           => false,
+				'transport'         => $selective_refresh,
 			)
 		);
 
@@ -43,7 +58,7 @@ if ( ! function_exists( 'hestia_team_customize_register' ) ) :
 		$wp_customize->add_setting(
 			'hestia_team_title', array(
 				'sanitize_callback' => 'sanitize_text_field',
-				'transport'         => $selective_refresh ? 'postMessage' : 'refresh',
+				'transport'         => $selective_refresh,
 			)
 		);
 
@@ -58,7 +73,7 @@ if ( ! function_exists( 'hestia_team_customize_register' ) ) :
 		$wp_customize->add_setting(
 			'hestia_team_subtitle', array(
 				'sanitize_callback' => 'sanitize_text_field',
-				'transport'         => $selective_refresh ? 'postMessage' : 'refresh',
+				'transport'         => $selective_refresh,
 			)
 		);
 
@@ -74,7 +89,7 @@ if ( ! function_exists( 'hestia_team_customize_register' ) ) :
 			$wp_customize->add_setting(
 				'hestia_team_content', array(
 					'sanitize_callback' => 'hestia_repeater_sanitize',
-					'transport'         => $selective_refresh ? 'postMessage' : 'refresh',
+					'transport'         => $selective_refresh,
 				)
 			);
 
@@ -117,10 +132,20 @@ function hestia_register_team_partials( $wp_customize ) {
 	}
 
 	$wp_customize->selective_refresh->add_partial(
+		'hestia_team_hide', array(
+			'selector' => '.hestia-team:not(.is-shortcode)',
+			'container_inclusive' => true,
+			'render_callback' => 'hestia_team',
+			'fallback_refresh' => false,
+		)
+	);
+
+	$wp_customize->selective_refresh->add_partial(
 		'hestia_team_title', array(
 			'selector' => '#team h2.hestia-title',
 			'settings' => 'hestia_team_title',
 			'render_callback' => 'hestia_team_title_callback',
+			'fallback_refresh' => false,
 		)
 	);
 
@@ -129,6 +154,7 @@ function hestia_register_team_partials( $wp_customize ) {
 			'selector' => '#team h5.description',
 			'settings' => 'hestia_team_subtitle',
 			'render_callback' => 'hestia_team_subtitle_callback',
+			'fallback_refresh' => false,
 		)
 	);
 

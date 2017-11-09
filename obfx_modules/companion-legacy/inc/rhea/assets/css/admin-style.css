@@ -21,7 +21,6 @@
 .rhea-fontawesome-dialog {
 	z-index: 999999;
 	background: #fcfcfc;
-	-webkit-box-shadow: 0 5px 15px rgba(0,0,0,0.7);
 	box-shadow: 0 5px 15px rgba(0,0,0,0.7);
 }
 
@@ -41,7 +40,6 @@
 
 #fontawesome-popup .left-side {
 	float: left;
-	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	width: 20%;
 	padding: 15px;
@@ -50,7 +48,6 @@
 #fontawesome-popup .right-side {
 	float: left;
 	overflow-y: scroll;
-	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	width: 80%;
 	height: 507px;
@@ -64,7 +61,6 @@
 	padding-right: 0;
 	border: 0 none;
 	background: transparent;
-	-webkit-box-shadow: none;
 	box-shadow: none;
 	cursor: pointer;
 }

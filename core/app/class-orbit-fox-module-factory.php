@@ -28,7 +28,7 @@ class Orbit_Fox_Module_Factory {
 	 * @throws Exception Thrown if no module class exists for provided $module_name.
 	 */
 	public static function build( $module_name ) {
-		$module = str_replace( '-','_', ucwords( $module_name ) ) . '_OBFX_Module';
+		$module = str_replace( '-', '_', ucwords( $module_name ) ) . '_OBFX_Module';
 		if ( class_exists( $module ) ) {
 			return new $module;
 		}
