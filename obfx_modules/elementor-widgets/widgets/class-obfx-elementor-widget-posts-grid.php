@@ -20,14 +20,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @package Elementor_Widgets_OBFX_Module
  */
 class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
-	/**
-	 * Set the widget ID
-	 *
-	 * @return string
-	 */
-	public function get_id() {
-		return 'obfx-widget-posts-grid';
-	}
 
 	/**
 	 * Widget title.
