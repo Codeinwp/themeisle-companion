@@ -67,6 +67,9 @@ class OBFX_Elementor_Widget_Services extends Widget_Base {
 		$this->style_grid_options();
 	}
 
+	/**
+	 * Content controls
+	 */
 	private function services_content() {
 		$this->start_controls_section(
 			'section_content',
@@ -195,6 +198,10 @@ class OBFX_Elementor_Widget_Services extends Widget_Base {
 		);
 		$this->end_controls_section();
 	}
+
+	/**
+	 * Icon Style Controls
+	 */
 	private function style_icon() {
 		$this->start_controls_section(
 			'section_style_icon',
@@ -362,6 +369,10 @@ class OBFX_Elementor_Widget_Services extends Widget_Base {
 
 		$this->end_controls_section();
 	}
+
+	/**
+	 * Grid Style Controls
+	 */
 	private function style_grid_options() {
 		$this->start_controls_section(
 			'section_grid_style',
@@ -464,6 +475,9 @@ class OBFX_Elementor_Widget_Services extends Widget_Base {
 		$this->end_controls_section();
 	}
 
+	/**
+	 * Items Style Controls
+	 */
     private function items_style_tabs() {
 		    $this->start_controls_tabs( 'tabs_background' );
 
