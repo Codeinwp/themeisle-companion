@@ -22,12 +22,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 class OBFX_Elementor_Widget_Services extends Widget_Base {
 
 	/**
-	 * Set the widget ID
+	 * Widget name.
 	 *
 	 * @return string
 	 */
-	public function get_id() {
-		return 'obfx-widget-services';
+	public function get_name() {
+		return 'obfx-services';
 	}
 
 	/**
@@ -48,14 +48,6 @@ class OBFX_Elementor_Widget_Services extends Widget_Base {
 		return 'fa fa-themeisle';
 	}
 
-	/**
-	 * Widget name.
-	 *
-	 * @return string
-	 */
-	public function get_name() {
-		return 'obfx-services';
-	}
 
 	/**
 	 * Widget Category
@@ -71,174 +63,10 @@ class OBFX_Elementor_Widget_Services extends Widget_Base {
 	 */
 	protected function _register_controls() {
 		$this->services_content();
-		$this->services_style();
+		$this->style_icon();
+		$this->style_grid_options();
 	}
 
-	private function services_style() {
-		$this->start_controls_section(
-			'section_style_icon',
-			[
-				'label' => __( 'Icon', 'themeisle-companion' ),
-				'tab'   => Controls_Manager::TAB_STYLE,
-			]
-		);
-		$this->add_control(
-			'icon_space',
-			[
-				'label' => __( 'Spacing', 'themeisle-companion' ),
-				'type' => Controls_Manager::SLIDER,
-				'default' => [
-					'size' => 15,
-				],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 300,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}}.obfx-position-right .obfx-icon' => 'margin-left: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}}.obfx-position-left .obfx-icon' => 'margin-right: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}}.obfx-position-top .obfx-icon' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
-		$this->add_control(
-			'icon_size',
-			[
-				'label' => __( 'Size', 'themeisle-companion' ),
-				'type' => Controls_Manager::SLIDER,
-				'range' => [
-					'px' => [
-						'min' => 6,
-						'max' => 300,
-					],
-				],
-				'default' => [
-					'size' => 35,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .obfx-icon' => 'font-size: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
-		$this->end_controls_section();
-		$this->start_controls_section(
-			'section_style_content',
-			[
-				'label' => __( 'Content', 'themeisle-companion' ),
-				'tab'   => Controls_Manager::TAB_STYLE,
-			]
-		);
-
-		$this->add_responsive_control(
-			'text_align',
-			[
-				'label' => __( 'Alignment', 'themeisle-companion' ),
-				'type' => Controls_Manager::CHOOSE,
-				'options' => [
-					'left' => [
-						'title' => __( 'Left', 'themeisle-companion' ),
-						'icon' => 'fa fa-align-left',
-					],
-					'center' => [
-						'title' => __( 'Center', 'themeisle-companion' ),
-						'icon' => 'fa fa-align-center',
-					],
-					'right' => [
-						'title' => __( 'Right', 'themeisle-companion' ),
-						'icon' => 'fa fa-align-right',
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .obfx-service-box' => 'text-align: {{VALUE}};',
-				],
-			]
-		);
-
-		$this->add_control(
-			'heading_title',
-			[
-				'label' => __( 'Title', 'themeisle-companion' ),
-				'type' => Controls_Manager::HEADING,
-				'separator' => 'before',
-			]
-		);
-
-		$this->add_responsive_control(
-			'title_bottom_space',
-			[
-				'label' => __( 'Spacing', 'themeisle-companion' ),
-				'type' => Controls_Manager::SLIDER,
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 300,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .obfx-service-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
-				],
-			]
-		);
-
-		$this->add_control(
-			'title_color',
-			[
-				'label' => __( 'Color', 'themeisle-companion' ),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
-				'selectors' => [
-					'{{WRAPPER}} .obfx-service-title' => 'color: {{VALUE}};',
-				],
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'title_typography',
-				'selector' => '{{WRAPPER}} .obfx-service-title',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
-			]
-		);
-
-		$this->add_control(
-			'heading_description',
-			[
-				'label' => __( 'Description', 'themeisle-companion' ),
-				'type' => Controls_Manager::HEADING,
-				'separator' => 'before',
-			]
-		);
-
-		$this->add_control(
-			'description_color',
-			[
-				'label' => __( 'Color', 'themeisle-companion' ),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
-				'selectors' => [
-					'{{WRAPPER}} .obfx-service-text' => 'color: {{VALUE}};',
-				],
-				'scheme' => [
-					'type' => Scheme_Color::get_type(),
-					'value' => Scheme_Color::COLOR_3,
-				],
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'description_typography',
-				'selector' => '{{WRAPPER}} .obfx-service-text',
-				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
-			]
-		);
-
-		$this->end_controls_section();
-	}
 	private function services_content() {
 		$this->start_controls_section(
 			'section_content',
@@ -367,6 +195,353 @@ class OBFX_Elementor_Widget_Services extends Widget_Base {
 		);
 		$this->end_controls_section();
 	}
+	private function style_icon() {
+		$this->start_controls_section(
+			'section_style_icon',
+			[
+				'label' => __( 'Icon', 'themeisle-companion' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			]
+		);
+		$this->add_control(
+			'icon_space',
+			[
+				'label' => __( 'Spacing', 'themeisle-companion' ),
+				'type' => Controls_Manager::SLIDER,
+				'default' => [
+					'size' => 15,
+				],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 300,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}}.obfx-position-right .obfx-icon' => 'margin-left: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}}.obfx-position-left .obfx-icon' => 'margin-right: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}}.obfx-position-top .obfx-icon' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+		$this->add_control(
+			'icon_size',
+			[
+				'label' => __( 'Size', 'themeisle-companion' ),
+				'type' => Controls_Manager::SLIDER,
+				'range' => [
+					'px' => [
+						'min' => 6,
+						'max' => 300,
+					],
+				],
+				'default' => [
+					'size' => 35,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .obfx-icon' => 'font-size: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+		$this->end_controls_section();
+		$this->start_controls_section(
+			'section_style_content',
+			[
+				'label' => __( 'Content', 'themeisle-companion' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_responsive_control(
+			'text_align',
+			[
+				'label' => __( 'Alignment', 'themeisle-companion' ),
+				'type' => Controls_Manager::CHOOSE,
+				'toggle' => false,
+				'default' => 'center',
+				'options' => [
+					'left' => [
+						'title' => __( 'Left', 'themeisle-companion' ),
+						'icon' => 'fa fa-align-left',
+					],
+					'center' => [
+						'title' => __( 'Center', 'themeisle-companion' ),
+						'icon' => 'fa fa-align-center',
+					],
+					'right' => [
+						'title' => __( 'Right', 'themeisle-companion' ),
+						'icon' => 'fa fa-align-right',
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .obfx-service-box' => 'text-align: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'heading_title',
+			[
+				'label' => __( 'Title', 'themeisle-companion' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_responsive_control(
+			'title_bottom_space',
+			[
+				'label' => __( 'Spacing', 'themeisle-companion' ),
+				'type' => Controls_Manager::SLIDER,
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 300,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .obfx-service-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'title_color',
+			[
+				'label' => __( 'Color', 'themeisle-companion' ),
+				'type' => Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} .obfx-service-title' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'title_typography',
+				'selector' => '{{WRAPPER}} .obfx-service-title',
+				'scheme' => Scheme_Typography::TYPOGRAPHY_1,
+			]
+		);
+
+		$this->add_control(
+			'heading_description',
+			[
+				'label' => __( 'Description', 'themeisle-companion' ),
+				'type' => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_control(
+			'description_color',
+			[
+				'label' => __( 'Color', 'themeisle-companion' ),
+				'type' => Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} .obfx-service-text' => 'color: {{VALUE}};',
+				],
+				'scheme' => [
+					'type' => Scheme_Color::get_type(),
+					'value' => Scheme_Color::COLOR_3,
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'description_typography',
+				'selector' => '{{WRAPPER}} .obfx-service-text',
+				'scheme' => Scheme_Typography::TYPOGRAPHY_3,
+			]
+		);
+
+		$this->end_controls_section();
+	}
+	private function style_grid_options() {
+		$this->start_controls_section(
+			'section_grid_style',
+			[
+				'label' => __( 'Grid', 'themeisle-companion' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		// Columns margin.
+		$this->add_control(
+			'grid_style_columns_margin',
+			[
+				'label'     => __( 'Columns margin', 'elementor-pro' ),
+				'type'      => Controls_Manager::SLIDER,
+				'default'   => [
+					'size' => 15,
+				],
+				'range'     => [
+					'px' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .obfx-grid-wrapper'   => 'padding-right: calc( {{SIZE}}{{UNIT}} ); padding-left: calc( {{SIZE}}{{UNIT}} );',
+					'{{WRAPPER}} .obfx-grid-container' => 'margin-left: calc( -{{SIZE}}{{UNIT}} ); margin-right: calc( -{{SIZE}}{{UNIT}} );',
+				],
+			]
+		);
+
+		// Row margin.
+		$this->add_control(
+			'grid_style_rows_margin',
+			[
+				'label'     => __( 'Rows margin', 'elementor-pro' ),
+				'type'      => Controls_Manager::SLIDER,
+				'default'   => [
+					'size' => 30,
+				],
+				'range'     => [
+					'px' => [
+						'min' => 0,
+						'max' => 100,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .obfx-grid-wrapper' => 'padding-bottom: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		// Background.
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name'     => 'grid_style_background',
+				'types'    => [ 'classic', 'gradient' ],
+				'selector' => '{{WRAPPER}} .obfx-grid',
+			]
+		);
+
+		// Items options.
+		$this->add_control(
+			'grid_items_style_heading',
+			[
+				'label'     => __( 'Items', 'themeisle-companion' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		// Items internal padding.
+		$this->add_control(
+			'grid_items_style_padding',
+			[
+				'label'      => __( 'Padding', 'themeisle-companion' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors'  => [
+					'{{WRAPPER}} .obfx-grid-col' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		// Items border radius.
+		$this->add_control(
+			'grid_items_style_border_radius',
+			[
+				'label'      => __( 'Border Radius', 'themeisle-companion' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors'  => [
+					'{{WRAPPER}} .obfx-grid-col' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->items_style_tabs();
+		$this->end_controls_section();
+	}
+
+    private function items_style_tabs() {
+		    $this->start_controls_tabs( 'tabs_background' );
+
+		    $this->start_controls_tab(
+			    'tab_background_normal',
+			    [
+				    'label' => __( 'Normal', 'themeisle-companion' ),
+			    ]
+		    );
+
+            $this->add_group_control(
+                Group_Control_Background::get_type(),
+                [
+                    'name'     => 'grid_items_background',
+                    'types'    => [ 'classic', 'gradient' ],
+                    'selector' => '{{WRAPPER}} .obfx-service-box',
+                ]
+            );
+
+		    $this->add_group_control(
+			    Group_Control_Box_Shadow::get_type(),
+			    [
+				    'name'      => 'grid_items_box_shadow',
+				    'selector'  => '{{WRAPPER}} .obfx-service-box',
+			    ]
+		    );
+
+		    $this->end_controls_tab();
+
+		    $this->start_controls_tab(
+			    'tab_background_hover',
+			    [
+				    'label' => __( 'Hover', 'themeisle-companion' ),
+			    ]
+		    );
+
+
+	    $this->add_group_control(
+		    Group_Control_Background::get_type(),
+		    [
+			    'name'     => 'grid_items_background_hover',
+			    'types'    => [ 'classic', 'gradient' ],
+			    'selector' => '{{WRAPPER}} .obfx-service-box:hover',
+		    ]
+	    );
+
+	    $this->add_group_control(
+		    Group_Control_Box_Shadow::get_type(),
+		    [
+			    'name'      => 'grid_items_box_shadow_hover',
+			    'selector'  => '{{WRAPPER}} .obfx-service-box:hover',
+		    ]
+	    );
+
+
+	    $this->add_control(
+		    'hover_transition',
+		    [
+			    'label'       => __( 'Transition Duration', 'themeisle-companion' ),
+			    'type'        => Controls_Manager::SLIDER,
+			    'default'     => [
+				    'size' => 0.3,
+			    ],
+			    'range'       => [
+				    'px' => [
+					    'max'  => 3,
+					    'step' => 0.1,
+				    ],
+			    ],
+			    'selectors'   => [
+				    '{{WRAPPER}} .obfx-service-box' => 'transition: all {{SIZE}}s ease;',
+			    ],
+		    ]
+	    );
+		    $this->end_controls_tab();
+
+		    $this->end_controls_tabs();
+    }
 
 	/**
 	 * Render function to output the pricing table.
@@ -392,7 +567,6 @@ class OBFX_Elementor_Widget_Services extends Widget_Base {
 			} ?>
 			<div class="obfx-grid-wrapper">
 				<?php if ( ! empty( $service['link']['url'] ) ) {
-				    var_dump($service['link']);
 					$link_props = ' href="' . esc_url( $service['link']['url'] ) . '" ';
 					if( $service['link']['is_external'] === 'on' ) {
 					    $link_props .= ' target="_blank" ';

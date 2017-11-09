@@ -271,7 +271,6 @@
 .obfx-position-top .obfx-service-box {
     flex-direction: column;
 }
-
-.obfx-service-title, .obfx-service-text {
+.obfx-service-box .obfx-service-box-content .obfx-service-title, .obfx-service-box .obfx-service-box-content .obfx-service-text {
     margin: 0;
 }

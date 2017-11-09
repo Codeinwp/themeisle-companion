@@ -243,7 +243,7 @@ class Orbit_Fox_Model {
 	 * @access  public
 	 * @return mixed
 	 */
-	public function distroy_model() {
+	public function destroy_model() {
 		return delete_option( $this->namespace );
 	}
 }

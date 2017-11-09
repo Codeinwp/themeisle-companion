@@ -126,7 +126,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 //		var_dump($customPostTaxonomies);
 
 		//return $options;
-	}
+//	}
 
 	/**
 	 * Register Elementor Controls.
