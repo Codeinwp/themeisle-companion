@@ -179,7 +179,10 @@
 }
 
 .obfx-grid-footer a {
+    color: #333;
     display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
 }
 
 .obfx-grid-container.obfx-grid-style-list  .obfx-grid-col {
@@ -187,6 +190,20 @@
     display: flex;
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
+}
+
+.obfx-grid-container.obfx-grid-style-list .obfx-grid-col-image {
+    width: 40%;
+}
+
+.obfx-grid-container.obfx-grid-style-list .obfx-grid-col-content {
+    padding-left: 15px;
+    width: 60%;
+}
+
+.obfx-grid-container.obfx-grid-style-list .obfx-grid-col.obfx-no-image .obfx-grid-col-content {
+    padding-left: 0;
+    width: 100%;
 }
 
 .obfx-grid-pagination {
