@@ -91,6 +91,31 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 	}
 
 	/**
+	 * Get post type categories.
+	 */
+	private function grid_get_all_post_type_categories( $post_type ) {
+		$options = array();
+
+		if( $post_type == 'post' ) {
+		    $taxonomy = 'category';
+        } else {
+			$taxonomy = 'product_cat';
+        }
+
+        // Get categories for post type.
+		$terms = get_terms( array(
+			'taxonomy' => $taxonomy,
+			'hide_empty' => false,
+		) );
+
+		foreach ( $terms as $term ) {
+		    $options[$term->slug] = $term->name;
+        }
+
+		return $options;
+	}
+
+	/**
 	 * Register Elementor Controls.
 	 */
 	protected function _register_controls() {
@@ -130,6 +155,32 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				'label'   => '<i class="fa fa-tag"></i> ' . __( 'Post Type', 'themeisle-companion' ),
 				'default' => 'post',
 				'options' => $this->grid_get_all_post_types(),
+			]
+		);
+
+		// Post categories.
+		$this->add_control(
+			'grid_post_categories',
+			[
+				'type'    => Controls_Manager::SELECT,
+				'label'   => '<i class="fa fa-tag"></i> ' . __( 'Category', 'themeisle-companion' ),
+				'options' => $this->grid_get_all_post_type_categories('post'),
+				'condition' => [
+					'grid_post_type' => 'post',
+				],
+			]
+		);
+
+		// Product categories.
+		$this->add_control(
+			'grid_product_categories',
+			[
+				'type'    => Controls_Manager::SELECT,
+				'label'   => '<i class="fa fa-tag"></i> ' . __( 'Category', 'themeisle-companion' ),
+				'options' => $this->grid_get_all_post_type_categories('product'),
+				'condition' => [
+					'grid_post_type' => 'product',
+				],
 			]
 		);
 
@@ -708,6 +759,16 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				'selectors'  => [
 					'{{WRAPPER}} .obfx-grid-col' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
+			]
+		);
+
+		// Items box shadow.
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name'      => 'grid_items_style_box_shadow',
+				'selector'  => '{{WRAPPER}} .obfx-grid-col',
+				'separator' => '',
 			]
 		);
 
@@ -1553,6 +1614,20 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 		    $args['post_type'] = $settings['grid_post_type'];
 		}
 
+		// Display posts in category.
+		if ( ! empty( $settings['grid_post_categories'] ) && $settings['grid_post_type'] == 'post' ) {
+			$args['category_name'] = $settings['grid_post_categories'];
+		}
+
+		// Display products in category.
+		if ( ! empty( $settings['grid_product_categories'] ) && $settings['grid_post_type'] == 'product' ) {
+			$args['tax_query'] = array(
+				'taxonomy' => 'product_cat',
+				'field' => 'slug',
+				'terms' => $settings['grid_product_categories']
+			);
+		}
+
 		// Items to display.
 		if ( ! empty( $settings['grid_items'] ) &&  intval( $settings['grid_items'] ) == $settings['grid_items']  ) {
 			$args['posts_per_page'] = $settings['grid_items'];
@@ -1571,6 +1646,8 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 
         // Query.
         $query = new \WP_Query( $args );
+
+		var_dump($args);
 
         // Query results.
         if ( $query->have_posts() ) {
