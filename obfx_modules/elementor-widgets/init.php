@@ -8,6 +8,8 @@
  * @package    Elementor_Widgets_OBFX_Module
  */
 
+define( 'OBFX_MODULE_URL', __FILE__ );
+
 /**
  * The class defines a new module to be used by Orbit Fox plugin.
  *
@@ -24,6 +26,7 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	private $elementor_widgets = array(
 		'class-obfx-elementor-widget-pricing-table',
+		'class-obfx-elementor-widget-services',
 		'class-obfx-elementor-widget-posts-grid',
 	);
 
@@ -62,6 +65,7 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		if ( $this->has_elementor() ) {
 			return true;
 		}
+		return false;
 	}
 
 	/**
@@ -84,7 +88,7 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		$this->loader->add_action( 'elementor/init', $this, 'add_elementor_category' );
 		$this->loader->add_action( 'elementor/widgets/widgets_registered', $this, 'add_elementor_widgets' );
-
+		$this->loader->add_action( 'elementor/frontend/after_register_scripts', $this, 'enqueue_scripts' );
 
 	}
 
@@ -155,10 +159,16 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		// Pricing table
 		$widget = new Elementor\OBFX_Elementor_Widget_Pricing_Table();
 		$widgets_manager->register_widget_type( $widget );
-
+        // Services
+		$widget = new Elementor\OBFX_Elementor_Widget_Services();
+		$widgets_manager->register_widget_type( $widget );
 		// Posts grid
 		$widget = new Elementor\OBFX_Elementor_Widget_Posts_Grid();
 		$widgets_manager->register_widget_type( $widget );
+	}
 
+	public function enqueue_scripts() {
+		// Add custom JS for grid.
+		wp_enqueue_script( 'obfx-grid-js', plugins_url ( 'js/obfx-grid.js', OBFX_MODULE_URL ), array(), '1.0', true );
 	}
 }
