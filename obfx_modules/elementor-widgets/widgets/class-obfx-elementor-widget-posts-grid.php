@@ -20,14 +20,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @package Elementor_Widgets_OBFX_Module
  */
 class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
-	/**
-	 * Set the widget ID
-	 *
-	 * @return string
-	 */
-	public function get_id() {
-		return 'obfx-widget-posts-grid';
-	}
 
 	/**
 	 * Widget title.
@@ -101,32 +93,27 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 	/**
 	 * Get post type categories.
 	 */
-//	private function grid_get_all_post_type_categories($post_type) {
-//		$options = array();
-//
-//		$customPostTaxonomies = get_object_taxonomies('product');
-//
-//		if(count($customPostTaxonomies) > 0)
-//		{
-//			foreach($customPostTaxonomies as $tax)
-//			{
-//				$args = array(
-//					'orderby' => 'name',
-//					'show_count' => 0,
-//					'pad_counts' => 0,
-//					'hierarchical' => 1,
-//					'taxonomy' => $tax,
-//					'title_li' => ''
-//				);
-//
-//				wp_list_categories( $args );
-//			}
-//		}
-//
-//		var_dump($customPostTaxonomies);
+	private function grid_get_all_post_type_categories( $post_type ) {
+		$options = array();
 
-		//return $options;
-//	}
+		if( $post_type == 'post' ) {
+		    $taxonomy = 'category';
+        } else {
+			$taxonomy = 'product_cat';
+        }
+
+        // Get categories for post type.
+		$terms = get_terms( array(
+			'taxonomy' => $taxonomy,
+			'hide_empty' => false,
+		) );
+
+		foreach ( $terms as $term ) {
+		    $options[$term->slug] = $term->name;
+        }
+
+		return $options;
+	}
 
 	/**
 	 * Register Elementor Controls.
@@ -171,15 +158,31 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
-		// Post type categories.
-		/*$this->add_control(
-			'grid_post_type_category',
+		// Post categories.
+		$this->add_control(
+			'grid_post_categories',
 			[
 				'type'    => Controls_Manager::SELECT,
 				'label'   => '<i class="fa fa-tag"></i> ' . __( 'Category', 'themeisle-companion' ),
-				'options' => $this->grid_get_all_post_type_categories('page'),
+				'options' => $this->grid_get_all_post_type_categories('post'),
+				'condition' => [
+					'grid_post_type' => 'post',
+				],
 			]
-		);*/
+		);
+
+		// Product categories.
+		$this->add_control(
+			'grid_product_categories',
+			[
+				'type'    => Controls_Manager::SELECT,
+				'label'   => '<i class="fa fa-tag"></i> ' . __( 'Category', 'themeisle-companion' ),
+				'options' => $this->grid_get_all_post_type_categories('product'),
+				'condition' => [
+					'grid_post_type' => 'product',
+				],
+			]
+		);
 
 		// Style.
 		$this->add_control(
@@ -202,7 +205,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				'type'        => Controls_Manager::NUMBER,
 				'label'       => '<i class="fa fa-th-large"></i> ' . __( 'Items', 'themeisle-companion' ),
 				'placeholder' => __( 'How many items?', 'themeisle-companion' ),
-				'default'     => __( '3', 'themeisle-companion' ),
+				'default'     => 6,
 			]
 		);
 
@@ -284,13 +287,13 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				'label' => '<i class="fa fa-arrows-h"></i> ' . __( 'Image height', 'themeisle-companion' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
-					'size' => 200,
+					'size' => 220,
 				],
 				'tablet_default' => [
-					'size' => 200,
+					'size' => 220,
 				],
 				'mobile_default' => [
-					'size' => 200,
+					'size' => 220,
 				],
 				'range' => [
 					'px' => [
@@ -507,7 +510,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			[
 				'label' => '<i class="fa fa-check-square"></i> ' . __( 'Button', 'themeisle-companion' ),
 				'type' => Controls_Manager::SWITCHER,
-				'default' => '',
+				'default' => 'yes',
 				'condition' => [
 					'section_grid.grid_post_type!' => 'product',
 				],
@@ -759,6 +762,16 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
+		// Items box shadow.
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name'      => 'grid_items_style_box_shadow',
+				'selector'  => '{{WRAPPER}} .obfx-grid-col',
+				'separator' => '',
+			]
+		);
+
 		// Background for items options.
 		$this->add_group_control(
 			Group_Control_Background::get_type(),
@@ -933,6 +946,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				],
 				'selectors' => [
 					'{{WRAPPER}} .obfx-grid-meta' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .obfx-grid-meta span' => 'color: {{VALUE}};',
 					'{{WRAPPER}} .obfx-grid-meta a' => 'color: {{VALUE}};',
 				],
 			]
@@ -1097,6 +1111,20 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				'label'   => __( 'Button', 'themeisle-companion' ),
 				'type'    => Controls_Manager::HEADING,
 				'separator' => 'before',
+				'condition' => [
+					'section_grid_content.grid_content_default_btn!' => '',
+					'section_grid_content.grid_content_product_btn!' => '',
+				],
+			]
+		);
+
+		// Content typography.
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'grid_button_style_typography',
+				'scheme'   => Scheme_Typography::TYPOGRAPHY_1,
+				'selector' => '{{WRAPPER}} .obfx-grid-footer a',
 				'condition' => [
 					'section_grid_content.grid_content_default_btn!' => '',
 					'section_grid_content.grid_content_product_btn!' => '',
@@ -1586,6 +1614,20 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 		    $args['post_type'] = $settings['grid_post_type'];
 		}
 
+		// Display posts in category.
+		if ( ! empty( $settings['grid_post_categories'] ) && $settings['grid_post_type'] == 'post' ) {
+			$args['category_name'] = $settings['grid_post_categories'];
+		}
+
+		// Display products in category.
+		if ( ! empty( $settings['grid_product_categories'] ) && $settings['grid_post_type'] == 'product' ) {
+			$args['tax_query'] = array(
+				'taxonomy' => 'product_cat',
+				'field' => 'slug',
+				'terms' => $settings['grid_product_categories']
+			);
+		}
+
 		// Items to display.
 		if ( ! empty( $settings['grid_items'] ) &&  intval( $settings['grid_items'] ) == $settings['grid_items']  ) {
 			$args['posts_per_page'] = $settings['grid_items'];
@@ -1605,13 +1647,15 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
         // Query.
         $query = new \WP_Query( $args );
 
+		var_dump($args);
+
         // Query results.
         if ( $query->have_posts() ) {
             while ( $query->have_posts() ) {
                 $query->the_post();
 
 	            echo '<div class="obfx-grid-wrapper">';
-                echo '<article class="obfx-grid-col">';
+                echo '<article class="obfx-grid-col' . ( ! empty( $settings['grid_image_hide'] == 'yes' || ! has_post_thumbnail() ) ? ' obfx-no-image' : '' ) . '">';
 
                 // Image.
 	            $this->renderImage();
