@@ -163,7 +163,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			'grid_post_categories',
 			[
 				'type'    => Controls_Manager::SELECT,
-				'label'   => '<i class="fa fa-tag"></i> ' . __( 'Category', 'themeisle-companion' ),
+				'label'   => '<i class="fa fa-folder"></i> ' . __( 'Category', 'themeisle-companion' ),
 				'options' => $this->grid_get_all_post_type_categories('post'),
 				'condition' => [
 					'grid_post_type' => 'post',
@@ -1622,9 +1622,12 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 		// Display products in category.
 		if ( ! empty( $settings['grid_product_categories'] ) && $settings['grid_post_type'] == 'product' ) {
 			$args['tax_query'] = array(
-				'taxonomy' => 'product_cat',
-				'field' => 'slug',
-				'terms' => $settings['grid_product_categories']
+				'relation' => 'AND',
+                array(
+	                'taxonomy' => 'product_cat',
+	                'field' => 'slug',
+	                'terms' => $settings['grid_product_categories']
+                )
 			);
 		}
 
@@ -1646,8 +1649,6 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 
         // Query.
         $query = new \WP_Query( $args );
-
-		var_dump($args);
 
         // Query results.
         if ( $query->have_posts() ) {
