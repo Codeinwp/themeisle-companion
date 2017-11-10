@@ -68,7 +68,8 @@ class Orbit_Fox {
 	public function __construct() {
 
 		$this->plugin_name = 'orbit-fox';
-		$this->version = '2.0.6';
+
+			$this->version = '2.1.0';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -123,7 +124,7 @@ class Orbit_Fox {
 	private function prepare_modules() {
 		$global_settings = new Orbit_Fox_Global_Settings();
 		$modules_to_load = $global_settings->instance()->get_modules();
-		$obfx_model = new Orbit_Fox_Model();
+		$obfx_model      = new Orbit_Fox_Model();
 
 		$module_factory = new Orbit_Fox_Module_Factory();
 		foreach ( $modules_to_load as $module_name ) {

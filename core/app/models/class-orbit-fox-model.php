@@ -73,27 +73,27 @@ class Orbit_Fox_Model {
 	 * @param   array $modules The modules array passed by Orbit_Fox.
 	 */
 	public function register_modules_data( $modules = array() ) {
-		$module_status = array();
+		$module_status   = array();
 		$module_settings = array();
 		if ( ! empty( $modules ) ) {
 			foreach ( $modules as $slug => $module ) {
-				$is_enabled = $module->enable_module();
-				$is_auto = $module->auto;
-				$active = false;
+				$is_enabled     = $module->enable_module();
+				$is_auto        = $module->auto;
+				$active         = false;
 				$showed_notices = array();
 
 				$module_status[ $slug ] = array(
-					'enabled' => $is_enabled,
-					'autoload' => $is_auto,
+					'enabled'        => $is_enabled,
+					'autoload'       => $is_auto,
 					'showed_notices' => $showed_notices,
-					'active' => $active,
+					'active'         => $active,
 				);
 
 				$module_settings[ $slug ] = $module->get_options_defaults();
 			}
 		}
 
-		$this->module_status = $module_status;
+		$this->module_status   = $module_status;
 		$this->module_settings = $module_settings;
 
 	}
@@ -107,8 +107,8 @@ class Orbit_Fox_Model {
 	 */
 	public function default_data() {
 		$data = array(
-			'core_settings' => $this->core_settings,
-			'module_status' => $this->module_status,
+			'core_settings'   => $this->core_settings,
+			'module_status'   => $this->module_status,
 			'module_settings' => $this->module_settings,
 		);
 
@@ -159,7 +159,7 @@ class Orbit_Fox_Model {
 	 * @return mixed
 	 */
 	public function set_module_option( $slug, $key, $value ) {
-		$new = array();
+		$new                                     = array();
 		$new['module_settings'][ $slug ][ $key ] = $value;
 		return $this->save( $new );
 	}
@@ -206,7 +206,7 @@ class Orbit_Fox_Model {
 	 * @return mixed
 	 */
 	public function set_module_status( $slug, $key, $value ) {
-		$new = array();
+		$new                                   = array();
 		$new['module_status'][ $slug ][ $key ] = $value;
 		return $this->save( $new );
 	}
@@ -243,7 +243,7 @@ class Orbit_Fox_Model {
 	 * @access  public
 	 * @return mixed
 	 */
-	public function distroy_model() {
+	public function destroy_model() {
 		return delete_option( $this->namespace );
 	}
 }
