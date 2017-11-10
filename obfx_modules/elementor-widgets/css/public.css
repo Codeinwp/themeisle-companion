@@ -274,3 +274,20 @@
     }
 }
 /* End Of Post Type Grid Base CSS */
+
+.obfx-service-box {
+    display: flex;
+}
+
+.obfx-position-left .obfx-service-box {
+    flex-direction: row;
+}
+.obfx-position-right .obfx-service-box {
+    flex-direction: row-reverse;
+}
+.obfx-position-top .obfx-service-box {
+    flex-direction: column;
+}
+.obfx-service-box .obfx-service-box-content .obfx-service-title, .obfx-service-box .obfx-service-box-content .obfx-service-text {
+    margin: 0;
+}

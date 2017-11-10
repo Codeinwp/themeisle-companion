@@ -22,15 +22,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 
 	/**
-	 * Set the widget ID
-	 *
-	 * @return string
-	 */
-	public function get_id() {
-		return 'obfx-widget-pricing-table';
-	}
-
-	/**
 	 * Widget title.
 	 *
 	 * @return string
@@ -936,7 +927,7 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 				],
 				'render_type' => 'ui',
 				'selectors'   => [
-					'{{WRAPPER}} .obfx-pricing-table-button' => 'transition: all {{VALUE}} ease;',
+					'{{WRAPPER}} .obfx-pricing-table-button' => 'transition: all {{SIZE}}s ease;',
 				],
 			]
 		);

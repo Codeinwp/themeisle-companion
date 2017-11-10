@@ -163,7 +163,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			'grid_post_categories',
 			[
 				'type'    => Controls_Manager::SELECT,
-				'label'   => '<i class="fa fa-tag"></i> ' . __( 'Category', 'themeisle-companion' ),
+				'label'   => '<i class="fa fa-folder"></i> ' . __( 'Category', 'themeisle-companion' ),
 				'options' => $this->grid_get_all_post_type_categories('post'),
 				'condition' => [
 					'grid_post_type' => 'post',
@@ -1546,7 +1546,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 		$product = wc_get_product( get_the_ID() );
 
 		echo apply_filters( 'woocommerce_loop_add_to_cart_link',
-			sprintf( '<a href="%s" title="%s" rel="nofollow" class="button"><i class="fa fa-cart-plus"></i> %s</a>',
+			sprintf( '<a href="%s" title="%s" rel="nofollow">%s</a>',
 				esc_url( $product->add_to_cart_url() ),
 				esc_attr( $product->add_to_cart_text() ),
 				esc_html( $product->add_to_cart_text() )
@@ -1622,9 +1622,12 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 		// Display products in category.
 		if ( ! empty( $settings['grid_product_categories'] ) && $settings['grid_post_type'] == 'product' ) {
 			$args['tax_query'] = array(
-				'taxonomy' => 'product_cat',
-				'field' => 'slug',
-				'terms' => $settings['grid_product_categories']
+				'relation' => 'AND',
+                array(
+	                'taxonomy' => 'product_cat',
+	                'field' => 'slug',
+	                'terms' => $settings['grid_product_categories']
+                )
 			);
 		}
 
@@ -1647,8 +1650,6 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
         // Query.
         $query = new \WP_Query( $args );
 
-		var_dump($args);
-
         // Query results.
         if ( $query->have_posts() ) {
             while ( $query->have_posts() ) {
@@ -1667,13 +1668,13 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
                 // Meta.
                 $this->renderMeta();
 
+                // Content.
+                $this->renderContent();
+
 	            // Price.
 	            if ( class_exists( 'WooCommerce' ) ) {
 		            $this->renderPrice();
 	            }
-
-                // Content.
-                $this->renderContent();
 
                 // Button.
                 $this->renderButton();

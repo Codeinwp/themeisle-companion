@@ -207,6 +207,7 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function hooks() {
+		define( 'THEMEISLE_COMPANION_VERSION', '2.0.0' );
 		if ( $this->is_zerif() ) {
 			$this->loader->add_action( 'widgets_init', $this, 'zerif_register_widgets' );
 		}
@@ -219,7 +220,6 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		}
 
 		if ( $this->is_hestia() ) {
-		    define( 'THEMEISLE_COMPANION_VERSION', '2.0.0' );
 			$this->loader->add_action( 'after_setup_theme', $this, 'hestia_require' );
 			$this->loader->add_action( 'customize_register', $this, 'hestia_require_customizer', 0 );
 			$this->loader->add_action( 'after_switch_theme', $this, 'hestia_set_front_page' );

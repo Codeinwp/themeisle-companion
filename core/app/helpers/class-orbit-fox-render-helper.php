@@ -76,18 +76,18 @@ class Orbit_Fox_Render_Helper {
 	 */
 	private function sanitize_option( $option ) {
 		$general_defaults = array(
-			'id' => null,
-			'class' => null,
-			'name' => null,
-			'label' => 'Module Text Label',
-			'title' => false,
+			'id'          => null,
+			'class'       => null,
+			'name'        => null,
+			'label'       => 'Module Text Label',
+			'title'       => false,
 			'description' => false,
-			'type' => null,
-			'value' => '',
-			'default' => '',
+			'type'        => null,
+			'value'       => '',
+			'default'     => '',
 			'placeholder' => 'Add some text',
-			'disabled' => false,
-			'options' => array(),
+			'disabled'    => false,
+			'options'     => array(),
 		);
 
 		return wp_parse_args( $option, $general_defaults );
@@ -152,7 +152,7 @@ class Orbit_Fox_Render_Helper {
 	 * @return string
 	 */
 	private function wrap_element( $option, $element ) {
-		$title = $this->get_title( $option['id'], $option['title'] );
+		$title       = $this->get_title( $option['id'], $option['title'] );
 		$description = $this->get_description( $option['description'] );
 
 		$before_wrap = '';
@@ -207,8 +207,8 @@ class Orbit_Fox_Render_Helper {
 	 */
 	private function field_text( $option = array() ) {
 		$field_value = $this->set_field_value( $option );
-		$field = '<input class="form-input ' . $option['class'] . '" type="text" id="' . $option['id'] . '" name="' . $option['name'] . '" placeholder="' . $option['placeholder'] . '" value="' . $field_value . '">';
-		$field = $this->wrap_element( $option, $field );
+		$field       = '<input class="form-input ' . $option['class'] . '" type="text" id="' . $option['id'] . '" name="' . $option['name'] . '" placeholder="' . $option['placeholder'] . '" value="' . $field_value . '">';
+		$field       = $this->wrap_element( $option, $field );
 
 		return $field;
 	}
@@ -223,8 +223,8 @@ class Orbit_Fox_Render_Helper {
 	 */
 	private function field_textarea( $option = array() ) {
 		$field_value = $this->set_field_value( $option );
-		$field = '<textarea class="form-input ' . $option['class'] . '" id="' . $option['id'] . '" name="' . $option['name'] . '" placeholder="' . $option['placeholder'] . '" rows="3">' . $field_value . '</textarea>';
-		$field = $this->wrap_element( $option, $field );
+		$field       = '<textarea class="form-input ' . $option['class'] . '" id="' . $option['id'] . '" name="' . $option['name'] . '" placeholder="' . $option['placeholder'] . '" rows="3">' . $field_value . '</textarea>';
+		$field       = $this->wrap_element( $option, $field );
 
 		return $field;
 	}
@@ -238,7 +238,7 @@ class Orbit_Fox_Render_Helper {
 	 * @return mixed
 	 */
 	private function field_select( $option = array() ) {
-		$field_value = $this->set_field_value( $option );
+		$field_value    = $this->set_field_value( $option );
 		$select_options = '';
 		foreach ( $option['options'] as $value => $label ) {
 			$is_selected = '';
@@ -265,7 +265,7 @@ class Orbit_Fox_Render_Helper {
 	 * @return mixed
 	 */
 	private function field_radio( $option = array() ) {
-		$field_value = $this->set_field_value( $option );
+		$field_value    = $this->set_field_value( $option );
 		$select_options = '';
 		foreach ( $option['options'] as $value => $label ) {
 			$checked = '';
@@ -289,12 +289,12 @@ class Orbit_Fox_Render_Helper {
 	 */
 	private function field_checkbox( $option = array() ) {
 		$field_value = $this->set_field_value( $option );
-		$checked = '';
+		$checked     = '';
 		if ( $field_value ) {
 			$checked = 'checked';
 		}
 		$select_options = $this->generate_check_type( 'checkbox', 1, $checked, $option['label'], $option );
-		$field = $this->wrap_element( $option, $select_options );
+		$field          = $this->wrap_element( $option, $select_options );
 
 		return $field;
 	}
@@ -309,7 +309,7 @@ class Orbit_Fox_Render_Helper {
 	 */
 	private function field_toggle( $option = array() ) {
 		$field_value = $this->set_field_value( $option );
-		$checked = '';
+		$checked     = '';
 		if ( $field_value ) {
 			$checked = 'checked';
 		}
