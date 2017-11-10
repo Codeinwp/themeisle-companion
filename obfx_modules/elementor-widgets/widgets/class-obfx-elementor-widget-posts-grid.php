@@ -1571,7 +1571,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 	protected function renderButton() {
 		$settings = $this->get_settings();
 
-		if ( $settings['grid_post_type'] == 'product' && $settings['grid_content_product_btn'] == 'yes' && ! empty ( $settings['grid_content_product_btn_text'] ) ) { ?>
+		if ( $settings['grid_post_type'] == 'product' && $settings['grid_content_product_btn'] == 'yes' ) { ?>
             <div class="obfx-grid-footer">
                 <?php $this->renderAddToCart(); ?>
             </div>
