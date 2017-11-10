@@ -458,6 +458,7 @@ abstract class Orbit_Fox_Module_Abstract {
 		$sanitized = str_replace( ' ', '-', strtolower( $this->name ) );
 
 		$module_dir = $this->slug;
+
 		if ( ! empty( $enqueue ) ) {
 			if ( isset( $enqueue['js'] ) && ! empty( $enqueue['js'] ) ) {
 				$order = 0;
