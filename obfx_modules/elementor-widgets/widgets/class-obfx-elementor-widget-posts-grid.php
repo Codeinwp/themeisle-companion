@@ -1546,7 +1546,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 		$product = wc_get_product( get_the_ID() );
 
 		echo apply_filters( 'woocommerce_loop_add_to_cart_link',
-			sprintf( '<a href="%s" title="%s" rel="nofollow" class="button"><i class="fa fa-cart-plus"></i> %s</a>',
+			sprintf( '<a href="%s" title="%s" rel="nofollow">%s</a>',
 				esc_url( $product->add_to_cart_url() ),
 				esc_attr( $product->add_to_cart_text() ),
 				esc_html( $product->add_to_cart_text() )
@@ -1668,13 +1668,13 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
                 // Meta.
                 $this->renderMeta();
 
+                // Content.
+                $this->renderContent();
+
 	            // Price.
 	            if ( class_exists( 'WooCommerce' ) ) {
 		            $this->renderPrice();
 	            }
-
-                // Content.
-                $this->renderContent();
 
                 // Button.
                 $this->renderButton();
