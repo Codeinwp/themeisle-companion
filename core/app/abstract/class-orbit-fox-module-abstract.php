@@ -46,6 +46,15 @@ abstract class Orbit_Fox_Module_Abstract {
 	public $description;
 
 	/**
+	 * Holds the default setting activation state of the module.
+	 *
+	 * @since   2.1.0
+	 * @access  protected
+	 * @var     boolean $active_default The default active state of the module.
+	 */
+	protected $active_default = false;
+
+	/**
 	 * Stores an array of notices
 	 *
 	 * @since   1.0.0
@@ -120,6 +129,18 @@ abstract class Orbit_Fox_Module_Abstract {
 	protected function get_dir() {
 		$reflector = new ReflectionClass( get_class( $this ) );
 		return dirname( $reflector->getFileName() );
+	}
+
+	/**
+	 * Method to return URL to child class in a Reflective Way.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @access  protected
+	 * @return string
+	 */
+	protected function get_url() {
+		return plugin_dir_url( $this->get_dir() ) . $this->slug;
 	}
 
 	/**
@@ -266,7 +287,7 @@ abstract class Orbit_Fox_Module_Abstract {
 		if ( $this->auto == true ) {
 			return true;
 		}
-		return $this->model->get_is_module_active( $this->slug );
+		return $this->model->get_is_module_active( $this->slug, $this->active_default );
 	}
 
 	/**
@@ -479,9 +500,9 @@ abstract class Orbit_Fox_Module_Abstract {
 						);
 					}
 					$order++;
-				}
-			}
-		}
+				}// End foreach().
+			}// End if().
+		}// End if().
 	}
 
 	/**

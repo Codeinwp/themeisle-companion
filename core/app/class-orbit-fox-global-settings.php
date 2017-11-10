@@ -66,6 +66,7 @@ class Orbit_Fox_Global_Settings {
 					'companion-legacy',
 					'template-directory',
 					'menu-icons',
+					'mystock-import',
 				)
 			);
 		}// End if().
