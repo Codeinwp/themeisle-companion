@@ -45,7 +45,7 @@ class OBFX_Elementor_Widget_Services extends Widget_Base {
 	 * @return string
 	 */
 	public function get_icon() {
-		return 'fa fa-themeisle';
+		return 'fa fa-diamond';
 	}
 
 
@@ -281,7 +281,8 @@ class OBFX_Elementor_Widget_Services extends Widget_Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .obfx-service-box' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}} .obfx-grid .obfx-grid-container .obfx-grid-wrapper .obfx-service-box' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}} .obfx-grid .obfx-grid-container .obfx-grid-wrapper .obfx-service-box .obfx-service-text' => 'text-align: {{VALUE}};',
 				],
 			]
 		);
