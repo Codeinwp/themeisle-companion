@@ -22,7 +22,8 @@ var obfx_template_directory_previewer = function( $ ) {
 				var importBtn = '<span class="obfx-import-template button button-primary" href="#">Import</span>';
 				$( '.customize-controls-preview-toggle .controls' ).html( 'Templates' );
 				// Remove Save Button
-				$( 'input.save, .customize-info, #accordion-panel-widgets' ).remove();
+				$( 'input.save, .customize-info, #accordion-panel-widgets, .customize-save-button-wrapper, .customize-control-notifications-container' ).remove();
+				$( '.wp-full-overlay-sidebar-content' ).removeAttr('style');
 				$( '#customize-header-actions' ).prepend( importBtn ).append( '<div class="obfx-next-prev"><span onclick="obfxHandleChange(\'prev\');" class="previous-template"></span><span onclick="obfxHandleChange(\'next\');" class="next-template"></span></div>' );
 				$( '#customize-preview' ).remove();
 				var previewUrl = $( '.obfx-template.active' ).data( 'demo-url' );
