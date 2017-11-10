@@ -441,7 +441,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 						),
 						'install-plugin_' . $slug
 					);
-					$button .= '<a data-slug="' . $slug . '" class="install-now obfx-install-plugin button button-primary" href="' . esc_url( $nonce ) . '" data-name="' . $slug . '" aria-label="Install ' . $slug . '">' . __( 'Install and activate', 'hestia-pro' ) . '</a>';
+					$button .= '<a data-slug="' . $slug . '" class="install-now obfx-install-plugin button button-primary" href="' . esc_url( $nonce ) . '" data-name="' . $slug . '" aria-label="Install ' . $slug . '">' . __( 'Install and activate', 'themeisle-companion' ) . '</a>';
 					break;
 				case 'activate':
 					$plugin_link_suffix = $slug . '/' . $slug . '.php';
@@ -454,7 +454,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 							'_wpnonce'      => wp_create_nonce( 'activate-plugin_' . $plugin_link_suffix ),
 						), network_admin_url( 'plugins.php' )
 					);
-					$button .= '<a data-slug="' . $slug . '" class="activate-now button button-primary" href="' . esc_url( $nonce ) . '" aria-label="Activate ' . $slug . '">' . __( 'Activate', 'hestia-pro' ) . '</a>';
+					$button .= '<a data-slug="' . $slug . '" class="activate-now button button-primary" href="' . esc_url( $nonce ) . '" aria-label="Activate ' . $slug . '">' . __( 'Activate', 'themeisle-companion' ) . '</a>';
 					break;
 			}// End switch().
 		}// End if().
