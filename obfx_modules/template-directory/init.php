@@ -407,6 +407,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function check_plugin_state( $slug ) {
 		if ( file_exists( ABSPATH . 'wp-content/plugins/' . $slug . '/' . $slug . '.php' ) || file_exists( ABSPATH . 'wp-content/plugins/' . $slug . '/index.php' ) ) {
+			require_once( ABSPATH . "wp-admin" . '/includes/plugin.php' );
 			$needs = ( is_plugin_active( $slug . '/' . $slug . '.php' ) ||
 			           is_plugin_active( $slug . '/index.php' ) ) ?
 				'deactivate' : 'activate';
