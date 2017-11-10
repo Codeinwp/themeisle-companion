@@ -31,7 +31,7 @@ if ( ! function_exists( 'hestia_clients_bar' ) ) :
 		/* Don't show section if Disable section is checked or it doesn't have any content. Show it if it's called as a shortcode */
 		if ( $is_shortcode === false && ( empty( $hestia_clients_bar_content ) || (bool) $hide_section === true ) || empty( $hestia_clients_bar_content_decoded ) ) {
 			if ( is_customize_preview() ) {
-				echo '<section class="hestia-clients-bar text-center" data-sorder="hestia_clients_bar" style="display: none"></section>';
+				echo '<section class="hestia-clients-bar text-center" id="clients" data-sorder="hestia_clients_bar" style="display: none"></section>';
 			}
 			return;
 		}
@@ -39,7 +39,7 @@ if ( ! function_exists( 'hestia_clients_bar' ) ) :
 		$wrapper_class = $is_shortcode === true ? 'is-shortcode' : '';
 
 		?>
-		<section class="hestia-clients-bar text-center <?php echo esc_attr( $wrapper_class ); ?>" data-sorder="hestia_clients_bar">
+		<section class="hestia-clients-bar text-center <?php echo esc_attr( $wrapper_class ); ?>" id="clients" data-sorder="hestia_clients_bar">
 			<div class="container">
 				<div class="row">
 					<?php
