@@ -280,19 +280,13 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 			]
 		);
 
-		// Image ratio.
-		$this->add_responsive_control(
+		// Image height.
+		$this->add_control(
 			'grid_image_height',
 			[
 				'label' => '<i class="fa fa-arrows-h"></i> ' . __( 'Image height', 'themeisle-companion' ),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
-					'size' => 220,
-				],
-				'tablet_default' => [
-					'size' => 220,
-				],
-				'mobile_default' => [
 					'size' => 220,
 				],
 				'range' => [
