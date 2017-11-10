@@ -46,6 +46,15 @@ abstract class Orbit_Fox_Module_Abstract {
 	public $description;
 
 	/**
+	 * Holds the default setting activation state of the module.
+	 *
+	 * @since   2.1.0
+	 * @access  protected
+	 * @var     boolean $active_default The default active state of the module.
+	 */
+	protected $active_default = false;
+
+	/**
 	 * Stores an array of notices
 	 *
 	 * @since   1.0.0
@@ -278,7 +287,7 @@ abstract class Orbit_Fox_Module_Abstract {
 		if ( $this->auto == true ) {
 			return true;
 		}
-		return $this->model->get_is_module_active( $this->slug );
+		return $this->model->get_is_module_active( $this->slug, $this->active_default );
 	}
 
 	/**
@@ -449,6 +458,7 @@ abstract class Orbit_Fox_Module_Abstract {
 		$sanitized = str_replace( ' ', '-', strtolower( $this->name ) );
 
 		$module_dir = $this->slug;
+
 		if ( ! empty( $enqueue ) ) {
 			if ( isset( $enqueue['js'] ) && ! empty( $enqueue['js'] ) ) {
 				$order = 0;
@@ -490,9 +500,9 @@ abstract class Orbit_Fox_Module_Abstract {
 						);
 					}
 					$order++;
-				}
-			}
-		}
+				}// End foreach().
+			}// End if().
+		}// End if().
 	}
 
 	/**

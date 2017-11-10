@@ -28,7 +28,7 @@ if ( ! function_exists( 'hestia_ribbon' ) ) :
 		$hestia_ribbon_hide = get_theme_mod( 'hestia_ribbon_hide', true );
 		if ( $is_shortcode === false && (bool) $hestia_ribbon_hide === true ) {
 			if ( is_customize_preview() ) {
-				echo '<section class="hestia-ribbon section section-image" data-sorder="hestia_ribbon" style="display: none"></section>';
+				echo '<section class="hestia-ribbon section section-image" id="ribbon" data-sorder="hestia_ribbon" style="display: none"></section>';
 			}
 			return;
 		}
@@ -43,7 +43,7 @@ if ( ! function_exists( 'hestia_ribbon' ) ) :
 
 		$wrapper_class = $is_shortcode === true ? 'is-shortcode' : '';
 		?>
-		<section class="hestia-ribbon section section-image <?php echo esc_attr( $wrapper_class ); ?>" data-sorder="hestia_ribbon">
+		<section class="hestia-ribbon section section-image <?php echo esc_attr( $wrapper_class ); ?>" id="ribbon" data-sorder="hestia_ribbon">
 			<?php hestia_ribbon_background(); ?>
 			<div class="container">
 				<div class="row hestia-xs-text-center hestia-like-table">

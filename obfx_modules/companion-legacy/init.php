@@ -27,16 +27,14 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function __construct() {
 		parent::__construct();
-		$this->name        = __( 'Companion Legacy', 'themeisle-companion' );
-		$this->description = __( 'Module containing legacy functionality from ThemeIsle Companion.', 'themeisle-companion' );
 
-		$this->auto = true;
+		$this->active_default = true;
 
 		$this->inc_dir = $this->get_dir() . DIRECTORY_SEPARATOR . 'inc' . DIRECTORY_SEPARATOR;
-		if( ! defined('THEMEISLE_COMPANION_PATH') ) {
+		if ( ! defined( 'THEMEISLE_COMPANION_PATH' ) ) {
 			define( 'THEMEISLE_COMPANION_PATH', $this->inc_dir );
 		}
-		if( ! defined('THEMEISLE_COMPANION_URL') ) {
+		if ( ! defined( 'THEMEISLE_COMPANION_URL' ) ) {
 			define( 'THEMEISLE_COMPANION_URL', plugin_dir_url( $this->inc_dir ) );
 		}
 		$theme_name = '';
@@ -64,6 +62,9 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			$theme_name = 'Hestia';
 
 		}
+		$this->name        = sprintf( __( '%s enhancements ', 'themeisle-companion' ), $theme_name );
+		$this->description = sprintf( __( 'Module containing frontpage improvements for %s theme.', 'themeisle-companion' ), $theme_name );
+
 		if ( ! empty( $theme_name ) ) {
 			$this->notices = array(
 				array(
@@ -177,7 +178,7 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @since   2.0.4
 	 * @access  public
 	 */
-	public function hestia_require_customizer(){
+	public function hestia_require_customizer() {
 		themeisle_hestia_load_controls();
 	}
 
