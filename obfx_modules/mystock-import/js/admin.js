@@ -52,6 +52,9 @@
         });
     };
 
+    // ensure only one scroll request is sent at one time.
+    var scroll_called = false;
+
     media.view.RemotePhotos = media.View.extend({
         tagName: 'div',
         className: 'obfx-attachments-browser',
@@ -68,9 +71,11 @@
         },
 
         showSpinner: function(container) {
+            $(container).find('.obfx-image-list').addClass('obfx_loading');
             $(container).find('.obfx_spinner').show();
         },
         hideSpinner: function(container) {
+            $(container).find('.obfx-image-list').removeClass('obfx_loading');
             $(container).find('.obfx_spinner').hide();
         },
         loadContent: function(container, frame){
@@ -107,6 +112,8 @@
         infiniteScroll : function (container, frame) {
             $('#obfx-mystock .obfx-image-list').on('scroll',function() {
                 if($(this).scrollTop() + $(this).innerHeight() + 10 >= $(this)[0].scrollHeight) {
+                    if(scroll_called) return;
+                    scroll_called = true;
                     frame.showSpinner(container);
                     $.ajax({
                         type : 'POST',
@@ -117,6 +124,7 @@
                         },
                         url : mystock_import.ajaxurl,
                         success : function(response) {
+                            scroll_called = false;
                             if( response ) {
                                 var imageList = $('.obfx-image-list');
                                 var listWrapper = $('#obfx-mystock');
