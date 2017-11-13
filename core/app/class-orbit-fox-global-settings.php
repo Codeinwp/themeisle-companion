@@ -64,6 +64,7 @@ class Orbit_Fox_Global_Settings {
 					'stats',
 					'social-sharing',
 					'companion-legacy',
+					'template-directory',
 					'menu-icons',
 					'mystock-import',
 				)

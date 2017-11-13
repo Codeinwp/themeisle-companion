@@ -1,4 +1,9 @@
 
+ ### v2.1.0 - 2017-11-08 
+ **Changes:** 
+ * Adds custom icons menu module.
+* Adds free stock images integration with mystock.photos .
+ 
  ### v2.0.11 - 2017-10-19 
  **Changes:** 
  * Fixed alignment issue for titles in Hestia
