@@ -112,7 +112,9 @@
         infiniteScroll : function (container, frame) {
             $('#obfx-mystock .obfx-image-list').on('scroll',function() {
                 if($(this).scrollTop() + $(this).innerHeight() + 10 >= $(this)[0].scrollHeight) {
-                    if(scroll_called) return;
+                    if(scroll_called){
+                        return;
+                    }
                     scroll_called = true;
                     frame.showSpinner(container);
                     $.ajax({
