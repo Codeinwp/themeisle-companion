@@ -2,9 +2,9 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Orbit Fox Companion 2.0.11\n"
+"Project-Id-Version: Orbit Fox Companion 2.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Codeinwp/orbit-fox/issues\n"
-"POT-Creation-Date: 2017-11-07 14:30:58+00:00\n"
+"POT-Creation-Date: 2017-11-10 13:40:54+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -122,6 +122,7 @@ msgid "Module Description ..."
 msgstr ""
 
 #: core/app/views/partials/module-tile-tpl.php:42
+#: obfx_modules/template-directory/init.php:457
 msgid "Activate"
 msgstr ""
 
@@ -714,91 +715,91 @@ msgid "Module to define menu icons for navigation."
 msgstr ""
 
 #: obfx_modules/mystock-import/inc/photos.php:28
-#: obfx_modules/mystock-import/init.php:188
+#: obfx_modules/mystock-import/init.php:187
 msgid "Deselect"
 msgstr ""
 
-#: obfx_modules/mystock-import/init.php:44
+#: obfx_modules/mystock-import/init.php:49
 msgid "Mystock Import"
 msgstr ""
 
-#: obfx_modules/mystock-import/init.php:45
-msgid "Module to import images from mystock."
+#: obfx_modules/mystock-import/init.php:50
+msgid "Module to import images directly from"
 msgstr ""
 
-#: obfx_modules/mystock-import/init.php:108
-#: obfx_modules/mystock-import/init.php:115
-#: obfx_modules/mystock-import/init.php:122
-#: obfx_modules/mystock-import/init.php:130
-#: obfx_modules/mystock-import/init.php:135
+#: obfx_modules/mystock-import/init.php:132
+#: obfx_modules/mystock-import/init.php:139
+#: obfx_modules/mystock-import/init.php:146
+#: obfx_modules/mystock-import/init.php:154
+#: obfx_modules/mystock-import/init.php:159
 msgid "Image failed to upload"
 msgstr ""
 
-#: obfx_modules/mystock-import/init.php:222
+#: obfx_modules/mystock-import/init.php:217
 msgid "Square"
 msgstr ""
 
-#: obfx_modules/mystock-import/init.php:223
+#: obfx_modules/mystock-import/init.php:218
 msgid "Large Square"
 msgstr ""
 
-#: obfx_modules/mystock-import/init.php:224
+#: obfx_modules/mystock-import/init.php:219
 msgid "Thumbnail"
 msgstr ""
 
-#: obfx_modules/mystock-import/init.php:225
+#: obfx_modules/mystock-import/init.php:220
 msgid "Small"
 msgstr ""
 
-#: obfx_modules/mystock-import/init.php:226
+#: obfx_modules/mystock-import/init.php:221
 msgid "Small 320"
 msgstr ""
 
-#: obfx_modules/mystock-import/init.php:227
+#: obfx_modules/mystock-import/init.php:222
 msgid "Medium"
 msgstr ""
 
-#: obfx_modules/mystock-import/init.php:228
+#: obfx_modules/mystock-import/init.php:223
 msgid "Medium 640"
 msgstr ""
 
-#: obfx_modules/mystock-import/init.php:229
+#: obfx_modules/mystock-import/init.php:224
 msgid "Medium 800"
 msgstr ""
 
-#: obfx_modules/mystock-import/init.php:230
+#: obfx_modules/mystock-import/init.php:225
 msgid "Large"
 msgstr ""
 
-#: obfx_modules/mystock-import/init.php:231
+#: obfx_modules/mystock-import/init.php:226
 msgid "Original"
 msgstr ""
 
-#: obfx_modules/mystock-import/init.php:239
+#: obfx_modules/mystock-import/init.php:234
 msgid "Attachement display settings"
 msgstr ""
 
-#: obfx_modules/mystock-import/init.php:241
+#: obfx_modules/mystock-import/init.php:236
 msgid "Size"
 msgstr ""
 
-#: obfx_modules/mystock-import/init.php:291
+#: obfx_modules/mystock-import/init.php:286
 msgid "Fetching data"
 msgstr ""
 
-#: obfx_modules/mystock-import/init.php:292
+#: obfx_modules/mystock-import/init.php:287
 msgid "Downloading image. Please wait..."
 msgstr ""
 
-#: obfx_modules/mystock-import/init.php:293
+#: obfx_modules/mystock-import/init.php:288
 msgid "Your image was imported. Go to Media Library tab to use it."
 msgstr ""
 
-#: obfx_modules/mystock-import/init.php:294
+#: obfx_modules/mystock-import/init.php:289
 msgid "Loading more photos..."
 msgstr ""
 
-#: obfx_modules/mystock-import/init.php:295
+#: obfx_modules/mystock-import/init.php:290
 msgid "MyStock Library"
 msgstr ""
 
@@ -810,7 +811,7 @@ msgstr ""
 msgid "Add basic social sharing to your posts and pages."
 msgstr ""
 
-#: obfx_modules/social-sharing/views/hestia-social-sharing-tpl.php:37
+#: obfx_modules/social-sharing/views/hestia-social-sharing-tpl.php:36
 msgid "Share on "
 msgstr ""
 
@@ -820,6 +821,64 @@ msgstr ""
 
 #: obfx_modules/stats/init.php:28
 msgid "A simple module for your WordPress data."
+msgstr ""
+
+#: obfx_modules/template-directory/init.php:29
+msgid "Template Directory Module"
+msgstr ""
+
+#: obfx_modules/template-directory/init.php:30
+msgid ""
+"The awesome template directory is aiming to provide a wide range of "
+"templates that you can import straight into your website."
+msgstr ""
+
+#: obfx_modules/template-directory/init.php:62
+msgid "A new Orbit Fox Template"
+msgstr ""
+
+#: obfx_modules/template-directory/init.php:64
+msgid "This is an awesome Orbit Fox Template."
+msgstr ""
+
+#: obfx_modules/template-directory/init.php:71
+msgid "About Our Business"
+msgstr ""
+
+#: obfx_modules/template-directory/init.php:72
+#: obfx_modules/template-directory/init.php:79
+msgid "A fancy description here"
+msgstr ""
+
+#: obfx_modules/template-directory/init.php:78
+msgid "Contact Us"
+msgstr ""
+
+#: obfx_modules/template-directory/init.php:275
+#: obfx_modules/template-directory/views/template-directory-page-tpl.php:19
+msgid "Orbit Fox Template Directory"
+msgstr ""
+
+#: obfx_modules/template-directory/init.php:275
+msgid "Template Directory"
+msgstr ""
+
+#: obfx_modules/template-directory/init.php:444
+msgid "Install and activate"
+msgstr ""
+
+#: obfx_modules/template-directory/views/template-directory-page-tpl.php:40
+msgid "Preview"
+msgstr ""
+
+#: obfx_modules/template-directory/views/template-directory-page-tpl.php:44
+msgid "Import"
+msgstr ""
+
+#: obfx_modules/template-directory/views/template-plugin-install-tpl.php:17
+msgid ""
+"In order to import this template, you must have Elementor Page Builder "
+"installed. Click the button below to install and activate now."
 msgstr ""
 
 #. Plugin URI of the plugin/theme

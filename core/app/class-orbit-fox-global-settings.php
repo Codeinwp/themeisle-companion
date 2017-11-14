@@ -65,6 +65,7 @@ class Orbit_Fox_Global_Settings {
 					'social-sharing',
 					'companion-legacy',
 					'elementor-widgets',
+					'template-directory',
 					'menu-icons',
 					'mystock-import',
 				)
