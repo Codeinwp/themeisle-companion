@@ -1,6 +1,5 @@
 /*exported obfxHandleChange */
 
-
 /**
  * Template Directory Customizer Public Script
  *

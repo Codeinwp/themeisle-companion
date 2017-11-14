@@ -1,3 +1,5 @@
+/* global elementor */
+
 (function ($) {
 
     $(document).ready(function(){
