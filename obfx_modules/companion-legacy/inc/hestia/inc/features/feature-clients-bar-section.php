@@ -60,6 +60,7 @@ if ( ! function_exists( 'hestia_clients_bar_customize_register' ) ) :
 				'hestia_clients_bar_content', array(
 					'sanitize_callback' => 'hestia_repeater_sanitize',
 					'transport'         => $selective_refresh,
+					'default'           => apply_filters( 'hestia_clients_bar_default_content', false ),
 				)
 			);
 
