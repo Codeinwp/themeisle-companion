@@ -209,7 +209,8 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$photo = array_filter( $data, function ( $e ) use ( $photo_id ) {
 			return $e['id'] === $photo_id;
 		}, true );
-		$photo = array_pop( array_reverse( $photo ) );
+		$photo = array_reverse( $photo );
+		$photo = array_pop( $photo );
 		if ( empty( $photo ) ) {
 			wp_die();
 		}
