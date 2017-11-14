@@ -386,7 +386,7 @@ class OBFX_Elementor_Widget_Services extends Widget_Base {
 		$this->add_control(
 			'grid_style_columns_margin',
 			[
-				'label'     => __( 'Columns margin', 'elementor-pro' ),
+				'label'     => __( 'Columns margin', 'themeisle-companion' ),
 				'type'      => Controls_Manager::SLIDER,
 				'default'   => [
 					'size' => 15,
@@ -408,7 +408,7 @@ class OBFX_Elementor_Widget_Services extends Widget_Base {
 		$this->add_control(
 			'grid_style_rows_margin',
 			[
-				'label'     => __( 'Rows margin', 'elementor-pro' ),
+				'label'     => __( 'Rows margin', 'themeisle-companion' ),
 				'type'      => Controls_Manager::SLIDER,
 				'default'   => [
 					'size' => 30,
