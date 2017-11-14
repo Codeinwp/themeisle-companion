@@ -104,15 +104,15 @@ class OBFX_Elementor_Widget_Services extends Widget_Base {
 					],
 				],
 				'fields'      => [
-					    [
+					[
 						'name' => 'icon_type',
-						'label' => __('Icon Type', 'themeisle-companion'),
+						'label' => __( 'Icon Type', 'themeisle-companion' ),
 						'type' => Controls_Manager::SELECT,
 						'default' => 'icon',
 						'options' => [
-							'none' => __('None', 'themeisle-companion'),
-							'icon' => __('Icon', 'themeisle-companion'),
-							'image' => __('Image', 'themeisle-companion'),
+							'none' => __( 'None', 'themeisle-companion' ),
+							'icon' => __( 'Icon', 'themeisle-companion' ),
+							'image' => __( 'Image', 'themeisle-companion' ),
 						],
 					],
 					[
@@ -478,84 +478,82 @@ class OBFX_Elementor_Widget_Services extends Widget_Base {
 	/**
 	 * Items Style Controls
 	 */
-    private function items_style_tabs() {
-		    $this->start_controls_tabs( 'tabs_background' );
+	private function items_style_tabs() {
+			$this->start_controls_tabs( 'tabs_background' );
 
-		    $this->start_controls_tab(
-			    'tab_background_normal',
-			    [
-				    'label' => __( 'Normal', 'themeisle-companion' ),
-			    ]
-		    );
+			$this->start_controls_tab(
+				'tab_background_normal',
+				[
+					'label' => __( 'Normal', 'themeisle-companion' ),
+				]
+			);
 
-            $this->add_group_control(
-                Group_Control_Background::get_type(),
-                [
-                    'name'     => 'grid_items_background',
-                    'types'    => [ 'classic', 'gradient' ],
-                    'selector' => '{{WRAPPER}} .obfx-service-box',
-                ]
-            );
+			$this->add_group_control(
+				Group_Control_Background::get_type(),
+				[
+					'name'     => 'grid_items_background',
+					'types'    => [ 'classic', 'gradient' ],
+					'selector' => '{{WRAPPER}} .obfx-service-box',
+				]
+			);
 
-		    $this->add_group_control(
-			    Group_Control_Box_Shadow::get_type(),
-			    [
-				    'name'      => 'grid_items_box_shadow',
-				    'selector'  => '{{WRAPPER}} .obfx-service-box',
-			    ]
-		    );
+			$this->add_group_control(
+				Group_Control_Box_Shadow::get_type(),
+				[
+					'name'      => 'grid_items_box_shadow',
+					'selector'  => '{{WRAPPER}} .obfx-service-box',
+				]
+			);
 
-		    $this->end_controls_tab();
+			$this->end_controls_tab();
 
-		    $this->start_controls_tab(
-			    'tab_background_hover',
-			    [
-				    'label' => __( 'Hover', 'themeisle-companion' ),
-			    ]
-		    );
+			$this->start_controls_tab(
+				'tab_background_hover',
+				[
+					'label' => __( 'Hover', 'themeisle-companion' ),
+				]
+			);
 
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name'     => 'grid_items_background_hover',
+				'types'    => [ 'classic', 'gradient' ],
+				'selector' => '{{WRAPPER}} .obfx-service-box:hover',
+			]
+		);
 
-	    $this->add_group_control(
-		    Group_Control_Background::get_type(),
-		    [
-			    'name'     => 'grid_items_background_hover',
-			    'types'    => [ 'classic', 'gradient' ],
-			    'selector' => '{{WRAPPER}} .obfx-service-box:hover',
-		    ]
-	    );
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name'      => 'grid_items_box_shadow_hover',
+				'selector'  => '{{WRAPPER}} .obfx-service-box:hover',
+			]
+		);
 
-	    $this->add_group_control(
-		    Group_Control_Box_Shadow::get_type(),
-		    [
-			    'name'      => 'grid_items_box_shadow_hover',
-			    'selector'  => '{{WRAPPER}} .obfx-service-box:hover',
-		    ]
-	    );
+		$this->add_control(
+			'hover_transition',
+			[
+				'label'       => __( 'Transition Duration', 'themeisle-companion' ),
+				'type'        => Controls_Manager::SLIDER,
+				'default'     => [
+					'size' => 0.3,
+				],
+				'range'       => [
+					'px' => [
+						'max'  => 3,
+						'step' => 0.1,
+					],
+				],
+				'selectors'   => [
+					'{{WRAPPER}} .obfx-service-box' => 'transition: all {{SIZE}}s ease;',
+				],
+			]
+		);
+			$this->end_controls_tab();
 
-
-	    $this->add_control(
-		    'hover_transition',
-		    [
-			    'label'       => __( 'Transition Duration', 'themeisle-companion' ),
-			    'type'        => Controls_Manager::SLIDER,
-			    'default'     => [
-				    'size' => 0.3,
-			    ],
-			    'range'       => [
-				    'px' => [
-					    'max'  => 3,
-					    'step' => 0.1,
-				    ],
-			    ],
-			    'selectors'   => [
-				    '{{WRAPPER}} .obfx-service-box' => 'transition: all {{SIZE}}s ease;',
-			    ],
-		    ]
-	    );
-		    $this->end_controls_tab();
-
-		    $this->end_controls_tabs();
-    }
+			$this->end_controls_tabs();
+	}
 
 	/**
 	 * Render function to output the pricing table.
@@ -580,37 +578,47 @@ class OBFX_Elementor_Widget_Services extends Widget_Base {
 				}
 			} ?>
 			<div class="obfx-grid-wrapper">
-				<?php if ( ! empty( $service['link']['url'] ) ) {
+				<?php
+				if ( ! empty( $service['link']['url'] ) ) {
 					$link_props = ' href="' . esc_url( $service['link']['url'] ) . '" ';
-					if( $service['link']['is_external'] === 'on' ) {
-					    $link_props .= ' target="_blank" ';
-                    }
-                    if( $service['link']['nofollow'] === 'on' ) {
-					    $link_props .= ' rel="nofollow" ';
-                    }
+					if ( $service['link']['is_external'] === 'on' ) {
+						$link_props .= ' target="_blank" ';
+					}
+					if ( $service['link']['nofollow'] === 'on' ) {
+						$link_props .= ' rel="nofollow" ';
+					}
 					echo '<a' . $link_props . '>';
-				} ?>
+				}
+				?>
 			<div class="obfx-service-box obfx-grid-col">
 				<?php
-				if ( ! empty ( $service['icon'] ) ) { ?>
+				if ( ! empty( $service['icon'] ) ) {
+				?>
 					<span class="obfx-icon-wrap"><i class="obfx-icon <?php echo esc_attr( $service['icon'] ); ?>" style="color: <?php echo esc_attr( $service['color'] ); ?>"></i></span>
-				<?php }
-				if ( ! empty ( $service['title'] ) || ! empty ( $service['text'] ) ) { ?>
+				<?php
+				}
+				if ( ! empty( $service['title'] ) || ! empty( $service['text'] ) ) {
+				?>
 				<div class="obfx-service-box-content">
-					<?php if ( ! empty ( $service['title'] ) ) { ?>
+					<?php if ( ! empty( $service['title'] ) ) { ?>
 						<h4 class="obfx-service-title"><?php echo esc_attr( $service['title'] ); ?></h4>
-					<?php }
-					if ( ! empty ( $service['text'] ) ) { ?>
+					<?php
+}
+if ( ! empty( $service['text'] ) ) {
+?>
 						<p class="obfx-service-text"><?php echo esc_attr( $service['text'] ); ?></p>
-                    <?php } ?>
-                </div><!-- /.obfx-service-box-content -->
 					<?php } ?>
-            </div><!-- /.obfx-service-box -->
-				<?php if ( ! empty( $service['link'] ) ) {
+				</div><!-- /.obfx-service-box-content -->
+					<?php } ?>
+			</div><!-- /.obfx-service-box -->
+				<?php
+				if ( ! empty( $service['link'] ) ) {
 					echo '</a>';
-				} ?>
+				}
+				?>
 			</div><!-- /.obfx-grid-wrapper -->
-		<?php }
+		<?php
+		}
 		echo '</div></div>';
 
 	}
