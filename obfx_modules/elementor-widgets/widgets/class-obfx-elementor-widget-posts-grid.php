@@ -1682,7 +1682,7 @@ endswitch;
 				$query->the_post();
 
 				echo '<div class="obfx-grid-wrapper">';
-				echo '<article class="obfx-grid-col' . ( ! empty( $settings['grid_image_hide'] == 'yes' || ! has_post_thumbnail() ) ? ' obfx-no-image' : '' ) . '">';
+				echo '<article class="obfx-grid-col' . ( $settings['grid_image_hide'] == 'yes' || ! has_post_thumbnail()  ? ' obfx-no-image' : '' ) . '">';
 
 				// Image.
 				$this->renderImage();
