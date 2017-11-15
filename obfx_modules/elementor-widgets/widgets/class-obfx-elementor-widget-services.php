@@ -105,17 +105,6 @@ class OBFX_Elementor_Widget_Services extends Widget_Base {
 				],
 				'fields'      => [
 					[
-						'name' => 'icon_type',
-						'label' => __( 'Icon Type', 'themeisle-companion' ),
-						'type' => Controls_Manager::SELECT,
-						'default' => 'icon',
-						'options' => [
-							'none' => __( 'None', 'themeisle-companion' ),
-							'icon' => __( 'Icon', 'themeisle-companion' ),
-							'image' => __( 'Image', 'themeisle-companion' ),
-						],
-					],
-					[
 						'type'    => Controls_Manager::TEXT,
 						'name'    => 'title',
 						'label_block' => true,
