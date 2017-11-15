@@ -1,5 +1,5 @@
 /* Pricing Table Base CSS */
-.obfx-pricing-table-wrapper {
+.obfx-pricing-table-wrapper, .obfx-pricing-table-wrapper p.obfx-pricing-table-subtitle {
     text-align: center;
 }
 
