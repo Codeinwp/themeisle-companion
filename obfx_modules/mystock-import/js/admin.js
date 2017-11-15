@@ -112,6 +112,10 @@
         infiniteScroll : function (container, frame) {
             $('#obfx-mystock .obfx-image-list').on('scroll',function() {
                 if($(this).scrollTop() + $(this).innerHeight() + 10 >= $(this)[0].scrollHeight) {
+                    var current_page = parseInt($('#obfx-mystock').data('pagenb'));
+                    if(parseInt(mystock_import.pages) === current_page){
+                        return;
+                    }
                     if(scroll_called){
                         return;
                     }
@@ -130,8 +134,7 @@
                             if( response ) {
                                 var imageList = $('.obfx-image-list');
                                 var listWrapper = $('#obfx-mystock');
-                                var page = listWrapper.data('pagenb');
-                                var nextPage = parseInt(page) + 1;
+                                var nextPage = parseInt(current_page) + 1;
                                 listWrapper.data('pagenb', nextPage);
                                 imageList.append(response);
                             }
