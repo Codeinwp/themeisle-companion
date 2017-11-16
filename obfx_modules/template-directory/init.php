@@ -249,7 +249,13 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'screenshot'  => esc_url( $repository_raw_url . 'contact-us-elementor/screenshot.png' ),
 				'import_file' => esc_url( $repository_raw_url . 'contact-us-elementor/template.json' ),
 			),
-			'placeholder-template'         => array(),
+			'pricing-elementor'         => array(
+				'title'       => __( 'Pricing', 'themeisle-companion' ),
+				'description' => __( 'A fancy description here', 'themeisle-companion' ),
+				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/pricing-elementor/',
+				'screenshot'  => esc_url( $repository_raw_url . 'pricing-elementor/screenshot.png' ),
+				'import_file' => esc_url( $repository_raw_url . 'pricing-elementor/template.json' ),
+			),
 		);
 
 		foreach ( $templates_list as $template => $properties ) {
