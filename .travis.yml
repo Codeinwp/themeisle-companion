@@ -6,11 +6,6 @@ php:
 - '5.5'
 - '5.4'
 sudo: false
-matrix:
-  fast_finish: true
-  include:
-  - php: '5.3'
-    dist: precise
 branches:
   except:
   - "/^*-v[0-9]/"

@@ -1,4 +1,4 @@
-/*global importer_endpoint, console */
+/* global importer_endpoint, console */
 
 /**
  * Template Directory Customizer Admin Dashboard Script
