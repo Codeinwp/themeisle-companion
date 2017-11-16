@@ -1,4 +1,7 @@
 <?php
+define( 'BEAVER_WIDGETS_PATH', plugin_dir_path( __FILE__ ) );
+define( 'BEAVER_WIDGETS_URL', plugins_url( '/', __FILE__ ) );
+
 /**
  *
  */
@@ -43,6 +46,7 @@ class Beaver_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function hooks() {
+		$this->loader->add_action( 'init', $this, 'load_widgets_modules' );
 	}
 
 	/**
@@ -78,5 +82,11 @@ class Beaver_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function options() {
 		return array();
+	}
+
+	public function load_widgets_modules(){
+		if ( class_exists( 'FLBuilder' ) ) {
+			require_once 'modules/widget1-example/widget-example1.php';
+		}
 	}
 }
