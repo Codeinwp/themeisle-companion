@@ -1,16 +1,16 @@
-=== Orbit Fox Companion ===
-Contributors: themeisle, codeinwp, rodicaelena, baicusandrei
-Tags: widget, admin, widgets, sharing, reporting, sections, themes, stock photos, custom icons, icons, menu icons, stock
-Requires at least: 3.0
-Tested up to: 4.9
-Requires PHP: 5.3
-Stable tag: trunk
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+# Orbit Fox Companion #
+**Contributors:** [themeisle](https://profiles.wordpress.org/themeisle), [codeinwp](https://profiles.wordpress.org/codeinwp), [rodicaelena](https://profiles.wordpress.org/rodicaelena), [baicusandrei](https://profiles.wordpress.org/baicusandrei)  
+**Tags:** widget, admin, widgets, sharing, reporting, sections, themes, stock photos, custom icons, icons, menu icons, stock  
+**Requires at least:** 3.0  
+**Tested up to:** 4.9  
+**Requires PHP:** 5.3  
+**Stable tag:** trunk  
+**License:** GPLv2 or later  
+**License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
-Enhance your website with extra functionality through modules like: social media share buttons & icons, reporting, analytics(upcoming), security(upcoming) and caching(upcoming).
+**Enhance your website with extra functionality through modules like:** social media share buttons & icons, reporting, analytics(upcoming), security(upcoming) and caching(upcoming).  
 
-== Description ==
+## Description ##
 
 Extend your theme functionality with <a href="https://themeisle.com/plugins/orbit-fox-companion/" rel="nofollow">Orbit Fox Companion</a> with various modules like Social Media Share Buttons & Icons, reporting, custom menu-icons and free stock featured images.
 
@@ -56,18 +56,18 @@ We've also built some fantastic <a href="http://themeisle.com/wordpress-themes/f
 
 
 
-== Frequently Asked Questions ==
+## Frequently Asked Questions ##
 
-= How I can get support for this plugin ? =
+### How I can get support for this plugin ? ###
 
 You can learn more about Orbit Fox Companion and ask for help by <a href="https://themeisle.com/contact/"  >visiting ThemeIsle website</a>.
 
-= What can I do with this plugin =
+### What can I do with this plugin ###
 
 This plugin extends the features of your themes by adding numerous widgets if you are using Zerif and Hestia themes and some modules for sharing and reporting for general use.
 
 
-== Installation ==
+## Installation ##
 
 Activating the Orbit Fox Companion plugin is just like any other plugin. If you've uploaded the plugin package to your server already, skip to step 5 below:
 
@@ -79,94 +79,94 @@ Activating the Orbit Fox Companion plugin is just like any other plugin. If you'
 6. Make the changes desired, then click the **Save changes** button at the bottom
 
 
-== Screenshots ==
+## Screenshots ##
 
 1. Screenshot 1. How you can enable/disable modules
 2. Screenshot 2. How the sharing module is looking
 3. Screenshot 3. How reports module is looking
 
-== Changelog ==
-= 2.1.1 - 2017-11-16  = 
+## Changelog ##
+### 2.1.1 - 2017-11-16  ###
 
 * Adds compatibility with WordPress 4.9.
 
 
-= 2.1.0 - 2017-11-08  = 
+### 2.1.0 - 2017-11-08  ###
 
 * Adds custom icons menu module.
 * Adds free stock images integration with mystock.photos .
 
 
-= 2.0.11 - 2017-10-19  = 
+### 2.0.11 - 2017-10-19  ###
 
 * Fixed alignment issue for titles in Hestia
 
 
-= 2.0.10 - 2017-10-18  = 
+### 2.0.10 - 2017-10-18  ###
 
 * Added selective refresh options for the Show/Hide frontpage controls in Hestia
 * Make external links open in new tab for the frontpage sections in Hestia
 * Added some new filters to control the number of items per row appear in the Features and Testimonials Frontpage section - http://docs.themeisle.com/article/669-how-to-add-4-feature-items-on-a-line-in-hestia
 
 
-= 2.0.9 - 2017-10-17  = 
+### 2.0.9 - 2017-10-17  ###
 
 * Enhanced layout for Hestia sections.
 
 
-= 2.0.8 - 2017-10-11  = 
+### 2.0.8 - 2017-10-11  ###
 
 * Fixed bug with URL protocols filter priority.
 * Fixed bug with icons background styled by URL address.
 
 
-= 2.0.7 - 2017-10-02  = 
+### 2.0.7 - 2017-10-02  ###
 
 * New improved options for frontpage sections ordering/disabling in Hestia
 
 
-= 2.0.6 - 2017-09-19  = 
+### 2.0.6 - 2017-09-19  ###
 
 * Added selective refresh for titles options in the frontpage sections in Hestia
 
 
-= 2.0.5 - 2017-09-12  = 
+### 2.0.5 - 2017-09-12  ###
 
 * Added new Ribbon and Clients Bar sections in Hestia
 
 
-= 2.0.4 - 2017-09-11  = 
+### 2.0.4 - 2017-09-11  ###
 
 * Adds PHP minimum requirement. 
 * Fix for admin styles loading screen.
 
 
-= 2.0.3 - 2017-08-24  = 
+### 2.0.3 - 2017-08-24  ###
 
 * Improved compatibility with the new Hestia version.
 
 
-= 2.0.2 - 2017-08-16  = 
+### 2.0.2 - 2017-08-16  ###
 
 * Fix accordion not opening to display save buttons for modules
 
 
-= 2.0.1 - 2017-08-14  = 
+### 2.0.1 - 2017-08-14  ###
 
 * Fixed issues with grey icons in Hestia.
 * Fixed Recommended Actions flags in customizer.
 
 
 
-= 1.0.3 =
+### 1.0.3 ###
 
 * New widgets for Rhea child theme
 * Improved front page selection mechanism for Hestia
 
-= 1.0.1 =
+### 1.0.1 ###
 
 * Changed tested up to
 
-= 1.0.0 =
+### 1.0.0 ###
 
 * First version of the plugin
