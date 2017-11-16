@@ -993,7 +993,7 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 				$output .= '<span class="obfx-price-currency">' . esc_html( $settings['price_tag_currency'] ) . '</span>';
 			}
 
-			if ( ! empty( $settings['price_tag_text'] ) ) {
+			if ( ( isset( $settings['price_tag_text'] ) && $settings['price_tag_text'] === '0' ) || ! empty( $settings['price_tag_text'] ) ) {
 				$output .= '<span class="obfx-price">' . esc_html( $settings['price_tag_text'] ) . '</span>';
 			}
 
