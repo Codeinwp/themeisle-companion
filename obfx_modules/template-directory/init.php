@@ -62,7 +62,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function hooks() {
 		$this->loader->add_action( 'rest_api_init', $this, 'register_endpoints' );
 		//Add dashboard menu page.
-		$this->loader->add_action( 'admin_menu', $this, 'add_menu_page' );
+		$this->loader->add_action( 'admin_menu', $this, 'add_menu_page', 100 );
 		//Add rewrite endpoint.
 		$this->loader->add_action( 'init', $this, 'demo_listing_register' );
 		//Add template redirect.
@@ -125,12 +125,11 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function admin_enqueue() {
 		$current_screen = get_current_screen();
-
 		if ( ! isset( $current_screen->id ) ) {
 			return array();
 		}
 
-		if ( ! ( $current_screen->id == 'tools_page_obfx_template_dir' ) && ( ! $current_screen == 'customize' ) ) {
+		if ( ! ( $current_screen->id == 'obfx_template_dir' ) && ( ! $current_screen == 'customize' ) ) {
 			return array();
 		}
 
@@ -291,8 +290,8 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * Add the 'Template Directory' page to the dashboard menu.
 	 */
 	public function add_menu_page() {
-		add_management_page(
-			__( 'Orbit Fox Template Directory', 'themeisle-companion' ), __( 'Template Directory', 'themeisle-companion' ), 'manage_options', 'obfx_template_dir',
+		add_submenu_page(
+			'obfx_companion', __( 'Orbit Fox Template Directory', 'themeisle-companion' ), __( 'Template Directory', 'themeisle-companion' ), 'manage_options', 'obfx_template_dir',
 			array( $this, 'render_admin_page' )
 		);
 	}
