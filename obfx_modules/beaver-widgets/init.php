@@ -86,7 +86,7 @@ class Beaver_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 	public function load_widgets_modules(){
 		if ( class_exists( 'FLBuilder' ) ) {
-			require_once 'modules/widget1-example/widget-example1.php';
+			require_once 'modules/pricing-table/pricing-table.php';
 		}
 	}
 }

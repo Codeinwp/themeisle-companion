@@ -1,0 +1,54 @@
+/**
+ * This file should contain frontend styles that
+ * will be applied to all module instances.
+ */
+.obfx-pricing-header{
+    background-position: center;
+    background-size: cover;
+}
+
+.obfx-pricing-header *{
+    padding: 0;
+    margin: 0;
+}
+
+.blog-post .section-text .obfx-pricing-header p{
+    margin: 0;
+}
+
+
+.obfx-pricing-features{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.obfx-pricing-features li{
+    padding: 0;
+    margin: 0;
+}
+
+.obfx-pricing-feature-content{
+    float: left;
+    width: 100%;
+}
+
+.obfx-pricing-features hr{
+    margin: 0;
+    width: 100%;
+    float: left;
+}
+
+.obfx-pricing-features li i{
+    margin-right: 10px;
+}
+
+.obfx-plan-bottom{
+    float: left;
+    width: 100%;
+}
+
+a.obfx-plan-button{
+    margin: 0;
+    text-transform: none;
+}
