@@ -25,7 +25,7 @@ if ( ! function_exists( 'hestia_clients_bar' ) ) :
 		}
 
 		$hide_section = get_theme_mod( 'hestia_clients_bar_hide', true );
-		$hestia_clients_bar_content = get_theme_mod( 'hestia_clients_bar_content' );
+		$hestia_clients_bar_content = get_theme_mod( 'hestia_clients_bar_content', apply_filters( 'hestia_clients_bar_default_content', false ) );
 		$hestia_clients_bar_content_decoded = json_decode( $hestia_clients_bar_content );
 
 		/* Don't show section if Disable section is checked or it doesn't have any content. Show it if it's called as a shortcode */
