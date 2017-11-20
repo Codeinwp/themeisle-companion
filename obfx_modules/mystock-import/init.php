@@ -113,6 +113,10 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			if ( $user && isset( $user['nsid'] ) ) {
 				$photos = $api->people_getPublicPhotos( $user['nsid'], null, 'url_sq, url_t, url_s, url_q, url_m, url_n, url_z, url_c, url_l, url_o', self::MAX_IMAGES, $page );
 				if ( ! empty( $photos ) ) {
+					$pages	= get_transient( $this->slug . 'photos_' . self::MAX_IMAGES . '_pages' );
+					if ( false === $pages ) {
+						set_transient( $this->slug . 'photos_' . self::MAX_IMAGES . '_pages', $photos['photos']['pages'], self::CACHE_DAYS * DAY_IN_SECONDS );
+					}
 					$photos	= $photos['photos']['photo'];
 				}
 			}
@@ -209,7 +213,8 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$photo = array_filter( $data, function ( $e ) use ( $photo_id ) {
 			return $e['id'] === $photo_id;
 		}, true );
-		$photo = array_pop( array_reverse( $photo ) );
+		$photo = array_reverse( $photo );
+		$photo = array_pop( $photo );
 		if ( empty( $photo ) ) {
 			wp_die();
 		}
@@ -289,7 +294,8 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 					'load_more'             => esc_html__( 'Loading more photos...', 'themeisle-companion' ),
 					'tab_name'              => esc_html__( 'MyStock Library', 'themeisle-companion' ),
 				),
-				'slug'    => $this->slug,
+				'slug'		=> $this->slug,
+				'pages'		=> get_transient( $this->slug . 'photos_' . self::MAX_IMAGES . '_pages' ),
 			),
 		);
 
