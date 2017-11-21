@@ -478,7 +478,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				'type'        => Controls_Manager::NUMBER,
 				'label'       => '<i class="fa fa-arrows-h"></i> ' . __( 'Length (words)', 'themeisle-companion' ),
 				'placeholder' => __( 'Length of content (words)', 'themeisle-companion' ),
-				'default'     => __( '55', 'themeisle-companion' ),
+				'default'     => 30,
 			]
 		);
 
