@@ -3593,3 +3593,52 @@ html {
 	-webkit-transition: height 1s;
 	transition: height 1s;
 }
+
+/** TEMPORARY FIX FOR SOCIAL SHARING STYLE **/
+
+#obfx-mod-social-sharing .form-group.inline-setting {
+	display: inline-block;
+}
+
+#obfx-mod-social-sharing .form-group.inline-setting.network-toggle {
+	min-width: 300px;
+}
+
+#obfx-mod-social-sharing .form-group.inline-setting.last .form-label {
+	display: none;
+}
+
+#obfx-mod-social-sharing .show {
+	opacity: 1;
+	-webkit-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+
+#obfx-mod-social-sharing .show.obfxHiddenOption {
+	opacity: 0;
+	cursor: default;
+}
+
+.obfx-row {
+	margin-bottom: 10px;
+	border-bottom: 1px solid #eee;
+}
+
+@media ( max-width: 600px ) {
+	#obfx-mod-social-sharing .obfx-row .form-label {
+		margin-bottom: 20px;
+		font-weight: 600;
+	}
+
+	#obfx-mod-social-sharing .obfx-row .show .form-label {
+		display: none;
+	}
+
+	#obfx-mod-social-sharing .form-group.inline-setting.network-toggle {
+		display: block;
+	}
+
+	.obfx-row {
+		padding: 10px 0;
+	}
+}
