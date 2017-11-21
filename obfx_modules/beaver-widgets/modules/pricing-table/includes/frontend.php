@@ -15,7 +15,7 @@ echo '<div class="obfx-pricing-plan card">';
 	echo '<div class="obfx-pricing-price text-center">';
 		switch( $settings->currency_position ){
 			case 'after':
-				echo '<span class="obfx-price">'. wp_kses_post( $settings->price ) .'</span><sup>'. wp_kses_post( $settings->currency ) .'</sup><span class="obfx-period">'. wp_kses_post($settings->period) .'</span>';
+				echo '<span class="obfx-price">'. wp_kses_post( $settings->price ) .'</span><sup class="obfx-currency">'. wp_kses_post( $settings->currency ) .'</sup><span class="obfx-period">'. wp_kses_post($settings->period) .'</span>';
 				break;
 			case 'before':
 				echo '<sup>'. wp_kses_post( $settings->currency ) .'</sup><span class="obfx-price">'. wp_kses_post( $settings->price ) .'</span><span class="obfx-period">'. wp_kses_post($settings->period) .'</span>';
