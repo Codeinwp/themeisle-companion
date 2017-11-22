@@ -11,6 +11,7 @@
  */
 
 if ( ( $this->check_plugin_state( 'elementor' ) === 'activate' ) || ( $this->check_plugin_state( 'elementor' ) === 'install' ) ) {
+	$html = '';
 	$button = $this->get_button_html( 'elementor' );
 	$html  .= '<div class="obfx-no-elementor-modal-wrapper"><div class="obfx-no-elementor-modal plugin-card-elementor">';
 	$html  .= '<div class="modal-header"><span class="obfx-close-modal"><i class="dashicons dashicons-no"></i></span></div>';
