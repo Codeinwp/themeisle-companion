@@ -1,0 +1,128 @@
+<?php
+/**
+ * Services module.
+ *
+ * @package themeisle-companion
+ */
+
+//Get the module directory.
+$module_directory = $this->get_dir();
+
+//Include common functions file.
+require_once( $module_directory . '/inc/common-functions.php' );
+
+/**
+ * Class PricingTableModule
+ */
+class ServicesModule extends FLBuilderModule {
+
+	/**
+	 * Constructor function for the module. You must pass the
+	 * name, description, dir and url in an array to the parent class.
+	 *
+	 * @method __construct
+	 */
+	public function __construct() {
+		parent::__construct(
+			array(
+				'name'          => esc_html__( 'Services', 'themeisle-companion' ),
+				'description'   => esc_html__( 'An overview of the products or services.', 'themeisle-companion' ),
+				'category'      => esc_html__( 'Orbit Fox Modules', 'themeisle-companion' ),
+				'dir'           => BEAVER_WIDGETS_PATH . 'modules/services/',
+				'url'           => BEAVER_WIDGETS_URL . 'modules/services/',
+				'editor_export' => true, // Defaults to true and can be omitted.
+				'enabled'       => true, // Defaults to true and can be omitted.
+			)
+		);
+	}
+}
+
+/**
+ * Register the module and its form settings.
+ */
+FLBuilder::register_module(
+	'ServicesModule', array(
+		'content' => array(
+			'title' => esc_html__( 'Content', 'themeisle-companion' ), // Tab title
+			'sections' => array(
+				'content' => array(
+					'title' => '',
+					'fields' => array(
+						'services' => array(
+							'multiple' => true,
+							'type'          => 'form',
+							'label'         => esc_html__( 'Feature', 'themeisle-companion' ),
+							'form'          => 'service_content', // ID of a registered form.
+							'preview_text'  => 'title', // ID of a field to use for the preview text.
+						),
+						'icon_position' => array(
+							'type'    => 'select',
+							'label'   => esc_html__( 'Icon position', 'themeisle-companion' ),
+							'default' => 'center',
+							'options' => array(
+								'left' => esc_html__( 'Left', 'themeisle-companion' ),
+								'center' => esc_html__( 'Center', 'themeisle-companion' ),
+								'right' => esc_html__( 'Right', 'themeisle-companion' ),
+							),
+						)
+					)
+				)
+			)
+		),
+		'icon_style' => array(
+			'title' => esc_html__( 'Icon style', 'themeisle-companion' ), // Tab title
+			'sections' => array(
+				'icon_padding' => themeisle_four_fields_control( array(
+						'default' => array(
+							'top' => 15,
+							'bottom' => 30,
+							'left' => 0,
+							'right' => 0,
+						),
+						'selector' => '.obfx-services-icon',
+						'field_name_prefix' => 'icon_',
+				) )
+			)
+		)
+	)
+);
+
+FLBuilder::register_settings_form(
+	'service_content', array(
+		'title' => __( 'Service', 'themeisle-companion' ),
+		'tabs'  => array(
+			'general'      => array(
+				'title'         => esc_html__( 'General', 'themeisle-companion' ),
+				'sections'      => array(
+					'general'       => array(
+						'title'         => '',
+						'fields'        => array(
+							'title' => array(
+								'type'  => 'text',
+								'label' => esc_html__( 'Title', 'themeisle-companion' ),
+							),
+							'text' => array(
+								'type'          => 'textarea',
+								'label'         => esc_html__( 'Text', 'themeisle-companion' ),
+								'rows'          => '6'
+							),
+							'icon' => array(
+								'type'          => 'icon',
+								'label'         => esc_html__( 'Icon', 'themeisle-companion' ),
+								'show_remove'   => true,
+							),
+							'icon_color' => array(
+								'type'          => 'color',
+								'label'         => esc_html__('Icon color', 'themeisle-companion'),
+							),
+							'link' => array(
+								'type'          => 'link',
+								'label'         => esc_html__('Link to', 'themeisle-companion')
+							),
+						)
+					)
+				)
+			)
+		)
+	)
+);
