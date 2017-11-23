@@ -1,5 +1,4 @@
 /* global elementor */
-
 (function ($) {
 
     $( document ).ready( function () {
@@ -11,7 +10,7 @@
         checkImageSize();
     } );
 
-    if ( elementor !== 'undefined' ) {
+    if ( typeof elementor !== 'undefined' ) {
         $( window ).on( 'elementor/frontend/init', function () {
             elementor.hooks.addAction( 'panel/open_editor/widget/obfx-posts-grid', function ( panel ) {
                 var $element = panel.$el.find( '.elementor-control-section_grid_image' );
