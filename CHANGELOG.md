@@ -1,4 +1,8 @@
 
+ ### v2.1.1 - 2017-11-16 
+ **Changes:** 
+ * Adds compatibility with WordPress 4.9.
+ 
  ### v2.1.0 - 2017-11-08 
  **Changes:** 
  * Adds custom icons menu module.
