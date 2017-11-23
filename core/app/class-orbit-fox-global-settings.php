@@ -25,7 +25,7 @@ class Orbit_Fox_Global_Settings {
 	 *
 	 * @since   1.0.0
 	 * @access  public
-	 * @var     Orbit_Fox_Global_Settings $instance The istance of this class.
+	 * @var     Orbit_Fox_Global_Settings $instance The instance of this class.
 	 */
 	public static $instance;
 
@@ -64,6 +64,8 @@ class Orbit_Fox_Global_Settings {
 					'stats',
 					'social-sharing',
 					'companion-legacy',
+					'elementor-widgets',
+					'template-directory',
 					'menu-icons',
 					'mystock-import',
 				)
@@ -102,7 +104,7 @@ class Orbit_Fox_Global_Settings {
 	 * @since   1.0.0
 	 * @access  public
 	 */
-	public static function distroy_instance() {
+	public static function destroy_instance() {
 		static::$instance = null;
 	}
 }

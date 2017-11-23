@@ -27,16 +27,14 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function __construct() {
 		parent::__construct();
-		$this->name        = __( 'Companion Legacy', 'themeisle-companion' );
-		$this->description = __( 'Module containing legacy functionality from ThemeIsle Companion.', 'themeisle-companion' );
 
-		$this->auto = true;
+		$this->active_default = true;
 
 		$this->inc_dir = $this->get_dir() . DIRECTORY_SEPARATOR . 'inc' . DIRECTORY_SEPARATOR;
-		if( ! defined('THEMEISLE_COMPANION_PATH') ) {
+		if ( ! defined( 'THEMEISLE_COMPANION_PATH' ) ) {
 			define( 'THEMEISLE_COMPANION_PATH', $this->inc_dir );
 		}
-		if( ! defined('THEMEISLE_COMPANION_URL') ) {
+		if ( ! defined( 'THEMEISLE_COMPANION_URL' ) ) {
 			define( 'THEMEISLE_COMPANION_URL', plugin_dir_url( $this->inc_dir ) );
 		}
 		$theme_name = '';
@@ -61,9 +59,19 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		if ( $this->is_hestia() ) {
 			require_once $this->inc_dir . 'hestia' . DIRECTORY_SEPARATOR . 'functions.php';
+			require_once $this->inc_dir . 'hestia' . DIRECTORY_SEPARATOR . 'common-functions.php';
 			$theme_name = 'Hestia';
 
 		}
+
+		if ( $this->is_hestia_pro() ) {
+			require_once $this->inc_dir . 'hestia' . DIRECTORY_SEPARATOR . 'common-functions.php';
+			$theme_name = 'Hestia Pro';
+
+		}
+		$this->name        = sprintf( __( '%s enhancements ', 'themeisle-companion' ), $theme_name );
+		$this->description = sprintf( __( 'Module containing frontpage improvements for %s theme.', 'themeisle-companion' ), $theme_name );
+
 		if ( ! empty( $theme_name ) ) {
 			$this->notices = array(
 				array(
@@ -100,6 +108,14 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		return false;
 	}
 
+	private function is_hestia_pro(){
+		if ( $this->get_active_theme_dir() == 'hestia-pro' ) {
+			return true;
+		}
+
+		return false;
+	}
+
 	/**
 	 * Determine if module should be loaded.
 	 *
@@ -108,7 +124,7 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return bool
 	 */
 	public function enable_module() {
-		if ( $this->is_hestia() || $this->is_rhea() || $this->is_zerif() ) {
+		if ( $this->is_hestia() || $this->is_rhea() || $this->is_zerif() || $this->is_hestia_pro() ) {
 			return true;
 		} else {
 			return false;
@@ -172,12 +188,36 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	}
 
 	/**
+	 * Wrapper method for themeisle_hestia_set_default_content function call.
+	 *
+	 * @since   2.1.1
+	 * @access  public
+	 */
+	public function hestia_load_default_content(){
+		themeisle_hestia_top_bar_default_content();
+	}
+
+	/**
+	 * Wrapper method for themeisle_hestia_clients_default_content function call.
+	 *
+	 * @since   2.1.1
+	 * @access  public
+	 */
+	public function hestia_load_clients_default_content(){
+		return themeisle_hestia_clients_default_content();
+	}
+
+	public function hestia_top_bar_default_alignment(){
+		return themeisle_hestia_top_bar_default_alignment();
+	}
+
+	/**
 	 * Wrapper method for themeisle_hestia_load_controls function call.
 	 *
 	 * @since   2.0.4
 	 * @access  public
 	 */
-	public function hestia_require_customizer(){
+	public function hestia_require_customizer() {
 		themeisle_hestia_load_controls();
 	}
 
@@ -221,8 +261,17 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		if ( $this->is_hestia() ) {
 			$this->loader->add_action( 'after_setup_theme', $this, 'hestia_require' );
+			$this->loader->add_action( 'after_setup_theme', $this, 'hestia_load_default_content' );
+			$this->loader->add_filter( 'after_setup_theme', $this, 'hestia_load_clients_default_content' );
+			$this->loader->add_filter( 'hestia_top_bar_alignment_default', $this, 'hestia_top_bar_default_alignment' );
 			$this->loader->add_action( 'customize_register', $this, 'hestia_require_customizer', 0 );
 			$this->loader->add_action( 'after_switch_theme', $this, 'hestia_set_front_page' );
+		}
+
+		if ( $this->is_hestia_pro() ) {
+			$this->loader->add_action( 'after_setup_theme', $this, 'hestia_load_default_content' );
+			$this->loader->add_filter( 'hestia_clients_bar_default_content', $this, 'hestia_load_clients_default_content' );
+			$this->loader->add_filter( 'hestia_top_bar_alignment_default', $this, 'hestia_top_bar_default_alignment' );
 		}
 	}
 

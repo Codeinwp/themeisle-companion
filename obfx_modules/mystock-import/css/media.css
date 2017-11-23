@@ -8,7 +8,7 @@
 	margin: 0;
 	padding: 2px 8px 8px;
 	outline: 0;
-
+	opacity: 1;
 	-webkit-overflow-scrolling: touch;
 }
 
@@ -164,12 +164,21 @@
 }
 
 .obfx_spinner {
-	background: url('/wp-admin/images/wpspin_light.gif') no-repeat;
-	background-size: 16px 16px;
 	display: none;
-	opacity: .7;
+	width: 32px;
+	height: 32px;
+	margin: 25% auto 0;
+	opacity: 0.9;
+	background: url("/wp-admin/images/wpspin_light-2x.gif") no-repeat;
+	background-size: 32px 32px;
 	filter: alpha(opacity=70);
-	width: 16px;
-	height: 16px;
-	margin: 5px 35%;
+}
+
+.obfx-image-list.obfx_loading {
+	opacity: .5;
+	filter: alpha(opacity=50);
+}
+
+.left-side {
+	width: 70%;
 }

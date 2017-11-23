@@ -120,15 +120,16 @@ class Orbit_Fox_Model {
 	 *
 	 * @since   1.0.0
 	 * @access  public
-	 * @param   string $slug The module slug.
+	 * @param   string  $slug The module slug.
+	 * @param   boolean $default The default active state.
 	 * @return bool
 	 */
-	public function get_is_module_active( $slug ) {
+	public function get_is_module_active( $slug, $default ) {
 		$data = $this->get();
 		if ( isset( $data['module_status'][ $slug ]['active'] ) ) {
 			return $data['module_status'][ $slug ]['active'];
 		}
-		return false; // @codeCoverageIgnore
+		return $default; // @codeCoverageIgnore
 	}
 
 	/**
@@ -243,7 +244,7 @@ class Orbit_Fox_Model {
 	 * @access  public
 	 * @return mixed
 	 */
-	public function distroy_model() {
+	public function destroy_model() {
 		return delete_option( $this->namespace );
 	}
 }

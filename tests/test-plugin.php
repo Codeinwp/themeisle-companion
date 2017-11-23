@@ -18,10 +18,10 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
 	protected $plugin_version;
 
     public function tearDown() {
-        Orbit_Fox_Global_Settings::distroy_instance();
+        Orbit_Fox_Global_Settings::destroy_instance();
 
         $obfx_model = new Orbit_Fox_Model();
-        $obfx_model->distroy_model();
+        $obfx_model->destroy_model();
     }
 
 	public function setUp() {
@@ -69,7 +69,7 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
         $modules = $instance->get_modules();
         $this->assertTrue( is_array( $modules ) );
         $this->assertTrue( ! empty($modules ) );
-        $global_settings->distroy_instance();
+        $global_settings->destroy_instance();
     }
 
     /**
@@ -119,6 +119,11 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
         $this->invokeMethod( $rdh, 'sanitize_option', array( 'type' => 'text' ) );
     }
 
+    /**
+     * Test for Orbit Fox Model
+     *
+     * @covers Orbit_Fox_Model
+     */
     public function test_model() {
 	    $obfx_model = new Orbit_Fox_Model();
 
@@ -127,6 +132,7 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
         $modules = $global_settings::$instance->module_objects;
 
         $obfx_model->register_modules_data( $modules );
+        $default_state = false;
         foreach ( $modules as $slug => $module ) {
             $module->register_model( $obfx_model );
             $module->set_status( 'active', true );
@@ -134,7 +140,8 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
             $module->set_option( 'test_checkbox_name', '2' );
             $module->get_option( 'test_checkbox_name' );
             $module->set_options( array('test_checkbox_name', '1') );
-            $obfx_model->get_is_module_active( $slug );
+            $obfx_model->get_is_module_active( $slug, $default_state );
+            $default_state = ! $default_state;
         }
 
     }
