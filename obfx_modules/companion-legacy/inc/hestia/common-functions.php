@@ -99,7 +99,7 @@ function themeisle_hestia_set_top_bar_widgets( $type ) {
 			update_option( 'widget_search', $search_widget );
 			break;
 		case 'page_top':
-			$menu_id                              = hestia_create_menu( 'socials' );
+			$menu_id                              = themeisle_hestia_create_menu( 'socials' );
 			$active_widgets['sidebar-top-bar'][0] = 'nav_menu-1';
 			$menu_widget[1]                       = array(
 				'title'    => 'Socials',

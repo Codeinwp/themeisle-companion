@@ -78,18 +78,21 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * Enqueue the scripts for the dashboard page of the
 	 */
 	public function enqueue_template_dir_scripts() {
-		$script_handle = $this->slug . '-script';
-		if ( ! defined( 'ELEMENTOR_VERSION' ) ) {
-			wp_enqueue_script( 'plugin-install' );
-			wp_enqueue_script( 'updates' );
+		$current_screen = get_current_screen();
+		if ( $current_screen->id == 'orbit-fox_page_obfx_template_dir' || $this->is_template_dir_customize() ) {
+			$script_handle = $this->slug . '-script';
+			if ( ! defined( 'ELEMENTOR_VERSION' ) ) {
+				wp_enqueue_script( 'plugin-install' );
+				wp_enqueue_script( 'updates' );
+			}
+			wp_register_script( $script_handle, plugin_dir_url( $this->get_dir() ) . $this->slug . '/js/script.js', array( 'jquery' ), $this->version );
+			wp_localize_script( $script_handle, 'importer_endpoint',
+				array(
+					'url'   => $this->get_endpoint_url( '/import_elementor' ),
+					'nonce' => wp_create_nonce( 'wp_rest' ),
+				) );
+			wp_enqueue_script( $script_handle );
 		}
-		wp_register_script( $script_handle, plugin_dir_url( $this->get_dir() ) . $this->slug . '/js/script.js', array( 'jquery' ), $this->version );
-		wp_localize_script( $script_handle, 'importer_endpoint',
-			array(
-				'url'   => $this->get_endpoint_url( '/import_elementor' ),
-				'nonce' => wp_create_nonce( 'wp_rest' ),
-			) );
-		wp_enqueue_script( $script_handle );
 	}
 
 	/**
@@ -129,7 +132,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			return array();
 		}
 
-		if ( ! ( $current_screen->id == 'obfx_template_dir' ) && ( ! $current_screen == 'customize' ) ) {
+		if ( ! ( $current_screen->id == 'orbit-fox_page_obfx_template_dir' ) && ( ! $current_screen == 'customize' ) ) {
 			return array();
 		}
 
