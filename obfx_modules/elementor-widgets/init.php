@@ -44,18 +44,6 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	}
 
 	/**
-	 * Check if Elementor exists.
-	 *
-	 * @return bool
-	 */
-	private function has_elementor() {
-		if ( defined( 'ELEMENTOR_VERSION' ) ) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
 	 * Determine if module should be loaded.
 	 *
 	 * @since   1.0.0
@@ -63,10 +51,8 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return bool
 	 */
 	public function enable_module() {
-		if ( $this->has_elementor() ) {
-			return true;
-		}
-		return false;
+		require_once( ABSPATH . 'wp-admin' . '/includes/plugin.php' );
+		return is_plugin_active( 'elementor/elementor.php' );
 	}
 
 	/**
@@ -75,12 +61,7 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @since   1.0.0
 	 * @access  public
 	 */
-	public function load() {
-		if ( $this->has_elementor() ) {
-			return true;
-		}
-		return false;
-	}
+	public function load() {}
 
 	/**
 	 * Method to define hooks needed.
