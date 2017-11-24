@@ -1,4 +1,8 @@
 
+ ### v2.2.1 - 2017-11-24 
+ **Changes:** 
+ * Fixed module loading for Elementor widgets module.
+ 
  ### v2.2.0 - 2017-11-23 
  **Changes:** 
  * - Added new Elementor Widgets module;

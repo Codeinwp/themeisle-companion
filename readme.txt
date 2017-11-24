@@ -86,6 +86,11 @@ Activating the Orbit Fox Companion plugin is just like any other plugin. If you'
 3. Screenshot 3. How reports module is looking
 
 == Changelog ==
+= 2.2.1 - 2017-11-24  = 
+
+* Fixed module loading for Elementor widgets module.
+
+
 = 2.2.0 - 2017-11-23  = 
 
 * - Added new Elementor Widgets module;
