@@ -1,4 +1,9 @@
 
+ ### v2.2.2 - 2017-11-24 
+ **Changes:** 
+ * Renamed flickr api util file.
+* Fixed issue with template directory preview plugin install modal.
+ 
  ### v2.2.1 - 2017-11-24 
  **Changes:** 
  * Fixed module loading for Elementor widgets module.
