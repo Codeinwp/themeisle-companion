@@ -55,16 +55,18 @@ FLBuilder::register_module(
 							'form'          => 'service_content', // ID of a registered form.
 							'preview_text'  => 'title', // ID of a field to use for the preview text.
 						),
-						'icon_position' => array(
+						'column_number' => array(
 							'type'    => 'select',
-							'label'   => esc_html__( 'Icon position', 'themeisle-companion' ),
+							'label'   => esc_html__( 'Number of columns', 'themeisle-companion' ),
 							'default' => 'center',
 							'options' => array(
-								'left' => esc_html__( 'Left', 'themeisle-companion' ),
-								'center' => esc_html__( 'Center', 'themeisle-companion' ),
-								'right' => esc_html__( 'Right', 'themeisle-companion' ),
+								'1' => esc_html__( '1', 'themeisle-companion' ),
+								'2' => esc_html__( '2', 'themeisle-companion' ),
+								'3' => esc_html__( '3', 'themeisle-companion' ),
+								'4' => esc_html__( '4', 'themeisle-companion' ),
+								'5' => esc_html__( '5', 'themeisle-companion' ),
 							),
-						)
+						),
 					)
 				)
 			)
@@ -72,6 +74,52 @@ FLBuilder::register_module(
 		'icon_style' => array(
 			'title' => esc_html__( 'Icon style', 'themeisle-companion' ), // Tab title
 			'sections' => array(
+				'font' => array(
+					'title' => esc_html__( 'General', 'themeisle-companion' ),
+					'fields' => array(
+						'icon_position' => array(
+							'type'    => 'select',
+							'label'   => esc_html__( 'Position', 'themeisle-companion' ),
+							'default' => 'center',
+							'options' => array(
+								'left' => esc_html__( 'Left', 'themeisle-companion' ),
+								'center' => esc_html__( 'Center', 'themeisle-companion' ),
+								'right' => esc_html__( 'Right', 'themeisle-companion' ),
+							),
+						),
+						'icon_size' => array(
+							'type'        => 'text',
+							'label' => esc_html__( 'Size', 'themeisle-companion' ),
+							'description' => esc_html__( 'px', 'themeisle-companion' ),
+							'default' => '25',
+							'maxlength'     => '3',
+							'size'          => '4',
+							'preview' => array(
+								'type' => 'css',
+								'rules' => array(
+									array(
+										'selector' => '.obfx-services-icon',
+										'property'     => 'font-size',
+										'unit' => 'px',
+									),
+								),
+							)
+						),
+						'icon_color' => array(
+							'type' => 'color',
+							'label' => esc_html__( 'Color', 'themeisle-companion' ),
+							'preview' => array(
+								'type' => 'css',
+								'rules' => array(
+									array(
+										'selector' => '.obfx-services-icon',
+										'property'     => 'color',
+									),
+								),
+							),
+						),
+					)
+				),
 				'icon_padding' => themeisle_four_fields_control( array(
 						'default' => array(
 							'top' => 15,
@@ -82,6 +130,74 @@ FLBuilder::register_module(
 						'selector' => '.obfx-services-icon',
 						'field_name_prefix' => 'icon_',
 				) )
+			)
+		),
+		'title_style' => array(
+			'title' => esc_html__('Title style', 'themeisle-companion'),
+			'sections' => array(
+				'general' => array(
+					'title' => esc_html__('General', 'themeisle-companion'),
+					'fields' => array(
+						'title_color' => array(
+							'type' => 'color',
+							'label' => esc_html__( 'Color', 'themeisle-companion' ),
+							'preview' => array(
+								'type' => 'css',
+								'rules' => array(
+									array(
+										'selector' => '.obfx-services-title',
+										'property'     => 'color',
+									),
+								),
+							),
+						),
+					),
+				),
+				'typography' => themeisle_typography_settings(
+					array(
+						'prefix' => 'title_',
+						'selector' => '.obfx-services-title',
+					)
+				),
+			)
+		),
+		'content_style' => array(
+			'title' => esc_html__('Content style', 'themeisle-companion'),
+			'sections' => array(
+				'general' => array(
+					'title' => esc_html__('General', 'themeisle-companion'),
+					'fields' => array(
+						'content_alignment' => array(
+							'type'    => 'select',
+							'label'   => esc_html__( 'Alignment', 'themeisle-companion' ),
+							'default' => 'center',
+							'options' => array(
+								'left' => esc_html__( 'Left', 'themeisle-companion' ),
+								'center' => esc_html__( 'Center', 'themeisle-companion' ),
+								'right' => esc_html__( 'Right', 'themeisle-companion' ),
+							),
+						),
+						'content_color' => array(
+							'type' => 'color',
+							'label' => esc_html__( 'Color', 'themeisle-companion' ),
+							'preview' => array(
+								'type' => 'css',
+								'rules' => array(
+									array(
+										'selector' => '.obfx-services-title',
+										'property'     => 'color',
+									),
+								),
+							),
+						),
+					),
+				),
+				'typography' => themeisle_typography_settings(
+					array(
+						'prefix' => 'content_',
+						'selector' => '.obfx-services-title',
+					)
+				),
 			)
 		)
 	)
