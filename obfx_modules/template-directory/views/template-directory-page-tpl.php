@@ -24,7 +24,7 @@ if ( is_array( $templates_array ) ) {
 		$customizer_url = add_query_arg(
 			array(
 				'url'              => urlencode( $preview_url ),
-				'return'           => admin_url() . 'tools.php?page=obfx_template_dir',
+				'return'           => admin_url() . 'admin.php?page=obfx_template_dir',
 				'obfx_template_id' => esc_html( $template ),
 			), $admin_url
 		);

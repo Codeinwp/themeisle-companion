@@ -2,7 +2,7 @@
 Contributors: themeisle, codeinwp, rodicaelena, baicusandrei
 Tags: widget, admin, widgets, sharing, reporting, sections, themes, stock photos, custom icons, icons, menu icons, stock
 Requires at least: 3.0
-Tested up to: 4.8
+Tested up to: 4.9
 Requires PHP: 5.3
 Stable tag: trunk
 License: GPLv2 or later
@@ -86,6 +86,11 @@ Activating the Orbit Fox Companion plugin is just like any other plugin. If you'
 3. Screenshot 3. How reports module is looking
 
 == Changelog ==
+= 2.1.1 - 2017-11-16  = 
+
+* Adds compatibility with WordPress 4.9.
+
+
 = 2.1.0 - 2017-11-08  = 
 
 * Adds custom icons menu module.
