@@ -97,7 +97,6 @@ function hestia_features_content( $hestia_features_content, $is_callback = false
 
 		$hestia_features_content = json_decode( $hestia_features_content );
 		if ( ! empty( $hestia_features_content ) ) {
-			$i = 1;
 			echo '<div class="row">';
 			foreach ( $hestia_features_content as $features_item ) :
 				$icon = ! empty( $features_item->icon_value ) ? apply_filters( 'hestia_translate_single_string', $features_item->icon_value, 'Features section' ) : '';
@@ -153,12 +152,6 @@ function hestia_features_content( $hestia_features_content, $is_callback = false
 					</div>
 				</div>
 				<?php
-				if ( $i % apply_filters( 'hestia_features_per_row_no', 3 ) == 0 ) {
-					echo '</div><!-- /.row -->';
-					echo '<div class="row">';
-				}
-				$i++;
-
 			endforeach;
 			echo '</div>';
 		}// End if().

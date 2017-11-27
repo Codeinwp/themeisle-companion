@@ -106,8 +106,6 @@ function hestia_team_content( $hestia_team_content, $is_callback = false ) {
 			$hestia_team_content = json_decode( $hestia_team_content );
 
 			if ( ! empty( $hestia_team_content ) ) {
-
-				$i = 1;
 				echo '<div class="row">';
 				foreach ( $hestia_team_content as $team_item ) :
 					$image = ! empty( $team_item->image_url ) ? apply_filters( 'hestia_translate_single_string', $team_item->image_url, 'Team section' ) : '';
@@ -186,11 +184,6 @@ function hestia_team_content( $hestia_team_content, $is_callback = false ) {
 						</div>
 					</div>
 					<?php
-					if ( $i % 2 == 0 ) {
-						echo '</div><!-- /.row -->';
-						echo '<div class="row">';
-					}
-					$i++;
 				endforeach;
 				echo '</div>';
 			}// End if().
