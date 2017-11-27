@@ -107,7 +107,7 @@ function hestia_features_content( $hestia_features_content, $is_callback = false
 				$color = ! empty( $features_item->color ) ? $features_item->color : '';
 				$choice = ! empty( $features_item->choice ) ? $features_item->choice : 'customizer_repeater_icon';
 				?>
-				<div class="<?php echo apply_filters( 'hestia_features_per_row_class','col-md-4' ); ?> feature-box">
+				<div class="col-xs-12 <?php echo apply_filters( 'hestia_features_per_row_class','col-md-4' ); ?> feature-box">
 					<div class="hestia-info">
 						<?php
 						if ( ! empty( $link ) ) {
