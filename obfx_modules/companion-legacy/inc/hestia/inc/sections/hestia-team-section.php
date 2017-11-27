@@ -162,17 +162,20 @@ function hestia_team_content( $hestia_team_content, $is_callback = false ) {
 											?>
 											<div class="footer">
 												<?php
-												foreach ( $icons_decoded as $value ) :
+												foreach ( $icons_decoded as $value ) {
 													$social_icon = ! empty( $value['icon'] ) ? apply_filters( 'hestia_translate_single_string', $value['icon'], 'Team section' ) : '';
 													$social_link = ! empty( $value['link'] ) ? apply_filters( 'hestia_translate_single_string', $value['link'], 'Team section' ) : '';
-													?>
-													<?php if ( ! empty( $social_icon ) ) : ?>
-													<a href="<?php echo esc_url( $social_link ); ?>"
-													   class="btn btn-just-icon btn-simple">
-														<i class="fa <?php echo esc_attr( $social_icon ); ?>"></i>
-													</a>
-												<?php endif; ?>
-												<?php endforeach; ?>
+
+													if ( ! empty( $social_icon ) ) {
+														$link = '<a href="' . esc_url( $social_link ) . '"';
+														if ( function_exists( 'hestia_is_external_url' ) ) {
+															$link .= hestia_is_external_url( $social_link );
+														}
+														$link .= ' class="btn btn-just-icon btn-simple"><i class="fa ' . esc_attr( $social_icon ) . '"></i></a>';
+														echo $link;
+													}
+												}
+												?>
 											</div>
 											<?php
 										endif;
