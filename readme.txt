@@ -86,6 +86,12 @@ Activating the Orbit Fox Companion plugin is just like any other plugin. If you'
 3. Screenshot 3. How reports module is looking
 
 == Changelog ==
+= 2.2.3 - 2017-11-27  = 
+
+* [Hestia] Fixed issue with Team member section not opening external links in a new tab
+* [Hestia] Fixed alignment issues with the front page sections
+
+
 = 2.2.2 - 2017-11-24  = 
 
 * Renamed flickr api util file.

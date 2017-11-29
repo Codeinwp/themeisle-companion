@@ -43,7 +43,6 @@ if ( ! function_exists( 'hestia_clients_bar' ) ) :
 			<div class="container">
 				<div class="row">
 					<?php
-					$i = 1;
 					$array_length = sizeof( $hestia_clients_bar_content_decoded );
 					foreach ( $hestia_clients_bar_content_decoded as $client ) {
 						$image = ! empty( $client->image_url ) ? apply_filters( 'hestia_translate_single_string', $client->image_url, 'Clients bar section' ) : '';
@@ -71,12 +70,6 @@ if ( ! function_exists( 'hestia_clients_bar' ) ) :
 							}
 							echo '</div>';
 						}
-
-						if ( $i % 4 == 0 && $i !== $array_length ) {
-							echo '</div><!-- /.row -->';
-							echo '<div class="row">';
-						}
-						$i++;
 					}
 					?>
 				</div>

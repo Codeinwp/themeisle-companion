@@ -1,4 +1,9 @@
 
+ ### v2.2.3 - 2017-11-27 
+ **Changes:** 
+ * [Hestia] Fixed issue with Team member section not opening external links in a new tab
+* [Hestia] Fixed alignment issues with the front page sections
+ 
  ### v2.2.2 - 2017-11-24 
  **Changes:** 
  * Renamed flickr api util file.
