@@ -12,7 +12,7 @@ namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
-} // Exit if accessed directly
+} // End if().
 
 /**
  * Class OBFX_Elementor_Widget_Services
@@ -608,7 +608,7 @@ if ( ! empty( $service['text'] ) ) {
 				?>
 			</div><!-- /.obfx-grid-wrapper -->
 		<?php
-		}
+		}// End foreach().
 		echo '</div></div>';
 
 	}
