@@ -82,9 +82,9 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		/*Get tab content*/
 		$this->loader->add_action( 'wp_ajax_get-tab-' . $this->slug, $this, 'get_tab_content' );
-		$this->loader->add_action( 'wp_ajax_' . $this->slug, $this, 'display_photo_sizes' );
 		$this->loader->add_action( 'wp_ajax_infinite-' . $this->slug, $this, 'infinite_scroll' );
 		$this->loader->add_action( 'wp_ajax_handle-request-' . $this->slug, $this, 'handle_request' );
+		$this->loader->add_filter( 'media_view_strings', $this, 'media_view_strings' );
 	}
 
 	/**
@@ -132,18 +132,12 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	function handle_request() {
 		check_ajax_referer( $this->slug . filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ), 'security' );
 
-		if ( ! isset( $_POST['formdata'] ) ) {
+		if ( ! isset( $_POST['url'] ) ) {
 			echo esc_html__( 'Image failed to upload', 'themeisle-companion' );
 			wp_die();
 		}
 
-		$data = array();
-		parse_str( $_POST['formdata'], $data );
-		if ( empty( $data['imagesizes'] ) ) {
-			echo esc_html__( 'Image failed to upload', 'themeisle-companion' );
-			wp_die();
-		}
-		$url      = $data['imagesizes'];
+		$url      = $_POST['url'];
 		$name     = basename( $url );
 		$tmp_file = download_url( $url );
 		if ( is_wp_error( $tmp_file ) ) {
@@ -164,6 +158,8 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			wp_die();
 		}
 		wp_update_attachment_metadata( $image_id, $attach_data );
+
+		wp_send_json_success( array( 'id' => $image_id ) );
 	}
 
 	/**
@@ -193,62 +189,6 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			}
 		}
 
-		echo $response;
-		wp_die();
-	}
-
-	/**
-	 * Ajax function to display image sizes.
-	 */
-	public function display_photo_sizes() {
-
-		check_ajax_referer( $this->slug . filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ), 'security' );
-
-		$photo_id = $_POST['pid'];
-		$page	  = $_POST['page'];
-		if ( empty( $photo_id ) || empty( $page ) ) {
-			wp_die();
-		}
-		$data     = $this->get_images( $page );
-		$photo = array_filter( $data, function ( $e ) use ( $photo_id ) {
-			return $e['id'] === $photo_id;
-		}, true );
-		$photo = array_reverse( $photo );
-		$photo = array_pop( $photo );
-		if ( empty( $photo ) ) {
-			wp_die();
-		}
-		$photo_sizes = array(
-			'url_sq' => __( 'Square', 'themeisle-companion' ),
-			'url_q'  => __( 'Large Square', 'themeisle-companion' ),
-			'url_t'  => __( 'Thumbnail', 'themeisle-companion' ),
-			'url_s'  => __( 'Small', 'themeisle-companion' ),
-			'url_n'  => __( 'Small 320', 'themeisle-companion' ),
-			'url_m'  => __( 'Medium', 'themeisle-companion' ),
-			'url_z'  => __( 'Medium 640', 'themeisle-companion' ),
-			'url_c'  => __( 'Medium 800', 'themeisle-companion' ),
-			'url_l'  => __( 'Large', 'themeisle-companion' ),
-			'url_o'  => __( 'Original', 'themeisle-companion' ),
-		);
-
-		/**
-		 * Creating response for selected image
-		 */
-		$response = '<div class="attachment-details">';
-		$response .= '<form id="importmsp" method="post">';
-		$response .= '<h2>' . esc_html__( 'Attachement display settings', 'themeisle-companion' ) . '</h2><hr/>';
-		$response .= '<label class="attachement-settings">';
-		$response .= '<span class="name">' . esc_html__( 'Size', 'themeisle-companion' ) . '</span>';
-		$response .= '<select name="imagesizes">';
-		foreach ( $photo_sizes as $key => $label ) {
-			$response .= '<option value="' . esc_url( $photo[ $key ] ) . '">' . esc_html( $label ) . '</option>';
-		}
-		$response .= '</select>';
-		$response .= '</label>';
-
-		$response .= '<input type="submit" class="button obfx-import-media" value="Import media"/>';
-		$response .= '</form>';
-		$response .= '</div>';
 		echo $response;
 		wp_die();
 	}
@@ -293,6 +233,10 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 					'upload_image_complete' => esc_html__( 'Your image was imported. Go to Media Library tab to use it.', 'themeisle-companion' ),
 					'load_more'             => esc_html__( 'Loading more photos...', 'themeisle-companion' ),
 					'tab_name'              => esc_html__( 'MyStock Library', 'themeisle-companion' ),
+					'featured_image_new'	=> esc_html__( 'Import & set featured image', 'themeisle-companion' ),
+					'insert_image_new'		=> esc_html__( 'Import & insert featured image', 'themeisle-companion' ),
+					'featured_image'		=> $this->strings['setFeaturedImage'],
+					'insert_image'			=> $this->strings['insertIntoPost'],
 				),
 				'slug'		=> $this->slug,
 				'pages'		=> get_transient( $this->slug . 'photos_' . self::MAX_IMAGES . '_pages' ),
@@ -318,5 +262,10 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function options() {
 		return array();
+	}
+
+	public function media_view_strings( $strings ) {
+		$this->strings	= $strings;
+		return $strings;
 	}
 }
