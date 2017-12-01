@@ -81,8 +81,8 @@
         showSpinner: function(container) {
             $(container).find('.obfx-image-list').addClass('obfx_loading');
             $(container).find('.obfx_spinner').show();
-            $(document).find('.media-button-select').attr("disabled", "disabled").addClass('obfx-mystock-featured').html(mystock_import.l10n.featured_image_new);
-            $(document).find('.media-button-insert').attr("disabled", "disabled").addClass('obfx-mystock-insert').html(mystock_import.l10n.insert_image_new);
+            $(document).find('.media-button-select').attr('disabled', 'disabled').addClass('obfx-mystock-featured').html(mystock_import.l10n.featured_image_new);
+            $(document).find('.media-button-insert').attr('disabled', 'disabled').addClass('obfx-mystock-insert').html(mystock_import.l10n.insert_image_new);
         },
         hideSpinner: function(container) {
             $(container).find('.obfx-image-list').removeClass('obfx_loading');
@@ -108,8 +108,8 @@
             $(document).on('click', '.obfx-image', function () {
                 $('.obfx-image').removeClass('selected details');
                 $(this).addClass('selected details');
-                $(document).find('.media-button-insert').removeAttr("disabled", "disabled").addClass('obfx-mystock-insert').html(mystock_import.l10n.insert_image_new);
-                $(document).find('.media-button-select').removeAttr("disabled", "disabled").addClass('obfx-mystock-featured').html(mystock_import.l10n.featured_image_new);
+                $(document).find('.media-button-insert').removeAttr('disabled', 'disabled').addClass('obfx-mystock-insert').html(mystock_import.l10n.insert_image_new);
+                $(document).find('.media-button-select').removeAttr('disabled', 'disabled').addClass('obfx-mystock-featured').html(mystock_import.l10n.featured_image_new);
             });
         },
 
@@ -117,8 +117,8 @@
             $(document).on('click', '.obfx-image-check', function (e) {
                 e.stopPropagation();
                 $(this).parent().removeClass('selected details');
-                $(document).find('.media-button-insert').attr("disabled", "disabled");
-                $(document).find('.media-button-select').attr("disabled", "disabled");
+                $(document).find('.media-button-insert').attr('disabled', 'disabled');
+                $(document).find('.media-button-select').attr('disabled', 'disabled');
             });
         },
 
@@ -161,8 +161,8 @@
         },
 
         handleRequest : function () {
-            $(document).on('click','.obfx-mystock-insert', function (e) {
-                $(document).find('.media-button-insert').attr("disabled", "disabled").html(mystock_import.l10n.upload_image);
+            $(document).on('click','.obfx-mystock-insert', function () {
+                $(document).find('.media-button-insert').attr('disabled', 'disabled').html(mystock_import.l10n.upload_image);
                 $.ajax({
                     method : 'POST',
                     data : {
@@ -172,11 +172,11 @@
                     },
                     url : mystock_import.ajaxurl,
                     success : function(data) {
-                        $(document).find('.media-button-insert').attr("disabled", "disabled").html(mystock_import.l10n.insert_image_new);
+                        $(document).find('.media-button-insert').attr('disabled', 'disabled').html(mystock_import.l10n.insert_image_new);
                         if ( 'mystock' === wp.media.frame.content.mode() ) {
                             wp.media.frame.content.get('library').collection.props.set({ '__ignore_force_update': (+ new Date()) });
                             wp.media.frame.content.mode('browse');
-                            $(document).find('.media-button-insert').attr("disabled", "disabled");
+                            $(document).find('.media-button-insert').attr('disabled', 'disabled');
                             wp.media.frame.state().get( 'selection' ).reset( wp.media.attachment( data.data.id ) );
                             $(document).find('.media-button-insert').trigger('click');
                         }
@@ -184,8 +184,8 @@
                 });
             });
             
-            $(document).on('click','.obfx-mystock-featured', function (e) {
-                $(document).find('.media-button-select').attr("disabled", "disabled").html(mystock_import.l10n.upload_image);
+            $(document).on('click','.obfx-mystock-featured', function () {
+                $(document).find('.media-button-select').attr('disabled', 'disabled').html(mystock_import.l10n.upload_image);
                 $.ajax({
                     method : 'POST',
                     data : {
@@ -195,11 +195,11 @@
                     },
                     url : mystock_import.ajaxurl,
                     success : function(data) {
-                        $(document).find('.media-button-select').attr("disabled", "disabled").html(mystock_import.l10n.featured_image_new);
+                        $(document).find('.media-button-select').attr('disabled', 'disabled').html(mystock_import.l10n.featured_image_new);
                         if ( 'mystock' === wp.media.frame.content.mode() ) {
                             wp.media.frame.content.get('library').collection.props.set({ '__ignore_force_update': (+ new Date()) });
                             wp.media.frame.content.mode('browse');
-                            $(document).find('.media-button-select').attr("disabled", "disabled");
+                            $(document).find('.media-button-select').attr('disabled', 'disabled');
                             wp.media.frame.state().get( 'selection' ).reset( wp.media.attachment( data.data.id ) );
                             $(document).find('.media-button-select').trigger('click');
                         }
