@@ -1,4 +1,26 @@
 
+ ### v2.2.3 - 2017-11-27 
+ **Changes:** 
+ * [Hestia] Fixed issue with Team member section not opening external links in a new tab
+* [Hestia] Fixed alignment issues with the front page sections
+ 
+ ### v2.2.2 - 2017-11-24 
+ **Changes:** 
+ * Renamed flickr api util file.
+* Fixed issue with template directory preview plugin install modal.
+ 
+ ### v2.2.1 - 2017-11-24 
+ **Changes:** 
+ * Fixed module loading for Elementor widgets module.
+ 
+ ### v2.2.0 - 2017-11-23 
+ **Changes:** 
+ * - Added new Elementor Widgets module;
+* - Added new Template Directory module;
+* - Bug fixes for the Photos Import Module;
+* - Bug fixes for the Social Sharing module backend interface;
+* - Moved Orbit Fox Companion out of Tools Menu;
+ 
  ### v2.1.1 - 2017-11-16 
  **Changes:** 
  * Adds compatibility with WordPress 4.9.
