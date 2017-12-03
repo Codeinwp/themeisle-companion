@@ -52,6 +52,6 @@ if ( is_array( $templates_array ) ) {
 	if ( ! defined( 'ELEMENTOR_VERSION' ) ) {
 		$html .= $requires_plugins;
 	}
-}
+}// End if().
 
 echo $html;
