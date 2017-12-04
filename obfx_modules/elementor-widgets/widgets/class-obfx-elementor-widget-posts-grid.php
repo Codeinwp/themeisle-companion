@@ -12,7 +12,7 @@ namespace Elementor;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
-} // Exit if accessed directly
+} // End if().
 
 /**
  * Class OBFX_Elementor_Widget_Features
@@ -1521,13 +1521,13 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 						<?php
 							break;
 endswitch;
-				} // end foreach
+				} // End foreach().
 ?>
 
 				</div>
 			<?php
-			}
-		}
+			}// End if().
+		}// End if().
 	}
 
 	/**
@@ -1709,7 +1709,7 @@ endswitch;
 				echo '</article>';
 				echo '</div>';
 
-			} // end while;
+			} // End while().
 
 			// Pagination.
 			if ( ! empty( $settings['grid_pagination'] ) ) {
@@ -1742,7 +1742,7 @@ endswitch;
 			</div>
 			<?php
 			}
-		} // end if;
+		} // End if().
 
 		// Restore original data.
 		wp_reset_postdata();
