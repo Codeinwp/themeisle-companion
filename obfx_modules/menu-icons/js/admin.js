@@ -52,9 +52,11 @@ var obfx_menuicons_module_admin = function( $, menu_icons ) {
 		}
 		var prefix  = get_prefix( icon );
 
-		$( el ).find( '.menu-item-bar .menu-item-handle .item-title' ).prepend($(
-			'<div class="input-group obfx-menu-icon-container" style="display: inline-block"><input class="form-control obfx-menu-icon ' + no_icon_class + '" value="' + icon + '" style="display: none" type="text" data-menu-item-id="' + item_id + '"><span class="input-group-addon" style="cursor: pointer"><i class="' + prefix + icon + '"></i></span></div>'
-		));
+		if ( ! $( el ).find( '.menu-item-bar .menu-item-handle .item-title div' ).hasClass('obfx-menu-icon-container') ) {
+            $( el ).find( '.menu-item-bar .menu-item-handle .item-title' ).prepend($(
+                '<div class="input-group obfx-menu-icon-container" style="display: inline-block"><input class="form-control obfx-menu-icon ' + no_icon_class + '" value="' + icon + '" style="display: none" type="text" data-menu-item-id="' + item_id + '"><span class="input-group-addon" style="cursor: pointer"><i class="' + prefix + icon + '"></i></span></div>'
+            ));
+        }
 
 		// ensure the popover comes over the menu bar.
 		$( el ).find( '.menu-item-bar .menu-item-handle' ).css( 'overflow', 'initial' );
