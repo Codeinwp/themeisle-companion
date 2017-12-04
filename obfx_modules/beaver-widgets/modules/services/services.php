@@ -11,6 +11,9 @@ $module_directory = $this->get_dir();
 //Include common functions file.
 require_once( $module_directory . '/inc/common-functions.php' );
 
+//Include custom fields
+require_once( $module_directory . '/custom-fields/toggle-field/toggle_field.php' );
+
 /**
  * Class PricingTableModule
  */
@@ -30,8 +33,6 @@ class ServicesModule extends FLBuilderModule {
 				'category'      => esc_html__( 'Orbit Fox Modules', 'themeisle-companion' ),
 				'dir'           => BEAVER_WIDGETS_PATH . 'modules/services/',
 				'url'           => BEAVER_WIDGETS_URL . 'modules/services/',
-				'editor_export' => true, // Defaults to true and can be omitted.
-				'enabled'       => true, // Defaults to true and can be omitted.
 			)
 		);
 	}
@@ -51,14 +52,14 @@ FLBuilder::register_module(
 						'services' => array(
 							'multiple' => true,
 							'type'          => 'form',
-							'label'         => esc_html__( 'Feature', 'themeisle-companion' ),
+							'label'         => esc_html__( 'Service', 'themeisle-companion' ),
 							'form'          => 'service_content', // ID of a registered form.
 							'preview_text'  => 'title', // ID of a field to use for the preview text.
 						),
 						'column_number' => array(
 							'type'    => 'select',
 							'label'   => esc_html__( 'Number of columns', 'themeisle-companion' ),
-							'default' => 'center',
+							'default' => '3',
 							'options' => array(
 								'1' => esc_html__( '1', 'themeisle-companion' ),
 								'2' => esc_html__( '2', 'themeisle-companion' ),
@@ -67,6 +68,32 @@ FLBuilder::register_module(
 								'5' => esc_html__( '5', 'themeisle-companion' ),
 							),
 						),
+						'card_layout' => array(
+							'type'          => 'toggle',
+							'label'         =>  esc_html__( 'Card layout', 'themeisle-companion' ),
+							'default'       => 'yes',
+							'options'       => array(
+								'yes'         => esc_html__('Enable','themeisle-companion'),
+								'no'          => esc_html__('Disable','themeisle-companion'),
+							),
+							'oncolor'         => '#2ea2cc',
+							'offcolor'        => '#f7f7f7',
+						),
+						'background_color' => array(
+							'type' => 'color',
+							'label' => esc_html__( 'Background color', 'themeisle-companion' ),
+							'default' => 'ffffff',
+							'preview' => array(
+								'type' => 'css',
+								'rules' => array(
+									array(
+										'selector' => '.obfx-service',
+										'property'     => 'background',
+									),
+								),
+							),
+						),
+
 					)
 				)
 			)
@@ -91,43 +118,30 @@ FLBuilder::register_module(
 							'type'        => 'text',
 							'label' => esc_html__( 'Size', 'themeisle-companion' ),
 							'description' => esc_html__( 'px', 'themeisle-companion' ),
-							'default' => '25',
+							'default' => '45',
 							'maxlength'     => '3',
 							'size'          => '4',
 							'preview' => array(
 								'type' => 'css',
 								'rules' => array(
 									array(
-										'selector' => '.obfx-services-icon',
+										'selector' => '.obfx-service-icon',
 										'property'     => 'font-size',
 										'unit' => 'px',
 									),
 								),
 							)
 						),
-						'icon_color' => array(
-							'type' => 'color',
-							'label' => esc_html__( 'Color', 'themeisle-companion' ),
-							'preview' => array(
-								'type' => 'css',
-								'rules' => array(
-									array(
-										'selector' => '.obfx-services-icon',
-										'property'     => 'color',
-									),
-								),
-							),
-						),
 					)
 				),
 				'icon_padding' => themeisle_four_fields_control( array(
 						'default' => array(
-							'top' => 15,
-							'bottom' => 30,
-							'left' => 0,
-							'right' => 0,
+							'top' => 30,
+							'bottom' => 15,
+							'left' => 25,
+							'right' => 25,
 						),
-						'selector' => '.obfx-services-icon',
+						'selector' => '.obfx-service-icon',
 						'field_name_prefix' => 'icon_',
 				) )
 			)
@@ -145,7 +159,7 @@ FLBuilder::register_module(
 								'type' => 'css',
 								'rules' => array(
 									array(
-										'selector' => '.obfx-services-title',
+										'selector' => '.obfx-service-title',
 										'property'     => 'color',
 									),
 								),
@@ -156,7 +170,7 @@ FLBuilder::register_module(
 				'typography' => themeisle_typography_settings(
 					array(
 						'prefix' => 'title_',
-						'selector' => '.obfx-services-title',
+						'selector' => '.obfx-service-title',
 					)
 				),
 			)
@@ -184,7 +198,7 @@ FLBuilder::register_module(
 								'type' => 'css',
 								'rules' => array(
 									array(
-										'selector' => '.obfx-services-title',
+										'selector' => '.obfx-service-content',
 										'property'     => 'color',
 									),
 								),
@@ -195,7 +209,7 @@ FLBuilder::register_module(
 				'typography' => themeisle_typography_settings(
 					array(
 						'prefix' => 'content_',
-						'selector' => '.obfx-services-title',
+						'selector' => '.obfx-service-content',
 					)
 				),
 			)
@@ -230,6 +244,7 @@ FLBuilder::register_settings_form(
 							'icon_color' => array(
 								'type'          => 'color',
 								'label'         => esc_html__('Icon color', 'themeisle-companion'),
+								'default' => 'd6d6d6',
 							),
 							'link' => array(
 								'type'          => 'link',
