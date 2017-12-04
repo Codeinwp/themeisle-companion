@@ -86,6 +86,11 @@ Activating the Orbit Fox Companion plugin is just like any other plugin. If you'
 3. Screenshot 3. How reports module is looking
 
 == Changelog ==
+= 2.2.4 - 2017-12-04  = 
+
+* Fixed issue with menu icons module loading.
+
+
 = 2.2.3 - 2017-11-27  = 
 
 * [Hestia] Fixed issue with Team member section not opening external links in a new tab
