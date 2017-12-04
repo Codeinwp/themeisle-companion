@@ -17,6 +17,9 @@ var obfx_menuicons_module_admin = function( $, menu_icons ) {
     var all_icons = $.merge( [default_icon], $.merge( menu_icons.icons, $.iconpicker.defaultOptions.icons ) );
 
 	function get_prefix(icon){
+        if(typeof icon === 'undefined') {
+            return '';
+        }
 		if (icon.match( /^fa-/ )) {
 			return 'fa ';
 		} else if (icon.match( /^dashicons-/ )) {
