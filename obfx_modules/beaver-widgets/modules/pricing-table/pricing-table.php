@@ -5,10 +5,10 @@
  * @package themeisle-companion
  */
 
-//Get the module directory.
+// Get the module directory.
 $module_directory = $this->get_dir();
 
-//Include common functions file.
+// Include common functions file.
 require_once( $module_directory . '/inc/common-functions.php' );
 
 /**

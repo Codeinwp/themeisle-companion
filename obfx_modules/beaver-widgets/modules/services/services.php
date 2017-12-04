@@ -5,13 +5,13 @@
  * @package themeisle-companion
  */
 
-//Get the module directory.
+// Get the module directory.
 $module_directory = $this->get_dir();
 
-//Include common functions file.
+// Include common functions file.
 require_once( $module_directory . '/inc/common-functions.php' );
 
-//Include custom fields
+// Include custom fields
 require_once( $module_directory . '/custom-fields/toggle-field/toggle_field.php' );
 
 /**
@@ -70,11 +70,11 @@ FLBuilder::register_module(
 						),
 						'card_layout' => array(
 							'type'          => 'toggle',
-							'label'         =>  esc_html__( 'Card layout', 'themeisle-companion' ),
+							'label'         => esc_html__( 'Card layout', 'themeisle-companion' ),
 							'default'       => 'yes',
 							'options'       => array(
-								'yes'         => esc_html__('Enable','themeisle-companion'),
-								'no'          => esc_html__('Disable','themeisle-companion'),
+								'yes'         => esc_html__( 'Enable', 'themeisle-companion' ),
+								'no'          => esc_html__( 'Disable', 'themeisle-companion' ),
 							),
 							'oncolor'         => '#2ea2cc',
 							'offcolor'        => '#f7f7f7',
@@ -94,9 +94,9 @@ FLBuilder::register_module(
 							),
 						),
 
-					)
-				)
-			)
+					),
+				),
+			),
 		),
 		'icon_style' => array(
 			'title' => esc_html__( 'Icon style', 'themeisle-companion' ), // Tab title
@@ -130,11 +130,12 @@ FLBuilder::register_module(
 										'unit' => 'px',
 									),
 								),
-							)
+							),
 						),
-					)
+					),
 				),
-				'icon_padding' => themeisle_four_fields_control( array(
+				'icon_padding' => themeisle_four_fields_control(
+					array(
 						'default' => array(
 							'top' => 30,
 							'bottom' => 15,
@@ -143,14 +144,15 @@ FLBuilder::register_module(
 						),
 						'selector' => '.obfx-service-icon',
 						'field_name_prefix' => 'icon_',
-				) )
-			)
+					)
+				),
+			),
 		),
 		'title_style' => array(
-			'title' => esc_html__('Title style', 'themeisle-companion'),
+			'title' => esc_html__( 'Title style', 'themeisle-companion' ),
 			'sections' => array(
 				'general' => array(
-					'title' => esc_html__('General', 'themeisle-companion'),
+					'title' => esc_html__( 'General', 'themeisle-companion' ),
 					'fields' => array(
 						'title_color' => array(
 							'type' => 'color',
@@ -173,13 +175,13 @@ FLBuilder::register_module(
 						'selector' => '.obfx-service-title',
 					)
 				),
-			)
+			),
 		),
 		'content_style' => array(
-			'title' => esc_html__('Content style', 'themeisle-companion'),
+			'title' => esc_html__( 'Content style', 'themeisle-companion' ),
 			'sections' => array(
 				'general' => array(
-					'title' => esc_html__('General', 'themeisle-companion'),
+					'title' => esc_html__( 'General', 'themeisle-companion' ),
 					'fields' => array(
 						'content_alignment' => array(
 							'type'    => 'select',
@@ -212,8 +214,8 @@ FLBuilder::register_module(
 						'selector' => '.obfx-service-content',
 					)
 				),
-			)
-		)
+			),
+		),
 	)
 );
 
@@ -234,7 +236,7 @@ FLBuilder::register_settings_form(
 							'text' => array(
 								'type'          => 'textarea',
 								'label'         => esc_html__( 'Text', 'themeisle-companion' ),
-								'rows'          => '6'
+								'rows'          => '6',
 							),
 							'icon' => array(
 								'type'          => 'icon',
@@ -243,17 +245,17 @@ FLBuilder::register_settings_form(
 							),
 							'icon_color' => array(
 								'type'          => 'color',
-								'label'         => esc_html__('Icon color', 'themeisle-companion'),
+								'label'         => esc_html__( 'Icon color', 'themeisle-companion' ),
 								'default' => 'd6d6d6',
 							),
 							'link' => array(
 								'type'          => 'link',
-								'label'         => esc_html__('Link to', 'themeisle-companion')
+								'label'         => esc_html__( 'Link to', 'themeisle-companion' ),
 							),
-						)
-					)
-				)
-			)
-		)
+						),
+					),
+				),
+			),
+		),
 	)
 );
