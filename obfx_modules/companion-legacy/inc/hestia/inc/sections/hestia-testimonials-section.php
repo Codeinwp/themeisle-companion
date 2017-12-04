@@ -107,7 +107,6 @@ function hestia_testimonials_content( $hestia_testimonials_content, $is_callback
 	if ( ! empty( $hestia_testimonials_content ) ) :
 		$hestia_testimonials_content = json_decode( $hestia_testimonials_content );
 		if ( ! empty( $hestia_testimonials_content ) ) {
-			$i = 1;
 			echo '<div class="row">';
 			foreach ( $hestia_testimonials_content as $testimonial_item ) :
 				$image = ! empty( $testimonial_item->image_url ) ? apply_filters( 'hestia_translate_single_string', $testimonial_item->image_url, 'Testimonials section' ) : '';
@@ -155,11 +154,6 @@ function hestia_testimonials_content( $hestia_testimonials_content, $is_callback
 					</div>
 				</div>
 				<?php
-				if ( $i % apply_filters( 'hestia_testimonials_per_row_no', 3 ) == 0 ) {
-					echo '</div><!-- /.row -->';
-					echo '<div class="row">';
-				}
-				$i++;
 			endforeach;
 			echo '</div>';
 		}// End if().
