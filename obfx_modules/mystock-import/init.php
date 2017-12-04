@@ -234,7 +234,7 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 					'load_more'             => esc_html__( 'Loading more photos...', 'themeisle-companion' ),
 					'tab_name'              => esc_html__( 'MyStock Library', 'themeisle-companion' ),
 					'featured_image_new'	=> esc_html__( 'Import & set featured image', 'themeisle-companion' ),
-					'insert_image_new'		=> esc_html__( 'Import & insert featured image', 'themeisle-companion' ),
+					'insert_image_new'		=> esc_html__( 'Import & insert image', 'themeisle-companion' ),
 					'featured_image'		=> $this->strings['setFeaturedImage'],
 					'insert_image'			=> $this->strings['insertIntoPost'],
 				),
