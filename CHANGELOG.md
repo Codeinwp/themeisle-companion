@@ -1,4 +1,8 @@
 
+ ### v2.2.4 - 2017-12-04 
+ **Changes:** 
+ * Fixed issue with menu icons module loading.
+ 
  ### v2.2.3 - 2017-11-27 
  **Changes:** 
  * [Hestia] Fixed issue with Team member section not opening external links in a new tab
