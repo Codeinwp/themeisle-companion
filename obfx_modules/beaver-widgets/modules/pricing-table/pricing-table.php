@@ -11,6 +11,9 @@ $module_directory = $this->get_dir();
 // Include common functions file.
 require_once( $module_directory . '/inc/common-functions.php' );
 
+// Include custom fields
+require_once( $module_directory . '/custom-fields/toggle-field/toggle_field.php' );
+
 /**
  * Class PricingTableModule
  */
@@ -164,6 +167,22 @@ FLBuilder::register_module(
 						'link' => array(
 							'type' => 'link',
 							'label' => esc_html__( 'Button link', 'themeisle-companion' ),
+						),
+					),
+				),
+				'appearance' => array(
+					'title' => esc_html__( 'Appearance', 'themeisle-companion' ),
+					'fields' => array(
+						'card_layout' => array(
+							'type'          => 'toggle',
+							'label'         => esc_html__( 'Card layout', 'themeisle-companion' ),
+							'default'       => 'yes',
+							'options'       => array(
+								'yes'         => esc_html__( 'Enable', 'themeisle-companion' ),
+								'no'          => esc_html__( 'Disable', 'themeisle-companion' ),
+							),
+							'oncolor'         => '#2ea2cc',
+							'offcolor'        => '#f7f7f7',
 						),
 					),
 				),
