@@ -9,7 +9,7 @@
 
 $class_to_add = $settings->card_layout === 'yes' ? 'obfx-card' : '';
 
-echo '<div class="obfx-pricing-plan '. esc_attr( $class_to_add ) .'">';
+echo '<div class="obfx-pricing-plan ' . esc_attr( $class_to_add ) . '">';
 	echo '<div class="obfx-pricing-header">';
 		echo '<' . $settings->plan_title_tag . ' class="obfx-plan-title text-center">' . wp_kses_post( $settings->plan_title ) . '</' . $settings->plan_title_tag . '>';
 		echo '<' . $settings->plan_subtitle_tag . ' class="obfx-plan-subtitle text-center">' . wp_kses_post( $settings->plan_subtitle ) . '</' . $settings->plan_subtitle_tag . '>';
