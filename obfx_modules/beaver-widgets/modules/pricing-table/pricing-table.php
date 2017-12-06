@@ -177,12 +177,6 @@ FLBuilder::register_module(
 							'type'          => 'toggle',
 							'label'         => esc_html__( 'Card layout', 'themeisle-companion' ),
 							'default'       => 'yes',
-							'options'       => array(
-								'yes'         => esc_html__( 'Enable', 'themeisle-companion' ),
-								'no'          => esc_html__( 'Disable', 'themeisle-companion' ),
-							),
-							'oncolor'         => '#2ea2cc',
-							'offcolor'        => '#f7f7f7',
 						),
 					),
 				),
