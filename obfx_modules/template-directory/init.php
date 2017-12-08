@@ -258,6 +258,13 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'screenshot'  => esc_url( $repository_raw_url . 'pricing-elementor/screenshot.png' ),
 				'import_file' => esc_url( $repository_raw_url . 'pricing-elementor/template.json' ),
 			),
+			'material-homepage-elementor'         => array(
+				'title'       => __( 'Material Homepage', 'themeisle-companion' ),
+				'description' => __( 'A fancy description here', 'themeisle-companion' ),
+				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/material-homepage-elementor/',
+				'screenshot'  => esc_url( $repository_raw_url . 'material-homepage-elementor/screenshot.png' ),
+				'import_file' => esc_url( $repository_raw_url . 'material-homepage-elementor/template.json' ),
+			),
 		);
 
 		foreach ( $templates_list as $template => $properties ) {
