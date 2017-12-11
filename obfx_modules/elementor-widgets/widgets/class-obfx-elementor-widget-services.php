@@ -122,7 +122,7 @@ class OBFX_Elementor_Widget_Services extends Widget_Base {
 								'title' => __( 'Image', 'themeisle-companion' ),
 								'icon'  => 'fa fa-photo',
 							],
-						]
+						],
 					],
 					[
 						'type'    => Controls_Manager::TEXT,
@@ -617,13 +617,15 @@ class OBFX_Elementor_Widget_Services extends Widget_Base {
 				?>
 			<div class="obfx-service-box obfx-grid-col">
 				<?php
-				if ( $service['type'] === 'icon' &&  ! empty( $service['icon'] ) ) { ?>
+				if ( $service['type'] === 'icon' && ! empty( $service['icon'] ) ) {
+				?>
 					<span class="obfx-icon-wrap"><i class="obfx-icon <?php echo esc_attr( $service['icon'] ); ?>" style="color: <?php echo esc_attr( $service['color'] ); ?>"></i></span>
 					<?php
-				} elseif ( $service['type'] === 'image' && ! empty( $service['image']['url'] ) ) { ?>
+				} elseif ( $service['type'] === 'image' && ! empty( $service['image']['url'] ) ) {
+				?>
 
-			        <span class="obfx-image-wrap"><img class="obfx-image" src="<?php echo esc_url( $service['image']['url'] ); ?>"/></span>
-                <?php
+					<span class="obfx-image-wrap"><img class="obfx-image" src="<?php echo esc_url( $service['image']['url'] ); ?>"/></span>
+				<?php
 				}
 				if ( ! empty( $service['title'] ) || ! empty( $service['text'] ) ) {
 				?>
