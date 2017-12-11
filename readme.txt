@@ -86,6 +86,13 @@ Activating the Orbit Fox Companion plugin is just like any other plugin. If you'
 3. Screenshot 3. How reports module is looking
 
 == Changelog ==
+= 2.2.5 - 2017-12-11  = 
+
+* Better UX for CC0 images import module.
+* Improved Elementor Services Widget.
+* Added new templates to the template directory.
+
+
 = 2.2.4 - 2017-12-04  = 
 
 * Fixed issue with menu icons module loading.

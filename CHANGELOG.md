@@ -1,4 +1,10 @@
 
+ ### v2.2.5 - 2017-12-11 
+ **Changes:** 
+ * Better UX for CC0 images import module.
+* Improved Elementor Services Widget.
+* Added new templates to the template directory.
+ 
  ### v2.2.4 - 2017-12-04 
  **Changes:** 
  * Fixed issue with menu icons module loading.
