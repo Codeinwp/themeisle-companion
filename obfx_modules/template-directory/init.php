@@ -265,6 +265,27 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'screenshot'  => esc_url( $repository_raw_url . 'material-homepage-elementor/screenshot.png' ),
 				'import_file' => esc_url( $repository_raw_url . 'material-homepage-elementor/template.json' ),
 			),
+			'ether-elementor'         => array(
+				'title'       => __( 'Ether - Landing Page', 'themeisle-companion' ),
+				'description' => __( 'A fancy description here', 'themeisle-companion' ),
+				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/ether-elementor/',
+				'screenshot'  => esc_url( $repository_raw_url . 'ether-elementor/screenshot.png' ),
+				'import_file' => esc_url( $repository_raw_url . 'ether-elementor/template.json' ),
+			),
+			'jason-elementor'         => array(
+				'title'       => __( 'Jason - Landing Page', 'themeisle-companion' ),
+				'description' => __( 'A fancy description here', 'themeisle-companion' ),
+				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/jason-elementor/',
+				'screenshot'  => esc_url( $repository_raw_url . 'jason-elementor/screenshot.png' ),
+				'import_file' => esc_url( $repository_raw_url . 'jason-elementor/template.json' ),
+			),
+			'pulse-elementor'         => array(
+				'title'       => __( 'Pulse - Landing Page', 'themeisle-companion' ),
+				'description' => __( 'A fancy description here', 'themeisle-companion' ),
+				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/pulse-elementor/',
+				'screenshot'  => esc_url( $repository_raw_url . 'pulse-elementor/screenshot.png' ),
+				'import_file' => esc_url( $repository_raw_url . 'pulse-elementor/template.json' ),
+			),
 		);
 
 		foreach ( $templates_list as $template => $properties ) {
