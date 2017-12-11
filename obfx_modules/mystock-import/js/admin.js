@@ -161,7 +161,7 @@
         },
 
         handleRequest : function () {
-            $(document).on('click','.obfx-mystock-insert', function () {
+            $(document).off('click','.obfx-mystock-insert').on('click','.obfx-mystock-insert', function () {
                 $(document).find('.media-button-insert').attr('disabled', 'disabled').html(mystock_import.l10n.upload_image);
                 $.ajax({
                     method : 'POST',
@@ -184,7 +184,7 @@
                 });
             });
             
-            $(document).on('click','.obfx-mystock-featured', function () {
+            $(document).off('click','.obfx-mystock-featured').on('click','.obfx-mystock-featured', function () {
                 $(document).find('.media-button-select').attr('disabled', 'disabled').html(mystock_import.l10n.upload_image);
                 $.ajax({
                     method : 'POST',
