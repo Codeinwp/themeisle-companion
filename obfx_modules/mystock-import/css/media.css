@@ -10,6 +10,7 @@
 	outline: 0;
 	opacity: 1;
 	-webkit-overflow-scrolling: touch;
+	width: 95%;
 }
 
 .obfx-preview {
@@ -177,8 +178,4 @@
 .obfx-image-list.obfx_loading {
 	opacity: .5;
 	filter: alpha(opacity=50);
-}
-
-.left-side {
-	width: 70%;
 }

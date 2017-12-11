@@ -85,25 +85,45 @@ class OBFX_Elementor_Widget_Services extends Widget_Base {
 				'type'        => Controls_Manager::REPEATER,
 				'default'     => [
 					[
-						'title' => __( 'Responsive', 'themeisle-companion' ),
-						'text'  => __( 'A lot of text here', 'themeisle-companion' ),
-						'icon'  => 'fa fa-star',
+						'title' => __( 'Award-Winning​', 'themeisle-companion' ),
+						'text'  => __( 'Add some text here to describe your services to the page visitors.​', 'themeisle-companion' ),
+						'icon'  => 'fa fa-trophy',
 						'color' => '#333333',
+						'type' => 'icon',
 					],
 					[
-						'title' => __( 'Responsive', 'themeisle-companion' ),
-						'text'  => __( 'A lot of text here', 'themeisle-companion' ),
-						'icon'  => 'fa fa-star',
+						'title' => __( 'Professional​', 'themeisle-companion' ),
+						'text'  => __( 'Add some text here to describe your services to the page visitors.​', 'themeisle-companion' ),
+						'icon'  => 'fa fa-suitcase',
 						'color' => '#333333',
+						'type' => 'icon',
 					],
 					[
-						'title' => __( 'Responsive', 'themeisle-companion' ),
-						'text'  => __( 'A lot of text here', 'themeisle-companion' ),
-						'icon'  => 'fa fa-star',
+						'title' => __( 'Consulting​', 'themeisle-companion' ),
+						'text'  => __( 'Add some text here to describe your services to the page visitors.​', 'themeisle-companion' ),
+						'icon'  => 'fa fa-handshake-o',
 						'color' => '#333333',
+						'type' => 'icon',
 					],
 				],
 				'fields'      => [
+					[
+						'type'    => Controls_Manager::CHOOSE,
+						'name'    => 'type',
+						'label_block' => true,
+						'label'   => __( 'Type', 'themeisle-companion' ),
+						'default' => 'icon',
+						'options'   => [
+							'icon'   => [
+								'title' => __( 'Icon', 'themeisle-companion' ),
+								'icon'  => 'fa fa-diamond',
+							],
+							'image' => [
+								'title' => __( 'Image', 'themeisle-companion' ),
+								'icon'  => 'fa fa-photo',
+							],
+						],
+					],
 					[
 						'type'    => Controls_Manager::TEXT,
 						'name'    => 'title',
@@ -121,14 +141,28 @@ class OBFX_Elementor_Widget_Services extends Widget_Base {
 						'type'    => Controls_Manager::ICON,
 						'name'    => 'icon',
 						'label'   => __( 'Icon', 'themeisle-companion' ),
-						'default' => 'fa fa-star',
+						'default' => 'fa fa-diamond',
+						'condition' => [
+							'type' => 'icon',
+						],
 					],
 					[
 						'type'        => Controls_Manager::COLOR,
 						'name'        => 'color',
 						'label_block' => false,
 						'label'       => __( 'Icon Color', 'themeisle-companion' ),
-						'default'     => '#5764c6',
+						'default'     => '#333333',
+						'condition' => [
+							'type' => 'icon',
+						],
+					],
+					[
+						'type'    => Controls_Manager::MEDIA,
+						'name'    => 'image',
+						'label'   => __( 'Image', 'themeisle-companion' ),
+						'condition' => [
+							'type' => 'image',
+						],
 					],
 					[
 						'type'        => Controls_Manager::URL,
@@ -138,7 +172,7 @@ class OBFX_Elementor_Widget_Services extends Widget_Base {
 						'placeholder' => __( 'https://example.com', 'themeisle-companion' ),
 					],
 				],
-				'title_field' => '<i style="color:{{color}}" class="{{icon}}"></i> {{title}}',
+				'title_field' => '{{title}}',
 			]
 		);
 
@@ -195,7 +229,7 @@ class OBFX_Elementor_Widget_Services extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_icon',
 			[
-				'label' => __( 'Icon', 'themeisle-companion' ),
+				'label' => __( 'Icon / Image', 'themeisle-companion' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -214,9 +248,9 @@ class OBFX_Elementor_Widget_Services extends Widget_Base {
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}}.obfx-position-right .obfx-icon' => 'margin-left: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}}.obfx-position-left .obfx-icon' => 'margin-right: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}}.obfx-position-top .obfx-icon' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}}.obfx-position-right .obfx-icon, {{WRAPPER}}.obfx-position-right .obfx-image' => 'margin-left: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}}.obfx-position-left .obfx-icon, {{WRAPPER}}.obfx-position-left .obfx-image' => 'margin-right: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}}.obfx-position-top .obfx-icon, {{WRAPPER}}.obfx-position-top .obfx-image' => 'margin-bottom: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -236,6 +270,7 @@ class OBFX_Elementor_Widget_Services extends Widget_Base {
 				],
 				'selectors' => [
 					'{{WRAPPER}} .obfx-icon' => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .obfx-image' => 'max-width: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -582,9 +617,14 @@ class OBFX_Elementor_Widget_Services extends Widget_Base {
 				?>
 			<div class="obfx-service-box obfx-grid-col">
 				<?php
-				if ( ! empty( $service['icon'] ) ) {
+				if ( $service['type'] === 'icon' && ! empty( $service['icon'] ) ) {
 				?>
 					<span class="obfx-icon-wrap"><i class="obfx-icon <?php echo esc_attr( $service['icon'] ); ?>" style="color: <?php echo esc_attr( $service['color'] ); ?>"></i></span>
+					<?php
+				} elseif ( $service['type'] === 'image' && ! empty( $service['image']['url'] ) ) {
+				?>
+
+					<span class="obfx-image-wrap"><img class="obfx-image" src="<?php echo esc_url( $service['image']['url'] ); ?>"/></span>
 				<?php
 				}
 				if ( ! empty( $service['title'] ) || ! empty( $service['text'] ) ) {
