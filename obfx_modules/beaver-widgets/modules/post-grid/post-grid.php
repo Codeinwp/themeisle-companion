@@ -156,7 +156,19 @@ FLBuilder::register_module( 'PostGridModule', array(
 							'p' => esc_html__('p','themeisle-companion'),
 							'div' => esc_html__('div','themeisle-companion'),
 						),
-
+					),
+					'title_color' => array(
+						'type' => 'color',
+						'label' => esc_html__( 'Title color', 'themeisle-companion' ),
+						'preview' => array(
+							'type' => 'css',
+							'rules' => array(
+								array(
+									'selector' => '.obfx-post-grid-title',
+									'property'     => 'color',
+								),
+							),
+						),
 					),
 				)
 			),
@@ -169,8 +181,15 @@ FLBuilder::register_module( 'PostGridModule', array(
 						'right' => 0,
 					),
 					'selector' => '.obfx-post-grid-title',
-					'field_name_prefix' => 'title_margin_',
-					'type' => 'margin',
+					'field_name_prefix' => 'title_padding_',
+					'type' => 'padding',
+				)
+			),
+			'title_typography' => themeisle_typography_settings(
+				array(
+					'prefix' => 'title_',
+					'selector' => '.obfx-post-grid-title',
+					'font_size_default' => 20,
 				)
 			),
 		)

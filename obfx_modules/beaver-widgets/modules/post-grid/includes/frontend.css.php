@@ -32,16 +32,25 @@ echo '.fl-node-'.$id.' .obfx-post-grid-thumbnail{
 echo '}';
 
 
-$title_margin_top = !empty($settings->title_margin_top) ? $settings->title_margin_top : '0';
-$title_margin_bottom = !empty($settings->title_margin_bottom) ? $settings->title_margin_bottom : '0';
-$title_margin_left = !empty($settings->title_margin_left) ? $settings->title_margin_left : '0';
-$title_margin_right = !empty($settings->title_margin_right) ? $settings->title_margin_right : '0';
+$title_padding_top = !empty($settings->title_padding_top) ? $settings->title_padding_top : '0';
+$title_padding_bottom = !empty($settings->title_padding_bottom) ? $settings->title_padding_bottom : '0';
+$title_padding_left = !empty($settings->title_padding_left) ? $settings->title_padding_left : '0';
+$title_padding_right = !empty($settings->title_padding_right) ? $settings->title_padding_right : '0';
 $title_alignment = !empty($settings->title_alignment) ? $settings->title_alignment : 'center';
 
 echo '.fl-node-'.$id.' .obfx-post-grid-title{
-	margin-top: '.$title_margin_top.'px;
-	margin-bottom: '.$title_margin_bottom.'px;
-	margin-left: '.$title_margin_left.'px;
-	margin-right: '.$image_alignment.'px;
+	padding-top: '.$title_padding_top.'px;
+	padding-bottom: '.$title_padding_bottom.'px;
+	padding-left: '.$title_padding_left.'px;
+	padding-right: '.$title_padding_right.'px;
 	text-align: '.$title_alignment.';
+	color: #'.$settings->title_color.';
+	font-size:'.$settings->title_font_size.'px;
+	font-family:'.$settings->title_font_family['family'].';
+	font-weight:'.$settings->title_font_family['weight'].';
+	text-transform:'.$settings->title_transform.';
+	font-style:'.$settings->title_font_style.';
+	line-height:'.$settings->title_line_height.'px;
+	letter-spacing:'.$settings->title_letter_spacing.'px;
 } ';
+
