@@ -7,6 +7,7 @@
 	padding: 15px;
 	font-size: 16px;
 	font-weight: 600;
+	float: left;
 }
 
 .obfx-template {
@@ -23,10 +24,24 @@
 .obfx-template:nth-child(4n) {
 	margin-right: 0;
 }
+.obfx-template:hover .obfx-template-actions,
+.obfx-template:hover .obfx-preview-template {
+	opacity: 1;
+}
+.obfx-template:hover .obfx-template-screenshot {
+	opacity: .4;
+}
 
 .obfx-template-actions {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	transition: .3s ease;
+	opacity:0;
+	background: rgba(244,244,244,.7);
+	border-left: 1px solid rgba(0,0,0,.05);
 	float: right;
-	padding: 10px;
+	padding: 10px 15px;
 }
 
 .obfx-template-actions .button .dashicons {
@@ -38,12 +53,14 @@
 }
 
 .obfx-template-screenshot {
+	background: #fff;
 	display: inline-block;
 	overflow: hidden;
 	position: relative;
 	border: 1px solid #ddd;
 	border-right: none;
 	border-left: none;
+	float: left;
 }
 
 .obfx-template img {
@@ -230,4 +247,45 @@
 	right: 5px;
 	color: #7b7b7b;
 	cursor: pointer;
+}
+
+
+.obfx-template-preview.theme-install-overlay .install-theme-info.obfx-theme-info {
+	display: none;
+}
+
+.obfx-template-preview.theme-install-overlay .install-theme-info.obfx-theme-info.active {
+	display: block;
+}
+
+.more-details.obfx-preview-template {
+	transition: .3s ease;
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+	bottom: 51px;
+	left: 0;
+	right: 0;
+	text-align: center;
+	z-index: 100;
+	opacity:0;
+}
+
+.more-details.obfx-preview-template span {
+	background: #23282d;
+	background: rgba(0,0,0,.7);
+	color: #fff;
+	font-size: 15px;
+	text-shadow: 0 1px 0 rgba(0,0,0,.6);
+	-webkit-font-smoothing: antialiased;
+	font-weight: 600;
+	padding: 15px 12px;
+	text-align: center;
+	border-radius: 3px;
+	transform: translate(-50%);
+	position: relative;
+	left: 50%;
+	top: 50%;
+	width: 45%;
+	display: block;
 }
