@@ -1,5 +1,5 @@
 ( function ( $ )  {
-    $( 'body' ).delegate( '.btn-switch__label', 'click', function ( e ) {
+    $( 'body' ).delegate( '.obfx-number-field', 'change', function ( e ) {
         $.proxy( FLBuilder.preview.delayPreview( e ), FLBuilder.preview );
     });
 } ) ( jQuery );

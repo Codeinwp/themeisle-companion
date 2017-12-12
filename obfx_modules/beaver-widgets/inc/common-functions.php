@@ -5,6 +5,12 @@
  * @package themeisle-companion
  */
 
+// Get the module directory.
+$module_directory = $this->get_dir();
+
+//Require custom field.
+require_once( $module_directory . '/custom-fields/number-field/number_field.php' );
+
 /**
  * Function to return padding controls.
  *
@@ -14,83 +20,34 @@
  */
 function themeisle_four_fields_control( $settings ) {
 	$default = $settings['default'];
-	$selector = $settings['selector'];
 	$prefix = $settings['field_name_prefix'];
 	$type = ! empty( $settings['type'] ) ? $settings['type'] : 'padding';
 	return array(
 		'title'  => $type === 'margin' ? esc_html__( 'Margins', 'themeisle-companion' ) : esc_html__( 'Padding', 'themeisle-companion' ),
 		'fields' => array(
 			$prefix . 'top' => array(
-				'type'        => 'text',
+				'type'        => 'obfx_number',
 				'label' => esc_html__( 'Top', 'themeisle-companion' ),
 				'description' => esc_html__( 'px', 'themeisle-companion' ),
 				'default' => $default['top'],
-				'maxlength'     => '3',
-				'size'          => '4',
-				'preview' => array(
-					'type' => 'css',
-					'rules' => array(
-						array(
-							'selector' => $selector,
-							'property'     => $type . '-top',
-							'unit' => 'px',
-						),
-					),
-				),
 			),
 			$prefix . 'bottom' => array(
-				'type'        => 'text',
+				'type'        => 'obfx_number',
 				'label' => esc_html__( 'Bottom', 'themeisle-companion' ),
 				'description' => esc_html__( 'px', 'themeisle-companion' ),
 				'default' => $default['bottom'],
-				'maxlength'     => '3',
-				'size'          => '4',
-				'preview' => array(
-					'type' => 'css',
-					'rules' => array(
-						array(
-							'selector' => $selector,
-							'property'     => $type . '-bottom',
-							'unit' => 'px',
-						),
-					),
-				),
 			),
 			$prefix . 'left' => array(
-				'type'        => 'text',
+				'type'        => 'obfx_number',
 				'label' => esc_html__( 'Left', 'themeisle-companion' ),
 				'description' => esc_html__( 'px', 'themeisle-companion' ),
 				'default' => $default['left'],
-				'maxlength'     => '3',
-				'size'          => '4',
-				'preview' => array(
-					'type' => 'css',
-					'rules' => array(
-						array(
-							'selector' => $selector,
-							'property'     => $type . '-left',
-							'unit' => 'px',
-						),
-					),
-				),
 			),
 			$prefix . 'right' => array(
-				'type'        => 'text',
+				'type'        => 'obfx_number',
 				'label' => esc_html__( 'Right', 'themeisle-companion' ),
 				'description' => esc_html__( 'px', 'themeisle-companion' ),
 				'default' => $default['right'],
-				'maxlength'     => '3',
-				'size'          => '4',
-				'preview' => array(
-					'type' => 'css',
-					'rules' => array(
-						array(
-							'selector' => $selector,
-							'property'     => $type . '-right',
-							'unit' => 'px',
-						),
-					),
-				),
 			),
 		),
 	);
@@ -106,28 +63,15 @@ function themeisle_four_fields_control( $settings ) {
 function themeisle_typography_settings( $settings ) {
 	$title = ! empty( $settings['title'] ) ? $settings['title'] : esc_html__( 'Typography', 'themeisle-companion' );
 	$prefix = $settings['prefix'];
-	$selector = $settings['selector'];
 	$font_default = ! empty( $settings['font_size_default'] ) ? $settings['font_size_default'] : '';
 	return array(
 		'title' => $title,
 		'fields' => array(
 			$prefix . 'font_size' => array(
-				'type'        => 'text',
+				'type'        => 'obfx_number',
 				'label' => esc_html__( 'Font size', 'themeisle-companion' ),
 				'description' => esc_html__( 'px', 'themeisle-companion' ),
-				'maxlength'     => '3',
-				'size'          => '4',
 				'default' => $font_default,
-				'preview' => array(
-					'type' => 'css',
-					'rules' => array(
-						array(
-							'selector' => $selector,
-							'property'     => 'font-size',
-							'unit' => 'px',
-						),
-					),
-				),
 			),
 			$prefix . 'font_family' => array(
 				'type'          => 'font',
@@ -159,38 +103,14 @@ function themeisle_typography_settings( $settings ) {
 				),
 			),
 			$prefix . 'line_height' => array(
-				'type'        => 'text',
+				'type'        => 'obfx_number',
 				'label' => esc_html__( 'Line height', 'themeisle-companion' ),
 				'description' => esc_html__( 'px', 'themeisle-companion' ),
-				'maxlength'     => '3',
-				'size'          => '4',
-				'preview' => array(
-					'type' => 'css',
-					'rules' => array(
-						array(
-							'selector' => $selector,
-							'property'     => 'line-height',
-							'unit' => 'px',
-						),
-					),
-				),
 			),
 			$prefix . 'letter_spacing' => array(
-				'type'        => 'text',
+				'type'        => 'obfx_number',
 				'label' => esc_html__( 'Letter spacing', 'themeisle-companion' ),
 				'description' => esc_html__( 'px', 'themeisle-companion' ),
-				'maxlength'     => '3',
-				'size'          => '4',
-				'preview' => array(
-					'type' => 'css',
-					'rules' => array(
-						array(
-							'selector' => $selector,
-							'property'     => 'letter-spacing',
-							'unit' => 'px',
-						),
-					),
-				),
 			),
 		),
 	);

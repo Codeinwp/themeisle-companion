@@ -174,7 +174,7 @@ FLBuilder::register_module(
 					'title' => esc_html__( 'Appearance', 'themeisle-companion' ),
 					'fields' => array(
 						'card_layout' => array(
-							'type'          => 'toggle',
+							'type'          => 'obfx_toggle',
 							'label'         => esc_html__( 'Card layout', 'themeisle-companion' ),
 							'default'       => 'yes',
 						),

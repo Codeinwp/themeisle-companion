@@ -69,7 +69,7 @@ FLBuilder::register_module(
 							),
 						),
 						'card_layout' => array(
-							'type'          => 'toggle',
+							'type'          => 'obfx_toggle',
 							'label'         => esc_html__( 'Card layout', 'themeisle-companion' ),
 							'default'       => 'yes',
 						),
