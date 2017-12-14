@@ -20,8 +20,10 @@ if ( $query->have_posts() ) {
 		echo '</div>';
 	}
 
-	if($settings->pagination === 'yes') {
+	if($settings->show_pagination === 'yes') {
+		echo '<div class="obfx-post-grid-pagination">';
 		FLBuilderLoop::pagination( $query );
+		echo '</div>';
 	}
 
 }

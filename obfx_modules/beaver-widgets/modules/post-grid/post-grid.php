@@ -49,7 +49,6 @@ FLBuilder::register_module( 'PostGridModule', array(
 	'loop_settings' => array(
 		'title'         => esc_html__( 'Loop Settings', 'themeisle-companion' ),
 		'file'          => BEAVER_WIDGETS_PATH . 'modules/post-grid/includes/loop-settings.php',
-//		'file'          => FL_BUILDER_DIR . 'includes/loop-settings.php',
 	),
 	'image_options' => array(
 		'title' => esc_html__( 'Image options', 'themeisle-companion' ), // Tab title
@@ -75,7 +74,7 @@ FLBuilder::register_module( 'PostGridModule', array(
 					'image_size' => array(
 						'type'          => 'select',
 						'label'         => esc_html__( 'Image size', 'themeisle-companion' ),
-						'default' => 'grid',
+						'default' => 'medium_large',
 						'options'       => $choices,
 
 					),
@@ -102,8 +101,8 @@ FLBuilder::register_module( 'PostGridModule', array(
 			'thumbnail_margins' => themeisle_four_fields_control(
 				array(
 					'default' => array(
-						'top' => 15,
-						'bottom' => 15,
+						'top' => 0,
+						'bottom' => 30,
 						'left' => 0,
 						'right' => 0,
 					),
@@ -157,19 +156,6 @@ FLBuilder::register_module( 'PostGridModule', array(
 							'div' => esc_html__('div','themeisle-companion'),
 						),
 					),
-					'title_color' => array(
-						'type' => 'color',
-						'label' => esc_html__( 'Title color', 'themeisle-companion' ),
-						'preview' => array(
-							'type' => 'css',
-							'rules' => array(
-								array(
-									'selector' => '.obfx-post-grid-title',
-									'property'     => 'color',
-								),
-							),
-						),
-					),
 				)
 			),
 			'title_margins' => themeisle_four_fields_control(
@@ -189,7 +175,7 @@ FLBuilder::register_module( 'PostGridModule', array(
 				array(
 					'prefix' => 'title_',
 					'selector' => '.obfx-post-grid-title',
-					'font_size_default' => 20,
+					'font_size_default' => 25,
 				)
 			),
 		)
@@ -214,7 +200,7 @@ FLBuilder::register_module( 'PostGridModule', array(
 					'meta_data' => array(
 						'type'          => 'select',
 						'label'         => esc_html__( 'Display', 'themeisle-companion' ),
-						'default'       => 'author',
+						'default'       => array('author', 'date'),
 						'options'       => array(
 							'author'      => esc_html__( 'Author', 'themeisle-companion' ),
 							'date'      => esc_html__( 'Date', 'themeisle-companion' ),
@@ -224,8 +210,38 @@ FLBuilder::register_module( 'PostGridModule', array(
 						),
 						'multi-select'  => true
 					),
+					'meta_alignment' => array(
+						'type'          => 'select',
+						'label'         => esc_html__( 'Meta alignment', 'themeisle-companion' ),
+						'default' => 'center',
+						'options'       => array(
+							'center' => esc_html__('Center','themeisle-companion'),
+							'left' => esc_html__('Left','themeisle-companion'),
+							'right' => esc_html__('Right','themeisle-companion'),
+						),
+					),
 				)
-			)
+			),
+			'meta_margins' => themeisle_four_fields_control(
+				array(
+					'default' => array(
+						'top' => 0,
+						'bottom' => 0,
+						'left' => 0,
+						'right' => 0,
+					),
+					'selector' => '.obfx-post-grid-meta',
+					'field_name_prefix' => 'meta_padding_',
+					'type' => 'padding',
+				)
+			),
+			'meta_typography' => themeisle_typography_settings(
+				array(
+					'prefix' => 'meta_',
+					'selector' => '.obfx-post-grid-meta',
+					'font_size_default' => 15,
+				)
+			),
 		)
 	),
 	'content_options' => array(
@@ -261,8 +277,70 @@ FLBuilder::register_module( 'PostGridModule', array(
 							'selector'      => '.obfx-post-grid-read-more'
 						)
 					),
+					'content_alignment' => array(
+						'type'          => 'select',
+						'label'         => esc_html__( 'Text alignment', 'themeisle-companion' ),
+						'default' => 'left',
+						'options'       => array(
+							'center' => esc_html__('Center','themeisle-companion'),
+							'left' => esc_html__('Left','themeisle-companion'),
+							'right' => esc_html__('Right','themeisle-companion'),
+						),
+
+					),
 				)
-			)
+			),
+			'content_margins' => themeisle_four_fields_control(
+				array(
+					'default' => array(
+						'top' => 0,
+						'bottom' => 0,
+						'left' => 15,
+						'right' => 15,
+					),
+					'selector' => '.obfx-post-content',
+					'field_name_prefix' => 'content_padding_',
+					'type' => 'padding',
+				)
+			),
+			'content_typography' => themeisle_typography_settings(
+				array(
+					'prefix' => 'content_',
+					'selector' => '.obfx-post-content',
+					'font_size_default' => 20,
+				)
+			),
+		)
+	),
+	'pagination_options' => array(
+		'title' => esc_html__('Pagination options', 'themeisle-companion'),
+		'sections' => array(
+			'general' => array(
+				'title' => '',
+				'fields' => array(
+					'show_pagination' => array(
+						'type'          => 'obfx_toggle',
+						'label'         => esc_html__('Enable pagination', 'themeisle-companion'),
+					),
+					'pagination_alignment' => array(
+						'type'          => 'select',
+						'label'         => esc_html__( 'Pagination alignment', 'themeisle-companion' ),
+						'default' => 'center',
+						'options'       => array(
+							'center' => esc_html__('Center','themeisle-companion'),
+							'left' => esc_html__('Left','themeisle-companion'),
+							'right' => esc_html__('Right','themeisle-companion'),
+						),
+					),
+				)
+			),
+			'pagination_typography' => themeisle_typography_settings(
+				array(
+					'prefix' => 'pagination_',
+					'selector' => '.obfx-post-grid-pagination',
+					'font_size_default' => 20,
+				)
+			),
 		)
 	)
 ));
