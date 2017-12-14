@@ -8,7 +8,7 @@
 // Get the module directory.
 $module_directory = $this->get_dir();
 
-//Require custom field.
+// Require custom field.
 require_once( $module_directory . '/custom-fields/number-field/number_field.php' );
 
 /**
