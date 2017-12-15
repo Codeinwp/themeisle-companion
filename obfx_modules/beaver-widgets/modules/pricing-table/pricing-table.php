@@ -189,7 +189,7 @@ FLBuilder::register_module(
 					array(
 						'default' => array(
 							'top' => 15,
-							'bottom' => 30,
+							'bottom' => 15,
 							'left' => 0,
 							'right' => 0,
 						),
@@ -317,8 +317,8 @@ FLBuilder::register_module(
 				'price_padding' => themeisle_four_fields_control(
 					array(
 						'default' => array(
-							'top' => 30,
-							'bottom' => 30,
+							'top' => 15,
+							'bottom' => 15,
 							'left' => 0,
 							'right' => 0,
 						),

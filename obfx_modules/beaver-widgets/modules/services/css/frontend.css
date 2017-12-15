@@ -20,3 +20,17 @@
 .obfx-service{
     padding: 15px;
 }
+
+.obfx-service-icon{
+    vertical-align: middle;
+}
+
+.obfx-service-icon i{
+    vertical-align: inherit;
+}
+.obfx-service-icon .dashicons,.obfx-service-icon .dashicons-before:before{
+    width: inherit;
+    height: inherit;
+    font-size: inherit;
+    vertical-align: inherit;
+}
