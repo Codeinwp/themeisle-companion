@@ -12,14 +12,15 @@
 
 .obfx-template {
 	float: left;
-	position: relative;
-	box-sizing: border-box;
-	width: 22.7%;
-	margin: 0 3% 3% 0;
-	border: 1px solid #ddd;
 	background: #fff;
-	box-shadow: 0 1px 1px -1px rgba(0, 0, 0, 0.1);
-}
+	cursor: pointer;
+	position: relative;
+	border: 1px solid #ddd;
+	box-shadow: 0 1px 1px -1px rgba(0,0,0,.1);
+	box-sizing: border-box;
+	margin: 0 4% 4% 0;
+	width: 30.6%;}
+
 
 .obfx-template:nth-child(4n) {
 	margin-right: 0;
@@ -61,24 +62,19 @@
 	border-right: none;
 	border-left: none;
 	float: left;
+	transition: .3s ease;
+	width: 100%;
+	max-height:290px;
 }
 
 .obfx-template img {
 	float: left;
-	max-width: 100%;
+	width: 100%;
 }
 
 .obfx-template-browser.customizer {
 	display: block !important;
 	padding: 10px 20px 60px;
-}
-
-.obfx-custom-customizer #customize-header-actions input.save {
-	display: none;
-}
-
-.obfx-custom-customizer .control-panel-widgets {
-	display: none !important;
 }
 
 .obfx-next-prev {
@@ -136,19 +132,6 @@
 	background: #fff;
 }
 
-.obfx-template-browser.customizer .obfx-template {
-	display: none;
-	float: none;
-	width: 100%;
-	margin: 0 0 20px 0;
-	border: none;
-	cursor: default;
-}
-
-#customize-controls .obfx-template-actions {
-	padding: 0;
-}
-
 .obfx-template-browser.customizer .obfx-template.active {
 	display: inline-block;
 }
@@ -184,18 +167,8 @@
 	font-size: 30px;
 }
 
-#customize-controls .obfx-done-import .dashicons {
-	line-height: 50px;
-}
-
 .obfx-updating.updating-message.button.button-primary {
 	padding: 0 4px 0 10px;
-}
-
-#customize-header-actions .button.obfx-import-template,
-#customize-header-actions .button.obfx-updating {
-	float: right;
-	margin-top: 8px;
 }
 
 .obfx-no-elementor-modal-wrapper {
@@ -282,10 +255,40 @@
 	padding: 15px 12px;
 	text-align: center;
 	border-radius: 3px;
-	transform: translate(-50%);
+	transform: translate(-50%, -50%);
 	position: relative;
 	left: 50%;
 	top: 50%;
 	width: 45%;
 	display: block;
+}
+
+
+@media only screen and (min-width: 1640px) {
+	.obfx-template {
+		width: 22.7%;
+		margin: 0 3% 3% 0;
+	}
+	.obfx-template:nth-child(3n) {
+		margin-right: 3%;
+	}
+}
+
+@media only screen and (max-width: 1120px){
+	.obfx-template {
+		width: 47.5%;
+		margin: 0 3% 3% 0;
+	}
+	.obfx-template:nth-child(3n) {
+		margin-right: 3%;
+	}
+	.obfx-template:nth-child(even) {
+		margin-right: 0;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.obfx-template-preview .wp-full-overlay-sidebar {
+		width: 100%;
+	}
 }

@@ -57,7 +57,7 @@ var obfx_template_directory = function ( $ ) {
 				'click', '.obfx-import-template', function () {
 					$( this ).addClass( 'obfx-import-queue' );
 					var template_url = $( this ).data( 'template-file' );
-					var template_name = $(this).data( 'template-title' );
+					var template_name = $( this ).data( 'template-title' );
 					$( this ).hide().after( '<span class="button button-primary obfx-updating updating-message"></span>' );
 					$.ajax(
 						{
@@ -89,21 +89,34 @@ var obfx_template_directory = function ( $ ) {
 				}
 			);
 
-			$('.obfx-template-preview').on('click', '.collapse-sidebar', function() {
-                event.preventDefault();
-                var overlay = $( '.obfx-template-preview' );
-                if ( overlay.hasClass( 'expanded' ) ) {
-                    overlay.removeClass( 'expanded' );
-                    overlay.addClass( 'collapsed' );
-                    return;
-                }
+			$( '.obfx-template-preview' ).on( 'click', '.collapse-sidebar', function () {
+				event.preventDefault();
+				var overlay = $( '.obfx-template-preview' );
+				if ( overlay.hasClass( 'expanded' ) ) {
+					overlay.removeClass( 'expanded' );
+					overlay.addClass( 'collapsed' );
+					return;
+				}
 
-                if ( overlay.hasClass( 'collapsed' ) ) {
-                    overlay.removeClass( 'collapsed' );
-                    overlay.addClass( 'expanded' );
-                    return;
-                }
-            });
+				if ( overlay.hasClass( 'collapsed' ) ) {
+					overlay.removeClass( 'collapsed' );
+					overlay.addClass( 'expanded' );
+					return;
+				}
+			} );
+
+			$( '.obfx-responsive-preview' ).on( 'click', 'button', function () {
+                $( '.obfx-template-preview' ).removeClass( 'preview-mobile preview-tablet preview-desktop' );
+                var deviceClass = 'preview-' + $( this ).data( 'device' );
+				$( '.obfx-responsive-preview button' ).each( function () {
+					$( this ).attr( 'aria-pressed', 'false' );
+					$( this ).removeClass( 'active' );
+				} );
+
+				$( '.obfx-responsive-preview' ).removeClass( $( this ).attr( 'class' ).split( ' ' ).pop() );
+				$( '.obfx-template-preview' ).addClass( deviceClass );
+				$( this ).addClass( 'active' );
+			} );
 
 			function changePreviewSource() {
 				var previewUrl = $( '.obfx-theme-info.active' ).data( 'demo-url' );
@@ -111,8 +124,8 @@ var obfx_template_directory = function ( $ ) {
 			}
 
 			function setupImportButton() {
-				$('.wp-full-overlay-header .obfx-import-template').attr('data-template-file', $('.obfx-theme-info.active').data('template-file') );
-				$('.wp-full-overlay-header .obfx-import-template').attr('data-template-title', $('.obfx-theme-info.active').data('template-title') );
+				$( '.wp-full-overlay-header .obfx-import-template' ).attr( 'data-template-file', $( '.obfx-theme-info.active' ).data( 'template-file' ) );
+				$( '.wp-full-overlay-header .obfx-import-template' ).attr( 'data-template-title', $( '.obfx-theme-info.active' ).data( 'template-title' ) );
 			}
 		}
 	);

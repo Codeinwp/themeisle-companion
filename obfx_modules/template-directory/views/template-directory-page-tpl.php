@@ -21,7 +21,7 @@ if ( is_array( $templates_array ) ) {
 
 	foreach ( $templates_array as $template => $properties ) {
 		$html .= '<div class="obfx-template">';
-		$html .= '<div class="more-details obfx-preview-template" data-demo-url="' . esc_url( $properties['demo_url'] ) . '" data-template-slug="' . esc_attr( $template ) . '" ><span>' . __( 'Theme Details', 'themeisle-companion' ) .'</span></div>';
+		$html .= '<div class="more-details obfx-preview-template" data-demo-url="' . esc_url( $properties['demo_url'] ) . '" data-template-slug="' . esc_attr( $template ) . '" ><span>' . __( 'More Details', 'themeisle-companion' ) .'</span></div>';
 		$html .= '<div class="obfx-template-screenshot">';
 		$html .= '<img src="' . esc_url( $properties['screenshot'] ) . '" alt="' . esc_html( $properties['title'] ) . '" >';
 		$html .= '</div>'; // .obfx-template-screenshot
@@ -75,10 +75,10 @@ echo $html;
 		<div class="wp-full-overlay-footer">
 			<button type="button" class="collapse-sidebar button" aria-expanded="true" aria-label="Collapse Sidebar">
 				<span class="collapse-sidebar-arrow"></span>
-				<span class="collapse-sidebar-label">Collapse</span>
+				<span class="collapse-sidebar-label"><?php echo __( 'Collapse', 'themeisle-companion' ); ?></span>
 			</button>
 			<div class="devices-wrapper">
-				<div class="devices">
+				<div class="devices obfx-responsive-preview">
 					<button type="button" class="preview-desktop active" aria-pressed="true" data-device="desktop">
 						<span class="screen-reader-text">Enter desktop preview mode</span>
 					</button>
