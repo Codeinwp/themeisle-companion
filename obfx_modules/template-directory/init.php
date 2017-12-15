@@ -223,6 +223,13 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'screenshot'  => esc_url( $repository_raw_url . 'pulse-elementor/screenshot.png' ),
 				'import_file' => esc_url( $repository_raw_url . 'pulse-elementor/template.json' ),
 			),
+			'path-elementor'         => array(
+				'title'       => __( 'Path - Landing Page', 'themeisle-companion' ),
+				'description' => '',
+				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/path-elementor/',
+				'screenshot'  => esc_url( $repository_raw_url . 'path-elementor/screenshot.png' ),
+				'import_file' => esc_url( $repository_raw_url . 'path-elementor/template.json' ),
+			),
 		);
 
 		foreach ( $templates_list as $template => $properties ) {
