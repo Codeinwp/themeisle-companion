@@ -21,7 +21,7 @@ if ( is_array( $templates_array ) ) {
 
 	foreach ( $templates_array as $template => $properties ) {
 		$html .= '<div class="obfx-template">';
-		$html .= '<div class="more-details obfx-preview-template" data-demo-url="' . esc_url( $properties['demo_url'] ) . '" data-template-slug="' . esc_attr( $template ) . '" ><span>' . __( 'More Details', 'themeisle-companion' ) .'</span></div>';
+		$html .= '<div class="more-details obfx-preview-template" data-demo-url="' . esc_url( $properties['demo_url'] ) . '" data-template-slug="' . esc_attr( $template ) . '" ><span>' . __( 'More Details', 'themeisle-companion' ) . '</span></div>';
 		$html .= '<div class="obfx-template-screenshot">';
 		$html .= '<img src="' . esc_url( $properties['screenshot'] ) . '" alt="' . esc_html( $properties['title'] ) . '" >';
 		$html .= '</div>'; // .obfx-template-screenshot
@@ -61,15 +61,20 @@ echo $html;
 		</div>
 		<div class="wp-full-overlay-sidebar-content">
 			<?php
-			foreach ( $templates_array as $template => $properties ) { ?>
-			<div class="install-theme-info obfx-theme-info <?php echo esc_attr( $template ); ?>" data-demo-url="<?php echo esc_url( $properties['demo_url'] ) ;?>" data-template-file="<?php echo esc_url( $properties['import_file'] ); ?>" data-template-title="<?php echo esc_html( $properties['title'] ); ?>">
-				<h3 class="theme-name"><?php echo esc_html( $properties['title'] ); ?></h3>
-				<img class="theme-screenshot" src="<?php echo esc_url( $properties['screenshot'] ) ?>" alt="<?php echo esc_html( $properties['title'] ); ?>">
-				<div class="theme-details">
-					<?php echo esc_html( $properties['description'] ); ?>
-				</div>
-			</div><!-- /.install-theme-info -->
-			<?php }	?>
+			foreach ( $templates_array as $template => $properties ) {
+				?>
+				<div class="install-theme-info obfx-theme-info <?php echo esc_attr( $template ); ?>"
+					 data-demo-url="<?php echo esc_url( $properties['demo_url'] ); ?>"
+					 data-template-file="<?php echo esc_url( $properties['import_file'] ); ?>"
+					 data-template-title="<?php echo esc_html( $properties['title'] ); ?>">
+					<h3 class="theme-name"><?php echo esc_html( $properties['title'] ); ?></h3>
+					<img class="theme-screenshot" src="<?php echo esc_url( $properties['screenshot'] ); ?>"
+						 alt="<?php echo esc_html( $properties['title'] ); ?>">
+					<div class="theme-details">
+						<?php echo esc_html( $properties['description'] ); ?>
+					</div>
+				</div><!-- /.install-theme-info -->
+			<?php } ?>
 		</div>
 
 		<div class="wp-full-overlay-footer">
