@@ -17,7 +17,7 @@ if ( ( $this->check_plugin_state( 'elementor' ) === 'activate' ) || ( $this->che
 	$html  .= '<div class="modal-header"><span class="obfx-close-modal"><i class="dashicons dashicons-no"></i></span></div>';
 	$html  .= '<p>' . __( 'In order to import this template, you must have Elementor Page Builder installed. Click the button below to install and activate now.', 'themeisle-companion' ) . '</p>';
 	$html  .= $button;
-	$html  .= '</div>';
+	$html  .= '</div></div>';
 
 	echo $html;
 }

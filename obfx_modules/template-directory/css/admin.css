@@ -265,7 +265,16 @@
 	display: block;
 }
 
+.obfx-required-plugins > p {
+	color: #333;
+	font-weight: 800;
+	margin-top: 20px;
+}
 
+.obfx-installed .button,
+.obfx-installable .button {
+	display: none;
+}
 @media only screen and (min-width: 1640px) {
 	.obfx-template {
 		width: 22.7%;
@@ -310,3 +319,4 @@
 		margin-right: 0;
 	}
 }
+

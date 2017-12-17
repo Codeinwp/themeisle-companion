@@ -52,4 +52,4 @@ var obfx_plugin_install_helper = function( $ ) {
 	);
 };
 
-obfx_plugin_install_helper( jQuery );
+// obfx_plugin_install_helper( jQuery );

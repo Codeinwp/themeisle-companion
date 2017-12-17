@@ -31,19 +31,12 @@ if ( is_array( $templates_array ) ) {
 		if ( ! empty( $properties['demo_url'] ) ) {
 			$html .= '<a class="button obfx-preview-template" data-demo-url="' . esc_url( $properties['demo_url'] ) . '" data-template-slug="' . esc_attr( $template ) . '" >' . __( 'Preview', 'themeisle-companion' ) . '</a>';
 		}
-
-		if ( ! empty( $properties['import_file'] ) ) {
-			$html .= '<a class="button button-primary obfx-import-template" data-template-title="' . esc_html( $properties['title'] ) . '" data-template-file="' . esc_url( $properties['import_file'] ) . '"> ' . __( 'Import', 'themeisle-companion' ) . '</a>';
-		}
 		$html .= '</div>'; // .obfx-template-actions
 		$html .= '</div>'; // .obfx-template
 	}
 	$html .= '</div>'; // .obfx-template-browser
 	$html .= '</div>'; // .obfx-template-dir
 	$html .= '<div class="wp-clearfix clearfix"></div>';
-	if ( ! defined( 'ELEMENTOR_VERSION' ) ) {
-		$html .= $requires_plugins;
-	}
 }// End if().
 
 echo $html;
@@ -73,6 +66,28 @@ echo $html;
 					<div class="theme-details">
 						<?php echo esc_html( $properties['description'] ); ?>
 					</div>
+                    <?php
+                    if( ! empty( $properties['required_plugins'] && is_array( $properties['required_plugins'] ) ) ) { ?>
+                    <div class="obfx-required-plugins">
+                        <p>Required Plugins</p>
+	                    <?php
+                        foreach ( $properties['required_plugins'] as $plugin_slug => $details ) {
+	                        if ( $this->check_plugin_state($plugin_slug) === 'install' ) {
+		                        echo '<div class="obfx-installable plugin-card-' . esc_attr( $plugin_slug ) . '">';
+		                        echo '<span class="dashicons dashicons-no-alt"></span>';
+		                        echo $details['title'];
+		                        echo $this->get_button_html( $plugin_slug );
+		                        echo '</div>';
+	                        } else {
+		                        echo '<div class="obfx-installed plugin-card-' . esc_attr( $plugin_slug ) . '">';
+		                        echo '<span class="dashicons dashicons-yes" style="color: #34a85e"></span>';
+		                        echo $details['title'];
+		                        echo '</div>';
+                            }
+                        } ?>
+                    </div>
+                    <?php
+                    }?>
 				</div><!-- /.install-theme-info -->
 			<?php } ?>
 		</div>
