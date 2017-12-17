@@ -67,11 +67,8 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$this->loader->add_action( 'init', $this, 'demo_listing_register' );
 		//Add template redirect.
 		$this->loader->add_action( 'template_redirect', $this, 'demo_listing' );
-		//Remove customizer controls.
-		$this->loader->add_action( 'customize_register', $this, 'adjust_customizer', 1000 );
 		//Enqueue admin scripts.
 		$this->loader->add_action( 'admin_enqueue_scripts', $this, 'enqueue_template_dir_scripts' );
-		$this->loader->add_action( 'customize_controls_enqueue_scripts', $this, 'enqueue_template_dir_scripts' );
 	}
 
 	/**
@@ -174,6 +171,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			'description' => __( 'This is an awesome Orbit Fox Template.', 'themeisle-companion' ),
 			'demo_url'    => esc_url( 'https://demo.themeisle.com/hestia-pro-demo-content/demo-placeholder/' ),
 			'import_file' => '',
+			'required_plugins' => array(),
 		);
 
 		$templates_list = array(
@@ -183,6 +181,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/about-our-business-elementor/',
 				'screenshot'  => esc_url( $repository_raw_url . 'about-our-business-elementor/screenshot.png' ),
 				'import_file' => esc_url( $repository_raw_url . 'about-our-business-elementor/template.json' ),
+				'required_plugins' => array( 'elementor' ),
 			),
 			'contact-us-elementor'         => array(
 				'title'       => __( 'Contact Us', 'themeisle-companion' ),
@@ -190,6 +189,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/contact-us-elementor/',
 				'screenshot'  => esc_url( $repository_raw_url . 'contact-us-elementor/screenshot.png' ),
 				'import_file' => esc_url( $repository_raw_url . 'contact-us-elementor/template.json' ),
+				'required_plugins' => array( 'elementor' ),
 			),
 			'pricing-elementor'         => array(
 				'title'       => __( 'Pricing', 'themeisle-companion' ),
@@ -197,6 +197,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/pricing-elementor/',
 				'screenshot'  => esc_url( $repository_raw_url . 'pricing-elementor/screenshot.png' ),
 				'import_file' => esc_url( $repository_raw_url . 'pricing-elementor/template.json' ),
+				'required_plugins' => array( 'elementor' ),
 			),
 			'material-homepage-elementor'         => array(
 				'title'       => __( 'Material Homepage', 'themeisle-companion' ),
@@ -204,6 +205,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/material-homepage-elementor/',
 				'screenshot'  => esc_url( $repository_raw_url . 'material-homepage-elementor/screenshot.png' ),
 				'import_file' => esc_url( $repository_raw_url . 'material-homepage-elementor/template.json' ),
+				'required_plugins' => array( 'elementor' ),
 			),
 			'ether-elementor'         => array(
 				'title'       => __( 'Ether - Landing Page', 'themeisle-companion' ),
@@ -211,6 +213,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/ether-elementor/',
 				'screenshot'  => esc_url( $repository_raw_url . 'ether-elementor/screenshot.png' ),
 				'import_file' => esc_url( $repository_raw_url . 'ether-elementor/template.json' ),
+				'required_plugins' => array( 'elementor' ),
 			),
 			'jason-elementor'         => array(
 				'title'       => __( 'Jason - Landing Page', 'themeisle-companion' ),
@@ -218,6 +221,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/jason-elementor/',
 				'screenshot'  => esc_url( $repository_raw_url . 'jason-elementor/screenshot.png' ),
 				'import_file' => esc_url( $repository_raw_url . 'jason-elementor/template.json' ),
+				'required_plugins' => array( 'elementor' ),
 			),
 			'pulse-elementor'         => array(
 				'title'       => __( 'Pulse - Landing Page', 'themeisle-companion' ),
@@ -225,6 +229,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/pulse-elementor/',
 				'screenshot'  => esc_url( $repository_raw_url . 'pulse-elementor/screenshot.png' ),
 				'import_file' => esc_url( $repository_raw_url . 'pulse-elementor/template.json' ),
+				'required_plugins' => array( 'elementor' ),
 			),
             'ascend-elementor'         => array(
                 'title'       => __( 'Ascend - Landing Page', 'themeisle-companion' ),
@@ -232,6 +237,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
                 'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/ascend-elementor/',
                 'screenshot'  => esc_url( $repository_raw_url . 'ascend-elementor/screenshot.png' ),
                 'import_file' => esc_url( $repository_raw_url . 'ascend-elementor/template.json' ),
+                'required_plugins' => array( 'elementor' ),
             ),
 			'path-elementor'         => array(
 				'title'       => __( 'Path - Landing Page', 'themeisle-companion' ),
@@ -239,6 +245,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/path-elementor/',
 				'screenshot'  => esc_url( $repository_raw_url . 'path-elementor/screenshot.png' ),
 				'import_file' => esc_url( $repository_raw_url . 'path-elementor/template.json' ),
+				'required_plugins' => array( 'elementor' ),
 			),
 		);
 
