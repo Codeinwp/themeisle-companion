@@ -67,8 +67,11 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$this->loader->add_action( 'init', $this, 'demo_listing_register' );
 		//Add template redirect.
 		$this->loader->add_action( 'template_redirect', $this, 'demo_listing' );
+		//Remove customizer controls.
+		$this->loader->add_action( 'customize_register', $this, 'adjust_customizer', 1000 );
 		//Enqueue admin scripts.
 		$this->loader->add_action( 'admin_enqueue_scripts', $this, 'enqueue_template_dir_scripts' );
+		$this->loader->add_action( 'customize_controls_enqueue_scripts', $this, 'enqueue_template_dir_scripts' );
 	}
 
 	/**
@@ -223,6 +226,13 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'screenshot'  => esc_url( $repository_raw_url . 'pulse-elementor/screenshot.png' ),
 				'import_file' => esc_url( $repository_raw_url . 'pulse-elementor/template.json' ),
 			),
+            'ascend-elementor'         => array(
+                'title'       => __( 'Ascend - Landing Page', 'themeisle-companion' ),
+                'description' => __( 'A fancy description here', 'themeisle-companion' ),
+                'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/ascend-elementor/',
+                'screenshot'  => esc_url( $repository_raw_url . 'ascend-elementor/screenshot.png' ),
+                'import_file' => esc_url( $repository_raw_url . 'ascend-elementor/template.json' ),
+            ),
 			'path-elementor'         => array(
 				'title'       => __( 'Path - Landing Page', 'themeisle-companion' ),
 				'description' => '',
