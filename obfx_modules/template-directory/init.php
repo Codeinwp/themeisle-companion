@@ -227,7 +227,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			),
 			'ascend-elementor'             => array(
 				'title'            => __( 'Ascend - Landing Page', 'themeisle-companion' ),
-				'description'      => __( 'A fancy description here', 'themeisle-companion' ),
+				'description'      => __( 'A resume-like template, built for outdoor enthusiasts and nature lovers. Its design and layout make it flexible for any other purpose too, so do not hesitate to showcase any kind of skills and activities, even business-oriented.', 'themeisle-companion' ),
 				'demo_url'         => 'https://demo.themeisle.com/hestia-pro-demo-content/ascend-elementor/',
 				'screenshot'       => esc_url( $repository_raw_url . 'ascend-elementor/screenshot.png' ),
 				'import_file'      => esc_url( $repository_raw_url . 'ascend-elementor/template.json' ),
@@ -235,7 +235,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			),
 			'path-elementor'               => array(
 				'title'            => __( 'Path - Landing Page', 'themeisle-companion' ),
-				'description'      => '',
+				'description'      => __( 'If you are a business consultant - agency or working on your own - have a look at this template! It comes with a clean design, call to action, statistics, and sections that put your services first.', 'themeisle-companion' ),
 				'demo_url'         => 'https://demo.themeisle.com/hestia-pro-demo-content/path-elementor/',
 				'screenshot'       => esc_url( $repository_raw_url . 'path-elementor/screenshot.png' ),
 				'import_file'      => esc_url( $repository_raw_url . 'path-elementor/template.json' ),
@@ -243,7 +243,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			),
 			'mocha-elementor'              => array(
 				'title'            => __( 'Mocha - Landing Page', 'themeisle-companion' ),
-				'description'      => __( 'A fancy description here', 'themeisle-companion' ),
+				'description'      => __( 'An elegant and modern template for cafes and pubs, where you can display your menu in a mouth-watering way. Call to action, blog posts, attractive images, tabbed menus, and a catchy design will help you convince more people to stop by.', 'themeisle-companion' ),
 				'demo_url'         => 'https://demo.themeisle.com/hestia-pro-demo-content/mocha-elementor/',
 				'screenshot'       => esc_url( $repository_raw_url . 'mocha-elementor/screenshot.png' ),
 				'import_file'      => esc_url( $repository_raw_url . 'mocha-elementor/template.json' ),
