@@ -98,20 +98,22 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 
 		if ( $post_type == 'post' ) {
 			$taxonomy = 'category';
-		} else {
+		} elseif ( $post_type == 'product' ) {
 			$taxonomy = 'product_cat';
 		}
 
-		// Get categories for post type.
-		$terms = get_terms(
-			array(
-				'taxonomy' => $taxonomy,
-				'hide_empty' => false,
-			)
-		);
-		if( ! empty( $terms ) ) {
-			foreach ( $terms as $term ) {
-				$options[ $term->slug ] = $term->name;
+		if( ! empty($taxonomy) ) {
+			// Get categories for post type.
+			$terms = get_terms(
+				array(
+					'taxonomy'   => $taxonomy,
+					'hide_empty' => false,
+				)
+			);
+			if ( ! empty( $terms ) ) {
+				foreach ( $terms as $term ) {
+					$options[ $term->slug ] = $term->name;
+				}
 			}
 		}
 		return $options;
