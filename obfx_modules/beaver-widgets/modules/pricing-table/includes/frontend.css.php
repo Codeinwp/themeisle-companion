@@ -1,3 +1,12 @@
+<?php
+$text_position = !empty($settings->text_position) ? $settings->text_position : 'center';
+if( !empty($text_position)){
+    echo '.fl-node-'.$id.' .obfx-pricing-plan > div,.fl-node-'.$id.' .obfx-pricing-plan li{';
+    echo 'text-align:'.$text_position;
+    echo '}';
+}
+?>
+
 .fl-node-<?php echo $id; ?> .obfx-pricing-header{
 	padding-top: <?php echo $settings->top; ?>px;
 	padding-bottom: <?php echo $settings->bottom; ?>px;

@@ -178,6 +178,16 @@ FLBuilder::register_module(
 							'label'         => esc_html__( 'Card layout', 'themeisle-companion' ),
 							'default'       => 'yes',
 						),
+						'text_position' => array(
+							'type'    => 'select',
+							'label'   => esc_html__( 'Align', 'themeisle-companion' ),
+							'default' => 'center',
+							'options' => array(
+								'center' => esc_html__( 'Center', 'themeisle-companion' ),
+								'left'  => esc_html__( 'Left', 'themeisle-companion' ),
+								'right'  => esc_html__( 'Right', 'themeisle-companion' ),
+							),
+						),
 					),
 				),
 			),
