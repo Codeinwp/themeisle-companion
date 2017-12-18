@@ -8,7 +8,7 @@
  */
 
 
-if( !function_exists('obfx_show_post_grid_thumbnail')) {
+if ( ! function_exists( 'obfx_show_post_grid_thumbnail' ) ) {
 	/**
 	 * Display post grid image.
 	 *
@@ -41,7 +41,7 @@ if( !function_exists('obfx_show_post_grid_thumbnail')) {
 	}
 }
 
-if( !function_exists('obfx_show_post_grid_title')) {
+if ( ! function_exists( 'obfx_show_post_grid_title' ) ) {
 	/**
 	 * Display post grid title.
 	 *
@@ -68,7 +68,7 @@ if( !function_exists('obfx_show_post_grid_title')) {
 	}
 }
 
-if( !function_exists('obfx_show_post_grid_meta')) {
+if ( ! function_exists( 'obfx_show_post_grid_meta' ) ) {
 	/**
 	 * Display post grid meta.
 	 *
@@ -96,10 +96,10 @@ if( !function_exists('obfx_show_post_grid_meta')) {
 					echo '<i class="fa fa-user"></i>';
 				}
 				printf(
-				/* translators: %1$s is Author name wrapped, %2$s is Time */
+					/* translators: %1$s is Author name wrapped, %2$s is Time */
 					esc_html__( 'By %1$s', 'themeisle-companion' ),
 					sprintf(
-					/* translators: %1$s is Author name, %2$s is author link */
+						/* translators: %1$s is Author name, %2$s is author link */
 						'<a href="%2$s" title="%1$s"><b>%1$s</b></a>',
 						esc_html( get_the_author() ),
 						esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) )
@@ -180,7 +180,7 @@ if( !function_exists('obfx_show_post_grid_meta')) {
 					_x( 'One comment', 'comments title', 'themeisle-companion' );
 				} else {
 					printf(
-					/* translators: 1: number of comments, 2: post title */
+						/* translators: 1: number of comments, 2: post title */
 						_nx(
 							'%1$s Comment',
 							'%1$s Comments',
@@ -198,7 +198,7 @@ if( !function_exists('obfx_show_post_grid_meta')) {
 	}
 }
 
-if( !function_exists('obfx_show_post_grid_content')) {
+if ( ! function_exists( 'obfx_show_post_grid_content' ) ) {
 	/**
 	 * Display post grid content.
 	 *
@@ -224,7 +224,7 @@ if( !function_exists('obfx_show_post_grid_content')) {
 	}
 }
 
-if( !function_exists('obfx_get_limited_content')) {
+if ( ! function_exists( 'obfx_get_limited_content' ) ) {
 	/**
 	 * Get content with limited number of words.
 	 *
