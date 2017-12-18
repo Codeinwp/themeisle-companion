@@ -349,7 +349,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 					'h3' => 'H3',
 					'h4' => 'H4',
 					'h5' => 'H5',
-					'h6' => 'Hh6',
+					'h6' => 'H6',
 					'span' => 'span',
 					'p' => 'p',
 					'div' => 'div',
