@@ -109,11 +109,11 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				'hide_empty' => false,
 			)
 		);
-
-		foreach ( $terms as $term ) {
-			$options[ $term->slug ] = $term->name;
+		if( ! empty( $terms ) ) {
+			foreach ( $terms as $term ) {
+				$options[ $term->slug ] = $term->name;
+			}
 		}
-
 		return $options;
 	}
 
