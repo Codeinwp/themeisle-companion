@@ -36,6 +36,22 @@ Orbit Fox is a user-centred plugin with an easy-to-use admin panel. One of the m
 
 - It’s fully customizable: You can easily optimise button location for according to the device your visitors will use. 
 
+**Why use our custom Elementor addons module:**
+
+- We offer new widgets to add more value to the content you can create within Elementor page builder.
+
+- Pricing Table Widget to easily create pricing layouts.
+
+- Services Widget to easily create pricing layouts.
+
+- Post Grid Widget to easily list your Posts / Products / any other post types in a grid.
+
+**Why use our Template Directory:**
+
+- One-click import for awesome page templates.
+
+- Elementor templates will be added frequently for you to use creatively.
+
 Choose from more than 20+ social networks to share with full control for every device that your visitors use.
 
 The sharing options can be positioned for the maximum effect according to whether the visitor is using a mobile device or desktop. Best of all they can be switched on/off from your WordPress instance.
@@ -46,8 +62,9 @@ We've also built some fantastic <a href="http://themeisle.com/wordpress-themes/f
 
 **Features:**
 
+- Template Directory
+- Elementor Addons and Widgets
 - Sharing module
-- Reporting module
 - Menu icons module
 - Free stock photos module
 - More widgets and sections for Hestia Theme
