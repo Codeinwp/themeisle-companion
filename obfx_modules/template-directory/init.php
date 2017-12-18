@@ -181,7 +181,6 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'import_file'      => esc_url( $repository_raw_url . 'about-our-business-elementor/template.json' ),
 				'required_plugins' => array(
 					'elementor' => array( 'title' => __( 'Elementor Page Builder', 'themeisle-companion' ) ),
-                    'pirate-forms' => array( 'title' => __( 'Pirate Forms', 'themeisle-companion' ) ),
 				) ),
 			'contact-us-elementor'         => array(
 				'title'            => __( 'Contact Us', 'themeisle-companion' ),
@@ -197,7 +196,9 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'demo_url'         => 'https://demo.themeisle.com/hestia-pro-demo-content/pricing-elementor/',
 				'screenshot'       => esc_url( $repository_raw_url . 'pricing-elementor/screenshot.png' ),
 				'import_file'      => esc_url( $repository_raw_url . 'pricing-elementor/template.json' ),
-				'required_plugins' => array( 'elementor' => array( 'title' => __( 'Elementor Page Builder', 'themeisle-companion' ) ) ),
+				'required_plugins' => array(
+					'elementor' => array( 'title' => __( 'Elementor Page Builder', 'themeisle-companion' ) ),
+				),
 			),
 			'material-homepage-elementor'  => array(
 				'title'            => __( 'Material Homepage', 'themeisle-companion' ),
