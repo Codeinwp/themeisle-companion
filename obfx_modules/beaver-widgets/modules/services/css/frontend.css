@@ -6,6 +6,10 @@
     text-align: center;
 }
 
+.obfx-service-title{
+    display: inline-block;
+}
+
 .obfx-card{
     display: inline-block;
     position: relative;
