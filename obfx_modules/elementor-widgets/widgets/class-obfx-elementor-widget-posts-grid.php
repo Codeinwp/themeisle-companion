@@ -114,7 +114,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 				foreach ( $terms as $term ) {
 					if ( isset( $term ) ) {
 						if ( isset( $term->slug ) && isset( $term->name ) ) {
-							$options[$term->slug] = $term->name;
+							$options[ $term->slug ] = $term->name;
 						}
 					}
 				}
