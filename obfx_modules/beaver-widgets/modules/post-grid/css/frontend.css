@@ -45,6 +45,16 @@
     content: ',';
 }
 
+.obfx-post-grid-pagination li{
+    vertical-align: bottom;
+    padding: 5px;
+
+}
+
+.obfx-post-grid-pagination li a{
+    padding: 0;
+    background: none;
+}
 .page-numbers{
     list-style: none;
     padding: 0;
