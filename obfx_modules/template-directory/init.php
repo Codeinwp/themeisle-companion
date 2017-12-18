@@ -258,6 +258,48 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'screenshot'  => esc_url( $repository_raw_url . 'pricing-elementor/screenshot.png' ),
 				'import_file' => esc_url( $repository_raw_url . 'pricing-elementor/template.json' ),
 			),
+			'material-homepage-elementor'         => array(
+				'title'       => __( 'Material Homepage', 'themeisle-companion' ),
+				'description' => __( 'A fancy description here', 'themeisle-companion' ),
+				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/material-homepage-elementor/',
+				'screenshot'  => esc_url( $repository_raw_url . 'material-homepage-elementor/screenshot.png' ),
+				'import_file' => esc_url( $repository_raw_url . 'material-homepage-elementor/template.json' ),
+			),
+			'ether-elementor'         => array(
+				'title'       => __( 'Ether - Landing Page', 'themeisle-companion' ),
+				'description' => __( 'A fancy description here', 'themeisle-companion' ),
+				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/ether-elementor/',
+				'screenshot'  => esc_url( $repository_raw_url . 'ether-elementor/screenshot.png' ),
+				'import_file' => esc_url( $repository_raw_url . 'ether-elementor/template.json' ),
+			),
+			'jason-elementor'         => array(
+				'title'       => __( 'Jason - Landing Page', 'themeisle-companion' ),
+				'description' => __( 'A fancy description here', 'themeisle-companion' ),
+				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/jason-elementor/',
+				'screenshot'  => esc_url( $repository_raw_url . 'jason-elementor/screenshot.png' ),
+				'import_file' => esc_url( $repository_raw_url . 'jason-elementor/template.json' ),
+			),
+			'pulse-elementor'         => array(
+				'title'       => __( 'Pulse - Landing Page', 'themeisle-companion' ),
+				'description' => __( 'A fancy description here', 'themeisle-companion' ),
+				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/pulse-elementor/',
+				'screenshot'  => esc_url( $repository_raw_url . 'pulse-elementor/screenshot.png' ),
+				'import_file' => esc_url( $repository_raw_url . 'pulse-elementor/template.json' ),
+			),
+            'ascend-elementor'         => array(
+                'title'       => __( 'Ascend - Landing Page', 'themeisle-companion' ),
+                'description' => __( 'A fancy description here', 'themeisle-companion' ),
+                'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/ascend-elementor/',
+                'screenshot'  => esc_url( $repository_raw_url . 'ascend-elementor/screenshot.png' ),
+                'import_file' => esc_url( $repository_raw_url . 'ascend-elementor/template.json' ),
+            ),
+            'mocha-elementor'         => array(
+                'title'       => __( 'Mocha - Landing Page', 'themeisle-companion' ),
+                'description' => __( 'A fancy description here', 'themeisle-companion' ),
+                'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/mocha-elementor/',
+                'screenshot'  => esc_url( $repository_raw_url . 'mocha-elementor/screenshot.png' ),
+                'import_file' => esc_url( $repository_raw_url . 'mocha-elementor/template.json' ),
+            ),
 		);
 
 		foreach ( $templates_list as $template => $properties ) {
