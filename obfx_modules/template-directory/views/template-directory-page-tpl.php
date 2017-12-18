@@ -66,28 +66,31 @@ echo $html;
 					<div class="theme-details">
 						<?php echo esc_html( $properties['description'] ); ?>
 					</div>
-                    <?php
-                    if( ! empty( $properties['required_plugins'] && is_array( $properties['required_plugins'] ) ) ) { ?>
-                    <div class="obfx-required-plugins">
-                        <p>Required Plugins</p>
-	                    <?php
-                        foreach ( $properties['required_plugins'] as $plugin_slug => $details ) {
-	                        if ( $this->check_plugin_state($plugin_slug) === 'install' ) {
-		                        echo '<div class="obfx-installable plugin-card-' . esc_attr( $plugin_slug ) . '">';
-		                        echo '<span class="dashicons dashicons-no-alt"></span>';
-		                        echo $details['title'];
-		                        echo $this->get_button_html( $plugin_slug );
-		                        echo '</div>';
-	                        } else {
-		                        echo '<div class="obfx-installed plugin-card-' . esc_attr( $plugin_slug ) . '">';
-		                        echo '<span class="dashicons dashicons-yes" style="color: #34a85e"></span>';
-		                        echo $details['title'];
-		                        echo '</div>';
-                            }
-                        } ?>
-                    </div>
-                    <?php
-                    }?>
+					<?php
+					if ( ! empty( $properties['required_plugins'] && is_array( $properties['required_plugins'] ) ) ) {
+					?>
+					<div class="obfx-required-plugins">
+						<p>Required Plugins</p>
+						<?php
+						foreach ( $properties['required_plugins'] as $plugin_slug => $details ) {
+							if ( $this->check_plugin_state( $plugin_slug ) === 'install' ) {
+								echo '<div class="obfx-installable plugin-card-' . esc_attr( $plugin_slug ) . '">';
+								echo '<span class="dashicons dashicons-no-alt"></span>';
+								echo $details['title'];
+								echo $this->get_button_html( $plugin_slug );
+								echo '</div>';
+							} else {
+								echo '<div class="obfx-installed plugin-card-' . esc_attr( $plugin_slug ) . '">';
+								echo '<span class="dashicons dashicons-yes" style="color: #34a85e"></span>';
+								echo $details['title'];
+								echo '</div>';
+							}
+						}
+						?>
+					</div>
+					<?php
+					}
+					?>
 				</div><!-- /.install-theme-info -->
 			<?php } ?>
 		</div>

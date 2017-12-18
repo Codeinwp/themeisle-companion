@@ -136,13 +136,6 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'admin' => array(),
 			),
 		);
-
-		if ( ! defined( 'ELEMENTOR_VERSION' ) ) {
-			$enqueue['js'] = array(
-				'plugin-install-helper' => array( 'jquery' ),
-			);
-		}
-
 		return $enqueue;
 	}
 
@@ -309,7 +302,6 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function render_admin_page() {
 		$data = array(
 			'templates_array'  => $this->templates_list(),
-			'requires_plugins' => $this->render_view( 'template-plugin-install' )
 		);
 		echo $this->render_view( 'template-directory-page', $data );
 	}
