@@ -7,26 +7,42 @@
 	padding: 15px;
 	font-size: 16px;
 	font-weight: 600;
+	float: left;
 }
 
 .obfx-template {
 	float: left;
-	position: relative;
-	box-sizing: border-box;
-	width: 22.7%;
-	margin: 0 3% 3% 0;
-	border: 1px solid #ddd;
 	background: #fff;
-	box-shadow: 0 1px 1px -1px rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+	position: relative;
+	border: 1px solid #ddd;
+	box-shadow: 0 1px 1px -1px rgba(0,0,0,.1);
+	box-sizing: border-box;
+	margin: 0 4% 4% 0;
+	width: 30.6%;
 }
 
-.obfx-template:nth-child(4n) {
+.obfx-template:nth-child(3n) {
 	margin-right: 0;
+}
+.obfx-template:hover .obfx-template-actions,
+.obfx-template:hover .obfx-preview-template {
+	opacity: 1;
+}
+.obfx-template:hover .obfx-template-screenshot {
+	opacity: .4;
 }
 
 .obfx-template-actions {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	transition: .3s ease;
+	opacity:0;
+	background: rgba(244,244,244,.7);
+	border-left: 1px solid rgba(0,0,0,.05);
 	float: right;
-	padding: 10px;
+	padding: 10px 15px;
 }
 
 .obfx-template-actions .button .dashicons {
@@ -38,30 +54,26 @@
 }
 
 .obfx-template-screenshot {
+	background: #fff;
 	display: inline-block;
 	overflow: hidden;
 	position: relative;
 	border: 1px solid #ddd;
 	border-right: none;
 	border-left: none;
+	float: left;
+	transition: .3s ease;
+	width: 100%;
 }
 
 .obfx-template img {
 	float: left;
-	max-width: 100%;
+	width: 100%;
 }
 
 .obfx-template-browser.customizer {
 	display: block !important;
 	padding: 10px 20px 60px;
-}
-
-.obfx-custom-customizer #customize-header-actions input.save {
-	display: none;
-}
-
-.obfx-custom-customizer .control-panel-widgets {
-	display: none !important;
 }
 
 .obfx-next-prev {
@@ -119,19 +131,6 @@
 	background: #fff;
 }
 
-.obfx-template-browser.customizer .obfx-template {
-	display: none;
-	float: none;
-	width: 100%;
-	margin: 0 0 20px 0;
-	border: none;
-	cursor: default;
-}
-
-#customize-controls .obfx-template-actions {
-	padding: 0;
-}
-
 .obfx-template-browser.customizer .obfx-template.active {
 	display: inline-block;
 }
@@ -159,7 +158,10 @@
 }
 
 .obfx-done-import {
-	margin: 0 10px;
+	display: block;
+	text-align: center;
+	padding-top: 10px;
+	margin: 0;
 	color: green;
 }
 
@@ -167,18 +169,8 @@
 	font-size: 30px;
 }
 
-#customize-controls .obfx-done-import .dashicons {
-	line-height: 50px;
-}
-
 .obfx-updating.updating-message.button.button-primary {
 	padding: 0 4px 0 10px;
-}
-
-#customize-header-actions .button.obfx-import-template,
-#customize-header-actions .button.obfx-updating {
-	float: right;
-	margin-top: 8px;
 }
 
 .obfx-no-elementor-modal-wrapper {
@@ -230,4 +222,102 @@
 	right: 5px;
 	color: #7b7b7b;
 	cursor: pointer;
+}
+
+
+.obfx-template-preview.theme-install-overlay .install-theme-info.obfx-theme-info .theme-screenshot{
+	width: 100%;
+}
+.obfx-template-preview.theme-install-overlay .install-theme-info.obfx-theme-info {
+	display: none;
+}
+
+.obfx-template-preview.theme-install-overlay .install-theme-info.obfx-theme-info.active {
+	display: block;
+}
+
+.more-details.obfx-preview-template {
+	transition: .3s ease;
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+	bottom: 51px;
+	left: 0;
+	right: 0;
+	text-align: center;
+	z-index: 100;
+	opacity:0;
+}
+
+.more-details.obfx-preview-template span {
+	background: #23282d;
+	background: rgba(0,0,0,.7);
+	color: #fff;
+	font-size: 15px;
+	text-shadow: 0 1px 0 rgba(0,0,0,.6);
+	-webkit-font-smoothing: antialiased;
+	font-weight: 600;
+	padding: 15px 12px;
+	text-align: center;
+	border-radius: 3px;
+	transform: translate(-50%, -50%);
+	position: relative;
+	left: 50%;
+	top: 50%;
+	width: 45%;
+	display: block;
+}
+
+.obfx-required-plugins > p {
+	color: #333;
+	font-weight: 800;
+	margin-top: 20px;
+}
+
+.obfx-required-plugins .button {
+	display: none;
+}
+@media only screen and (min-width: 1640px) {
+	.obfx-template {
+		width: 22.7%;
+		margin: 0 3% 3% 0;
+	}
+	.obfx-template:nth-child(3n) {
+		margin-right: 3%;
+	}
+	.obfx-template:nth-child(4n) {
+		margin-right: 0;
+	}
+}
+
+@media only screen and (max-width: 1120px){
+	.obfx-template {
+		width: 47.5%;
+		margin: 0 3% 3% 0;
+	}
+	.obfx-template:nth-child(3n) {
+		margin-right: 3%;
+	}
+	.obfx-template:nth-child(even) {
+		margin-right: 0;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.obfx-template-preview .wp-full-overlay-sidebar {
+		width: 100%;
+	}
+}
+
+@media only screen and (min-width: 2000px) {
+	.obfx-template {
+		width: 17.6%;
+		margin: 0 3% 3% 0;
+	}
+	.obfx-template:nth-child(4n) {
+		margin-right: 3%;
+	}
+	.obfx-template:nth-child(5n) {
+		margin-right: 0;
+	}
 }

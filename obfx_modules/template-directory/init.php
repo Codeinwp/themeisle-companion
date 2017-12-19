@@ -67,11 +67,8 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$this->loader->add_action( 'init', $this, 'demo_listing_register' );
 		//Add template redirect.
 		$this->loader->add_action( 'template_redirect', $this, 'demo_listing' );
-		//Remove customizer controls.
-		$this->loader->add_action( 'customize_register', $this, 'adjust_customizer', 1000 );
 		//Enqueue admin scripts.
 		$this->loader->add_action( 'admin_enqueue_scripts', $this, 'enqueue_template_dir_scripts' );
-		$this->loader->add_action( 'customize_controls_enqueue_scripts', $this, 'enqueue_template_dir_scripts' );
 	}
 
 	/**
@@ -79,12 +76,10 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function enqueue_template_dir_scripts() {
 		$current_screen = get_current_screen();
-		if ( $current_screen->id == 'orbit-fox_page_obfx_template_dir' || $this->is_template_dir_customize() ) {
+		if ( $current_screen->id == 'orbit-fox_page_obfx_template_dir' ) {
 			$script_handle = $this->slug . '-script';
-			if ( ! defined( 'ELEMENTOR_VERSION' ) ) {
-				wp_enqueue_script( 'plugin-install' );
-				wp_enqueue_script( 'updates' );
-			}
+			wp_enqueue_script( 'plugin-install' );
+			wp_enqueue_script( 'updates' );
 			wp_register_script( $script_handle, plugin_dir_url( $this->get_dir() ) . $this->slug . '/js/script.js', array( 'jquery' ), $this->version );
 			wp_localize_script( $script_handle, 'importer_endpoint',
 				array(
@@ -141,13 +136,6 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'admin' => array(),
 			),
 		);
-
-		if ( ! defined( 'ELEMENTOR_VERSION' ) ) {
-			$enqueue['js'] = array(
-				'plugin-install-helper' => array( 'jquery' ),
-			);
-		}
-
 		return $enqueue;
 	}
 
@@ -162,66 +150,6 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	}
 
 	/**
-	 * Remove the customizer controls and add the template listing control.
-	 */
-	public function adjust_customizer( $wp_customize ) {
-
-		if ( ! $this->is_template_dir_customize() ) {
-			return;
-		}
-		add_filter( 'customize_loaded_components', '__return_empty_array' );
-
-		//Remove all customizer sections and panels except 'obfx-templates'.
-		foreach ( $wp_customize->sections() as $section ) {
-			if ( $section->id !== 'obfx-templates' ) {
-				$wp_customize->remove_section( $section->id );
-			}
-		}
-		foreach ( $wp_customize->panels() as $panel ) {
-			if ( $panel->id !== 'widgets' && $panel->id !== 'nav_menus' ) {
-				$wp_customize->remove_panel( $panel->id );
-			}
-		}
-
-		//Get the module directory to later pass it for scripts enqueueing in the Orbit Fox customizer section.
-		$module_directory = $this->get_dir();
-
-		//Include the customizer section custom class and add the section.
-		require_once( $module_directory . '/inc/class-obfx-template-directory-customizer-section.php' );
-		if ( class_exists( 'OBFX_Template_Directory_Customizer_Section' ) ) {
-			$wp_customize->add_section(
-				new OBFX_Template_Directory_Customizer_Section(
-					$wp_customize, 'obfx-templates', array(
-						'priority'         => 0,
-						'module_directory' => plugin_dir_url( $this->get_dir() ),
-						'templates'        => $this->templates_list(),
-						'requires_plugins' => $this->render_view( 'template-plugin-install' ),
-					)
-				)
-			);
-		}
-
-	}
-
-	/**
-	 * Utility method to check if it's the customizer instance for the Template Directory Preview.
-	 *
-	 * @return bool
-	 */
-	public function is_template_dir_customize() {
-		//Check the URL parameter and bail if not on 'obfx_templates'.
-		$current = urldecode( isset( $_GET['url'] ) ? $_GET['url'] : '' );
-		$flag    = add_query_arg( 'obfx_templates', '', trailingslashit( home_url() ) );
-		$current = str_replace( '/', '', $current );
-		$flag    = str_replace( '/', '', $flag );
-		if ( $flag !== $current ) {
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
 	 * The templates list.
 	 *
 	 * @return array
@@ -229,77 +157,85 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function templates_list() {
 		$repository_raw_url = 'https://raw.githubusercontent.com/Codeinwp/obfx-templates/master/';
 		$defaults_if_empty  = array(
-			'title'       => __( 'A new Orbit Fox Template', 'themeisle-companion' ),
-			'screenshot'  => esc_url( 'https://raw.githubusercontent.com/Codeinwp/obfx-templates/master/placeholder.png' ),
-			'description' => __( 'This is an awesome Orbit Fox Template.', 'themeisle-companion' ),
-			'demo_url'    => esc_url( 'https://demo.themeisle.com/hestia-pro-demo-content/demo-placeholder/' ),
-			'import_file' => '',
+			'title'            => __( 'A new Orbit Fox Template', 'themeisle-companion' ),
+			'screenshot'       => esc_url( 'https://raw.githubusercontent.com/Codeinwp/obfx-templates/master/placeholder.png' ),
+			'description'      => __( 'This is an awesome Orbit Fox Template.', 'themeisle-companion' ),
+			'demo_url'         => esc_url( 'https://demo.themeisle.com/hestia-pro-demo-content/demo-placeholder/' ),
+			'import_file'      => '',
+			'required_plugins' => array( 'elementor' => array( 'title' => __( 'Elementor Page Builder', 'themeisle-companion' ) ) ),
 		);
 
 		$templates_list = array(
 			'about-our-business-elementor' => array(
-				'title'       => __( 'About Our Business', 'themeisle-companion' ),
-				'description' => __( 'A fancy description here', 'themeisle-companion' ),
-				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/about-our-business-elementor/',
-				'screenshot'  => esc_url( $repository_raw_url . 'about-our-business-elementor/screenshot.png' ),
-				'import_file' => esc_url( $repository_raw_url . 'about-our-business-elementor/template.json' ),
-			),
+				'title'            => __( 'About Our Business', 'themeisle-companion' ),
+				'description'      => __( 'Use this layout to present your business in a fancy way. Add an interactive header, shwocase your services via progress bars, introduce your team members, and locate your headquarters on Google Maps. Last but not least, beautify the design by adding catchy images.', 'themeisle-companion' ),
+				'demo_url'         => 'https://demo.themeisle.com/hestia-pro-demo-content/about-our-business-elementor/',
+				'screenshot'       => esc_url( $repository_raw_url . 'about-our-business-elementor/screenshot.png' ),
+				'import_file'      => esc_url( $repository_raw_url . 'about-our-business-elementor/template.json' ),
+				),
 			'contact-us-elementor'         => array(
-				'title'       => __( 'Contact Us', 'themeisle-companion' ),
-				'description' => __( 'A fancy description here', 'themeisle-companion' ),
-				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/contact-us-elementor/',
-				'screenshot'  => esc_url( $repository_raw_url . 'contact-us-elementor/screenshot.png' ),
-				'import_file' => esc_url( $repository_raw_url . 'contact-us-elementor/template.json' ),
+				'title'            => __( 'Contact Us', 'themeisle-companion' ),
+				'description'      => __( 'A clean and simple template for your Contact page, where we integrated our Pirate Forms plugin. It will let your customers send you a message using an intuitive form. A Google map, together with a few other details about your business, completes the section.', 'themeisle-companion' ),
+				'demo_url'         => 'https://demo.themeisle.com/hestia-pro-demo-content/contact-us-elementor/',
+				'screenshot'       => esc_url( $repository_raw_url . 'contact-us-elementor/screenshot.png' ),
+				'import_file'      => esc_url( $repository_raw_url . 'contact-us-elementor/template.json' ),
 			),
-			'pricing-elementor'         => array(
-				'title'       => __( 'Pricing', 'themeisle-companion' ),
-				'description' => __( 'A fancy description here', 'themeisle-companion' ),
-				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/pricing-elementor/',
-				'screenshot'  => esc_url( $repository_raw_url . 'pricing-elementor/screenshot.png' ),
-				'import_file' => esc_url( $repository_raw_url . 'pricing-elementor/template.json' ),
+			'pricing-elementor'            => array(
+				'title'            => __( 'Pricing', 'themeisle-companion' ),
+				'description'      => __( 'If you plan to sell your products online, this layout offers you elegant pricing tables so you can differentiate the features and services for your clients. Also, for a better clarification, the template provides a FAQ area where you can answer people\'s questions.', 'themeisle-companion' ),
+				'demo_url'         => 'https://demo.themeisle.com/hestia-pro-demo-content/pricing-elementor/',
+				'screenshot'       => esc_url( $repository_raw_url . 'pricing-elementor/screenshot.png' ),
+				'import_file'      => esc_url( $repository_raw_url . 'pricing-elementor/template.json' ),
 			),
-			'material-homepage-elementor'         => array(
-				'title'       => __( 'Material Homepage', 'themeisle-companion' ),
-				'description' => __( 'A fancy description here', 'themeisle-companion' ),
-				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/material-homepage-elementor/',
-				'screenshot'  => esc_url( $repository_raw_url . 'material-homepage-elementor/screenshot.png' ),
-				'import_file' => esc_url( $repository_raw_url . 'material-homepage-elementor/template.json' ),
+			'material-homepage-elementor'  => array(
+				'title'            => __( 'Material Homepage', 'themeisle-companion' ),
+				'description'      => __( 'This layout could be your main website homepage (or you can use it as an alternative homepage, if you wish). It was built on material design and comes with call to action, catchy icons, testimonials, blog posts, pricing plans, and other sections that you can add yourself by customizing it.', 'themeisle-companion' ),
+				'demo_url'         => 'https://demo.themeisle.com/hestia-pro-demo-content/material-homepage-elementor/',
+				'screenshot'       => esc_url( $repository_raw_url . 'material-homepage-elementor/screenshot.png' ),
+				'import_file'      => esc_url( $repository_raw_url . 'material-homepage-elementor/template.json' ),
 			),
-			'ether-elementor'         => array(
-				'title'       => __( 'Ether - Landing Page', 'themeisle-companion' ),
-				'description' => __( 'A fancy description here', 'themeisle-companion' ),
-				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/ether-elementor/',
-				'screenshot'  => esc_url( $repository_raw_url . 'ether-elementor/screenshot.png' ),
-				'import_file' => esc_url( $repository_raw_url . 'ether-elementor/template.json' ),
+			'ether-elementor'              => array(
+				'title'            => __( 'Ether - Landing Page', 'themeisle-companion' ),
+				'description'      => __( 'An elegant and modern landing page for e-commerce, coming with a clean interface, beautiful typography, photo galleries, and call to action. If you have an online shop and want to promote a certain product, use this layout to tell people why they should buy it.', 'themeisle-companion' ),
+				'demo_url'         => 'https://demo.themeisle.com/hestia-pro-demo-content/ether-elementor/',
+				'screenshot'       => esc_url( $repository_raw_url . 'ether-elementor/screenshot.png' ),
+				'import_file'      => esc_url( $repository_raw_url . 'ether-elementor/template.json' ),
 			),
-			'jason-elementor'         => array(
-				'title'       => __( 'Jason - Landing Page', 'themeisle-companion' ),
-				'description' => __( 'A fancy description here', 'themeisle-companion' ),
-				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/jason-elementor/',
-				'screenshot'  => esc_url( $repository_raw_url . 'jason-elementor/screenshot.png' ),
-				'import_file' => esc_url( $repository_raw_url . 'jason-elementor/template.json' ),
+			'jason-elementor'              => array(
+				'title'            => __( 'Jason - Landing Page', 'themeisle-companion' ),
+				'description'      => __( 'A classy template for freelancers, where you can put your skills and knowldge in the spotlight for potential clients. Talk about yourself, your projects, awards, and let people contact you easily. The template is designed to feature one-page scrolling.', 'themeisle-companion' ),
+				'demo_url'         => 'https://demo.themeisle.com/hestia-pro-demo-content/jason-elementor/',
+				'screenshot'       => esc_url( $repository_raw_url . 'jason-elementor/screenshot.png' ),
+				'import_file'      => esc_url( $repository_raw_url . 'jason-elementor/template.json' ),
 			),
-			'pulse-elementor'         => array(
-				'title'       => __( 'Pulse - Landing Page', 'themeisle-companion' ),
-				'description' => __( 'A fancy description here', 'themeisle-companion' ),
-				'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/pulse-elementor/',
-				'screenshot'  => esc_url( $repository_raw_url . 'pulse-elementor/screenshot.png' ),
-				'import_file' => esc_url( $repository_raw_url . 'pulse-elementor/template.json' ),
+			'pulse-elementor'              => array(
+				'title'            => __( 'Pulse - Landing Page', 'themeisle-companion' ),
+				'description'      => __( 'A good-looking landing page for products and apps, built to mark the features and services that they offer. The layout provides customer reviews, call to action, beautiful pricing tables, an About section, and a creative design. If you want to promote and sell your brand product, this template might help.', 'themeisle-companion' ),
+				'demo_url'         => 'https://demo.themeisle.com/hestia-pro-demo-content/pulse-elementor/',
+				'screenshot'       => esc_url( $repository_raw_url . 'pulse-elementor/screenshot.png' ),
+				'import_file'      => esc_url( $repository_raw_url . 'pulse-elementor/template.json' ),
 			),
-            'ascend-elementor'         => array(
-                'title'       => __( 'Ascend - Landing Page', 'themeisle-companion' ),
-                'description' => __( 'A fancy description here', 'themeisle-companion' ),
-                'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/ascend-elementor/',
-                'screenshot'  => esc_url( $repository_raw_url . 'ascend-elementor/screenshot.png' ),
-                'import_file' => esc_url( $repository_raw_url . 'ascend-elementor/template.json' ),
-            ),
-            'mocha-elementor'         => array(
-                'title'       => __( 'Mocha - Landing Page', 'themeisle-companion' ),
-                'description' => __( 'A fancy description here', 'themeisle-companion' ),
-                'demo_url'    => 'https://demo.themeisle.com/hestia-pro-demo-content/mocha-elementor/',
-                'screenshot'  => esc_url( $repository_raw_url . 'mocha-elementor/screenshot.png' ),
-                'import_file' => esc_url( $repository_raw_url . 'mocha-elementor/template.json' ),
-            ),
+			'ascend-elementor'             => array(
+				'title'            => __( 'Ascend - Landing Page', 'themeisle-companion' ),
+				'description'      => __( 'A resume-like template, built for outdoor enthusiasts and nature lovers. Its design and layout make it flexible for any other purpose too, so do not hesitate to showcase any kind of skills and activities, even business-oriented.', 'themeisle-companion' ),
+				'demo_url'         => 'https://demo.themeisle.com/hestia-pro-demo-content/ascend-elementor/',
+				'screenshot'       => esc_url( $repository_raw_url . 'ascend-elementor/screenshot.png' ),
+				'import_file'      => esc_url( $repository_raw_url . 'ascend-elementor/template.json' ),
+			),
+			'path-elementor'               => array(
+				'title'            => __( 'Path - Landing Page', 'themeisle-companion' ),
+				'description'      => __( 'If you are a business consultant - agency or working on your own - have a look at this template! It comes with a clean design, call to action, statistics, and sections that put your services first.', 'themeisle-companion' ),
+				'demo_url'         => 'https://demo.themeisle.com/hestia-pro-demo-content/path-elementor/',
+				'screenshot'       => esc_url( $repository_raw_url . 'path-elementor/screenshot.png' ),
+				'import_file'      => esc_url( $repository_raw_url . 'path-elementor/template.json' ),
+			),
+			'mocha-elementor'              => array(
+				'title'            => __( 'Mocha - Landing Page', 'themeisle-companion' ),
+				'description'      => __( 'An elegant and modern template for cafes and pubs, where you can display your menu in a mouth-watering way. Call to action, blog posts, attractive images, tabbed menus, and a catchy design will help you convince more people to stop by.', 'themeisle-companion' ),
+				'demo_url'         => 'https://demo.themeisle.com/hestia-pro-demo-content/mocha-elementor/',
+				'screenshot'       => esc_url( $repository_raw_url . 'mocha-elementor/screenshot.png' ),
+				'import_file'      => esc_url( $repository_raw_url . 'mocha-elementor/template.json' ),
+			),
 		);
 
 		foreach ( $templates_list as $template => $properties ) {
@@ -353,7 +289,6 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function render_admin_page() {
 		$data = array(
 			'templates_array'  => $this->templates_list(),
-			'requires_plugins' => $this->render_view( 'template-plugin-install' )
 		);
 		echo $this->render_view( 'template-directory-page', $data );
 	}
@@ -482,8 +417,6 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 						array(
 							'action'        => 'activate',
 							'plugin'        => rawurlencode( $plugin_link_suffix ),
-							'plugin_status' => 'all',
-							'paged'         => '1',
 							'_wpnonce'      => wp_create_nonce( 'activate-plugin_' . $plugin_link_suffix ),
 						), network_admin_url( 'plugins.php' )
 					);

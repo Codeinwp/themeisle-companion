@@ -947,11 +947,14 @@ class OBFX_Elementor_Widget_Pricing_Table extends Widget_Base {
 		$this->add_render_attribute( 'button', 'class', 'obfx-pricing-table-button' );
 		$this->add_render_attribute( 'button_icon', 'class', $settings['button_icon'] );
 		$this->add_render_attribute( 'button_icon_align', 'class', 'obfx-button-icon-align-' . $settings['button_icon_align'] );
-		if ( ! empty( $settings['link']['url'] ) ) {
-			$this->add_render_attribute( 'button', 'href', $settings['link']['url'] );
+		if ( ! empty( $settings['button_link']['url'] ) ) {
+			$this->add_render_attribute( 'button', 'href', $settings['button_link']['url'] );
 
-			if ( ! empty( $settings['link']['is_external'] ) ) {
+			if ( ! empty( $settings['button_link']['is_external'] ) ) {
 				$this->add_render_attribute( 'button', 'target', '_blank' );
+			}
+			if ( ! empty( $settings['button_link']['nofollow'] ) ) {
+				$this->add_render_attribute( 'button', 'rel', 'nofollow' );
 			}
 		}
 
