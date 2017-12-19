@@ -36,6 +36,7 @@ Orbit Fox is a user-centred plugin with an easy-to-use admin panel. One of the m
 
 - It’s fully customizable: You can easily optimise button location for according to the device your visitors will use. 
 
+
 **Why use our custom Elementor addons module:**
 
 - We offer new widgets to add more value to the content you can create within Elementor page builder.
@@ -45,6 +46,18 @@ Orbit Fox is a user-centred plugin with an easy-to-use admin panel. One of the m
 - Services Widget to easily create pricing layouts.
 
 - Post Grid Widget to easily list your Posts / Products / any other post types in a grid.
+
+
+**Why use our custom Beaver Builder addons module:**
+
+- We offer new widgets to add more value to the content you can create within the Beaver Builder page builder.
+
+- Pricing Table Widget to easily create pricing layouts.
+
+- Services Widget to easily create pricing layouts.
+
+- Post Grid Widget to easily list your Posts / Products / any other post types in a grid.
+
 
 **Why use our Template Directory:**
 
@@ -64,6 +77,7 @@ We've also built some fantastic <a href="http://themeisle.com/wordpress-themes/f
 
 - Template Directory
 - Elementor Addons and Widgets
+- Beaver Builder Widgets
 - Sharing module
 - Menu icons module
 - Free stock photos module
