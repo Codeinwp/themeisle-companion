@@ -117,6 +117,17 @@ Activating the Orbit Fox Companion plugin is just like any other plugin. If you'
 3. Screenshot 3. How reports module is looking
 
 == Changelog ==
+= 2.2.6 - 2017-12-19  = 
+
+* Added new Beaver Builder Widgets Module - Pricing table widget, Services widget, Posts Grid widget.
+* Better user experience for the template directory.
+* More native design for the template directory.
+* Added three free new templates to the template directory - Path, Mocha and Ascend.
+* Fixed bug with the Elementor Pricing Table widget button link.
+* Fixed php notice given by the Elementor Posts Grid widget.
+* Removed the useless Stats module.
+
+
 = 2.2.5 - 2017-12-11  = 
 
 * Better UX for CC0 images import module.
