@@ -100,15 +100,10 @@ var obfx_template_directory = function ( $ ) {
                         success: function () {
                             $( plugin ).find( '.dashicons' ).replaceWith( '<span class="dashicons dashicons-yes" style="color: #34a85e"></span>' );
                             $( plugin ).removeClass( 'obfx-installing' );
-                            console.log('Plugin activated');
-
                         },
                         complete: function() {
                             if ( $( '.active .obfx-installing' ).length === 0 ) {
-                                console.log('runtrigger');
                                 $( '.obfx-import-queue' ).trigger( 'click' );
-                            } else {
-                                console.log('notyet');
                             }
                         }
                     }

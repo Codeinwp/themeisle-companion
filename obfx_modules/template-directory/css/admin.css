@@ -158,7 +158,10 @@
 }
 
 .obfx-done-import {
-	margin: 0 10px;
+	display: block;
+	text-align: center;
+	padding-top: 10px;
+	margin: 0;
 	color: green;
 }
 
@@ -271,8 +274,7 @@
 	margin-top: 20px;
 }
 
-.obfx-installed .button,
-.obfx-installable .button {
+.obfx-required-plugins .button {
 	display: none;
 }
 @media only screen and (min-width: 1640px) {
