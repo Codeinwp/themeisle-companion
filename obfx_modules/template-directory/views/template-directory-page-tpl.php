@@ -67,7 +67,7 @@ echo $html;
 						<?php echo esc_html( $properties['description'] ); ?>
 					</div>
 					<?php
-					if ( ! empty( $properties['required_plugins'] && is_array( $properties['required_plugins'] ) ) ) {
+					if ( ! empty( $properties['required_plugins'] ) && is_array( $properties['required_plugins'] ) ) {
 					?>
 					<div class="obfx-required-plugins">
 						<p>Required Plugins</p>
@@ -79,7 +79,13 @@ echo $html;
 								echo $details['title'];
 								echo $this->get_button_html( $plugin_slug );
 								echo '</div>';
-							} else {
+							} elseif ( $this->check_plugin_state( $plugin_slug ) === 'activate' ){
+								echo '<div class="obfx-activate plugin-card-' . esc_attr( $plugin_slug ) . '">';
+								echo '<span class="dashicons dashicons-admin-plugins" style="color: #ffb227;"></span>';
+								echo $details['title'];
+								echo $this->get_button_html( $plugin_slug );
+								echo '</div>';
+                            } else {
 								echo '<div class="obfx-installed plugin-card-' . esc_attr( $plugin_slug ) . '">';
 								echo '<span class="dashicons dashicons-yes" style="color: #34a85e"></span>';
 								echo $details['title'];

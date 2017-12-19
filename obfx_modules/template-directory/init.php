@@ -247,7 +247,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'demo_url'         => 'https://demo.themeisle.com/hestia-pro-demo-content/mocha-elementor/',
 				'screenshot'       => esc_url( $repository_raw_url . 'mocha-elementor/screenshot.png' ),
 				'import_file'      => esc_url( $repository_raw_url . 'mocha-elementor/template.json' ),
-				'required_plugins' => array( 'elementor' => array( 'title' => __( 'Elementor Page Builder', 'themeisle-companion' ) ) ),
+				'required_plugins' => array(  'pirate-forms' => array( 'title' => __( 'Pirate Forms', 'themeisle-companion' ) ), 'elementor' => array( 'title' => __( 'Elementor Page Builder', 'themeisle-companion' ) ), ),
 			),
 		);
 
@@ -430,8 +430,6 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 						array(
 							'action'        => 'activate',
 							'plugin'        => rawurlencode( $plugin_link_suffix ),
-							'plugin_status' => 'all',
-							'paged'         => '1',
 							'_wpnonce'      => wp_create_nonce( 'activate-plugin_' . $plugin_link_suffix ),
 						), network_admin_url( 'plugins.php' )
 					);
