@@ -48,7 +48,7 @@ var obfx_template_directory = function ( $ ) {
 									console.error( error );
 								},
 								complete: function() {
-                                    $( '.obfx-updating' ).replaceWith( '<span class="obfx-done-import"><i class="dashicons-yes dashicons"></i></span>' );
+									$( '.obfx-updating' ).replaceWith( '<span class="obfx-done-import"><i class="dashicons-yes dashicons"></i></span>' );
 								}
 							}, 'json'
 						);
@@ -56,59 +56,61 @@ var obfx_template_directory = function ( $ ) {
 				}
 			);
 
-            function checkAndInstallPlugins() {
-                var installable = $( '.active .obfx-installable' );
-                var toActivate = $( '.active .obfx-activate' );
-                if ( installable.length || toActivate.length ) {
+			function checkAndInstallPlugins() {
+				var installable = $( '.active .obfx-installable' );
+				var toActivate = $( '.active .obfx-activate' );
+				if ( installable.length || toActivate.length ) {
 
-                    $( installable ).each(
-                        function () {
-                            var plugin = $( this );
-                            $( plugin ).removeClass( 'obfx-installable' ).addClass( 'obfx-installing' );
-                            $( plugin ).find( 'span.dashicons' ).replaceWith( '<span class="dashicons dashicons-update" style="-webkit-animation: rotation 2s infinite linear; animation: rotation 2s infinite linear; color: #ffb227 "></span>' );
-                            var slug = $( this ).find( '.obfx-install-plugin' ).attr( 'data-slug' );
-                            wp.updates.installPlugin(
-                                {
-                                    slug: slug,
-                                    success: function ( response ) {
-                                        activatePlugin( response.activateUrl, plugin );
-                                    }
-                                }
-                            );
-                        }
-                    );
+					$( installable ).each(
+						function () {
+							var plugin = $( this );
+							$( plugin ).removeClass( 'obfx-installable' ).addClass( 'obfx-installing' );
+							$( plugin ).find( 'span.dashicons' ).replaceWith( '<span class="dashicons dashicons-update" style="-webkit-animation: rotation 2s infinite linear; animation: rotation 2s infinite linear; color: #ffb227 "></span>' );
+							var slug = $( this ).find( '.obfx-install-plugin' ).attr( 'data-slug' );
+							wp.updates.installPlugin(
+								{
+									slug: slug,
+									success: function ( response ) {
+										activatePlugin( response.activateUrl, plugin );
+									}
+								}
+							);
+						}
+					);
 
-                    $( toActivate ).each( function () {
-                        var plugin = $( this );
-                        var activateUrl = $( plugin ).find( '.activate-now' ).attr( 'href' );
-                        if (typeof activateUrl !== 'undefined') {
-                            activatePlugin( activateUrl, plugin );
-                        }
-                    } );
-                }
-            }
+					$( toActivate ).each(
+						function () {
+								var plugin = $( this );
+								var activateUrl = $( plugin ).find( '.activate-now' ).attr( 'href' );
+							if (typeof activateUrl !== 'undefined') {
+								activatePlugin( activateUrl, plugin );
+							}
+						}
+					);
+				}
+			}
 
-            function activatePlugin( activationUrl, plugin ) {
-                $.ajax(
-                    {
-                        type: 'GET',
-                        url: activationUrl,
-                        beforeSend: function() {
-                            $( plugin ).removeClass( 'obfx-activate' ).addClass( 'obfx-installing' );
-                            $( plugin ).find( 'span.dashicons' ).replaceWith( '<span class="dashicons dashicons-update" style="-webkit-animation: rotation 2s infinite linear; animation: rotation 2s infinite linear; color: #ffb227 "></span>' );
-                        },
-                        success: function () {
-                            $( plugin ).find( '.dashicons' ).replaceWith( '<span class="dashicons dashicons-yes" style="color: #34a85e"></span>' );
-                            $( plugin ).removeClass( 'obfx-installing' );
-                        },
-                        complete: function() {
-                            if ( $( '.active .obfx-installing' ).length === 0 ) {
-                                $( '.obfx-import-queue' ).trigger( 'click' );
-                            }
-                        }
-                    }
-                );
-            }
+			function activatePlugin( activationUrl, plugin ) {
+				$.ajax(
+					{
+						type: 'GET',
+						url: activationUrl,
+						beforeSend: function() {
+							$( plugin ).removeClass( 'obfx-activate' ).addClass( 'obfx-installing' );
+							$( plugin ).find( 'span.dashicons' ).replaceWith( '<span class="dashicons dashicons-update" style="-webkit-animation: rotation 2s infinite linear; animation: rotation 2s infinite linear; color: #ffb227 "></span>' );
+						},
+						success: function () {
+							$( plugin ).find( '.dashicons' ).replaceWith( '<span class="dashicons dashicons-yes" style="color: #34a85e"></span>' );
+							$( plugin ).removeClass( 'obfx-installing' );
+						},
+						complete: function() {
+							if ( $( '.active .obfx-installing' ).length === 0 ) {
+								$( '.obfx-import-queue' ).trigger( 'click' );
+							}
+						}
+					}
+				);
+			}
 
 			// Handle sidebar collapse in preview.
 			$( '.obfx-template-preview' ).on(
@@ -147,56 +149,54 @@ var obfx_template_directory = function ( $ ) {
 				}
 			);
 
+			// Hide preview.
+			$( '.close-full-overlay' ).on(
+				'click', function () {
+					$( '.obfx-template-preview .obfx-theme-info.active' ).removeClass( 'active' );
+					$( '.obfx-template-preview' ).hide();
+					$( '.obfx-template-frame' ).attr( 'src', '' );
+				}
+			);
 
-            // Hide preview.
-            $( '.close-full-overlay' ).on(
-                'click', function () {
-                    $( '.obfx-template-preview .obfx-theme-info.active' ).removeClass( 'active' );
-                    $( '.obfx-template-preview' ).hide();
-                    $( '.obfx-template-frame' ).attr( 'src', '' );
-                }
-            );
+			// Open preview routine.
+			$( '.obfx-preview-template' ).on(
+				'click', function () {
+					var templateSlug = $( this ).data( 'template-slug' );
+					var previewUrl = $( this ).data( 'demo-url' );
+					$( '.obfx-template-frame' ).attr( 'src', previewUrl );
+					$( '.obfx-theme-info.' + templateSlug ).addClass( 'active' );
+					setupImportButton();
+					$( '.obfx-template-preview' ).fadeIn();
+				}
+			);
 
-            // Open preview routine.
-            $( '.obfx-preview-template' ).on(
-                'click', function () {
-                    var templateSlug = $( this ).data( 'template-slug' );
-                    var previewUrl = $( this ).data( 'demo-url' );
-                    $( '.obfx-template-frame' ).attr( 'src', previewUrl );
-                    $( '.obfx-theme-info.' + templateSlug ).addClass( 'active' );
-                    setupImportButton();
-                    $( '.obfx-template-preview' ).fadeIn();
-                }
-            );
+			// Handle left-right navigation between templates.
+			$( '.obfx-next-prev .next-theme' ).on(
+				'click', function () {
+					var active = $( '.obfx-theme-info.active' ).removeClass( 'active' );
+					if ( active.next() && active.next().length ) {
+						active.next().addClass( 'active' );
+					} else {
+						active.siblings( ':first' ).addClass( 'active' );
+					}
+					changePreviewSource();
+					setupImportButton();
+				}
+			);
+			$( '.obfx-next-prev .previous-theme' ).on(
+				'click', function () {
+					var active = $( '.obfx-theme-info.active' ).removeClass( 'active' );
+					if ( active.prev() && active.prev().length ) {
+						active.prev().addClass( 'active' );
+					} else {
+						active.siblings( ':last' ).addClass( 'active' );
+					}
+					changePreviewSource();
+					setupImportButton();
+				}
+			);
 
-            // Handle left-right navigation between templates.
-            $( '.obfx-next-prev .next-theme' ).on(
-                'click', function () {
-                    var active = $( '.obfx-theme-info.active' ).removeClass( 'active' );
-                    if ( active.next() && active.next().length ) {
-                        active.next().addClass( 'active' );
-                    } else {
-                        active.siblings( ':first' ).addClass( 'active' );
-                    }
-                    changePreviewSource();
-                    setupImportButton();
-                }
-            );
-            $( '.obfx-next-prev .previous-theme' ).on(
-                'click', function () {
-                    var active = $( '.obfx-theme-info.active' ).removeClass( 'active' );
-                    if ( active.prev() && active.prev().length ) {
-                        active.prev().addClass( 'active' );
-                    } else {
-                        active.siblings( ':last' ).addClass( 'active' );
-                    }
-                    changePreviewSource();
-                    setupImportButton();
-                }
-            );
-
-
-            // Change preview source.
+			// Change preview source.
 			function changePreviewSource() {
 				var previewUrl = $( '.obfx-theme-info.active' ).data( 'demo-url' );
 				$( '.obfx-template-frame' ).attr( 'src', previewUrl );

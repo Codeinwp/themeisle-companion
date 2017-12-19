@@ -79,13 +79,13 @@ echo $html;
 								echo $details['title'];
 								echo $this->get_button_html( $plugin_slug );
 								echo '</div>';
-							} elseif ( $this->check_plugin_state( $plugin_slug ) === 'activate' ){
+							} elseif ( $this->check_plugin_state( $plugin_slug ) === 'activate' ) {
 								echo '<div class="obfx-activate plugin-card-' . esc_attr( $plugin_slug ) . '">';
 								echo '<span class="dashicons dashicons-admin-plugins" style="color: #ffb227;"></span>';
 								echo $details['title'];
 								echo $this->get_button_html( $plugin_slug );
 								echo '</div>';
-                            } else {
+							} else {
 								echo '<div class="obfx-installed plugin-card-' . esc_attr( $plugin_slug ) . '">';
 								echo '<span class="dashicons dashicons-yes" style="color: #34a85e"></span>';
 								echo $details['title'];
