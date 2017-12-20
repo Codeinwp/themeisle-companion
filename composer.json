@@ -19,11 +19,13 @@
         "source": "https://github.com/Codeinwp/themeisle-companion"
     },
     "require": {
-        "codeinwp/themeisle-sdk": "master"
+         "codeinwp/themeisle-sdk": "master",
+        "codeinwp/themeisle-content-forms": "master"
     },
     "autoload": {
         "files": [
-            "vendor/codeinwp/themeisle-sdk/load.php"
+            "vendor/codeinwp/themeisle-sdk/load.php",
+            "vendor/codeinwp/themeisle-content-forms/load.php"
         ]
     },
     "minimum-stability": "dev",
