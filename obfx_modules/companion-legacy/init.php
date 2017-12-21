@@ -262,7 +262,7 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		if ( $this->is_hestia() ) {
 			$this->loader->add_action( 'after_setup_theme', $this, 'hestia_require' );
 			$this->loader->add_action( 'after_setup_theme', $this, 'hestia_load_default_content' );
-			$this->loader->add_filter( 'after_setup_theme', $this, 'hestia_load_clients_default_content' );
+			$this->loader->add_filter( 'hestia_clients_bar_default_content', $this, 'hestia_load_clients_default_content' );
 			$this->loader->add_filter( 'hestia_top_bar_alignment_default', $this, 'hestia_top_bar_default_alignment' );
 			$this->loader->add_action( 'customize_register', $this, 'hestia_require_customizer', 0 );
 			$this->loader->add_action( 'after_switch_theme', $this, 'hestia_set_front_page' );
