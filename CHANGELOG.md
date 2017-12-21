@@ -1,4 +1,10 @@
 
+ ### v2.2.7 - 2017-12-21 
+ **Changes:** 
+ * Fix for Hestia clients section default content
+* Beaver Builder Widgets show only if you have beaver builder installed
+* Added Screenshots desciptions
+ 
  ### v2.2.6 - 2017-12-19 
  **Changes:** 
  * Added new Beaver Builder Widgets Module - Pricing table widget, Services widget, Posts Grid widget.

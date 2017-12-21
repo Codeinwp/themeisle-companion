@@ -114,9 +114,23 @@ Activating the Orbit Fox Companion plugin is just like any other plugin. If you'
 
 1. Screenshot 1. How you can enable/disable modules
 2. Screenshot 2. How the sharing module is looking
-3. Screenshot 3. How reports module is looking
+3. Screenshot 3. Template directory page preview
+4. Screenshot 4. Template preview interface
+5. Screenshot 5. Menu icons module interface preview
+6. Screenshot 6. Menu icons module front end preview
+7. Screenshot 7. Services and post grid Page builder modules
+8. Screenshot 8. Pricing plan Page builder module
+9. Screenshot 9. CC0 MyStock.photos featured image import module.
+
 
 ## Changelog ##
+### 2.2.7 - 2017-12-21  ###
+
+* Fix for Hestia clients section default content
+* Beaver Builder Widgets show only if you have beaver builder installed
+* Added Screenshots desciptions
+
+
 ### 2.2.6 - 2017-12-19  ###
 
 * Added new Beaver Builder Widgets Module - Pricing table widget, Services widget, Posts Grid widget.
