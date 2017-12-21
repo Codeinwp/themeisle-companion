@@ -63,7 +63,7 @@ function themeisle_hestia_top_bar_default_content() {
 			break;
 	}
 
-	add_option( 'hestia_load_default', true );
+	update_option( 'hestia_load_default', true );
 }
 
 
