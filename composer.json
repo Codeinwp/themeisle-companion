@@ -20,12 +20,11 @@
     },
     "require": {
          "codeinwp/themeisle-sdk": "master",
-        "codeinwp/themeisle-content-forms": "master"
+        "codeinwp/themeisle-content-forms": "dev"
     },
     "autoload": {
         "files": [
-            "vendor/codeinwp/themeisle-sdk/load.php",
-            "vendor/codeinwp/themeisle-content-forms/load.php"
+            "vendor/codeinwp/themeisle-sdk/load.php"
         ]
     },
     "minimum-stability": "dev",
