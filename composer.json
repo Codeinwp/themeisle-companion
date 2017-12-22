@@ -1,32 +1,38 @@
 {
-    "name": "codeinwp/themeisle-companion",
-    "description": "Orbit Fox Companion",
-    "keywords": [
-        "wordpress"
-    ],
-    "homepage": "https://themeisle.com/plugins/themeisle-companion/",
-    "license": "GPL-2.0+",
-    "authors": [
-        {
-            "name": "ThemeIsle Team",
-            "email": "friends@themeisle.com.com",
-            "homepage": "https://themeisle.com"
-        }
-    ],
-    "type": "wordpress-plugin",
-    "support": {
-        "issues": "https://github.com/Codeinwp/themeisle-companion/issues",
-        "source": "https://github.com/Codeinwp/themeisle-companion"
-    },
-    "require": {
-         "codeinwp/themeisle-sdk": "master",
-        "codeinwp/themeisle-content-forms": "dev"
-    },
-    "autoload": {
-        "files": [
-            "vendor/codeinwp/themeisle-sdk/load.php"
-        ]
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true
+  "name": "codeinwp/themeisle-companion",
+  "description": "Orbit Fox Companion",
+  "keywords": [
+    "wordpress"
+  ],
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/contactashish13/themeisle-sdk"
+    }
+  ],
+  "homepage": "https://themeisle.com/plugins/themeisle-companion/",
+  "license": "GPL-2.0+",
+  "authors": [
+    {
+      "name": "ThemeIsle Team",
+      "email": "friends@themeisle.com.com",
+      "homepage": "https://themeisle.com"
+    }
+  ],
+  "type": "wordpress-plugin",
+  "support": {
+    "issues": "https://github.com/Codeinwp/themeisle-companion/issues",
+    "source": "https://github.com/Codeinwp/themeisle-companion"
+  },
+  "require": {
+    "codeinwp/themeisle-sdk": "dev-issue-26",
+    "codeinwp/themeisle-content-forms": "dev-dev"
+  },
+  "autoload": {
+    "files": [
+      "vendor/codeinwp/themeisle-sdk/load.php"
+    ]
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
 }
