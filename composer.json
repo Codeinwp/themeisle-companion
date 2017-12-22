@@ -4,12 +4,6 @@
   "keywords": [
     "wordpress"
   ],
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/contactashish13/themeisle-sdk"
-    }
-  ],
   "homepage": "https://themeisle.com/plugins/themeisle-companion/",
   "license": "GPL-2.0+",
   "authors": [
