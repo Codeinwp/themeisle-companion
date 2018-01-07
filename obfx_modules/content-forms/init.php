@@ -36,7 +36,7 @@ class Content_Forms_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function __construct() {
 		parent::__construct();
 		$this->name           = __( 'Content Forms', 'themeisle-companion' );
-		$this->description    = __( 'Adds Content Forms to the most popular builders: Elementor, Beaver and guess who! Gutenberg!', 'themeisle-companion' );
+		$this->description    = __( 'Adds Content Forms to the most popular builders: Elementor or Beaver. More to come!', 'themeisle-companion' );
 		$this->active_default = true;
 	}
 

@@ -20,7 +20,7 @@
   },
   "require": {
     "codeinwp/themeisle-sdk": "master",
-    "codeinwp/themeisle-content-forms": "dev-dev"
+    "codeinwp/themeisle-content-forms": "master"
   },
   "autoload": {
     "files": [
