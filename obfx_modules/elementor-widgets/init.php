@@ -76,6 +76,7 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$this->loader->add_action( 'elementor/widgets/widgets_registered', $this, 'add_elementor_widgets' );
 		$this->loader->add_action( 'elementor/frontend/after_register_scripts', $this, 'enqueue_scripts' );
 
+		$this->loader->add_action( 'init_themeisle_content_forms', $this, 'load_content_forms' );
 	}
 
 	/**
@@ -157,4 +158,17 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		// Add custom JS for grid.
 		wp_enqueue_script( 'obfx-grid-js', plugins_url ( 'js/obfx-grid.js', OBFX_MODULE_URL ), array(), '1.0', true );
 	}
+
+	/**
+	 * If the content-forms library is available we should make the forms available for elementor
+	 */
+	public function load_content_forms() {
+
+		if ( class_exists( '\ThemeIsle\ContentForms\ContactForm' ) ) {
+			\ThemeIsle\ContentForms\ContactForm::instance();
+			\ThemeIsle\ContentForms\NewsletterForm::instance();
+			\ThemeIsle\ContentForms\RegistrationForm::instance();
+		}
+	}
+
 }
