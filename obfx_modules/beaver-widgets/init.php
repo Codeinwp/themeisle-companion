@@ -22,8 +22,8 @@ class Beaver_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function __construct() {
 		parent::__construct();
-		$this->name        = __( 'Beaver Builder Widgets', 'themeisle-companion' );
-		$this->description = __( 'Custom Beaver Builder Widgets.', 'themeisle-companion' );
+		$this->name        = __( 'Page builder widgets', 'themeisle-companion' );
+		$this->description = __( 'Adds widgets to the most popular builders: Elementor or Beaver. More to come!', 'themeisle-companion' );
 	}
 
 	/**
