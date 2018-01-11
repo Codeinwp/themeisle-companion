@@ -132,3 +132,7 @@
 	-ms-transform: scale(1.4);
 	transform: scale(1.4);
 }
+
+.obfx-menu-icon-footer .iconpicker-btn.iconpicker-btn-cancel, .obfx-menu-icon-footer .iconpicker-btn.iconpicker-btn-accept {
+	display: none;
+}
