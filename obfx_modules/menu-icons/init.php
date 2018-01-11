@@ -144,7 +144,7 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'icons'	=> apply_filters( 'obfx_menu_icons_icon_list', $this->get_dashicons() ),
 				'icon_default' => self::DEFAULT_ICON,
 				'i10n' => array(
-					'powered_by' => sprintf( __( 'Powered by %s', 'themeisle-companion' ), apply_filters( 'themeisle_companion_friendly_name', '' ) ),
+					'powered_by' => sprintf( __( 'Powered by %s plugin', 'themeisle-companion' ), '<b>' . apply_filters( 'themeisle_companion_friendly_name', '' ) . '</b>' ),
 				),
 			),
 		);

@@ -80,7 +80,7 @@ function run_orbit_fox() {
 
 	add_filter(
 		'themeisle_companion_friendly_name', function( $name ) {
-			return 'Orbit Fox ( former ThemeIsle Companion )';
+			return 'Orbit Fox';
 		}
 	);
 }

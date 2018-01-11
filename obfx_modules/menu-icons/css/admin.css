@@ -133,6 +133,19 @@
 	transform: scale(1.4);
 }
 
-.obfx-menu-icon-footer .iconpicker-btn.iconpicker-btn-cancel, .obfx-menu-icon-footer .iconpicker-btn.iconpicker-btn-accept {
+.obfx-menu-icon-footer b {
+	font-style: normal;
+}
+
+.obfx-menu-icon-footer {
+	padding: 5px 20px 5px 0;
+	font-size: 12px;
+	font-weight: normal;
+	font-style: italic;
+	text-align: right;
+}
+
+.obfx-menu-icon-footer .iconpicker-btn.iconpicker-btn-cancel,
+.obfx-menu-icon-footer .iconpicker-btn.iconpicker-btn-accept {
 	display: none;
 }
