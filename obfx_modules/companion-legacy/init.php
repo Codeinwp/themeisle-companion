@@ -71,17 +71,6 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		}
 		$this->name        = sprintf( __( '%s enhancements ', 'themeisle-companion' ), $theme_name );
 		$this->description = sprintf( __( 'Module containing frontpage improvements for %s theme.', 'themeisle-companion' ), $theme_name );
-
-		if ( ! empty( $theme_name ) ) {
-			$this->notices = array(
-				array(
-					'type'           => 'primary',
-					'title'          => 'How Orbit Fox helps you ?',
-					'message'        => str_replace( '{theme}', $theme_name, 'Orbit Fox  enhances {theme} theme with extra functionalities like widgets and custom sections. Moreover we have a simple sharing and report module and added the ground for more useful ones for security, caching and analytics.  ' ),
-					'display_always' => false
-				)
-			);
-		}
 	}
 
 	private function is_zerif() {
