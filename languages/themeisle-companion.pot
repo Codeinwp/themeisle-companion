@@ -1,14 +1,14 @@
-# Copyright (C) 2017 Themeisle
+# Copyright (C) 2018 Themeisle
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Orbit Fox Companion 2.1.0\n"
+"Project-Id-Version: Orbit Fox Companion 2.2.7\n"
 "Report-Msgid-Bugs-To: https://github.com/Codeinwp/orbit-fox/issues\n"
-"POT-Creation-Date: 2017-11-10 13:40:54+00:00\n"
+"POT-Creation-Date: 2018-01-11 15:29:17+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2018-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Themeisle Translate Team <friends@themeisle.com>\n"
 "Language-Team: Themeisle Translate <friends@themeisle.com>\n"
 "X-Generator: grunt-wp-i18n 0.5.4\n"
@@ -24,61 +24,94 @@ msgstr ""
 "X-Poedit-Bookmarks: \n"
 "X-Textdomain-Support: yes\n"
 
+#: obfx_modules/beaver-widgets/modules/services/services.php:64
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:426
+msgid "1"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/services/services.php:65
+msgid "2"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/services/services.php:66
+msgid "3"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/services/services.php:67
+msgid "4"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/services/services.php:68
+msgid "5"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:167
+msgid "50"
+msgstr ""
+
 #: core/app/class-orbit-fox-admin.php:122
 msgid "Orbit Fox"
 msgstr ""
 
-#. Plugin Name of the plugin/theme
-msgid "Orbit Fox Companion"
+#: core/app/class-orbit-fox-admin.php:130
+msgid "Orbit Fox General Options"
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:153
-#: core/app/class-orbit-fox-admin.php:209
+#: core/app/class-orbit-fox-admin.php:130
+msgid "General Settings"
+msgstr ""
+
+#: core/app/class-orbit-fox-admin.php:156
+#: core/app/class-orbit-fox-admin.php:212
 msgid "Could not process the request!"
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:179
+#: core/app/class-orbit-fox-admin.php:182
 msgid "No module found! No data was updated."
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:185
+#: core/app/class-orbit-fox-admin.php:188
 msgid "Something went wrong, data might not be saved!"
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:189
+#: core/app/class-orbit-fox-admin.php:192
 msgid "Options updated, successfully!"
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:235
+#: core/app/class-orbit-fox-admin.php:238
 msgid "No module found!"
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:239
+#: core/app/class-orbit-fox-admin.php:242
 msgid "Something went wrong, can not change module status!"
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:243
+#: core/app/class-orbit-fox-admin.php:246
 msgid "Module status changed!"
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:335
+#: core/app/class-orbit-fox-admin.php:338
 msgid "No modules found."
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:336
+#: core/app/class-orbit-fox-admin.php:339
 msgid "Please contact support for more help."
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:343
+#: core/app/class-orbit-fox-admin.php:346
 msgid "No active modules."
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:344
+#: core/app/class-orbit-fox-admin.php:347
 msgid "Activate a module using the toggles above."
 msgstr ""
 
 #: core/app/helpers/class-orbit-fox-render-helper.php:356
 msgid "No option found for provided type"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Orbit Fox Companion"
 msgstr ""
 
 #: core/app/views/modules-page.php:57
@@ -122,8 +155,1009 @@ msgid "Module Description ..."
 msgstr ""
 
 #: core/app/views/partials/module-tile-tpl.php:42
-#: obfx_modules/template-directory/init.php:457
+#: obfx_modules/template-directory/init.php:423
 msgid "Activate"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/custom-fields/toggle-field/toggle_field.php:26
+msgid "Yes"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/custom-fields/toggle-field/toggle_field.php:27
+msgid "No"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/inc/common-functions.php:26
+msgid "Margins"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/inc/common-functions.php:26
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:739
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:797
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:477
+msgid "Padding"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/inc/common-functions.php:30
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:191
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:190
+msgid "Top"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/inc/common-functions.php:31
+#: obfx_modules/beaver-widgets/inc/common-functions.php:37
+#: obfx_modules/beaver-widgets/inc/common-functions.php:43
+#: obfx_modules/beaver-widgets/inc/common-functions.php:49
+#: obfx_modules/beaver-widgets/inc/common-functions.php:73
+#: obfx_modules/beaver-widgets/inc/common-functions.php:108
+#: obfx_modules/beaver-widgets/inc/common-functions.php:113
+#: obfx_modules/beaver-widgets/modules/services/services.php:114
+msgid "px"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/inc/common-functions.php:36
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:193
+msgid "Bottom"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/inc/common-functions.php:42
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:88
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:139
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:220
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:287
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:332
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:187
+#: obfx_modules/beaver-widgets/modules/services/services.php:106
+#: obfx_modules/beaver-widgets/modules/services/services.php:185
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:553
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:589
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:635
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:274
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:186
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:295
+msgid "Left"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/inc/common-functions.php:48
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:89
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:140
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:221
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:288
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:333
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:188
+#: obfx_modules/beaver-widgets/modules/services/services.php:108
+#: obfx_modules/beaver-widgets/modules/services/services.php:187
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:561
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:597
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:643
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:282
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:194
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:303
+msgid "Right"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/inc/common-functions.php:64
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:776
+msgid "Typography"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/inc/common-functions.php:72
+msgid "Font size"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/inc/common-functions.php:78
+msgid "Font family"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/inc/common-functions.php:86
+msgid "Transform"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/inc/common-functions.php:89
+msgid "None"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/inc/common-functions.php:90
+msgid "Capitalize"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/inc/common-functions.php:91
+msgid "Uppercase"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/inc/common-functions.php:92
+msgid "Lowercase"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/inc/common-functions.php:97
+msgid "Font style"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/inc/common-functions.php:100
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:1137
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:821
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:512
+msgid "Normal"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/inc/common-functions.php:101
+msgid "Italic"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/inc/common-functions.php:102
+msgid "Oblique"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/inc/common-functions.php:107
+msgid "Line height"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/inc/common-functions.php:112
+msgid "Letter spacing"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/init.php:25
+msgid "Beaver Builder Widgets"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/init.php:26
+msgid "Custom Beaver Builder Widgets."
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/frontend.php:100
+#. translators: %1$s is Author name wrapped, %2$s is Time
+msgid "By %1$s"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:24
+msgid "Custom Query"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:32
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:162
+msgid "Post Type"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:40
+msgid "Order"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:42
+msgid "Descending"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:43
+msgid "Ascending"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:52
+msgid "Order By"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:54
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:206
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-testimonial.php:168
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:410
+msgid "Author"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:55
+msgid "Comment Count"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:56
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:207
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:246
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:411
+msgid "Date"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:57
+msgid "Date Last Modified"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:58
+msgid "ID"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:59
+msgid "Menu Order"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:60
+msgid "Meta Value (Alphabetical)"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:61
+msgid "Meta Value (Numeric)"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:62
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:250
+msgid "Random"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:63
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:56
+#: obfx_modules/beaver-widgets/modules/services/services.php:228
+#: obfx_modules/companion-legacy/inc/rhea/widgets/contact.widget.php:65
+#: obfx_modules/companion-legacy/inc/rhea/widgets/features.widget.php:80
+#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:202
+#: obfx_modules/companion-legacy/inc/rhea/widgets/icon-box.widget.php:87
+#: obfx_modules/companion-legacy/inc/rhea/widgets/progress-bar.widget.php:62
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-focus.php:167
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:247
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:331
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:856
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:96
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:97
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:317
+msgid "Title"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:80
+msgid "Meta Key"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:91
+msgid "Skip this many posts that match the specified criteria."
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:99
+msgid "Posts per page"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:102
+msgid "-1 means all posts"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:110
+#: obfx_modules/beaver-widgets/modules/services/services.php:61
+msgid "Number of columns"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:120
+msgid "Filter"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:137
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:153
+msgid "Enter a list of %1$s."
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:170
+msgid "Authors"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:171
+msgid "Enter a list of authors usernames."
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:180
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:174
+msgid "Appearance"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:188
+msgid "Vertical align"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:192
+msgid "Middle"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:202
+msgid "Display type"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:205
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:202
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:405
+msgid "Grid"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:206
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:203
+msgid "List"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:215
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:178
+#: obfx_modules/beaver-widgets/modules/services/services.php:73
+msgid "Card layout"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:223
+msgid "Margin top"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:233
+msgid "Margin bottom"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:243
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:281
+#: obfx_modules/beaver-widgets/modules/services/services.php:78
+msgid "Background color"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:259
+msgid "Link color"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:273
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:438
+msgid "Text color"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:26
+msgid "Post Grid"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:27
+msgid "A method to display your posts."
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:28
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:33
+#: obfx_modules/beaver-widgets/modules/services/services.php:33
+msgid "Orbit Fox Modules"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:51
+msgid "Loop Settings"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:55
+msgid "Image options"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:62
+msgid "Show post thumbnail"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:67
+msgid "Link in thumbnail"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:72
+msgid "Enable thumbnail shadow"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:77
+msgid "Image size"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:84
+msgid "Image alignment"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:87
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:138
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:219
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:286
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:331
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:186
+#: obfx_modules/beaver-widgets/modules/services/services.php:107
+#: obfx_modules/beaver-widgets/modules/services/services.php:186
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:557
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:593
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:639
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:278
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:299
+msgid "Center"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:118
+msgid "Title options"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:125
+msgid "Show post title"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:130
+msgid "Link on title"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:135
+msgid "Title alignment"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:146
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:65
+msgid "Title tag"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:149
+msgid "H1"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:150
+msgid "H2"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:151
+msgid "H3"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:152
+msgid "H4"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:153
+msgid "H5"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:154
+msgid "H6"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:155
+msgid "span"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:156
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:74
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:97
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:115
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:143
+msgid "p"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:157
+msgid "div"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:185
+msgid "Meta options"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:192
+msgid "Show post meta"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:197
+msgid "Show icons"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:199
+msgid "If icons doesn't show you have to enqueue FontAwesome in your theme."
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:203
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:404
+msgid "Display"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:208
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:173
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:186
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:412
+msgid "Category"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:209
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:413
+msgid "Tags"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:210
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:414
+msgid "Comments"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:216
+msgid "Meta alignment"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:249
+msgid "Content options"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:256
+msgid "Show post content"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:261
+msgid "Show read more"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:266
+msgid "Number of words"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:272
+msgid "Read more text"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:273
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:523
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:524
+msgid "Read more"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:283
+msgid "Text alignment"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:317
+msgid "Pagination options"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:324
+msgid "Enable pagination"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/post-grid.php:328
+msgid "Pagination alignment"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:31
+msgid "Pricing table"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:32
+msgid ""
+"Pricing Tables are the perfect option when showcasing services you have on "
+"offer."
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:49
+#: obfx_modules/beaver-widgets/modules/services/services.php:47
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:466
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:975
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:281
+msgid "Content"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:52
+msgid "Plan Header"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:57
+msgid "Plan title"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:68
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:91
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:109
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:137
+msgid "h1"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:69
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:92
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:110
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:138
+msgid "h2"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:70
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:93
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:111
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:139
+msgid "h3"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:71
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:94
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:112
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:140
+msgid "h4"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:72
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:95
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:113
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:141
+msgid "h5"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:73
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:96
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:114
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:142
+msgid "h6"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:79
+#: obfx_modules/companion-legacy/inc/rhea/widgets/icon-box.widget.php:91
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:124
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:125
+msgid "Subtitle"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:80
+msgid "Plan subtitle"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:88
+msgid "Subtitle tag"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:103
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:157
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:471
+msgid "Price Tag"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:107
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:495
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:1032
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:165
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:166
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:535
+msgid "Price"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:116
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:176
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:177
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:501
+msgid "Currency"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:125
+msgid "Currency position"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:128
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:189
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:347
+msgid "Before"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:129
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:190
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:348
+msgid "After"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:134
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:199
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:569
+msgid "Period"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:135
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:200
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:201
+msgid "/month"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:144
+msgid "Features list"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:149
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:560
+#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-features-section.php:103
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:227
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:231
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:235
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:253
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:138
+msgid "Feature"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:156
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:161
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:508
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:536
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:1107
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:307
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:758
+msgid "Button"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:160
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:522
+msgid "Button text"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:169
+msgid "Button link"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:183
+msgid "Align"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:196
+msgid "Header Style"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:211
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:340
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:408
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:489
+msgid "Colors"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:215
+msgid "Title color"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:228
+msgid "Subtitle color"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:243
+msgid "Title typography"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:250
+msgid "Subtitle typography"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:256
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:264
+msgid "Background"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:260
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:114
+#: vendor/codeinwp/themeisle-content-forms/beaver/class-themeisle-content-forms-beaver-base.php:111
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-elementor.php:180
+msgid "Type"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:263
+#: obfx_modules/beaver-widgets/modules/services/services.php:153
+#: obfx_modules/beaver-widgets/modules/services/services.php:192
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:879
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:938
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:998
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:1061
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:343
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:373
+msgid "Color"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:265
+msgid "Gradient"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:295
+msgid "Photo Field"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:300
+msgid "Gradient color 1"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:305
+msgid "Gradient color 2"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:310
+msgid "Orientation"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:313
+msgid "Horizontal"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:314
+msgid "Vertical"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:315
+msgid "Diagonal bottom"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:316
+msgid "Diagonal top"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:317
+msgid "Radial"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:325
+msgid "Price Style"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:344
+msgid "Price color"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:357
+msgid "Currency color"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:370
+msgid "Period color"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:393
+msgid "Features Style"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:412
+#: obfx_modules/beaver-widgets/modules/services/services.php:242
+msgid "Icon color"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:425
+msgid "Bold text color"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:461
+msgid "Button Style"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:493
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:574
+#: obfx_modules/beaver-widgets/modules/services/services.php:232
+#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-ribbon-section.php:92
+#: obfx_modules/companion-legacy/inc/rhea/widgets/features.widget.php:84
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-focus.php:176
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-testimonial.php:195
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:250
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:315
+#: vendor/codeinwp/themeisle-content-forms/beaver/class-themeisle-content-forms-beaver-base.php:113
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-elementor.php:167
+msgid "Text"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:506
+msgid "Text on hover"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:519
+msgid "Button background"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:532
+msgid "Button background on hover"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:563
+#: obfx_modules/beaver-widgets/modules/services/services.php:99
+#: obfx_modules/beaver-widgets/modules/services/services.php:149
+#: obfx_modules/beaver-widgets/modules/services/services.php:178
+#: obfx_modules/beaver-widgets/modules/services/services.php:221
+msgid "General"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:570
+msgid "Bold text"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/pricing-table/pricing-table.php:578
+#: obfx_modules/beaver-widgets/modules/services/services.php:237
+#: obfx_modules/companion-legacy/inc/rhea/widgets/features.widget.php:65
+#: obfx_modules/companion-legacy/inc/rhea/widgets/icon-box.widget.php:72
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:258
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:334
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:118
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:143
+msgid "Icon"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/services/services.php:31
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:39
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:77
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:84
+msgid "Services"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/services/services.php:32
+msgid "An overview of the products or services."
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/services/services.php:55
+#: obfx_modules/beaver-widgets/modules/services/services.php:218
+msgid "Service"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/services/services.php:96
+msgid "Icon style"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/services/services.php:103
+#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:278
+msgid "Position"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/services/services.php:113
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:260
+msgid "Size"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/services/services.php:146
+msgid "Title style"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/services/services.php:175
+msgid "Content style"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/services/services.php:182
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:585
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:631
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:270
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:289
+msgid "Alignment"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/services/services.php:247
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:170
+msgid "Link to"
+msgstr ""
+
+#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:149
+msgid "1-800-123-4567"
+msgstr ""
+
+#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:150
+msgid "tel:1-800-123-4567"
+msgstr ""
+
+#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:153
+msgid "friends@themeisle.com"
+msgstr ""
+
+#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:154
+msgid "mailto:friends@themeisle.com"
+msgstr ""
+
+#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:161
+msgid "Facebook"
+msgstr ""
+
+#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:162
+msgid "www.facebook.com"
+msgstr ""
+
+#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:165
+msgid "Twitter"
+msgstr ""
+
+#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:166
+msgid "www.twitter.com"
+msgstr ""
+
+#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:169
+msgid "Google"
+msgstr ""
+
+#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:170
+msgid "www.google.com"
+msgstr ""
+
+#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:173
+msgid "Linkedin"
+msgstr ""
+
+#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:174
+msgid "www.linkedin.com"
+msgstr ""
+
+#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:177
+msgid "Instagram"
+msgstr ""
+
+#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:178
+msgid "www.instagram.com"
+msgstr ""
+
+#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:181
+msgid "Pinterest"
+msgstr ""
+
+#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:182
+msgid "www.pinterest.com"
+msgstr ""
+
+#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:185
+msgid "Youtube"
+msgstr ""
+
+#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:186
+msgid "www.youtube.com"
 msgstr ""
 
 #: obfx_modules/companion-legacy/inc/hestia/functions.php:66
@@ -143,9 +1177,9 @@ msgstr ""
 #: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:38
 #: obfx_modules/companion-legacy/inc/hestia/inc/customizer.php:51
 #: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-features-section.php:29
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-features-section.php:179
 #: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-features-section.php:186
 #: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-features-section.php:193
-#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-features-section.php:200
 #: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:32
 #: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:31
 msgid ""
@@ -176,20 +1210,23 @@ msgstr ""
 msgid "Disable section"
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-clients-bar-section.php:69
+#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-clients-bar-section.php:70
 msgid "Clients Bar Content"
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-clients-bar-section.php:72
+#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-clients-bar-section.php:73
 msgid "Add new client"
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-clients-bar-section.php:73
+#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-clients-bar-section.php:74
 msgid "Clients"
 msgstr ""
 
 #: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-features-section.php:24
 #: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-features-section.php:34
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:215
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:609
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:673
 msgid "Features"
 msgstr ""
 
@@ -213,10 +1250,6 @@ msgstr ""
 msgid "Add new Feature"
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-features-section.php:103
-msgid "Feature"
-msgstr ""
-
 #: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-ribbon-section.php:27
 #: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-ribbon-section.php:37
 msgid "Ribbon"
@@ -229,13 +1262,6 @@ msgstr ""
 #: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-ribbon-section.php:80
 #: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-ribbon-section.php:35
 msgid "Subscribe to our Newsletter"
-msgstr ""
-
-#: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-ribbon-section.php:92
-#: obfx_modules/companion-legacy/inc/rhea/widgets/features.widget.php:84
-#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-focus.php:176
-#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-testimonial.php:195
-msgid "Text"
 msgstr ""
 
 #: obfx_modules/companion-legacy/inc/hestia/inc/features/feature-ribbon-section.php:98
@@ -251,6 +1277,9 @@ msgstr ""
 #: obfx_modules/companion-legacy/inc/rhea/widgets/features.widget.php:88
 #: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-clients.php:115
 #: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-focus.php:183
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:315
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:370
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:325
 msgid "Link"
 msgstr ""
 
@@ -288,113 +1317,113 @@ msgstr ""
 msgid "Testimonial"
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-features-section.php:185
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-features-section.php:178
 msgid "Responsive"
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-features-section.php:192
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-features-section.php:185
 msgid "Quality"
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-features-section.php:199
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-features-section.php:192
 msgid "Support"
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:216
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:212
 msgid "Desmond Purpleson"
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:217
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:213
 msgid "CEO"
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:218
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:214
 msgid ""
 "Locavore pinterest chambray affogato art party, forage coloring book "
 "typewriter. Bitters cold selfies, retro celiac sartorial mustache."
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:247
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:243
 msgid "Parsley Pepperspray"
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:248
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:244
 msgid "Marketing Specialist"
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:249
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:245
 msgid ""
 "Craft beer salvia celiac mlkshk. Pinterest celiac tumblr, portland salvia "
 "skateboard cliche thundercats. Tattooed chia austin hell."
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:278
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:274
 msgid "Desmond Eagle"
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:279
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:275
 msgid "Graphic Designer"
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:280
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:276
 msgid ""
 "Pok pok direct trade godard street art, poutine fam typewriter food truck "
 "narwhal kombucha wolf cardigan butcher whatever pickled you."
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:309
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:305
 msgid "Ruby Von Rails"
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:310
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:306
 msgid "Lead Developer"
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:311
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-team-section.php:307
 msgid ""
 "Small batch vexillologist 90's blue bottle stumptown bespoke. Pok pok tilde "
 "fixie chartreuse, VHS gluten-free selfies wolf hot."
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:187
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:181
 msgid "Inverness McKenzie"
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:188
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:182
 msgid "Business Owner"
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:189
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:183
 msgid ""
 "\"We have no regrets! After using your product my business skyrocketed! I "
 "made back the purchase price in just 48 hours! I couldn't have asked for "
 "more than this.\""
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:194
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:188
 msgid "Hanson Deck"
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:195
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:189
 msgid "Independent Artist"
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:196
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:190
 msgid ""
 "\"Your company is truly upstanding and is behind its product 100 percent. "
 "Hestia is worth much more than I paid. I like Hestia more each day because "
 "it makes easier.\""
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:201
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:195
 msgid "Natalya Undergrowth"
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:202
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:196
 msgid "Freelancer"
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:203
+#: obfx_modules/companion-legacy/inc/hestia/inc/sections/hestia-testimonials-section.php:197
 msgid ""
 "\"Thank you for making it painless, pleasant and most of all hassle free! I "
 "am so pleased with this product. Dude, your stuff is great! I will refer "
@@ -443,15 +1472,6 @@ msgstr ""
 msgid "[Rhea] Contact"
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/rhea/widgets/contact.widget.php:65
-#: obfx_modules/companion-legacy/inc/rhea/widgets/features.widget.php:80
-#: obfx_modules/companion-legacy/inc/rhea/widgets/hours.widget.php:202
-#: obfx_modules/companion-legacy/inc/rhea/widgets/icon-box.widget.php:87
-#: obfx_modules/companion-legacy/inc/rhea/widgets/progress-bar.widget.php:62
-#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-focus.php:167
-msgid "Title"
-msgstr ""
-
 #: obfx_modules/companion-legacy/inc/rhea/widgets/contact.widget.php:69
 msgid "Company Adress"
 msgstr ""
@@ -461,10 +1481,22 @@ msgid "Google Maps URL"
 msgstr ""
 
 #: obfx_modules/companion-legacy/inc/rhea/widgets/contact.widget.php:77
+#: vendor/codeinwp/themeisle-content-forms/beaver/class-themeisle-content-forms-beaver-base.php:114
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:54
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:55
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-elementor.php:170
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-newsletter.php:75
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-newsletter.php:76
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-newsletter.php:77
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-registration.php:55
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-registration.php:56
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-registration.php:57
 msgid "Email"
 msgstr ""
 
 #: obfx_modules/companion-legacy/inc/rhea/widgets/contact.widget.php:81
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:61
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:62
 msgid "Phone"
 msgstr ""
 
@@ -474,11 +1506,6 @@ msgstr ""
 
 #: obfx_modules/companion-legacy/inc/rhea/widgets/features.widget.php:9
 msgid "[Rhea] Our features widget"
-msgstr ""
-
-#: obfx_modules/companion-legacy/inc/rhea/widgets/features.widget.php:65
-#: obfx_modules/companion-legacy/inc/rhea/widgets/icon-box.widget.php:72
-msgid "Icon"
 msgstr ""
 
 #: obfx_modules/companion-legacy/inc/rhea/widgets/features.widget.php:69
@@ -568,12 +1595,10 @@ msgstr ""
 msgid "[Rhea] Icon Box"
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/rhea/widgets/icon-box.widget.php:91
-msgid "Subtitle"
-msgstr ""
-
 #: obfx_modules/companion-legacy/inc/rhea/widgets/icon-box.widget.php:96
 #: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:285
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:126
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:364
 msgid "Description"
 msgstr ""
 
@@ -606,6 +1631,10 @@ msgstr ""
 #: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-focus.php:192
 #: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:348
 #: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-testimonial.php:202
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:275
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:792
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:122
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:162
 msgid "Image"
 msgstr ""
 
@@ -643,11 +1672,9 @@ msgid "Linkedin account of"
 msgstr ""
 
 #: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:269
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:47
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:48
 msgid "Name"
-msgstr ""
-
-#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:278
-msgid "Position"
 msgstr ""
 
 #: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-team.php:295
@@ -678,10 +1705,6 @@ msgstr ""
 msgid "Zerif - Testimonial widget"
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-testimonial.php:168
-msgid "Author"
-msgstr ""
-
 #: obfx_modules/companion-legacy/inc/zerif-lite/widgets/widget-testimonial.php:177
 msgid "Author link"
 msgstr ""
@@ -690,20 +1713,404 @@ msgstr ""
 msgid "Author details"
 msgstr ""
 
-#: obfx_modules/companion-legacy/init.php:30
-msgid "Companion Legacy"
+#: obfx_modules/companion-legacy/init.php:72
+msgid "%s enhancements "
 msgstr ""
 
-#: obfx_modules/companion-legacy/init.php:31
-msgid "Module containing legacy functionality from ThemeIsle Companion."
+#: obfx_modules/companion-legacy/init.php:73
+msgid "Module containing frontpage improvements for %s theme."
 msgstr ""
 
-#: obfx_modules/companion-legacy/init.php:151
+#: obfx_modules/companion-legacy/init.php:167
 msgid "Search icon"
 msgstr ""
 
-#: obfx_modules/companion-legacy/init.php:153
+#: obfx_modules/companion-legacy/init.php:169
 msgid "All Icons"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/init.php:41
+msgid "Elementor Modules"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/init.php:42
+msgid "Adds new Elementor Widgets."
+msgstr ""
+
+#: obfx_modules/elementor-widgets/init.php:130
+#: vendor/codeinwp/themeisle-content-forms/class-content-form-base.php:170
+msgid "Orbit Fox Addons"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:30
+msgid "Post Type Grid"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:153
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:667
+msgid "Grid Options"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:199
+msgid "Style"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:213
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:729
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:467
+msgid "Items"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:214
+msgid "How many items?"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:224
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:209
+msgid "Columns"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:243
+msgid "Order by"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:248
+msgid "Modified date"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:249
+msgid "Comment count"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:259
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:620
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:1318
+msgid "Pagination"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:283
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:339
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:394
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:474
+msgid "Hide"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:293
+msgid "Image height"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:350
+msgid "Tag"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:386
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:915
+msgid "Meta"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:424
+msgid "No. of Categories"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:425
+msgid "How many categories to display?"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:438
+msgid "No. of Tags"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:439
+msgid "How many tags to display?"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:450
+msgid "Remove icons"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:485
+msgid "Length (words)"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:486
+msgid "Length of content (words)"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:549
+msgid "Button alignment"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:565
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:286
+msgid "Justified"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:676
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:414
+msgid "Columns margin"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:698
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:436
+msgid "Rows margin"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:752
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:804
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:785
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:490
+msgid "Border Radius"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:833
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:895
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:955
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:1016
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:1080
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:1330
+msgid "Margin"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:1150
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:1220
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:829
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:878
+msgid "Text Color"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:1171
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:1241
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:844
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:893
+msgid "Background Color"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:1207
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:870
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:538
+msgid "Hover"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:1279
+msgid "Button padding"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:1296
+msgid "Button border radius"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:1521
+msgid "No reviews"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:1521
+msgid "1 review"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:1521
+msgid "% reviews"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:1523
+msgid "No comments"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:1523
+msgid "1 comment"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:1523
+msgid "% comments"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:1737
+msgid "Previous"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-posts-grid.php:1738
+msgid "Next"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:30
+msgid "Pricing Table"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:88
+msgid "Plan Title"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:98
+msgid "Pricing Plan"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:106
+msgid "Title HTML tag"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:134
+msgid "Subtitle HTML Tag"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:178
+msgid "$"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:186
+msgid "Currency Position"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:222
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:252
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:137
+msgid "Plan Features"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:226
+msgid "First"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:230
+msgid "Second"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:234
+msgid "Third"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:242
+msgid "Accented Text"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:243
+msgid "Appears before feature text"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:245
+msgid "Accent"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:316
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:317
+msgid "Buy Now"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:326
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:172
+msgid "https://example.com"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:344
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:182
+msgid "Icon Position"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:360
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:733
+msgid "Icon Spacing"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:385
+msgid "Header"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:393
+msgid "Header Padding"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:406
+msgid "Title Color"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:431
+msgid "Subtitle Color"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:456
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:492
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:618
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:766
+msgid "Section Background"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:480
+msgid "Price Box Padding"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:510
+msgid "Currency Color"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:544
+msgid "Price Color"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:578
+msgid "Period Color"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:628
+msgid "Features List Padding"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:639
+msgid "Accented"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:649
+msgid "Accented Color"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:682
+msgid "Features Color"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:707
+msgid "Icons"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:716
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:153
+msgid "Icon Color"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-pricing-table.php:917
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:562
+msgid "Transition Duration"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:88
+msgid "Award-Winning​"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:89
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:96
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:103
+msgid "Add some text here to describe your services to the page visitors.​"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:95
+msgid "Professional​"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:102
+msgid "Consulting​"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:131
+msgid "Title & Description"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:132
+msgid "Service Title"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:232
+msgid "Icon / Image"
+msgstr ""
+
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:239
+#: obfx_modules/elementor-widgets/widgets/class-obfx-elementor-widget-services.php:326
+msgid "Spacing"
 msgstr ""
 
 #: obfx_modules/menu-icons/init.php:33
@@ -712,6 +2119,10 @@ msgstr ""
 
 #: obfx_modules/menu-icons/init.php:34
 msgid "Module to define menu icons for navigation."
+msgstr ""
+
+#: obfx_modules/menu-icons/init.php:147
+msgid "Powered by %s plugin"
 msgstr ""
 
 #: obfx_modules/mystock-import/inc/photos.php:28
@@ -727,80 +2138,39 @@ msgstr ""
 msgid "Module to import images directly from"
 msgstr ""
 
-#: obfx_modules/mystock-import/init.php:132
-#: obfx_modules/mystock-import/init.php:139
-#: obfx_modules/mystock-import/init.php:146
-#: obfx_modules/mystock-import/init.php:154
-#: obfx_modules/mystock-import/init.php:159
+#: obfx_modules/mystock-import/init.php:136
+#: obfx_modules/mystock-import/init.php:144
+#: obfx_modules/mystock-import/init.php:152
+#: obfx_modules/mystock-import/init.php:157
 msgid "Image failed to upload"
 msgstr ""
 
-#: obfx_modules/mystock-import/init.php:217
-msgid "Square"
-msgstr ""
-
-#: obfx_modules/mystock-import/init.php:218
-msgid "Large Square"
-msgstr ""
-
-#: obfx_modules/mystock-import/init.php:219
-msgid "Thumbnail"
-msgstr ""
-
-#: obfx_modules/mystock-import/init.php:220
-msgid "Small"
-msgstr ""
-
-#: obfx_modules/mystock-import/init.php:221
-msgid "Small 320"
-msgstr ""
-
-#: obfx_modules/mystock-import/init.php:222
-msgid "Medium"
-msgstr ""
-
-#: obfx_modules/mystock-import/init.php:223
-msgid "Medium 640"
-msgstr ""
-
-#: obfx_modules/mystock-import/init.php:224
-msgid "Medium 800"
-msgstr ""
-
-#: obfx_modules/mystock-import/init.php:225
-msgid "Large"
-msgstr ""
-
-#: obfx_modules/mystock-import/init.php:226
-msgid "Original"
-msgstr ""
-
-#: obfx_modules/mystock-import/init.php:234
-msgid "Attachement display settings"
-msgstr ""
-
-#: obfx_modules/mystock-import/init.php:236
-msgid "Size"
-msgstr ""
-
-#: obfx_modules/mystock-import/init.php:286
+#: obfx_modules/mystock-import/init.php:231
 msgid "Fetching data"
 msgstr ""
 
-#: obfx_modules/mystock-import/init.php:287
+#: obfx_modules/mystock-import/init.php:232
 msgid "Downloading image. Please wait..."
 msgstr ""
 
-#: obfx_modules/mystock-import/init.php:288
+#: obfx_modules/mystock-import/init.php:233
 msgid "Your image was imported. Go to Media Library tab to use it."
 msgstr ""
 
-#: obfx_modules/mystock-import/init.php:289
+#: obfx_modules/mystock-import/init.php:234
 msgid "Loading more photos..."
 msgstr ""
 
-#: obfx_modules/mystock-import/init.php:290
+#: obfx_modules/mystock-import/init.php:235
 msgid "MyStock Library"
+msgstr ""
+
+#: obfx_modules/mystock-import/init.php:236
+msgid "Import & set featured image"
+msgstr ""
+
+#: obfx_modules/mystock-import/init.php:237
+msgid "Import & insert image"
 msgstr ""
 
 #: obfx_modules/social-sharing/init.php:30
@@ -815,70 +2185,497 @@ msgstr ""
 msgid "Share on "
 msgstr ""
 
-#: obfx_modules/stats/init.php:27
-msgid "Reports Module"
-msgstr ""
-
-#: obfx_modules/stats/init.php:28
-msgid "A simple module for your WordPress data."
-msgstr ""
-
-#: obfx_modules/template-directory/init.php:29
+#: obfx_modules/template-directory/init.php:30
 msgid "Template Directory Module"
 msgstr ""
 
-#: obfx_modules/template-directory/init.php:30
+#: obfx_modules/template-directory/init.php:31
 msgid ""
 "The awesome template directory is aiming to provide a wide range of "
 "templates that you can import straight into your website."
 msgstr ""
 
-#: obfx_modules/template-directory/init.php:62
+#: obfx_modules/template-directory/init.php:160
 msgid "A new Orbit Fox Template"
 msgstr ""
 
-#: obfx_modules/template-directory/init.php:64
+#: obfx_modules/template-directory/init.php:162
 msgid "This is an awesome Orbit Fox Template."
 msgstr ""
 
-#: obfx_modules/template-directory/init.php:71
+#: obfx_modules/template-directory/init.php:165
+msgid "Elementor Page Builder"
+msgstr ""
+
+#: obfx_modules/template-directory/init.php:170
 msgid "About Our Business"
 msgstr ""
 
-#: obfx_modules/template-directory/init.php:72
-#: obfx_modules/template-directory/init.php:79
-msgid "A fancy description here"
+#: obfx_modules/template-directory/init.php:171
+msgid ""
+"Use this layout to present your business in a fancy way. Add an interactive "
+"header, shwocase your services via progress bars, introduce your team "
+"members, and locate your headquarters on Google Maps. Last but not least, "
+"beautify the design by adding catchy images."
 msgstr ""
 
-#: obfx_modules/template-directory/init.php:78
+#: obfx_modules/template-directory/init.php:177
 msgid "Contact Us"
 msgstr ""
 
-#: obfx_modules/template-directory/init.php:275
+#: obfx_modules/template-directory/init.php:178
+msgid ""
+"A clean and simple template for your Contact page, where we integrated our "
+"Pirate Forms plugin. It will let your customers send you a message using an "
+"intuitive form. A Google map, together with a few other details about your "
+"business, completes the section."
+msgstr ""
+
+#: obfx_modules/template-directory/init.php:184
+msgid "Pricing"
+msgstr ""
+
+#: obfx_modules/template-directory/init.php:185
+msgid ""
+"If you plan to sell your products online, this layout offers you elegant "
+"pricing tables so you can differentiate the features and services for your "
+"clients. Also, for a better clarification, the template provides a FAQ area "
+"where you can answer people's questions."
+msgstr ""
+
+#: obfx_modules/template-directory/init.php:191
+msgid "Material Homepage"
+msgstr ""
+
+#: obfx_modules/template-directory/init.php:192
+msgid ""
+"This layout could be your main website homepage (or you can use it as an "
+"alternative homepage, if you wish). It was built on material design and "
+"comes with call to action, catchy icons, testimonials, blog posts, pricing "
+"plans, and other sections that you can add yourself by customizing it."
+msgstr ""
+
+#: obfx_modules/template-directory/init.php:198
+msgid "Ether - Landing Page"
+msgstr ""
+
+#: obfx_modules/template-directory/init.php:199
+msgid ""
+"An elegant and modern landing page for e-commerce, coming with a clean "
+"interface, beautiful typography, photo galleries, and call to action. If "
+"you have an online shop and want to promote a certain product, use this "
+"layout to tell people why they should buy it."
+msgstr ""
+
+#: obfx_modules/template-directory/init.php:205
+msgid "Jason - Landing Page"
+msgstr ""
+
+#: obfx_modules/template-directory/init.php:206
+msgid ""
+"A classy template for freelancers, where you can put your skills and "
+"knowldge in the spotlight for potential clients. Talk about yourself, your "
+"projects, awards, and let people contact you easily. The template is "
+"designed to feature one-page scrolling."
+msgstr ""
+
+#: obfx_modules/template-directory/init.php:212
+msgid "Pulse - Landing Page"
+msgstr ""
+
+#: obfx_modules/template-directory/init.php:213
+msgid ""
+"A good-looking landing page for products and apps, built to mark the "
+"features and services that they offer. The layout provides customer "
+"reviews, call to action, beautiful pricing tables, an About section, and a "
+"creative design. If you want to promote and sell your brand product, this "
+"template might help."
+msgstr ""
+
+#: obfx_modules/template-directory/init.php:219
+msgid "Ascend - Landing Page"
+msgstr ""
+
+#: obfx_modules/template-directory/init.php:220
+msgid ""
+"A resume-like template, built for outdoor enthusiasts and nature lovers. "
+"Its design and layout make it flexible for any other purpose too, so do not "
+"hesitate to showcase any kind of skills and activities, even "
+"business-oriented."
+msgstr ""
+
+#: obfx_modules/template-directory/init.php:226
+msgid "Path - Landing Page"
+msgstr ""
+
+#: obfx_modules/template-directory/init.php:227
+msgid ""
+"If you are a business consultant - agency or working on your own - have a "
+"look at this template! It comes with a clean design, call to action, "
+"statistics, and sections that put your services first."
+msgstr ""
+
+#: obfx_modules/template-directory/init.php:233
+msgid "Mocha - Landing Page"
+msgstr ""
+
+#: obfx_modules/template-directory/init.php:234
+msgid ""
+"An elegant and modern template for cafes and pubs, where you can display "
+"your menu in a mouth-watering way. Call to action, blog posts, attractive "
+"images, tabbed menus, and a catchy design will help you convince more "
+"people to stop by."
+msgstr ""
+
+#: obfx_modules/template-directory/init.php:281
 #: obfx_modules/template-directory/views/template-directory-page-tpl.php:19
 msgid "Orbit Fox Template Directory"
 msgstr ""
 
-#: obfx_modules/template-directory/init.php:275
+#: obfx_modules/template-directory/init.php:281
 msgid "Template Directory"
 msgstr ""
 
-#: obfx_modules/template-directory/init.php:444
+#: obfx_modules/template-directory/init.php:412
 msgid "Install and activate"
 msgstr ""
 
-#: obfx_modules/template-directory/views/template-directory-page-tpl.php:40
+#: obfx_modules/template-directory/views/template-directory-page-tpl.php:24
+msgid "More Details"
+msgstr ""
+
+#: obfx_modules/template-directory/views/template-directory-page-tpl.php:32
 msgid "Preview"
 msgstr ""
 
-#: obfx_modules/template-directory/views/template-directory-page-tpl.php:44
-msgid "Import"
+#: obfx_modules/template-directory/views/template-directory-page-tpl.php:107
+msgid "Collapse"
 msgstr ""
 
-#: obfx_modules/template-directory/views/template-plugin-install-tpl.php:17
+#: vendor/codeinwp/themeisle-content-forms/beaver/class-themeisle-content-forms-beaver-base.php:72
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-elementor.php:130
+msgid "Fields"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/beaver/class-themeisle-content-forms-beaver-base.php:77
+#: vendor/codeinwp/themeisle-content-forms/beaver/class-themeisle-content-forms-beaver-base.php:97
+#: vendor/codeinwp/themeisle-content-forms/beaver/class-themeisle-content-forms-beaver-base.php:100
+#: vendor/codeinwp/themeisle-content-forms/beaver/class-themeisle-content-forms-beaver-base.php:103
+msgid "Field"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/beaver/class-themeisle-content-forms-beaver-base.php:87
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-elementor.php:99
+msgid "Form Settings"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/beaver/class-themeisle-content-forms-beaver-base.php:107
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-elementor.php:138
+msgid "Label"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/beaver/class-themeisle-content-forms-beaver-base.php:115
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-elementor.php:171
+msgid "Textarea"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/beaver/class-themeisle-content-forms-beaver-base.php:116
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-elementor.php:168
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-registration.php:62
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-registration.php:63
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-registration.php:64
+msgid "Password"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/beaver/class-themeisle-content-forms-beaver-base.php:121
+msgid "Is required?"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/beaver/class-themeisle-content-forms-beaver-base.php:123
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-elementor.php:159
+msgid "Required"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/beaver/class-themeisle-content-forms-beaver-base.php:124
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-elementor.php:160
+msgid "Optional"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/beaver/class-themeisle-content-forms-beaver-contact.php:19
+msgid "Contact"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/beaver/class-themeisle-content-forms-beaver-contact.php:20
+msgid "A contact form."
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/beaver/class-themeisle-content-forms-beaver-contact.php:21
+#: vendor/codeinwp/themeisle-content-forms/beaver/class-themeisle-content-forms-beaver-newsletter.php:21
+#: vendor/codeinwp/themeisle-content-forms/beaver/class-themeisle-content-forms-beaver-registration.php:21
+msgid "OrbitFox Modules"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/beaver/class-themeisle-content-forms-beaver-newsletter.php:19
+msgid "Newsletter"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/beaver/class-themeisle-content-forms-beaver-newsletter.php:20
+msgid "A simple newsletter form."
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/beaver/class-themeisle-content-forms-beaver-registration.php:19
+msgid "Registration"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/beaver/class-themeisle-content-forms-beaver-registration.php:20
+msgid "A sign up form."
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/beaver/includes/frontend.php:19
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-elementor.php:255
+msgid "The %s setting is required!"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/beaver/includes/frontend.php:40
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:84
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:85
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-elementor.php:269
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-gutenberg.php:98
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-registration.php:72
+msgid "Submit"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:26
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-registration.php:25
+msgid "Your message has been sent!"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:27
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-registration.php:26
+msgid "We failed to send your message!"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:43
+msgid "Contact Form"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:49
+msgid "Your Name"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:56
+msgid "Email address"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:63
+msgid "Phone Nr"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:68
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:69
+msgid "Message"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:70
+msgid "Your message"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:78
+msgid "Send to"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:79
+msgid "Where should we send the email?"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:86
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-registration.php:74
+msgid "The Call To Action label"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:107
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-newsletter.php:99
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-registration.php:95
+msgid "Invalid email."
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:115
+msgid "Missing name."
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:123
+msgid "Missing message."
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:134
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-newsletter.php:118
+msgid "Wrong email configuration! Please contact administration!"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:145
+msgid "Ops! I cannot send this email!"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:205
+msgid "Mail From: "
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:213
+msgid "Content Form submission from "
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:235
 msgid ""
-"In order to import this template, you must have Elementor Page Builder "
-"installed. Click the button below to install and activate now."
+"You recieved this email because your email address is set in the content "
+"form settings on "
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:291
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:303
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-newsletter.php:256
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-newsletter.php:268
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-registration.php:220
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-registration.php:232
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-server.php:144
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-server.php:156
+msgid "Cheatin&#8217; huh?"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-elementor.php:147
+msgid "Placeholder"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-elementor.php:156
+msgid "Requirement"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-elementor.php:190
+msgid "Key"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-elementor.php:213
+msgid "Form Fields"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-newsletter.php:25
+msgid "Welcome to our newsletter!"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-newsletter.php:26
+msgid "Action failed!"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-newsletter.php:41
+msgid "Newsletter Form"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-newsletter.php:46
+msgid "Subscribe to"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-newsletter.php:47
+msgid "Where to send the email?"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-newsletter.php:49
+msgid "MailChimp"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-newsletter.php:50
+msgid "Sendinblue "
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-newsletter.php:55
+msgid "Access Key"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-newsletter.php:56
+msgid "Provide an access key for the selected service"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-newsletter.php:61
+msgid "List ID"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-newsletter.php:62
+msgid ""
+"The List ID (based on the seleced service) where we should subscribe the "
+"user"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-newsletter.php:67
+msgid "Submit Label"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-newsletter.php:68
+msgid "Join Newsletter"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-registration.php:42
+msgid "User Registration Form"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-registration.php:47
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-registration.php:48
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-registration.php:49
+msgid "User Name"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-registration.php:73
+msgid "Register"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-registration.php:139
+msgid "This website does not allow registrations at this moment!"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-registration.php:145
+msgid "Invalid user name"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-registration.php:151
+msgid "Username already exists"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-registration.php:157
+msgid "This email is already registered"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-registration.php:186
+msgid "Welcome, "
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-server.php:42
+msgid "What type of form is submitted."
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-server.php:47
+msgid "The security key"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-server.php:52
+msgid "The form must have data"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-server.php:57
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-server.php:62
+msgid "The form identifier."
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-server.php:81
+msgid "Something went wrong"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-server.php:98
+msgid "Invalid Data "
+msgstr ""
+
+#: vendor/codeinwp/themeisle-sdk/class-themeisle-sdk-endpoints.php:238
+msgid "%s not found"
+msgstr ""
+
+#: vendor/codeinwp/themeisle-sdk/class-themeisle-sdk-endpoints.php:299
+msgid "Invalid %"
 msgstr ""
 
 #. Plugin URI of the plugin/theme
@@ -895,4 +2692,23 @@ msgstr ""
 
 #. Author URI of the plugin/theme
 msgid "https://themeisle.com"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/frontend.php:180
+#. translators: %s: post title
+msgctxt "comments title"
+msgid "One comment"
+msgstr ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/frontend.php:184
+#. translators: 1: number of comments, 2: post title
+msgctxt "comments title"
+msgid "%1$s Comment"
+msgid_plural "%1$s Comments"
+msgstr[0] ""
+msgstr[1] ""
+
+#: obfx_modules/beaver-widgets/modules/post-grid/includes/loop-settings.php:88
+msgctxt "How many posts to skip."
+msgid "Offset"
 msgstr ""

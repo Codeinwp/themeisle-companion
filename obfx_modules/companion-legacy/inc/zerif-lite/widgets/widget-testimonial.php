@@ -96,7 +96,7 @@ endif; ?></a>
 
 				<?php
 
-				if ( ! empty( $instance['image_uri'] ) && ( $instance['image_uri'] != 'Upload Image' ) ) {
+				if ( ! empty( $instance['image_uri'] ) && ( preg_match('/(\.jpg|\.png|\.jpeg|\.gif|\.bmp)$/', $instance['image_uri'] ) ) ) {
 
 					echo '<div class="client-image hidden-xs">';
 

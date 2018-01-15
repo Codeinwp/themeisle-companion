@@ -57,7 +57,7 @@ if ( ! class_exists( 'zerif_team_widget' ) ) {
 
 				<div class="team-member" tabindex="0">
 
-					<?php if ( ! empty( $instance['image_uri'] ) && ( $instance['image_uri'] != 'Upload Image' ) ) { ?>
+					<?php if ( ! empty( $instance['image_uri'] ) && ( preg_match('/(\.jpg|\.png|\.jpeg|\.gif|\.bmp)$/', $instance['image_uri'] ) ) ) { ?>
 
 
 						<figure class="profile-pic">

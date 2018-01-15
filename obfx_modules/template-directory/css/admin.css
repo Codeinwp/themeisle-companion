@@ -3,46 +3,49 @@
 }
 
 .obfx-template-browser .template-name {
+	float: left;
 	margin: 0;
 	padding: 15px;
 	font-size: 16px;
 	font-weight: 600;
-	float: left;
 }
 
 .obfx-template {
 	float: left;
-	background: #fff;
-	cursor: pointer;
 	position: relative;
-	border: 1px solid #ddd;
-	box-shadow: 0 1px 1px -1px rgba(0,0,0,.1);
 	box-sizing: border-box;
-	margin: 0 4% 4% 0;
 	width: 30.6%;
+	margin: 0 4% 4% 0;
+	border: 1px solid #ddd;
+	background: #fff;
+	box-shadow: 0 1px 1px -1px rgba(0,0,0,0.1);
+	cursor: pointer;
 }
 
 .obfx-template:nth-child(3n) {
 	margin-right: 0;
 }
+
 .obfx-template:hover .obfx-template-actions,
 .obfx-template:hover .obfx-preview-template {
 	opacity: 1;
 }
+
 .obfx-template:hover .obfx-template-screenshot {
-	opacity: .4;
+	opacity: 0.4;
 }
 
 .obfx-template-actions {
+	float: right;
 	position: absolute;
 	right: 0;
 	bottom: 0;
-	transition: .3s ease;
-	opacity:0;
-	background: rgba(244,244,244,.7);
-	border-left: 1px solid rgba(0,0,0,.05);
-	float: right;
 	padding: 10px 15px;
+	border-left: 1px solid rgba(0,0,0,0.05);
+	opacity: 0;
+	background: rgba(244,244,244,0.7);
+	-webkit-transition: 0.3s ease;
+	transition: 0.3s ease;
 }
 
 .obfx-template-actions .button .dashicons {
@@ -54,16 +57,17 @@
 }
 
 .obfx-template-screenshot {
-	background: #fff;
 	display: inline-block;
+	float: left;
 	overflow: hidden;
 	position: relative;
+	width: 100%;
 	border: 1px solid #ddd;
 	border-right: none;
 	border-left: none;
-	float: left;
-	transition: .3s ease;
-	width: 100%;
+	background: #fff;
+	-webkit-transition: 0.3s ease;
+	transition: 0.3s ease;
 }
 
 .obfx-template img {
@@ -159,10 +163,10 @@
 
 .obfx-done-import {
 	display: block;
-	text-align: center;
-	padding-top: 10px;
 	margin: 0;
+	padding-top: 10px;
 	color: green;
+	text-align: center;
 }
 
 .obfx-done-import .dashicons {
@@ -224,10 +228,10 @@
 	cursor: pointer;
 }
 
-
-.obfx-template-preview.theme-install-overlay .install-theme-info.obfx-theme-info .theme-screenshot{
+.obfx-template-preview.theme-install-overlay .install-theme-info.obfx-theme-info .theme-screenshot {
 	width: 100%;
 }
+
 .obfx-template-preview.theme-install-overlay .install-theme-info.obfx-theme-info {
 	display: none;
 }
@@ -237,67 +241,75 @@
 }
 
 .more-details.obfx-preview-template {
-	transition: .3s ease;
-	cursor: pointer;
 	position: absolute;
+	z-index: 100;
 	top: 0;
+	right: 0;
 	bottom: 51px;
 	left: 0;
-	right: 0;
+	opacity: 0;
 	text-align: center;
-	z-index: 100;
-	opacity:0;
+	cursor: pointer;
+	-webkit-transition: 0.3s ease;
+	transition: 0.3s ease;
 }
 
 .more-details.obfx-preview-template span {
-	background: #23282d;
-	background: rgba(0,0,0,.7);
-	color: #fff;
-	font-size: 15px;
-	text-shadow: 0 1px 0 rgba(0,0,0,.6);
-	-webkit-font-smoothing: antialiased;
-	font-weight: 600;
-	padding: 15px 12px;
-	text-align: center;
-	border-radius: 3px;
-	transform: translate(-50%, -50%);
-	position: relative;
-	left: 50%;
-	top: 50%;
-	width: 45%;
 	display: block;
+	position: relative;
+	top: 50%;
+	left: 50%;
+	width: 45%;
+	padding: 15px 12px;
+	border-radius: 3px;
+	color: #fff;
+	background: #23282d;
+	background: rgba(0,0,0,0.7);
+	text-shadow: 0 1px 0 rgba(0,0,0,0.6);
+	font-size: 15px;
+	font-weight: 600;
+	-webkit-font-smoothing: antialiased;
+	text-align: center;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
 }
 
 .obfx-required-plugins > p {
+	margin-top: 20px;
 	color: #333;
 	font-weight: 800;
-	margin-top: 20px;
 }
 
 .obfx-required-plugins .button {
 	display: none;
 }
+
 @media only screen and (min-width: 1640px) {
 	.obfx-template {
 		width: 22.7%;
 		margin: 0 3% 3% 0;
 	}
+
 	.obfx-template:nth-child(3n) {
 		margin-right: 3%;
 	}
+
 	.obfx-template:nth-child(4n) {
 		margin-right: 0;
 	}
 }
 
-@media only screen and (max-width: 1120px){
+@media only screen and (max-width: 1120px) {
 	.obfx-template {
 		width: 47.5%;
 		margin: 0 3% 3% 0;
 	}
+
 	.obfx-template:nth-child(3n) {
 		margin-right: 3%;
 	}
+
 	.obfx-template:nth-child(even) {
 		margin-right: 0;
 	}
@@ -314,9 +326,11 @@
 		width: 17.6%;
 		margin: 0 3% 3% 0;
 	}
+
 	.obfx-template:nth-child(4n) {
 		margin-right: 3%;
 	}
+
 	.obfx-template:nth-child(5n) {
 		margin-right: 0;
 	}

@@ -15,7 +15,7 @@
  * Plugin Name:       Orbit Fox Companion
  * Plugin URI:        https://themeisle.com/plugins/orbit-fox-companion
  * Description:       Enhances ThemeIsle's themes with extra functionality.
- * Version:           2.2.7
+ * Version:           2.3.0
  * Author:            Themeisle
  * Author URI:        https://themeisle.com
  * License:           GPL-2.0+
@@ -80,7 +80,7 @@ function run_orbit_fox() {
 
 	add_filter(
 		'themeisle_companion_friendly_name', function( $name ) {
-			return 'Orbit Fox ( former ThemeIsle Companion )';
+			return 'Orbit Fox';
 		}
 	);
 }
