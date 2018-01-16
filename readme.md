@@ -36,6 +36,35 @@ Orbit Fox is a user-centred plugin with an easy-to-use admin panel. One of the m
 
 - It’s fully customizable: You can easily optimise button location for according to the device your visitors will use. 
 
+
+**Why use our custom Elementor addons module:**
+
+- We offer new widgets to add more value to the content you can create within Elementor page builder.
+
+- Pricing Table Widget to easily create pricing layouts.
+
+- Services Widget to easily create pricing layouts.
+
+- Post Grid Widget to easily list your Posts / Products / any other post types in a grid.
+
+
+**Why use our custom Beaver Builder addons module:**
+
+- We offer new widgets to add more value to the content you can create within the Beaver Builder page builder.
+
+- Pricing Table Widget to easily create pricing layouts.
+
+- Services Widget to easily create pricing layouts.
+
+- Post Grid Widget to easily list your Posts / Products / any other post types in a grid.
+
+
+**Why use our Template Directory:**
+
+- One-click import for awesome page templates.
+
+- Elementor templates will be added frequently for you to use creatively.
+
 Choose from more than 20+ social networks to share with full control for every device that your visitors use.
 
 The sharing options can be positioned for the maximum effect according to whether the visitor is using a mobile device or desktop. Best of all they can be switched on/off from your WordPress instance.
@@ -46,8 +75,10 @@ We've also built some fantastic <a href="http://themeisle.com/wordpress-themes/f
 
 **Features:**
 
+- Template Directory
+- Elementor Addons and Widgets
+- Beaver Builder Widgets
 - Sharing module
-- Reporting module
 - Menu icons module
 - Free stock photos module
 - More widgets and sections for Hestia Theme
@@ -83,9 +114,41 @@ Activating the Orbit Fox Companion plugin is just like any other plugin. If you'
 
 1. Screenshot 1. How you can enable/disable modules
 2. Screenshot 2. How the sharing module is looking
-3. Screenshot 3. How reports module is looking
+3. Screenshot 3. Template directory page preview
+4. Screenshot 4. Template preview interface
+5. Screenshot 5. Menu icons module interface preview
+6. Screenshot 6. Menu icons module front end preview
+7. Screenshot 7. Services and post grid Page builder modules
+8. Screenshot 8. Pricing plan Page builder module
+9. Screenshot 9. CC0 MyStock.photos featured image import module.
+
 
 ## Changelog ##
+### 2.2.7 - 2017-12-21  ###
+
+* Fix for Hestia clients section default content
+* Beaver Builder Widgets show only if you have beaver builder installed
+* Added Screenshots desciptions
+
+
+### 2.2.6 - 2017-12-19  ###
+
+* Added new Beaver Builder Widgets Module - Pricing table widget, Services widget, Posts Grid widget.
+* Better user experience for the template directory.
+* More native design for the template directory.
+* Added three free new templates to the template directory - Path, Mocha and Ascend.
+* Fixed bug with the Elementor Pricing Table widget button link.
+* Fixed php notice given by the Elementor Posts Grid widget.
+* Removed the useless Stats module.
+
+
+### 2.2.5 - 2017-12-11  ###
+
+* Better UX for CC0 images import module.
+* Improved Elementor Services Widget.
+* Added new templates to the template directory.
+
+
 ### 2.2.4 - 2017-12-04  ###
 
 * Fixed issue with menu icons module loading.
