@@ -124,6 +124,14 @@ Activating the Orbit Fox Companion plugin is just like any other plugin. If you'
 
 
 ## Changelog ##
+### 2.3.0 - 2018-01-15  ###
+
+* Adds 3 forms widgets for Elementor (Contact form, Newsletter, and Registration form).
+* Improve menu icons copyright. 
+* Allows social icons on pages.
+* Adds beaver widgets module active by default.
+
+
 ### 2.2.7 - 2017-12-21  ###
 
 * Fix for Hestia clients section default content
