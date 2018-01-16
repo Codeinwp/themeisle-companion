@@ -20,6 +20,7 @@
   },
   "require": {
     "codeinwp/themeisle-sdk": "master",
+    "codeinwp/full-width-page-templates": "master",
     "codeinwp/themeisle-content-forms": "master"
   },
   "autoload": {
