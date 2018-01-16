@@ -175,7 +175,7 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
      * @access  public
      */
     public function social_sharing_function() {
-        if ( is_single() || is_page() ) {
+        if ( is_single() ) {
         	$class_desktop = 'obfx-sharing-left ';
         	switch ( $this->get_option( 'socials_position' ) ) {
 		        case '1':
