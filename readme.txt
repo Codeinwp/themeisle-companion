@@ -124,6 +124,11 @@ Activating the Orbit Fox Companion plugin is just like any other plugin. If you'
 
 
 == Changelog ==
+= 2.3.1 - 2018-01-17  = 
+
+* Disabled automatic display for sharing button on pages and added an option to toggle it.
+
+
 = 2.3.0 - 2018-01-15  = 
 
 * Adds 3 forms widgets for Elementor (Contact form, Newsletter, and Registration form).
