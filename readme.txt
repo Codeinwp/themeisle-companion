@@ -8,73 +8,13 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Enhance your website with extra functionality through modules like: social media share buttons & icons, reporting, analytics(upcoming), security(upcoming) and caching(upcoming).
+This swiss-knife plugin comes with a quality template library, menu/sharing icons modules, and newly added Elementor/BeaverBuilder page builder widgets on each release.
 
 == Description ==
 
 Extend your theme functionality with <a href="https://themeisle.com/plugins/orbit-fox-companion/" rel="nofollow">Orbit Fox Companion</a> with various modules like Social Media Share Buttons & Icons, reporting, custom menu-icons and free stock featured images.
 
-Orbit Fox is a user-centred plugin with an easy-to-use admin panel. One of the most important features is that modules will only be loaded if they meet two conditions. If they are needed and if they are compatible with your existing themes and plugins. This will cut down on the unnecessary bloating of your website. 
-
-**Why should I use this with Zerif/Hestia themes:** 
-
- - By using it along with our themes you gain access to a lot of useful widgets like **Testimonials**, **Our Focus**, **About Us** and more other.
-
-
-**Why use our custom icons module:**
-
-- Choose from a large variety of custom icons.
-
-- No coding needed, you can leverage the power of our dropdown icons selector and choose the right icon for your menu.
-
-
-**Why use our sharing module:**
-
-- It's easy to use
-
-- Enable sharing networks right from your admin dashboard and choose on what kind of devices you would like to show them.
-
-- It’s fully customizable: You can easily optimise button location for according to the device your visitors will use. 
-
-
-**Why use our custom Elementor addons module:**
-
-- We offer new widgets to add more value to the content you can create within Elementor page builder.
-
-- Pricing Table Widget to easily create pricing layouts.
-
-- Services Widget to easily create pricing layouts.
-
-- Post Grid Widget to easily list your Posts / Products / any other post types in a grid.
-
-
-**Why use our custom Beaver Builder addons module:**
-
-- We offer new widgets to add more value to the content you can create within the Beaver Builder page builder.
-
-- Pricing Table Widget to easily create pricing layouts.
-
-- Services Widget to easily create pricing layouts.
-
-- Post Grid Widget to easily list your Posts / Products / any other post types in a grid.
-
-
-**Why use our Template Directory:**
-
-- One-click import for awesome page templates.
-
-- Elementor templates will be added frequently for you to use creatively.
-
-Choose from more than 20+ social networks to share with full control for every device that your visitors use.
-
-The sharing options can be positioned for the maximum effect according to whether the visitor is using a mobile device or desktop. Best of all they can be switched on/off from your WordPress instance.
-
-
-
-We've also built some fantastic <a href="http://themeisle.com/wordpress-themes/free/" rel="nofollow" target="_blank">free themes</a> that work well with Orbit Fox Companion, check them out.
-
 **Features:**
-
 - Template Directory
 - Elementor Addons and Widgets
 - Beaver Builder Widgets
@@ -84,8 +24,11 @@ We've also built some fantastic <a href="http://themeisle.com/wordpress-themes/f
 - More widgets and sections for Hestia Theme
 - More widgets and sections for Zerif Theme
 
+You can check out the demo here for a more detailed overview of the features.
 
+OrbitFox is a user-centred plugin with an easy-to-use admin panel. One of the most important features is that modules will only be loaded if they meet two conditions. If they are needed and if they are compatible with your existing themes and plugins. This will cut down on the unnecessary bloating of your website.
 
+We've also built some fantastic <a href="http://themeisle.com/wordpress-themes/free/" rel="nofollow" target="_blank">free themes</a> that work well with Orbit Fox Companion, check them out.
 
 == Frequently Asked Questions ==
 
@@ -94,9 +37,37 @@ We've also built some fantastic <a href="http://themeisle.com/wordpress-themes/f
 You can learn more about Orbit Fox Companion and ask for help by <a href="https://themeisle.com/contact/"  >visiting ThemeIsle website</a>.
 
 = What can I do with this plugin =
+This plugin extends the features of your sites by adding numerous features.
 
-This plugin extends the features of your themes by adding numerous widgets if you are using Zerif and Hestia themes and some modules for sharing and reporting for general use.
+**Why use our custom icons module:**
+- Choose from a large variety of custom icons.
+- No coding needed, you can leverage the power of our dropdown icons selector and choose the right icon for your menu.
 
+**Why use our sharing module:**
+- It's easy to use
+- Enable sharing networks right from your admin dashboard and choose on what kind of devices you would like to show them.
+- It’s fully customizable: You can easily optimise button location for according to the device your visitors will use.
+- Choose from more than 20+ social networks to share with full control for every device that your visitors use.
+- The sharing options can be positioned for the maximum effect according to whether the visitor is using a mobile device or desktop. Best of all they can be switched on/off from your WordPress instance.
+
+**Why use our custom Elementor addons module:**
+- We offer new widgets to add more value to the content you can create within Elementor page builder.
+- Pricing Table Widget to easily create pricing layouts.
+- Services Widget to easily create pricing layouts.
+- Post Grid Widget to easily list your Posts / Products / any other post types in a grid.
+
+**Why use our custom Beaver Builder addons module:**
+- We offer new widgets to add more value to the content you can create within the Beaver Builder page builder.
+- Pricing Table Widget to easily create pricing layouts.
+- Services Widget to easily create pricing layouts.
+- Post Grid Widget to easily list your Posts / Products / any other post types in a grid.
+
+**Why use our Template Directory:**
+- One-click import for awesome page templates.
+- Elementor templates will be added frequently for you to use creatively.
+
+**Why should I use this with Zerif/Hestia themes:**
+ - By using it along with our themes you gain access to a lot of useful widgets like **Testimonials**, **Our Focus**, **About Us** and more other.
 
 == Installation ==
 
@@ -106,9 +77,8 @@ Activating the Orbit Fox Companion plugin is just like any other plugin. If you'
 2. In the Search field type "Orbit Fox"
 3. Under "Orbit Fox Companion" click the **Install Now** link
 4. Once the process is complete, click the **Activate Plugin** link
-5. Now, you're able to use Orbit fox and setup the modules you need. These can be found at **Tools &gt; Orbit Fox Companion**
+5. Now, you're able to use Orbit fox and setup the modules you need. These can be found on the **Orbit Fox Companion** dashboard page
 6. Make the changes desired, then click the **Save changes** button at the bottom
-
 
 == Screenshots ==
 

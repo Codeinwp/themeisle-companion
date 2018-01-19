@@ -14,7 +14,7 @@
  * @wordpress-plugin
  * Plugin Name:       Orbit Fox Companion
  * Plugin URI:        https://themeisle.com/plugins/orbit-fox-companion
- * Description:       Enhances ThemeIsle's themes with extra functionality.
+ * Description:       This swiss-knife plugin comes with a quality template library, menu/sharing icons modules, and newly added Elementor/BeaverBuilder page builder widgets on each release.
  * Version:           2.3.1
  * Author:            Themeisle
  * Author URI:        https://themeisle.com
