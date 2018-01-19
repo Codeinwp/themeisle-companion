@@ -58,7 +58,7 @@ if ( ! function_exists( 'hestia_ribbon_customize_register' ) ) :
 			)
 		);
 
-		$default = ( current_user_can( 'edit_theme_options' ) ? apply_filters( 'hestia_ribbon_background_default' ,get_template_directory_uri() . '/assets/img/contact.jpg' ) : '' );
+		$default = ( current_user_can( 'edit_theme_options' ) ? get_template_directory_uri() . '/assets/img/contact.jpg' : '' );
 		$wp_customize->add_setting(
 			'hestia_ribbon_background', array(
 				'sanitize_callback' => 'esc_url_raw',
