@@ -1,6 +1,6 @@
 === Orbit Fox Companion ===
 Contributors: themeisle, codeinwp, rodicaelena, baicusandrei
-Tags: widget, admin, widgets, sharing, reporting, sections, themes, stock photos, custom icons, icons, menu icons, stock
+Tags: widget, admin, widgets, sharing, sections, themes, stock photos, custom icons, icons, menu icons, stock, templates
 Requires at least: 3.0
 Tested up to: 4.9
 Requires PHP: 5.3
@@ -12,7 +12,7 @@ This swiss-knife plugin comes with a quality template library, menu/sharing icon
 
 == Description ==
 
-Extend your theme functionality with <a href="https://themeisle.com/plugins/orbit-fox-companion/" rel="nofollow">Orbit Fox Companion</a> with various modules like Social Media Share Buttons & Icons, reporting, custom menu-icons and free stock featured images.
+Extend your theme functionality with <a href="https://themeisle.com/plugins/orbit-fox-companion/" rel="nofollow">Orbit Fox Companion</a> with various modules like Social Media Share Buttons & Icons, custom menu-icons, one click import page templates, page builder addons and free stock featured images.
 
 **Features:**
 - Template Directory
@@ -24,7 +24,7 @@ Extend your theme functionality with <a href="https://themeisle.com/plugins/orbi
 - More widgets and sections for Hestia Theme
 - More widgets and sections for Zerif Theme
 
-You can check out the demo here for a more detailed overview of the features.
+You can check out the demo <a href="https://demo.themeisle.com/orbit-fox/#blog" rel="nofollow" target="_blank">here</a> for a more detailed overview of the features.
 
 OrbitFox is a user-centred plugin with an easy-to-use admin panel. One of the most important features is that modules will only be loaded if they meet two conditions. If they are needed and if they are compatible with your existing themes and plugins. This will cut down on the unnecessary bloating of your website.
 
