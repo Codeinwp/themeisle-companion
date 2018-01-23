@@ -82,16 +82,11 @@ Activating the Orbit Fox Companion plugin is just like any other plugin. If you'
 
 == Screenshots ==
 
-1. Screenshot 1. How you can enable/disable modules
-2. Screenshot 2. How the sharing module is looking
-3. Screenshot 3. Template directory page preview
-4. Screenshot 4. Template preview interface
-5. Screenshot 5. Menu icons module interface preview
-6. Screenshot 6. Menu icons module front end preview
-7. Screenshot 7. Services and post grid Page builder modules
-8. Screenshot 8. Pricing plan Page builder module
-9. Screenshot 9. CC0 MyStock.photos featured image import module.
-
+1. The OrbitFox Dashboard Page
+2. The Template Directory Page
+3. Menu Icons Module
+4. Page Builder Widgets and Addons
+5. Social Sharing Module
 
 == Changelog ==
 = 2.3.1 - 2018-01-17  = 
