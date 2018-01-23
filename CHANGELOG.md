@@ -1,4 +1,9 @@
 
+ ### v2.3.2 - 2018-01-23 
+ **Changes:** 
+ * Fixed issue with menu icons module - dashicons were not properly enqueued
+* Updated descriptions
+ 
  ### v2.3.1 - 2018-01-17 
  **Changes:** 
  * Disabled automatic display for sharing button on pages and added an option to toggle it.

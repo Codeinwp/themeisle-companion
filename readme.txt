@@ -89,6 +89,12 @@ Activating the Orbit Fox Companion plugin is just like any other plugin. If you'
 5. Social Sharing Module
 
 == Changelog ==
+= 2.3.2 - 2018-01-23  = 
+
+* Fixed issue with menu icons module - dashicons were not properly enqueued
+* Updated descriptions
+
+
 = 2.3.1 - 2018-01-17  = 
 
 * Disabled automatic display for sharing button on pages and added an option to toggle it.
