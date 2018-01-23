@@ -1,4 +1,15 @@
 
+ ### v2.3.1 - 2018-01-17 
+ **Changes:** 
+ * Disabled automatic display for sharing button on pages and added an option to toggle it.
+ 
+ ### v2.3.0 - 2018-01-15 
+ **Changes:** 
+ * Adds 3 forms widgets for Elementor (Contact form, Newsletter, and Registration form).
+* Improve menu icons copyright. 
+* Allows social icons on pages.
+* Adds beaver widgets module active by default.
+ 
  ### v2.2.7 - 2017-12-21 
  **Changes:** 
  * Fix for Hestia clients section default content

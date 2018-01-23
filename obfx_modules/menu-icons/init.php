@@ -116,7 +116,7 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function public_enqueue() {
 		return array(
 			'css' => array(
-				'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' => false,
+				'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' => array( 'dashicons' ),
 			),
 		);
 	}
