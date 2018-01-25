@@ -213,7 +213,7 @@
 									var text = mystock_import.l10n.upload_image_complete;
 									var data = '<div class="attachement-loading"><h2>' + text + '</h2></div>';
 									mediaContainer.html( data );
-									wp.media.frame.content.get( 'library' ).collection.props.set( { '__ignore_force_update': (+ new Date()) } );
+									wp.media.frame.content.get( 'library' ).collection.props.set( { '__ignore_force_update': ( + new Date()) } );
 								}
 							}
 						);
