@@ -372,6 +372,22 @@ abstract class Orbit_Fox_Module_Abstract {
 	}
 
 	/**
+	 * Stub for activate hook.
+	 *
+	 * @since   2.3.3
+	 * @access  public
+	 */
+	public function activate() {}
+
+	/**
+	 * Stub for deactivate hook.
+	 *
+	 * @since   2.3.3
+	 * @access  public
+	 */
+	public function deactivate() {}
+
+	/**
 	 * Method to update a set of options.
 	 * Added in v2.3.3 actions for before and after options save.
 	 *
