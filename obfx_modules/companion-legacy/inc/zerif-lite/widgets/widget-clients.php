@@ -56,7 +56,7 @@ if ( ! class_exists( 'zerif_clients_widget' ) ) {
 			<a href="<?php if ( ! empty( $instance['link'] ) ) :  echo apply_filters( 'widget_title', $instance['link'] );
 endif; ?>">
 				<?php
-				if ( ! empty( $instance['image_uri'] ) && ( $instance['image_uri'] != 'Upload Image' ) ) {
+				if ( ! empty( $instance['image_uri'] ) && ( preg_match('/(\.jpg|\.png|\.jpeg|\.gif|\.bmp)$/', $instance['image_uri'] ) ) ) {
 
 					echo '<img src="' . esc_url( $instance['image_uri'] ) . '" alt="' . __( 'Client', 'zerif-lite' ) . '">';
 
