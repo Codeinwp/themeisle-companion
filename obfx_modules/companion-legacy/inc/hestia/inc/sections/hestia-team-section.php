@@ -121,7 +121,7 @@ function hestia_team_content( $hestia_team_content, $is_callback = false ) {
 									<?php
                                     if ( ! empty( $image ) ) :
                                         /**
-                                         * Alternative text for the Testimonial box image
+                                         * Alternative text for the Team box image
                                          * It first checks for the Alt Text option of the attachment
                                          * If that field is empty, uses the Title of the Testimonial box as alt text
                                          */
