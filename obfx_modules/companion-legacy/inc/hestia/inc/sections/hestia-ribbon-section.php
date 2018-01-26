@@ -50,7 +50,7 @@ if ( ! function_exists( 'hestia_ribbon' ) ) :
 					<div class="col-md-8">
 						<?php if ( ! empty( $hestia_ribbon_text ) ) { ?>
 							<h2 class="hestia-title" style="margin:0;">
-								<?php echo wp_kses_post( $hestia_ribbon_text ); ?>
+								<?php echo themeisle_hestia_sanitize_string( $hestia_ribbon_text ); ?>
 							</h2>
 							<?php
 }

@@ -111,3 +111,33 @@ function themeisle_hestia_create_page( $slug, $page_title ) {
 	}
 	return $page_id;
 }
+
+/**
+ * Allowed HTML tags for text controls
+ *
+ * @return - sanitized string and allowed HTML tags
+ */
+function themeisle_hestia_sanitize_string( $input ) {
+
+	$allowed_html = apply_filters(
+		'hestia_sanitize_html_tags', array(
+			'a'      => array(
+				'href'  => array(),
+				'title' => array(),
+				'class' => array(),
+			),
+			'br'     => array(),
+			'em'     => array(),
+			'strong' => array(),
+			'i'      => array(
+				'class' => array(),
+			),
+			'b'      => array(),
+			'p'      => array(),
+		)
+	);
+
+	$input = force_balance_tags( $input );
+
+	return wp_kses( $input, $allowed_html );
+}

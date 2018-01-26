@@ -57,7 +57,7 @@ if ( ! function_exists( 'hestia_testimonials_customize_register' ) ) :
 
 		$wp_customize->add_setting(
 			'hestia_testimonials_title', array(
-				'sanitize_callback' => 'sanitize_text_field',
+				'sanitize_callback' => 'themeisle_hestia_sanitize_string',
 				'transport'         => $selective_refresh,
 			)
 		);
@@ -72,7 +72,7 @@ if ( ! function_exists( 'hestia_testimonials_customize_register' ) ) :
 
 		$wp_customize->add_setting(
 			'hestia_testimonials_subtitle', array(
-				'sanitize_callback' => 'sanitize_text_field',
+				'sanitize_callback' => 'themeisle_hestia_sanitize_string',
 				'transport'         => $selective_refresh,
 			)
 		);

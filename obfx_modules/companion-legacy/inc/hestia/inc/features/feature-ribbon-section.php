@@ -80,7 +80,7 @@ if ( ! function_exists( 'hestia_ribbon_customize_register' ) ) :
 		$default = ( current_user_can( 'edit_theme_options' ) ? esc_html__( 'Subscribe to our Newsletter', 'themeisle-companion' ) : false );
 		$wp_customize->add_setting(
 			'hestia_ribbon_text', array(
-				'sanitize_callback' => 'sanitize_text_field',
+				'sanitize_callback' => 'themeisle_hestia_sanitize_string',
 				'default'           => $default,
 				'transport'         => $selective_refresh,
 			)
