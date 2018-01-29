@@ -67,10 +67,10 @@ if ( ! function_exists( 'hestia_testimonials' ) ) :
 						<div class="col-md-8 col-md-offset-2 text-center">
 							<?php
 							if ( ! empty( $hestia_testimonials_title ) || is_customize_preview() ) {
-								echo '<h2 class="hestia-title">' . esc_html( $hestia_testimonials_title ) . '</h2>';
+								echo '<h2 class="hestia-title">' . wp_kses_post( $hestia_testimonials_title ) . '</h2>';
 							}
 							if ( ! empty( $hestia_testimonials_subtitle ) || is_customize_preview() ) {
-								echo '<h5 class="description">' . esc_html( $hestia_testimonials_subtitle ) . '</h5>';
+								echo '<h5 class="description">' . wp_kses_post( $hestia_testimonials_subtitle ) . '</h5>';
 							}
 							?>
 						</div>
@@ -117,27 +117,46 @@ function hestia_testimonials_content( $hestia_testimonials_content, $is_callback
 				?>
 				<div class="col-xs-12 col-ms-6 col-sm-6 <?php echo apply_filters( 'hestia_testimonials_per_row_class','col-md-4' ); ?>">
 					<div class="card card-testimonial card-plain">
-						<?php if ( ! empty( $image ) ) : ?>
+						<?php
+                        if ( ! empty( $image ) ) :
+                            /**
+                             * Alternative text for the Testimonial box image
+                             * It first checks for the Alt Text option of the attachment
+                             * If that field is empty, uses the Title of the Testimonial box as alt text
+                             */
+                            $alt_image = '';
+                            $image_id  = function_exists( 'attachment_url_to_postid' ) ? attachment_url_to_postid( preg_replace( '/-\d{1,4}x\d{1,4}/i', '', $image ) ) : '';
+                            if ( ! empty( $image_id ) && $image_id !== 0 ) {
+                                $alt_image = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
+                            }
+                            if ( empty( $alt_image ) ) {
+                                if ( ! empty( $title ) ) {
+                                    $alt_image = $title;
+                                }
+                            }
+                            ?>
 							<div class="card-avatar">
 								<?php
-								if ( ! empty( $link ) ) :
+								if ( ! empty( $link ) ) {
 									$link_html = '<a href="' . esc_url( $link ) . '"';
 									if ( function_exists( 'hestia_is_external_url' ) ) {
 										$link_html .= hestia_is_external_url( $link );
 									}
 									$link_html .= '>';
 									echo wp_kses_post( $link_html );
-								endif;
-								?>
-									<img class="img"
-										 src="<?php echo esc_url( $image ); ?>"
-										<?php
-										if ( ! empty( $title ) ) :
-											?>
-											alt="<?php echo esc_attr( $title ); ?>" title="<?php echo esc_attr( $title ); ?>" <?php endif; ?> />
-									<?php if ( ! empty( $link ) ) : ?>
-								</a>
-							<?php endif; ?>
+								}
+                                echo '<img class="img" src="' . esc_url( $image ) . '" ';
+                                if ( ! empty( $alt_image ) ) {
+                                    echo ' alt="' . esc_attr( $alt_image ) . '" ';
+                                }
+                                if ( ! empty( $title ) ) {
+                                    echo ' title="' . esc_attr( $title ) . '" ';
+                                }
+                                echo '/>';
+								if ( ! empty( $link ) ) {
+								    echo '</a>';
+							    }
+							    ?>
 							</div>
 						<?php endif; ?>
 						<div class="content">

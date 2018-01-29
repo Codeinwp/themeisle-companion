@@ -69,7 +69,7 @@ class Orbit_Fox {
 
 		$this->plugin_name = 'orbit-fox';
 
-			$this->version = '2.3.2';
+			$this->version = '2.3.3';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -154,7 +154,9 @@ class Orbit_Fox {
 		$plugin_admin = new Orbit_Fox_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'load_modules' );
+		$this->loader->add_action( 'admin_init', $plugin_admin, 'visit_dashboard_notice_dismiss' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'menu_pages' );
+		$this->loader->add_action( 'admin_notices', $plugin_admin, 'visit_dashboard_notice' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'wp_ajax_obfx_update_module_options', $plugin_admin, 'obfx_update_module_options' );
