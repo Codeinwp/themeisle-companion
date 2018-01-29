@@ -131,6 +131,40 @@ class Orbit_Fox_Admin {
 	}
 
 	/**
+	 * Add the initial dashboard notice to guide the user to the OrbitFox admin page.
+	 *
+	 * @since   2.3.4
+	 * @access  public
+	 */
+	public function visit_dashboard_notice() {
+		global $current_user;
+		$user_id = $current_user->ID;
+		if ( ! get_user_meta( $user_id, 'obfx_ignore_visit_dashboard_notice' ) ) { ?>
+			<div class="notice notice-info" style="position:relative;">
+				<p><?php echo sprintf( __( 'You have activated Orbit Fox plugin! Go to the %s to get started with the extra features.', 'themeisle-companion' ), sprintf( '<a href="%s">%s</a>', admin_url( 'admin.php?page=obfx_companion&obfx_ignore_visit_dashboard_notice=0' ), __( 'Dashboard Page', 'themeisle-companion' ) ) ); ?></p>
+				<a href="?obfx_ignore_visit_dashboard_notice=0" class="notice-dismiss" style="text-decoration: none;">
+					<span class="screen-reader-text">Dismiss this notice.</span>
+				</a>
+			</div>
+			<?php
+		}
+	}
+
+	/**
+	 * Dismiss the initial dashboard notice.
+	 *
+	 * @since   2.3.4
+	 * @access  public
+	 */
+	function visit_dashboard_notice_dismiss() {
+		global $current_user;
+		$user_id = $current_user->ID;
+		if ( isset( $_GET['obfx_ignore_visit_dashboard_notice'] ) && '0' == $_GET['obfx_ignore_visit_dashboard_notice'] ) {
+			add_user_meta( $user_id, 'obfx_ignore_visit_dashboard_notice', 'true', true );
+		}
+	}
+
+	/**
 	 * Calls the orbit_fox_modules hook.
 	 *
 	 * @since   1.0.0
@@ -297,7 +331,7 @@ class Orbit_Fox_Admin {
 						$checked = 'checked';
 					}
 
-					$data   = array(
+					$data  = array(
 						'slug'        => $slug,
 						'name'        => $module->name,
 						'description' => $module->description,
