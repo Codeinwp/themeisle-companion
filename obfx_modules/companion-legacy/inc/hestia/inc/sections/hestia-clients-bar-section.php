@@ -41,6 +41,11 @@ if ( ! function_exists( 'hestia_clients_bar' ) ) :
 		?>
 		<section class="hestia-clients-bar text-center <?php echo esc_attr( $wrapper_class ); ?>" id="clients" data-sorder="hestia_clients_bar">
 			<div class="container">
+                <?php
+                if( function_exists( 'hestia_clients_bar_section_content_trigger' ) ) {
+                    hestia_clients_bar_section_content_trigger();
+                }
+                ?>
 				<div class="row">
 					<?php
 					$array_length = sizeof( $hestia_clients_bar_content_decoded );
