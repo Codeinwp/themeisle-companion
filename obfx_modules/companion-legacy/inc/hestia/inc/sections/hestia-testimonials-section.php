@@ -67,10 +67,10 @@ if ( ! function_exists( 'hestia_testimonials' ) ) :
 						<div class="col-md-8 col-md-offset-2 text-center">
 							<?php
 							if ( ! empty( $hestia_testimonials_title ) || is_customize_preview() ) {
-								echo '<h2 class="hestia-title">' . hestia_sanitize_string( $hestia_testimonials_title ) . '</h2>';
+								echo '<h2 class="hestia-title">' . wp_kses_post( $hestia_testimonials_title ) . '</h2>';
 							}
 							if ( ! empty( $hestia_testimonials_subtitle ) || is_customize_preview() ) {
-								echo '<h5 class="description">' . hestia_sanitize_string( $hestia_testimonials_subtitle ) . '</h5>';
+								echo '<h5 class="description">' . wp_kses_post( $hestia_testimonials_subtitle ) . '</h5>';
 							}
 							?>
 						</div>
