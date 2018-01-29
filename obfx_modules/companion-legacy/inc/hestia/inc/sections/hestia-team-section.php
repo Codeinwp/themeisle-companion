@@ -64,10 +64,10 @@ if ( ! function_exists( 'hestia_team' ) ) :
 						<div class="col-md-8 col-md-offset-2 text-center">
 							<?php
 							if ( ! empty( $hestia_team_title ) || is_customize_preview() ) {
-								echo '<h2 class="hestia-title">' . esc_html( $hestia_team_title ) . '</h2>';
+								echo '<h2 class="hestia-title">' . hestia_sanitize_string( $hestia_team_title ) . '</h2>';
 							}
 							if ( ! empty( $hestia_team_subtitle ) || is_customize_preview() ) {
-								echo '<h5 class="description">' . esc_html( $hestia_team_subtitle ) . '</h5>';
+								echo '<h5 class="description">' . hestia_sanitize_string( $hestia_team_subtitle ) . '</h5>';
 							}
 							?>
 						</div>
