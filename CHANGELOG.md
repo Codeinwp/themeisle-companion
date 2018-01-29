@@ -1,4 +1,9 @@
 
+ ### v2.3.3 - 2018-01-29 
+ **Changes:** 
+ * Allow HTML tags in Hestia customizer settings;
+* Add alt text for images in Hestia sections;
+ 
  ### v2.3.1 - 2018-01-17 
  **Changes:** 
  * Disabled automatic display for sharing button on pages and added an option to toggle it.
