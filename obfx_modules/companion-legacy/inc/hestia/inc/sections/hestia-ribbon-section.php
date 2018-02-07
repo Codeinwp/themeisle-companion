@@ -47,7 +47,7 @@ if ( ! function_exists( 'hestia_ribbon' ) ) :
 			<?php hestia_ribbon_background(); ?>
 			<div class="container">
 				<div class="row hestia-xs-text-center hestia-like-table">
-					<div class="col-md-8">
+					<div class="col-md-8" <?php echo function_exists( 'hestia_add_animationation') ? hestia_add_animationation( 'fade-right' ) : ''; ?>>
 						<?php if ( ! empty( $hestia_ribbon_text ) ) { ?>
 							<h2 class="hestia-title" style="margin:0;">
 								<?php echo wp_kses_post( $hestia_ribbon_text ); ?>
@@ -56,7 +56,7 @@ if ( ! function_exists( 'hestia_ribbon' ) ) :
 }
 ?>
 					</div>
-					<div class="col-md-4 text-center">
+					<div class="col-md-4 text-center" <?php echo function_exists( 'hestia_add_animationation') ? hestia_add_animationation( 'fade-left' ) : ''; ?>>
 						<?php
 
 						if ( ! empty( $hestia_ribbon_button_text ) && ! empty( $hestia_ribbon_button_url ) ) {
