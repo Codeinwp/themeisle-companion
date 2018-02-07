@@ -61,7 +61,7 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function hooks() {
 		$this->loader->add_action( 'init_themeisle_content_forms', $this, 'load_content_forms' );
-		$this->load_elementor_extra_widgets();
+		$this->loader->add_action( 'plugins_loaded', $this, 'load_elementor_extra_widgets' );
 	}
 
 	/**
