@@ -1,4 +1,9 @@
 
+ ### v2.3.4 - 2018-02-08 
+ **Changes:** 
+ * Enhancements for Hestia Theme 
+* Made structure more modular
+ 
  ### v2.3.1 - 2018-01-17 
  **Changes:** 
  * Disabled automatic display for sharing button on pages and added an option to toggle it.
