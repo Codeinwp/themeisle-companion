@@ -1,6 +1,6 @@
 === Orbit Fox Companion ===
 Contributors: themeisle, codeinwp, rodicaelena, baicusandrei
-Tags: widget, admin, widgets, sharing, reporting, sections, themes, stock photos, custom icons, icons, menu icons, stock
+Tags: widget, admin, widgets, sharing, sections, themes, stock photos, custom icons, icons, menu icons, stock, templates
 Requires at least: 3.0
 Tested up to: 4.9
 Requires PHP: 5.3
@@ -8,11 +8,11 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-This swiss-knife plugin comes with a quality template library, menu/sharing icons modules, and newly added Elementor/BeaverBuilder page builder widgets on each release.
+This swiss-knife plugin comes with a quality template library, menu/sharing icons, and newly added Elementor/BeaverBuilder page builder widgets.
 
 == Description ==
 
-Extend your theme functionality with <a href="https://themeisle.com/plugins/orbit-fox-companion/" rel="nofollow">Orbit Fox Companion</a> with various modules like Social Media Share Buttons & Icons, reporting, custom menu-icons and free stock featured images.
+Extend your theme functionality with <a href="https://themeisle.com/plugins/orbit-fox-companion/" rel="nofollow">Orbit Fox Companion</a> with various modules like Social Media Share Buttons & Icons, custom menu-icons, one click import page templates, page builder addons and free stock featured images.
 
 **Features:**
 - Template Directory
@@ -24,7 +24,7 @@ Extend your theme functionality with <a href="https://themeisle.com/plugins/orbi
 - More widgets and sections for Hestia Theme
 - More widgets and sections for Zerif Theme
 
-You can check out the demo here for a more detailed overview of the features.
+You can check out the demo <a href="https://demo.themeisle.com/orbit-fox/#blog" rel="nofollow" target="_blank">here</a> for a more detailed overview of the features.
 
 OrbitFox is a user-centred plugin with an easy-to-use admin panel. One of the most important features is that modules will only be loaded if they meet two conditions. If they are needed and if they are compatible with your existing themes and plugins. This will cut down on the unnecessary bloating of your website.
 
@@ -82,16 +82,11 @@ Activating the Orbit Fox Companion plugin is just like any other plugin. If you'
 
 == Screenshots ==
 
-1. Screenshot 1. How you can enable/disable modules
-2. Screenshot 2. How the sharing module is looking
-3. Screenshot 3. Template directory page preview
-4. Screenshot 4. Template preview interface
-5. Screenshot 5. Menu icons module interface preview
-6. Screenshot 6. Menu icons module front end preview
-7. Screenshot 7. Services and post grid Page builder modules
-8. Screenshot 8. Pricing plan Page builder module
-9. Screenshot 9. CC0 MyStock.photos featured image import module.
-
+1. The OrbitFox Dashboard Page
+2. The Template Directory Page
+3. Menu Icons Module
+4. Page Builder Widgets and Addons
+5. Social Sharing Module
 
 == Changelog ==
 = 2.3.1 - 2018-01-17  = 

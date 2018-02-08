@@ -57,10 +57,10 @@ if ( ! function_exists( 'hestia_features' ) ) :
 						<div class="col-md-8 col-md-offset-2">
 							<?php
 							if ( ! empty( $hestia_features_title ) || is_customize_preview() ) {
-								echo '<h2 class="hestia-title">' . esc_html( $hestia_features_title ) . '</h2>';
+								echo '<h2 class="hestia-title">' . wp_kses_post( $hestia_features_title ) . '</h2>';
 							}
 							if ( ! empty( $hestia_features_subtitle ) || is_customize_preview() ) {
-								echo '<h5 class="description">' . esc_html( $hestia_features_subtitle ) . '</h5>';
+								echo '<h5 class="description">' . wp_kses_post( $hestia_features_subtitle ) . '</h5>';
 							}
 							?>
 						</div>
