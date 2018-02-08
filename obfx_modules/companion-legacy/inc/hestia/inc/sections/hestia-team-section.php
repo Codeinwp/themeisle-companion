@@ -160,6 +160,16 @@ function hestia_team_content( $hestia_team_content, $is_callback = false ) {
 							</div>
 							<div class="col-md-7">
 								<div class="content">
+                                    <?php
+                                    if ( ! empty( $link ) ) :
+                                        $link_html = '<a href="' . esc_url( $link ) . '"';
+                                        if ( function_exists( 'hestia_is_external_url' ) ) {
+                                            $link_html .= hestia_is_external_url( $link );
+                                        }
+                                        $link_html .= '>';
+                                        echo wp_kses_post( $link_html );
+                                    endif;
+                                    ?>
 									<?php if ( ! empty( $title ) ) : ?>
 										<h4 class="card-title"><?php echo esc_html( $title ); ?></h4>
 									<?php endif; ?>
@@ -169,6 +179,11 @@ function hestia_team_content( $hestia_team_content, $is_callback = false ) {
 									<?php if ( ! empty( $text ) ) : ?>
 										<p class="card-description"><?php echo wp_kses_post( html_entity_decode( $text ) ); ?></p>
 									<?php endif; ?>
+                                    <?php
+                                    if ( ! empty( $link ) ) {
+                                        echo '</a>';
+                                    }
+                                    ?>
 									<?php
 									if ( ! empty( $team_item->social_repeater ) ) :
 										$icons = html_entity_decode( $team_item->social_repeater );
