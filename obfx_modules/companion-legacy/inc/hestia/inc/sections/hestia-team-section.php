@@ -114,7 +114,7 @@ function hestia_team_content( $hestia_team_content, $is_callback = false ) {
 					$text = ! empty( $team_item->text ) ? apply_filters( 'hestia_translate_single_string', $team_item->text, 'Team section' ) : '';
 					$link = ! empty( $team_item->link ) ? apply_filters( 'hestia_translate_single_string', $team_item->link, 'Team section' ) : '';
 					?>
-					<div class="col-xs-12 col-ms-6 col-sm-6">
+					<div class="col-xs-12 col-ms-6 col-sm-6" <?php echo function_exists( 'hestia_add_animationation') ? hestia_add_animationation( 'fade-right' ) : ''; ?>>
 						<div class="card card-profile card-plain">
 							<div class="col-md-5">
 								<div class="card-image">
@@ -160,6 +160,16 @@ function hestia_team_content( $hestia_team_content, $is_callback = false ) {
 							</div>
 							<div class="col-md-7">
 								<div class="content">
+                                    <?php
+                                    if ( ! empty( $link ) ) :
+                                        $link_html = '<a href="' . esc_url( $link ) . '"';
+                                        if ( function_exists( 'hestia_is_external_url' ) ) {
+                                            $link_html .= hestia_is_external_url( $link );
+                                        }
+                                        $link_html .= '>';
+                                        echo wp_kses_post( $link_html );
+                                    endif;
+                                    ?>
 									<?php if ( ! empty( $title ) ) : ?>
 										<h4 class="card-title"><?php echo esc_html( $title ); ?></h4>
 									<?php endif; ?>
@@ -169,6 +179,11 @@ function hestia_team_content( $hestia_team_content, $is_callback = false ) {
 									<?php if ( ! empty( $text ) ) : ?>
 										<p class="card-description"><?php echo wp_kses_post( html_entity_decode( $text ) ); ?></p>
 									<?php endif; ?>
+                                    <?php
+                                    if ( ! empty( $link ) ) {
+                                        echo '</a>';
+                                    }
+                                    ?>
 									<?php
 									if ( ! empty( $team_item->social_repeater ) ) :
 										$icons = html_entity_decode( $team_item->social_repeater );
