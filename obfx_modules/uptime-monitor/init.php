@@ -17,6 +17,15 @@
 class Uptime_Monitor_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 	/**
+	 * The API endpoint for monitor.
+	 *
+	 * @since   1.0.0
+	 * @access  private
+	 * @var     string $monitor_url The Monitor API url base.
+	 */
+	private $monitor_url = 'https://monitor.orbitfox.com/api/';
+
+	/**
 	 * Test_OBFX_Module constructor.
 	 *
 	 * @since   1.0.0
@@ -56,7 +65,7 @@ class Uptime_Monitor_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function activate() {
-		$monitor_url = 'https://monitor.orbitfox.com/api/monitor/create';
+		$monitor_url = $this->monitor_url . 'monitor/create';
 		$url = $this->get_option( 'monitor_url' );
 		$email = $this->get_option( 'monitor_email' );
 		$args = array(
@@ -64,6 +73,13 @@ class Uptime_Monitor_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		);
 		$response = wp_remote_post( $monitor_url, $args );
 		$api_response = json_decode( $response['body'] );
+
+		if( $api_response->status != '200' ) {
+			$response['type']    = 'error';
+			$response['message'] = $api_response->message;
+			echo json_encode( $response ); wp_die();
+
+		}
 	}
 
 	/**
@@ -74,7 +90,7 @@ class Uptime_Monitor_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function deactivate() {
-		$monitor_url = 'https://monitor.orbitfox.com/api/monitor/remove';
+		$monitor_url = $this->monitor_url . 'monitor/remove';
 		$url = $this->get_option( 'monitor_url' );
 		$args = array(
 			'body' => array( 'url' => $url )
@@ -90,8 +106,22 @@ class Uptime_Monitor_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function after_options_save() {
-		$this->deactivate();
 		$this->activate();
+	}
+
+	/**
+	 * Method invoked before options save.
+	 *
+	 * @since   2.3.3
+	 * @access  public
+	 */
+	public function before_options_save( $options ) {
+		$old_url = $this->get_option( 'monitor_url' );
+		$old_email = $this->get_option( 'monitor_email' );
+
+		if( $options['monitor_url'] != $old_url ) {
+			$this->deactivate();
+		}
 	}
 
 	/**
@@ -101,6 +131,7 @@ class Uptime_Monitor_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function hooks() {
+		$this->loader->add_action( $this->get_slug() . '_before_options_save', $this, 'before_options_save', 10, 1 );
 		$this->loader->add_action( $this->get_slug() . '_after_options_save', $this, 'after_options_save' );
 	}
 
