@@ -68,7 +68,7 @@ class Orbit_Fox_Global_Settings {
 					'menu-icons',
 					'mystock-import',
 					'beaver-widgets',
-          'uptime-monitor',
+					'uptime-monitor',
 				)
 			);
 		}// End if().

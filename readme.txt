@@ -8,7 +8,7 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-This swiss-knife plugin comes with a quality template library, menu/sharing icons modules, and newly added Elementor/BeaverBuilder page builder widgets on each release.
+This swiss-knife plugin comes with a quality template library, menu/sharing icons, and newly added Elementor/BeaverBuilder page builder widgets.
 
 == Description ==
 

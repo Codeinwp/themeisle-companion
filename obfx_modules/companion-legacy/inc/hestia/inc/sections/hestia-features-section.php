@@ -57,10 +57,10 @@ if ( ! function_exists( 'hestia_features' ) ) :
 						<div class="col-md-8 col-md-offset-2">
 							<?php
 							if ( ! empty( $hestia_features_title ) || is_customize_preview() ) {
-								echo '<h2 class="hestia-title">' . esc_html( $hestia_features_title ) . '</h2>';
+								echo '<h2 class="hestia-title">' . wp_kses_post( $hestia_features_title ) . '</h2>';
 							}
 							if ( ! empty( $hestia_features_subtitle ) || is_customize_preview() ) {
-								echo '<h5 class="description">' . esc_html( $hestia_features_subtitle ) . '</h5>';
+								echo '<h5 class="description">' . wp_kses_post( $hestia_features_subtitle ) . '</h5>';
 							}
 							?>
 						</div>
@@ -97,7 +97,7 @@ function hestia_features_content( $hestia_features_content, $is_callback = false
 
 		$hestia_features_content = json_decode( $hestia_features_content );
 		if ( ! empty( $hestia_features_content ) ) {
-			echo '<div class="row">';
+			echo '<div class="row" ' . ( function_exists( 'hestia_add_animationation') ? hestia_add_animationation( 'fade-up' ) : '' ) . '>';
 			foreach ( $hestia_features_content as $features_item ) :
 				$icon = ! empty( $features_item->icon_value ) ? apply_filters( 'hestia_translate_single_string', $features_item->icon_value, 'Features section' ) : '';
 				$image = ! empty( $features_item->image_url ) ? apply_filters( 'hestia_translate_single_string', $features_item->image_url, 'Features section' ) : '';
