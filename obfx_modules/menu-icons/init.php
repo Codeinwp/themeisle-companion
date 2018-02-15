@@ -116,7 +116,7 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function public_enqueue() {
 		return array(
 			'css' => array(
-				'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' => false,
+				'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' => array( 'dashicons' ),
 			),
 		);
 	}
@@ -143,6 +143,9 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			'admin'		=> array(
 				'icons'	=> apply_filters( 'obfx_menu_icons_icon_list', $this->get_dashicons() ),
 				'icon_default' => self::DEFAULT_ICON,
+				'i10n' => array(
+					'powered_by' => sprintf( __( 'Powered by %s plugin', 'themeisle-companion' ), '<b>' . apply_filters( 'themeisle_companion_friendly_name', '' ) . '</b>' ),
+				),
 			),
 		);
 

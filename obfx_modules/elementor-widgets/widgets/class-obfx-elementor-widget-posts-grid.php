@@ -98,22 +98,28 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 
 		if ( $post_type == 'post' ) {
 			$taxonomy = 'category';
-		} else {
+		} elseif ( $post_type == 'product' ) {
 			$taxonomy = 'product_cat';
 		}
 
-		// Get categories for post type.
-		$terms = get_terms(
-			array(
-				'taxonomy' => $taxonomy,
-				'hide_empty' => false,
-			)
-		);
-
-		foreach ( $terms as $term ) {
-			$options[ $term->slug ] = $term->name;
+		if ( ! empty( $taxonomy ) ) {
+			// Get categories for post type.
+			$terms = get_terms(
+				array(
+					'taxonomy'   => $taxonomy,
+					'hide_empty' => false,
+				)
+			);
+			if ( ! empty( $terms ) ) {
+				foreach ( $terms as $term ) {
+					if ( isset( $term ) ) {
+						if ( isset( $term->slug ) && isset( $term->name ) ) {
+							$options[ $term->slug ] = $term->name;
+						}
+					}
+				}
+			}
 		}
-
 		return $options;
 	}
 
@@ -349,7 +355,7 @@ class OBFX_Elementor_Widget_Posts_Grid extends Widget_Base {
 					'h3' => 'H3',
 					'h4' => 'H4',
 					'h5' => 'H5',
-					'h6' => 'Hh6',
+					'h6' => 'H6',
 					'span' => 'span',
 					'p' => 'p',
 					'div' => 'div',

@@ -28,7 +28,7 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function __construct() {
 		parent::__construct();
 		$this->name               = __( 'Social Sharing Module', 'themeisle-companion' );
-		$this->description        = __( 'Add basic social sharing to your posts and pages.', 'themeisle-companion' );
+		$this->description        = sprintf( __( 'Add basic social sharing to your posts and pages. Check out the %s to learn more!', 'themeisle-companion' ), sprintf( '<a href="https://demo.themeisle.com/orbit-fox/2018/01/15/social-sharing-modules/" rel="nofollow" target="_blank">%s</a>', __( 'demo', 'themeisle-companion' ) ) );
 	}
 
 	/**
@@ -175,7 +175,7 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
      * @access  public
      */
     public function social_sharing_function() {
-        if ( is_single() ) {
+        if ( ( $this->get_option('display_on_posts') && is_single() ) || ( $this->get_option('display_on_pages') && is_page() ) ) {
         	$class_desktop = 'obfx-sharing-left ';
         	switch ( $this->get_option( 'socials_position' ) ) {
 		        case '1':
@@ -285,6 +285,24 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function options() {
 		$options = array(
 			array(
+				'id'      => 'display_on_posts',
+				'title'   => 'Display On',
+				'name'    => 'display_on_posts',
+				'type'    => 'checkbox',
+				'label'   => 'Posts',
+				'class'   => 'inline-setting',
+				'default' => '1',
+			),
+			array(
+				'id'      => 'display_on_pages',
+				'title'   => '',
+				'name'    => 'display_on_pages',
+				'type'    => 'checkbox',
+				'label'   => 'Pages',
+				'class'   => 'inline-setting',
+				'default' => '0',
+			),
+			array(
 				'id'      => 'socials_position',
 				'title'   => 'Desktop Position',
 				'name'    => 'socials_position',
@@ -299,7 +317,6 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'id'      => 'mobile_position',
 				'name'    => 'mobile_position',
 				'title'   => 'Mobile Position',
-				'label'   => 'Show network name on hover',
 				'type'    => 'radio',
 				'options' => array(
 					'0' => 'Pinned to bottom',

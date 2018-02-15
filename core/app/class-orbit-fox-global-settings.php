@@ -61,14 +61,14 @@ class Orbit_Fox_Global_Settings {
 			self::$instance->modules = apply_filters(
 				'obfx_modules',
 				array(
-					'stats',
 					'social-sharing',
 					'companion-legacy',
 					'elementor-widgets',
 					'template-directory',
 					'menu-icons',
 					'mystock-import',
-					'uptime-monitor',
+					'beaver-widgets',
+          'uptime-monitor',
 				)
 			);
 		}// End if().
