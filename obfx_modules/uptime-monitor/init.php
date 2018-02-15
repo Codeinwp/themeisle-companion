@@ -15,6 +15,7 @@
  * @author     Themeisle <friends@themeisle.com>
  */
 class Uptime_Monitor_OBFX_Module extends Orbit_Fox_Module_Abstract {
+	const MONITOR_URL = 'https://monitor.orbitfox.com';
 
 	/**
 	 * Test_OBFX_Module constructor.
@@ -25,7 +26,7 @@ class Uptime_Monitor_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function __construct() {
 		parent::__construct();
 		$this->name        = __( 'Uptime Monitor', 'themeisle-companion' );
-		$this->description = __( 'A simple module to notify you if your webpage goes down.', 'themeisle-companion' );
+		$this->description = __( 'A module to notify when you website goes down.', 'themeisle-companion' );
 
 	}
 
@@ -46,41 +47,7 @@ class Uptime_Monitor_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @since   1.0.0
 	 * @access  public
 	 */
-	public function load() {}
-
-	/**
-	 * Method called on module activation.
-	 * Calls the API to register an url to monitor.
-	 *
-	 * @since   2.3.3
-	 * @access  public
-	 */
-	public function activate() {
-		$monitor_url = 'https://monitor.orbitfox.com/api/monitor/create';
-		$url = $this->get_option( 'monitor_url' );
-		$email = $this->get_option( 'monitor_email' );
-		$args = array(
-			'body' => array( 'url' => $url, 'email' => $email )
-		);
-		$response = wp_remote_post( $monitor_url, $args );
-		$api_response = json_decode( $response['body'] );
-	}
-
-	/**
-	 * Method called on module deactivation.
-	 * Calls the API to unregister an url from the monitor.
-	 *
-	 * @since   2.3.3
-	 * @access  public
-	 */
-	public function deactivate() {
-		$monitor_url = 'https://monitor.orbitfox.com/api/monitor/remove';
-		$url = $this->get_option( 'monitor_url' );
-		$args = array(
-			'body' => array( 'url' => $url )
-		);
-		$response = wp_remote_post( $monitor_url, $args );
-		$api_response = json_decode( $response['body'] );
+	public function load() {
 	}
 
 	/**
@@ -92,6 +59,44 @@ class Uptime_Monitor_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function after_options_save() {
 		$this->deactivate();
 		$this->activate();
+	}
+
+	/**
+	 * Method called on module deactivation.
+	 * Calls the API to unregister an url from the monitor.
+	 *
+	 * @since   2.3.3
+	 * @access  public
+	 */
+	public function deactivate() {
+		$monitor_url  = self::MONITOR_URL . '/api/monitor/remove';
+		$url          = $this->get_option( 'monitor_url' );
+		$args         = array(
+			'body' => array( 'url' => $url )
+		);
+		$response     = wp_remote_post( $monitor_url, $args );
+		$api_response = json_decode( $response['body'] );
+	}
+
+	/**
+	 * Method called on module activation.
+	 * Calls the API to register an url to monitor.
+	 *
+	 * @since   2.3.3
+	 * @access  public
+	 */
+	public function activate() {
+		$monitor_url = self::MONITOR_URL . '/api/monitor/create';
+		$email       = $this->get_option( 'monitor_email' );
+		if ( empty( $email ) ) {
+			$email = get_option( 'admin_email', '' );
+		}
+		$url          = get_home_url( get_current_blog_id() );
+		$args         = array(
+			'body' => array( 'url' => $url, 'email' => $email )
+		);
+		$response     = wp_remote_post( $monitor_url, $args );
+		$api_response = json_decode( $response['body'] );
 	}
 
 	/**
@@ -136,7 +141,7 @@ class Uptime_Monitor_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		return array(
 			'js'  => array(
-				'stats'            => array( 'jquery' ),
+				'stats' => array( 'jquery' ),
 			),
 			'css' => array(
 				'stats' => false,
@@ -156,21 +161,12 @@ class Uptime_Monitor_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			array(
 				'id'          => 'monitor_email',
 				'name'        => 'monitor_email',
-				'title'       => 'Email to notify',
-				'description' => 'This email will be used to notify you when the webpage goes down.',
+				'title'       => 'Notification email',
+				'description' => 'Email where we should notify you when the site goes down.',
 				'type'        => 'text',
 				'default'     => get_option( 'admin_email', '' ),
-				'placeholder' => 'Fill an email to use',
-			),
-			array(
-				'id'          => 'monitor_url',
-				'name'        => 'monitor_url',
-				'title'       => 'The URL to monitor',
-				'description' => 'This url will be monitored to check when the webpage goes down.',
-				'type'        => 'text',
-				'default'     => get_home_url(),
-				'placeholder' => 'Fill an URL to monitor',
-			),
+				'placeholder' => 'Add your email.',
+			)
 		);
 	}
 }
