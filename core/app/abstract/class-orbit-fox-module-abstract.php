@@ -401,7 +401,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @return mixed
 	 */
 	final public function set_options( $options ) {
-		do_action( $this->get_slug() . '_before_options_save' );
+		do_action( $this->get_slug() . '_before_options_save', $options );
 		$result = $this->model->set_module_options( $this->slug, $options );
 		do_action( $this->get_slug() . '_after_options_save' );
 		return $result;

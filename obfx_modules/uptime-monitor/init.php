@@ -56,9 +56,21 @@ class Uptime_Monitor_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @since   2.3.3
 	 * @access  public
 	 */
-	public function after_options_save() {
-		$this->deactivate();
-		$this->activate();
+	public function activate() {
+		$monitor_url = $this->monitor_url . 'monitor/create';
+		$url = $this->get_option( 'monitor_url' );
+		$email = $this->get_option( 'monitor_email' );
+		$args = array(
+			'body' => array( 'url' => $url, 'email' => $email )
+		);
+		$response = wp_remote_post( $monitor_url, $args );
+		$api_response = json_decode( $response['body'] );
+
+		if( $api_response->status != '200' ) {
+			$response['type']    = 'error';
+			$response['message'] = $api_response->message;
+			echo json_encode( $response ); wp_die();
+		}
 	}
 
 	/**
@@ -70,8 +82,8 @@ class Uptime_Monitor_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function deactivate() {
 		$monitor_url  = self::MONITOR_URL . '/api/monitor/remove';
-		$url          = $this->get_option( 'monitor_url' );
-		$args         = array(
+		$url = $this->get_option( 'monitor_url' );
+		$args = array(
 			'body' => array( 'url' => $url )
 		);
 		$response     = wp_remote_post( $monitor_url, $args );
@@ -85,18 +97,23 @@ class Uptime_Monitor_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @since   2.3.3
 	 * @access  public
 	 */
-	public function activate() {
-		$monitor_url = self::MONITOR_URL . '/api/monitor/create';
-		$email       = $this->get_option( 'monitor_email' );
-		if ( empty( $email ) ) {
-			$email = get_option( 'admin_email', '' );
+	public function after_options_save() {
+		$this->activate();
+	}
+
+	/**
+	 * Method invoked before options save.
+	 *
+	 * @since   2.3.3
+	 * @access  public
+	 */
+	public function before_options_save( $options ) {
+		$old_url = $this->get_option( 'monitor_url' );
+		$old_email = $this->get_option( 'monitor_email' );
+
+		if( $options['monitor_url'] != $old_url ) {
+			$this->deactivate();
 		}
-		$url          = get_home_url( get_current_blog_id() );
-		$args         = array(
-			'body' => array( 'url' => $url, 'email' => $email )
-		);
-		$response     = wp_remote_post( $monitor_url, $args );
-		$api_response = json_decode( $response['body'] );
 	}
 
 	/**
@@ -106,6 +123,7 @@ class Uptime_Monitor_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function hooks() {
+		$this->loader->add_action( $this->get_slug() . '_before_options_save', $this, 'before_options_save', 10, 1 );
 		$this->loader->add_action( $this->get_slug() . '_after_options_save', $this, 'after_options_save' );
 	}
 
