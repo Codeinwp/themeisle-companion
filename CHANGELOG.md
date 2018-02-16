@@ -1,4 +1,9 @@
 
+ ### v2.4.0 - 2018-02-16 
+ **Changes:** 
+ * Adds a new module for uptime monitor of your website. 
+* Adds 4 more hooks for modules related actions.
+ 
  ### v2.3.1 - 2018-01-17 
  **Changes:** 
  * Disabled automatic display for sharing button on pages and added an option to toggle it.
