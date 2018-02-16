@@ -275,6 +275,7 @@ class Orbit_Fox_Admin {
 			$response['type']    = 'warning';
 			$response['message'] = __( 'Something went wrong, can not change module status!', 'themeisle-companion' );
 			$result              = $module->set_status( 'active', $data['checked'] );
+			$this->trigger_activate_deactivate( $data['checked'], $module );
 			if ( $result ) {
 				$response['type']    = 'success';
 				$response['message'] = __( 'Module status changed!', 'themeisle-companion' );
@@ -282,6 +283,25 @@ class Orbit_Fox_Admin {
 		}
 
 		return $response;
+	}
+
+	/**
+	 * A method to trigger module activation or deavtivation hook
+	 * based in active status.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @since   2.3.3
+	 * @access  public
+	 * @param   boolean                   $active_status The active status.
+	 * @param   Orbit_Fox_Module_Abstract $module The module referenced.
+	 */
+	public function trigger_activate_deactivate( $active_status, Orbit_Fox_Module_Abstract $module ) {
+		if ( $active_status == true ) {
+			do_action( $module->get_slug() . '_activate' );
+		} else {
+			do_action( $module->get_slug() . '_deactivate' );
+		}
 	}
 
 	/**

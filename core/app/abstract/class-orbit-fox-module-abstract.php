@@ -118,6 +118,17 @@ abstract class Orbit_Fox_Module_Abstract {
 	}
 
 	/**
+	 * Getter method for slug.
+	 *
+	 * @since   2.3.3
+	 * @access  public
+	 * @return mixed|string
+	 */
+	public function get_slug() {
+		return $this->slug;
+	}
+
+	/**
 	 * Method to return path to child class in a Reflective Way.
 	 *
 	 * @codeCoverageIgnore
@@ -160,15 +171,19 @@ abstract class Orbit_Fox_Module_Abstract {
 
 	/**
 	 * Registers the loader.
+	 * And setup activate and deactivate hooks. Added in v2.3.3.
 	 *
 	 * @codeCoverageIgnore
 	 *
 	 * @since   1.0.0
+	 * @updated 2.3.3
 	 * @access  public
 	 * @param Orbit_Fox_Loader $loader The loader class used to register action hooks and filters.
 	 */
 	public function register_loader( Orbit_Fox_Loader $loader ) {
 		$this->loader = $loader;
+		$this->loader->add_action( $this->get_slug() . '_activate', $this, 'activate' );
+		$this->loader->add_action( $this->get_slug() . '_deactivate', $this, 'deactivate' );
 	}
 
 	/**
@@ -357,18 +372,39 @@ abstract class Orbit_Fox_Module_Abstract {
 	}
 
 	/**
+	 * Stub for activate hook.
+	 *
+	 * @since   2.3.3
+	 * @access  public
+	 */
+	public function activate() {}
+
+	/**
+	 * Stub for deactivate hook.
+	 *
+	 * @since   2.3.3
+	 * @access  public
+	 */
+	public function deactivate() {}
+
+	/**
 	 * Method to update a set of options.
+	 * Added in v2.3.3 actions for before and after options save.
 	 *
 	 * @codeCoverageIgnore
 	 *
 	 * @since   1.0.0
+	 * @updated 2.3.3
 	 * @access  public
 	 * @param   array $options An associative array of options to be
 	 *                         updated. Eg. ( 'key' => 'new_value' ).
 	 * @return mixed
 	 */
 	final public function set_options( $options ) {
-		return $this->model->set_module_options( $this->slug, $options );
+		do_action( $this->get_slug() . '_before_options_save', $options );
+		$result = $this->model->set_module_options( $this->slug, $options );
+		do_action( $this->get_slug() . '_after_options_save' );
+		return $result;
 	}
 
 	/**
