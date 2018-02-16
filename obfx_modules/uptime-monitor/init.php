@@ -15,7 +15,10 @@
  * @author     Themeisle <friends@themeisle.com>
  */
 class Uptime_Monitor_OBFX_Module extends Orbit_Fox_Module_Abstract {
-	const MONITOR_URL = 'https://monitor.orbitfox.com';
+	/**
+	 * @var string Uptime api endpoint.
+	 */
+	private $monitor_url = 'https://monitor.orbitfox.com';
 
 	/**
 	 * Test_OBFX_Module constructor.
@@ -51,46 +54,6 @@ class Uptime_Monitor_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	}
 
 	/**
-	 * Method invoked after options save.
-	 *
-	 * @since   2.3.3
-	 * @access  public
-	 */
-	public function activate() {
-		$monitor_url = $this->monitor_url . 'monitor/create';
-		$url = $this->get_option( 'monitor_url' );
-		$email = $this->get_option( 'monitor_email' );
-		$args = array(
-			'body' => array( 'url' => $url, 'email' => $email )
-		);
-		$response = wp_remote_post( $monitor_url, $args );
-		$api_response = json_decode( $response['body'] );
-
-		if( $api_response->status != '200' ) {
-			$response['type']    = 'error';
-			$response['message'] = $api_response->message;
-			echo json_encode( $response ); wp_die();
-		}
-	}
-
-	/**
-	 * Method called on module deactivation.
-	 * Calls the API to unregister an url from the monitor.
-	 *
-	 * @since   2.3.3
-	 * @access  public
-	 */
-	public function deactivate() {
-		$monitor_url  = self::MONITOR_URL . '/api/monitor/remove';
-		$url = $this->get_option( 'monitor_url' );
-		$args = array(
-			'body' => array( 'url' => $url )
-		);
-		$response     = wp_remote_post( $monitor_url, $args );
-		$api_response = json_decode( $response['body'] );
-	}
-
-	/**
 	 * Method called on module activation.
 	 * Calls the API to register an url to monitor.
 	 *
@@ -102,18 +65,47 @@ class Uptime_Monitor_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	}
 
 	/**
+	 * Method invoked after options save.
+	 *
+	 * @since   2.3.3
+	 * @access  public
+	 */
+	public function activate() {
+		$monitor_url = $this->monitor_url . '/api/monitor/create';
+		$url         = home_url();
+		$email       = $this->get_option( 'monitor_email' );
+		$args        = array(
+			'body' => array( 'url' => $url, 'email' => $email )
+		);
+		$response    = wp_remote_post( $monitor_url, $args );
+
+	}
+
+	/**
 	 * Method invoked before options save.
 	 *
 	 * @since   2.3.3
 	 * @access  public
 	 */
 	public function before_options_save( $options ) {
-		$old_url = $this->get_option( 'monitor_url' );
-		$old_email = $this->get_option( 'monitor_email' );
+		$this->deactivate();
+	}
 
-		if( $options['monitor_url'] != $old_url ) {
-			$this->deactivate();
-		}
+	/**
+	 * Method called on module deactivation.
+	 * Calls the API to unregister an url from the monitor.
+	 *
+	 * @since   2.3.3
+	 * @access  public
+	 */
+	public function deactivate() {
+		$monitor_url  = $this->monitor_url . '/api/monitor/remove';
+		$url          = home_url();
+		$args         = array(
+			'body' => array( 'url' => $url )
+		);
+		$response     = wp_remote_post( $monitor_url, $args );
+		$api_response = json_decode( $response['body'] );
 	}
 
 	/**
