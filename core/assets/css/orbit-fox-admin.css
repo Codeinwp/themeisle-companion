@@ -2616,7 +2616,7 @@ html {
 
 .obfx-wrapper .modal-container {
 	display: block;
-	padding: 0;
+	padding: 1rem .8rem;
 	border-radius: 0.2rem;
 	background: #fff;
 	box-shadow: 0 0.4rem 1rem rgba(69, 77, 93, 0.3);

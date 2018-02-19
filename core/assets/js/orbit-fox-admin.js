@@ -86,6 +86,32 @@ var obfx_admin = function( $ ) {
 					}
 				);
 
+				$( '.obfx-mod-confirm-intent' ).on(
+					'click', function() {
+                        var name = $(this).attr('name');
+                        if( ( this ).checked) {
+                            $('.modal#' + name ).addClass('active');
+                        } else {
+						}
+					}
+				);
+				$( '.accept-confirm-intent' ).on(
+					'click', function() {
+                        var modal = $(this).closest('.modal');
+                        modal.removeClass('active');
+                        var switch_ref = modal.prev().find('input');
+                        var name = switch_ref.attr('name');
+                        console.log(name);
+                    });
+
+				$( '.close-confirm-intent' ).on(
+					'click', function() {
+						var modal = $( this ).closest( '.modal' );
+						modal.removeClass('active');
+						modal.siblings('.form-switch').find('input').prop('checked', false);
+					}
+				);
+
 				$( '.obfx-toast-dismiss' ).on(
 					'click', function() {
 						$( this ).closest( '.obfx-mod-toast' ).slideUp(

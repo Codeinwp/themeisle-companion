@@ -30,6 +30,10 @@ class Uptime_Monitor_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		parent::__construct();
 		$this->name        = __( 'Uptime Monitor', 'themeisle-companion' );
 		$this->description = __( 'A module to notify when you website goes down.', 'themeisle-companion' );
+		$this->confirm_intent = array(
+			'title' => __( 'Titleo', 'themeisle-companion' ),
+			'subtitle' => __( 'Modal Sub Title', 'themeisle-companion' ),
+		);
 
 	}
 

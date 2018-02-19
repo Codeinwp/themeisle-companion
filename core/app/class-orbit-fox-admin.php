@@ -352,10 +352,11 @@ class Orbit_Fox_Admin {
 					}
 
 					$data  = array(
-						'slug'        => $slug,
-						'name'        => $module->name,
-						'description' => $module->description,
-						'checked'     => $checked,
+						'slug'           => $slug,
+						'name'           => $module->name,
+						'description'    => $module->description,
+						'checked'        => $checked,
+						'confirm_intent' => $module->confirm_intent,
 					);
 					$tiles .= $rdh->get_partial( 'module-tile', $data );
 					$tiles .= '<div class="divider"></div>';

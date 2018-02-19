@@ -22,6 +22,33 @@ if ( ! isset( $checked ) ) {
 	$checked = '';
 }
 
+$toggle_class = 'obfx-mod-switch';
+
+if( ! empty ( $confirm_intent ) ) {
+
+    $toggle_class = 'obfx-mod-confirm-intent';
+    $modal = '
+        <div id="'. esc_attr( $slug ) .'" class="modal">
+            <a href="#close" class="close-confirm-intent modal-overlay" aria-label="Close"></a>
+            <div class="modal-container"> 
+                <div class="modal-header">
+                    <a href="#" class="btn btn-clear float-right close-confirm-intent" aria-label="Close"></a>'.
+                    ( ! empty ( $confirm_intent['title'] ) ? '<div class="modal-title h5">'. $confirm_intent['title'] .'</div>' : '' ) .
+                '</div>
+                <div class="modal-body">' .
+                    ( ! empty ( $confirm_intent['subtitle'] ) ? '<div class="content">'. $confirm_intent['subtitle'] .'</div>' : '' ) .
+                '
+                    <div class="modal-footer">
+                        <button class="btn btn-primary accept-confirm-intent">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        ';
+}
+
 $noance = wp_create_nonce( 'obfx_activate_mod_' . $slug );
 
 ?>
@@ -38,9 +65,14 @@ $noance = wp_create_nonce( 'obfx_activate_mod_' . $slug );
 	<div class="tile-action">
 		<div class="form-group">
 			<label class="form-switch">
-				<input class="obfx-mod-switch" type="checkbox" name="<?php echo $slug; ?>" value="<?php echo $noance; ?>" <?php echo $checked; ?> >
+				<input class="<?php echo esc_attr( $toggle_class ); ?>" type="checkbox" name="<?php echo $slug; ?>" value="<?php echo $noance; ?>" <?php echo $checked; ?> >
 				<i class="form-icon"></i><?php echo  __( 'Activate', 'themeisle-companion' ); ?>
 			</label>
-		</div>
+			<?php if( ! empty( $modal ) ) {
+				echo wp_kses_post( $modal );
+			} ?>
+        </div>
 	</div>
+
 </div>
+
