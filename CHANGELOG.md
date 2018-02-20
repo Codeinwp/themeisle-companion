@@ -1,4 +1,10 @@
 
+ ### v2.4.1 - 2018-02-20 
+ **Changes:** 
+ * Added intent confirmation for uptime monitor.
+* Register site to endpoint only if we have a valid email address.
+* UX improvements for module activation.
+ 
  ### v2.4.0 - 2018-02-16 
  **Changes:** 
  * Adds a new module for uptime monitor of your website. 

@@ -89,6 +89,13 @@ Activating the Orbit Fox Companion plugin is just like any other plugin. If you'
 5. Social Sharing Module
 
 ## Changelog ##
+### 2.4.1 - 2018-02-20  ###
+
+* Added intent confirmation for uptime monitor.
+* Register site to endpoint only if we have a valid email address.
+* UX improvements for module activation.
+
+
 ### 2.4.0 - 2018-02-16  ###
 
 * Adds a new module for uptime monitor of your website. 
