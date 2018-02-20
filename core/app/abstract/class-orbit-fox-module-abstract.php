@@ -64,6 +64,15 @@ abstract class Orbit_Fox_Module_Abstract {
 	protected $notices = array();
 
 	/**
+	 * Confirm intent array. It should contain a title and a subtitle for the confirm intent modal.
+	 *
+	 * @since   2.4.1
+	 * @access  public
+	 * @var     array $confirm_intent Stores an array of the modal with 'title' and 'subtitle' keys.
+	 */
+	public $confirm_intent = array();
+
+	/**
 	 * Flags if module should autoload.
 	 *
 	 * @since   1.0.0

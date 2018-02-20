@@ -203,11 +203,17 @@ class Orbit_Fox_Render_Helper {
 	 * @since   1.0.0
 	 * @access  private
 	 * @param   array $option The option from the module.
+	 * @param   bool  $is_email Render an email input instead of text.
 	 * @return mixed
 	 */
-	private function field_text( $option = array() ) {
+	private function field_text( $option = array(), $is_email = false ) {
+		$input_type = 'text';
+		if ( $is_email === true ) {
+			$input_type = 'email';
+		}
+
 		$field_value = $this->set_field_value( $option );
-		$field       = '<input class="form-input ' . $option['class'] . '" type="text" id="' . $option['id'] . '" name="' . $option['name'] . '" placeholder="' . $option['placeholder'] . '" value="' . $field_value . '">';
+		$field       = '<input class="form-input ' . $option['class'] . '" type="' . esc_attr( $input_type ) . '" id="' . $option['id'] . '" name="' . $option['name'] . '" placeholder="' . $option['placeholder'] . '" value="' . $field_value . '">';
 		$field       = $this->wrap_element( $option, $field );
 
 		return $field;
@@ -336,6 +342,9 @@ class Orbit_Fox_Render_Helper {
 		switch ( $option['type'] ) {
 			case 'text':
 				return $this->field_text( $option );
+				break;
+			case 'email':
+				return $this->field_text( $option, true );
 				break;
 			case 'textarea':
 				return $this->field_textarea( $option );

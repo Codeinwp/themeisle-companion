@@ -60,7 +60,7 @@ if ( ! $active ) {
 			</div>
 			<div class="panel-footer text-right">
 				<button class="btn obfx-mod-btn-cancel" disabled>Cancel</button>
-				<button class="btn btn-primary obfx-mod-btn-save" disabled>Save</button>
+				<button type="submit" class="btn btn-primary obfx-mod-btn-save" disabled>Save</button>
 			</div>
 		</fieldset>
 	</form>
