@@ -62,13 +62,13 @@ class Orbit_Fox_Global_Settings {
 				'obfx_modules',
 				array(
 					'social-sharing',
+					'uptime-monitor',
 					'companion-legacy',
 					'elementor-widgets',
 					'template-directory',
 					'menu-icons',
 					'mystock-import',
 					'beaver-widgets',
-					'uptime-monitor',
 				)
 			);
 		}// End if().

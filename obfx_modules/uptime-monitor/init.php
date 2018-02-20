@@ -30,7 +30,7 @@ class Uptime_Monitor_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		parent::__construct();
 		$this->name        = __( 'Uptime Monitor', 'themeisle-companion' );
 		$this->description = __( 'A module to notify when you website goes down.', 'themeisle-companion' );
-
+		$this->confirm_intent = '<h4>' . __( 'One more step...', 'themeisle-companion' ) . '</h4><p>' . __( 'In order to use the uptime service, we will need your e-mail address, where we will send downtime alerts.', 'themeisle-companion' ) . '</p>';
 	}
 
 	/**
@@ -71,14 +71,17 @@ class Uptime_Monitor_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function activate() {
+		$email = sanitize_email( $this->get_option( 'monitor_email' ) );
+		if ( ! is_email( $email ) ) {
+			return;
+		}
+
 		$monitor_url = $this->monitor_url . '/api/monitor/create';
 		$url         = home_url();
-		$email       = $this->get_option( 'monitor_email' );
 		$args        = array(
 			'body' => array( 'url' => $url, 'email' => $email )
 		);
 		$response    = wp_remote_post( $monitor_url, $args );
-
 	}
 
 	/**
@@ -99,6 +102,7 @@ class Uptime_Monitor_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function deactivate() {
+
 		$monitor_url  = $this->monitor_url . '/api/monitor/remove';
 		$url          = home_url();
 		$args         = array(
@@ -173,8 +177,8 @@ class Uptime_Monitor_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'name'        => 'monitor_email',
 				'title'       => 'Notification email',
 				'description' => 'Email where we should notify you when the site goes down.',
-				'type'        => 'text',
-				'default'     => get_option( 'admin_email', '' ),
+				'type'        => 'email',
+				'default'     => '',
 				'placeholder' => 'Add your email.',
 			)
 		);
