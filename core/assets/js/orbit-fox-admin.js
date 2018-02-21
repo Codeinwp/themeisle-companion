@@ -141,7 +141,7 @@ var obfx_admin = function ( $ ) {
 			);
 
 			$( '.obfx-module-form' ).on(
-				'submit', function ( e ) {
+				'submit reset', function ( e ) {
 					e.preventDefault();
 					return false;
 				}
