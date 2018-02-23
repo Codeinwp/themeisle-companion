@@ -397,6 +397,16 @@ abstract class Orbit_Fox_Module_Abstract {
 	public function deactivate() {}
 
 	/**
+	 * Stub for custom control rendering.
+	 *
+ 	 * @param array $option Might want to use this for a future switch-case so you could render different control types.
+	 *
+	 * @since   2.4.3
+	 * @access  public
+	 */
+	public function render_custom_control( $option = array() ) {}
+
+	/**
 	 * Method to update a set of options.
 	 * Added in v2.3.3 actions for before and after options save.
 	 *
