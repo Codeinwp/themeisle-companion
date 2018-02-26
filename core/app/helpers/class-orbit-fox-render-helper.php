@@ -339,7 +339,7 @@ class Orbit_Fox_Render_Helper {
 	 *
 	 * @return mixed
 	 */
-	public function render_option( $option = array(), $module ) {
+	public function render_option( $option = array() ) {
 
 		$option = $this->sanitize_option( $option );
 		switch ( $option['type'] ) {
@@ -365,7 +365,7 @@ class Orbit_Fox_Render_Helper {
 				return $this->field_toggle( $option );
 				break;
 			case 'custom':
-				return $module->render_custom_control( $option );
+				 return apply_filters( 'obfx_custom_control_' . $option['id'], '' );
 
 				break;
 			default:

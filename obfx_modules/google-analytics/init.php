@@ -56,7 +56,6 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function after_options_save() {
-		$this->activate();
 	}
 
 	/**
@@ -66,17 +65,6 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function activate() {
-		$email = sanitize_email( $this->get_option( 'monitor_email' ) );
-		if ( ! is_email( $email ) ) {
-			return;
-		}
-
-		$monitor_url = $this->monitor_url . '/api/monitor/create';
-		$url         = home_url();
-		$args        = array(
-			'body' => array( 'url' => $url, 'email' => $email )
-		);
-		$response    = wp_remote_post( $monitor_url, $args );
 	}
 
 	/**
@@ -114,8 +102,8 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function hooks() {
-		$this->loader->add_action( $this->get_slug() . '_before_options_save', $this, 'before_options_save', 10, 1 );
-		$this->loader->add_action( $this->get_slug() . '_after_options_save', $this, 'after_options_save' );
+		$this->loader->add_action( 'current_screen', $this, 'maybe_save_obfx_token' );
+		$this->loader->add_filter( 'obfx_custom_control_google_signin', $this, 'render_custom_control' );
 	}
 
 	/**
@@ -180,27 +168,75 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 	/**
 	 * Renders a custom control.
+	 *
 	 * @param array $option
 	 *
 	 * @return string
 	 */
 	public function render_custom_control( $option = array() ) {
-		return $this->generate_analytics_login();
+		$obfx_token = get_option( 'obfx_token', '' );
+		if ( empty( $obfx_token ) ) {
+			return $this->generate_analytics_login();
+		}
+		return $this->get_tracking_codes( $obfx_token );
 	}
 
+	public function get_tracking_codes( $obfx_token = '' ) {
+		if ( ! isset( $obfx_token ) ) {
+			return false;
+		}
+		$response = wp_remote_post( 'http://redirecter2.local/api/pirate-bridge/v1/get_tracking_links',
+			array(
+				'headers' => array( 'x-obfx-auth' => $obfx_token ),
+				'body' => array( 'site_url' => home_url(), 'site_hash' => $this->get_site_hash() ),
+			) );
+		print_r( $response['body'] );
+//		wp_die();
+	}
+
+	/**
+	 * Generates the analytics login control.
+	 *
+	 * @return string
+	 */
 	private final function generate_analytics_login() {
-		$url      = 'http://ea435eb1.ngrok.io/api/pirate-bridge/v1/auth?';
-		$url      .= http_build_query( array(
-				'site_hash' => $this->get_site_hash(),
-				'site_url' => home_url(),
-				'site_return' => admin_url( 'admin.php?page=obfx_companion' ),
-			)
-		);
-		$template = '<a class="btn btn-lg" href="' . esc_url( $url ) . '">' . __( 'Login with Google', 'themeisle-companion' ) .'</a>';
+		$url = 'http://c3f82bad.ngrok.io/api/pirate-bridge/v1/auth';
+		$url = add_query_arg( array(
+			'site_hash'   => $this->get_site_hash(),
+			'site_url'    => home_url(),
+			'site_return' => admin_url( 'admin.php?page=obfx_companion' ),
+		), $url );
+
+		$template = '<a class="btn btn-lg" href="' . esc_url( $url ) . '">' . __( 'Login with Google', 'themeisle-companion' ) . '</a>';
+
 		return $template;
 	}
 
+	/**
+	 * Generate a website hash.
+	 *
+	 * @return string
+	 */
 	private final function get_site_hash() {
-		return  mb_strimwidth( rtrim( ltrim( sanitize_text_field( preg_replace('/[^a-zA-Z0-9]/', '', AUTH_KEY . SECURE_AUTH_KEY . LOGGED_IN_KEY )  ) ) ), 0, 100 );
+		return mb_strimwidth( rtrim( ltrim( sanitize_text_field( preg_replace( '/[^a-zA-Z0-9]/', '', AUTH_KEY . SECURE_AUTH_KEY . LOGGED_IN_KEY ) ) ) ), 0, 100 );
+	}
+
+	public final function maybe_save_obfx_token() {
+		$obfx_token = isset( $_GET['obfx_token'] ) ? sanitize_text_field( $_GET['obfx_token'] ) : '';
+		if ( empty( $obfx_token ) ) {
+			return '';
+		}
+		if ( ! is_admin() ) {
+			return '';
+		}
+		$current_screen = get_current_screen();
+		if ( ! isset( $current_screen->id ) ) {
+			return '';
+		}
+		if ( $current_screen->id !== 'toplevel_page_obfx_companion' ) {
+			return '';
+		}
+		update_option( 'obfx_token', $obfx_token );
+		wp_safe_redirect( admin_url( 'admin.php?page=obfx_companion' ) );
 	}
 }
