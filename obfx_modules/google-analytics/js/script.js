@@ -31,7 +31,7 @@ var obfx_analytics = function ( $ ) {
                         },
                         complete: function () {
                             $( '#refresh-analytics-accounts' ).removeClass( 'loading' );
-                            // location.reload();
+                            location.reload();
                         }
                     }, 'json'
                 );
