@@ -101,9 +101,7 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	}
 
 	public function refresh_tracking_links() {
-		if ( ! is_admin() ) {
-			return false;
-		}
+
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return false;
 		}
@@ -265,7 +263,8 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return bool|string
 	 */
 	public function get_tracking_codes( $obfx_token = '', $forced = false ) {
-		if ( ! isset( $obfx_token ) ) {
+
+		if ( empty( $obfx_token ) ) {
 			return false;
 		}
 
@@ -285,6 +284,7 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'headers' => $req_headers,
 				'body'    => $req_body,
 			) );
+
 		if ( empty ( $request['body'] ) ) {
 			return false;
 		}
