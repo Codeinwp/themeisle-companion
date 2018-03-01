@@ -334,8 +334,7 @@ class Orbit_Fox_Render_Helper {
 	 *
 	 * @since   1.0.0
 	 * @access  public
-	 * @param   array $option The option from the module.
-	 * @param object $module The OBFX module reference.
+	 * @param   array $option The option from the module..
 	 *
 	 * @return mixed
 	 */
@@ -365,7 +364,7 @@ class Orbit_Fox_Render_Helper {
 				return $this->field_toggle( $option );
 				break;
 			case 'custom':
-				 return apply_filters( 'obfx_custom_control_' . $option['id'], '' );
+				return apply_filters( 'obfx_custom_control_' . $option['id'], '' );
 
 				break;
 			default:

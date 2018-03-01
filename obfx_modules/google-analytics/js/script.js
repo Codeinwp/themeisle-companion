@@ -1,4 +1,4 @@
-/* global obfxAnalyticsObj */
+/* global obfxAnalyticsObj, console */
 
 /**
  * Analytics Module Admin Script
