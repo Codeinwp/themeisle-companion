@@ -98,6 +98,12 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 == Changelog ==
+= 2.4.2 - 2018-03-02  = 
+
+* Added a new Google Analytics Integration module
+* Small UX improvements
+
+
 = 2.4.1 - 2018-02-20  = 
 
 * Added intent confirmation for uptime monitor.

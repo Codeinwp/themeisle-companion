@@ -1,4 +1,9 @@
 
+ ### v2.4.2 - 2018-03-02 
+ **Changes:** 
+ * Added a new Google Analytics Integration module
+* Small UX improvements
+ 
  ### v2.4.1 - 2018-02-20 
  **Changes:** 
  * Added intent confirmation for uptime monitor.
