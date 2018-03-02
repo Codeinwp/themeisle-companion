@@ -334,10 +334,12 @@ class Orbit_Fox_Render_Helper {
 	 *
 	 * @since   1.0.0
 	 * @access  public
-	 * @param   array $option The option from the module.
+	 * @param   array $option The option from the module..
+	 *
 	 * @return mixed
 	 */
 	public function render_option( $option = array() ) {
+
 		$option = $this->sanitize_option( $option );
 		switch ( $option['type'] ) {
 			case 'text':
@@ -361,10 +363,15 @@ class Orbit_Fox_Render_Helper {
 			case 'toggle':
 				return $this->field_toggle( $option );
 				break;
+			case 'custom':
+				return apply_filters( 'obfx_custom_control_' . $option['id'], '' );
+
+				break;
 			default:
 				return __( 'No option found for provided type', 'themeisle-companion' );
 				break;
 		}
+
 	}
 
 

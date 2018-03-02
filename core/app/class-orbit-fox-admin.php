@@ -366,7 +366,7 @@ class Orbit_Fox_Admin {
 				$options_fields = '';
 				if ( ! empty( $module_options ) ) {
 					foreach ( $module_options as $option ) {
-						$options_fields .= $rdh->render_option( $option );
+						$options_fields .= $rdh->render_option( $option, $module );
 					}
 
 					$panels .= $rdh->get_partial(

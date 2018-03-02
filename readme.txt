@@ -1,4 +1,4 @@
-=== Orbit Fox Companion ===
+=== Orbit Fox by ThemeIsle ===
 Contributors: themeisle, codeinwp, rodicaelena, baicusandrei
 Tags: widget, admin, widgets, sharing, sections, themes, stock photos, custom icons, icons, menu icons, stock, templates
 Requires at least: 3.0
@@ -12,9 +12,11 @@ This swiss-knife plugin comes with a quality template library, menu/sharing icon
 
 == Description ==
 
-Extend your theme functionality with <a href="https://themeisle.com/plugins/orbit-fox-companion/" rel="nofollow">Orbit Fox Companion</a> with various modules like Social Media Share Buttons & Icons, custom menu-icons, one click import page templates, page builder addons and free stock featured images.
+Extend your theme functionality with <a href="https://themeisle.com/plugins/orbit-fox-companion/" rel="nofollow">Orbit Fox</a> with various modules like Social Media Share Buttons & Icons, Uptime Monitoring, Google Analytics, custom menu-icons, one click import page templates, page builder addons and free stock featured images.
 
 **Features:**
+- Uptime Monitor
+- Google Analytics Integration
 - Template Directory
 - Elementor Addons and Widgets
 - Beaver Builder Widgets
@@ -28,13 +30,13 @@ You can check out the demo <a href="https://demo.themeisle.com/orbit-fox/#blog" 
 
 OrbitFox is a user-centred plugin with an easy-to-use admin panel. One of the most important features is that modules will only be loaded if they meet two conditions. If they are needed and if they are compatible with your existing themes and plugins. This will cut down on the unnecessary bloating of your website.
 
-We've also built some fantastic <a href="http://themeisle.com/wordpress-themes/free/" rel="nofollow" target="_blank">free themes</a> that work well with Orbit Fox Companion, check them out.
+We've also built some fantastic <a href="http://themeisle.com/wordpress-themes/free/" rel="nofollow" target="_blank">free themes</a> that work well with Orbit Fox, check them out.
 
 == Frequently Asked Questions ==
 
 = How I can get support for this plugin ? =
 
-You can learn more about Orbit Fox Companion and ask for help by <a href="https://themeisle.com/contact/"  >visiting ThemeIsle website</a>.
+You can learn more about Orbit Fox and ask for help by <a href="https://themeisle.com/contact/"  >visiting ThemeIsle website</a>.
 
 = What can I do with this plugin =
 This plugin extends the features of your sites by adding numerous features.
@@ -42,6 +44,13 @@ This plugin extends the features of your sites by adding numerous features.
 **Why use our custom icons module:**
 - Choose from a large variety of custom icons.
 - No coding needed, you can leverage the power of our dropdown icons selector and choose the right icon for your menu.
+
+**Why use our uptime monitor module:**
+- Really easy to use, just put in your email and you will receive a message when / if your site goes down.
+
+**Why use our Google Analytics integration module:**
+- It's a one-click configuration.
+- Just sign in with your google accounts
 
 **Why use our sharing module:**
 - It's easy to use
@@ -71,13 +80,13 @@ This plugin extends the features of your sites by adding numerous features.
 
 == Installation ==
 
-Activating the Orbit Fox Companion plugin is just like any other plugin. If you've uploaded the plugin package to your server already, skip to step 5 below:
+Activating the Orbit Fox plugin is just like any other plugin. If you've uploaded the plugin package to your server already, skip to step 5 below:
 
 1. In your WordPress admin, go to **Plugins &gt; Add New**
 2. In the Search field type "Orbit Fox"
-3. Under "Orbit Fox Companion" click the **Install Now** link
+3. Under "Orbit Fox" click the **Install Now** link
 4. Once the process is complete, click the **Activate Plugin** link
-5. Now, you're able to use Orbit fox and setup the modules you need. These can be found on the **Orbit Fox Companion** dashboard page
+5. Now, you're able to use Orbit fox and setup the modules you need. These can be found on the **Orbit Fox** dashboard page
 6. Make the changes desired, then click the **Save changes** button at the bottom
 
 == Screenshots ==
