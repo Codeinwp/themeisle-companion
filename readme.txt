@@ -12,9 +12,11 @@ This swiss-knife plugin comes with a quality template library, menu/sharing icon
 
 == Description ==
 
-Extend your theme functionality with <a href="https://themeisle.com/plugins/orbit-fox-companion/" rel="nofollow">Orbit Fox Companion</a> with various modules like Social Media Share Buttons & Icons, custom menu-icons, one click import page templates, page builder addons and free stock featured images.
+Extend your theme functionality with <a href="https://themeisle.com/plugins/orbit-fox-companion/" rel="nofollow">Orbit Fox Companion</a> with various modules like Social Media Share Buttons & Icons, Uptime Monitoring, Google Analytics, custom menu-icons, one click import page templates, page builder addons and free stock featured images.
 
 **Features:**
+- Uptime Monitor
+- Google Analytics Integration
 - Template Directory
 - Elementor Addons and Widgets
 - Beaver Builder Widgets
@@ -42,6 +44,13 @@ This plugin extends the features of your sites by adding numerous features.
 **Why use our custom icons module:**
 - Choose from a large variety of custom icons.
 - No coding needed, you can leverage the power of our dropdown icons selector and choose the right icon for your menu.
+
+**Why use our uptime monitor module:**
+- Really easy to use, just put in your email and you will receive a message when / if your site goes down.
+
+**Why use our Google Analytics integration module:**
+- It's a one-click configuration.
+- Just sign in with your google accounts
 
 **Why use our sharing module:**
 - It's easy to use
