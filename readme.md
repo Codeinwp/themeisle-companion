@@ -1,7 +1,7 @@
 # Orbit Fox by ThemeIsle #
 **Contributors:** [themeisle](https://profiles.wordpress.org/themeisle), [codeinwp](https://profiles.wordpress.org/codeinwp), [rodicaelena](https://profiles.wordpress.org/rodicaelena), [baicusandrei](https://profiles.wordpress.org/baicusandrei)  
 **Tags:** widget, admin, widgets, sharing, sections, themes, stock photos, custom icons, icons, menu icons, stock, templates  
-**Requires at least:** 3.0  
+**Requires at least:** 4.7  
 **Tested up to:** 4.9  
 **Requires PHP:** 5.3  
 **Stable tag:** trunk  
@@ -98,6 +98,12 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 ## Changelog ##
+### 2.4.3 - 2018-03-04  ###
+
+* Fixed Analytics module issues.
+* Better UX on module activation.
+
+
 ### 2.4.2 - 2018-03-02  ###
 
 * Added a new Google Analytics Integration module
