@@ -82,9 +82,6 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$this->loader->add_action( 'rest_api_init', $this, 'register_endpoints' );
 		$this->loader->add_action( 'current_screen', $this, 'maybe_save_obfx_token' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $this, 'enqueue_analytics_scripts' );
-		$this->loader->add_filter( 'obfx_custom_control_google_signin', $this, 'generate_analytics_login' );
-		$this->loader->add_filter( 'obfx_custom_control_analytics_accounts_refresh', $this, 'render_refresh_control' );
-		$this->loader->add_filter( 'obfx_custom_control_analytics_accounts_unregister', $this, 'render_unregister_control' );
 		$this->loader->add_action( 'wp_head', $this, 'output_analytics_code', 0 );
 	}
 
@@ -100,6 +97,11 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		) );
 	}
 
+	/**
+     * Refresh Tracking links.
+     *
+	 * @return array|bool|WP_Error
+	 */
 	public function refresh_tracking_links() {
 
 		if ( ! current_user_can( 'manage_options' ) ) {
@@ -117,6 +119,13 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$this->get_tracking_codes( $obfx_token, true );
 	}
 
+	/**
+     * Unregister website.
+     *
+	 * @param $obfx_token
+	 *
+	 * @return array|bool|WP_Error
+	 */
 	public function unregister_website( $obfx_token ) {
 		if ( ! isset( $obfx_token ) ) {
 			return false;
@@ -147,6 +156,9 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		return array();
 	}
 
+	/**
+	 * Enqueue JavaScript that requires localization.
+	 */
 	public function enqueue_analytics_scripts() {
 		$script_handle = $this->slug . '-script';
 		wp_register_script( $script_handle, plugin_dir_url( $this->get_dir() ) . $this->slug . '/js/script.js', array( 'jquery' ), $this->version );
@@ -191,11 +203,20 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function options() {
 		$token = get_option( 'obfx_token', '' );
 		if ( empty( $token ) ) {
+			$url   = $this->api_url . '/auth';
+			$url   = add_query_arg( array(
+				'site_hash'   => $this->get_site_hash(),
+				'site_url'    => home_url(),
+				'site_return' => admin_url( 'admin.php?page=obfx_companion' ),
+			), $url );
 			return array(
 				array(
-					'id'   => 'google_signin',
-					'name' => 'google_signin',
-					'type' => 'custom',
+					'id'         => 'google_signin',
+					'name'       => 'google_signin',
+					'type'       => 'link',
+					'url'        => $url,
+					'link-class' => 'btn btn-success',
+					'text'       => '<span class="dashicons dashicons-googleplus obfx-google"></span>' . __( 'Authenticate with Google', 'themeisle-companion' ),
 				),
 			);
 		}
@@ -215,7 +236,11 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			array(
 				'id'   => 'analytics_accounts_refresh',
 				'name' => 'analytics_accounts_refresh',
-				'type' => 'custom',
+				'type' => 'link',
+				'link-class' => 'btn btn-primary btn-sm',
+                'link-id' => 'refresh-analytics-accounts',
+                'text'   => '<i class="dashicons dashicons-update"></i> ' . __( 'Refresh Accounts', 'themeisle-companion' ),
+                'url' => ''
 			),
 			array(
 				'id'      => 'analytics_accounts_select',
@@ -227,31 +252,13 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			array(
 				'id'   => 'analytics_accounts_unregister',
 				'name' => 'analytics_accounts_unregister',
-				'type' => 'custom',
+				'type' => 'link',
+				'link-class' => 'btn btn-sm',
+				'link-id' => 'unregister-analytics',
+				'text'   => '<i class="dashicons dashicons-no"></i>' . __( 'Unregister Site', 'themeisle-companion' ),
+				'url' => ''
 			)
 		);
-	}
-
-	/**
-	 * Render the refresh button.
-	 *
-	 * @return string
-	 */
-	public function render_refresh_control() {
-		$refresh_button = '<button id="refresh-analytics-accounts" class="btn btn-primary btn-sm"><i class="dashicons dashicons-update"></i> ' . __( 'Refresh Accounts', 'themeisle-companion' ) . '</button><p></p>';
-
-		return $refresh_button;
-	}
-
-	/**
-	 * Render the unregister button.
-	 *
-	 * @return string
-	 */
-	public function render_unregister_control() {
-		$unregister_button = '<button id="unregister-analytics" class="btn btn-sm"><i class="dashicons dashicons-no"></i>' . __( 'Unregister Site', 'themeisle-companion' ) . '</button><p>';
-
-		return $unregister_button;
 	}
 
 	/**
@@ -297,24 +304,6 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	}
 
 	/**
-	 * Generates the analytics login control.
-	 *
-	 * @return string
-	 */
-	public function generate_analytics_login() {
-		$url = $this->api_url . '/auth';
-		$url = add_query_arg( array(
-			'site_hash'   => $this->get_site_hash(),
-			'site_url'    => home_url(),
-			'site_return' => admin_url( 'admin.php?page=obfx_companion' ),
-		), $url );
-
-		$template = '<a class="btn btn-success" href="' . esc_url( $url ) . '"><span class="dashicons dashicons-googleplus obfx-google"></span>' . __( 'Authenticate with Google', 'themeisle-companion' ) . '</a>';
-
-		return $template;
-	}
-
-	/**
 	 * Generate a website hash.
 	 *
 	 * @return string
@@ -349,21 +338,21 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 	public final function output_analytics_code() {
 		$ua_code = $this->get_option( 'analytics_accounts_select' ); ?>
-        <!-- Google Analytics -->
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo esc_attr( $ua_code ); ?>"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
+		<!-- Google Analytics -->
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo esc_attr( $ua_code ); ?>"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
 
-            function gtag() {
-                dataLayer.push( arguments );
-            }
+			function gtag() {
+				dataLayer.push( arguments );
+			}
 
-            gtag( 'js', new Date() );
+			gtag( 'js', new Date() );
 
-            gtag( 'config', '<?php echo esc_attr( $ua_code ); ?>' );
-        </script>
-        <!-- End Google Analytics -->
+			gtag( 'config', '<?php echo esc_attr( $ua_code ); ?>' );
+		</script>
+		<!-- End Google Analytics -->
 		<?php
 	}
 }

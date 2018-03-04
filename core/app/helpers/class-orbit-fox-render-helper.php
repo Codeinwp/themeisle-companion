@@ -23,9 +23,11 @@ class Orbit_Fox_Render_Helper {
 	 *
 	 * @since   1.0.0
 	 * @access  public
+	 *
 	 * @param   string $name The name of the partial w/o '-tpl.php'.
-	 * @param   array  $args Optional. An associative array with name and value to be
+	 * @param   array $args Optional. An associative array with name and value to be
 	 *                                 passed to the partial.
+	 *
 	 * @return string
 	 */
 	public function get_partial( $name = '', $args = array() ) {
@@ -39,6 +41,7 @@ class Orbit_Fox_Render_Helper {
 		if ( file_exists( $file ) ) {
 			include $file;
 		}
+
 		return ob_get_clean();
 	}
 
@@ -47,9 +50,11 @@ class Orbit_Fox_Render_Helper {
 	 *
 	 * @since   1.0.0
 	 * @access  public
+	 *
 	 * @param   string $name The name of the partial w/o '-page.php'.
-	 * @param   array  $args Optional. An associative array with name and value to be
+	 * @param   array $args Optional. An associative array with name and value to be
 	 *                                 passed to the view.
+	 *
 	 * @return string
 	 */
 	public function get_view( $name = '', $args = array() ) {
@@ -63,6 +68,7 @@ class Orbit_Fox_Render_Helper {
 		if ( file_exists( $file ) ) {
 			include $file;
 		}
+
 		return ob_get_clean();
 	}
 
@@ -71,7 +77,9 @@ class Orbit_Fox_Render_Helper {
 	 *
 	 * @since   1.0.0
 	 * @access  private
-	 * @param   array $option  The specific defaults array.
+	 *
+	 * @param   array $option The specific defaults array.
+	 *
 	 * @return array
 	 */
 	private function sanitize_option( $option ) {
@@ -98,7 +106,9 @@ class Orbit_Fox_Render_Helper {
 	 *
 	 * @since   1.0.0
 	 * @access  private
+	 *
 	 * @param   array $option The option from the module.
+	 *
 	 * @return mixed
 	 */
 	private function set_field_value( $option = array() ) {
@@ -106,6 +116,7 @@ class Orbit_Fox_Render_Helper {
 		if ( isset( $option['value'] ) && $option['value'] != '' ) {
 			$field_value = $option['value'];
 		}
+
 		return $field_value;
 	}
 
@@ -114,8 +125,10 @@ class Orbit_Fox_Render_Helper {
 	 *
 	 * @since   1.0.0
 	 * @access  private
+	 *
 	 * @param   string $element_id The option id field.
 	 * @param   string $title The option title field.
+	 *
 	 * @return string
 	 */
 	private function get_title( $element_id, $title ) {
@@ -123,6 +136,7 @@ class Orbit_Fox_Render_Helper {
 		if ( $title ) {
 			$display_title = '<label class="form-label" for="' . $element_id . '">' . $title . '</label>';
 		}
+
 		return $display_title;
 	}
 
@@ -131,7 +145,9 @@ class Orbit_Fox_Render_Helper {
 	 *
 	 * @since   1.0.0
 	 * @access  private
+	 *
 	 * @param   string $description The option description field.
+	 *
 	 * @return string
 	 */
 	private function get_description( $description ) {
@@ -139,6 +155,7 @@ class Orbit_Fox_Render_Helper {
 		if ( $description ) {
 			$display_description = '<p><small>' . $description . '</small></p>';
 		}
+
 		return $display_description;
 	}
 
@@ -147,8 +164,10 @@ class Orbit_Fox_Render_Helper {
 	 *
 	 * @since   1.0.0
 	 * @access  private
-	 * @param   array  $option The option array.
+	 *
+	 * @param   array $option The option array.
 	 * @param   string $element The element we want to wrap.
+	 *
 	 * @return string
 	 */
 	private function wrap_element( $option, $element ) {
@@ -167,13 +186,13 @@ class Orbit_Fox_Render_Helper {
 
 		return '
 		' . $before_wrap . '
-        <div class="form-group ' . $option['class'] . '">
-            ' . $title . '
-            ' . $element . '
-            ' . $description . '
-        </div>
-        ' . $after_wrap . '
-        ';
+		<div class="form-group ' . $option['class'] . '">
+			' . $title . '
+			' . $element . '
+			' . $description . '
+		</div>
+		' . $after_wrap . '
+		';
 	}
 
 	/**
@@ -181,20 +200,22 @@ class Orbit_Fox_Render_Helper {
 	 *
 	 * @since   1.0.0
 	 * @access  private
+	 *
 	 * @param   string $type The field type ( checkbox | radio ).
 	 * @param   string $field_value The field value.
 	 * @param   string $checked The checked flag.
 	 * @param   string $label The option label.
-	 * @param   array  $option The option from the module.
+	 * @param   array $option The option from the module.
+	 *
 	 * @return string
 	 */
 	private function generate_check_type( $type = 'radio', $field_value, $checked, $label, $option = array() ) {
 		return '
-	    <label class="form-' . $type . ' ' . $option['class'] . '">
-            <input type="' . $type . '" name="' . $option['name'] . '" value="' . $field_value . '" ' . $checked . ' />
-            <i class="form-icon"></i> ' . $label . '
-        </label>
-	    ';
+		<label class="form-' . $type . ' ' . $option['class'] . '">
+			<input type="' . $type . '" name="' . $option['name'] . '" value="' . $field_value . '" ' . $checked . ' />
+			<i class="form-icon"></i> ' . $label . '
+		</label>
+		';
 	}
 
 	/**
@@ -202,8 +223,10 @@ class Orbit_Fox_Render_Helper {
 	 *
 	 * @since   1.0.0
 	 * @access  private
+	 *
 	 * @param   array $option The option from the module.
-	 * @param   bool  $is_email Render an email input instead of text.
+	 * @param   bool $is_email Render an email input instead of text.
+	 *
 	 * @return mixed
 	 */
 	private function field_text( $option = array(), $is_email = false ) {
@@ -224,7 +247,9 @@ class Orbit_Fox_Render_Helper {
 	 *
 	 * @since   1.0.0
 	 * @access  private
+	 *
 	 * @param   array $option The option from the module.
+	 *
 	 * @return mixed
 	 */
 	private function field_textarea( $option = array() ) {
@@ -240,7 +265,9 @@ class Orbit_Fox_Render_Helper {
 	 *
 	 * @since   1.0.0
 	 * @access  private
+	 *
 	 * @param   array $option The option from the module.
+	 *
 	 * @return mixed
 	 */
 	private function field_select( $option = array() ) {
@@ -254,9 +281,9 @@ class Orbit_Fox_Render_Helper {
 			$select_options .= '<option value="' . $value . '" ' . $is_selected . '>' . $label . '</option>';
 		}
 		$field = '
-            <select class="form-select ' . $option['class'] . '" id="' . $option['id'] . '" name="' . $option['name'] . '" placeholder="' . $option['placeholder'] . '">
-                ' . $select_options . '
-            </select>';
+			<select class="form-select ' . $option['class'] . '" id="' . $option['id'] . '" name="' . $option['name'] . '" placeholder="' . $option['placeholder'] . '">
+				' . $select_options . '
+			</select>';
 		$field = $this->wrap_element( $option, $field );
 
 		return $field;
@@ -267,7 +294,9 @@ class Orbit_Fox_Render_Helper {
 	 *
 	 * @since   1.0.0
 	 * @access  private
+	 *
 	 * @param   array $option The option from the module.
+	 *
 	 * @return mixed
 	 */
 	private function field_radio( $option = array() ) {
@@ -290,7 +319,9 @@ class Orbit_Fox_Render_Helper {
 	 *
 	 * @since   1.0.0
 	 * @access  private
+	 *
 	 * @param   array $option The option from the module.
+	 *
 	 * @return mixed
 	 */
 	private function field_checkbox( $option = array() ) {
@@ -310,7 +341,9 @@ class Orbit_Fox_Render_Helper {
 	 *
 	 * @since   1.0.0
 	 * @access  private
+	 *
 	 * @param   array $option The option from the module.
+	 *
 	 * @return mixed
 	 */
 	private function field_toggle( $option = array() ) {
@@ -320,10 +353,31 @@ class Orbit_Fox_Render_Helper {
 			$checked = 'checked';
 		}
 		$field = '
-            <label class="form-switch ' . $option['class'] . '">
-                <input type="checkbox" name="' . $option['name'] . '" value="1" ' . $checked . ' />
-                <i class="form-icon"></i> ' . $option['label'] . '
-            </label>';
+			<label class="form-switch ' . $option['class'] . '">
+				<input type="checkbox" name="' . $option['name'] . '" value="1" ' . $checked . ' />
+				<i class="form-icon"></i> ' . $option['label'] . '
+			</label>';
+		$field = $this->wrap_element( $option, $field );
+
+		return $field;
+	}
+
+	/**
+	 * Render a toggle field.
+	 *
+	 * @since   1.0.0
+	 * @access  private
+	 *
+	 * @param   array $option The option from the module.
+	 *
+	 * @return mixed
+	 */
+	private function field_link( $option = array() ) {
+		$field = '
+			<a id="' . esc_attr( $option['link-id'] ) . '" class="' . esc_attr( $option['link-class'] ) . '" href="' . esc_url( $option['url'] ) . '">' .
+				wp_kses_post( $option['text'] )
+			. '</a>';
+
 		$field = $this->wrap_element( $option, $field );
 
 		return $field;
@@ -334,6 +388,7 @@ class Orbit_Fox_Render_Helper {
 	 *
 	 * @since   1.0.0
 	 * @access  public
+	 *
 	 * @param   array $option The option from the module..
 	 *
 	 * @return mixed
@@ -365,7 +420,9 @@ class Orbit_Fox_Render_Helper {
 				break;
 			case 'custom':
 				return apply_filters( 'obfx_custom_control_' . $option['id'], '' );
-
+				break;
+			case 'link':
+				return $this->field_link( $option );
 				break;
 			default:
 				return __( 'No option found for provided type', 'themeisle-companion' );
