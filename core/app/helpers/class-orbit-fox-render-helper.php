@@ -25,8 +25,8 @@ class Orbit_Fox_Render_Helper {
 	 * @access  public
 	 *
 	 * @param   string $name The name of the partial w/o '-tpl.php'.
-	 * @param   array $args Optional. An associative array with name and value to be
-	 *                                 passed to the partial.
+	 * @param   array  $args Optional. An associative array with name and value to be
+	 *                                  passed to the partial.
 	 *
 	 * @return string
 	 */
@@ -52,8 +52,8 @@ class Orbit_Fox_Render_Helper {
 	 * @access  public
 	 *
 	 * @param   string $name The name of the partial w/o '-page.php'.
-	 * @param   array $args Optional. An associative array with name and value to be
-	 *                                 passed to the view.
+	 * @param   array  $args Optional. An associative array with name and value to be
+	 *                                  passed to the view.
 	 *
 	 * @return string
 	 */
@@ -165,7 +165,7 @@ class Orbit_Fox_Render_Helper {
 	 * @since   1.0.0
 	 * @access  private
 	 *
-	 * @param   array $option The option array.
+	 * @param   array  $option The option array.
 	 * @param   string $element The element we want to wrap.
 	 *
 	 * @return string
@@ -205,7 +205,7 @@ class Orbit_Fox_Render_Helper {
 	 * @param   string $field_value The field value.
 	 * @param   string $checked The checked flag.
 	 * @param   string $label The option label.
-	 * @param   array $option The option from the module.
+	 * @param   array  $option The option from the module.
 	 *
 	 * @return string
 	 */
@@ -225,7 +225,7 @@ class Orbit_Fox_Render_Helper {
 	 * @access  private
 	 *
 	 * @param   array $option The option from the module.
-	 * @param   bool $is_email Render an email input instead of text.
+	 * @param   bool  $is_email Render an email input instead of text.
 	 *
 	 * @return mixed
 	 */
