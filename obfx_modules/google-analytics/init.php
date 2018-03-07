@@ -207,7 +207,7 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			$url   = add_query_arg( array(
 				'site_hash'   => $this->get_site_hash(),
 				'site_url'    => home_url(),
-				'site_return' => admin_url( 'admin.php?page=obfx_companion' ),
+				'site_return' => admin_url( 'admin.php?page=obfx_companion#obfx-mod-google-analytics' ),
 			), $url );
 			return array(
 				array(
