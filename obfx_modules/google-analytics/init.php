@@ -98,8 +98,8 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	}
 
 	/**
-     * Refresh Tracking links.
-     *
+	 * Refresh Tracking links.
+	 *
 	 * @return array|bool|WP_Error
 	 */
 	public function refresh_tracking_links() {
@@ -120,8 +120,8 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	}
 
 	/**
-     * Unregister website.
-     *
+	 * Unregister website.
+	 *
 	 * @param $obfx_token
 	 *
 	 * @return array|bool|WP_Error
@@ -203,12 +203,13 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function options() {
 		$token = get_option( 'obfx_token', '' );
 		if ( empty( $token ) ) {
-			$url   = $this->api_url . '/auth';
-			$url   = add_query_arg( array(
+			$url = $this->api_url . '/auth';
+			$url = add_query_arg( array(
 				'site_hash'   => $this->get_site_hash(),
 				'site_url'    => home_url(),
 				'site_return' => admin_url( 'admin.php?page=obfx_companion#obfx-mod-google-analytics' ),
 			), $url );
+
 			return array(
 				array(
 					'id'         => 'google_signin',
@@ -234,13 +235,13 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		return array(
 
 			array(
-				'id'   => 'analytics_accounts_refresh',
-				'name' => 'analytics_accounts_refresh',
-				'type' => 'link',
+				'id'         => 'analytics_accounts_refresh',
+				'name'       => 'analytics_accounts_refresh',
+				'type'       => 'link',
 				'link-class' => 'btn btn-primary btn-sm',
-                'link-id' => 'refresh-analytics-accounts',
-                'text'   => '<i class="dashicons dashicons-update"></i> ' . __( 'Refresh Accounts', 'themeisle-companion' ),
-                'url' => ''
+				'link-id'    => 'refresh-analytics-accounts',
+				'text'       => '<i class="dashicons dashicons-update"></i> ' . __( 'Refresh Accounts', 'themeisle-companion' ),
+				'url'        => ''
 			),
 			array(
 				'id'      => 'analytics_accounts_select',
@@ -250,13 +251,13 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'default' => '-',
 			),
 			array(
-				'id'   => 'analytics_accounts_unregister',
-				'name' => 'analytics_accounts_unregister',
-				'type' => 'link',
+				'id'         => 'analytics_accounts_unregister',
+				'name'       => 'analytics_accounts_unregister',
+				'type'       => 'link',
 				'link-class' => 'btn btn-sm',
-				'link-id' => 'unregister-analytics',
-				'text'   => '<i class="dashicons dashicons-no"></i>' . __( 'Unregister Site', 'themeisle-companion' ),
-				'url' => ''
+				'link-id'    => 'unregister-analytics',
+				'text'       => '<i class="dashicons dashicons-no"></i>' . __( 'Unregister Site', 'themeisle-companion' ),
+				'url'        => ''
 			)
 		);
 	}
@@ -309,7 +310,12 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return string
 	 */
 	private final function get_site_hash() {
-		return mb_strimwidth( rtrim( ltrim( sanitize_text_field( preg_replace( '/[^a-zA-Z0-9]/', '', AUTH_KEY . SECURE_AUTH_KEY . LOGGED_IN_KEY ) ) ) ), 0, 100 );
+		$pre_hash = rtrim( ltrim( sanitize_text_field( preg_replace( '/[^a-zA-Z0-9]/', '', AUTH_KEY . SECURE_AUTH_KEY . LOGGED_IN_KEY ) ) ) );
+		if ( function_exists( 'mb_strimwidth' ) ) {
+			return mb_strimwidth( $pre_hash, 0, 100 );
+		}
+
+		return substr( $pre_hash, 0, 100 );
 	}
 
 	public final function maybe_save_obfx_token() {
