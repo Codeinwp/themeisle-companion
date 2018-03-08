@@ -1,4 +1,9 @@
 
+ ### v2.4.4 - 2018-03-08 
+ **Changes:** 
+ * Fixed Analytics module error.
+* UX Improvements.
+ 
  ### v2.4.3 - 2018-03-04 
  **Changes:** 
  * Fixed Analytics module issues.
