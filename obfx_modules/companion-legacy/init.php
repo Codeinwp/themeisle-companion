@@ -69,6 +69,10 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			$theme_name = 'Hestia Pro';
 
 		}
+		if( $this->is_shop_isle() ) {
+			require_once $this->inc_dir . 'shop-isle' . DIRECTORY_SEPARATOR . 'functions.php';
+			$theme_name = 'ShopIsle';
+		}
 		$this->name        = sprintf( __( '%s enhancements ', 'themeisle-companion' ), $theme_name );
 		$this->description = sprintf( __( 'Module containing frontpage improvements for %s theme.', 'themeisle-companion' ), $theme_name );
 	}
@@ -105,6 +109,18 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		return false;
 	}
 
+	private function is_shop_isle() {
+		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		if( is_plugin_active( 'shop-isle-companion.php' ) ) {
+			return false;
+		}
+		if ( $this->get_active_theme_dir() == 'shop-isle' ) {
+			return true;
+		}
+
+		return false;
+	}
+
 	/**
 	 * Determine if module should be loaded.
 	 *
@@ -113,7 +129,7 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return bool
 	 */
 	public function enable_module() {
-		if ( $this->is_hestia() || $this->is_rhea() || $this->is_zerif() || $this->is_hestia_pro() ) {
+		if ( $this->is_hestia() || $this->is_rhea() || $this->is_zerif() || $this->is_hestia_pro() || $this->is_shop_isle() ) {
 			return true;
 		} else {
 			return false;
@@ -164,6 +180,76 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
         ';
 
 		echo $output;
+	}
+
+	/**
+	 * Function to import customizer big title settings into first slide.
+	 */
+	public function shop_isle_get_wporg_options() {
+		/* import shop isle options */
+		$shop_isle_mods = get_option('theme_mods_shop-isle');
+
+		if (!empty($shop_isle_mods)) {
+
+			$new_slider = new stdClass();
+
+			foreach ($shop_isle_mods as $shop_isle_mod_k => $shop_isle_mod_v) {
+
+				/* migrate Big title section to Slider section */
+				if (($shop_isle_mod_k == 'shop_isle_big_title_image') || ($shop_isle_mod_k == 'shop_isle_big_title_title') || ($shop_isle_mod_k == 'shop_isle_big_title_subtitle') || ($shop_isle_mod_k == 'shop_isle_big_title_button_label') || ($shop_isle_mod_k == 'shop_isle_big_title_button_link')) {
+
+					if ($shop_isle_mod_k == 'shop_isle_big_title_image') {
+						if (!empty($shop_isle_mod_v)) {
+							$new_slider->image_url = $shop_isle_mod_v;
+						} else {
+							$new_slider->image_url = '';
+						}
+					}
+
+					if ($shop_isle_mod_k == 'shop_isle_big_title_title') {
+						if (!empty($shop_isle_mod_v)) {
+							$new_slider->text = $shop_isle_mod_v;
+						} else {
+							$new_slider->text = '';
+						}
+					}
+
+					if ($shop_isle_mod_k == 'shop_isle_big_title_subtitle') {
+						if (!empty($shop_isle_mod_v)) {
+							$new_slider->subtext = $shop_isle_mod_v;
+						} else {
+							$new_slider->subtext = '';
+						}
+					}
+
+					if ($shop_isle_mod_k == 'shop_isle_big_title_button_label') {
+						if (!empty($shop_isle_mod_v)) {
+							$new_slider->label = $shop_isle_mod_v;
+						} else {
+							$new_slider->label = '';
+						}
+					}
+
+					if ($shop_isle_mod_k == 'shop_isle_big_title_button_link') {
+						if (!empty($shop_isle_mod_v)) {
+							$new_slider->link = $shop_isle_mod_v;
+						} else {
+							$new_slider->link = '';
+						}
+					}
+
+					if ( !empty($new_slider->image_url) || !empty($new_slider->text) || !empty($new_slider->subtext) || !empty($new_slider->link) ) {
+						$new_slider_encode = json_encode(array($new_slider));
+						set_theme_mod('shop_isle_slider', $new_slider_encode);
+					}
+
+				} else {
+
+					set_theme_mod($shop_isle_mod_k, $shop_isle_mod_v);
+				}
+			}
+		}
+
 	}
 
 	/**
@@ -261,6 +347,15 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			$this->loader->add_action( 'after_setup_theme', $this, 'hestia_load_default_content' );
 			$this->loader->add_filter( 'hestia_clients_bar_default_content', $this, 'hestia_load_clients_default_content' );
 			$this->loader->add_filter( 'hestia_top_bar_alignment_default', $this, 'hestia_top_bar_default_alignment' );
+		}
+	}
+
+	/**
+	 * Import mods if is shop isle.
+	 */
+	public function activate() {
+		if( $this->is_shop_isle() ) {
+			$this->shop_isle_get_wporg_options();
 		}
 	}
 
