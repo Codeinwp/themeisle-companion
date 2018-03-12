@@ -83,25 +83,33 @@ function themeisle_hestia_set_top_bar_widgets( $type ) {
 
 	switch ( $type ) {
 		case 'woo_top':
-			$counter                              = 1;
-			$active_widgets['sidebar-top-bar'][0] = 'woocommerce_widget_cart-' . $counter;
-			$cart_widget[ $counter ]              = array( 'title' => 'Cart' );
-			update_option( 'widget_woocommerce_widget_cart', $cart_widget );
-			$counter++;
 
-			$active_widgets['sidebar-top-bar'][] = 'woocommerce_product_search-' . $counter;
-			$search_widget[ $counter ]           = array( 'title' => 'Search' );
+			$widget_name                          = themeisle_hestia_get_new_widget_name('woocommerce_widget_cart');
+			$widget_index                         = trim( substr( $widget_name, strrpos( $widget_name, '-' ) + 1 ) );
+			$active_widgets['sidebar-top-bar'][] = $widget_name;
+			$cart_widget[ $widget_index ]         = array( 'title' => 'Cart' );
+			update_option( 'widget_woocommerce_widget_cart', $cart_widget );
+
+
+			$widget_name                         = themeisle_hestia_get_new_widget_name('woocommerce_product_search');
+			$widget_index                        = trim( substr( $widget_name, strrpos( $widget_name, '-' ) + 1 ) );
+			$active_widgets['sidebar-top-bar'][] = $widget_name;
+			$search_widget[ $widget_index ]      = array( 'title' => 'Search' );
 			update_option( 'widget_woocommerce_product_search', $search_widget );
 			break;
 		case 'blog_top':
-			$active_widgets['sidebar-top-bar'][0] = 'search-1';
-			$search_widget[1]                     = array( 'title' => 'Search' );
+			$widget_name                          = themeisle_hestia_get_new_widget_name('search');
+			$widget_index                         = trim( substr( $widget_name, strrpos( $widget_name, '-' ) + 1 ) );
+			$active_widgets['sidebar-top-bar'][] = $widget_name;
+			$search_widget[$widget_index]         = array( 'title' => 'Search' );
 			update_option( 'widget_search', $search_widget );
 			break;
 		case 'page_top':
+			$widget_name                          = themeisle_hestia_get_new_widget_name('nav_menu');
+			$widget_index                         = trim( substr( $widget_name, strrpos( $widget_name, '-' ) + 1 ) );
 			$menu_id                              = themeisle_hestia_create_menu( 'socials' );
-			$active_widgets['sidebar-top-bar'][0] = 'nav_menu-1';
-			$menu_widget[1]                       = array(
+			$active_widgets['sidebar-top-bar'][] = $widget_name;
+			$menu_widget[$widget_index]           = array(
 				'title'    => 'Socials',
 				'nav_menu' => $menu_id,
 			);
@@ -201,3 +209,34 @@ function themeisle_hestia_create_menu( $type ) {
 	}
 	return '';
 }
+
+/**
+ * Generate new unique widget name.
+ *
+ * @param string $widget_name Widget name.
+ *
+ * @return string
+ */
+function themeisle_hestia_get_new_widget_name( $widget_name ) {
+	$current_sidebars = get_option( 'sidebars_widgets' );
+	$all_widget_array = array();
+	foreach ( $current_sidebars as $sidebar => $widgets ) {
+		if ( ! empty( $widgets ) && is_array( $widgets ) && $sidebar != 'wp_inactive_widgets' ) {
+			foreach ( $widgets as $widget ) {
+				$all_widget_array[] = $widget;
+			}
+		}
+	}
+	$widget_index = 1;
+	while ( in_array( $widget_name . '-' . $widget_index, $all_widget_array ) ) {
+		$widget_index ++;
+	}
+	$new_widget_name = $widget_name . '-' . $widget_index;
+	return $new_widget_name;
+}
+
+function aaa( $widget_name ) {
+	$current_sidebars = get_option( 'sidebars_widgets' );
+	var_dump($current_sidebars);
+}
+add_action('hestia_after_header_hook','aaa' );
