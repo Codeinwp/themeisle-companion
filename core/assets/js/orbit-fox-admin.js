@@ -121,7 +121,9 @@ var obfx_admin = function ( $ ) {
 					var optionsPanel = $( '#obfx-mod-' + name );
 					optionsPanel.find( '.btn-expand' ).click();
 					scrollToAnchor(optionsPanel);
-				}
+                    optionsPanel.find( '.form-input:first-of-type' ).focus();
+
+                }
 			);
 
 			$( '.close-confirm-intent' ).on(
