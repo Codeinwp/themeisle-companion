@@ -73,6 +73,10 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			require_once $this->inc_dir . 'shop-isle' . DIRECTORY_SEPARATOR . 'functions.php';
 			$theme_name = 'ShopIsle';
 		}
+		if ( $this->is_azera_shop() ) {
+			require_once  $this->inc_dir . 'azera-shop' . DIRECTORY_SEPARATOR . 'functions.php';
+			$theme_name = 'Azera Shop';
+		}
 		$this->name        = sprintf( __( '%s enhancements ', 'themeisle-companion' ), $theme_name );
 		$this->description = sprintf( __( 'Module containing frontpage improvements for %s theme.', 'themeisle-companion' ), $theme_name );
 	}
@@ -121,6 +125,21 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		return false;
 	}
 
+	private function is_azera_shop() {
+		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		if ( is_plugin_active( 'azera-shop-companion.php' ) ) {
+			return false;
+		}
+		if ( is_plugin_active( 'azera-shop-plus.php' ) ) {
+			return false;
+		}
+		if ( $this->get_active_theme_dir() == 'azera-shop' ) {
+			return true;
+		}
+
+		return false;
+	}
+
 	/**
 	 * Determine if module should be loaded.
 	 *
@@ -129,7 +148,7 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return bool
 	 */
 	public function enable_module() {
-		if ( $this->is_hestia() || $this->is_rhea() || $this->is_zerif() || $this->is_hestia_pro() || $this->is_shop_isle() ) {
+		if ( $this->is_hestia() || $this->is_rhea() || $this->is_zerif() || $this->is_hestia_pro() || $this->is_shop_isle() || $this->is_azera_shop() ) {
 			return true;
 		} else {
 			return false;
