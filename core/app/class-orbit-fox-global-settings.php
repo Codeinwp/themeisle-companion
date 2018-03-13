@@ -62,13 +62,14 @@ class Orbit_Fox_Global_Settings {
 				'obfx_modules',
 				array(
 					'social-sharing',
+					'uptime-monitor',
+					'google-analytics',
 					'companion-legacy',
 					'elementor-widgets',
 					'template-directory',
 					'menu-icons',
 					'mystock-import',
 					'beaver-widgets',
-					'uptime-monitor',
 				)
 			);
 		}// End if().
@@ -81,6 +82,7 @@ class Orbit_Fox_Global_Settings {
 	 *
 	 * @since   1.0.0
 	 * @access  public
+	 *
 	 * @param   string                    $name The name of the module from $modules array.
 	 * @param   Orbit_Fox_Module_Abstract $module The module object.
 	 */
