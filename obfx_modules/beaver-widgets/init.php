@@ -56,7 +56,7 @@ class Beaver_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function hooks() {
 		$this->loader->add_action( 'init', $this, 'load_widgets_modules' );
-		// $this->loader->add_action( 'init_themeisle_content_forms', $this, 'load_content_forms' );
+		$this->loader->add_action( 'init_themeisle_content_forms', $this, 'load_content_forms' );
 	}
 
 	/**
@@ -111,11 +111,11 @@ class Beaver_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	/**
 	 * If the content-forms library is available we should make the forms available for elementor
 	 */
-//	public function load_content_forms() {
-//		if ( class_exists( '\ThemeIsle\ContentForms\ContactForm' ) ) {
-//			\ThemeIsle\ContentForms\ContactForm::instance();
-//			\ThemeIsle\ContentForms\NewsletterForm::instance();
-//			\ThemeIsle\ContentForms\RegistrationForm::instance();
-//		}
-//	}
+	public function load_content_forms() {
+		if ( class_exists( '\ThemeIsle\ContentForms\ContactForm' ) ) {
+			\ThemeIsle\ContentForms\ContactForm::instance();
+			\ThemeIsle\ContentForms\NewsletterForm::instance();
+			\ThemeIsle\ContentForms\RegistrationForm::instance();
+		}
+	}
 }
