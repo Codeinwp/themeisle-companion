@@ -78,8 +78,8 @@ get_header(); ?>
 		<section class="module">
 			<div class="container">
 				<?php
-				$shop_isle_our_team_title = get_theme_mod( 'shop_isle_our_team_title', __( 'Meet our team', 'shop-isle' ) );
-				$shop_isle_our_team_subtitle = get_theme_mod( 'shop_isle_our_team_subtitle',__( 'An awesome way to introduce the members of your team.', 'shop-isle' ) );
+				$shop_isle_our_team_title = get_theme_mod( 'shop_isle_our_team_title', __( 'Meet our team', 'themeisle-companion' ) );
+				$shop_isle_our_team_subtitle = get_theme_mod( 'shop_isle_our_team_subtitle',__( 'An awesome way to introduce the members of your team.', 'themeisle-companion' ) );
 
 				if ( ! empty( $shop_isle_our_team_title ) || ! empty( $shop_isle_our_team_subtitle ) ) {
 
@@ -137,8 +137,8 @@ get_header(); ?>
 								echo '</div>';
 							endif;
 
-							$shop_isle_about_page_video_title = get_theme_mod( 'shop_isle_about_page_video_title',__( 'Presentation', 'shop-isle' ) );
-							$shop_isle_about_page_video_subtitle = get_theme_mod( 'shop_isle_about_page_video_subtitle',__( 'What the video about our new products', 'shop-isle' ) );
+							$shop_isle_about_page_video_title = get_theme_mod( 'shop_isle_about_page_video_title',__( 'Presentation', 'themeisle-companion' ) );
+							$shop_isle_about_page_video_subtitle = get_theme_mod( 'shop_isle_about_page_video_subtitle',__( 'What the video about our new products', 'themeisle-companion' ) );
 
 							if ( ! empty( $shop_isle_about_page_video_title ) ) :
 								echo '<div class="video-title font-alt">' . wp_kses_post( $shop_isle_about_page_video_title ) . '</div>';
@@ -159,7 +159,7 @@ get_header(); ?>
 		<section class="module module-advantages">
 			<div class="container">
 				<?php
-				$shop_isle_our_advantages_title = get_theme_mod( 'shop_isle_our_advantages_title',__( 'Our advantages', 'shop-isle' ) );
+				$shop_isle_our_advantages_title = get_theme_mod( 'shop_isle_our_advantages_title',__( 'Our advantages', 'themeisle-companion' ) );
 				if ( ! empty( $shop_isle_our_advantages_title ) ) :
 					echo '<div class="row">';
 						echo '<div class="col-sm-6 col-sm-offset-3">';

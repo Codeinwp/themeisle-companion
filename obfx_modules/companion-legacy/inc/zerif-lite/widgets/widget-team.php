@@ -21,7 +21,7 @@ if ( ! class_exists( 'zerif_team_widget' ) ) {
 		public function __construct() {
 			parent::__construct(
 				'zerif_team-widget',
-				__( 'Zerif - Team member widget', 'zerif-lite' ),
+				__( 'Zerif - Team member widget', 'themeisle-companion' ),
 				array(
 					'customize_selective_refresh' => true,
 				)
@@ -121,7 +121,7 @@ if ( ! class_exists( 'zerif_team_widget' ) ) {
 										<?php
 										if ( ! empty( $instance['name'] ) ) { ?>
 											<span class="sr-only">
-				                            <?php _e( 'Facebook account of', 'zerif-lite' ); ?>
+				                            <?php _e( 'Facebook account of', 'themeisle-companion' ); ?>
 				                            <?php echo apply_filters( 'widget_title', $instance['name'] ); ?>
 			                            </span>
 											<?php
@@ -139,7 +139,7 @@ if ( ! class_exists( 'zerif_team_widget' ) ) {
 										<?php
 										if ( ! empty( $instance['name'] ) ) { ?>
 											<span class="sr-only">
-				                            <?php _e( 'Twitter account of', 'zerif-lite' ); ?>
+				                            <?php _e( 'Twitter account of', 'themeisle-companion' ); ?>
 				                            <?php echo apply_filters( 'widget_title', $instance['name'] ); ?>
 			                            </span>
 											<?php
@@ -157,7 +157,7 @@ if ( ! class_exists( 'zerif_team_widget' ) ) {
 										<?php
 										if ( ! empty( $instance['name'] ) ) { ?>
 											<span class="sr-only">
-				                            <?php _e( 'Behance account of', 'zerif-lite' ); ?>
+				                            <?php _e( 'Behance account of', 'themeisle-companion' ); ?>
 				                            <?php echo apply_filters( 'widget_title', $instance['name'] ); ?>
 			                            </span>
 											<?php
@@ -175,7 +175,7 @@ if ( ! class_exists( 'zerif_team_widget' ) ) {
 										<?php
 										if ( ! empty( $instance['name'] ) ) { ?>
 											<span class="sr-only">
-				                            <?php _e( 'Dribble account of', 'zerif-lite' ); ?>
+				                            <?php _e( 'Dribble account of', 'themeisle-companion' ); ?>
 				                            <?php echo apply_filters( 'widget_title', $instance['name'] ); ?>
 			                            </span>
 											<?php
@@ -193,7 +193,7 @@ if ( ! class_exists( 'zerif_team_widget' ) ) {
 										<?php
 										if ( ! empty( $instance['name'] ) ) { ?>
 											<span class="sr-only">
-				                            <?php _e( 'Linkedin account of', 'zerif-lite' ); ?>
+				                            <?php _e( 'Linkedin account of', 'themeisle-companion' ); ?>
 				                            <?php echo apply_filters( 'widget_title', $instance['name'] ); ?>
 			                            </span>
 											<?php
@@ -266,7 +266,7 @@ if ( ! class_exists( 'zerif_team_widget' ) ) {
 
 			<p>
 				<label
-					for="<?php echo $this->get_field_id( 'name' ); ?>"><?php _e( 'Name', 'zerif-lite' ); ?></label><br/>
+					for="<?php echo $this->get_field_id( 'name' ); ?>"><?php _e( 'Name', 'themeisle-companion' ); ?></label><br/>
 				<input type="text" name="<?php echo $this->get_field_name( 'name' ); ?>"
 				       id="<?php echo $this->get_field_id( 'name' ); ?>"
 				       value="<?php if ( ! empty( $instance['name'] ) ) :  echo $instance['name'];
@@ -275,14 +275,14 @@ endif; ?>"
 			</p>
 			<p>
 				<label
-					for="<?php echo $this->get_field_id( 'position' ); ?>"><?php _e( 'Position', 'zerif-lite' ); ?></label><br/>
+					for="<?php echo $this->get_field_id( 'position' ); ?>"><?php _e( 'Position', 'themeisle-companion' ); ?></label><br/>
 				<textarea class="widefat" rows="8" cols="20" name="<?php echo $this->get_field_name( 'position' ); ?>"
 				          id="<?php echo $this->get_field_id( 'position' ); ?>"><?php if ( ! empty( $instance['position'] ) ) :  echo htmlspecialchars_decode( $instance['position'] );
 endif; ?></textarea>
 			</p>
 			<p>
 				<label
-					for="<?php echo $this->get_field_id( 'description' ); ?>"><?php _e( 'Description', 'zerif-lite' ); ?></label><br/>
+					for="<?php echo $this->get_field_id( 'description' ); ?>"><?php _e( 'Description', 'themeisle-companion' ); ?></label><br/>
 				<textarea class="widefat" rows="8" cols="20"
 				          name="<?php echo $this->get_field_name( 'description' ); ?>"
 				          id="<?php echo $this->get_field_id( 'description' ); ?>"><?php
@@ -292,7 +292,7 @@ endif;
 			</p>
 			<p>
 				<label
-					for="<?php echo $this->get_field_id( 'fb_link' ); ?>"><?php _e( 'Facebook link', 'zerif-lite' ); ?></label><br/>
+					for="<?php echo $this->get_field_id( 'fb_link' ); ?>"><?php _e( 'Facebook link', 'themeisle-companion' ); ?></label><br/>
 				<input type="text" name="<?php echo $this->get_field_name( 'fb_link' ); ?>"
 				       id="<?php echo $this->get_field_id( 'fb_link' ); ?>"
 				       value="<?php if ( ! empty( $instance['fb_link'] ) ) :  echo $instance['fb_link'];
@@ -302,7 +302,7 @@ endif; ?>"
 			</p>
 			<p>
 				<label
-					for="<?php echo $this->get_field_id( 'tw_link' ); ?>"><?php _e( 'Twitter link', 'zerif-lite' ); ?></label><br/>
+					for="<?php echo $this->get_field_id( 'tw_link' ); ?>"><?php _e( 'Twitter link', 'themeisle-companion' ); ?></label><br/>
 				<input type="text" name="<?php echo $this->get_field_name( 'tw_link' ); ?>"
 				       id="<?php echo $this->get_field_id( 'tw_link' ); ?>"
 				       value="<?php if ( ! empty( $instance['tw_link'] ) ) :  echo $instance['tw_link'];
@@ -311,7 +311,7 @@ endif; ?>"
 			</p>
 			<p>
 				<label
-					for="<?php echo $this->get_field_id( 'bh_link' ); ?>"><?php _e( 'Behance link', 'zerif-lite' ); ?></label><br/>
+					for="<?php echo $this->get_field_id( 'bh_link' ); ?>"><?php _e( 'Behance link', 'themeisle-companion' ); ?></label><br/>
 				<input type="text" name="<?php echo $this->get_field_name( 'bh_link' ); ?>"
 				       id="<?php echo $this->get_field_id( 'bh_link' ); ?>"
 				       value="<?php if ( ! empty( $instance['bh_link'] ) ) :  echo $instance['bh_link'];
@@ -321,7 +321,7 @@ endif; ?>"
 			</p>
 			<p>
 				<label
-					for="<?php echo $this->get_field_id( 'db_link' ); ?>"><?php _e( 'Dribble link', 'zerif-lite' ); ?></label><br/>
+					for="<?php echo $this->get_field_id( 'db_link' ); ?>"><?php _e( 'Dribble link', 'themeisle-companion' ); ?></label><br/>
 				<input type="text" name="<?php echo $this->get_field_name( 'db_link' ); ?>"
 				       id="<?php echo $this->get_field_id( 'db_link' ); ?>"
 				       value="<?php if ( ! empty( $instance['db_link'] ) ) :  echo $instance['db_link'];
@@ -330,7 +330,7 @@ endif; ?>"
 			</p>
 			<p>
 				<label
-					for="<?php echo $this->get_field_id( 'ln_link' ); ?>"><?php _e( 'Linkedin link', 'zerif-lite' ); ?></label><br/>
+					for="<?php echo $this->get_field_id( 'ln_link' ); ?>"><?php _e( 'Linkedin link', 'themeisle-companion' ); ?></label><br/>
 				<input type="text" name="<?php echo $this->get_field_name( 'ln_link' ); ?>"
 				       id="<?php echo $this->get_field_id( 'ln_link' ); ?>"
 				       value="<?php if ( ! empty( $instance['ln_link'] ) ) :  echo $instance['ln_link'];
@@ -340,12 +340,12 @@ endif; ?>"
 			<p>
 				<input type="checkbox" name="<?php echo $this->get_field_name( 'open_new_window' ); ?>"
 				       id="<?php echo $this->get_field_id( 'open_new_window' ); ?>" <?php if ( ! empty( $instance['open_new_window'] ) ) :  checked( (bool) $instance['open_new_window'], true );
-endif; ?> ><?php _e( 'Open links in new window?', 'zerif-lite' ); ?>
+endif; ?> ><?php _e( 'Open links in new window?', 'themeisle-companion' ); ?>
 				<br>
 			</p>
 			<p>
 				<label
-					for="<?php echo $this->get_field_id( 'image_uri' ); ?>"><?php _e( 'Image', 'zerif-lite' ); ?></label><br/>
+					for="<?php echo $this->get_field_id( 'image_uri' ); ?>"><?php _e( 'Image', 'themeisle-companion' ); ?></label><br/>
 
 				<?php
 				$image_in_customizer = '';
@@ -369,7 +369,7 @@ endif; ?> ><?php _e( 'Open links in new window?', 'zerif-lite' ); ?>
 endif; ?>">
 				<img class="custom_media_image" src="<?php echo $image_in_customizer; ?>"
 				     style="margin:0;padding:0;max-width:100px;float:left;display:<?php echo $display; ?>"
-				     alt="<?php echo __( 'Uploaded image', 'zerif-lite' ); ?>"/><br/>
+				     alt="<?php echo __( 'Uploaded image', 'themeisle-companion' ); ?>"/><br/>
 
 				<input type="text" class="widefat custom_media_url"
 				       name="<?php echo $this->get_field_name( 'image_uri' ); ?>"
@@ -380,7 +380,7 @@ endif; ?>"
 
 				<input type="button" class="button button-primary custom_media_button" id="custom_media_button"
 				       name="<?php echo $this->get_field_name( 'image_uri' ); ?>"
-				       value="<?php _e( 'Upload Image', 'zerif-lite' ); ?>" style="margin-top:5px;">
+				       value="<?php _e( 'Upload Image', 'themeisle-companion' ); ?>" style="margin-top:5px;">
 			</p>
 
 			<input class="custom_media_id" id="<?php echo $this->get_field_id( 'custom_media_id' ); ?>"

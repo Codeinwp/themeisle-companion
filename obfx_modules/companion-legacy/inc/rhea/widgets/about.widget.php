@@ -4,10 +4,10 @@ class Rhea_About_Company extends WP_Widget {
 	public function __construct() {
 
 		$widget_args = array(
-			'description' => esc_html__( 'This widget is designed for footer area', 'rhea' ),
+			'description' => esc_html__( 'This widget is designed for footer area', 'themeisle-companion' ),
 		);
 
-		parent::__construct( 'rhea-about-company', esc_html__( '[Rhea] About Company', 'rhea' ), $widget_args );
+		parent::__construct( 'rhea-about-company', esc_html__( '[Rhea] About Company', 'themeisle-companion' ), $widget_args );
 		add_action( 'admin_enqueue_scripts', array( $this, 'widget_scripts' ) );
 	}
 
@@ -91,16 +91,16 @@ class Rhea_About_Company extends WP_Widget {
 		?>
 		<p>
 			<input type="checkbox" name="<?php echo $this->get_field_name( 'use_logo' ); ?>" id="<?php echo $this->get_field_id( 'use_logo' ); ?>" value="use_logo" <?php if ( isset( $instance['use_logo'] ) ) { checked( $instance['use_logo'], 'use_logo' ); } ?>>
-			<label for="<?php echo $this->get_field_id( 'use_logo' ); ?>"><?php esc_html_e( 'Use website logo','rhea' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'use_logo' ); ?>"><?php esc_html_e( 'Use website logo','themeisle-companion' ); ?></label>
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'image_uri' ); ?>"><?php esc_html_e( 'Logo', 'rhea' ); ?></label><br/>
-			<img class="custom_media_image" src="<?php echo $image_in_customizer; ?>" style="margin:0;padding:0;max-width:100px;float:left;display:<?php echo esc_attr( $display ); ?>" alt="<?php echo __( 'Uploaded image', 'zerif-lite' ); ?>"/><br/>
+			<label for="<?php echo $this->get_field_id( 'image_uri' ); ?>"><?php esc_html_e( 'Logo', 'themeisle-companion' ); ?></label><br/>
+			<img class="custom_media_image" src="<?php echo $image_in_customizer; ?>" style="margin:0;padding:0;max-width:100px;float:left;display:<?php echo esc_attr( $display ); ?>" alt="<?php echo __( 'Uploaded image', 'themeisle-companion' ); ?>"/><br/>
 			<input type="text" class="widefat custom_media_url" name="<?php echo $this->get_field_name( 'image_uri' ); ?>" id="<?php echo $this->get_field_id( 'image_uri' ); ?>" value="<?php if ( ! empty( $instance['image_uri'] ) ) { echo $instance['image_uri']; } ?>" style="margin-top:5px;">
-			<input type="button" class="button button-primary custom_media_button" id="custom_media_button" name="<?php echo $this->get_field_name( 'image_uri' ); ?>" value="<?php esc_html_e( 'Upload Image','rhea' ); ?>" style="margin-top:5px;">
+			<input type="button" class="button button-primary custom_media_button" id="custom_media_button" name="<?php echo $this->get_field_name( 'image_uri' ); ?>" value="<?php esc_html_e( 'Upload Image','themeisle-companion' ); ?>" style="margin-top:5px;">
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'text' ); ?>"><?php esc_html_e( 'Company Description', 'rhea' ); ?></label><br/>
+			<label for="<?php echo $this->get_field_id( 'text' ); ?>"><?php esc_html_e( 'Company Description', 'themeisle-companion' ); ?></label><br/>
 			<textarea class="widefat" rows="8" cols="20" name="<?php echo $this->get_field_name( 'text' ); ?>" id="<?php echo $this->get_field_id( 'text' ); ?>"><?php if ( ! empty( $instance['text'] ) ) { echo htmlspecialchars_decode( $instance['text'] ); } ?></textarea>
 		</p>
 
