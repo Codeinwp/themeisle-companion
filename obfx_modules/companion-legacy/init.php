@@ -73,10 +73,11 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			require_once $this->inc_dir . 'shop-isle' . DIRECTORY_SEPARATOR . 'functions.php';
 			$theme_name = 'ShopIsle';
 		}
+
 		if ( $this->is_azera_shop() ) {
-			require_once  $this->inc_dir . 'azera-shop' . DIRECTORY_SEPARATOR . 'functions.php';
 			$theme_name = 'Azera Shop';
 		}
+
 		$this->name        = sprintf( __( '%s enhancements ', 'themeisle-companion' ), $theme_name );
 		$this->description = sprintf( __( 'Module containing frontpage improvements for %s theme.', 'themeisle-companion' ), $theme_name );
 	}
@@ -375,6 +376,9 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function activate() {
 		if( $this->is_shop_isle() ) {
 			$this->shop_isle_get_wporg_options();
+		}
+		if ( $this->is_azera_shop() ) {
+			require_once  $this->inc_dir . 'azera-shop' . DIRECTORY_SEPARATOR . 'functions.php';
 		}
 	}
 
