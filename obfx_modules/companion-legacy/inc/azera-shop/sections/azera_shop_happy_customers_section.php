@@ -71,7 +71,7 @@ if( !$section_is_empty) { ?>
                                                 <?php
                                                 if (!empty($image)) { ?>
                                                     <img src="<?php echo esc_url($image); ?>"
-                                                         alt="<?php echo(!empty($title) ? esc_attr($title) : esc_attr('Avatar', 'azera-shop-companion')); ?>">
+                                                         alt="<?php echo(!empty($title) ? esc_attr($title) : esc_attr('Avatar', 'themeisle-companion')); ?>">
                                                     <?php
                                                 } else {
                                                     $default_image = azera_shop_get_file('/images/clients/client-no-image.jpg'); ?>

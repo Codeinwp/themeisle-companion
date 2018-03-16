@@ -128,10 +128,10 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 	private function is_azera_shop() {
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-		if ( is_plugin_active( 'azera-shop-companion.php' ) ) {
+		if ( is_plugin_active( 'azera-shop-companion/azera-shop-companion.php' ) ) {
 			return false;
 		}
-		if ( is_plugin_active( 'azera-shop-plus.php' ) ) {
+		if ( is_plugin_active( 'azera-shop-plus/azera-shop-plus.php' ) ) {
 			return false;
 		}
 		if ( $this->get_active_theme_dir() == 'azera-shop' ) {
@@ -327,6 +327,26 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	}
 
 	/**
+	 * Wrapper method for Azera Shop Companion styles
+	 *
+	 * @since 2.4.5
+	 * @access public
+	 */
+	public function azera_shop_companion_register_plugin_styles() {
+		azera_shop_companion_register_plugin_styles();
+	}
+
+	/**
+	 * Wrapper method for Azera Shop Companion sections
+	 *
+	 * @since 2.4.5
+	 * @access public
+	 */
+	public function azera_shop_companion_load_sections() {
+		azera_shop_companion_load_sections();
+	}
+
+	/**
 	 * The loading logic for the module.
 	 *
 	 * @since   1.0.0
@@ -368,6 +388,14 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			$this->loader->add_filter( 'hestia_clients_bar_default_content', $this, 'hestia_load_clients_default_content' );
 			$this->loader->add_filter( 'hestia_top_bar_alignment_default', $this, 'hestia_top_bar_default_alignment' );
 		}
+
+		if ( $this->is_azera_shop() ) {
+			require_once  $this->inc_dir . 'azera-shop' . DIRECTORY_SEPARATOR . 'functions.php';
+
+			$this->loader->add_action( 'wp_enqueue_scripts', $this, 'azera_shop_companion_register_plugin_styles' );
+			$this->loader->add_action( 'plugins_loaded', $this, 'azera_shop_companion_load_sections' );
+		}
+
 	}
 
 	/**
@@ -376,9 +404,6 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function activate() {
 		if( $this->is_shop_isle() ) {
 			$this->shop_isle_get_wporg_options();
-		}
-		if ( $this->is_azera_shop() ) {
-			require_once  $this->inc_dir . 'azera-shop' . DIRECTORY_SEPARATOR . 'functions.php';
 		}
 	}
 
