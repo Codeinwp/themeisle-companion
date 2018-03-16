@@ -13,18 +13,18 @@ function llorix_one_companion_team_get_default_content() {
 	return json_encode( array(
 			array(
 				'image_url' => llorix_one_lite_get_file( '/images/team/1.jpg' ),
-				'title'     => esc_html__( 'Albert Jacobs', 'llorix-one-companion' ),
-				'subtitle'  => esc_html__( 'Founder & CEO', 'llorix-one-companion' )
+				'title'     => esc_html__( 'Albert Jacobs', 'themeisle-companion' ),
+				'subtitle'  => esc_html__( 'Founder & CEO', 'themeisle-companion' )
 			),
 			array(
 				'image_url' => llorix_one_lite_get_file( '/images/team/2.jpg' ),
-				'title'     => esc_html__( 'Tonya Garcia', 'llorix-one-companion' ),
-				'subtitle'  => esc_html__( 'Account Manager', 'llorix-one-companion' )
+				'title'     => esc_html__( 'Tonya Garcia', 'themeisle-companion' ),
+				'subtitle'  => esc_html__( 'Account Manager', 'themeisle-companion' )
 			),
 			array(
 				'image_url' => llorix_one_lite_get_file( '/images/team/3.jpg' ),
-				'title'     => esc_html__( 'Linda Guthrie', 'llorix-one-companion' ),
-				'subtitle'  => esc_html__( 'Business Development', 'llorix-one-companion' )
+				'title'     => esc_html__( 'Linda Guthrie', 'themeisle-companion' ),
+				'subtitle'  => esc_html__( 'Business Development', 'themeisle-companion' )
 			)
 		)
 	);

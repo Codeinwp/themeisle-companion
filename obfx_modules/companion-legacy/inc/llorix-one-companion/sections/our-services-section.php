@@ -4,8 +4,8 @@
 <?php
 
 $llorix_one_lite_our_services_show     = get_theme_mod( 'llorix_one_lite_our_services_show' );
-$llorix_one_lite_our_services_title    = get_theme_mod( 'llorix_one_lite_our_services_title', esc_html__( 'Our Services', 'llorix-one-companion' ) );
-$llorix_one_lite_our_services_subtitle = get_theme_mod( 'llorix_one_lite_our_services_subtitle', esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'llorix-one-companion' ) );
+$llorix_one_lite_our_services_title    = get_theme_mod( 'llorix_one_lite_our_services_title', esc_html__( 'Our Services', 'themeisle-companion' ) );
+$llorix_one_lite_our_services_subtitle = get_theme_mod( 'llorix_one_lite_our_services_subtitle', esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'themeisle-companion' ) );
 $default = '';
 if( function_exists('llorix_one_companion_sevices_get_default_content')){
     $default = llorix_one_companion_sevices_get_default_content();
@@ -21,7 +21,7 @@ if(!$section_is_empty) { ?>
 
     <section class="services <?php if ($section_is_empty) {
         echo 'llorix_one_lite_only_customizer';
-    } ?>" id="services" role="region" aria-label="<?php esc_html_e('Services', 'llorix-one-companion') ?>">
+    } ?>" id="services" role="region" aria-label="<?php esc_html_e('Services', 'themeisle-companion') ?>">
         <div class="section-overlay-layer">
             <div class="container">
 

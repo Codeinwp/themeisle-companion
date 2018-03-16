@@ -4,9 +4,9 @@
 <?php
 
 $llorix_one_lite_our_team_show       = get_theme_mod( 'llorix_one_lite_our_team_show' );
-$llorix_one_lite_our_team_title      = get_theme_mod( 'llorix_one_lite_our_team_title', esc_html__( 'Our Team', 'llorix-one-companion' ) );
+$llorix_one_lite_our_team_title      = get_theme_mod( 'llorix_one_lite_our_team_title', esc_html__( 'Our Team', 'themeisle-companion' ) );
 $llorix_one_lite_our_team_background = get_theme_mod( 'llorix_one_lite_our_team_background', llorix_one_lite_get_file( '/images/background-images/parallax-img/team-img.jpg' ) );
-$llorix_one_lite_our_team_subtitle   = get_theme_mod( 'llorix_one_lite_our_team_subtitle', esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'llorix-one-companion' ) );
+$llorix_one_lite_our_team_subtitle   = get_theme_mod( 'llorix_one_lite_our_team_subtitle', esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'themeisle-companion' ) );
 $default = '';
 if(function_exists( 'llorix_one_companion_team_get_default_content') ){
     $default = llorix_one_companion_team_get_default_content();
@@ -24,7 +24,7 @@ if(!$section_is_empty) { ?>
     <section class="team <?php if ($section_is_empty) {
         echo 'llorix_one_lite_only_customizer';
     } ?>" id="team" role="region"
-             aria-label="<?php esc_attr_e('Team', 'llorix-one-companion'); ?>" <?php echo !empty($llorix_one_lite_our_team_background) ? 'style="background-image:url(' . esc_url($llorix_one_lite_our_team_background) . ');"' : ''; ?>>
+             aria-label="<?php esc_attr_e('Team', 'themeisle-companion'); ?>" <?php echo !empty($llorix_one_lite_our_team_background) ? 'style="background-image:url(' . esc_url($llorix_one_lite_our_team_background) . ');"' : ''; ?>>
         <div class="section-overlay-layer">
             <div class="container">
                 <!-- SECTION HEADER -->
@@ -69,12 +69,12 @@ if(!$section_is_empty) { ?>
                                         <div class="member-pic">
                                             <?php
                                             if (!empty($image)) { ?>
-                                                <img src="<?php echo esc_url($image); ?>" <?php echo(!empty($title) ? 'alt="' . esc_attr($title) . '"' : esc_attr__('Avatar', 'llorix-one-companion')); ?>>
+                                                <img src="<?php echo esc_url($image); ?>" <?php echo(!empty($title) ? 'alt="' . esc_attr($title) . '"' : esc_attr__('Avatar', 'themeisle-companion')); ?>>
                                                 <?php
                                             } else {
                                                 $default_url = llorix_one_lite_get_file('/images/team/default.png'); ?>
                                                 <img src="<?php echo esc_url($default_url); ?>"
-                                                     alt="<?php esc_attr_e('Avatar', 'llorix-one-companion'); ?>">
+                                                     alt="<?php esc_attr_e('Avatar', 'themeisle-companion'); ?>">
                                                 <?php
                                             } ?>
                                         </div><!-- .member-pic -->
