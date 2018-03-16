@@ -70,8 +70,7 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		}
 		if( $this->is_shop_isle() ) {
-			require_once $this->inc_dir . 'shop-isle' . DIRECTORY_SEPARATOR . 'functions.php';
-			$theme_name = 'ShopIsle';
+			$theme_name = 'Shop Isle';
 		}
 
 		if ( $this->is_azera_shop() ) {
@@ -120,7 +119,7 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 	private function is_shop_isle() {
 		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-		if( is_plugin_active( 'shop-isle-companion.php' ) ) {
+		if( is_plugin_active( 'shop-isle-companion/shop-isle-companion.php' ) ) {
 			return false;
 		}
 		if ( $this->get_active_theme_dir() == 'shop-isle' ) {
@@ -426,6 +425,10 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			$this->loader->add_action( 'after_setup_theme', $this, 'hestia_load_default_content' );
 			$this->loader->add_filter( 'hestia_clients_bar_default_content', $this, 'hestia_load_clients_default_content' );
 			$this->loader->add_filter( 'hestia_top_bar_alignment_default', $this, 'hestia_top_bar_default_alignment' );
+		}
+
+		if( $this->is_shop_isle() ) {
+			require_once $this->inc_dir . 'shop-isle' . DIRECTORY_SEPARATOR . 'functions.php';
 		}
 
 		if ( $this->is_azera_shop() ) {
