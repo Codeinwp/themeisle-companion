@@ -84,28 +84,28 @@ function themeisle_hestia_set_top_bar_widgets( $type ) {
 	switch ( $type ) {
 		case 'woo_top':
 
-			$widget_name                          = themeisle_hestia_get_new_widget_name('woocommerce_widget_cart');
+			$widget_name                          = themeisle_hestia_generate_unique_widget_name('woocommerce_widget_cart');
 			$widget_index                         = trim( substr( $widget_name, strrpos( $widget_name, '-' ) + 1 ) );
 			$active_widgets['sidebar-top-bar'][] = $widget_name;
 			$cart_widget[ $widget_index ]         = array( 'title' => 'Cart' );
 			update_option( 'widget_woocommerce_widget_cart', $cart_widget );
 
 
-			$widget_name                         = themeisle_hestia_get_new_widget_name('woocommerce_product_search');
+			$widget_name                         = themeisle_hestia_generate_unique_widget_name('woocommerce_product_search');
 			$widget_index                        = trim( substr( $widget_name, strrpos( $widget_name, '-' ) + 1 ) );
 			$active_widgets['sidebar-top-bar'][] = $widget_name;
 			$search_widget[ $widget_index ]      = array( 'title' => 'Search' );
 			update_option( 'widget_woocommerce_product_search', $search_widget );
 			break;
 		case 'blog_top':
-			$widget_name                          = themeisle_hestia_get_new_widget_name('search');
+			$widget_name                          = themeisle_hestia_generate_unique_widget_name('search');
 			$widget_index                         = trim( substr( $widget_name, strrpos( $widget_name, '-' ) + 1 ) );
 			$active_widgets['sidebar-top-bar'][] = $widget_name;
 			$search_widget[$widget_index]         = array( 'title' => 'Search' );
 			update_option( 'widget_search', $search_widget );
 			break;
 		case 'page_top':
-			$widget_name                          = themeisle_hestia_get_new_widget_name('nav_menu');
+			$widget_name                          = themeisle_hestia_generate_unique_widget_name('nav_menu');
 			$widget_index                         = trim( substr( $widget_name, strrpos( $widget_name, '-' ) + 1 ) );
 			$menu_id                              = themeisle_hestia_create_menu( 'socials' );
 			$active_widgets['sidebar-top-bar'][] = $widget_name;
@@ -218,7 +218,7 @@ function themeisle_hestia_create_menu( $type ) {
  * @since 2.4.5
  * @return string
  */
-function themeisle_hestia_get_new_widget_name( $widget_name ) {
+function themeisle_hestia_generate_unique_widget_name( $widget_name ) {
 	$current_sidebars = get_option( 'sidebars_widgets' );
 	$all_widget_array = array();
 	foreach ( $current_sidebars as $sidebar => $widgets ) {
@@ -239,6 +239,8 @@ function themeisle_hestia_get_new_widget_name( $widget_name ) {
 
 /**
  * Execute this function once to check all widgets and see if there are any duplicates.
+ * If there are duplicates, remove that widget and generate a new one with same
+ * data but a new id.
  *
  * @since 2.4.5
  */
@@ -270,7 +272,7 @@ function themeisle_hestia_fix_duplicate_widgets() {
 		$widget_name = implode('-', $old_widget_name);
 
 		/* Get the id of new widget */
-		$new_widget_name = themeisle_hestia_get_new_widget_name($widget_name);
+		$new_widget_name = themeisle_hestia_generate_unique_widget_name($widget_name);
 		$new_widget_index  = trim( substr( $new_widget_name, strrpos( $new_widget_name, '-' ) + 1 ) );
 
 
