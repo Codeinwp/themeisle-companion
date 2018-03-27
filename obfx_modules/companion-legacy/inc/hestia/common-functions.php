@@ -83,25 +83,33 @@ function themeisle_hestia_set_top_bar_widgets( $type ) {
 
 	switch ( $type ) {
 		case 'woo_top':
-			$counter                              = 1;
-			$active_widgets['sidebar-top-bar'][0] = 'woocommerce_widget_cart-' . $counter;
-			$cart_widget[ $counter ]              = array( 'title' => 'Cart' );
-			update_option( 'widget_woocommerce_widget_cart', $cart_widget );
-			$counter++;
 
-			$active_widgets['sidebar-top-bar'][] = 'woocommerce_product_search-' . $counter;
-			$search_widget[ $counter ]           = array( 'title' => 'Search' );
+			$widget_name                          = themeisle_hestia_generate_unique_widget_name('woocommerce_widget_cart');
+			$widget_index                         = trim( substr( $widget_name, strrpos( $widget_name, '-' ) + 1 ) );
+			$active_widgets['sidebar-top-bar'][] = $widget_name;
+			$cart_widget[ $widget_index ]         = array( 'title' => 'Cart' );
+			update_option( 'widget_woocommerce_widget_cart', $cart_widget );
+
+
+			$widget_name                         = themeisle_hestia_generate_unique_widget_name('woocommerce_product_search');
+			$widget_index                        = trim( substr( $widget_name, strrpos( $widget_name, '-' ) + 1 ) );
+			$active_widgets['sidebar-top-bar'][] = $widget_name;
+			$search_widget[ $widget_index ]      = array( 'title' => 'Search' );
 			update_option( 'widget_woocommerce_product_search', $search_widget );
 			break;
 		case 'blog_top':
-			$active_widgets['sidebar-top-bar'][0] = 'search-1';
-			$search_widget[1]                     = array( 'title' => 'Search' );
+			$widget_name                          = themeisle_hestia_generate_unique_widget_name('search');
+			$widget_index                         = trim( substr( $widget_name, strrpos( $widget_name, '-' ) + 1 ) );
+			$active_widgets['sidebar-top-bar'][] = $widget_name;
+			$search_widget[$widget_index]         = array( 'title' => 'Search' );
 			update_option( 'widget_search', $search_widget );
 			break;
 		case 'page_top':
+			$widget_name                          = themeisle_hestia_generate_unique_widget_name('nav_menu');
+			$widget_index                         = trim( substr( $widget_name, strrpos( $widget_name, '-' ) + 1 ) );
 			$menu_id                              = themeisle_hestia_create_menu( 'socials' );
-			$active_widgets['sidebar-top-bar'][0] = 'nav_menu-1';
-			$menu_widget[1]                       = array(
+			$active_widgets['sidebar-top-bar'][] = $widget_name;
+			$menu_widget[$widget_index]           = array(
 				'title'    => 'Socials',
 				'nav_menu' => $menu_id,
 			);
@@ -200,4 +208,124 @@ function themeisle_hestia_create_menu( $type ) {
 		return $menu_id;
 	}
 	return '';
+}
+
+/**
+ * Generate new unique widget name.
+ *
+ * @param string $widget_name Widget name.
+ *
+ * @since 2.4.5
+ * @return string
+ */
+function themeisle_hestia_generate_unique_widget_name( $widget_name ) {
+	$current_sidebars = get_option( 'sidebars_widgets' );
+	$all_widget_array = array();
+	foreach ( $current_sidebars as $sidebar => $widgets ) {
+		if ( ! empty( $widgets ) && is_array( $widgets ) && $sidebar != 'wp_inactive_widgets' ) {
+			foreach ( $widgets as $widget ) {
+				$all_widget_array[] = $widget;
+			}
+		}
+	}
+	$widget_index = 1;
+	while ( in_array( $widget_name . '-' . $widget_index, $all_widget_array ) ) {
+		$widget_index ++;
+	}
+	$new_widget_name = $widget_name . '-' . $widget_index;
+	return $new_widget_name;
+}
+
+
+/**
+ * Execute this function once to check all widgets and see if there are any duplicates.
+ * If there are duplicates, remove that widget and generate a new one with same
+ * data but a new id.
+ *
+ * @since 2.4.5
+ */
+function themeisle_hestia_fix_duplicate_widgets() {
+
+	$load_default = get_option( 'hestia_fix_duplicate_widgets' );
+	if ( $load_default !== false ) {
+		return;
+	}
+
+	global $wp_registered_widgets;
+	$current_sidebars = get_option( 'sidebars_widgets' );
+
+	$duplicates = themeisle_hestia_get_duplicate_widgets();
+	if(empty($duplicates)){
+		return;
+	}
+	foreach ($duplicates as $widget){
+		$old_widget_id = $widget['widget_id'];
+		$old_widget_sidebar = $widget['sidebar'];
+		$old_widget_index = array_search($old_widget_id,$current_sidebars[$old_widget_sidebar]);
+		if( empty($old_widget_index)){
+			return;
+		}
+
+		/* Remove the widget id and obtain the widget name */
+		$old_widget_name = explode( '-', $old_widget_id );
+		array_pop( $old_widget_name );
+		$widget_name = implode('-', $old_widget_name);
+
+		/* Get the id of new widget */
+		$new_widget_name = themeisle_hestia_generate_unique_widget_name($widget_name);
+		$new_widget_index  = trim( substr( $new_widget_name, strrpos( $new_widget_name, '-' ) + 1 ) );
+
+
+		/* Get the options of old widget and update its id */
+		$old_widget_options = $wp_registered_widgets[$old_widget_id];
+		if(!empty($old_widget_options)) {
+			if ( ! empty( $old_widget_options['params'] ) ) {
+				unset( $old_widget_options['params'] );
+			}
+			if ( ! empty( $old_widget_options['callback'] ) ) {
+				unset( $old_widget_options['callback'] );
+			}
+			if ( ! empty( $old_widget_options['id'] ) ) {
+				unset( $old_widget_options['id'] );
+			}
+		} else {
+			$old_widget_options = array();
+		}
+
+		$current_sidebars[$old_widget_sidebar][$old_widget_index] = $new_widget_name;
+		$new_widget[ $new_widget_index ] = $old_widget_options;
+
+		update_option( 'widget_'.$widget_name, $new_widget );
+	}
+	update_option( 'sidebars_widgets', $current_sidebars );
+
+	update_option( 'hestia_fix_duplicate_widgets', true );
+}
+
+
+/**
+ * Get an array of duplicate widgets and their sidebars.
+ *
+ * @since 2.4.5
+ */
+function themeisle_hestia_get_duplicate_widgets() {
+
+	$current_sidebars = get_option( 'sidebars_widgets' );
+	$all_widget_array = array();
+	$duplicate_widgets = array();
+	foreach ( $current_sidebars as $sidebar => $widgets ) {
+		if ( ! empty( $widgets ) && is_array( $widgets ) && $sidebar != 'wp_inactive_widgets' ) {
+			foreach ( $widgets as $widget ) {
+				if( in_array($widget,$all_widget_array)){
+					$duplicate_widgets[] = array(
+						'widget_id' => $widget,
+						'sidebar' => $sidebar
+					);
+				} else{
+					$all_widget_array[] = $widget;
+				}
+			}
+		}
+	}
+	return $duplicate_widgets;
 }
