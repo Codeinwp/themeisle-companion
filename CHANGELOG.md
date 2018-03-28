@@ -1,4 +1,30 @@
 
+ ### v2.4.4 - 2018-03-08 
+ **Changes:** 
+ * Fixed Analytics module error.
+* UX Improvements.
+ 
+ ### v2.4.3 - 2018-03-04 
+ **Changes:** 
+ * Fixed Analytics module issues.
+* Better UX on module activation.
+ 
+ ### v2.4.2 - 2018-03-02 
+ **Changes:** 
+ * Added a new Google Analytics Integration module
+* Small UX improvements
+ 
+ ### v2.4.1 - 2018-02-20 
+ **Changes:** 
+ * Added intent confirmation for uptime monitor.
+* Register site to endpoint only if we have a valid email address.
+* UX improvements for module activation.
+ 
+ ### v2.4.0 - 2018-02-16 
+ **Changes:** 
+ * Adds a new module for uptime monitor of your website. 
+* Adds 4 more hooks for modules related actions.
+ 
  ### v2.3.1 - 2018-01-17 
  **Changes:** 
  * Disabled automatic display for sharing button on pages and added an option to toggle it.
