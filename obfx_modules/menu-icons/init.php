@@ -98,6 +98,11 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return Walker_Nav_Menu_Edit $walker the walker.
 	 */
 	public function custom_walker( $walker ) {
+		// If another custom walker is registered (e.g. OceanWP theme), bail.
+		if ( $walker !== 'Walker_Nav_Menu_Edit' ) {
+			return $walker;
+		}
+
 		if ( ! class_exists( 'Menu_Icons_OBFX_Walker' ) ) {
 			require_once $this->get_dir() . DIRECTORY_SEPARATOR . 'inc' . DIRECTORY_SEPARATOR . 'class-menu-icons-obfx-walker.php';
 		}
@@ -136,6 +141,11 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			return array();
 		}
 		if ( $current_screen->id != 'nav-menus' ) {
+			return array();
+		}
+
+		// Our walker has not been registered because another custom walker exists.
+		if ( ! class_exists( 'Menu_Icons_OBFX_Walker' ) ) {
 			return array();
 		}
 
