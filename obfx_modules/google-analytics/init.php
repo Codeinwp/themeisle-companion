@@ -310,7 +310,13 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return string
 	 */
 	private final function get_site_hash() {
-		$pre_hash = rtrim( ltrim( sanitize_text_field( preg_replace( '/[^a-zA-Z0-9]/', '', AUTH_KEY . SECURE_AUTH_KEY . LOGGED_IN_KEY ) ) ) );
+	    $hash_base = '';
+        if( defined ( 'AUTH_KEY' ) && defined ('SECURE_AUTH_KEY' ) && defined ('LOGGED_IN_KEY' ) ){
+            $hash_base = AUTH_KEY . SECURE_AUTH_KEY . LOGGED_IN_KEY;
+        }else{
+            $hash_base = sha1(ABSPATH ) . sha1( get_site_url( ) );
+        }
+		$pre_hash = rtrim( ltrim( sanitize_text_field( preg_replace( '/[^a-zA-Z0-9]/', '', $hash_base ) ) ) );
 		if ( function_exists( 'mb_strimwidth' ) ) {
 			return mb_strimwidth( $pre_hash, 0, 100 );
 		}
