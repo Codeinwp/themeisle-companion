@@ -1,4 +1,10 @@
 
+ ### v2.4.5 - 2018-03-29 
+ **Changes:** 
+ * Fixed issue with duplicated widgets in Hestia theme
+* Fix undefined errors in Analytics Module
+* Unset monitor email field on deactivation
+ 
  ### v2.4.4 - 2018-03-08 
  **Changes:** 
  * Fixed Analytics module error.
