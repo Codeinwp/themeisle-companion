@@ -1,80 +1,22 @@
-# Orbit Fox Companion #
+# Orbit Fox by ThemeIsle #
 **Contributors:** [themeisle](https://profiles.wordpress.org/themeisle), [codeinwp](https://profiles.wordpress.org/codeinwp), [rodicaelena](https://profiles.wordpress.org/rodicaelena), [baicusandrei](https://profiles.wordpress.org/baicusandrei)  
-**Tags:** widget, admin, widgets, sharing, reporting, sections, themes, stock photos, custom icons, icons, menu icons, stock  
-**Requires at least:** 3.0  
+**Tags:** widget, admin, widgets, sharing, sections, themes, stock photos, custom icons, icons, menu icons, stock, templates  
+**Requires at least:** 4.7  
 **Tested up to:** 4.9  
 **Requires PHP:** 5.3  
 **Stable tag:** trunk  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
-**Enhance your website with extra functionality through modules like:** social media share buttons & icons, reporting, analytics(upcoming), security(upcoming) and caching(upcoming).  
+This swiss-knife plugin comes with a quality template library, menu/sharing icons, and newly added Elementor/BeaverBuilder page builder widgets.
 
 ## Description ##
 
-Extend your theme functionality with <a href="https://themeisle.com/plugins/orbit-fox-companion/" rel="nofollow">Orbit Fox Companion</a> with various modules like Social Media Share Buttons & Icons, reporting, custom menu-icons and free stock featured images.
-
-Orbit Fox is a user-centred plugin with an easy-to-use admin panel. One of the most important features is that modules will only be loaded if they meet two conditions. If they are needed and if they are compatible with your existing themes and plugins. This will cut down on the unnecessary bloating of your website. 
-
-**Why should I use this with Zerif/Hestia themes:** 
-
- - By using it along with our themes you gain access to a lot of useful widgets like **Testimonials**, **Our Focus**, **About Us** and more other.
-
-
-**Why use our custom icons module:**
-
-- Choose from a large variety of custom icons.
-
-- No coding needed, you can leverage the power of our dropdown icons selector and choose the right icon for your menu.
-
-
-**Why use our sharing module:**
-
-- It's easy to use
-
-- Enable sharing networks right from your admin dashboard and choose on what kind of devices you would like to show them.
-
-- It’s fully customizable: You can easily optimise button location for according to the device your visitors will use. 
-
-
-**Why use our custom Elementor addons module:**
-
-- We offer new widgets to add more value to the content you can create within Elementor page builder.
-
-- Pricing Table Widget to easily create pricing layouts.
-
-- Services Widget to easily create pricing layouts.
-
-- Post Grid Widget to easily list your Posts / Products / any other post types in a grid.
-
-
-**Why use our custom Beaver Builder addons module:**
-
-- We offer new widgets to add more value to the content you can create within the Beaver Builder page builder.
-
-- Pricing Table Widget to easily create pricing layouts.
-
-- Services Widget to easily create pricing layouts.
-
-- Post Grid Widget to easily list your Posts / Products / any other post types in a grid.
-
-
-**Why use our Template Directory:**
-
-- One-click import for awesome page templates.
-
-- Elementor templates will be added frequently for you to use creatively.
-
-Choose from more than 20+ social networks to share with full control for every device that your visitors use.
-
-The sharing options can be positioned for the maximum effect according to whether the visitor is using a mobile device or desktop. Best of all they can be switched on/off from your WordPress instance.
-
-
-
-We've also built some fantastic <a href="http://themeisle.com/wordpress-themes/free/" rel="nofollow" target="_blank">free themes</a> that work well with Orbit Fox Companion, check them out.
+Extend your theme functionality with <a href="https://themeisle.com/plugins/orbit-fox-companion/" rel="nofollow">Orbit Fox</a> with various modules like Social Media Share Buttons & Icons, Uptime Monitoring, Google Analytics, custom menu-icons, one click import page templates, page builder addons and free stock featured images.
 
 **Features:**
-
+- Uptime Monitor
+- Google Analytics Integration
 - Template Directory
 - Elementor Addons and Widgets
 - Beaver Builder Widgets
@@ -84,46 +26,109 @@ We've also built some fantastic <a href="http://themeisle.com/wordpress-themes/f
 - More widgets and sections for Hestia Theme
 - More widgets and sections for Zerif Theme
 
+You can check out the demo <a href="https://demo.themeisle.com/orbit-fox/#blog" rel="nofollow" target="_blank">here</a> for a more detailed overview of the features.
 
+OrbitFox is a user-centred plugin with an easy-to-use admin panel. One of the most important features is that modules will only be loaded if they meet two conditions. If they are needed and if they are compatible with your existing themes and plugins. This will cut down on the unnecessary bloating of your website.
 
+We've also built some fantastic <a href="http://themeisle.com/wordpress-themes/free/" rel="nofollow" target="_blank">free themes</a> that work well with Orbit Fox, check them out.
 
 ## Frequently Asked Questions ##
 
 ### How I can get support for this plugin ? ###
 
-You can learn more about Orbit Fox Companion and ask for help by <a href="https://themeisle.com/contact/"  >visiting ThemeIsle website</a>.
+You can learn more about Orbit Fox and ask for help by <a href="https://themeisle.com/contact/"  >visiting ThemeIsle website</a>.
 
 ### What can I do with this plugin ###
+This plugin extends the features of your sites by adding numerous features.
 
-This plugin extends the features of your themes by adding numerous widgets if you are using Zerif and Hestia themes and some modules for sharing and reporting for general use.
+**Why use our custom icons module:**
+- Choose from a large variety of custom icons.
+- No coding needed, you can leverage the power of our dropdown icons selector and choose the right icon for your menu.
 
+**Why use our uptime monitor module:**
+- Really easy to use, just put in your email and you will receive a message when / if your site goes down.
+
+**Why use our Google Analytics integration module:**
+- It's a one-click configuration.
+- Just sign in with your google accounts
+
+**Why use our sharing module:**
+- It's easy to use
+- Enable sharing networks right from your admin dashboard and choose on what kind of devices you would like to show them.
+- It’s fully customizable: You can easily optimise button location for according to the device your visitors will use.
+- Choose from more than 20+ social networks to share with full control for every device that your visitors use.
+- The sharing options can be positioned for the maximum effect according to whether the visitor is using a mobile device or desktop. Best of all they can be switched on/off from your WordPress instance.
+
+**Why use our custom Elementor addons module:**
+- We offer new widgets to add more value to the content you can create within Elementor page builder.
+- Pricing Table Widget to easily create pricing layouts.
+- Services Widget to easily create pricing layouts.
+- Post Grid Widget to easily list your Posts / Products / any other post types in a grid.
+
+**Why use our custom Beaver Builder addons module:**
+- We offer new widgets to add more value to the content you can create within the Beaver Builder page builder.
+- Pricing Table Widget to easily create pricing layouts.
+- Services Widget to easily create pricing layouts.
+- Post Grid Widget to easily list your Posts / Products / any other post types in a grid.
+
+**Why use our Template Directory:**
+- One-click import for awesome page templates.
+- Elementor templates will be added frequently for you to use creatively.
+
+**Why should I use this with Zerif/Hestia themes:**
+ - By using it along with our themes you gain access to a lot of useful widgets like **Testimonials**, **Our Focus**, **About Us** and more other.
 
 ## Installation ##
 
-Activating the Orbit Fox Companion plugin is just like any other plugin. If you've uploaded the plugin package to your server already, skip to step 5 below:
+Activating the Orbit Fox plugin is just like any other plugin. If you've uploaded the plugin package to your server already, skip to step 5 below:
 
 1. In your WordPress admin, go to **Plugins &gt; Add New**
 2. In the Search field type "Orbit Fox"
-3. Under "Orbit Fox Companion" click the **Install Now** link
+3. Under "Orbit Fox" click the **Install Now** link
 4. Once the process is complete, click the **Activate Plugin** link
-5. Now, you're able to use Orbit fox and setup the modules you need. These can be found at **Tools &gt; Orbit Fox Companion**
+5. Now, you're able to use Orbit fox and setup the modules you need. These can be found on the **Orbit Fox** dashboard page
 6. Make the changes desired, then click the **Save changes** button at the bottom
-
 
 ## Screenshots ##
 
-1. Screenshot 1. How you can enable/disable modules
-2. Screenshot 2. How the sharing module is looking
-3. Screenshot 3. Template directory page preview
-4. Screenshot 4. Template preview interface
-5. Screenshot 5. Menu icons module interface preview
-6. Screenshot 6. Menu icons module front end preview
-7. Screenshot 7. Services and post grid Page builder modules
-8. Screenshot 8. Pricing plan Page builder module
-9. Screenshot 9. CC0 MyStock.photos featured image import module.
-
+1. The OrbitFox Dashboard Page
+2. The Template Directory Page
+3. Menu Icons Module
+4. Page Builder Widgets and Addons
+5. Social Sharing Module
 
 ## Changelog ##
+### 2.4.4 - 2018-03-08  ###
+
+* Fixed Analytics module error.
+* UX Improvements.
+
+
+### 2.4.3 - 2018-03-04  ###
+
+* Fixed Analytics module issues.
+* Better UX on module activation.
+
+
+### 2.4.2 - 2018-03-02  ###
+
+* Added a new Google Analytics Integration module
+* Small UX improvements
+
+
+### 2.4.1 - 2018-02-20  ###
+
+* Added intent confirmation for uptime monitor.
+* Register site to endpoint only if we have a valid email address.
+* UX improvements for module activation.
+
+
+### 2.4.0 - 2018-02-16  ###
+
+* Adds a new module for uptime monitor of your website. 
+* Adds 4 more hooks for modules related actions.
+
+
 ### 2.3.1 - 2018-01-17  ###
 
 * Disabled automatic display for sharing button on pages and added an option to toggle it.
