@@ -28,8 +28,8 @@ class Uptime_Monitor_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function __construct() {
 		parent::__construct();
-		$this->name        = __( 'Uptime Monitor', 'themeisle-companion' );
-		$this->description = __( 'A module to notify when you website goes down.', 'themeisle-companion' );
+		$this->name           = __( 'Uptime Monitor', 'themeisle-companion' );
+		$this->description    = __( 'A module to notify when you website goes down.', 'themeisle-companion' );
 		$this->confirm_intent = '<h4>' . __( 'One more step...', 'themeisle-companion' ) . '</h4><p>' . __( 'In order to use the uptime service, we will need your e-mail address, where we will send downtime alerts.', 'themeisle-companion' ) . '</p>';
 	}
 
@@ -102,7 +102,7 @@ class Uptime_Monitor_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function deactivate() {
-
+		$this->set_option( 'monitor_email', '' );
 		$monitor_url  = $this->monitor_url . '/api/monitor/remove';
 		$url          = home_url();
 		$args         = array(

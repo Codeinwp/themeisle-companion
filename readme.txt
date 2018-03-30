@@ -98,6 +98,13 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 == Changelog ==
+= 2.4.5 - 2018-03-29  = 
+
+* Fixed issue with duplicated widgets in Hestia theme
+* Fix undefined errors in Analytics Module
+* Unset monitor email field on deactivation
+
+
 = 2.4.4 - 2018-03-08  = 
 
 * Fixed Analytics module error.

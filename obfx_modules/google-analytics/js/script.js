@@ -16,7 +16,8 @@ var obfx_analytics = function ( $ ) {
 
     $( function () {
         $( '#refresh-analytics-accounts' ).on(
-            'click', function () {
+            'click', function ( event ) {
+                event.preventDefault();
                 $.ajax(
                     {
                         url: obfxAnalyticsObj.url,
@@ -35,10 +36,12 @@ var obfx_analytics = function ( $ ) {
                         }
                     }, 'json'
                 );
+                return false;
             }
         );
         $( '#unregister-analytics' ).on(
-            'click', function () {
+            'click', function ( event ) {
+                event.preventDefault();
                 $.ajax(
                     {
                         url: obfxAnalyticsObj.url,
@@ -59,6 +62,7 @@ var obfx_analytics = function ( $ ) {
                         }
                     }, 'json'
                 );
+                return false;
             }
         );
     } );
