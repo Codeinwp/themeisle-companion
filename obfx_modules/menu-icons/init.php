@@ -259,7 +259,7 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				$type			= __( 'plugin', 'themeisle-companion' );
 			}
 
-			$this->description .= '<br><i>' . sprintf( __( 'There appears to be a conflict with the %s %s. This module may not work as expected.', 'themeisle-companion' ), $type, $name ) . '</i>';
+			$this->description .= '<br><i class="chip">' . sprintf( __( 'There appears to be a conflict with the %s %s. This module may not work as expected.', 'themeisle-companion' ), $type, $name ) . '</i>';
 			$this->active_default = false;
 		}
 	}
