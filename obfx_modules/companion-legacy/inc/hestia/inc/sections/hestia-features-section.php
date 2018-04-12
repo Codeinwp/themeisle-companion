@@ -97,7 +97,7 @@ function hestia_features_content( $hestia_features_content, $is_callback = false
 
 		$hestia_features_content = json_decode( $hestia_features_content );
 		if ( ! empty( $hestia_features_content ) ) {
-			echo '<div class="row" ' . ( function_exists( 'hestia_add_animationation') ? hestia_add_animationation( 'fade-up' ) : '' ) . '>';
+			echo '<div class="row">';
 			foreach ( $hestia_features_content as $features_item ) :
 				$icon = ! empty( $features_item->icon_value ) ? apply_filters( 'hestia_translate_single_string', $features_item->icon_value, 'Features section' ) : '';
 				$image = ! empty( $features_item->image_url ) ? apply_filters( 'hestia_translate_single_string', $features_item->image_url, 'Features section' ) : '';
