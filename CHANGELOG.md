@@ -6,8 +6,6 @@
 * Added safeguard for navwalker overrides 
 * Remove unused animation functions from Legacy Module 
 * Added Azera Shop, Llorix One Lite, Shop Isle themes functionality to Legacy Module
-   
-
  
  ### v2.4.5 - 2018-03-29 
  **Changes:** 

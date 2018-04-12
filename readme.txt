@@ -102,7 +102,11 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 == Changelog ==
 = 2.4.6 - 2018-04-12  = 
 
-* Version Bump.
+* Add video to readme file
+* Added notification about conflict with navwalker overrides
+* Added safeguard for navwalker overrides
+* Remove unused animation functions from Legacy Module
+* Added Azera Shop, Llorix One Lite, Shop Isle themes functionality to Legacy Module
 
 
 = 2.4.5 - 2018-03-29  = 
