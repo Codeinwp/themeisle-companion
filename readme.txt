@@ -14,6 +14,8 @@ This swiss-knife plugin comes with a quality template library, menu/sharing icon
 
 Extend your theme functionality with <a href="https://themeisle.com/plugins/orbit-fox-companion/" rel="nofollow">Orbit Fox</a> with various modules like Social Media Share Buttons & Icons, Uptime Monitoring, Google Analytics, custom menu-icons, one click import page templates, page builder addons and free stock featured images.
 
+https://www.youtube.com/watch?v=YHhK_twfYB8
+
 **Features:**
 - Uptime Monitor
 - Google Analytics Integration

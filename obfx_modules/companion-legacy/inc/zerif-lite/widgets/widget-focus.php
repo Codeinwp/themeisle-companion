@@ -21,7 +21,7 @@ if ( ! class_exists( 'zerif_ourfocus' ) ) {
 		public function __construct() {
 			parent::__construct(
 				'ctUp-ads-widget',
-				__( 'Zerif - Our focus widget', 'zerif-lite' ),
+				__( 'Zerif - Our focus widget', 'themeisle-companion' ),
 				array(
 					'customize_selective_refresh' => true,
 				)
@@ -62,7 +62,7 @@ if ( ! class_exists( 'zerif_ourfocus' ) ) {
 							<?php
 							if ( ! empty( $instance['title'] ) ) { ?>
 								<span class="sr-only">
-			                    <?php _e( 'Go to', 'zerif-lite' ); ?>
+			                    <?php _e( 'Go to', 'themeisle-companion' ); ?>
 			                    <?php echo apply_filters( 'widget_title', $instance['title'] ); ?>
 		                    </span>
 								<?php
@@ -92,7 +92,7 @@ if ( ! class_exists( 'zerif_ourfocus' ) ) {
 								<?php
 								if ( ! empty( $instance['title'] ) ) { ?>
 									<span class="sr-only">
-			                            <?php _e( 'Go to', 'zerif-lite' ); ?>
+			                            <?php _e( 'Go to', 'themeisle-companion' ); ?>
 			                            <?php echo apply_filters( 'widget_title', $instance['title'] ); ?>
 		                            </span>
 									<?php
@@ -164,7 +164,7 @@ endif; ?></h3>
 			?>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title', 'zerif-lite' ); ?></label><br/>
+				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title', 'themeisle-companion' ); ?></label><br/>
 				<input type="text" name="<?php echo $this->get_field_name( 'title' ); ?>"
 				       id="<?php echo $this->get_field_id( 'title' ); ?>"
 				       value="<?php if ( ! empty( $instance['title'] ) ) :  echo $instance['title'];
@@ -173,14 +173,14 @@ endif; ?>"
 			</p>
 			<p>
 				<label
-					for="<?php echo $this->get_field_id( 'text' ); ?>"><?php _e( 'Text', 'zerif-lite' ); ?></label><br/>
+					for="<?php echo $this->get_field_id( 'text' ); ?>"><?php _e( 'Text', 'themeisle-companion' ); ?></label><br/>
 				<textarea class="widefat" rows="8" cols="20" name="<?php echo $this->get_field_name( 'text' ); ?>"
 				          id="<?php echo $this->get_field_id( 'text' ); ?>"><?php if ( ! empty( $instance['text'] ) ) :  echo htmlspecialchars_decode( $instance['text'] );
 endif; ?></textarea>
 			</p>
 			<p>
 				<label
-					for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Link', 'zerif-lite' ); ?></label><br/>
+					for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Link', 'themeisle-companion' ); ?></label><br/>
 				<input type="text" name="<?php echo $this->get_field_name( 'link' ); ?>"
 				       id="<?php echo $this->get_field_id( 'link' ); ?>"
 				       value="<?php if ( ! empty( $instance['link'] ) ) :  echo esc_url( $instance['link'] );
@@ -189,7 +189,7 @@ endif; ?>"
 			</p>
 			<p>
 				<label
-					for="<?php echo $this->get_field_id( 'image_uri' ); ?>"><?php _e( 'Image', 'zerif-lite' ); ?></label><br/>
+					for="<?php echo $this->get_field_id( 'image_uri' ); ?>"><?php _e( 'Image', 'themeisle-companion' ); ?></label><br/>
 
 				<?php
 				$image_in_customizer = '';
@@ -213,7 +213,7 @@ endif; ?>"
 endif; ?>">
 				<img class="custom_media_image" src="<?php echo $image_in_customizer; ?>"
 				     style="margin:0;padding:0;max-width:100px;float:left;display:<?php echo $display; ?>"
-				     alt="<?php echo __( 'Uploaded image', 'zerif-lite' ); ?>"/><br/>
+				     alt="<?php echo __( 'Uploaded image', 'themeisle-companion' ); ?>"/><br/>
 
 				<input type="text" class="widefat custom_media_url"
 				       name="<?php echo $this->get_field_name( 'image_uri' ); ?>"
@@ -224,7 +224,7 @@ endif; ?>"
 
 				<input type="button" class="button button-primary custom_media_button" id="custom_media_button"
 				       name="<?php echo $this->get_field_name( 'image_uri' ); ?>"
-				       value="<?php _e( 'Upload Image', 'zerif-lite' ); ?>" style="margin-top:5px;">
+				       value="<?php _e( 'Upload Image', 'themeisle-companion' ); ?>" style="margin-top:5px;">
 			</p>
 
 			<input class="custom_media_id" id="<?php echo $this->get_field_id( 'custom_media_id' ); ?>"

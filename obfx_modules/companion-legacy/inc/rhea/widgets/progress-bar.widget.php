@@ -3,9 +3,9 @@ class Rhea_Progress_Bar extends WP_Widget {
 
 	public function __construct() {
 		$widget_args = array(
-			'description' => esc_html__( 'This widget is designed for Progress Bar Section', 'rhea' ),
+			'description' => esc_html__( 'This widget is designed for Progress Bar Section', 'themeisle-companion' ),
 		);
-		parent::__construct( 'rhea-progress-bar', esc_html__( '[Rhea] - Progress Bar', 'rhea' ), $widget_args );
+		parent::__construct( 'rhea-progress-bar', esc_html__( '[Rhea] - Progress Bar', 'themeisle-companion' ), $widget_args );
 	}
 
 	function widget( $args, $instance ) {
@@ -59,15 +59,15 @@ class Rhea_Progress_Bar extends WP_Widget {
 		?>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title', 'rhea' ); ?></label><br/>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title', 'themeisle-companion' ); ?></label><br/>
 			<input type="text" name="<?php echo $this->get_field_name( 'title' ); ?>" id="<?php echo $this->get_field_id( 'title' ); ?>" value="<?php if ( ! empty( $instance['title'] ) ) { echo $instance['title']; } ?>" placeholder="Wordpress" class="widefat">
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'info' ); ?>"><?php esc_html_e( 'Info', 'rhea' ); ?></label><br/>
+			<label for="<?php echo $this->get_field_id( 'info' ); ?>"><?php esc_html_e( 'Info', 'themeisle-companion' ); ?></label><br/>
 			<input type="text" name="<?php echo $this->get_field_name( 'info' ); ?>" id="<?php echo $this->get_field_id( 'info' ); ?>" value="<?php if ( ! empty( $instance['info'] ) ) { echo $instance['info']; } ?>" placeholder="70%" class="widefat">
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'percentage' ); ?>"><?php esc_html_e( 'Percentage','rhea' ); ?></label><br />
+			<label for="<?php echo $this->get_field_id( 'percentage' ); ?>"><?php esc_html_e( 'Percentage','themeisle-companion' ); ?></label><br />
 			<input type="text" name="<?php echo $this->get_field_name( 'percentage' ); ?>" id="<?php echo $this->get_field_id( 'percentage' ); ?>" value="<?php if ( ! empty( $instance['percentage'] ) ) { echo $instance['percentage']; } ?>"  placeholder="70" class="widefat">
 		</p>
 

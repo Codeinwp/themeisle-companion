@@ -33,6 +33,8 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$this->name        = __( 'Menu Icons', 'themeisle-companion' );
 		$this->description = __( 'Module to define menu icons for navigation.', 'themeisle-companion' );
 		$this->active_default = true;
+
+		add_action( 'admin_init', array( $this, 'check_conflict' ) , 99 );
 	}
 
 
@@ -64,7 +66,8 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function hooks() {
 		$this->loader->add_action( 'wp_update_nav_menu_item', $this, 'save_fields', 10, 3 );
-		$this->loader->add_filter( 'wp_edit_nav_menu_walker', $this, 'custom_walker', 99 );
+		// Do not change the priority of this from 1.
+		$this->loader->add_filter( 'wp_edit_nav_menu_walker', $this, 'custom_walker', 1 );
 		$this->loader->add_filter( 'wp_setup_nav_menu_item', $this, 'show_menu', 10, 1 );
 
 	}
@@ -136,6 +139,11 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			return array();
 		}
 		if ( $current_screen->id != 'nav-menus' ) {
+			return array();
+		}
+
+		// Our walker has not been registered because another custom walker exists.
+		if ( ! class_exists( 'Menu_Icons_OBFX_Walker' ) ) {
 			return array();
 		}
 
@@ -217,5 +225,42 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			update_post_meta( $menu_item_db_id, 'obfx_menu_icon', $icon );
 		}
 
+	}
+
+	/**
+	 * Checks if there is any conflict with a theme/plugin.
+	 */
+	public function check_conflict() {
+		// We need to include this so that the wp_edit_nav_menu_walker filter does not misbehave.
+		require_once( ABSPATH . 'wp-admin/includes/nav-menu.php' );
+
+		// Let's check if another walker has been defined.
+		$walker = apply_filters( 'wp_edit_nav_menu_walker', '' );
+
+		// Yes, a conflict!
+		if ( ! empty( $walker ) && $walker !== 'Menu_Icons_OBFX_Walker' ) {
+			$reflector	= new ReflectionClass( $walker );
+			$path		= str_replace( '\\', '/', $reflector->getFileName() );
+
+			$name		= '';
+			$type		= '';
+			if ( false !== strpos( $path, 'themes' ) ) {
+				$type	= __( 'theme', 'themeisle-companion' );
+				$theme	= wp_get_theme();
+				$name	= $theme->get( 'Name' );
+			} else {
+				require_once( ABSPATH . 'wp-admin/includes/file.php' );
+				WP_Filesystem();
+				global $wp_filesystem;
+
+				$plugin_path	= str_replace( str_replace( '\\', '/', trailingslashit( dirname( OBX_PATH ) ) ), '', $path );
+				$array			= explode( '/', $path );
+				$name			= reset( $array );
+				$type			= __( 'plugin', 'themeisle-companion' );
+			}
+
+			$this->description .= '<br><i class="chip">' . sprintf( __( 'There appears to be a conflict with the %s %s. This module may not work as expected.', 'themeisle-companion' ), $type, $name ) . '</i>';
+			$this->active_default = false;
+		}
 	}
 }
