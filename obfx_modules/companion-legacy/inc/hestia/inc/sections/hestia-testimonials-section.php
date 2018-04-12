@@ -116,7 +116,7 @@ function hestia_testimonials_content( $hestia_testimonials_content, $is_callback
 				$link = ! empty( $testimonial_item->link ) ? apply_filters( 'hestia_translate_single_string', $testimonial_item->link, 'Testimonials section' ) : '';
 				?>
 				<div class="col-xs-12 col-ms-6 col-sm-6 <?php echo apply_filters( 'hestia_testimonials_per_row_class','col-md-4' ); ?>">
-					<div class="card card-testimonial card-plain" <?php echo function_exists( 'hestia_add_animationation') ? hestia_add_animationation( 'fade-right' ) : ''; ?>>
+					<div class="card card-testimonial card-plain">
 						<?php
                         if ( ! empty( $image ) ) :
                             /**

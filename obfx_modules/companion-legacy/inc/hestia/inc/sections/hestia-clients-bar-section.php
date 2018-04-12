@@ -46,7 +46,7 @@ if ( ! function_exists( 'hestia_clients_bar' ) ) :
                     hestia_clients_bar_section_content_trigger();
                 }
                 ?>
-                <div class="row" <?php echo function_exists( 'hestia_add_animationation') ? hestia_add_animationation( 'fade-up' ) : ''; ?>>
+                <div class="row">
 					<?php
 					$array_length = sizeof( $hestia_clients_bar_content_decoded );
 					foreach ( $hestia_clients_bar_content_decoded as $client ) {

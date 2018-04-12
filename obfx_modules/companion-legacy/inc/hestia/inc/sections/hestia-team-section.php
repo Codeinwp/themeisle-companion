@@ -114,7 +114,7 @@ function hestia_team_content( $hestia_team_content, $is_callback = false ) {
 					$text = ! empty( $team_item->text ) ? apply_filters( 'hestia_translate_single_string', $team_item->text, 'Team section' ) : '';
 					$link = ! empty( $team_item->link ) ? apply_filters( 'hestia_translate_single_string', $team_item->link, 'Team section' ) : '';
 					?>
-					<div class="col-xs-12 col-ms-6 col-sm-6" <?php echo function_exists( 'hestia_add_animationation') ? hestia_add_animationation( 'fade-right' ) : ''; ?>>
+					<div class="col-xs-12 col-ms-6 col-sm-6">
 						<div class="card card-profile card-plain">
 							<div class="col-md-5">
 								<div class="card-image">
