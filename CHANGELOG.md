@@ -1,4 +1,8 @@
 
+ ### v2.4.6 - 2018-04-12 
+ **Changes:** 
+ * Version Bump.
+ 
  ### v2.4.5 - 2018-03-29 
  **Changes:** 
  * Fixed issue with duplicated widgets in Hestia theme
