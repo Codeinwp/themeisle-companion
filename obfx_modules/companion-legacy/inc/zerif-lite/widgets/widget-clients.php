@@ -21,7 +21,7 @@ if ( ! class_exists( 'zerif_clients_widget' ) ) {
 		public function __construct() {
 			parent::__construct(
 				'zerif_clients-widget',
-				__( 'Zerif - Clients widget', 'zerif-lite' ),
+				__( 'Zerif - Clients widget', 'themeisle-companion' ),
 				array(
 					'customize_selective_refresh' => true,
 				)
@@ -58,14 +58,14 @@ endif; ?>">
 				<?php
 				if ( ! empty( $instance['image_uri'] ) && ( preg_match('/(\.jpg|\.png|\.jpeg|\.gif|\.bmp)$/', $instance['image_uri'] ) ) ) {
 
-					echo '<img src="' . esc_url( $instance['image_uri'] ) . '" alt="' . __( 'Client', 'zerif-lite' ) . '">';
+					echo '<img src="' . esc_url( $instance['image_uri'] ) . '" alt="' . __( 'Client', 'themeisle-companion' ) . '">';
 
 				} elseif ( ! empty( $instance['custom_media_id'] ) ) {
 
 					$zerif_clients_custom_media_id = wp_get_attachment_image_src( $instance['custom_media_id'] );
 					if ( ! empty( $zerif_clients_custom_media_id ) && ! empty( $zerif_clients_custom_media_id[0] ) ) {
 
-						echo '<img src="' . esc_url( $zerif_clients_custom_media_id[0] ) . '" alt="' . __( 'Client', 'zerif-lite' ) . '">';
+						echo '<img src="' . esc_url( $zerif_clients_custom_media_id[0] ) . '" alt="' . __( 'Client', 'themeisle-companion' ) . '">';
 
 					}
 				}
@@ -112,7 +112,7 @@ endif; ?>">
 
 			<p>
 				<label
-					for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Link', 'zerif-lite' ); ?></label><br/>
+					for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Link', 'themeisle-companion' ); ?></label><br/>
 				<input type="text" name="<?php echo $this->get_field_name( 'link' ); ?>"
 				       id="<?php echo $this->get_field_id( 'link' ); ?>"
 				       value="<?php if ( ! empty( $instance['link'] ) ) :  echo $instance['link'];
@@ -121,7 +121,7 @@ endif; ?>"
 			</p>
 			<p>
 				<label
-					for="<?php echo $this->get_field_id( 'image_uri' ); ?>"><?php _e( 'Image', 'zerif-lite' ); ?></label><br/>
+					for="<?php echo $this->get_field_id( 'image_uri' ); ?>"><?php _e( 'Image', 'themeisle-companion' ); ?></label><br/>
 
 				<?php
 				$image_in_customizer = '';
@@ -145,7 +145,7 @@ endif; ?>"
 endif; ?>">
 				<img class="custom_media_image" src="<?php echo $image_in_customizer; ?>"
 				     style="margin:0;padding:0;max-width:100px;float:left;display:<?php echo $display; ?>"
-				     alt="<?php echo __( 'Uploaded image', 'zerif-lite' ); ?>"/><br/>
+				     alt="<?php echo __( 'Uploaded image', 'themeisle-companion' ); ?>"/><br/>
 
 				<input type="text" class="widefat custom_media_url"
 				       name="<?php echo $this->get_field_name( 'image_uri' ); ?>"
@@ -156,7 +156,7 @@ endif; ?>"
 
 				<input type="button" class="button button-primary custom_media_button" id="custom_media_button"
 				       name="<?php echo $this->get_field_name( 'image_uri' ); ?>"
-				       value="<?php _e( 'Upload Image', 'zerif-lite' ); ?>" style="margin-top:5px;">
+				       value="<?php _e( 'Upload Image', 'themeisle-companion' ); ?>" style="margin-top:5px;">
 			</p>
 
 			<input class="custom_media_id" id="<?php echo $this->get_field_id( 'custom_media_id' ); ?>"

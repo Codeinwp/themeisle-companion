@@ -69,6 +69,18 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			$theme_name = 'Hestia Pro';
 
 		}
+		if( $this->is_shop_isle() ) {
+			$theme_name = 'Shop Isle';
+		}
+
+		if ( $this->is_azera_shop() ) {
+			$theme_name = 'Azera Shop';
+		}
+
+		if ( $this->is_llorix_one_lite() ) {
+			$theme_name = 'Llorix One Lite';
+		}
+
 		$this->name        = sprintf( __( '%s enhancements ', 'themeisle-companion' ), $theme_name );
 		$this->description = sprintf( __( 'Module containing frontpage improvements for %s theme.', 'themeisle-companion' ), $theme_name );
 	}
@@ -105,6 +117,48 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		return false;
 	}
 
+	private function is_shop_isle() {
+		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		if( is_plugin_active( 'shop-isle-companion/shop-isle-companion.php' ) ) {
+			return false;
+		}
+		if ( $this->get_active_theme_dir() == 'shop-isle' ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	private function is_azera_shop() {
+		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		if ( is_plugin_active( 'azera-shop-companion/azera-shop-companion.php' ) ) {
+			return false;
+		}
+		if ( is_plugin_active( 'azera-shop-plus/azera-shop-plus.php' ) ) {
+			return false;
+		}
+		if ( $this->get_active_theme_dir() == 'azera-shop' ) {
+			return true;
+		}
+
+		return false;
+	}
+
+	private function is_llorix_one_lite() {
+		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		if ( is_plugin_active( 'llorix-one-companion/llorix-one-companion.php' ) ) {
+			return false;
+		}
+		if ( is_plugin_active( 'llorix-one-plus/llorix_one_plus.php' ) ) {
+			return false;
+		}
+		if ( $this->get_active_theme_dir() == 'llorix-one-lite' ) {
+			return true;
+		}
+
+		return false;
+	}
+
 	/**
 	 * Determine if module should be loaded.
 	 *
@@ -113,7 +167,7 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return bool
 	 */
 	public function enable_module() {
-		if ( $this->is_hestia() || $this->is_rhea() || $this->is_zerif() || $this->is_hestia_pro() ) {
+		if ( $this->is_hestia() || $this->is_rhea() || $this->is_zerif() || $this->is_hestia_pro() || $this->is_shop_isle() || $this->is_azera_shop() || $this->is_llorix_one_lite() ) {
 			return true;
 		} else {
 			return false;
@@ -164,6 +218,76 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
         ';
 
 		echo $output;
+	}
+
+	/**
+	 * Function to import customizer big title settings into first slide.
+	 */
+	public function shop_isle_get_wporg_options() {
+		/* import shop isle options */
+		$shop_isle_mods = get_option('theme_mods_shop-isle');
+
+		if (!empty($shop_isle_mods)) {
+
+			$new_slider = new stdClass();
+
+			foreach ($shop_isle_mods as $shop_isle_mod_k => $shop_isle_mod_v) {
+
+				/* migrate Big title section to Slider section */
+				if (($shop_isle_mod_k == 'shop_isle_big_title_image') || ($shop_isle_mod_k == 'shop_isle_big_title_title') || ($shop_isle_mod_k == 'shop_isle_big_title_subtitle') || ($shop_isle_mod_k == 'shop_isle_big_title_button_label') || ($shop_isle_mod_k == 'shop_isle_big_title_button_link')) {
+
+					if ($shop_isle_mod_k == 'shop_isle_big_title_image') {
+						if (!empty($shop_isle_mod_v)) {
+							$new_slider->image_url = $shop_isle_mod_v;
+						} else {
+							$new_slider->image_url = '';
+						}
+					}
+
+					if ($shop_isle_mod_k == 'shop_isle_big_title_title') {
+						if (!empty($shop_isle_mod_v)) {
+							$new_slider->text = $shop_isle_mod_v;
+						} else {
+							$new_slider->text = '';
+						}
+					}
+
+					if ($shop_isle_mod_k == 'shop_isle_big_title_subtitle') {
+						if (!empty($shop_isle_mod_v)) {
+							$new_slider->subtext = $shop_isle_mod_v;
+						} else {
+							$new_slider->subtext = '';
+						}
+					}
+
+					if ($shop_isle_mod_k == 'shop_isle_big_title_button_label') {
+						if (!empty($shop_isle_mod_v)) {
+							$new_slider->label = $shop_isle_mod_v;
+						} else {
+							$new_slider->label = '';
+						}
+					}
+
+					if ($shop_isle_mod_k == 'shop_isle_big_title_button_link') {
+						if (!empty($shop_isle_mod_v)) {
+							$new_slider->link = $shop_isle_mod_v;
+						} else {
+							$new_slider->link = '';
+						}
+					}
+
+					if ( !empty($new_slider->image_url) || !empty($new_slider->text) || !empty($new_slider->subtext) || !empty($new_slider->link) ) {
+						$new_slider_encode = json_encode(array($new_slider));
+						set_theme_mod('shop_isle_slider', $new_slider_encode);
+					}
+
+				} else {
+
+					set_theme_mod($shop_isle_mod_k, $shop_isle_mod_v);
+				}
+			}
+		}
+
 	}
 
 	/**
@@ -231,6 +355,46 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	}
 
 	/**
+	 * Wrapper method for Azera Shop Companion styles
+	 *
+	 * @since 2.4.5
+	 * @access public
+	 */
+	public function azera_shop_companion_register_plugin_styles() {
+		azera_shop_companion_register_plugin_styles();
+	}
+
+	/**
+	 * Wrapper method for Azera Shop Companion sections
+	 *
+	 * @since 2.4.5
+	 * @access public
+	 */
+	public function azera_shop_companion_load_sections() {
+		azera_shop_companion_load_sections();
+	}
+
+	/**
+	 * Wrapper method for Llorix One Companion styles
+	 *
+	 * @since 2.4.5
+	 * @access public
+	 */
+	public function llorix_one_companion_register_plugin_styles() {
+		llorix_one_companion_register_plugin_styles();
+	}
+
+	/**
+	 * Wrapper method for Llorix One Companion sections
+	 *
+	 * @since 2.4.5
+	 * @access public
+	 */
+	public function llorix_one_companion_load_sections() {
+		llorix_one_companion_load_sections();
+	}
+
+	/**
 	 * The loading logic for the module.
 	 *
 	 * @since   1.0.0
@@ -273,6 +437,31 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			$this->loader->add_action( 'after_setup_theme', $this, 'hestia_fix_duplicate_widgets' );
 			$this->loader->add_filter( 'hestia_clients_bar_default_content', $this, 'hestia_load_clients_default_content' );
 			$this->loader->add_filter( 'hestia_top_bar_alignment_default', $this, 'hestia_top_bar_default_alignment' );
+		}
+
+		if( $this->is_shop_isle() ) {
+			require_once $this->inc_dir . 'shop-isle' . DIRECTORY_SEPARATOR . 'functions.php';
+		}
+
+		if ( $this->is_azera_shop() ) {
+			require_once  $this->inc_dir . 'azera-shop' . DIRECTORY_SEPARATOR . 'functions.php';
+			$this->loader->add_action( 'wp_enqueue_scripts', $this, 'azera_shop_companion_register_plugin_styles' );
+			$this->loader->add_action( 'plugins_loaded', $this, 'azera_shop_companion_load_sections' );
+		}
+
+		if ( $this->is_llorix_one_lite() ) {
+			require_once  $this->inc_dir . 'llorix-one-companion' . DIRECTORY_SEPARATOR . 'functions.php';
+			$this->loader->add_action( 'wp_enqueue_scripts', $this, 'llorix_one_companion_register_plugin_styles' );
+			$this->loader->add_action( 'plugins_loaded', $this, 'llorix_one_companion_load_sections' );
+		}
+	}
+
+	/**
+	 * Import mods if is shop isle.
+	 */
+	public function activate() {
+		if( $this->is_shop_isle() ) {
+			$this->shop_isle_get_wporg_options();
 		}
 	}
 
