@@ -47,7 +47,7 @@ if ( ! function_exists( 'hestia_clients_bar' ) ) :
 		hestia_before_clients_bar_section_trigger(); ?>
         <section class="hestia-clients-bar text-center <?php echo esc_attr( $wrapper_class ); ?>" id="clients" data-sorder="hestia_clients_bar" <?php echo wp_kses_post( $section_style ); ?>>
 			<?php
-			if ( $is_shortcode === false ) {
+			if ( $is_shortcode === false && function_exists('hestia_display_customizer_shortcut') ) {
 				hestia_display_customizer_shortcut( 'hestia_clients_bar_hide', true );
 			}
 			?>

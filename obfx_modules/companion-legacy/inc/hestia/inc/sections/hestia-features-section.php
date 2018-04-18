@@ -49,7 +49,7 @@ if ( ! function_exists( 'hestia_features' ) ) :
 		<section class="hestia-features <?php echo esc_attr( $wrapper_class ); ?>" id="features" data-sorder="hestia_features">
 			<?php
             hestia_before_features_section_content_trigger();
-			if ( $is_shortcode === false ) {
+			if ( $is_shortcode === false && function_exists('hestia_display_customizer_shortcut') ) {
 				hestia_display_customizer_shortcut( 'hestia_features_hide', true );
 			}
 			?>
@@ -61,7 +61,7 @@ if ( ! function_exists( 'hestia_features' ) ) :
 					<div class="row">
 						<div class="col-md-8 col-md-offset-2 hestia-features-title-area">
 							<?php
-							if ( ! empty( $hestia_features_title ) && ! empty( $hestia_features_subtitle ) ) {
+							if ( function_exists('hestia_display_customizer_shortcut') && ! empty( $hestia_features_title ) && ! empty( $hestia_features_subtitle ) ) {
 								hestia_display_customizer_shortcut( 'hestia_features_title' );
 							}
 							if ( ! empty( $hestia_features_title ) || is_customize_preview() ) {
