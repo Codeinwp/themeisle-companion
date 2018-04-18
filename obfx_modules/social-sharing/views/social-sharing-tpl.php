@@ -41,10 +41,10 @@ if ( ! empty( $social_links_array ) ) { ?>
 					if ( $show_name ) {
 						echo '<span>' . esc_html( $network_data['nicename'] ) . '</span>';
 					}
-?>
+					?>
 				</a>
 			</li>
 		<?php } ?>
 	</ul>
-<?php
+	<?php
 }// End if().
