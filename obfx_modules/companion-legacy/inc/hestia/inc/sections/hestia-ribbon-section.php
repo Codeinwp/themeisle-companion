@@ -36,10 +36,10 @@ if ( ! function_exists( 'hestia_ribbon' ) ) :
 		/**
 		 * Gather data to display the section.
 		 */
-		$default            = ( current_user_can( 'edit_theme_options' ) ? esc_html__( 'Subscribe to our Newsletter', 'hestia-pro' ) : false );
+		$default            = ( current_user_can( 'edit_theme_options' ) ? esc_html__( 'Subscribe to our Newsletter', 'themeisle-companion' ) : false );
 		$hestia_ribbon_text = get_theme_mod( 'hestia_ribbon_text', $default );
 
-		$default                   = ( current_user_can( 'edit_theme_options' ) ? esc_html__( 'Subscribe', 'hestia-pro' ) : false );
+		$default                   = ( current_user_can( 'edit_theme_options' ) ? esc_html__( 'Subscribe', 'themeisle-companion' ) : false );
 		$hestia_ribbon_button_text = get_theme_mod( 'hestia_ribbon_button_text', $default );
 
 		$default                  = ( current_user_can( 'edit_theme_options' ) ? '#' : false );

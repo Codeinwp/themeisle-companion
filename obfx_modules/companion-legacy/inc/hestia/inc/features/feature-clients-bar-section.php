@@ -21,7 +21,7 @@ if ( ! function_exists( 'hestia_clients_bar_customize_register' ) ) :
 			$wp_customize->add_section(
 				new Hestia_Hiding_Section(
 					$wp_customize, 'hestia_clients_bar', array(
-						'title'          => esc_html__( 'Clients Bar', 'hestia-pro' ),
+						'title'          => esc_html__( 'Clients Bar', 'themeisle-companion' ),
 						'panel'          => 'hestia_frontpage_sections',
 						'priority'       => apply_filters( 'hestia_section_priority', 50, 'hestia_clients_bar' ),
 						'hiding_control' => 'hestia_clients_bar_hide',
@@ -31,7 +31,7 @@ if ( ! function_exists( 'hestia_clients_bar_customize_register' ) ) :
 		} else {
 			$wp_customize->add_section(
 				'hestia_clients_bar', array(
-					'title'    => esc_html__( 'Clients Bar', 'hestia-pro' ),
+					'title'    => esc_html__( 'Clients Bar', 'themeisle-companion' ),
 					'panel'    => 'hestia_frontpage_sections',
 					'priority' => apply_filters( 'hestia_section_priority', 50, 'hestia_clients_bar' ),
 				)
@@ -49,7 +49,7 @@ if ( ! function_exists( 'hestia_clients_bar_customize_register' ) ) :
 		$wp_customize->add_control(
 			'hestia_clients_bar_hide', array(
 				'type'     => 'checkbox',
-				'label'    => esc_html__( 'Disable section', 'hestia-pro' ),
+				'label'    => esc_html__( 'Disable section', 'themeisle-companion' ),
 				'section'  => 'hestia_clients_bar',
 				'priority' => 1,
 			)
@@ -67,11 +67,11 @@ if ( ! function_exists( 'hestia_clients_bar_customize_register' ) ) :
 			$wp_customize->add_control(
 				new Hestia_Repeater(
 					$wp_customize, 'hestia_clients_bar_content', array(
-						'label'                            => esc_html__( 'Clients Bar Content', 'hestia-pro' ),
+						'label'                            => esc_html__( 'Clients Bar Content', 'themeisle-companion' ),
 						'section'                          => 'hestia_clients_bar',
 						'priority'                         => 5,
-						'add_field_label'                  => esc_html__( 'Add new client', 'hestia-pro' ),
-						'item_name'                        => esc_html__( 'Clients', 'hestia-pro' ),
+						'add_field_label'                  => esc_html__( 'Add new client', 'themeisle-companion' ),
+						'item_name'                        => esc_html__( 'Clients', 'themeisle-companion' ),
 						'customizer_repeater_image_control' => true,
 						'customizer_repeater_link_control' => true,
 					)

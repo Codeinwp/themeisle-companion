@@ -25,8 +25,8 @@ if ( ! function_exists( 'hestia_testimonials' ) ) :
 		$default_subtitle = '';
 		$default_content  = '';
 		if ( current_user_can( 'edit_theme_options' ) ) {
-			$default_title    = esc_html__( 'What clients say', 'hestia-pro' );
-			$default_subtitle = esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'hestia-pro' );
+			$default_title    = esc_html__( 'What clients say', 'themeisle-companion' );
+			$default_subtitle = esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'themeisle-companion' );
 			$default_content  = hestia_get_testimonials_default();
 		}
 		$hestia_testimonials_title    = get_theme_mod( 'hestia_testimonials_title', $default_title );
@@ -210,23 +210,23 @@ function hestia_get_testimonials_default() {
 			array(
 				array(
 					'image_url' => get_template_directory_uri() . '/assets/img/5.jpg',
-					'title'     => esc_html__( 'Inverness McKenzie', 'hestia-pro' ),
-					'subtitle'  => esc_html__( 'Business Owner', 'hestia-pro' ),
-					'text'      => esc_html__( '"We have no regrets! After using your product my business skyrocketed! I made back the purchase price in just 48 hours! I couldn\'t have asked for more than this."', 'hestia-pro' ),
+					'title'     => esc_html__( 'Inverness McKenzie', 'themeisle-companion' ),
+					'subtitle'  => esc_html__( 'Business Owner', 'themeisle-companion' ),
+					'text'      => esc_html__( '"We have no regrets! After using your product my business skyrocketed! I made back the purchase price in just 48 hours! I couldn\'t have asked for more than this."', 'themeisle-companion' ),
 					'id'        => 'customizer_repeater_56d7ea7f40d56',
 				),
 				array(
 					'image_url' => get_template_directory_uri() . '/assets/img/6.jpg',
-					'title'     => esc_html__( 'Hanson Deck', 'hestia-pro' ),
-					'subtitle'  => esc_html__( 'Independent Artist', 'hestia-pro' ),
-					'text'      => esc_html__( '"Your company is truly upstanding and is behind its product 100 percent. Hestia is worth much more than I paid. I like Hestia more each day because it makes easier."', 'hestia-pro' ),
+					'title'     => esc_html__( 'Hanson Deck', 'themeisle-companion' ),
+					'subtitle'  => esc_html__( 'Independent Artist', 'themeisle-companion' ),
+					'text'      => esc_html__( '"Your company is truly upstanding and is behind its product 100 percent. Hestia is worth much more than I paid. I like Hestia more each day because it makes easier."', 'themeisle-companion' ),
 					'id'        => 'customizer_repeater_56d7ea7f40d66',
 				),
 				array(
 					'image_url' => get_template_directory_uri() . '/assets/img/7.jpg',
-					'title'     => esc_html__( 'Natalya Undergrowth', 'hestia-pro' ),
-					'subtitle'  => esc_html__( 'Freelancer', 'hestia-pro' ),
-					'text'      => esc_html__( '"Thank you for making it painless, pleasant and most of all hassle free! I am so pleased with this product. Dude, your stuff is great! I will refer everyone I know."', 'hestia-pro' ),
+					'title'     => esc_html__( 'Natalya Undergrowth', 'themeisle-companion' ),
+					'subtitle'  => esc_html__( 'Freelancer', 'themeisle-companion' ),
+					'text'      => esc_html__( '"Thank you for making it painless, pleasant and most of all hassle free! I am so pleased with this product. Dude, your stuff is great! I will refer everyone I know."', 'themeisle-companion' ),
 					'id'        => 'customizer_repeater_56d7ea7f40d76',
 				),
 			)
