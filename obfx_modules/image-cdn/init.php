@@ -41,6 +41,10 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return bool
 	 */
 	public function enable_module() {
+		// this module is dependent on the connect data.
+		if ( empty ( get_option( 'obfx_connect_data') ) ) {
+			return false;
+		}
 		return true;
 	}
 
@@ -51,6 +55,10 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function load() {
+		// this module is dependent on the connect data.
+		if ( empty ( get_option( 'obfx_connect_data') ) ) {
+			return false;
+		}
 		return true;
 	}
 

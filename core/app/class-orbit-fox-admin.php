@@ -39,6 +39,8 @@ class Orbit_Fox_Admin {
 	 */
 	private $version;
 
+	protected $connector;
+
 	/**
 	 * Initialize the class and set its properties.
 	 *
@@ -118,6 +120,12 @@ class Orbit_Fox_Admin {
 	 * @access  public
 	 */
 	public function menu_pages() {
+		/**
+		 * Init the connector object and server it to the view.
+		 * We'll conditionate some view parts if the user is connected or not.
+		 */
+		$this->connector = Orbit_Fox_Connector::instance();
+
 		add_menu_page(
 			__( 'Orbit Fox', 'themeisle-companion' ), __( 'Orbit Fox', 'themeisle-companion' ), 'manage_options', 'obfx_companion',
 			array(
@@ -412,6 +420,7 @@ class Orbit_Fox_Admin {
 			'tiles'         => $tiles,
 			'toasts'        => $toasts,
 			'panels'        => $panels,
+			'connector'     => $this->connector
 		);
 		$output = $rdh->get_view( 'modules', $data );
 		echo $output;
