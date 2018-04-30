@@ -50,9 +50,7 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @since   1.0.0
 	 * @access  public
 	 */
-	public function load() {
-		return true;
-	}
+	public function load() {}
 
 	/**
 	 * Method to define hooks needed.
@@ -61,6 +59,12 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function hooks() {
+		/**
+		 * Init the connector object and.
+		 */
+		require_once __DIR__ . '/inc/class-orbit-fox-connector.php';
+		$this->connector = Orbit_Fox_Connector::instance();
+
 		$this->loader->add_filter( 'image_downsize', $this, 'filter_image_downsize', 10, 3 );
 	}
 
@@ -88,14 +92,39 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		return array();
 	}
 
-
 	/**
 	 * Options array for the Orbit Fox module.
 	 *
 	 * @return array
 	 */
 	public function options() {
-		return array();
+		// let's check if this user needs to connect with orbitfox service
+		$obfx_user_data = get_option( 'obfx_connect_data' );
+
+		if ( empty( $obfx_user_data ) ) {
+
+			return array(
+				array(
+					'id'         => 'obfx_connect',
+					'name'       => 'obfx_connect',
+					'type'       => 'link',
+					'url'        => '#',
+					'link-class' => 'btn btn-success',
+					'text'       => '<span class="dashicons dashicons-share"></span>' . __( 'Connect with Orbitfox', 'themeisle-companion' ),
+				),
+			);
+		}
+
+		return array(
+			array(
+				'id'         => 'obfx_disconnect',
+				'name'       => 'obfx_disconnect',
+				'type'       => 'link',
+				'url'        => admin_url('admin.php?page=obfx_companion&action=disconnect_obfx&nonce=' . wp_create_nonce( 'disconnect_obfx' ) ),
+				'link-class' => 'btn btn-success',
+				'text'       => '<span class="dashicons dashicons-share"></span>' . __( 'Disconnect from Orbitfox', 'themeisle-companion' ),
+			),
+		);
 	}
 
 	/**
