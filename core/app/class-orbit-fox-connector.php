@@ -21,9 +21,10 @@ class Orbit_Fox_Connector {
 //		delete_transient( 'obfx_connect_temp_creds' );
 //		delete_option( 'obfx_connect_data' );
 		if ( empty( $connect_data ) ) {
-			add_action( 'admin_notices', array( $this, 'catch_token_and_verifier' ), 10);
+			add_action( 'admin_init', array( $this, 'catch_token_and_verifier' ), 10);
 		} else {
-			add_action( "admin_notices", array( $this, 'catch_disconnect_params'), 9 );
+			add_action( "admin_init", array( $this, 'catch_disconnect_params'), 9 );
+			add_action( "admin_init", array( $this, 'catch_successful_connection'), 10 );
 		}
 
 		add_filter( "obfx_connector_url", array( $this, 'get_connector_url') );
@@ -92,11 +93,31 @@ class Orbit_Fox_Connector {
 		$data['connect'] = $this->server->getTokenCredentials($temporaryCredentials, $_GET['oauth_token'], $_GET['oauth_verifier']);
 		// get user data
 		$data['user'] = $this->server->get_user_data( $data['connect'] );
-		// ask credentials for the image cdn service
-		//$data['imgcdn'] = $this->server->requestCredentialsForService( 'https://i.orbitfox.com/' );
+
 		update_option( 'obfx_connect_data', $data );
 
-		wp_redirect( admin_url( 'admin.php?page=obfx_companion') );
+		wp_safe_redirect( admin_url( 'admin.php?page=obfx_companion&action=successful_connection&nonce=' . wp_create_nonce( 'successful_connection' ) ) );
+	}
+
+	/**
+	 * After a successful connection to our connector, let's try to get credentials for image cdn service.
+	 * @throws Exception
+	 * @throws \League\OAuth1\Client\Credentials\CredentialsException
+	 */
+	public function catch_successful_connection(){
+		if ( empty( $_GET['action'] ) || empty( $_GET['nonce'] ) || $_GET['action'] !== 'successful_connection' ) {
+			return;
+		}
+
+		$data = get_option( 'obfx_connect_data' );
+		// ask credentials for the image cdn service
+
+		$imgcdn_creds = $this->server->requestCredentialsForService( 'https://i.orbitfox.com/', $data['user']['id'] );
+
+		if ( ! empty( $imgcdn_creds ) ) {
+			$data['imgcdn'] = $imgcdn_creds;
+			update_option( 'obfx_connect_data', $data );
+		}
 	}
 
 	/**

@@ -30,32 +30,40 @@ class OauthClient extends Server {
 	 *
 	 * @return string
 	 */
-	protected function brokerCredentialsProtocolHeader($uri, $site) {
+	protected function brokerCredentialsProtocolHeader($uri, $site, $user_id) {
 		$parameters = array_merge($this->baseProtocolParameters(), array(
 			'server_url' => $site,
+			'wp_url' => site_url(),
+			'user_id' => $user_id,
 		));
 		$parameters['oauth_signature'] = $this->signature->sign($uri, $parameters, 'POST');
 		return $this->normalizeProtocolParameters($parameters);
 	}
+
 	/**
-	 * Gets temporary credentials by performing a request to
-	 * the server.
+	 * Gets temporary credentials by performing a request to the server.
 	 *
-	 * @return TemporaryCredentials
+	 * @param $site
+	 *
+	 * @return array|null|void
+	 * @throws Exception
+	 * @throws \League\OAuth1\Client\Credentials\CredentialsException
 	 */
-	public function requestCredentialsForService( $site ) {
+	public function requestCredentialsForService( $site, $user_id ) {
 		$uri = $this->broker_url;
 		$client = new \GuzzleHttp\Client;
-		$header = $this->brokerCredentialsProtocolHeader($uri, $site);
+		$header = $this->brokerCredentialsProtocolHeader( $uri, $site, $user_id );
 
 		$fparams = array(
 			'server_url' => $site,
+			'wp_url' => site_url(),
+			'user_id' => $user_id,
 		);
 
 		$authorizationHeader = array('Authorization' => $header);
 		$headers = $this->buildHttpClientHeaders($authorizationHeader);
 		$options = array(
-			'debug' => true,
+			'debug'       => false,
 			'headers'     => $headers,
 			'form_params' => $fparams,
 			'stream'      => true,
@@ -78,12 +86,12 @@ class OauthClient extends Server {
 			return null;
 		}
 
-		$allowed = array( 'client_token', 'client_secret', 'api_root' );
+		$our_keys = array( 'client_token', 'client_secret', 'api_root' );
 
 		$filtered = array_filter(
 			$credentials,
-			function ($key) use ($allowed) {
-				return in_array($key, $allowed);
+			function ($key) use ($our_keys) {
+				return in_array($key, $our_keys);
 			},
 			ARRAY_FILTER_USE_KEY
 		);
@@ -101,12 +109,12 @@ class OauthClient extends Server {
 		$url = $this->urlUserDetails();
 
 		$data = $this->_fetch( $url, $tokenCredentials );
-		$allowed = array( 'id', 'username', 'name',  'email' );
+		$our_keys = array( 'id', 'username', 'name',  'email' );
 		if ( ! empty( $data ) ){
 			$filtered = array_filter(
 				$data,
-				function ($key) use ($allowed) {
-					return in_array($key, $allowed);
+				function ($key) use ($our_keys) {
+					return in_array($key, $our_keys);
 				},
 				ARRAY_FILTER_USE_KEY
 			);
