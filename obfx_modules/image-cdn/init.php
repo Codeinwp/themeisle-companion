@@ -60,9 +60,11 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function hooks() {
 		/**
-		 * Init the connector object and.
+		 * Init the connector object and load deps.
 		 */
+		require_once __DIR__ . '/inc/class-request.php';
 		require_once __DIR__ . '/inc/class-orbit-fox-connector.php';
+
 		$this->connector = Orbit_Fox_Connector::instance();
 
 		$this->loader->add_filter( 'image_downsize', $this, 'filter_image_downsize', 10, 3 );
