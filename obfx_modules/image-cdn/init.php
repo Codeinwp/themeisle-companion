@@ -17,7 +17,14 @@
  */
 class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
-	protected $base_cdn_url = 'https://i.orbitfox.com/';
+	/**
+	 * This property will be build on the run
+	 * @var null
+	 */
+	protected $cdn_url = null;
+
+	protected $connect_data = null;
+
 	protected static $image_sizes;
 
 	/**
@@ -30,7 +37,9 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		parent::__construct();
 		$this->name           = __( 'Image CDN Module', 'themeisle-companion' );
 		$this->description    = __( 'Let us take care of you images sizes. With this feature we\'ll compress and resize every image on your website.', 'themeisle-companion' );
-		$this->active_default = true;
+		$this->active_default = false;
+
+		$this->set_cdn_url();
 	}
 
 	/**
@@ -65,7 +74,7 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		require_once __DIR__ . '/inc/class-request.php';
 		require_once __DIR__ . '/inc/class-orbit-fox-connector.php';
 
-		$this->connector = Orbit_Fox_Connector::instance();
+		Orbit_Fox_Connector::instance();
 
 		$this->loader->add_filter( 'image_downsize', $this, 'filter_image_downsize', 10, 3 );
 	}
@@ -122,7 +131,7 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'id'         => 'obfx_disconnect',
 				'name'       => 'obfx_disconnect',
 				'type'       => 'link',
-				'url'        => admin_url('admin.php?page=obfx_companion&action=disconnect_obfx&nonce=' . wp_create_nonce( 'disconnect_obfx' ) ),
+				'url'        => admin_url('admin.php?page=obfx_companion&action=disconnect_obfx' ),
 				'link-class' => 'btn btn-success',
 				'text'       => '<span class="dashicons dashicons-share"></span>' . __( 'Disconnect from Orbitfox', 'themeisle-companion' ),
 			),
@@ -185,15 +194,33 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		return $image;
 	}
 
+	/**
+	 * Returns a signed image url authorized to be used in our CDN.
+	 *
+	 * @param $url
+	 * @param array $args
+	 *
+	 * @return string
+	 */
 	public function get_imgcdn_url( $url, $args = array( 'width' => 100, 'height' => 100 ) ){
 		$compress_level = 30;
 
-		$new_url = sprintf( '%s?url=%s&w=%s&h=%s&q=%s',
-			$this->base_cdn_url,
-			urlencode($url),
+		// this will authorize the image
+		$hash = md5( json_encode( array(
+			'url' => $url,
+			'width' => $args['width'],
+			'height' => $args['height'],
+			'compress' => $compress_level,
+			'secret' => $this->connect_data['imgcdn']['client_secret']
+		) ) );
+
+		$new_url = sprintf( '%s/%s/%s/%s/%s/%s',
+			$this->cdn_url,
+			$hash,
 			$args['width'],
 			$args['height'],
-			$compress_level
+			$compress_level,
+			urlencode($url)
 		);
 
 		return $new_url;
@@ -248,5 +275,26 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		}
 
 		return is_array( self::$image_sizes ) ? self::$image_sizes : array();
+	}
+
+	/**
+	 * Set the cdn url based on the current connected user.
+	 */
+	protected function set_cdn_url(){
+		$this->connect_data = get_option('obfx_connect_data');
+
+		if ( empty( $this->connect_data ) ) {
+			return;
+		}
+
+		if ( empty( $this->connect_data['imgcdn'] ) ) {
+			return;
+		}
+
+		$this->cdn_url = sprintf( 'https://%s.%s/%s',
+			$this->connect_data['imgcdn']['client_token'],
+			'i.orbitfox.com',
+			'resize'
+		);
 	}
 }

@@ -2,7 +2,7 @@
 
 class Orbit_Fox_Connector {
 	/**
-	 * @var Connector
+	 * @var Orbit_Fox_Connector
 	 */
 	protected static $instance = null;
 
@@ -36,6 +36,12 @@ class Orbit_Fox_Connector {
 		) );
 	}
 
+	/**
+	 * When a user requests an url we request a set of temporary token credentials and build a link with them.
+	 * We also save them because we'll need them with the verifier.
+	 *
+	 * @return bool
+	 */
 	public function rest_handle_connector_url() {
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return false;
@@ -47,28 +53,28 @@ class Orbit_Fox_Connector {
 			wp_send_json_success( 'disconnected' );
 		}
 
-		$req = new OAuth1_Request( $this->connect_url . '/oauth1/request', 'POST', array(), true );
+		$request = new OAuth1_Request( $this->connect_url . '/oauth1/request', 'POST', array(), true );
 
-		$response = $req->get_response();
+		$response = $request->get_response();
 
-		$arr      = array();
+		$args      = array();
 		$response = str_replace( '\n', '', $response );
-		parse_str( $response, $arr );
+		parse_str( $response, $args );
 
-		if ( isset( $arr['oauth_token'] ) && isset( $arr['oauth_token_secret'] ) ) {
+		if ( isset( $args['oauth_token'] ) && isset( $args['oauth_token_secret'] ) ) {
 			// cache temporary request
 			set_transient( 'obfx_connect_temp_creds', array(
-				'oauth_token'        => $arr['oauth_token'],
-				'oauth_token_secret' => $arr['oauth_token_secret'],
+				'oauth_token'        => $args['oauth_token'],
+				'oauth_token_secret' => $args['oauth_token_secret'],
 			), 3600 );
 			$url = $this->connect_url . '/oauth1/authorize';
-			$url = add_query_arg( array( 'oauth_token' => $arr['oauth_token'] ), $url );
-			$url = add_query_arg( array( 'oauth_token_secret' => $arr['oauth_token_secret'] ), $url );
+			$url = add_query_arg( array( 'oauth_token' => $args['oauth_token'] ), $url );
+			$url = add_query_arg( array( 'oauth_token_secret' => $args['oauth_token_secret'] ), $url );
 			$url = add_query_arg( array( 'callback_url' => rawurlencode( admin_url( 'admin.php?page=obfx_companion' ) ) ), $url );
 
 			wp_send_json_success( $url );
 		}
-		wp_send_json_error( $arr );
+		wp_send_json_error( $args );
 	}
 
 	/**
@@ -91,9 +97,7 @@ class Orbit_Fox_Connector {
 						if (response.success === true) {
 							window.location.href = response.data;
 						}
-						// in case of success replace  self href attr
 					}).fail(function (e) {
-						console.log(e);
 						$('#obfx_connect').parent().removeClass('loading');
 					});
 				});
@@ -104,17 +108,13 @@ class Orbit_Fox_Connector {
 					wp.apiRequest({
 						url: "<?php echo get_rest_url( null, 'obfx-connector/connector-url' ); ?>",
 						type: 'GET',
-						data: {
-							disconnect: true
-						},
+						data: {disconnect: true},
 						dataType: 'json'
 					}).done(function (response) {
 						if (response.success === true) {
 							window.location.href = "<?php echo admin_url( 'admin.php?page=obfx_companion' ); ?>";
 						}
-						$('#obfx_disconnect').parent().removeClass('loading');
 					}).fail(function (e) {
-						console.log(e);
 						$('#obfx_disconnect').parent().removeClass('loading');
 					});
 				});
@@ -126,6 +126,8 @@ class Orbit_Fox_Connector {
 	/**
 	 * In case there's a oauth verifier returned from the connect service we are ready to require the token credentials
 	 * and save the user's data.
+	 *
+	 * @return null
 	 */
 	public function catch_token_and_verifier() {
 		if ( ! isset( $_GET['oauth_token'] ) || ! isset( $_GET['oauth_verifier'] ) ) {
@@ -180,8 +182,6 @@ class Orbit_Fox_Connector {
 
 	/**
 	 * After a successful connection to our connector, let's try to get credentials for image cdn service.
-	 * @throws Exception
-	 * @throws \League\OAuth1\Client\Credentials\CredentialsException
 	 */
 	public function catch_successful_connection() {
 		if ( empty( $_GET['action'] ) || empty( $_GET['nonce'] ) || $_GET['action'] !== 'successful_connection' ) {
@@ -190,8 +190,6 @@ class Orbit_Fox_Connector {
 
 		$data = get_option( 'obfx_connect_data' );
 		// ask credentials for the image cdn service
-
-		// $imgcdn_creds = $this->server->requestCredentialsForService( 'https://i.orbitfox.com/', $data['user']['id'] );
 
 		$request = new OAuth1_Request( 'https://connect.orbitfox.com/broker/connect/', 'POST', array(
 			'server_url' => 'https://i.orbitfox.com/',
@@ -218,7 +216,7 @@ class Orbit_Fox_Connector {
 	 * @static
 	 * @since 1.0.0
 	 * @access public
-	 * @return Connector
+	 * @return Orbit_Fox_Connector
 	 */
 	public static function instance() {
 		if ( is_null( self::$instance ) ) {
