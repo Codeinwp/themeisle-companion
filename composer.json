@@ -23,8 +23,7 @@
     "codeinwp/full-width-page-templates": "master",
     "codeinwp/elementor-extra-widgets": "master",
     "codeinwp/templates-directory": "master",
-    "codeinwp/themeisle-content-forms": "master",
-    "league/oauth1-client": "^1.6"
+    "codeinwp/themeisle-content-forms": "master"
   },
   "autoload": {
     "files": [
