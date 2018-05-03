@@ -100,6 +100,13 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 == Changelog ==
+= 2.4.7 - 2018-05-03  = 
+
+* Add content forms for Beaver Builder
+* Bug fixes and performance enhancements for Hestia
+* Fix issue with plugin activation and deactivation
+
+
 = 2.4.6 - 2018-04-12  = 
 
 * Add video to readme file

@@ -1,4 +1,10 @@
 
+ ### v2.4.7 - 2018-05-03 
+ **Changes:** 
+ * Add content forms for Beaver Builder
+* Bug fixes and performance enhancements for Hestia
+* Fix issue with plugin activation and deactivation
+ 
  ### v2.4.6 - 2018-04-12 
  **Changes:** 
  * Add video to readme file 
