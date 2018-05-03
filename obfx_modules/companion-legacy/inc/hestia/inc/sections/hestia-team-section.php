@@ -54,15 +54,23 @@ if ( ! function_exists( 'hestia_team' ) ) :
 		hestia_before_team_section_trigger();
 		?>
 		<section class="hestia-team <?php echo esc_attr( $wrapper_class ); ?>" id="team" data-sorder="hestia_team">
-			<?php hestia_before_team_section_content_trigger(); ?>
+			<?php
+			hestia_before_team_section_content_trigger();
+			if ( function_exists('hestia_display_customizer_shortcut') && $is_shortcode === false ) {
+				hestia_display_customizer_shortcut( 'hestia_team_hide', true );
+			}
+			?>
 			<div class="<?php echo esc_attr( $container_class ); ?>">
 				<?php
 				hestia_top_team_section_content_trigger();
 				if ( $is_shortcode === false ) {
 				?>
 					<div class="row">
-						<div class="col-md-8 col-md-offset-2 text-center">
+						<div class="col-md-8 col-md-offset-2 text-center hestia-team-title-area">
 							<?php
+                            if( function_exists('hestia_display_customizer_shortcut') ) {
+	                            hestia_display_customizer_shortcut( 'hestia_team_title' );
+                            }
 							if ( ! empty( $hestia_team_title ) || is_customize_preview() ) {
 								echo '<h2 class="hestia-title">' . wp_kses_post( $hestia_team_title ) . '</h2>';
 							}
