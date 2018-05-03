@@ -37,7 +37,7 @@ if ( ! defined( 'WPINC' ) ) {
  */
 function activate_orbit_fox() {
 	$obfx_activator = new Orbit_Fox_Activator();
-	$obfx_activator::activate();
+	$obfx_activator->activate();
 }
 
 /**
@@ -46,7 +46,7 @@ function activate_orbit_fox() {
  */
 function deactivate_orbit_fox() {
 	$obfx_deactivator = new Orbit_Fox_Deactivator();
-	$obfx_deactivator::deactivate();
+	$obfx_deactivator->deactivate();
 }
 
 register_activation_hook( __FILE__, 'activate_orbit_fox' );
