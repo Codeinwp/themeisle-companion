@@ -18,7 +18,7 @@ if ( ! function_exists( 'hestia_ribbon_customize_register' ) ) :
 	 */
 	function hestia_ribbon_customize_register( $wp_customize ) {
 
-		$selective_refresh = isset( $wp_customize->selective_refresh ) ? 'postMessage' : 'refresh';
+		$selective_refresh = isset( $wp_customize->selective_refresh ) && function_exists('hestia_display_customizer_shortcut') ? 'postMessage' : 'refresh';
 
 		if ( class_exists( 'Hestia_Hiding_Section' ) ) {
 			$wp_customize->add_section(
@@ -132,74 +132,3 @@ if ( ! function_exists( 'hestia_ribbon_customize_register' ) ) :
 	add_action( 'customize_register', 'hestia_ribbon_customize_register' );
 
 endif;
-
-
-if ( ! function_exists( 'hestia_register_ribbon_partials' ) ) :
-
-	/**
-	 * Add selective refresh for ribbon section controls.
-	 *
-	 * @param WP_Customize_Manager $wp_customize Theme Customizer object.
-	 * @since 1.1.47
-	 * @access public
-	 */
-	function hestia_register_ribbon_partials( $wp_customize ) {
-		// Abort if selective refresh is not available.
-		if ( ! isset( $wp_customize->selective_refresh ) ) {
-			return;
-		}
-
-		$wp_customize->selective_refresh->add_partial(
-			'hestia_ribbon_hide', array(
-				'selector' => '.hestia-ribbon:not(.is-shortcode)',
-				'container_inclusive' => true,
-				'render_callback' => 'hestia_ribbon',
-				'fallback_refresh' => false,
-			)
-		);
-
-		$wp_customize->selective_refresh->add_partial(
-			'hestia_ribbon_background', array(
-				'selector' => '.hestia-ribbon-style',
-				'container_inclusive' => true,
-				'render_callback' => 'hestia_ribbon_background',
-			)
-		);
-
-		$wp_customize->selective_refresh->add_partial(
-			'hestia_ribbon_text', array(
-				'selector' => '.hestia-ribbon .hestia-title',
-				'render_callback' => 'hestia_ribbon_text_callback',
-			)
-		);
-
-		$wp_customize->selective_refresh->add_partial(
-			'hestia_ribbon_button_text', array(
-				'selector' => '.hestia-subscribe-button',
-				'render_callback' => 'hestia_ribbon_button_text_callback',
-			)
-		);
-	}
-
-	add_action( 'customize_register', 'hestia_register_ribbon_partials' );
-endif;
-
-/**
- * Callback function for ribbon text selective refresh.
- *
- * @since 1.1.47
- * @return string
- */
-function hestia_ribbon_text_callback() {
-	return get_theme_mod( 'hestia_ribbon_text' );
-}
-
-/**
- * Callback function for ribbon button text selective refresh.
- *
- * @since 1.1.47
- * @return string
- */
-function hestia_ribbon_button_text_callback() {
-	return get_theme_mod( 'hestia_ribbon_button_text' );
-}

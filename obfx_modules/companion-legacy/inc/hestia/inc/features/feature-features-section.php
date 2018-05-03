@@ -15,7 +15,7 @@ if ( ! function_exists( 'hestia_features_customize_register' ) ) :
 	 */
 	function hestia_features_customize_register( $wp_customize ) {
 
-		$selective_refresh = isset( $wp_customize->selective_refresh ) ? 'postMessage' : 'refresh';
+		$selective_refresh = isset( $wp_customize->selective_refresh ) && function_exists('hestia_display_customizer_shortcut') ? 'postMessage' : 'refresh';
 
 		if ( class_exists( 'Hestia_Hiding_Section' ) ) {
 			$wp_customize->add_section(
@@ -131,33 +131,6 @@ function hestia_register_features_partials( $wp_customize ) {
 	}
 
 	$wp_customize->selective_refresh->add_partial(
-		'hestia_features_hide', array(
-			'selector' => '.hestia-features:not(.is-shortcode)',
-			'render_callback' => 'hestia_features',
-			'container_inclusive' => true,
-			'fallback_refresh' => false,
-		)
-	);
-
-	$wp_customize->selective_refresh->add_partial(
-		'hestia_features_title', array(
-			'selector' => '.hestia-features h2.hestia-title',
-			'settings' => 'hestia_features_title',
-			'render_callback' => 'hestia_features_title_callback',
-			'fallback_refresh' => false,
-		)
-	);
-
-	$wp_customize->selective_refresh->add_partial(
-		'hestia_features_subtitle', array(
-			'selector' => '.hestia-features h5.description',
-			'settings' => 'hestia_features_subtitle',
-			'render_callback' => 'hestia_features_subtitle_callback',
-			'fallback_refresh' => false,
-		)
-	);
-
-	$wp_customize->selective_refresh->add_partial(
 		'hestia_features_content', array(
 			'selector' => '.hestia-features-content',
 			'settings' => 'hestia_features_content',
@@ -167,27 +140,6 @@ function hestia_register_features_partials( $wp_customize ) {
 }
 add_action( 'customize_register', 'hestia_register_features_partials' );
 
-/**
- * Callback function for features title selective refresh.
- *
- * @return string
- * @since 1.1.31
- * @access public
- */
-function hestia_features_title_callback() {
-	return get_theme_mod( 'hestia_features_title' );
-}
-
-/**
- * Callback function for features subtitle selective refresh.
- *
- * @return string
- * @since 1.1.31
- * @access public
- */
-function hestia_features_subtitle_callback() {
-	return get_theme_mod( 'hestia_features_subtitle' );
-}
 
 /**
  * Callback function for features content selective refresh.

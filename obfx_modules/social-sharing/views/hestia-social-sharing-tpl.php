@@ -39,5 +39,5 @@ if ( ! empty( $social_links_array ) ) { ?>
 			<?php } ?>
 		</ul>
 	</div>
-<?php
+	<?php
 }// End if().
