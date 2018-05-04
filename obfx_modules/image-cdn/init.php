@@ -203,27 +203,39 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return string
 	 */
 	public function get_imgcdn_url( $url, $args = array( 'width' => 100, 'height' => 100 ) ){
-		$compress_level = 30;
-
+		$compress_level = 35;
 		// this will authorize the image
 		$hash = md5( json_encode( array(
-			'url' => $url,
+			'url' => $this->urlception_encode( $url ),
 			'width' => $args['width'],
 			'height' => $args['height'],
 			'compress' => $compress_level,
 			'secret' => $this->connect_data['imgcdn']['client_secret']
 		) ) );
 
-		$new_url = sprintf( '%s/%s/%s/%s/%s/%s',
+		$new_url = sprintf( '%s/%s/%s/%s/%s/?url=%s',
 			$this->cdn_url,
 			$hash,
 			$args['width'],
 			$args['height'],
 			$compress_level,
-			urlencode($url)
+			$this->urlception_encode( $url )
 		);
 
 		return $new_url;
+	}
+
+	/**
+	 * Ensures that an url parameter can stand inside an url.
+	 *
+	 * @param $url
+	 *
+	 * @return string
+	 */
+	protected function urlception_encode( $url ){
+		$new_url = rtrim( $url, '/');
+
+		return urlencode( $new_url );
 	}
 
 	/**
@@ -294,7 +306,7 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$this->cdn_url = sprintf( 'https://%s.%s/%s',
 			$this->connect_data['imgcdn']['client_token'],
 			'i.orbitfox.com',
-			'resize'
+			$this->connect_data['imgcdn']['client_token']
 		);
 	}
 }
