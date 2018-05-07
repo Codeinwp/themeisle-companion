@@ -17,15 +17,7 @@
  */
 class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
-	/**
-	 * This property will be build on the run
-	 * @var null
-	 */
-	protected $cdn_url = null;
-
 	protected $connect_data = null;
-
-	protected static $image_sizes;
 
 	/**
 	 * Image_CDN_OBFX_Module constructor.
@@ -38,8 +30,6 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$this->name           = __( 'Image CDN Module', 'themeisle-companion' );
 		$this->description    = __( 'Let us take care of you images sizes. With this feature we\'ll compress and resize every image on your website.', 'themeisle-companion' );
 		$this->active_default = false;
-
-		$this->set_cdn_url();
 	}
 
 	/**
@@ -73,10 +63,13 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		 */
 		require_once __DIR__ . '/inc/class-request.php';
 		require_once __DIR__ . '/inc/class-orbit-fox-connector.php';
+		require_once __DIR__ . '/inc/class-orbit-fox-image-replacer.php';
 
-		Orbit_Fox_Connector::instance();
+		\OrbitFox\Connector::instance();
 
-		$this->loader->add_filter( 'image_downsize', $this, 'filter_image_downsize', 10, 3 );
+		if ( ! is_admin() ) {
+			\OrbitFox\Image_CDN_Replacer::instance();
+		}
 	}
 
 	/**
@@ -138,175 +131,4 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		);
 	}
 
-	/**
-	 * This filter will replace all the images retrieved via "wp_get_image" type of functions.
-	 *
-	 * @param $image
-	 * @param $attachment_id
-	 * @param $size
-	 *
-	 * @return array
-	 */
-	public function filter_image_downsize( $image, $attachment_id, $size ){
-
-		if ( is_admin() )  {
-			return $image;
-		}
-
-		$image_url = wp_get_attachment_url( $attachment_id );
-
-		if ( $image_url ) {
-			//$image_meta = image_get_intermediate_size( $attachment_id, $size );
-
-			$image_meta = wp_get_attachment_metadata( $attachment_id );
-
-			$sizes = array(
-				'width' => $image_meta['width'],
-				'height' => $image_meta['height'],
-			);
-
-			$image_args = self::image_sizes();
-
-			if ( isset( $image_args[$size] ) ) {
-
-				$sizes = array(
-					'width' => $image_args[$size]['width'],
-					'height' => $image_args[$size]['height'],
-				);
-			}
-
-			$new_url = $this->get_imgcdn_url( $image_url, array(
-				'width' => $sizes['width'],
-				'height' => $sizes['height'],
-			));
-
-			$return = array(
-				$new_url,
-				$sizes['width'],
-				$sizes['height'],
-				false
-			);
-
-			return $return;
-		}
-
-		// in case something wrong comes, well return the default.
-		return $image;
-	}
-
-	/**
-	 * Returns a signed image url authorized to be used in our CDN.
-	 *
-	 * @param $url
-	 * @param array $args
-	 *
-	 * @return string
-	 */
-	public function get_imgcdn_url( $url, $args = array( 'width' => 100, 'height' => 100 ) ){
-		$compress_level = 35;
-		// this will authorize the image
-		$hash = md5( json_encode( array(
-			'url' => $this->urlception_encode( $url ),
-			'width' => $args['width'],
-			'height' => $args['height'],
-			'compress' => $compress_level,
-			'secret' => $this->connect_data['imgcdn']['client_secret']
-		) ) );
-
-		$new_url = sprintf( '%s/%s/%s/%s/%s/?url=%s',
-			$this->cdn_url,
-			$hash,
-			$args['width'],
-			$args['height'],
-			$compress_level,
-			$this->urlception_encode( $url )
-		);
-
-		return $new_url;
-	}
-
-	/**
-	 * Ensures that an url parameter can stand inside an url.
-	 *
-	 * @param $url
-	 *
-	 * @return string
-	 */
-	protected function urlception_encode( $url ){
-		$new_url = rtrim( $url, '/');
-
-		return urlencode( $new_url );
-	}
-
-	/**
-	 * Returns the array of image sizes since `get_intermediate_image_sizes` and image metadata  doesn't include the
-	 * custom image sizes in a reliable way.
-	 *
-	 * Inspired from jetpack/photon.
-	 *
-	 * @global $wp_additional_image_sizes
-	 *
-	 * @return array
-	 */
-	protected static function image_sizes() {
-		if ( null == self::$image_sizes ) {
-			global $_wp_additional_image_sizes;
-
-			// Populate an array matching the data structure of $_wp_additional_image_sizes so we have a consistent structure for image sizes
-			$images = array(
-				'thumb'  => array(
-					'width'  => intval( get_option( 'thumbnail_size_w' ) ),
-					'height' => intval( get_option( 'thumbnail_size_h' ) ),
-					'crop'   => (bool) get_option( 'thumbnail_crop' )
-				),
-				'medium' => array(
-					'width'  => intval( get_option( 'medium_size_w' ) ),
-					'height' => intval( get_option( 'medium_size_h' ) ),
-					'crop'   => false
-				),
-				'large'  => array(
-					'width'  => intval( get_option( 'large_size_w' ) ),
-					'height' => intval( get_option( 'large_size_h' ) ),
-					'crop'   => false
-				),
-				'full'   => array(
-					'width'  => null,
-					'height' => null,
-					'crop'   => false
-				)
-			);
-
-			// Compatibility mapping as found in wp-includes/media.php
-			$images['thumbnail'] = $images['thumb'];
-
-			// Update class variable, merging in $_wp_additional_image_sizes if any are set
-			if ( is_array( $_wp_additional_image_sizes ) && ! empty( $_wp_additional_image_sizes ) )
-				self::$image_sizes = array_merge( $images, $_wp_additional_image_sizes );
-			else
-				self::$image_sizes = $images;
-		}
-
-		return is_array( self::$image_sizes ) ? self::$image_sizes : array();
-	}
-
-	/**
-	 * Set the cdn url based on the current connected user.
-	 */
-	protected function set_cdn_url(){
-		$this->connect_data = get_option('obfx_connect_data');
-
-		if ( empty( $this->connect_data ) ) {
-			return;
-		}
-
-		if ( empty( $this->connect_data['imgcdn'] ) ) {
-			return;
-		}
-
-		$this->cdn_url = sprintf( 'https://%s.%s/%s',
-			$this->connect_data['imgcdn']['client_token'],
-			'i.orbitfox.com',
-			$this->connect_data['imgcdn']['client_token']
-		);
-	}
 }

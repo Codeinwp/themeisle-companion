@@ -1,5 +1,5 @@
 <?php
-
+namespace OrbitFox;
 /**
  * A class for building an OAuth header for http requests.
  *

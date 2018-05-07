@@ -1,8 +1,9 @@
 <?php
+namespace OrbitFox;
 
-class Orbit_Fox_Connector {
+class Connector {
 	/**
-	 * @var Orbit_Fox_Connector
+	 * @var Connector
 	 */
 	protected static $instance = null;
 
@@ -53,7 +54,7 @@ class Orbit_Fox_Connector {
 			wp_send_json_success( 'disconnected' );
 		}
 
-		$request = new OAuth1_Request( $this->connect_url . '/oauth1/request', 'POST', array(), true );
+		$request = new \OrbitFox\OAuth1_Request( $this->connect_url . '/oauth1/request', 'POST', array(), true );
 
 		$response = $request->get_response();
 
@@ -141,7 +142,7 @@ class Orbit_Fox_Connector {
 			return null;
 		}
 
-		$request = new OAuth1_Request( $this->connect_url . '/oauth1/access', 'POST', array(
+		$request = new \OrbitFox\OAuth1_Request( $this->connect_url . '/oauth1/access', 'POST', array(
 			'oauth_token'    => $_GET['oauth_token'],
 			'oauth_verifier' => $_GET['oauth_verifier'],
 		), true );
@@ -158,7 +159,7 @@ class Orbit_Fox_Connector {
 		update_option( 'obfx_connect_data', $data );
 
 		// get user data
-		$request = new OAuth1_Request( $this->connect_url . '/wp-json/wp/v2/users/me', 'GET', array(
+		$request = new \OrbitFox\OAuth1_Request( $this->connect_url . '/wp-json/wp/v2/users/me', 'GET', array(
 			'_envelope' => '1',
 			'context'   => 'edit',
 		) );
@@ -216,7 +217,7 @@ class Orbit_Fox_Connector {
 	 * @static
 	 * @since 1.0.0
 	 * @access public
-	 * @return Orbit_Fox_Connector
+	 * @return Connector
 	 */
 	public static function instance() {
 		if ( is_null( self::$instance ) ) {
