@@ -194,8 +194,7 @@ class Theme_Update_Check_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		);
 
 		$response_data = json_decode( $response['body'], true );
-
-		if ( $request_data['status_code'] === '200' ) {
+		if ( $response_data['status_code'] === '200' ) {
 			$option_data = array(
 				$payload_sha => $response_data
 			);
