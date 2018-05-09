@@ -31,7 +31,7 @@ class Connector {
 	public function register_url_endpoints() {
 		register_rest_route( 'obfx-connector', '/connector-url', array(
 			array(
-				'methods'  => WP_REST_Server::READABLE,
+				'methods'  => \WP_REST_Server::READABLE,
 				'callback' => array( $this, 'rest_handle_connector_url' )
 			),
 		) );
@@ -192,7 +192,7 @@ class Connector {
 		$data = get_option( 'obfx_connect_data' );
 		// ask credentials for the image cdn service
 
-		$request = new OAuth1_Request( 'https://connect.orbitfox.com/broker/connect/', 'POST', array(
+		$request = new \OrbitFox\OAuth1_Request( 'https://connect.orbitfox.com/broker/connect/', 'POST', array(
 			'server_url' => 'https://i.orbitfox.com/',
 			'wp_url'     => site_url(),
 			'user_id'    => $data['user']['id'],

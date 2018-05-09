@@ -13,14 +13,16 @@ class Image_CDN_Replacer {
 	 * @var null
 	 */
 	protected $cdn_url = null;
+	protected $connect_data = null;
 
+	// @TODO provide a filter for this
+	protected static $extensions = array(
+		'jpg',
+		'webp',
+		'png'
+	);
 	protected static $image_sizes;
 
-	/**
-	 * Property used in case there's a resize in action
-	 * @var null
-	 */
-	protected $resize_percent = array( 'w' => null, 'h' => null );
 	protected $max_width = 2000;
 	protected $max_height = 2000;
 	protected $img_real_sizes = null;
@@ -30,14 +32,11 @@ class Image_CDN_Replacer {
 
 		add_filter( 'image_downsize', array( $this, 'filter_image_downsize' ), 10, 3 );
 		add_filter( 'the_content', array( $this, 'filter_the_content' ), 999999 );
-		// @TODO We already replace the url  via `image_downsize` but we need a hook to replace new sizes
-		//$this->loader->add_filter( 'get_post_galleries', $this, 'filter_the_galleries', 999999 );
+		add_filter( 'wp_calculate_image_srcset', array( $this, 'filter_srcset_attr' ), 10, 5 );
 
 		// @TODO also think about the images from widgets.
-
 		// @TODO Create a really generic hook which should allow optimization for images in meta data and options.
 	}
-
 
 	/**
 	 * This filter will replace all the images retrieved via "wp_get_image" type of functions.
@@ -49,7 +48,7 @@ class Image_CDN_Replacer {
 	 * @return array
 	 */
 	public function filter_image_downsize( $image, $attachment_id, $size ) {
-
+		// we don't run optimizations on dashboard side
 		if ( is_admin() ) {
 			return $image;
 		}
@@ -58,24 +57,22 @@ class Image_CDN_Replacer {
 
 		if ( $image_url ) {
 			//$image_meta = image_get_intermediate_size( $attachment_id, $size );
-
 			$image_meta = wp_get_attachment_metadata( $attachment_id );
-
+			$image_args = self::image_sizes();
+			// defalt size
 			$sizes = array(
 				'width'  => $image_meta['width'],
 				'height' => $image_meta['height'],
 			);
 
-			$image_args = self::image_sizes();
-
 			if ( isset( $image_args[ $size ] ) ) {
-
 				$sizes = array(
 					'width'  => $image_args[ $size ]['width'],
 					'height' => $image_args[ $size ]['height'],
 				);
 			}
 
+			// try to get an optimized image url.
 			$new_url = $this->get_imgcdn_url( $image_url, array(
 				'width'  => $sizes['width'],
 				'height' => $sizes['height'],
@@ -107,14 +104,12 @@ class Image_CDN_Replacer {
 	public function filter_the_content( $content ) {
 		$images = self::parse_images_from_html( $content );
 
-//		echo '<pre>';
-//		print_r( esc_html( $content ) );
-//		echo '</pre>';
-
 		if ( empty( $images ) ) {
 			return $content; // simple. no images
 		}
 
+		$upload_dir  = wp_upload_dir();
+		$upload_dir  = $upload_dir['baseurl'];
 		$image_sizes = self::image_sizes();
 
 		foreach ( $images[0] as $index => $tag ) {
@@ -122,15 +117,18 @@ class Image_CDN_Replacer {
 			$new_tag = $tag;
 			$src     = $images['img_url'][ $index ];
 
-			// @TODO add a filter for this value.
+			// @TODO add a filter for this value?
 			if ( false !== strpos( $src, 'i.orbitfox.com' ) ) {
 				continue; // we already have this
 			}
+
+			// we handle only images uploaded to this site.
+			if ( false === strpos( $src, $upload_dir ) ) {
+				continue;
+			}
+
 			// @TODO we should check if it is a valid url
-
 			// @TODO We should add a filter to allow a possible exclusion of this link
-
-//			var_dump( $images );
 
 			// try to get the declared sizes from the img tag
 			if ( preg_match( '#width=["|\']?([\d%]+)["|\']?#i', $images['img_tag'][ $index ], $width_string ) ) {
@@ -140,8 +138,6 @@ class Image_CDN_Replacer {
 			if ( preg_match( '#height=["|\']?([\d%]+)["|\']?#i', $images['img_tag'][ $index ], $height_string ) ) {
 				$height = $height_string[1];
 			}
-
-			// @TODO full size should get some love from validate_* functions.
 
 			// Detect WP registered image size from HTML class
 			if ( preg_match( '#class=["|\']?[^"\']*size-([^"\'\s]+)[^"\']*["|\']?#i', $images['img_tag'][ $index ], $size ) ) {
@@ -155,19 +151,20 @@ class Image_CDN_Replacer {
 				unset( $size );
 			}
 
-			$new_url = $this->get_imgcdn_url( $src, array(
-				'width'  => $width,
-				'height' => $height,
-			) );
+			$new_sizes = $this->validate_image_sizes( $width, $height );
+
+			$new_url = $this->get_imgcdn_url( $src, $new_sizes );
 
 			// replace the url in hrefs or links
 			if ( ! empty( $images['link_url'][ $index ] ) ) {
 				$new_tag = preg_replace( '#(href=["|\'])' . $images['link_url'][ $index ] . '(["|\'])#i', '\1' . $new_url . '\2', $tag, 1 );
 			}
 
-			// @TODO replace the url in srcs or srcs sets
-
-			// @TODO if the url is ok, replace the new sizes
+			// replace the new sizes
+			$new_tag = str_replace( 'width="' . $width . '"', 'width="' . $new_sizes['width'] . '"', $new_tag );
+			$new_tag = str_replace( 'height="' . $height . '"', 'height="' . $new_sizes['height'] . '"', $new_tag );
+			// replace the new url
+			$new_tag = str_replace( 'src="' . $src . '"', 'src="' . $new_url . '"', $new_tag );
 
 			$content = str_replace( $tag, $new_tag, $content );
 		}
@@ -176,57 +173,80 @@ class Image_CDN_Replacer {
 	}
 
 	/**
-	 * @TODO MAke it work
+	 * Replace image URLs in the srcset attributes and in case there is a resize in action, also replace the sizes.
 	 *
-	 * @param $width
+	 * @param array $sources
+	 * @param array $size_array
+	 * @param array $image_src
+	 * @param array $image_meta
+	 * @param int $attachment_id
 	 *
-	 * @return int
+	 * @return array
 	 */
-	function validate_width( $width ) {
-
-		if ( empty( $width ) && ! empty( $this->img_real_sizes[0] ) ) {
-			$width = $this->img_real_sizes[0];
+	public function filter_srcset_attr( $sources = array(), $size_array = array(), $image_src = array(), $image_meta = array(), $attachment_id = 0 ) {
+		if ( ! is_array( $sources ) ) {
+			return $sources;
 		}
 
-		if ( $this->max_width >= $width ) {
-			return (int)$width;
+		foreach ( $sources as $i => $source ) {
+			list( $width, $height ) = self::parse_dimensions_from_filename( $source['url'] );
+
+			if ( empty( $width ) ) {
+				$width = $image_meta['width'];
+			}
+
+			if ( empty( $height ) ) {
+				$height = $image_meta['height'];
+			}
+
+			$new_sizes = $this->validate_image_sizes( $width, $height );
+			$new_url = $this->get_imgcdn_url( $source['url'], $new_sizes );
+
+			$sources[ $i ]['url'] = $new_url;
+			if ( $sources[ $i ]['descriptor'] ) {
+				$sources[ $i ]['value'] = $new_sizes['width'];
+			} else {
+				$sources[ $i ]['value'] = $new_sizes['height'];
+			}
 		}
 
-		//if our image is way bigger we'll try to reduce it at max width. save the percentage
-		$this->resize_percent['w'] = ( $this->max_width / $width ) * 100;
-
-		return $this->max_width;
-
+		return $sources;
 	}
 
 	/**
-	 * @TODO make this work
+	 * Keep the image sizes under a sane limit.
 	 *
+	 * @param $width
 	 * @param $height
 	 *
-	 * @return int
+	 * @return array
 	 */
-	function validate_height( $height ) {
-		$original_height = $height;
+	protected function validate_image_sizes( $width, $height ) {
+		global $content_width;
 
-		// in case we miss this param and we have a real height.
-		if ( empty( $height ) && ! empty( $this->img_real_sizes[1] ) ) {
-			$height = $this->img_real_sizes[1];
+		if ( doing_filter( 'the_content' ) && isset( $GLOBALS['content_width'] ) ) {
+			$content_width = (int)$GLOBALS['content_width'];
+			
+			if ( $this->max_width > $content_width ) {
+				$this->max_width = $content_width;
+			}
 		}
 
-		// if the width was reduced, we also need to reduce the height by the exact same percentage
-		if ( ! empty( $this->resize_percent['w'] ) ) {
-			$height = $height * ( ( 100 - $this->resize_percent['w'] ) / 100 );
+		if ( $this->max_width < $width ) {
+			$resized = ( $this->max_width / $width ) * 100;
+			$width   = $this->max_width;
+			$height  = $height * ( ( 100 - $resized ) / 100 );
 		}
 
-		if ( $this->max_height >= $height ) {
-			return (int)$height;
+		if ( $this->max_height < $height ) {
+			$resized = ( $this->max_height / $height ) * 100;
+			$width   = $width * ( ( 100 - $resized ) / 100 );
 		}
 
-		//if it's still high let's take it lower and save the percentage.
-		$this->resize_percent['h'] = ( $this->max_height / $height ) * 100;
-
-		return $this->max_height;
+		return array(
+			'width'  => $width,
+			'height' => $height
+		);
 	}
 
 	/**
@@ -237,7 +257,7 @@ class Image_CDN_Replacer {
 	 *
 	 * @return string
 	 */
-	public function get_imgcdn_url( $url, $args = array( 'width' => 100, 'height' => 100 ) ) {
+	protected function get_imgcdn_url( $url, $args = array( 'width' => 100, 'height' => 100 ) ) {
 		$compress_level = 35;
 		// this will authorize the image
 		$hash = md5( json_encode( array(
@@ -271,6 +291,49 @@ class Image_CDN_Replacer {
 		$new_url = rtrim( $url, '/' );
 
 		return urlencode( $new_url );
+	}
+
+	/**
+	 * Set the cdn url based on the current connected user.
+	 */
+	protected function set_cdn_url() {
+		$this->connect_data = get_option( 'obfx_connect_data' );
+
+		if ( empty( $this->connect_data ) ) {
+			return;
+		}
+
+		if ( empty( $this->connect_data['imgcdn'] ) ) {
+			return;
+		}
+
+		$this->cdn_url = sprintf( 'https://%s.%s/%s',
+			$this->connect_data['imgcdn']['client_token'],
+			'i.orbitfox.com',
+			$this->connect_data['imgcdn']['client_token']
+		);
+	}
+
+	/**
+	 * Try to determine height and width from strings WP appends to resized image filenames.
+	 *
+	 * @param string $src The image URL.
+	 *
+	 * @return array An array consisting of width and height.
+	 */
+	public static function parse_dimensions_from_filename( $src ) {
+		$width_height_string = array();
+
+		if ( preg_match( '#-(\d+)x(\d+)\.(?:' . implode( '|', self::$extensions ) . '){1}$#i', $src, $width_height_string ) ) {
+			$width  = (int) $width_height_string[1];
+			$height = (int) $width_height_string[2];
+
+			if ( $width && $height ) {
+				return array( $width, $height );
+			}
+		}
+
+		return array( false, false );
 	}
 
 	/**
@@ -349,27 +412,6 @@ class Image_CDN_Replacer {
 		}
 
 		return array();
-	}
-
-	/**
-	 * Set the cdn url based on the current connected user.
-	 */
-	protected function set_cdn_url() {
-		$this->connect_data = get_option( 'obfx_connect_data' );
-
-		if ( empty( $this->connect_data ) ) {
-			return;
-		}
-
-		if ( empty( $this->connect_data['imgcdn'] ) ) {
-			return;
-		}
-
-		$this->cdn_url = sprintf( 'https://%s.%s/%s',
-			$this->connect_data['imgcdn']['client_token'],
-			'i.orbitfox.com',
-			$this->connect_data['imgcdn']['client_token']
-		);
 	}
 
 	/**
