@@ -59,24 +59,24 @@ class Image_CDN_Replacer {
 			//$image_meta = image_get_intermediate_size( $attachment_id, $size );
 			$image_meta = wp_get_attachment_metadata( $attachment_id );
 			$image_args = self::image_sizes();
-			// defalt size
+
+			// default size
 			$sizes = array(
 				'width'  => $image_meta['width'],
 				'height' => $image_meta['height'],
 			);
 
-			if ( isset( $image_args[ $size ] ) ) {
+			// overwrite if there a size
+			if ( 'full' !== $size && isset( $image_args[ $size ] ) ) {
 				$sizes = array(
 					'width'  => $image_args[ $size ]['width'],
 					'height' => $image_args[ $size ]['height'],
 				);
 			}
+			$new_sizes = $this->validate_image_sizes( $sizes['width'], $sizes['height'] );
 
 			// try to get an optimized image url.
-			$new_url = $this->get_imgcdn_url( $image_url, array(
-				'width'  => $sizes['width'],
-				'height' => $sizes['height'],
-			) );
+			$new_url = $this->get_imgcdn_url( $image_url, $new_sizes );
 
 			$return = array(
 				$new_url,
@@ -117,7 +117,10 @@ class Image_CDN_Replacer {
 			$new_tag = $tag;
 			$src     = $images['img_url'][ $index ];
 
-			// @TODO add a filter for this value?
+			if ( apply_filters( 'obfx_imgcdn_disable_optimization_for_link', false, $src ) ) {
+				continue;
+			}
+
 			if ( false !== strpos( $src, 'i.orbitfox.com' ) ) {
 				continue; // we already have this
 			}
@@ -126,9 +129,6 @@ class Image_CDN_Replacer {
 			if ( false === strpos( $src, $upload_dir ) ) {
 				continue;
 			}
-
-			// @TODO we should check if it is a valid url
-			// @TODO We should add a filter to allow a possible exclusion of this link
 
 			// try to get the declared sizes from the img tag
 			if ( preg_match( '#width=["|\']?([\d%]+)["|\']?#i', $images['img_tag'][ $index ], $width_string ) ) {
@@ -152,7 +152,6 @@ class Image_CDN_Replacer {
 			}
 
 			$new_sizes = $this->validate_image_sizes( $width, $height );
-
 			$new_url = $this->get_imgcdn_url( $src, $new_sizes );
 
 			// replace the url in hrefs or links
@@ -258,7 +257,8 @@ class Image_CDN_Replacer {
 	 * @return string
 	 */
 	protected function get_imgcdn_url( $url, $args = array( 'width' => 100, 'height' => 100 ) ) {
-		$compress_level = 35;
+		// not used yet.
+		$compress_level = 40;
 		// this will authorize the image
 		$hash = md5( json_encode( array(
 			'url'      => $this->urlception_encode( $url ),
@@ -310,7 +310,7 @@ class Image_CDN_Replacer {
 		$this->cdn_url = sprintf( 'https://%s.%s/%s',
 			$this->connect_data['imgcdn']['client_token'],
 			'i.orbitfox.com',
-			$this->connect_data['imgcdn']['client_token']
+			'i' // api root; almost like /wp-json/
 		);
 	}
 
