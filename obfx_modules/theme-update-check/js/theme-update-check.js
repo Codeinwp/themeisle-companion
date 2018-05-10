@@ -11,19 +11,23 @@ var obfx_theme_check = function( $ ) {
 	'use strict';
 
 	$(function() {
+
 		var slugToCheck = theme_update_check.slug;
-
-		console.log( slugToCheck );
-
 		var theme_box = $('div.theme.active .update-message');
-		//var hestia_box = $(" .update-message");
+		var oldHTML = theme_box.html();
+		var newHTML = oldHTML;
 
-		console.log( theme_update_check );
+		setInterval( checkUpdateTheme, 500 );
 
-		if ( theme_box ) {
-			theme_box.html(  theme_box.html() + '<div>' + theme_update_check.check_msg + '</div>' );
-			console.log( theme_box.html() );
+		function checkUpdateTheme() {
+			theme_box = $('div.theme.active .update-message');
+
+			if ( theme_box ) {
+				newHTML =  oldHTML + '<div>' + theme_update_check.check_msg + '</div>';
+			}
+			theme_box.html( newHTML );
 		}
+
 	} );
 
 };
