@@ -102,7 +102,7 @@ class Theme_Update_Check_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				if( isset( $checks[$payload_sha] ) && ! empty( $checks[$payload_sha] ) ) {
 
 					$changes_info = sprintf(
-						'<small>' . __( 'There is a difference of %1$s%% when updating to version %2$s from %3$s. <b>View Theme Details</b> for more info.' ) . '</small>',
+						'<small>' . __( 'A difference of <b>%1$s%%</b> for updating to version %2$s from %3$s detected.<br/><b>View Theme Details</b> for more info.' ) . '</small>',
 						$checks[$payload_sha]['data']['global_diff'],
 						$request_data['next_ver'],
 						$request_data['current_ver'],
