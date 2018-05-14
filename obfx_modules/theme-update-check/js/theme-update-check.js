@@ -14,11 +14,14 @@ var obfx_theme_check = function( $ ) {
 		function() {
 
 			var slugToCheck = theme_update_check.slug;
-			var theme_box = $( 'div.theme.active .update-message' );
-			var oldHTML = theme_box.html();
-			var newHTML = oldHTML;
 
-			setInterval( checkUpdateTheme, 500 );
+			if ( theme_update_check.check_msg !== undefined ) {
+				var theme_box = $( 'div.theme.active .update-message' );
+				var oldHTML = theme_box.html();
+				var newHTML = oldHTML;
+
+				setInterval( checkUpdateTheme, 500 );
+			}
 
 			function checkUpdateTheme() {
 				theme_box = $( 'div.theme.active .update-message' );
