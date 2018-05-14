@@ -33,6 +33,7 @@ class Image_CDN_Replacer {
 		add_filter( 'image_downsize', array( $this, 'filter_image_downsize' ), 10, 3 );
 		add_filter( 'the_content', array( $this, 'filter_the_content' ), 999999 );
 		add_filter( 'wp_calculate_image_srcset', array( $this, 'filter_srcset_attr' ), 10, 5 );
+		add_filter( 'init', array( $this, 'filter_options_and_mods' ) );
 
 		// @TODO also think about the images from widgets.
 		// @TODO Create a really generic hook which should allow optimization for images in meta data and options.
@@ -213,6 +214,54 @@ class Image_CDN_Replacer {
 	}
 
 	/**
+	 * Handles the url replacement in options and theme mods.
+	 */
+	public function filter_options_and_mods() {
+		/**
+		 * `obfx_imgcdn_options_with_url` is a filter that allows themes or plugins to select which option
+		 * holds an url and needs an optimization.
+		 */
+		$options_list = apply_filters( 'obfx_imgcdn_options_with_url', array(
+			'option_name_with_url',
+		) );
+
+		$theme_mods_list = apply_filters( 'obfx_imgcdn_theme_mods_with_url', array(
+			'header_image',
+			'background_image'
+		) );
+
+		foreach ( $options_list as $option ) {
+			add_filter( "option_$option", array( $this, 'replace_option_url' ) );
+		}
+
+		foreach ( $theme_mods_list as $mod_name ) {
+			add_filter( "theme_mod_$mod_name", array( $this, 'replace_option_url' ) );
+		}
+
+	}
+
+	/**
+	 * A filter which turns a local url into an optimized CDN image url.
+	 *
+	 * @param $url
+	 *
+	 * @return string
+	 */
+	public function replace_option_url( $url ) {
+		if ( empty( $url ) ) {
+			return $url;
+		}
+
+		$sizes = getimagesize( $url );
+
+		$new_sizes = $this->validate_image_sizes( $sizes[0], $sizes[1] );
+
+		$new_url = $this->get_imgcdn_url( $url, $new_sizes );
+
+		return $new_url;
+	}
+
+	/**
 	 * Keep the image sizes under a sane limit.
 	 *
 	 * @param $width
@@ -258,7 +307,7 @@ class Image_CDN_Replacer {
 	 */
 	protected function get_imgcdn_url( $url, $args = array( 'width' => 100, 'height' => 100 ) ) {
 		// not used yet.
-		$compress_level = 40;
+		$compress_level = 44;
 		// this will authorize the image
 		$hash = md5( json_encode( array(
 			'url'      => $this->urlception_encode( $url ),
