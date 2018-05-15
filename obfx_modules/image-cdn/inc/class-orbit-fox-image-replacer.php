@@ -1,5 +1,4 @@
 <?php
-
 namespace OrbitFox;
 
 class Image_CDN_Replacer {
@@ -34,9 +33,6 @@ class Image_CDN_Replacer {
 		add_filter( 'the_content', array( $this, 'filter_the_content' ), 999999 );
 		add_filter( 'wp_calculate_image_srcset', array( $this, 'filter_srcset_attr' ), 10, 5 );
 		add_filter( 'init', array( $this, 'filter_options_and_mods' ) );
-
-		// @TODO also think about the images from widgets.
-		// @TODO Create a really generic hook which should allow optimization for images in meta data and options.
 	}
 
 	/**
@@ -67,13 +63,19 @@ class Image_CDN_Replacer {
 				'height' => $image_meta['height'],
 			);
 
-			// overwrite if there a size
-			if ( 'full' !== $size && isset( $image_args[ $size ] ) ) {
+			// in case there is a custom image size $size will be an array.
+			if ( is_array( $size ) ) {
+				$sizes = array(
+					'width'  => $size[0],
+					'height' => $size[1],
+				);
+			} elseif ( 'full' !== $size && isset( $image_args[ $size ] ) ) { // overwrite if there a size
 				$sizes = array(
 					'width'  => $image_args[ $size ]['width'],
 					'height' => $image_args[ $size ]['height'],
 				);
 			}
+
 			$new_sizes = $this->validate_image_sizes( $sizes['width'], $sizes['height'] );
 
 			// try to get an optimized image url.
@@ -221,42 +223,61 @@ class Image_CDN_Replacer {
 		 * `obfx_imgcdn_options_with_url` is a filter that allows themes or plugins to select which option
 		 * holds an url and needs an optimization.
 		 */
-		$options_list = apply_filters( 'obfx_imgcdn_options_with_url', array(
-			'option_name_with_url',
-		) );
+		$theme_slug = get_option( 'stylesheet' );
 
-		$theme_mods_list = apply_filters( 'obfx_imgcdn_theme_mods_with_url', array(
-			'header_image',
-			'background_image'
+		$options_list = apply_filters( 'obfx_imgcdn_options_with_url', array(
+			"theme_mods_$theme_slug",
 		) );
 
 		foreach ( $options_list as $option ) {
 			add_filter( "option_$option", array( $this, 'replace_option_url' ) );
 		}
 
-		foreach ( $theme_mods_list as $mod_name ) {
-			add_filter( "theme_mod_$mod_name", array( $this, 'replace_option_url' ) );
-		}
-
 	}
 
 	/**
-	 * A filter which turns a local url into an optimized CDN image url.
+	 * A filter which turns a local url into an optimized CDN image url or an array of image urls.
 	 *
-	 * @param $url
+	 * @param $url string|array
 	 *
-	 * @return string
+	 * @return string|array
 	 */
 	public function replace_option_url( $url ) {
 		if ( empty( $url ) ) {
 			return $url;
 		}
 
-		$sizes = getimagesize( $url );
+		// $url might be an array or an json encoded array with urls.
+		if ( is_array( $url ) || filter_var($url, FILTER_VALIDATE_URL) === false ) {
+			$array = $url;
+			$encoded = false;
 
-		$new_sizes = $this->validate_image_sizes( $sizes[0], $sizes[1] );
+			// it might a json encoded array
+			if ( ! is_array( $url ) ) {
+				$array = json_decode( $url, true );
+				$encoded = true;
+			}
 
-		$new_url = $this->get_imgcdn_url( $url, $new_sizes );
+			// in case there is an array, apply it recursively.
+			if ( is_array( $array ) ) {
+				foreach ( $array as $index => $value ) {
+					$array[$index] = $this->replace_option_url( $value );
+				}
+
+				if ( $encoded ) {
+					return json_encode($array);
+				} else {
+					return $array;
+				}
+			}
+
+			if ( filter_var($url, FILTER_VALIDATE_URL) === false ) {
+				return $url;
+			}
+		}
+
+		// get the optimized url.
+		$new_url = $this->get_imgcdn_url( $url );
 
 		return $new_url;
 	}
@@ -305,14 +326,14 @@ class Image_CDN_Replacer {
 	 *
 	 * @return string
 	 */
-	protected function get_imgcdn_url( $url, $args = array( 'width' => 100, 'height' => 100 ) ) {
+	protected function get_imgcdn_url( $url, $args = array( 'width' => 'auto', 'height' => 'auto' ) ) {
 		// not used yet.
-		$compress_level = 44;
+		$compress_level = 48;
 		// this will authorize the image
 		$hash = md5( json_encode( array(
 			'url'      => $this->urlception_encode( $url ),
-			'width'    => $args['width'],
-			'height'   => $args['height'],
+			'width'    => (string)$args['width'],
+			'height'   => (string)$args['height'],
 			'compress' => $compress_level,
 			'secret'   => $this->connect_data['imgcdn']['client_secret']
 		) ) );
@@ -320,8 +341,8 @@ class Image_CDN_Replacer {
 		$new_url = sprintf( '%s/%s/%s/%s/%s/?url=%s',
 			$this->cdn_url,
 			$hash,
-			$args['width'],
-			$args['height'],
+			(string)$args['width'],
+			(string)$args['height'],
 			$compress_level,
 			$this->urlception_encode( $url )
 		);
