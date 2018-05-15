@@ -15,7 +15,7 @@ if ( ! function_exists( 'hestia_clients_bar_customize_register' ) ) :
 	 */
 	function hestia_clients_bar_customize_register( $wp_customize ) {
 
-		$selective_refresh = isset( $wp_customize->selective_refresh ) ? 'postMessage' : 'refresh';
+		$selective_refresh = isset( $wp_customize->selective_refresh ) && function_exists('hestia_display_customizer_shortcut') ? 'postMessage' : 'refresh';
 
 		if ( class_exists( 'Hestia_Hiding_Section' ) ) {
 			$wp_customize->add_section(
@@ -67,13 +67,13 @@ if ( ! function_exists( 'hestia_clients_bar_customize_register' ) ) :
 			$wp_customize->add_control(
 				new Hestia_Repeater(
 					$wp_customize, 'hestia_clients_bar_content', array(
-						'label'                             => esc_html__( 'Clients Bar Content', 'themeisle-companion' ),
-						'section'                           => 'hestia_clients_bar',
-						'priority'                          => 5,
-						'add_field_label'                   => esc_html__( 'Add new client', 'themeisle-companion' ),
-						'item_name'                         => esc_html__( 'Clients', 'themeisle-companion' ),
-						'customizer_repeater_image_control'  => true,
-						'customizer_repeater_link_control'  => true,
+						'label'                            => esc_html__( 'Clients Bar Content', 'themeisle-companion' ),
+						'section'                          => 'hestia_clients_bar',
+						'priority'                         => 5,
+						'add_field_label'                  => esc_html__( 'Add new client', 'themeisle-companion' ),
+						'item_name'                        => esc_html__( 'Clients', 'themeisle-companion' ),
+						'customizer_repeater_image_control' => true,
+						'customizer_repeater_link_control' => true,
 					)
 				)
 			);
@@ -96,19 +96,10 @@ function hestia_register_clients_bar_partials( $wp_customize ) {
 	}
 
 	$wp_customize->selective_refresh->add_partial(
-		'hestia_clients_bar_hide', array(
-			'selector' => '.hestia-clients-bar:not(.is-shortcode)',
-			'container_inclusive' => true,
-			'render_callback' => 'hestia_clients_bar',
-			'fallback_refresh' => false,
-		)
-	);
-
-	$wp_customize->selective_refresh->add_partial(
 		'hestia_clients_bar_content', array(
-			'selector' => '.hestia-clients-bar',
+			'selector'            => '.hestia-clients-bar',
 			'container_inclusive' => true,
-			'render_callback' => 'hestia_clients_bar',
+			'render_callback'     => 'hestia_clients_bar',
 		)
 	);
 }
