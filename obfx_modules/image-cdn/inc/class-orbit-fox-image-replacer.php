@@ -20,14 +20,17 @@ class Image_CDN_Replacer {
 		'webp',
 		'png'
 	);
+
 	protected static $image_sizes;
 
 	protected $max_width = 2000;
 	protected $max_height = 2000;
 	protected $img_real_sizes = null;
 
+	protected $upload_dir = null;
+
 	function init() {
-		$this->set_cdn_url();
+		$this->set_properties();
 
 		add_filter( 'image_downsize', array( $this, 'filter_image_downsize' ), 10, 3 );
 		add_filter( 'the_content', array( $this, 'filter_the_content' ), 999999 );
@@ -111,8 +114,6 @@ class Image_CDN_Replacer {
 			return $content; // simple. no images
 		}
 
-		$upload_dir  = wp_upload_dir();
-		$upload_dir  = $upload_dir['baseurl'];
 		$image_sizes = self::image_sizes();
 
 		foreach ( $images[0] as $index => $tag ) {
@@ -129,7 +130,7 @@ class Image_CDN_Replacer {
 			}
 
 			// we handle only images uploaded to this site.
-			if ( false === strpos( $src, $upload_dir ) ) {
+			if ( false === strpos( $src, $this->upload_dir ) ) {
 				continue;
 			}
 
@@ -231,6 +232,9 @@ class Image_CDN_Replacer {
 
 		foreach ( $options_list as $option ) {
 			add_filter( "option_$option", array( $this, 'replace_option_url' ) );
+
+			// this one will not work for theme mods, since get_theme_mod('header_image', $default) has its own default.
+			//add_filter( "default_option_$option", array( $this, 'replace_option_url' ) );
 		}
 
 	}
@@ -275,6 +279,12 @@ class Image_CDN_Replacer {
 				return $url;
 			}
 		}
+
+		// we handle only images uploaded to this site./
+		// @TODO this is still wrong, not all the images are coming from the uploads folder.
+//		if ( false === strpos( $url, $this->upload_dir ) ) {
+//			return $url;
+//		}
 
 		// get the optimized url.
 		$new_url = $this->get_imgcdn_url( $url );
@@ -366,7 +376,9 @@ class Image_CDN_Replacer {
 	/**
 	 * Set the cdn url based on the current connected user.
 	 */
-	protected function set_cdn_url() {
+	protected function set_properties() {
+		$this->upload_dir  = wp_upload_dir();
+		$this->upload_dir  = $this->upload_dir['baseurl'];
 		$this->connect_data = get_option( 'obfx_connect_data' );
 
 		if ( empty( $this->connect_data ) ) {

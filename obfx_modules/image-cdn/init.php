@@ -29,7 +29,7 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		parent::__construct();
 		$this->name           = __( 'Image CDN Module', 'themeisle-companion' );
 		$this->description    = __( 'Let us take care of you images sizes. With this feature we\'ll compress and resize every image on your website.', 'themeisle-companion' );
-		$this->active_default = false;
+		$this->active_default = true;
 	}
 
 	/**
@@ -40,7 +40,29 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return bool
 	 */
 	public function enable_module() {
-		return true;
+		$is_lucky = get_option('obfx_imgcdn_lucky');
+
+		if (
+		is_admin()
+		//&& current_user_can( 'manage_options' )
+		&& isset( $_GET['force-obfx-image-cdn'] ) ) {
+			update_option('obfx_imgcdn_lucky', 'yes' );
+			return true;
+		}
+
+		if ( empty( $is_lucky ) ) {
+			$luck = rand ( 1 , 100 );
+			if ( $luck < 11 ) {
+				update_option('obfx_imgcdn_lucky', 'yes' );
+				return true;
+			} else {
+				update_option('obfx_imgcdn_lucky', 'no' );
+			}
+		} elseif ( 'yes' === $is_lucky ) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
