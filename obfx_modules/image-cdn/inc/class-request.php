@@ -18,8 +18,8 @@ class OAuth1_Request {
 	protected $headers = null;
 	protected $nonce = null;
 	protected $url = null;
-	protected $consumer_key = null;
-	protected $consumer_secret = null;
+	protected $consumer_key = 'hw6wnM5ONi3P';
+	protected $consumer_secret = 'MMJGxBWMhhYMtxIroMWCecGHcGzywDhupwpGy7bFax9urTbI';
 	protected $method = null;
 
 	public function __construct( $url, $method = 'GET', $extra_params = array(), $pass_callback = false ) {
@@ -29,15 +29,11 @@ class OAuth1_Request {
 		$this->extra_params = $extra_params;
 		$this->connect_data = get_option( 'obfx_connect_data' );
 
-		// You'd get these from /wp-admin/users.php?page=rest-oauth1-apps on the control install.
-		$this->consumer_key    = 'eB3pnaMWylkm';
-		$this->consumer_secret = '9xK8TGFWala9n3v3JzIzMOc2gHEHgsFxsF5nht0ENEix94EQ';
 
-		$temporaryCredentials = get_transient( 'obfx_connect_temp_creds' );
+		$temp_token = get_transient( 'obfx_temp_token' );
 
-		if ( ! empty( $temporaryCredentials['oauth_token_secret'] ) ) {
-			//$this->access_token        = CSS_TRICKS_WP_API_CLIENT_ACCESS_TOKEN;
-			$this->access_token_secret = $temporaryCredentials['oauth_token_secret'];
+		if ( ! empty( $temp_token ) ) {
+			$this->access_token_secret = $temp_token;
 		}
 
 		$connect_data = get_option( 'obfx_connect_data' );
@@ -232,11 +228,6 @@ class OAuth1_Request {
 			}
 		}
 
-		if ( 'GET' === $this->method && ! empty( $this->headers ) ) {
-			foreach ( $this->headers as $key => $val ) {
-				$url = add_query_arg( array( $key => $val ), $url );
-			}
-		}
 
 		// Args for wp_remote_*().
 		$args = array(
@@ -249,8 +240,10 @@ class OAuth1_Request {
 				'Authorization' => $this->header_string,
 			),
 		);
-
+		//	print_r($url);
+		//	print_r($args);
 		$out = wp_remote_request( $url, $args );
+		echo wp_remote_retrieve_body( $out );
 		return wp_remote_retrieve_body( $out );
 	}
 

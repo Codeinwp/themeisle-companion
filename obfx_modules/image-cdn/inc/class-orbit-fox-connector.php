@@ -1,4 +1,5 @@
 <?php
+
 namespace OrbitFox;
 
 class Connector {
@@ -9,16 +10,34 @@ class Connector {
 
 	protected $oauth_details = null;
 
-	protected $connect_url = 'https://connect.orbitfox.com';
+	protected $connect_url = 'http://dashboardobfx.local';
 
-	protected $oci = 'eB3pnaMWylkm';
+	protected $request_path = '/api/obfxhq/v1/oauth/request';
+	protected $access_path = '/api/obfxhq/v1/oauth/access';
+	protected $authorize_path = '/user/authorize';
+	protected $connect_path = '/api/obfxhq/v1/broker/connect';
+	protected $current_user = '/api/obfxhq/v1/user/me';
 
-	protected $ocs = '9xK8TGFWala9n3v3JzIzMOc2gHEHgsFxsF5nht0ENEix94EQ';
+	/**
+	 * @static
+	 * @since 1.0.0
+	 * @access public
+	 * @return Connector
+	 */
+	public static function instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+			self::$instance->init();
+		}
+
+		return self::$instance;
+	}
 
 	function init() {
 		$connect_data = get_option( 'obfx_connect_data' );
 
 		add_action( 'admin_init', array( $this, 'catch_token_and_verifier' ), 10 );
+		//add_action( 'admin_init', array( $this, 'get_user_data' ), 10 );
 		if ( empty( $connect_data ) ) {
 		} else {
 			add_action( "admin_init", array( $this, 'catch_successful_connection' ), 10 );
@@ -31,8 +50,11 @@ class Connector {
 	public function register_url_endpoints() {
 		register_rest_route( 'obfx-connector', '/connector-url', array(
 			array(
-				'methods'  => \WP_REST_Server::READABLE,
-				'callback' => array( $this, 'rest_handle_connector_url' )
+				'methods'             => \WP_REST_Server::READABLE,
+				'permission_callback' => function ( \WP_REST_Request $request ) {
+					return current_user_can( 'manage_options' );
+				},
+				'callback'            => array( $this, 'rest_handle_connector_url' )
 			),
 		) );
 	}
@@ -43,36 +65,27 @@ class Connector {
 	 *
 	 * @return bool
 	 */
-	public function rest_handle_connector_url() {
-		if ( ! current_user_can( 'manage_options' ) ) {
-			return false;
-		}
+	public function rest_handle_connector_url( \WP_REST_Request $request ) {
 
-		if ( isset( $_GET['disconnect'] ) && $_GET['disconnect'] ) {
-			delete_transient( 'obfx_connect_temp_creds' );
+		$disconnect_flag = $request->get_param( 'disconnect' );
+		if ( ! empty( $disconnect_flag ) ) {
 			delete_option( 'obfx_connect_data' );
 			wp_send_json_success( 'disconnected' );
 		}
-
-		$request = new \OrbitFox\OAuth1_Request( $this->connect_url . '/oauth1/request', 'POST', array(), true );
+		delete_transient( 'obfx_temp_token' );
+		$request = new \OrbitFox\OAuth1_Request( $this->connect_url . $this->request_path, 'POST', array(), true );
 
 		$response = $request->get_response();
-
-		$args      = array();
 		$response = str_replace( '\n', '', $response );
-		parse_str( $response, $args );
+		$args     = json_decode( $response, true );
 
 		if ( isset( $args['oauth_token'] ) && isset( $args['oauth_token_secret'] ) ) {
-			// cache temporary request
-			set_transient( 'obfx_connect_temp_creds', array(
-				'oauth_token'        => $args['oauth_token'],
-				'oauth_token_secret' => $args['oauth_token_secret'],
-			), 3600 );
-			$url = $this->connect_url . '/oauth1/authorize';
+			set_transient( 'obfx_temp_token', $args['oauth_token_secret'], HOUR_IN_SECONDS );
+			$url = $this->connect_url . $this->authorize_path;
 			$url = add_query_arg( array( 'oauth_token' => $args['oauth_token'] ), $url );
 			$url = add_query_arg( array( 'oauth_token_secret' => $args['oauth_token_secret'] ), $url );
-			$url = add_query_arg( array( 'callback_url' => rawurlencode( admin_url( 'admin.php?page=obfx_companion' ) ) ), $url );
 
+			$url = add_query_arg( array( 'oauth_callback' => rawurlencode( admin_url( 'admin.php?page=obfx_companion' ) ) ), $url );
 			wp_send_json_success( $url );
 		}
 		wp_send_json_error( $args );
@@ -134,51 +147,48 @@ class Connector {
 		if ( ! isset( $_GET['oauth_token'] ) || ! isset( $_GET['oauth_verifier'] ) ) {
 			return null;
 		}
-
-		$temporaryCredentials = get_transient( 'obfx_connect_temp_creds' );
-
-		// meh, skip
-		if ( empty( $temporaryCredentials ) ) {
-			return null;
-		}
-
-		$request = new \OrbitFox\OAuth1_Request( $this->connect_url . '/oauth1/access', 'POST', array(
+		$request = new \OrbitFox\OAuth1_Request( $this->connect_url . $this->access_path, 'POST', array(
 			'oauth_token'    => $_GET['oauth_token'],
 			'oauth_verifier' => $_GET['oauth_verifier'],
 		), true );
 
 		$response = $request->get_response();
 
-		$tokens = $data = array();
+		$tokens = json_decode( $response, true );
 
-		parse_str( $response, $tokens );
-
+		if ( ! is_array( $tokens ) ) {
+			wp_safe_redirect( admin_url( 'admin.php?page=obfx_companion' ) );
+		}
 		// get permanent credentials
 		$data['connect'] = $tokens;
 
 		update_option( 'obfx_connect_data', $data );
 
+		delete_transient( 'obfx_temp_token' );
 		// get user data
-		$request = new \OrbitFox\OAuth1_Request( $this->connect_url . '/wp-json/wp/v2/users/me', 'GET', array(
-			'_envelope' => '1',
-			'context'   => 'edit',
-		) );
-
-		$user_details = $request->get_response();
-
-		$user_details = json_decode( $user_details, true );
-		$data['user'] = array_intersect_key( $user_details['body'], array_flip( array(
-			'id',
-			'username',
-			'email',
-			'name'
-		) ) );
-
+		$data['user'] = $this->get_user_data();
 		if ( ! empty( $data['user'] ) ) {
 			// cache the connection data
 			update_option( 'obfx_connect_data', $data );
 			wp_safe_redirect( admin_url( 'admin.php?page=obfx_companion&action=successful_connection&nonce=' . wp_create_nonce( 'successful_connection' ) ) );
 		}
+	}
+
+	/*
+	 * Get user info call.
+	 */
+	public function get_user_data() {
+
+		$request      = new \OrbitFox\OAuth1_Request( $this->connect_url . $this->current_user, 'GET', array() );
+		$user_details = $request->get_response();
+
+		$user_details = json_decode( $user_details, true );
+		if ( $user_details['code'] !== 'success' ) {
+			return array();
+		}
+		$user = $user_details['data'];
+
+		return $user;
 	}
 
 	/**
@@ -192,7 +202,7 @@ class Connector {
 		$data = get_option( 'obfx_connect_data' );
 		// ask credentials for the image cdn service
 
-		$request = new \OrbitFox\OAuth1_Request( 'https://connect.orbitfox.com/broker/connect/', 'POST', array(
+		$request = new \OrbitFox\OAuth1_Request( $this->connect_url . $this->connect_path, 'POST', array(
 			'server_url' => 'https://i.orbitfox.com/',
 			'wp_url'     => site_url(),
 			'user_id'    => $data['user']['id'],
@@ -211,21 +221,6 @@ class Connector {
 			$data['imgcdn'] = $imgcdn_creds;
 			update_option( 'obfx_connect_data', $data );
 		}
-	}
-
-	/**
-	 * @static
-	 * @since 1.0.0
-	 * @access public
-	 * @return Connector
-	 */
-	public static function instance() {
-		if ( is_null( self::$instance ) ) {
-			self::$instance = new self();
-			self::$instance->init();
-		}
-
-		return self::$instance;
 	}
 
 	/**
