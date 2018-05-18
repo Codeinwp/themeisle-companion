@@ -376,6 +376,7 @@ class Orbit_Fox_Admin {
 							'name'           => $module->name,
 							'active'         => $module->get_is_active(),
 							'description'    => $module->description,
+							'show'           => $module->show,
 							'options_fields' => $options_fields,
 						)
 					);

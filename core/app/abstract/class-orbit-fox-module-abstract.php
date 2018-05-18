@@ -19,15 +19,6 @@
 abstract class Orbit_Fox_Module_Abstract {
 
 	/**
-	 * Holds the module slug.
-	 *
-	 * @since   1.0.0
-	 * @access  protected
-	 * @var     string $slug The module slug.
-	 */
-	protected $slug;
-
-	/**
 	 * Holds the name of the module
 	 *
 	 * @since   1.0.0
@@ -35,7 +26,6 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @var     string $name The name of the module.
 	 */
 	public $name;
-
 	/**
 	 * Holds the description of the module
 	 *
@@ -44,25 +34,6 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @var     string $description The description of the module.
 	 */
 	public $description;
-
-	/**
-	 * Holds the default setting activation state of the module.
-	 *
-	 * @since   2.1.0
-	 * @access  protected
-	 * @var     boolean $active_default The default active state of the module.
-	 */
-	protected $active_default = false;
-
-	/**
-	 * Stores an array of notices
-	 *
-	 * @since   1.0.0
-	 * @access  public
-	 * @var     array $notices Stores an array of notices to be displayed on the admin panel.
-	 */
-	protected $notices = array();
-
 	/**
 	 * Confirm intent array. It should contain a title and a subtitle for the confirm intent modal.
 	 *
@@ -71,7 +42,6 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @var     array $confirm_intent Stores an array of the modal with 'title' and 'subtitle' keys.
 	 */
 	public $confirm_intent = array();
-
 	/**
 	 * Flags if module should autoload.
 	 *
@@ -80,7 +50,38 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @var     bool $auto The flag for automatic activation.
 	 */
 	public $auto = false;
-
+	/**
+	 * Flags module should have the section open.
+	 *
+	 * @since   2.5.0
+	 * @access  public
+	 * @var     bool $show The flag for section opened.
+	 */
+	public $show = false;
+	/**
+	 * Holds the module slug.
+	 *
+	 * @since   1.0.0
+	 * @access  protected
+	 * @var     string $slug The module slug.
+	 */
+	protected $slug;
+	/**
+	 * Holds the default setting activation state of the module.
+	 *
+	 * @since   2.1.0
+	 * @access  protected
+	 * @var     boolean $active_default The default active state of the module.
+	 */
+	protected $active_default = false;
+	/**
+	 * Stores an array of notices
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 * @var     array $notices Stores an array of notices to be displayed on the admin panel.
+	 */
+	protected $notices = array();
 	/**
 	 * Has an instance of the Orbit_Fox_Loader class used for adding actions and filters.
 	 *
@@ -127,6 +128,24 @@ abstract class Orbit_Fox_Module_Abstract {
 	}
 
 	/**
+	 * Registers the loader.
+	 * And setup activate and deactivate hooks. Added in v2.3.3.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @since   1.0.0
+	 * @updated 2.3.3
+	 * @access  public
+	 *
+	 * @param Orbit_Fox_Loader $loader The loader class used to register action hooks and filters.
+	 */
+	public function register_loader( Orbit_Fox_Loader $loader ) {
+		$this->loader = $loader;
+		$this->loader->add_action( $this->get_slug() . '_activate', $this, 'activate' );
+		$this->loader->add_action( $this->get_slug() . '_deactivate', $this, 'deactivate' );
+	}
+
+	/**
 	 * Getter method for slug.
 	 *
 	 * @since   2.3.3
@@ -138,70 +157,13 @@ abstract class Orbit_Fox_Module_Abstract {
 	}
 
 	/**
-	 * Method to return path to child class in a Reflective Way.
-	 *
-	 * @codeCoverageIgnore
-	 *
-	 * @since   1.0.0
-	 * @access  protected
-	 * @return string
-	 */
-	protected function get_dir() {
-		$reflector = new ReflectionClass( get_class( $this ) );
-		return dirname( $reflector->getFileName() );
-	}
-
-	/**
-	 * Method to return URL to child class in a Reflective Way.
-	 *
-	 * @codeCoverageIgnore
-	 *
-	 * @access  protected
-	 * @return string
-	 */
-	protected function get_url() {
-		return plugin_dir_url( $this->get_dir() ) . $this->slug;
-	}
-
-	/**
-	 * Utility method to return active theme dir name.
-	 *
-	 * @since   1.0.0
-	 * @access  protected
-	 * @param   boolean $is_child Flag for child themes.
-	 * @return string
-	 */
-	protected function get_active_theme_dir( $is_child = false ) {
-		if ( $is_child ) {
-			return basename( get_stylesheet_directory() );
-		}
-		return basename( get_template_directory() );
-	}
-
-	/**
-	 * Registers the loader.
-	 * And setup activate and deactivate hooks. Added in v2.3.3.
-	 *
-	 * @codeCoverageIgnore
-	 *
-	 * @since   1.0.0
-	 * @updated 2.3.3
-	 * @access  public
-	 * @param Orbit_Fox_Loader $loader The loader class used to register action hooks and filters.
-	 */
-	public function register_loader( Orbit_Fox_Loader $loader ) {
-		$this->loader = $loader;
-		$this->loader->add_action( $this->get_slug() . '_activate', $this, 'activate' );
-		$this->loader->add_action( $this->get_slug() . '_deactivate', $this, 'deactivate' );
-	}
-
-	/**
 	 * Registers the loader.
 	 *
 	 * @codeCoverageIgnore
 	 *
 	 * @since   1.0.0
 	 * @access  public
+	 *
 	 * @param Orbit_Fox_Model $model The loader class used to register action hooks and filters.
 	 */
 	public function register_model( Orbit_Fox_Model $model ) {
@@ -242,6 +204,41 @@ abstract class Orbit_Fox_Module_Abstract {
 	}
 
 	/**
+	 * Method to retrieve from model the module status for
+	 * the provided key.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 *
+	 * @param   string $key Key to look for.
+	 *
+	 * @return bool
+	 */
+	final public function get_status( $key ) {
+		return $this->model->get_module_status( $this->slug, $key );
+	}
+
+	/**
+	 * Method to update in model the module status for
+	 * the provided key value pair.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 *
+	 * @param   string $key Key to update.
+	 * @param   string $value The new value.
+	 *
+	 * @return mixed
+	 */
+	final public function set_status( $key, $value ) {
+		return $this->model->set_module_status( $this->slug, $key, $value );
+	}
+
+	/**
 	 * Method to determine if the module is enabled or not.
 	 *
 	 * @since   1.0.0
@@ -258,35 +255,6 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @return mixed
 	 */
 	public abstract function load();
-
-	/**
-	 * Method that returns an array of scripts and styles to be loaded
-	 * for the front end part.
-	 *
-	 * @since   1.0.0
-	 * @access  public
-	 * @return array
-	 */
-	public abstract function public_enqueue();
-
-	/**
-	 * Method that returns an array of scripts and styles to be loaded
-	 * for the admin part.
-	 *
-	 * @since   1.0.0
-	 * @access  public
-	 * @return array
-	 */
-	public abstract function admin_enqueue();
-
-	/**
-	 * Method to define the options fields for the module
-	 *
-	 * @since   1.0.0
-	 * @access  public
-	 * @return array
-	 */
-	public abstract function options();
 
 	/**
 	 * Method to define actions and filters needed for the module.
@@ -311,58 +279,8 @@ abstract class Orbit_Fox_Module_Abstract {
 		if ( $this->auto == true ) {
 			return true;
 		}
+
 		return $this->model->get_is_module_active( $this->slug, $this->active_default );
-	}
-
-	/**
-	 * Method to retrieve from model the module status for
-	 * the provided key.
-	 *
-	 * @codeCoverageIgnore
-	 *
-	 * @since   1.0.0
-	 * @access  public
-	 * @param   string $key Key to look for.
-	 * @return bool
-	 */
-	final public function get_status( $key ) {
-		return $this->model->get_module_status( $this->slug, $key );
-	}
-
-	/**
-	 * Method to update in model the module status for
-	 * the provided key value pair.
-	 *
-	 * @codeCoverageIgnore
-	 *
-	 * @since   1.0.0
-	 * @access  public
-	 * @param   string $key Key to update.
-	 * @param   string $value The new value.
-	 * @return mixed
-	 */
-	final public function set_status( $key, $value ) {
-		return $this->model->set_module_status( $this->slug, $key, $value );
-	}
-
-	/**
-	 * Method to retrieve an option value from model.
-	 *
-	 * @codeCoverageIgnore
-	 *
-	 * @since   1.0.0
-	 * @access  public
-	 * @param   string $key The option key to retrieve.
-	 * @return bool
-	 */
-	final public function get_option( $key ) {
-		$default_options = $this->get_options_defaults();
-		$db_option       = $this->model->get_module_option( $this->slug, $key );
-		$value           = $db_option;
-		if ( $db_option === false ) {
-			$value = $default_options[ $key ];
-		}
-		return $value;
 	}
 
 	/**
@@ -372,8 +290,10 @@ abstract class Orbit_Fox_Module_Abstract {
 	 *
 	 * @since   1.0.0
 	 * @access  public
+	 *
 	 * @param   string $key The key name.
 	 * @param   string $value The new value.
+	 *
 	 * @return mixed
 	 */
 	final public function set_option( $key, $value ) {
@@ -386,7 +306,8 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @since   2.3.3
 	 * @access  public
 	 */
-	public function activate() {}
+	public function activate() {
+	}
 
 	/**
 	 * Stub for deactivate hook.
@@ -394,7 +315,8 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @since   2.3.3
 	 * @access  public
 	 */
-	public function deactivate() {}
+	public function deactivate() {
+	}
 
 	/**
 	 * Method to update a set of options.
@@ -405,15 +327,72 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @since   1.0.0
 	 * @updated 2.3.3
 	 * @access  public
+	 *
 	 * @param   array $options An associative array of options to be
 	 *                         updated. Eg. ( 'key' => 'new_value' ).
+	 *
 	 * @return mixed
 	 */
 	final public function set_options( $options ) {
 		do_action( $this->get_slug() . '_before_options_save', $options );
 		$result = $this->model->set_module_options( $this->slug, $options );
 		do_action( $this->get_slug() . '_after_options_save' );
+
 		return $result;
+	}
+
+	/**
+	 * Method to retrieve the options for the module.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 * @return array
+	 */
+	final public function get_options() {
+		$model_options = $this->options();
+		$options       = array();
+		$index         = 0;
+		foreach ( $model_options as $opt ) {
+			$options[ $index ]          = $opt;
+			$options[ $index ]['value'] = $this->get_option( $opt['name'] );
+			$index ++;
+		}
+
+		return $options;
+	}
+
+	/**
+	 * Method to define the options fields for the module
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 * @return array
+	 */
+	public abstract function options();
+
+	/**
+	 * Method to retrieve an option value from model.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 *
+	 * @param   string $key The option key to retrieve.
+	 *
+	 * @return bool
+	 */
+	final public function get_option( $key ) {
+		$default_options = $this->get_options_defaults();
+		$db_option       = $this->model->get_module_option( $this->slug, $key );
+		$value           = $db_option;
+		if ( $db_option === false ) {
+			$value = $default_options[ $key ];
+		}
+
+		return $value;
 	}
 
 	/**
@@ -435,28 +414,8 @@ abstract class Orbit_Fox_Module_Abstract {
 			}
 			$defaults[ $opt['name'] ] = $opt['default'];
 		}
-		return $defaults;
-	}
 
-	/**
-	 * Method to retrieve the options for the module.
-	 *
-	 * @codeCoverageIgnore
-	 *
-	 * @since   1.0.0
-	 * @access  public
-	 * @return array
-	 */
-	final public function get_options() {
-		$model_options = $this->options();
-		$options       = array();
-		$index         = 0;
-		foreach ( $model_options as $opt ) {
-			$options[ $index ]          = $opt;
-			$options[ $index ]['value'] = $this->get_option( $opt['name'] );
-			$index++;
-		}
-		return $options;
+		return $defaults;
 	}
 
 	/**
@@ -466,6 +425,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	 *
 	 * @since   1.0.0
 	 * @access  public
+	 *
 	 * @param   string $version The version for the files.
 	 */
 	final public function set_enqueue( $version ) {
@@ -490,12 +450,84 @@ abstract class Orbit_Fox_Module_Abstract {
 	}
 
 	/**
+	 * Actually sets the styles.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @since   1.0.0
+	 * @access  private
+	 *
+	 * @param   array  $enqueue The array of files to enqueue.
+	 * @param   string $prefix The string to prefix in the enqueued name.
+	 */
+	private function set_styles( $enqueue, $prefix ) {
+		$module_dir = $this->slug;
+		if ( ! empty( $enqueue ) ) {
+			if ( isset( $enqueue['css'] ) && ! empty( $enqueue['css'] ) ) {
+				$order = 0;
+				$map   = array();
+				foreach ( $enqueue['css'] as $file_name => $dependencies ) {
+					if ( $dependencies == false ) {
+						$dependencies = array();
+					} else {
+						// check if any dependency has been loaded by us. If yes, then use that id as the dependency.
+						foreach ( $dependencies as $index => $dep ) {
+							if ( array_key_exists( $dep, $map ) ) {
+								unset( $dependencies[ $index ] );
+								$dependencies[ $index ] = $map[ $dep ];
+							}
+						}
+					}
+					$url      = filter_var( $file_name, FILTER_SANITIZE_URL );
+					$resource = plugin_dir_url( $this->get_dir() ) . $module_dir . '/css/' . $file_name . '.css';
+					if ( ! filter_var( $url, FILTER_VALIDATE_URL ) === false ) {
+						$resource = $url;
+					}
+					$id                = 'obfx-module-' . $prefix . '-css-' . str_replace( ' ', '-', strtolower( $this->name ) ) . '-' . $order;
+					$map[ $file_name ] = $id;
+					wp_enqueue_style(
+						$id,
+						$resource,
+						$dependencies,
+						$this->version,
+						'all'
+					);
+					$order ++;
+				}
+			}
+		}
+	}
+
+	/**
+	 * Method that returns an array of scripts and styles to be loaded
+	 * for the admin part.
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 * @return array
+	 */
+	public abstract function admin_enqueue();
+
+	/**
+	 * Sets the scripts for admin from the module array.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 */
+	public function set_admin_scripts() {
+		$this->set_scripts( $this->admin_enqueue(), 'adm' );
+	}
+
+	/**
 	 * Actually sets the scripts.
 	 *
 	 * @codeCoverageIgnore
 	 *
 	 * @since   1.0.0
 	 * @access  private
+	 *
 	 * @param   array  $enqueue The array of files to enqueue.
 	 * @param   string $prefix The string to prefix in the enqueued name.
 	 */
@@ -544,70 +576,10 @@ abstract class Orbit_Fox_Module_Abstract {
 							$this->localized[ $file_name ]
 						);
 					}
-					$order++;
+					$order ++;
 				}// End foreach().
 			}// End if().
 		}// End if().
-	}
-
-	/**
-	 * Actually sets the styles.
-	 *
-	 * @codeCoverageIgnore
-	 *
-	 * @since   1.0.0
-	 * @access  private
-	 * @param   array  $enqueue The array of files to enqueue.
-	 * @param   string $prefix The string to prefix in the enqueued name.
-	 */
-	private function set_styles( $enqueue, $prefix ) {
-		$module_dir = $this->slug;
-		if ( ! empty( $enqueue ) ) {
-			if ( isset( $enqueue['css'] ) && ! empty( $enqueue['css'] ) ) {
-				$order = 0;
-				$map   = array();
-				foreach ( $enqueue['css'] as $file_name => $dependencies ) {
-					if ( $dependencies == false ) {
-						$dependencies = array();
-					} else {
-						// check if any dependency has been loaded by us. If yes, then use that id as the dependency.
-						foreach ( $dependencies as $index => $dep ) {
-							if ( array_key_exists( $dep, $map ) ) {
-								unset( $dependencies[ $index ] );
-								$dependencies[ $index ] = $map[ $dep ];
-							}
-						}
-					}
-					$url      = filter_var( $file_name, FILTER_SANITIZE_URL );
-					$resource = plugin_dir_url( $this->get_dir() ) . $module_dir . '/css/' . $file_name . '.css';
-					if ( ! filter_var( $url, FILTER_VALIDATE_URL ) === false ) {
-						$resource = $url;
-					}
-					$id                = 'obfx-module-' . $prefix . '-css-' . str_replace( ' ', '-', strtolower( $this->name ) ) . '-' . $order;
-					$map[ $file_name ] = $id;
-					wp_enqueue_style(
-						$id,
-						$resource,
-						$dependencies,
-						$this->version,
-						'all'
-					);
-					$order++;
-				}
-			}
-		}
-	}
-
-	/**
-	 * Sets the scripts for admin from the module array.
-	 *
-	 * @codeCoverageIgnore
-	 *
-	 * @since   1.0.0
-	 * @access  public
-	 */
-	public function set_admin_scripts() {
-		$this->set_scripts( $this->admin_enqueue(), 'adm' );
 	}
 
 	/**
@@ -623,6 +595,16 @@ abstract class Orbit_Fox_Module_Abstract {
 	}
 
 	/**
+	 * Method that returns an array of scripts and styles to be loaded
+	 * for the front end part.
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 * @return array
+	 */
+	public abstract function public_enqueue();
+
+	/**
 	 * Sets the scripts for public from the module array.
 	 *
 	 * @codeCoverageIgnore
@@ -635,14 +617,61 @@ abstract class Orbit_Fox_Module_Abstract {
 	}
 
 	/**
+	 * Method to return URL to child class in a Reflective Way.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @access  protected
+	 * @return string
+	 */
+	protected function get_url() {
+		return plugin_dir_url( $this->get_dir() ) . $this->slug;
+	}
+
+	/**
+	 * Method to return path to child class in a Reflective Way.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @since   1.0.0
+	 * @access  protected
+	 * @return string
+	 */
+	protected function get_dir() {
+		$reflector = new ReflectionClass( get_class( $this ) );
+
+		return dirname( $reflector->getFileName() );
+	}
+
+	/**
+	 * Utility method to return active theme dir name.
+	 *
+	 * @since   1.0.0
+	 * @access  protected
+	 *
+	 * @param   boolean $is_child Flag for child themes.
+	 *
+	 * @return string
+	 */
+	protected function get_active_theme_dir( $is_child = false ) {
+		if ( $is_child ) {
+			return basename( get_stylesheet_directory() );
+		}
+
+		return basename( get_template_directory() );
+	}
+
+	/**
 	 * Utility method to render a view from module.
 	 *
 	 * @codeCoverageIgnore
 	 *
 	 * @since   1.0.0
 	 * @access  protected
+	 *
 	 * @param   string $view_name The view name w/o the `-tpl.php` part.
 	 * @param   array  $args An array of arguments to be passed to the view.
+	 *
 	 * @return string
 	 */
 	protected function render_view( $view_name, $args = array() ) {
@@ -656,6 +685,7 @@ abstract class Orbit_Fox_Module_Abstract {
 		if ( file_exists( $file ) ) {
 			include $file;
 		}
+
 		return ob_get_clean();
 	}
 }

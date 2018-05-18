@@ -16,7 +16,11 @@
  * @author     Themeisle <friends@themeisle.com>
  */
 class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
-
+	/**
+	 * Dashboard related data.
+	 *
+	 * @var null|array Dashboard related data.
+	 */
 	protected $connect_data = null;
 
 	/**
@@ -27,6 +31,9 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function __construct() {
 		parent::__construct();
+		if ( isset( $_GET['loggedin'] ) && $_GET['loggedin'] == 'true' ) {
+			$this->show = true;
+		}
 		$this->name           = __( 'Image CDN Module', 'themeisle-companion' );
 		$this->description    = __( 'Let us take care of you images sizes. With this feature we\'ll compress and resize every image on your website.', 'themeisle-companion' );
 		$this->active_default = false;
@@ -49,7 +56,8 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @since   1.0.0
 	 * @access  public
 	 */
-	public function load() {}
+	public function load() {
+	}
 
 	/**
 	 * Method to define hooks needed.
@@ -64,12 +72,29 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		require_once __DIR__ . '/inc/class-request.php';
 		require_once __DIR__ . '/inc/class-orbit-fox-connector.php';
 		require_once __DIR__ . '/inc/class-orbit-fox-image-replacer.php';
-
+		$this->loader->add_filter( 'obfx_custom_control_cdn_logged_in_data', $this, 'render_connect_data' );
 		\OrbitFox\Connector::instance();
 
 		if ( ! is_admin() ) {
 			\OrbitFox\Image_CDN_Replacer::instance();
 		}
+	}
+
+	/**
+	 * Render data from dashboard of orbitfox.
+	 */
+	public function render_connect_data( $html ) {
+
+		$obfx_user_data = get_option( \OrbitFox\Connector::API_DATA_KEY, false );
+
+		if ( empty( $obfx_user_data ) ) {
+			return '';
+		}
+
+		$html = '<h5>Logged in as : <b>' . $obfx_user_data['display_name'] . '</b></h5>';
+		$html .= '<p>CDN url: <code>' . sprintf( '%s.i.orbitfox.com', $obfx_user_data['image_cdn']['key'] ) . '</code></p>';
+
+		return $html;
 	}
 
 	/**
@@ -103,32 +128,47 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function options() {
 		// let's check if this user needs to connect with orbitfox service
-		$obfx_user_data = get_option( 'obfx_connect_data' );
+		$obfx_user_data     = get_option( \OrbitFox\Connector::API_DATA_KEY );
+		$this->connect_data = $obfx_user_data;
 
+		$fields = array(
+			array(
+				'id'          => 'obfx_connect_api_key',
+				'name'        => 'obfx_connect_api_key',
+				'type'        => 'password',
+				'default'     => isset( $obfx_user_data['api_key'] ) ? $obfx_user_data['api_key'] : '',
+				'placeholder' => __( 'Your OrbitFox api key', 'themeisle-companion' ),
+				'text'        => '<span class="dashicons dashicons-share"></span>' . __( 'Connect with Orbitfox', 'themeisle-companion' ),
+			),
+		);
 		if ( empty( $obfx_user_data ) ) {
 
-			return array(
-				array(
-					'id'         => 'obfx_connect',
-					'name'       => 'obfx_connect',
-					'type'       => 'link',
-					'url'        => '#',
-					'link-class' => 'btn btn-success',
-					'text'       => '<span class="dashicons dashicons-share"></span>' . __( 'Connect with Orbitfox', 'themeisle-companion' ),
-				),
+			$fields[] = array(
+				'id'         => 'obfx_connect',
+				'name'       => 'obfx_connect',
+				'type'       => 'link',
+				'url'        => '#',
+				'link-class' => 'btn btn-success',
+				'text'       => '<span class="dashicons dashicons-share"></span>' . __( 'Connect to Orbitfox', 'themeisle-companion' ),
 			);
-		}
-
-		return array(
-			array(
+		} else {
+			$fields[] = array(
+				'type' => 'custom',
+				'id'   => 'cdn_logged_in_data',
+				'name' => 'cdn_logged_in_data',
+			);
+			$fields[] = array(
 				'id'         => 'obfx_disconnect',
 				'name'       => 'obfx_disconnect',
 				'type'       => 'link',
-				'url'        => admin_url('admin.php?page=obfx_companion&action=disconnect_obfx' ),
-				'link-class' => 'btn btn-success',
-				'text'       => '<span class="dashicons dashicons-share"></span>' . __( 'Disconnect from Orbitfox', 'themeisle-companion' ),
-			),
-		);
+				'url'        => '#',
+				'link-class' => 'btn btn-danger',
+				'text'       => '<span class="dashicons dashicons-share"></span>' . __( 'Log-Out from Orbitfox', 'themeisle-companion' ),
+			);
+
+		}
+
+		return $fields;
 	}
 
 }
