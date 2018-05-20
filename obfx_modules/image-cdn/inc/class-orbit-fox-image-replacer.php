@@ -228,7 +228,7 @@ class Image_CDN_Replacer {
 	 */
 	protected function get_imgcdn_url( $url, $args = array( 'width' => 'auto', 'height' => 'auto' ) ) {
 		// not used yet.
-		$compress_level = 48;
+``		$compress_level = 51;
 		// this will authorize the image
 		$hash = md5( json_encode( array(
 			'url'      => $this->urlception_encode( $url ),

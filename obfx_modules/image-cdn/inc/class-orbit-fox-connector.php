@@ -7,14 +7,17 @@ class Connector {
 	 * Option key name for Obfx site account.
 	 */
 	const API_DATA_KEY = 'obfx_connect_data';
+
 	/**
 	 * @var Connector
 	 */
 	protected static $instance = null;
+
 	/**
 	 * @var string Root of the obfx dashboard.
 	 */
-	protected $connect_url = 'http://dashboardobfx.local/api/obfxhq/v1';
+	protected $connect_url = 'https://dashboard.orbitfox.com/api/obfxhq/v1';
+
 	/**
 	 * @var string CDN details path.
 	 */
@@ -39,6 +42,8 @@ class Connector {
 	 * Init hooks.
 	 */
 	function init() {
+		$this->connect_url = apply_filters( 'obfx_dashboard_url', $this->connect_url );
+
 		add_action( 'admin_footer', array( $this, 'admin_inline_js' ) );
 		add_action( 'rest_api_init', array( $this, 'register_url_endpoints' ) );
 	}
@@ -65,7 +70,6 @@ class Connector {
 	 * @return \WP_REST_Response|\WP_Error The connection handshake.
 	 */
 	public function rest_handle_connector_url( \WP_REST_Request $request ) {
-
 		$disconnect_flag = $request->get_param( 'disconnect' );
 		if ( ! empty( $disconnect_flag ) ) {
 			delete_option( 'obfx_connect_data' );
@@ -79,6 +83,7 @@ class Connector {
 		$request = new \OrbitFox\Request( $this->connect_url . $this->cdn_path, 'POST', $api_key );
 
 		$response = $request->get_response();
+
 		if ( $response === false ) {
 			return new \WP_Error( '500', 'Error connecting to the OrbitFox api' );
 		}

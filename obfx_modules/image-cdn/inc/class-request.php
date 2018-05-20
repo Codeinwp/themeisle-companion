@@ -2,9 +2,8 @@
 
 namespace OrbitFox;
 /**
- * A class for building an OAuth header for http requests.
+ * A class for building an Authorization header for http requests.
  *
- * @TODO Please open source this so another poor soul won't lose 3 days of his life in this hell
  */
 
 class Request {
