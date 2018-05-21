@@ -113,6 +113,11 @@ class Image_CDN_Replacer {
 
 			$new_sizes = $this->validate_image_sizes( $sizes['width'], $sizes['height'] );
 
+			// resized thumbnails will have their own filenames. we should get those instead of the full image one
+			if ( is_string( $size ) && ! empty( $image_meta['sizes'] ) && ! empty( $image_meta['sizes'][ $size ] ) ) {
+				$image_url = str_replace( basename( $image_url ), $image_meta['sizes'][ $size ]['file'], $image_url );
+			}
+
 			// try to get an optimized image url.
 			$new_url = $this->get_imgcdn_url( $image_url, $new_sizes );
 
@@ -230,20 +235,20 @@ class Image_CDN_Replacer {
 		// not used yet.
 		$compress_level = 51;
 		// this will authorize the image
-		$url_parts = explode('://', $url);
-		$scheme = $url_parts[0];
-		$path   = $this->urlception_encode( $url_parts[1] );
+		$url_parts = explode( '://', $url );
+		$scheme    = $url_parts[0];
+		$path      = $this->urlception_encode( $url_parts[1] );
 
 		$hash = md5( json_encode( array(
-			'path'          => $path,
-			'scheme'        => $scheme,
-			'width'         => (string) $args['width'],
-			'height'        => (string) $args['height'],
-			'compress'      => $compress_level,
-			'secret'        => $this->connect_data['image_cdn']['secret']
+			'path'     => $path,
+			'scheme'   => $scheme,
+			'width'    => (string) $args['width'],
+			'height'   => (string) $args['height'],
+			'compress' => $compress_level,
+			'secret'   => $this->connect_data['image_cdn']['secret']
 		) ) );
 
-		$new_url = sprintf( '%s/%s/%s/%s/%s/%s/%s',
+		$new_url = sprintf( '%s/%s/%s/%s/%s/%s/%s/',
 			$this->cdn_url,
 			$hash,
 			(string) $args['width'],
@@ -381,7 +386,7 @@ class Image_CDN_Replacer {
 	 * @param array $size_array
 	 * @param array $image_src
 	 * @param array $image_meta
-	 * @param int   $attachment_id
+	 * @param int $attachment_id
 	 *
 	 * @return array
 	 */
@@ -391,6 +396,7 @@ class Image_CDN_Replacer {
 		}
 
 		foreach ( $sources as $i => $source ) {
+
 			list( $width, $height ) = self::parse_dimensions_from_filename( $source['url'] );
 
 			if ( empty( $width ) ) {
