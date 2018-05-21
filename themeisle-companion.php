@@ -15,7 +15,7 @@
  * Plugin Name:       Orbit Fox Companion
  * Plugin URI:        https://themeisle.com/plugins/orbit-fox-companion
  * Description:       This swiss-knife plugin comes with a quality template library, menu/sharing icons modules, and newly added Elementor/BeaverBuilder page builder widgets on each release.
- * Version:           2.4.6
+ * Version:           2.4.7
  * Author:            Themeisle
  * Author URI:        https://themeisle.com
  * License:           GPL-2.0+
@@ -37,7 +37,7 @@ if ( ! defined( 'WPINC' ) ) {
  */
 function activate_orbit_fox() {
 	$obfx_activator = new Orbit_Fox_Activator();
-	$obfx_activator::activate();
+	$obfx_activator->activate();
 }
 
 /**
@@ -46,7 +46,7 @@ function activate_orbit_fox() {
  */
 function deactivate_orbit_fox() {
 	$obfx_deactivator = new Orbit_Fox_Deactivator();
-	$obfx_deactivator::deactivate();
+	$obfx_deactivator->deactivate();
 }
 
 register_activation_hook( __FILE__, 'activate_orbit_fox' );

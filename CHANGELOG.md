@@ -1,4 +1,18 @@
 
+ ### v2.4.7 - 2018-05-03 
+ **Changes:** 
+ * Add content forms for Beaver Builder
+* Bug fixes and performance enhancements for Hestia
+* Fix issue with plugin activation and deactivation
+ 
+ ### v2.4.6 - 2018-04-12 
+ **Changes:** 
+ * Add video to readme file 
+* Added notification about conflict with navwalker overrides 
+* Added safeguard for navwalker overrides 
+* Remove unused animation functions from Legacy Module 
+* Added Azera Shop, Llorix One Lite, Shop Isle themes functionality to Legacy Module
+ 
  ### v2.4.5 - 2018-03-29 
  **Changes:** 
  * Fixed issue with duplicated widgets in Hestia theme

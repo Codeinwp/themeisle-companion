@@ -31,11 +31,11 @@ if ( ! isset( $show_btn ) ) {
 	<?php echo ( isset( $sub_title ) ) ? '<p class="empty-subtitle">' . $sub_title . '</p>' : ''; ?>
 	<?php
 	if ( $show_btn ) {
-	?>
+		?>
 		<div class="empty-action">
 			<button class="btn btn-primary"><?php echo $btn_text; ?></button>
 		</div>
-	<?php
+		<?php
 	}
 	?>
 </div>

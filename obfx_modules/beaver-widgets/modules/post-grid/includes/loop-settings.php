@@ -123,7 +123,7 @@ do_action( 'fl_builder_loop_settings_before_form', $settings ); // e.g Add custo
 																							<?php
 																							if ( $slug == $settings->post_type ) {
 																								echo 'style="display:table;"';}
-?>
+																							?>
 >
 				<?php
 

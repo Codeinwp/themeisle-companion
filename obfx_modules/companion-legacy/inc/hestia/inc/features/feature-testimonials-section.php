@@ -15,7 +15,7 @@ if ( ! function_exists( 'hestia_testimonials_customize_register' ) ) :
 	 */
 	function hestia_testimonials_customize_register( $wp_customize ) {
 
-		$selective_refresh = isset( $wp_customize->selective_refresh ) ? 'postMessage' : 'refresh';
+		$selective_refresh = isset( $wp_customize->selective_refresh ) && function_exists('hestia_display_customizer_shortcut') ? 'postMessage' : 'refresh';
 
 		if ( class_exists( 'Hestia_Hiding_Section' ) ) {
 			$wp_customize->add_section(
@@ -131,33 +131,6 @@ function hestia_register_testimonials_partials( $wp_customize ) {
 	}
 
 	$wp_customize->selective_refresh->add_partial(
-		'hestia_testimonials_hide', array(
-			'selector' => '.hestia-testimonials:not(.is-shortcode)',
-			'render_callback' => 'hestia_testimonials',
-			'container_inclusive' => true,
-			'fallback_refresh' => false,
-		)
-	);
-
-	$wp_customize->selective_refresh->add_partial(
-		'hestia_testimonials_title', array(
-			'selector' => '#testimonials h2.hestia-title',
-			'settings' => 'hestia_testimonials_title',
-			'render_callback' => 'hestia_testimonials_title_callback',
-			'fallback_refresh' => false,
-		)
-	);
-
-	$wp_customize->selective_refresh->add_partial(
-		'hestia_testimonials_subtitle', array(
-			'selector' => '#testimonials h5.description',
-			'settings' => 'hestia_testimonials_subtitle',
-			'render_callback' => 'hestia_testimonials_subtitle_callback',
-			'fallback_refresh' => false,
-		)
-	);
-
-	$wp_customize->selective_refresh->add_partial(
 		'hestia_testimonials_content', array(
 			'selector' => '.hestia-testimonials-content',
 			'settings' => 'hestia_testimonials_content',
@@ -166,28 +139,6 @@ function hestia_register_testimonials_partials( $wp_customize ) {
 	);
 }
 add_action( 'customize_register', 'hestia_register_testimonials_partials' );
-
-/**
- * Callback function for testimonials title selective refresh.
- *
- * @return string
- * @since 1.1.31
- * @access public
- */
-function hestia_testimonials_title_callback() {
-	return get_theme_mod( 'hestia_testimonials_title' );
-}
-
-/**
- * Callback function for testimonials subtitle selective refresh.
- *
- * @return string
- * @since 1.1.31
- * @access public
- */
-function hestia_testimonials_subtitle_callback() {
-	return get_theme_mod( 'hestia_testimonials_subtitle' );
-}
 
 /**
  * Callback function for testimonials content selective refresh.

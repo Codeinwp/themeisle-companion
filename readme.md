@@ -14,6 +14,8 @@ This swiss-knife plugin comes with a quality template library, menu/sharing icon
 
 Extend your theme functionality with <a href="https://themeisle.com/plugins/orbit-fox-companion/" rel="nofollow">Orbit Fox</a> with various modules like Social Media Share Buttons & Icons, Uptime Monitoring, Google Analytics, custom menu-icons, one click import page templates, page builder addons and free stock featured images.
 
+https://www.youtube.com/watch?v=YHhK_twfYB8
+
 **Features:**
 - Uptime Monitor
 - Google Analytics Integration
@@ -98,6 +100,22 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 ## Changelog ##
+### 2.4.7 - 2018-05-03  ###
+
+* Add content forms for Beaver Builder
+* Bug fixes and performance enhancements for Hestia
+* Fix issue with plugin activation and deactivation
+
+
+### 2.4.6 - 2018-04-12  ###
+
+* Add video to readme file
+* Added notification about conflict with navwalker overrides
+* Added safeguard for navwalker overrides
+* Remove unused animation functions from Legacy Module
+* Added Azera Shop, Llorix One Lite, Shop Isle themes functionality to Legacy Module
+
+
 ### 2.4.5 - 2018-03-29  ###
 
 * Fixed issue with duplicated widgets in Hestia theme

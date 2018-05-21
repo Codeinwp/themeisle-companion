@@ -15,7 +15,7 @@ if ( ! function_exists( 'hestia_team_customize_register' ) ) :
 	 */
 	function hestia_team_customize_register( $wp_customize ) {
 
-		$selective_refresh = isset( $wp_customize->selective_refresh ) ? 'postMessage' : 'refresh';
+		$selective_refresh = isset( $wp_customize->selective_refresh ) && function_exists('hestia_display_customizer_shortcut') ? 'postMessage' : 'refresh';
 
 		if ( class_exists( 'Hestia_Hiding_Section' ) ) {
 			$wp_customize->add_section(
@@ -130,34 +130,7 @@ function hestia_register_team_partials( $wp_customize ) {
 	if ( ! isset( $wp_customize->selective_refresh ) ) {
 		return;
 	}
-
-	$wp_customize->selective_refresh->add_partial(
-		'hestia_team_hide', array(
-			'selector' => '.hestia-team:not(.is-shortcode)',
-			'container_inclusive' => true,
-			'render_callback' => 'hestia_team',
-			'fallback_refresh' => false,
-		)
-	);
-
-	$wp_customize->selective_refresh->add_partial(
-		'hestia_team_title', array(
-			'selector' => '#team h2.hestia-title',
-			'settings' => 'hestia_team_title',
-			'render_callback' => 'hestia_team_title_callback',
-			'fallback_refresh' => false,
-		)
-	);
-
-	$wp_customize->selective_refresh->add_partial(
-		'hestia_team_subtitle', array(
-			'selector' => '#team h5.description',
-			'settings' => 'hestia_team_subtitle',
-			'render_callback' => 'hestia_team_subtitle_callback',
-			'fallback_refresh' => false,
-		)
-	);
-
+	
 	$wp_customize->selective_refresh->add_partial(
 		'hestia_team_content', array(
 			'selector' => '.hestia-team-content',
@@ -167,29 +140,6 @@ function hestia_register_team_partials( $wp_customize ) {
 	);
 }
 add_action( 'customize_register', 'hestia_register_team_partials' );
-
-
-/**
- * Callback function for team title selective refresh.
- *
- * @return string
- * @since 1.1.31
- * @access public
- */
-function hestia_team_title_callback() {
-	return get_theme_mod( 'hestia_team_title' );
-}
-
-/**
- * Callback function for team subtitle selective refresh.
- *
- * @return string
- * @since 1.1.31
- * @access public
- */
-function hestia_team_subtitle_callback() {
-	return get_theme_mod( 'hestia_team_subtitle' );
-}
 
 /**
  * Callback function for team content selective refresh.
