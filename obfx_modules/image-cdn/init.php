@@ -47,23 +47,25 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return bool
 	 */
 	public function enable_module() {
-		$is_lucky = get_option('obfx_imgcdn_lucky');
+		$is_lucky = get_option( 'obfx_imgcdn_lucky' );
 
 		if (
-		is_admin()
-		//&& current_user_can( 'manage_options' )
-		&& isset( $_GET['force-obfx-image-cdn'] ) ) {
-			update_option('obfx_imgcdn_lucky', 'yes' );
+			is_admin()
+			//&& current_user_can( 'manage_options' )
+			&& isset( $_GET['force-obfx-image-cdn'] ) ) {
+			update_option( 'obfx_imgcdn_lucky', 'yes' );
+
 			return true;
 		}
 
 		if ( empty( $is_lucky ) ) {
-			$luck = rand ( 1 , 100 );
+			$luck = rand( 1, 100 );
 			if ( $luck < 11 ) {
-				update_option('obfx_imgcdn_lucky', 'yes' );
+				update_option( 'obfx_imgcdn_lucky', 'yes' );
+
 				return true;
 			} else {
-				update_option('obfx_imgcdn_lucky', 'no' );
+				update_option( 'obfx_imgcdn_lucky', 'no' );
 			}
 		} elseif ( 'yes' === $is_lucky ) {
 			return true;
