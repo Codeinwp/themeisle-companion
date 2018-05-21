@@ -30,17 +30,25 @@ if ( ! isset( $description ) ) {
 if ( ! isset( $options_fields ) ) {
 	$options_fields = __( 'No options provided.', 'themeisle-companion' );
 }
-
-$display         = '';
+$styles          = array();
 $disabled_fields = '';
 if ( ! $active ) {
-	$display         = 'style="display: none;"';
+	$styles []       = 'display: none';
 	$disabled_fields = 'disabled';
 }
+$btn_class = '';
+if ( isset( $show ) && $show ) {
+	$styles[]  = 'height:auto';
+	$btn_class = 'active';
+
+}
+$styles = sprintf( 'style="%s"', implode( ':', $styles ) );
+
 ?>
-<div id="obfx-mod-<?php echo $slug; ?>" class="panel options" <?php echo $display; ?>>
+<div id="obfx-mod-<?php echo $slug; ?>" class="panel options" <?php echo $styles; ?>>
 	<div class="panel-header">
-		<button class="btn btn-action circle btn-expand" style="float: right; margin-right: 10px;">
+		<button class="btn btn-action circle btn-expand <?php echo esc_attr( $btn_class ); ?>"
+		        style="float: right; margin-right: 10px;">
 			<i class="dashicons dashicons-arrow-down-alt2"></i>
 		</button>
 		<div class="panel-title"><?php echo $name; ?></div>
