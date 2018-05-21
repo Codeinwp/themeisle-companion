@@ -230,21 +230,27 @@ class Image_CDN_Replacer {
 		// not used yet.
 		$compress_level = 51;
 		// this will authorize the image
+		$url_parts = explode('://', $url);
+		$scheme = $url_parts[0];
+		$path   = $this->urlception_encode( $url_parts[1] );
+
 		$hash = md5( json_encode( array(
-			'url'      => $this->urlception_encode( $url ),
-			'width'    => (string) $args['width'],
-			'height'   => (string) $args['height'],
-			'compress' => $compress_level,
-			'secret'   => $this->connect_data['image_cdn']['secret']
+			'path'          => $path,
+			'scheme'        => $scheme,
+			'width'         => (string) $args['width'],
+			'height'        => (string) $args['height'],
+			'compress'      => $compress_level,
+			'secret'        => $this->connect_data['image_cdn']['secret']
 		) ) );
 
-		$new_url = sprintf( '%s/%s/%s/%s/%s/?url=%s',
+		$new_url = sprintf( '%s/%s/%s/%s/%s/%s/%s',
 			$this->cdn_url,
 			$hash,
 			(string) $args['width'],
 			(string) $args['height'],
 			$compress_level,
-			$this->urlception_encode( $url )
+			$scheme,
+			$path
 		);
 
 		return $new_url;
