@@ -270,7 +270,7 @@ class Image_CDN_Replacer {
 			'secret'   => $this->connect_data['image_cdn']['secret']
 		);
 
-		$hash = md5( serialize( $payload ) );
+		$hash = md5( json_encode( $payload ) );
 
 		$new_url = sprintf( '%s/%s/%s/%s/%s/%s/%s',
 			$this->cdn_url,
@@ -506,7 +506,7 @@ class Image_CDN_Replacer {
 			$encoded = false;
 
 			// it might a json encoded array
-			if ( ! is_array( $url ) ) {
+			if ( is_string( $url ) ) {
 				$array   = json_decode( $url, true );
 				$encoded = true;
 			}
