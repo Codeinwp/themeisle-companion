@@ -201,24 +201,37 @@ class Image_CDN_Replacer {
 	 */
 	protected function validate_image_sizes( $width, $height ) {
 		global $content_width;
-
-		if ( doing_filter( 'the_content' ) && isset( $GLOBALS['content_width'] ) ) {
-			$content_width = (int) $GLOBALS['content_width'];
+		/**
+		 * While we are inside a content filter we need to keep our max_width under the content_width global
+		 * There is no reason the have a image wider than the content width.
+		 */
+		if (
+			doing_filter( 'the_content' )
+			&& isset( $GLOBALS['content_width'] )
+			&& apply_filters( 'obfx_imgcdn_allow_resize_images_from_content_width', true )
+		) {
+			$content_width = (int)$GLOBALS['content_width'];
 
 			if ( $this->max_width > $content_width ) {
 				$this->max_width = $content_width;
 			}
 		}
 
-		if ( $this->max_width < $width ) {
-			$resized = ( $this->max_width / $width ) * 100;
+		$percentWidth = $percentHeight = null;
+
+		if ( $width > $this->max_width  ) {
+			// we need to remember how much in percentage the width was resized and apply the same treatment to the height.
+			$percentWidth = ( 1 - $this->max_width / $width ) * 100;
 			$width   = $this->max_width;
-			$height  = $height * ( ( 100 - $resized ) / 100 );
+			$height = round($height * ((100-$percentWidth) / 100), 2);
 		}
 
-		if ( $this->max_height < $height ) {
-			$resized = ( $this->max_height / $height ) * 100;
-			$width   = $width * ( ( 100 - $resized ) / 100 );
+		// now for the height
+		if ( $height > $this->max_height ) {
+			$percentHeight = (1 - $this->max_height / $height) * 100;
+			// if we reduce the height to max_height by $x percentage than we'll also reduce the width for the same amount.
+			$height = $this->max_height;
+			$width = round($width * ((100-$percentHeight) / 100), 2);
 		}
 
 		return array(
@@ -237,7 +250,7 @@ class Image_CDN_Replacer {
 	 */
 	protected function get_imgcdn_url( $url, $args = array( 'width' => 'auto', 'height' => 'auto' ) ) {
 		// not used yet.
-		$compress_level = 51;
+		$compress_level = 55;
 		// this will authorize the image
 		$url_parts = explode( '://', $url );
 		$scheme    = $url_parts[0];
