@@ -241,16 +241,23 @@ class Image_CDN_Replacer {
 		// this will authorize the image
 		$url_parts = explode( '://', $url );
 		$scheme    = $url_parts[0];
-		$path      = $this->urlception_encode( $url_parts[1] );
-
-		$hash = md5( json_encode( array(
-			'path'     => $path,
+		$path      = $url_parts[1];
+		if ( $args['width'] !== 'auto' ) {
+			$args['width'] = round( $args['width'], 0 );
+		}
+		if ( $args['height'] !== 'auto' ) {
+			$args['height'] = round( $args['height'], 0 );
+		}
+		$payload = array(
+			'path'     => $this->urlception_encode( $path ),
 			'scheme'   => $scheme,
 			'width'    => (string) $args['width'],
 			'height'   => (string) $args['height'],
 			'compress' => $compress_level,
 			'secret'   => $this->connect_data['image_cdn']['secret']
-		) ) );
+		);
+
+		$hash = md5( serialize( $payload ) );
 
 		$new_url = sprintf( '%s/%s/%s/%s/%s/%s/%s',
 			$this->cdn_url,
@@ -284,7 +291,7 @@ class Image_CDN_Replacer {
 	 * @param string $content
 	 *
 	 * @uses   self::validate_image_url, apply_filters, jetpack_photon_url, esc_url
-	 * @filter the_content
+	 * @filter the_content<
 	 * @return string
 	 */
 	public function filter_the_content( $content ) {
@@ -388,7 +395,7 @@ class Image_CDN_Replacer {
 	 * @param array $size_array
 	 * @param array $image_src
 	 * @param array $image_meta
-	 * @param int $attachment_id
+	 * @param int   $attachment_id
 	 *
 	 * @return array
 	 */
