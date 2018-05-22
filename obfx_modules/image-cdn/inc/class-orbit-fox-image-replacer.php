@@ -63,12 +63,12 @@ class Image_CDN_Replacer {
 			return;
 		}
 
-		if ( empty( $this->connect_data['imgcdn'] ) ) {
+		if ( empty( $this->connect_data['image_cdn'] ) ) {
 			return;
 		}
 
 		$this->cdn_url = sprintf( 'https://%s.%s/%s',
-			$this->connect_data['imgcdn']['client_token'],
+			$this->connect_data['image_cdn']['key'],
 			'i.orbitfox.com',
 			'i' // api root; almost like /wp-json/
 		);
@@ -252,7 +252,7 @@ class Image_CDN_Replacer {
 			'secret'   => $this->connect_data['image_cdn']['secret']
 		) ) );
 
-		$new_url = sprintf( '%s/%s/%s/%s/%s/%s/%s/',
+		$new_url = sprintf( '%s/%s/%s/%s/%s/%s/%s',
 			$this->cdn_url,
 			$hash,
 			(string) $args['width'],
@@ -548,24 +548,4 @@ class Image_CDN_Replacer {
 		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'textdomain' ), '1.0.0' );
 	}
 
-	/**
-	 * Set the cdn url based on the current connected user.
-	 */
-	protected function set_cdn_url() {
-		$this->connect_data = get_option( 'obfx_connect_data' );
-
-		if ( empty( $this->connect_data ) ) {
-			return;
-		}
-
-		if ( empty( $this->connect_data['image_cdn'] ) ) {
-			return;
-		}
-
-		$this->cdn_url = sprintf( 'https://%s.%s/%s',
-			$this->connect_data['image_cdn']['key'],
-			'i.orbitfox.com',
-			'i' // api root; almost like /wp-json/
-		);
-	}
 }
