@@ -6,42 +6,40 @@
  *
  * @author    ThemeIsle
  */
-
+/* globals safe_updates */
 var obfx_theme_check = function ($) {
-	'use strict';
+    'use strict';
 
-	$(
-		function () {
-			if (typeof  safe_updated === 'undefined') {
-				return;
-			}
-			var slugToCheck = safe_updated.slug;
+    $(
+        function () {
+            if (typeof  safe_updates === 'undefined') {
+                return;
+            }
+            var slugToCheck = safe_updates.slug;
 
-			if (safe_updated.check_msg !== undefined) {
-				var theme_box = $('div.theme.active .update-message');
-				var oldHTML = theme_box.html();
-				var newHTML = oldHTML;
-				checkUpdateThemeUpdateCore();
-				setInterval(checkUpdateTheme, 500);
-			}
+            if (typeof  safe_updates.check_msg !== 'undefined') {
+                checkUpdateThemeUpdateCore();
+                setInterval(checkUpdateTheme, 500);
+            }
 
-			function checkUpdateTheme() {
-				theme_box = $('div.theme.active .update-message');
+            function checkUpdateTheme() {
+                if ($("#obfx-safe-updates-data").length > 0) {
+                    return;
+                }
+                var theme_box = $('div.theme.active .theme-id-container').prepend('<p id="obfx-safe-updates-data" style="position: absolute;bottom: 37px;background: #ccc;background: #fff8e5;padding: 5px;padding-left: 15px;">' + safe_updates.check_msg + '</p>');
+                $("#obfx-safe-updates-data").on('click','a',function(e){
+                   e.stopPropagation();
+                });
+            }
 
-				if (theme_box) {
-					newHTML = oldHTML + '<div>' + safe_updated.check_msg + '</div>';
-				}
-				theme_box.html(newHTML);
-			}
+            function checkUpdateThemeUpdateCore() {
 
-			function checkUpdateThemeUpdateCore() {
+                $('#update-themes-table input[value=' + safe_updates.slug + ']').parent().next().find('p').append('<p>' + safe_updates.check_msg + '</p>');
 
-				$('#update-themes-table input[value=' + slugToCheck + ']').parent().next().find('p').append('<p>'+ safe_updated.check_msg + '</p>');
+            }
 
-			}
-
-		}
-	);
+        }
+    );
 
 };
 

@@ -3706,3 +3706,10 @@ html {
 		padding: 10px 0;
 	}
 }
+.obfx-wrapper p.obfx-beta-module{
+	color: #ca4a1f;
+	text-align: center;
+	font-size: 80%;
+	line-height: 1.8rem;
+
+}

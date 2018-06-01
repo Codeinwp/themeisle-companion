@@ -29,8 +29,9 @@ class Safe_Updates_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function __construct() {
 		parent::__construct();
-		$this->name        = __( 'Safe Updated', 'themeisle-companion' );
-		$this->description = __( 'OrbitFox will give you visual feedback on how your newest theme updates will affect your site. For the moment this is available only for wordpress.org themes.', 'themeisle-companion' );
+		$this->beta        = true;
+		$this->name        = __( 'Safe Updates', 'themeisle-companion' );
+		$this->description = __( 'OrbitFox will give you visual feedback on how your current theme updates will affect your site. For the moment this is available only for wordpress.org themes.', 'themeisle-companion' );
 	}
 
 	/**
@@ -41,7 +42,7 @@ class Safe_Updates_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return bool
 	 */
 	public function enable_module() {
-		return true;
+		return $this->is_lucky_user();
 	}
 
 	/**
@@ -94,24 +95,21 @@ class Safe_Updates_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			'next_version'    => $info['new_version'],
 		);
 
-		$data         = $this->get_safe_updates_data( $request_data );
+		$data = $this->get_safe_updates_data( $request_data );
 		if ( empty( $data ) ) {
 			return array();
 		}
 		$this->localized = array(
 			'theme-update-check' => array(
-				'slug' => $this->get_active_theme_dir()
+				'slug' => $this->get_active_theme_dir(),
 			),
 		);
-
-		$changes_info = sprintf(
-			'<small>' . __( 'There is a visual difference of %1$s%% between version %2$s and %3$s. 
-							<a href="%4$s" target="_blank">View details</a> - according', 'themeisle-companion' ) . ' to OrbitFox</small>',
-			$data['global_diff'],
-			$request_data['next_version'],
-			$request_data['next_version'],
-			$data['gallery_url']
-		);
+		$changes_info = $this->get_message_notice( array(
+			'global_diff'     => $data['global_diff'],
+			'current_version' => $info['current_version'],
+			'new_version'     => $info['new_version'],
+			'gallery_url'     => $data['gallery_url'],
+		) );
 
 		$this->localized['theme-update-check']['check_msg'] = $changes_info;
 
@@ -132,6 +130,13 @@ class Safe_Updates_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		return (bool) $this->get_option( 'auto_update_checks' );
 	}
 
+	/**
+	 * Check if there is an update available.
+	 *
+	 * @param null $transient Transient to check.
+	 *
+	 * @return bool Is update available?
+	 */
 	private function is_update_available( $transient = null ) {
 
 		if ( $transient === null ) {
@@ -153,6 +158,13 @@ class Safe_Updates_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		return false;
 	}
 
+	/**
+	 * Get cached safe updates api data.
+	 *
+	 * @param array $args Args to check.
+	 *
+	 * @return array Api data.
+	 */
 	private function get_safe_updates_data( $args = array() ) {
 
 		$payload_sha = $this->get_safe_updates_hash( $args );
@@ -165,6 +177,13 @@ class Safe_Updates_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		return $checks[ $payload_sha ];
 	}
 
+	/**
+	 * Get hash key based on the request data.
+	 *
+	 * @param array $args Arguments used to generate hash.
+	 *
+	 * @return string Hash key.
+	 */
 	private function get_safe_updates_hash( $args = array() ) {
 		$args = ksort( $args );
 
@@ -185,14 +204,14 @@ class Safe_Updates_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			array(
 				'name'    => 'checks',
 				'type'    => 'custom',
-				'default' => array()
+				'default' => array(),
 			),
 			array(
 				'id'      => 'auto_update_checks',
-				'title'   => 'Activate safe updates feedback',
+				'title'   => '',
 				'name'    => 'auto_update_checks',
 				'type'    => 'toggle',
-				'label'   => 'Allow OrbitFox to get your current theme slug and check how the next updates will affect your site.',
+				'label'   => 'Allow OrbitFox to get your current theme slug and run a visual comparison report between your current and next version.',
 				'default' => '0',
 			),
 		);
@@ -212,9 +231,16 @@ class Safe_Updates_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		}
 
 		$this->loader->add_filter( 'pre_set_site_transient_update_themes', $this, 'check_for_update_filter' );
-		add_filter( "wp_prepare_themes_for_js", array( $this, 'theme_update_message' ) );
+		add_filter( 'wp_prepare_themes_for_js', array( $this, 'theme_update_message' ) );
 	}
 
+	/**
+	 * Alter theme update message.
+	 *
+	 * @param array $themes List of themes.
+	 *
+	 * @return mixed Altered message.
+	 */
 	public function theme_update_message( $themes ) {
 
 		if ( ! $this->is_safe_updates_active() ) {
@@ -227,20 +253,36 @@ class Safe_Updates_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$changes_info = '';
 		if ( isset( $info['changes'] ) && ! empty( $info['changes'] ) ) {
 			$changes      = $info['changes'];
-			$changes_info = sprintf(
-				'<p><strong>' .
-				__( 'There is a visual difference of %1$s%% between version %2$s and %3$s. 
-									<a href="%4$s" target="_blank">View details</a>.', 'themeisle-companion' ) .
-				'</strong> -- by OrbitFox</p>',
-				$changes['global_diff'],
-				$info['new_version'],
-				$info['current_version'],
-				$changes['gallery_url']
-			);
+			$changes_info = $this->get_message_notice( array(
+				'global_diff'     => $changes['global_diff'],
+				'current_version' => $info['current_version'],
+				'new_version'     => $info['new_version'],
+				'gallery_url'     => $changes['gallery_url'],
+			) );
 		}
 		$themes[ $info['theme'] ]['update'] = $themes[ $info['theme'] ]['update'] . $changes_info;
 
 		return $themes;
+	}
+
+	/**
+	 * Return message string for safe updates notice.
+	 *
+	 * @param array $args Message placeholder.
+	 *
+	 * @return string Message string.
+	 */
+	public function get_message_notice( $args ) {
+		return sprintf(
+			'<small>' .
+			__( 'According to OrbitFox<sup>&copy;</sup> there is a visual difference of %1$s%% between version %2$s and %3$s. 
+									 <a href="%4$s" target="_blank">View report</a>.', 'themeisle-companion' ) .
+			'</small>',
+			$args['global_diff'],
+			$args['current_version'],
+			$args['new_version'],
+			$args['gallery_url']
+		);
 	}
 
 	/**
@@ -250,7 +292,7 @@ class Safe_Updates_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @since   1.0.0
 	 * @access  public
 	 *
-	 * @param   mixed $transient The transient used for WordPress
+	 * @param   mixed $transient    The transient used for WordPress
 	 *                              theme / plugin updates.
 	 *
 	 * @return mixed        The transient with our (possible) additions.
@@ -273,6 +315,13 @@ class Safe_Updates_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		return $transient;
 	}
 
+	/**
+	 * Check remote api for safe updates data.
+	 *
+	 * @param array $info Theme details.
+	 *
+	 * @return array Remote api message.
+	 */
 	private function changes_check( $info ) {
 
 		$request_data = array(
@@ -280,7 +329,7 @@ class Safe_Updates_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			'current_version' => $info['current_version'],
 			'next_version'    => $info['new_version'],
 		);
-		$data = $this->get_safe_updates_data( $request_data );
+		$data         = $this->get_safe_updates_data( $request_data );
 		if ( ! empty( $data ) ) {
 			return $data;
 		}
@@ -306,7 +355,7 @@ class Safe_Updates_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			return array();
 		}
 		$option_data = array(
-			$this->get_safe_updates_hash( $request_data ) => $response_data
+			$this->get_safe_updates_hash( $request_data ) => $response_data,
 		);
 
 		$this->set_option( 'checks', $option_data );

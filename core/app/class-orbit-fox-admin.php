@@ -356,6 +356,7 @@ class Orbit_Fox_Admin {
 						'name'           => $module->name,
 						'description'    => $module->description,
 						'checked'        => $checked,
+						'beta'           => $module->beta,
 						'confirm_intent' => $module->confirm_intent,
 					);
 					$tiles .= $rdh->get_partial( 'module-tile', $data );

@@ -21,13 +21,16 @@ if ( ! isset( $description ) ) {
 if ( ! isset( $checked ) ) {
 	$checked = '';
 }
+if ( ! isset( $beta ) ) {
+	$beta = false;
+}
 
 $toggle_class = 'obfx-mod-switch';
 
 if ( ! empty( $confirm_intent ) ) {
 
 	$toggle_class .= ' obfx-mod-confirm-intent';
-	$modal = '
+	$modal        = '
         <div id="' . esc_attr( $slug ) . '" class="modal">
             <a href="#close" class="close-confirm-intent modal-overlay" aria-label="Close"></a>
             <div class="modal-container"> 
@@ -58,9 +61,14 @@ $noance = wp_create_nonce( 'obfx_activate_mod_' . $slug );
 	<div class="tile-action">
 		<div class="form-group">
 			<label class="form-switch">
-				<input class="<?php echo esc_attr( $toggle_class ); ?>" type="checkbox" name="<?php echo $slug; ?>" value="<?php echo $noance; ?>" <?php echo $checked; ?> >
-				<i class="form-icon"></i><?php echo  __( 'Activate', 'themeisle-companion' ); ?>
+				<input class="<?php echo esc_attr( $toggle_class ); ?>" type="checkbox" name="<?php echo $slug; ?>"
+					   value="<?php echo $noance; ?>" <?php echo $checked; ?> >
+				<i class="form-icon"></i><?php echo __( 'Activate', 'themeisle-companion' ); ?>
+
 			</label>
+			<?php if ( $beta ) { ?>
+				<p class="obfx-beta-module"><?php echo __( 'Beta module', 'themeisle-companion' ); ?></p>
+			<?php } ?>
 			<?php
 			if ( ! empty( $modal ) ) {
 				echo wp_kses_post( $modal );
