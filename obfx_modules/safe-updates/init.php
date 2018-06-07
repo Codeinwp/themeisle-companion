@@ -167,13 +167,22 @@ class Safe_Updates_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return array Remote api message.
 	 */
 	private function changes_check( $info ) {
-
+		if ( ! isset( $info['theme'] ) || empty( $info['theme'] ) ) {
+			return array();
+		}
+		if ( ! isset( $info['new_version'] ) || empty( $info['new_version'] ) ) {
+			return array();
+		}
+		if ( ! isset( $info['current_version'] ) || empty( $info['current_version'] ) ) {
+			return array();
+		}
 		$request_data = array(
 			'theme'           => $info['theme'],
 			'current_version' => $info['current_version'],
 			'next_version'    => $info['new_version'],
 		);
-		$data         = $this->get_safe_updates_data( $request_data );
+
+		$data = $this->get_safe_updates_data( $request_data );
 		if ( ! empty( $data ) ) {
 			return $data;
 		}
