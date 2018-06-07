@@ -42,7 +42,7 @@ class Safe_Updates_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return bool
 	 */
 	public function enable_module() {
-		return $this->is_lucky_user();
+		return ( $this->beta ) ? $this->is_lucky_user() : true;
 	}
 
 	/**
@@ -104,7 +104,7 @@ class Safe_Updates_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'slug' => $this->get_active_theme_dir(),
 			),
 		);
-		$changes_info = $this->get_message_notice( array(
+		$changes_info    = $this->get_message_notice( array(
 			'global_diff'     => $data['global_diff'],
 			'current_version' => $info['current_version'],
 			'new_version'     => $info['new_version'],
@@ -151,11 +151,60 @@ class Safe_Updates_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		if ( version_compare( $transient->response[ $slug ]['new_version'], $transient->checked[ $slug ], '>' ) ) {
 			$transient->response[ $slug ]['current_version'] = $transient->checked[ $slug ];
+			$this->changes_check( $transient->response[ $slug ] );
 
 			return $transient->response[ $slug ];
 		}
 
 		return false;
+	}
+
+	/**
+	 * Check remote api for safe updates data.
+	 *
+	 * @param array $info Theme details.
+	 *
+	 * @return array Remote api message.
+	 */
+	private function changes_check( $info ) {
+
+		$request_data = array(
+			'theme'           => $info['theme'],
+			'current_version' => $info['current_version'],
+			'next_version'    => $info['new_version'],
+		);
+		$data         = $this->get_safe_updates_data( $request_data );
+		if ( ! empty( $data ) ) {
+			return $data;
+		}
+		$response = wp_remote_post( self::API_ENDPOINT, array(
+				'method'  => 'POST',
+				'timeout' => 2,
+				'body'    => $request_data,
+			)
+		);
+		if ( is_wp_error( $response ) ) {
+			return array();
+		}
+		$response_data = json_decode( wp_remote_retrieve_body( $response ), true );
+		if ( ! is_array( $response_data ) ) {
+			return array();
+		}
+
+		if ( strval( $response_data['code'] ) !== '200' ) {
+			return array();
+		}
+		$response_data = $response_data['data'];
+		if ( ! is_array( $response_data ) ) {
+			return array();
+		}
+		$option_data = array(
+			$this->get_safe_updates_hash( $request_data ) => $response_data,
+		);
+
+		$this->set_option( 'checks', $option_data );
+
+		return $response_data;
 	}
 
 	/**
@@ -190,6 +239,24 @@ class Safe_Updates_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$payload_sha = hash_hmac( 'sha256', json_encode( $args ), self::API_ENDPOINT );
 
 		return $payload_sha;
+	}
+
+	/**
+	 * Return message string for safe updates notice.
+	 *
+	 * @param array $args Message placeholder.
+	 *
+	 * @return string Message string.
+	 */
+	public function get_message_notice( $args ) {
+		return sprintf(
+
+			__( 'According to OrbitFox<sup>&copy;</sup> there is a visual difference of %1$s%% between your current version and <b>v%2$s</b>. 
+									 <a href="%3$s" target="_blank">View report</a>.', 'themeisle-companion' ),
+			$args['global_diff'],
+			$args['new_version'],
+			$args['gallery_url']
+		);
 	}
 
 	/**
@@ -230,8 +297,7 @@ class Safe_Updates_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			return;
 		}
 
-		$this->loader->add_filter( 'pre_set_site_transient_update_themes', $this, 'check_for_update_filter' );
-		add_filter( 'wp_prepare_themes_for_js', array( $this, 'theme_update_message' ) );
+		$this->loader->add_filter( 'wp_prepare_themes_for_js', $this, 'theme_update_message' );
 	}
 
 	/**
@@ -250,116 +316,26 @@ class Safe_Updates_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		if ( empty( $info ) ) {
 			return $themes;
 		}
-		$changes_info = '';
-		if ( isset( $info['changes'] ) && ! empty( $info['changes'] ) ) {
-			$changes      = $info['changes'];
-			$changes_info = $this->get_message_notice( array(
-				'global_diff'     => $changes['global_diff'],
-				'current_version' => $info['current_version'],
-				'new_version'     => $info['new_version'],
-				'gallery_url'     => $changes['gallery_url'],
-			) );
-		}
-		$themes[ $info['theme'] ]['update'] = $themes[ $info['theme'] ]['update'] . $changes_info;
-
-		return $themes;
-	}
-
-	/**
-	 * Return message string for safe updates notice.
-	 *
-	 * @param array $args Message placeholder.
-	 *
-	 * @return string Message string.
-	 */
-	public function get_message_notice( $args ) {
-		return sprintf(
-			'<small>' .
-			__( 'According to OrbitFox<sup>&copy;</sup> there is a visual difference of %1$s%% between version %2$s and %3$s. 
-									 <a href="%4$s" target="_blank">View report</a>.', 'themeisle-companion' ) .
-			'</small>',
-			$args['global_diff'],
-			$args['current_version'],
-			$args['new_version'],
-			$args['gallery_url']
-		);
-	}
-
-	/**
-	 * The filter that checks if there are updates to the theme or plugin
-	 * using the WP License Manager API.
-	 *
-	 * @since   1.0.0
-	 * @access  public
-	 *
-	 * @param   mixed $transient    The transient used for WordPress
-	 *                              theme / plugin updates.
-	 *
-	 * @return mixed        The transient with our (possible) additions.
-	 */
-	public function check_for_update_filter( $transient ) {
-		if ( empty( $transient->checked ) ) {
-			return $transient;
-		}
-
-		$info = $this->is_update_available( $transient );
-		if ( $info === false ) {
-			return $transient;
-		}
-		$changes = $this->changes_check( $info );
-		if ( empty( $changes ) ) {
-			return $transient;
-		}
-		$transient->response[ $this->get_active_theme_dir() ]['changes'] = $changes;
-
-		return $transient;
-	}
-
-	/**
-	 * Check remote api for safe updates data.
-	 *
-	 * @param array $info Theme details.
-	 *
-	 * @return array Remote api message.
-	 */
-	private function changes_check( $info ) {
-
 		$request_data = array(
 			'theme'           => $info['theme'],
 			'current_version' => $info['current_version'],
 			'next_version'    => $info['new_version'],
 		);
-		$data         = $this->get_safe_updates_data( $request_data );
-		if ( ! empty( $data ) ) {
-			return $data;
-		}
-		$response = wp_remote_post( self::API_ENDPOINT, array(
-				'method'  => 'POST',
-				'timeout' => 3,
-				'body'    => $request_data,
-			)
-		);
-		if ( is_wp_error( $response ) ) {
-			return array();
-		}
-		$response_data = json_decode( wp_remote_retrieve_body( $response ), true );
-		if ( ! is_array( $response_data ) ) {
-			return array();
-		}
 
-		if ( strval( $response_data['code'] ) !== '200' ) {
-			return array();
+		$data = $this->get_safe_updates_data( $request_data );
+		if ( empty( $data ) ) {
+			return $themes;
 		}
-		$response_data = $response_data['data'];
-		if ( ! is_array( $response_data ) ) {
-			return array();
-		}
-		$option_data = array(
-			$this->get_safe_updates_hash( $request_data ) => $response_data,
-		);
+		$changes_info = $this->get_message_notice( array(
+			'global_diff'     => $data['global_diff'],
+			'current_version' => $info['current_version'],
+			'new_version'     => $info['new_version'],
+			'gallery_url'     => $data['gallery_url'],
+		) );
 
-		$this->set_option( 'checks', $option_data );
+		$themes[ $info['theme'] ]['update'] = $themes[ $info['theme'] ]['update'] . $changes_info;
 
-		return $response_data;
+		return $themes;
 	}
+
 }

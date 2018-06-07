@@ -1,26 +1,22 @@
 /*---------------------------------------
    SECTION: SERVICES    
 -----------------------------------------*/
+
 .services-wrap {
-	text-align: center;
 	position: relative;
 	padding-bottom: 50px;
+	text-align: center;
 }
 
 .services {
-	background-color: #FFF;
 	border-bottom: 1px solid #eaebec;
-}
-
-.services .section-overlay-layer {
+	background-color: #fff;
 }
 
 .single-service {
 	padding: 40px 20px 40px 20px;
-	background: #ffffff;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
 	border-radius: 3px;
+	background: #fff;
 	-webkit-transition: all ease 0.55s;
 	transition: all ease 0.55s;
 }
@@ -31,36 +27,37 @@
 	text-align: center;
 }
 
-.single-service > h3 > a:hover, .service-icon > a:hover{
-	text-decoration:none;
+.single-service > h3 > a:hover,
+.service-icon > a:hover {
+	text-decoration: none;
 }
 
 .services-wrap > .service-box {
-    width: 31.5%;
+	width: 31.5%;
 	margin: 0 1%;
-    margin-bottom: 30px;
-    vertical-align: top;
+	margin-bottom: 30px;
+	vertical-align: top;
 }
 
-.services-wrap > .service-box:nth-child(3n+1){
-	margin-left: 0;
+.services-wrap > .service-box:nth-child(3n+1) {
 	clear: left;
+	margin-left: 0;
 }
 
-.services-wrap > .service-box:nth-child(3n){
-	margin-right: 0;
+.services-wrap > .service-box:nth-child(3n) {
 	clear: right;
+	margin-right: 0;
 }
 
 .service-icon {
-	font-size: 60px;
 	margin-bottom: 35px;
+	font-size: 60px;
 }
 
 .single-service h3 {
-	color: #1395ba;
 	margin-bottom: 15px;
 	padding-top: 5px;
+	color: #1395ba;
 }
 
 .galcolumn .single-service {
@@ -71,13 +68,15 @@
 	display: none !important;
 }
 
+
 /*---------------------------------------
  SECTION: TESTIMONIALS
 -----------------------------------------*/
+
 .testimonials {
-	text-align: center;
-	background-color: #FFF;
 	border-bottom: 1px solid #eaebec;
+	background-color: #fff;
+	text-align: center;
 }
 
 .testimonials .section-overlay-layer {
@@ -85,28 +84,26 @@
 }
 
 .feedback {
-	padding: 0 30px;
 	margin-bottom: 45px;
+	padding: 0 30px;
 }
 
 .feedback .pic-container {
+	position: absolute;
 	top: -40px;
 	width: 100%;
-	position: absolute;
 }
 
 .feedback .pic-container-inner {
-	-webkit-border-radius: 50%;
-	-moz-border-radius: 50%;
-	border-radius: 50%;
 	display: inline-block;
 	overflow: hidden;
-	background-clip: padding-box;
 	width: 170px;
 	height: 170px;
-	box-shadow: 0px 0px 0px 5px #f5f5f5;
-	background-color: #f5f5f5;
 	border: 5px solid #e5e5e5;
+	border-radius: 50%;
+	background-color: #f5f5f5;
+	background-clip: padding-box;
+	box-shadow: 0 0 0 5px #f5f5f5;
 }
 
 .feedback .pic-container img {
@@ -114,9 +111,9 @@
 }
 
 .feedback p {
-	font-style: italic;
 	margin-top: 20px;
 	margin-bottom: 0;
+	font-style: italic;
 }
 
 .feedback h5 {
@@ -128,8 +125,8 @@
 }
 
 .testimonials-box {
-	text-align: center;
 	width: 100%;
+	text-align: center;
 }
 
 .testimonials-wrap {
@@ -138,26 +135,22 @@
 
 .testimonials-wrap .testimonials-box {
 	display: inline-block;
-	-webkit-transition: all .2s ease;
-	-moz-transition: all .2s ease;
-	-o-transition: all .2s ease;
-	transition: all .2s ease;
+	-webkit-transition: all 0.2s ease;
+	transition: all 0.2s ease;
 }
 
 .testimonials-box .feedback {
+	position: relative;
+	margin: 40px 0 30px 0;
 	padding: 145px 0 40px 0;
-    margin: 40px 0 30px 0;
-    background: #ffffff;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    -webkit-transition: all ease 0.55s;
-    transition: all ease 0.55s;
-    position: relative;
+	border-radius: 3px;
+	background: #fff;
+	-webkit-transition: all ease 0.55s;
+	transition: all ease 0.55s;
 }
 
 .testimonials-box .feedback:hover {
-  border-bottom-color: #f16c20;
+	border-bottom-color: #f16c20;
 }
 
 .galcolumn .testimonials-box {
@@ -165,33 +158,35 @@
 }
 
 .testimonials-wrap > .testimonials-box {
-    width: 31.5%;
-    margin: 0 1.15% 0 1.15%;
-    margin-bottom: 30px;
-    vertical-align: top;
+	width: 31.5%;
+	margin: 0 1.15% 0 1.15%;
+	margin-bottom: 30px;
+	vertical-align: top;
 }
 
 .testimonials-wrap > .testimonials-box:nth-child(3n+1) {
-    margin-left: 0;
-    clear: left;
+	clear: left;
+	margin-left: 0;
 }
 
 .testimonials-wrap > .testimonials-box:nth-child(3n) {
-    margin-right: 0;
-    clear: right;
+	clear: right;
+	margin-right: 0;
 }
+
 
 /*---------------------------------------
   SECTION: TEAM
 -----------------------------------------*/
+
 .team {
-	background-color: #FFF;	
 	border-bottom: 1px solid #eaebec;
+	border-bottom: 1px solid #f3f3f3;
+	background-color: #fff;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
 	background-position: 50% 50%;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    border-bottom: 1px solid #F3F3F3;
+	background-size: cover;
 }
 
 .team .section-overlay-layer {
@@ -200,38 +195,36 @@
 }
 
 .team .sub-heading {
-	color: #FFF;
+	color: #fff;
 }
 
 .team .dark-text {
-	color: #FFF;
+	color: #fff;
 }
 
 .team-member {
-	margin-bottom: 25px;
-	position: relative;
 	overflow: hidden;
+	position: relative;
 	min-height: 100px;
-	-webkit-border-radius: 50%;
-	-moz-border-radius: 50%;
+	margin-bottom: 25px;
 	border-radius: 50%;
 }
 
 .team-member .social-icons {
-	opacity: 1;
-	margin-top: 5px;
 	position: relative;
+	margin-top: 5px;
+	margin-top: 0;
+	margin-bottom: 0;
+	opacity: 1;
 	-webkit-transition: all ease 0.55s;
 	transition: all ease 0.55s;
-	margin-bottom: 0;
-	margin-top: 0;
 }
 
 .team-member .social-icons li {
 	display: inline-block;
-	padding-left: 5px;
-	padding-right: 5px;
 	padding-top: 3px;
+	padding-right: 5px;
+	padding-left: 5px;
 }
 
 .team-member .social-icons li a {
@@ -248,12 +241,10 @@
 }
 
 .member-pic {
-	border: none;
-	-webkit-border-radius: 0px;
-	-moz-border-radius: 0px;
-	border-radius: 0px;
 	width: 183px;
 	height: 183px;
+	border: none;
+	border-radius: 0;
 }
 
 .member-pic img {
@@ -262,26 +253,24 @@
 }
 
 .member-details {
-	left: 0;
-	position: absolute;
-	color: #FFF;
 	display: table;
 	overflow: hidden;
-	height: 183px;
-	width: 183px;
+	position: absolute;
 	bottom: 100%;
-	-webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
-	-o-transition: all 0.3s;
-	transition: all 0.3s;
+	left: 0;
+	width: 183px;
+	height: 183px;
+	color: #fff;
 	background: rgba(0,0,0,0);
 	text-align: center;
+	-webkit-transition: all 0.3s;
+	transition: all 0.3s;
 }
 
 .member-details h5 {
 	margin: 0;
 	margin-bottom: 5px;
-	color: #FFF;
+	color: #fff;
 }
 
 .team-member-wrap {
@@ -289,13 +278,13 @@
 }
 
 .team-member-wrap .team-member-box {
-    float: none;
-    display: inline-block;
-    margin-right: -4px;
-    vertical-align: top;
-    padding-right: 55px;
-    padding-left: 55px;
-    padding-bottom: 30px;
+	display: inline-block;
+	float: none;
+	margin-right: -4px;
+	padding-right: 55px;
+	padding-bottom: 30px;
+	padding-left: 55px;
+	vertical-align: top;
 }
 
 .member-details-inner {
@@ -305,17 +294,14 @@
 
 .team-member:hover .member-details {
 	bottom: 0;
-	-webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
-	-o-transition: all 0.3s;
-	transition: all 0.3s;
 	background: rgba(241,108,32,0.7);
+	-webkit-transition: all 0.3s;
+	transition: all 0.3s;
 }
 
 @media (min-width: 992px) and (max-width: 1200px) {
 	.team-member-wrap .team-member-box {
-	    padding-right: 30px;
-	    padding-left: 30px;
+		padding-right: 30px;
+		padding-left: 30px;
 	}
 }
-

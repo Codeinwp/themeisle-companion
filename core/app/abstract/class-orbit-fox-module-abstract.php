@@ -675,6 +675,12 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @return bool Random result.
 	 */
 	protected function is_lucky_user( $percent = 10 ) {
+		$force_beta = isset( $_GET['force_beta'] ) && $_GET['force_beta'] === 'yes';
+		if ( $force_beta ) {
+			update_option( 'obfx_beta_show_' . $this->get_slug(), 'yes' );
+
+			return true;
+		}
 		$luck = get_option( 'obfx_beta_show_' . $this->get_slug() );
 		if ( ! empty( $luck ) ) {
 			return $luck === 'yes';
