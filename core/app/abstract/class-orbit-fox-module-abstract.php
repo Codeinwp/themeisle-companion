@@ -109,6 +109,15 @@ abstract class Orbit_Fox_Module_Abstract {
 	protected $version;
 
 	/**
+	 * Enable module in beta mode..
+	 *
+	 * @since   1.0.0
+	 * @access  protected
+	 * @var     string $beta Is module in beta.
+	 */
+	public $beta;
+
+	/**
 	 * Stores the localized arrays for both public and admin JS files that need to be loaded.
 	 *
 	 * @access  protected
@@ -657,5 +666,30 @@ abstract class Orbit_Fox_Module_Abstract {
 			include $file;
 		}
 		return ob_get_clean();
+	}
+	/**
+	 * Check if the users is choosen to show this in beta.
+	 *
+	 * @param int $percent Amount of users to show.
+	 *
+	 * @return bool Random result.
+	 */
+	protected function is_lucky_user( $percent = 10 ) {
+		$force_beta = isset( $_GET['force_beta'] ) && $_GET['force_beta'] === 'yes';
+		if ( $force_beta ) {
+			update_option( 'obfx_beta_show_' . $this->get_slug(), 'yes' );
+
+			return true;
+		}
+		$luck = get_option( 'obfx_beta_show_' . $this->get_slug() );
+		if ( ! empty( $luck ) ) {
+			return $luck === 'yes';
+		}
+		$luck = rand( 1, 100 );
+
+		$luck = $luck <= $percent;
+		update_option( 'obfx_beta_show_' . $this->get_slug(), $luck ? 'yes' : 'no' );
+
+		return $luck;
 	}
 }

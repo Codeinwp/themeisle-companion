@@ -50,11 +50,13 @@ var obfx_admin = function ( $ ) {
 	$(
 		function () {
 			// Scroll to module if url hash.
-			$(document).ready(function() {
-				var hash = $( '#' + window.location.hash.substr( 1 ) );
-				hash.find('.btn-expand').click();
-				scrollToAnchor( hash );
-			});
+			$( document ).ready(
+				function() {
+					var hash = $( '#' + window.location.hash.substr( 1 ) );
+					hash.find( '.btn-expand' ).click();
+					scrollToAnchor( hash );
+				}
+			);
 
 			$( '.obfx-mod-switch' ).on(
 				'click', function () {
@@ -85,21 +87,21 @@ var obfx_admin = function ( $ ) {
 							formSwitch.removeClass( 'loading' );
 							if ( response.type === 'success' ) {
 								var modulePanel = $( '#obfx-mod-' + name );
-									if ( checked ) {
-										$( modulePanel ).find( 'fieldset' ).removeAttr( 'disabled' );
-										$( modulePanel ).show();
-										if ( modal ) {
-											modal.addClass( 'active' );
-										} else {
-											$( modulePanel ).find( '.btn-expand' ).click();
-											scrollToAnchor( modulePanel );
-										}
+								if ( checked ) {
+									$( modulePanel ).find( 'fieldset' ).removeAttr( 'disabled' );
+									$( modulePanel ).show();
+									if ( modal ) {
+										modal.addClass( 'active' );
 									} else {
-										$( modulePanel ).hide();
-										$( modulePanel ).find( 'fieldset' ).attr( 'disabled', true );
+										$( modulePanel ).find( '.btn-expand' ).click();
+										scrollToAnchor( modulePanel );
 									}
+								} else {
+									$( modulePanel ).hide();
+									$( modulePanel ).find( 'fieldset' ).attr( 'disabled', true );
+								}
 							} else {
-								switch_ref.attr( 'checked', !switch_ref.attr( 'checked' ) );
+								switch_ref.attr( 'checked', ! switch_ref.attr( 'checked' ) );
 							}
 						}, 'json'
 					);
@@ -107,7 +109,7 @@ var obfx_admin = function ( $ ) {
 			);
 
 			function scrollToAnchor(anchor_id){
-				if( anchor_id.length ) {
+				if ( anchor_id.length ) {
 					$( 'html,body' ).animate( { scrollTop: anchor_id.offset().top }, 'slow' );
 				}
 			}
@@ -120,10 +122,10 @@ var obfx_admin = function ( $ ) {
 					var name = switch_ref.attr( 'name' );
 					var optionsPanel = $( '#obfx-mod-' + name );
 					optionsPanel.find( '.btn-expand' ).click();
-					scrollToAnchor(optionsPanel);
-                    optionsPanel.find( '.form-input:first-of-type' ).focus();
+					scrollToAnchor( optionsPanel );
+					optionsPanel.find( '.form-input:first-of-type' ).focus();
 
-                }
+				}
 			);
 
 			$( '.close-confirm-intent' ).on(

@@ -70,6 +70,7 @@ class Orbit_Fox_Global_Settings {
 					'menu-icons',
 					'mystock-import',
 					'beaver-widgets',
+					'safe-updates',
 				)
 			);
 		}// End if().
