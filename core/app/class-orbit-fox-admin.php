@@ -377,6 +377,7 @@ class Orbit_Fox_Admin {
 							'name'           => $module->name,
 							'active'         => $module->get_is_active(),
 							'description'    => $module->description,
+							'show'           => $module->show,
 							'options_fields' => $options_fields,
 						)
 					);
@@ -412,7 +413,7 @@ class Orbit_Fox_Admin {
 			'count_modules' => $count_modules,
 			'tiles'         => $tiles,
 			'toasts'        => $toasts,
-			'panels'        => $panels,
+			'panels'        => $panels
 		);
 		$output = $rdh->get_view( 'modules', $data );
 		echo $output;
