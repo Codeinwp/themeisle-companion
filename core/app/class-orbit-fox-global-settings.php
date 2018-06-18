@@ -69,7 +69,8 @@ class Orbit_Fox_Global_Settings {
 					'template-directory',
 					'menu-icons',
 					'mystock-import',
-					'beaver-widgets', 
+					'policy-notice',
+					'beaver-widgets',
 					'safe-updates', 
 					'image-cdn', 
 				)
