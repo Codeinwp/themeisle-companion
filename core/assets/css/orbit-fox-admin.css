@@ -3645,11 +3645,19 @@ html {
 	transform: rotate( 180deg );
 }
 
+.obfx-wrapper .panel.options .obfx-module-form.active {
+    display: block;
+}
+.obfx-wrapper .panel.options .obfx-module-form {
+    display: none;
+}
+.obfx-wrapper .panel.options.active {
+    max-height:1000px;
+}
 .obfx-wrapper .panel.options {
-	overflow: hidden;
-	height: 75px;
-	-webkit-transition: height 0.3s;
-	transition: height 0.3s;
+    overflow:hidden;
+    transition:max-height 0.3s ease-out;
+    max-height:90px;
 }
 
 /** TEMPORARY FIX FOR SOCIAL SHARING STYLE **/
@@ -3716,4 +3724,8 @@ html {
 	font-size: 80%;
 	line-height: 1.8rem;
 	text-align: center;
+}
+.obfx-img-logout{
+    position: relative;
+    top:-15px;
 }

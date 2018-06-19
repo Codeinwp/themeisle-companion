@@ -80,6 +80,26 @@ class Connector {
 	}
 
 	/**
+	 * Sync quota data.
+	 */
+	public function daily_check() {
+
+		$current_data = get_option( self::API_DATA_KEY );
+		if ( empty( $current_data ) ) {
+			return;
+		}
+		if ( ! isset( $current_data['api_key'] ) || empty( $current_data['api_key'] ) && strlen( $current_data['api_key'] ) > 10 ) {
+			return;
+		}
+		$request             = new \OrbitFox\Request( $this->connect_url . $this->cdn_path, 'POST', $current_data['api_key'] );
+		$response            = $request->get_response();
+		$response['api_key'] = $current_data['api_key'];
+
+		update_option( self::API_DATA_KEY, $response );
+
+	}
+
+	/**
 	 * When a user requests an url we request a set of temporary token credentials and build a link with them.
 	 * We also save them because we'll need them with the verifier.
 	 *

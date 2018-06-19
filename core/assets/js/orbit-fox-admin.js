@@ -151,11 +151,11 @@ var obfx_admin = function ( $ ) {
 				'click', function () {
 					if ( $( this ).hasClass( 'active' ) ) {
 						$( this ).removeClass( 'active' );
-						$( this ).closest( '.panel-header' ).siblings( '.obfx-module-form' ).removeClass( 'active' );
-						$( this ).closest( '.panel.options' ).css( 'height', '75px' );
+						$( this ).closest( '.panel-header' ).siblings( '.obfx-module-form' ).removeClass( 'active' ).parent().removeClass('active');
+
 					} else {
 						$( this ).addClass( 'active' );
-						$( this ).closest( '.panel.options' ).css( 'height', 'auto' );
+						$( this ).closest( '.panel-header' ).siblings( '.obfx-module-form' ).addClass( 'active' ).parent().addClass( 'active' );
 					}
 				}
 			);

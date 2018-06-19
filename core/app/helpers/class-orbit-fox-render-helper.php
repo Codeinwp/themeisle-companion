@@ -107,6 +107,9 @@ class Orbit_Fox_Render_Helper {
 			case 'toggle':
 				return $this->field_toggle( $option );
 				break;
+			case 'title':
+				return $this->field_title( $option );
+				break;
 			case 'custom':
 				return apply_filters( 'obfx_custom_control_' . $option['id'], '' );
 				break;
@@ -409,6 +412,23 @@ class Orbit_Fox_Render_Helper {
 				<i class="form-icon"></i> ' . $option['label'] . '
 			</label>';
 		$field = $this->wrap_element( $option, $field );
+
+		return $field;
+	}
+
+	/**
+	 * Render a title field.
+	 *
+	 * @since   2.5.0
+	 * @access  private
+	 *
+	 * @param   array $option The option from the module.
+	 *
+	 * @return mixed
+	 */
+	private function field_title( $option = array() ) {
+
+		$field = $this->wrap_element( $option, '' );
 
 		return $field;
 	}

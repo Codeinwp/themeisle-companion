@@ -36,7 +36,7 @@ class Image_CDN_Replacer {
 
 	// @TODO provide a filter for this
 	/**
-	 * Te cdn url; it will be build on the run
+	 * Te cdn url, it will be build on the run.
 	 *
 	 * @var null
 	 */

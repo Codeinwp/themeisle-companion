@@ -38,14 +38,13 @@ if ( ! $active ) {
 }
 $btn_class = '';
 if ( isset( $show ) && $show ) {
-	$styles[]  = 'height:auto';
 	$btn_class = 'active';
 
 }
 $styles = sprintf( 'style="%s"', implode( ':', $styles ) );
 
 ?>
-<div id="obfx-mod-<?php echo $slug; ?>" class="panel options" <?php echo $styles; ?>>
+<div id="obfx-mod-<?php echo $slug; ?>" class="panel options <?php echo esc_attr( $btn_class ); ?>" <?php echo $styles; ?>>
 	<div class="panel-header">
 		<button class="btn btn-action circle btn-expand <?php echo esc_attr( $btn_class ); ?>"
 				style="float: right; margin-right: 10px;">
@@ -58,7 +57,7 @@ $styles = sprintf( 'style="%s"', implode( ':', $styles ) );
 			<span>Mock text for Toast Element</span>
 		</div>
 	</div>
-	<form id="obfx-module-form-<?php echo $slug; ?>" class="obfx-module-form">
+	<form id="obfx-module-form-<?php echo $slug; ?>" class="obfx-module-form <?php echo esc_attr( $btn_class ); ?> ">
 		<fieldset <?php echo $disabled_fields; ?> >
 			<input type="hidden" name="module-slug" value="<?php echo $slug; ?>">
 			<input type="hidden" name="noance" value="<?php echo $noance; ?>">
