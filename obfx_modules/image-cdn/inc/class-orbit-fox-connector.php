@@ -2,28 +2,42 @@
 
 namespace OrbitFox;
 
+/**
+ * The class defines way of connecting this user to the OrbitFox Dashboard.
+ *
+ * @package    \OrbitFox\Connector
+ * @author     Themeisle <friends@themeisle.com>
+ */
 class Connector {
 	/**
-	 * Option key name for Obfx site account.
+	 * Option key name for OrbitFox site account.
 	 */
 	const API_DATA_KEY = 'obfx_connect_data';
 
 	/**
+	 * The instance object.
+	 *
 	 * @var Connector
 	 */
 	protected static $instance = null;
 
 	/**
-	 * @var string Root of the obfx dashboard.
+	 * The Root URL of the OrbitFox dashboard.
+	 *
+	 * @var string
 	 */
 	protected $connect_url = 'https://dashboard.orbitfox.com/api/obfxhq/v1';
 
 	/**
-	 * @var string CDN details path.
+	 * The CDN details path.
+	 *
+	 * @var string
 	 */
 	protected $cdn_path = '/image/details';
 
 	/**
+	 * The instance init method.
+	 *
 	 * @static
 	 * @since 1.0.0
 	 * @access public
@@ -52,15 +66,17 @@ class Connector {
 	 * Register REST endpoints.
 	 */
 	public function register_url_endpoints() {
-		register_rest_route( 'obfx-connector', '/connector-url', array(
-			array(
-				'methods'             => \WP_REST_Server::CREATABLE,
-				'permission_callback' => function ( \WP_REST_Request $request ) {
-					return current_user_can( 'manage_options' );
-				},
-				'callback'            => array( $this, 'rest_handle_connector_url' )
-			),
-		) );
+		register_rest_route(
+			'obfx-connector', '/connector-url', array(
+				array(
+					'methods'             => \WP_REST_Server::CREATABLE,
+					'permission_callback' => function ( \WP_REST_Request $request ) {
+						return current_user_can( 'manage_options' );
+					},
+					'callback'            => array( $this, 'rest_handle_connector_url' ),
+				),
+			)
+		);
 	}
 
 	/**
@@ -98,7 +114,7 @@ class Connector {
 	 */
 	function admin_inline_js() {
 		$connect_endpoint = get_rest_url( null, 'obfx-connector/connector-url' );
-		$confirm_connect  =  add_query_arg(array( 'loggedin' => 'true' ), admin_url( 'admin.php?page=obfx_companion' ) );
+		$confirm_connect  = add_query_arg( array( 'loggedin' => 'true' ), admin_url( 'admin.php?page=obfx_companion' ) );
 
 		wp_enqueue_script( 'wp-api' ); ?>
 		<script type='text/javascript'>
@@ -110,7 +126,7 @@ class Connector {
 					var api_key = $('#obfx_connect_api_key').val();
 
 					wp.apiRequest({
-						url: "<?php echo $connect_endpoint ?>",
+						url: "<?php echo $connect_endpoint; ?>",
 						type: 'POST',
 						data: {api_key: api_key},
 						dataType: 'json'
@@ -128,7 +144,7 @@ class Connector {
 					event.preventDefault();
 					$('#obfx_connect').parent().addClass('loading');
 					wp.apiRequest({
-						url: "<?php echo $connect_endpoint ?>",
+						url: "<?php echo $connect_endpoint; ?>",
 						type: 'POST',
 						data: {disconnect: true},
 						dataType: 'json'

@@ -429,8 +429,8 @@ class Orbit_Fox_Render_Helper {
 		}
 		$field = '
 			<a id="' . esc_attr( $option['link-id'] ) . '" class="' . esc_attr( $option['link-class'] ) . '" href="' . esc_url( $option['url'] ) . '">' .
-		         wp_kses_post( $option['text'] )
-		         . '</a>';
+				 wp_kses_post( $option['text'] )
+				 . '</a>';
 
 		$field = $this->wrap_element( $option, $field );
 

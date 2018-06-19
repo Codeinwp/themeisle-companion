@@ -48,7 +48,7 @@ $styles = sprintf( 'style="%s"', implode( ':', $styles ) );
 <div id="obfx-mod-<?php echo $slug; ?>" class="panel options" <?php echo $styles; ?>>
 	<div class="panel-header">
 		<button class="btn btn-action circle btn-expand <?php echo esc_attr( $btn_class ); ?>"
-		        style="float: right; margin-right: 10px;">
+				style="float: right; margin-right: 10px;">
 			<i class="dashicons dashicons-arrow-down-alt2"></i>
 		</button>
 		<div class="panel-title"><?php echo $name; ?></div>

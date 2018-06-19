@@ -1,18 +1,57 @@
 <?php
 
 namespace OrbitFox;
+
 /**
  * A class for building an Authorization header for http requests.
  *
+ * @package    \OrbitFox\Image_CDN_Replacer
+ * @author     Themeisle <friends@themeisle.com>
  */
-
 class Request {
+	/**
+	 * The API key.
+	 *
+	 * @var null
+	 */
 	protected $api_key = null;
+
+	/**
+	 * The api url where we are trying to connect.
+	 *
+	 * @var null
+	 */
 	protected $api_url = null;
+
+	/**
+	 * Defines which header brings the authorization key.
+	 *
+	 * @var string
+	 */
 	protected $auth_header = 'Authorization';
+
+	/**
+	 * A list of extra params in the current request.
+	 *
+	 * @var array
+	 */
 	protected $extra_params = array();
+
+	/**
+	 * The HTTP method.
+	 *
+	 * @var null|string
+	 */
 	protected $method = null;
 
+	/**
+	 * Request constructor.
+	 *
+	 * @param string $url The request url.
+	 * @param string $method The request method type.
+	 * @param string $api_key The client key.
+	 * @param array  $extra_params Any extra param to be signed.
+	 */
 	public function __construct( $url, $method = 'GET', $api_key = '', $extra_params = array() ) {
 
 		// The url for our custom endpoint, which returns network settings.
