@@ -317,6 +317,9 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @return mixed
 	 */
 	final public function set_option( $key, $value ) {
+		if ( ! isset( $this->model ) ) {
+			return false;
+		}
 		return $this->model->set_module_option( $this->slug, $key, $value );
 	}
 
