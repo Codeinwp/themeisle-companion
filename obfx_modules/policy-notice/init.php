@@ -91,12 +91,7 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'name'    => 'enable_policy_notice',
 				'title'   => '',
 				'type'    => 'toggle',
-				'label'   => sprintf(
-					'%s <a href="%s">%s</a>.',
-					esc_html__( 'Allow OrbitFox to display a bottom bar with info about the website Private Policy. You can set the Private Policy page ', 'textdomain' ),
-					admin_url( 'privacy.php' ),
-					esc_html__( 'here', 'textdomain' )
-				),
+				'label'   => esc_html__( 'Allow OrbitFox to display a bottom bar with info about the website Private Policy.', 'textdomain' ),
 				'default' => '0',
 			),
 
@@ -115,6 +110,15 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 //				'type'    => 'text',
 //				'default' => esc_html__( 'View Policy', 'textdomain' ),
 //			),
+
+			array(
+				'id'      => 'policy_page',
+				'name'    => 'policy_page',
+				'title'   => esc_html__( 'Policy Page', 'textdomain' ),
+				'type'    => 'select',
+				'default' => 0,
+				'options' =>  $this->get_policy_pages_array()
+			),
 
 			array(
 				'id'      => 'notice_link_label',
@@ -140,11 +144,15 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			return;
 		}
 
+		$this->loader->add_action( 'update_option_wp_page_for_privacy_policy', $this, 'on_page_for_privacy_policy_save', 10, 3 );
+		$this->loader->add_action( $this->get_slug() . '_before_options_save', $this, 'before_options_save', 10, 1 );
+
 		// if the cookie policy is already accepted we quit.
 		if ( isset( $_COOKIE['obfx-policy-consent'] ) && 'accepted' === $_COOKIE['obfx-policy-consent'] ) {
 			return;
 		}
 
+		// only front-end hooks from now on
 		$this->loader->add_action( 'wp_print_footer_scripts', $this, 'wp_print_footer_scripts' );
 		$this->loader->add_action( 'wp_print_footer_scripts', $this, 'wp_print_footer_style' );
 		$this->loader->add_action( 'wp_footer', $this, 'display_cookie_notice' );
@@ -155,6 +163,13 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function display_cookie_notice() {
 		$policy_link   = get_option( 'wp_page_for_privacy_policy' ) ? get_permalink( (int) get_option( 'wp_page_for_privacy_policy' ) ) : '#';
+
+		$policy_page   = $this->get_option( 'policy_page' );
+
+		if ( ! empty( $policy_page ) ) {
+			$policy_link = get_permalink( (int) get_option( 'wp_page_for_privacy_policy' ) );
+		}
+
 		$policy_text   = $this->get_option( 'policy_notice_text' );
 		$policy_button = $this->get_option( 'notice_link_label' );
 
@@ -172,7 +187,7 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		// we'll add the buttons as a separate var and we'll start with the close button
 		$buttons = '<label for="obfx-checkbox-cb" class="obfx-close-cb">X</label>';
 		// the "Acceptance" button
-		$buttons .= '<a href="#" class="obfx-accept-cookie-policy" >' . esc_html__( 'Agree', 'textdomain' ) . '</a>';
+		$buttons .= '<a href="#" id="obfx-accept-cookie-policy" >' . esc_html__( 'Agree', 'textdomain' ) . '</a>';
 		// the "View Policy button"
 		$buttons .= '<a href="' . $policy_link . '" >' . $policy_button . '</a>';
 
@@ -188,9 +203,9 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function wp_print_footer_scripts() { ?>
 		<script>
-			(function ($) {
-				// when an user clicks on
-				$(document).on('click', '.obfx-accept-cookie-policy', function (e) {
+			(function (window) {
+
+				document.getElementById('obfx-accept-cookie-policy').addEventListener('click', function( e ) {
 					e.preventDefault();
 					var days = 365;
 					var date = new Date();
@@ -201,10 +216,11 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 					document.cookie = 'obfx-policy-consent=accepted; expires=' + date.toGMTString() + '; path=/';
 
 					// after we get the acceptance cookie we can close the box
-					$('.obfx-checkbox-cb').prop('checked', true);
-				});
+					document.getElementById('obfx-checkbox-cb').checked = true;
 
-			})(jQuery);
+				}, false);
+
+			})(window);
 		</script><?php
 	}
 
@@ -255,11 +271,82 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	<?php }
 
 	/**
+	 * When the core privacy page is changed, we'll also change the option within our module.
+	 *
+	 * @param $old_value
+	 * @param $value
+	 * @param $option
+	 *
+	 * @return mixed
+	 */
+	public function on_page_for_privacy_policy_save( $old_value, $value, $option ){
+
+		// if this action comes from our dashboard we need to stop and avoid a save loop.
+		if( doing_action( $this->get_slug() . '_before_options_save' ) ){
+			return $value;
+		}
+
+		$this->set_option( 'policy_page', $value );
+
+		return $value;
+	}
+
+	/**
+	 * When the OrbitFox Module changes it's value, we also need to change the core version.
+	 * @param $options
+	 */
+	public function before_options_save( $options ){
+
+		// the default option doesn't need a a change.
+		if ( empty( $options ) ) {
+			return;
+		}
+
+		// there is no need to change something to it's own value.
+		if ( $options['policy_page'] === get_option( 'wp_page_for_privacy_policy' ) ) {
+			return;
+		}
+
+		update_option( 'wp_page_for_privacy_policy', $options['policy_page'] );
+
+	}
+
+	/**
 	 * Check if safe updates is turned on.
 	 *
 	 * @return bool Safe updates status.
 	 */
 	private function is_policy_notice_active() {
 		return (bool) $this->get_option( 'enable_policy_notice' );
+	}
+
+	/**
+	 * Return an array with all the pages but the first entry is an indicator to the policy selected in core.
+	 *
+	 * @return array
+	 */
+	private function get_policy_pages_array(){
+		$options = array(
+			'0' => esc_html__( 'Default Core Policy', 'textdomain' )
+		);
+
+		$pages = get_pages( array(
+			'echo'              => '0',
+			'post_status'       => array( 'draft', 'publish' ),
+			'depth' => 0,
+			'child_of' => 0,
+			'selected' => 0,
+			'value_field' => 'ID',
+		) );
+
+		if ( empty( $pages ) ) {
+			return $options;
+		}
+
+		foreach ( $pages as $page ) {
+			$options[ $page->ID ] = $page->post_title;
+		}
+
+		return $options;
 	}
 }

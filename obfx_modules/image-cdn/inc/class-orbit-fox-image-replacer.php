@@ -2,32 +2,84 @@
 
 namespace OrbitFox;
 
+/**
+ * The class handles the image replacements and optimizations.
+ *
+ * @package    \OrbitFox\Image_CDN_Replacer
+ * @author     Themeisle <friends@themeisle.com>
+ */
 class Image_CDN_Replacer {
 	/**
+	 * Cached object instance.
+	 *
 	 * @var Image_CDN_Replacer
 	 */
 	protected static $instance = null;
+
+	/**
+	 * A list of allowd extensions.
+	 *
+	 * @var array
+	 */
 	protected static $extensions = array(
 		'jpg',
 		'webp',
-		'png'
+		'png',
 	);
 
+	/**
+	 * Holds an array of image sizes.
+	 *
+	 * @var array
+	 */
 	protected static $image_sizes;
 
 	// @TODO provide a filter for this
 	/**
-	 * This property will be build on the run
+	 * Te cdn url; it will be build on the run
+	 *
 	 * @var null
 	 */
 	protected $cdn_url = null;
+
+	/**
+	 * A data holder.
+	 *
+	 * @var null
+	 */
 	protected $connect_data = null;
+
+	/**
+	 * Defines which is the maximum width accepted in the optimization process.
+	 *
+	 * @var int
+	 */
 	protected $max_width = 2000;
+
+	/**
+	 * Defines which is the maximum width accepted in the optimization process.
+	 *
+	 * @var int
+	 */
 	protected $max_height = 2000;
+
+	/**
+	 * Holds the real images sizes as an array.
+	 *
+	 * @var null
+	 */
 	protected $img_real_sizes = null;
+
+	/**
+	 * A cached version of `wp_upload_dir`
+	 *
+	 * @var null
+	 */
 	protected $upload_dir = null;
 
 	/**
+	 * Class instance method.
+	 *
 	 * @static
 	 * @since  1.0.0
 	 * @access public
@@ -42,6 +94,9 @@ class Image_CDN_Replacer {
 		return self::$instance;
 	}
 
+	/**
+	 * The initialize method.
+	 */
 	function init() {
 		$this->set_properties();
 
@@ -67,7 +122,8 @@ class Image_CDN_Replacer {
 			return;
 		}
 
-		$this->cdn_url = sprintf( 'https://%s.%s/%s',
+		$this->cdn_url = sprintf(
+			'https://%s.%s/%s',
 			$this->connect_data['image_cdn']['key'],
 			'i.orbitfox.com',
 			'i' // api root; almost like /wp-json/
@@ -77,9 +133,9 @@ class Image_CDN_Replacer {
 	/**
 	 * This filter will replace all the images retrieved via "wp_get_image" type of functions.
 	 *
-	 * @param $image
-	 * @param $attachment_id
-	 * @param $size
+	 * @param array        $image The filtered value.
+	 * @param int          $attachment_id The related attachment id.
+	 * @param array|string $size This could be the name of the thumbnail size or an array of custom dimensions.
 	 *
 	 * @return array
 	 */
@@ -92,7 +148,7 @@ class Image_CDN_Replacer {
 		$image_url = wp_get_attachment_url( $attachment_id );
 
 		if ( $image_url ) {
-			//$image_meta = image_get_intermediate_size( $attachment_id, $size );
+			// $image_meta = image_get_intermediate_size( $attachment_id, $size );
 			$image_meta = wp_get_attachment_metadata( $attachment_id );
 			$image_args = self::image_sizes();
 
@@ -129,7 +185,7 @@ class Image_CDN_Replacer {
 				$new_url,
 				$sizes['width'],
 				$sizes['height'],
-				false
+				false,
 			);
 
 			return $return;
@@ -158,23 +214,23 @@ class Image_CDN_Replacer {
 				'thumb'  => array(
 					'width'  => intval( get_option( 'thumbnail_size_w' ) ),
 					'height' => intval( get_option( 'thumbnail_size_h' ) ),
-					'crop'   => (bool) get_option( 'thumbnail_crop' )
+					'crop'   => (bool) get_option( 'thumbnail_crop' ),
 				),
 				'medium' => array(
 					'width'  => intval( get_option( 'medium_size_w' ) ),
 					'height' => intval( get_option( 'medium_size_h' ) ),
-					'crop'   => false
+					'crop'   => false,
 				),
 				'large'  => array(
 					'width'  => intval( get_option( 'large_size_w' ) ),
 					'height' => intval( get_option( 'large_size_h' ) ),
-					'crop'   => false
+					'crop'   => false,
 				),
 				'full'   => array(
 					'width'  => null,
 					'height' => null,
-					'crop'   => false
-				)
+					'crop'   => false,
+				),
 			);
 
 			// Compatibility mapping as found in wp-includes/media.php
@@ -194,8 +250,8 @@ class Image_CDN_Replacer {
 	/**
 	 * Keep the image sizes under a sane limit.
 	 *
-	 * @param $width
-	 * @param $height
+	 * @param string $width The width value which should be sanitized.
+	 * @param string $height The height value which should be sanitized.
 	 *
 	 * @return array
 	 */
@@ -210,7 +266,7 @@ class Image_CDN_Replacer {
 			&& isset( $GLOBALS['content_width'] )
 			&& apply_filters( 'obfx_imgcdn_allow_resize_images_from_content_width', true )
 		) {
-			$content_width = (int)$GLOBALS['content_width'];
+			$content_width = (int) $GLOBALS['content_width'];
 
 			if ( $this->max_width > $content_width ) {
 				$this->max_width = $content_width;
@@ -219,32 +275,32 @@ class Image_CDN_Replacer {
 
 		$percentWidth = $percentHeight = null;
 
-		if ( $width > $this->max_width  ) {
+		if ( $width > $this->max_width ) {
 			// we need to remember how much in percentage the width was resized and apply the same treatment to the height.
 			$percentWidth = ( 1 - $this->max_width / $width ) * 100;
-			$width   = $this->max_width;
-			$height = round($height * ((100-$percentWidth) / 100), 2);
+			$width        = $this->max_width;
+			$height       = round( $height * ( ( 100 - $percentWidth ) / 100 ), 2 );
 		}
 
 		// now for the height
 		if ( $height > $this->max_height ) {
-			$percentHeight = (1 - $this->max_height / $height) * 100;
+			$percentHeight = ( 1 - $this->max_height / $height ) * 100;
 			// if we reduce the height to max_height by $x percentage than we'll also reduce the width for the same amount.
 			$height = $this->max_height;
-			$width = round($width * ((100-$percentHeight) / 100), 2);
+			$width  = round( $width * ( ( 100 - $percentHeight ) / 100 ), 2 );
 		}
 
 		return array(
 			'width'  => $width,
-			'height' => $height
+			'height' => $height,
 		);
 	}
 
 	/**
 	 * Returns a signed image url authorized to be used in our CDN.
 	 *
-	 * @param       $url
-	 * @param array $args
+	 * @param string $url The url which should be signed.
+	 * @param array  $args Dimension params; Supports `width` and `height`.
 	 *
 	 * @return string
 	 */
@@ -267,12 +323,13 @@ class Image_CDN_Replacer {
 			'width'    => (string) $args['width'],
 			'height'   => (string) $args['height'],
 			'compress' => $compress_level,
-			'secret'   => $this->connect_data['image_cdn']['secret']
+			'secret'   => $this->connect_data['image_cdn']['secret'],
 		);
 
 		$hash = md5( json_encode( $payload ) );
 
-		$new_url = sprintf( '%s/%s/%s/%s/%s/%s/%s',
+		$new_url = sprintf(
+			'%s/%s/%s/%s/%s/%s/%s',
 			$this->cdn_url,
 			$hash,
 			(string) $args['width'],
@@ -288,7 +345,7 @@ class Image_CDN_Replacer {
 	/**
 	 * Ensures that an url parameter can stand inside an url.
 	 *
-	 * @param $url
+	 * @param string $url The required url.
 	 *
 	 * @return string
 	 */
@@ -301,7 +358,7 @@ class Image_CDN_Replacer {
 	/**
 	 * Identify images in post content, and if images are local (uploaded to the current site), pass through Photon.
 	 *
-	 * @param string $content
+	 * @param string $content The post content which will be filtered.
 	 *
 	 * @uses   self::validate_image_url, apply_filters, jetpack_photon_url, esc_url
 	 * @filter the_content<
@@ -404,11 +461,11 @@ class Image_CDN_Replacer {
 	/**
 	 * Replace image URLs in the srcset attributes and in case there is a resize in action, also replace the sizes.
 	 *
-	 * @param array $sources
-	 * @param array $size_array
-	 * @param array $image_src
-	 * @param array $image_meta
-	 * @param int   $attachment_id
+	 * @param array $sources Array of image sources.
+	 * @param array $size_array Array of width and height values in pixels (in that order).
+	 * @param array $image_src The 'src' of the image.
+	 * @param array $image_meta The image meta data as returned by 'wp_get_attachment_metadata()'.
+	 * @param int   $attachment_id Image attachment ID.
 	 *
 	 * @return array
 	 */
@@ -475,15 +532,17 @@ class Image_CDN_Replacer {
 		 */
 		$theme_slug = get_option( 'stylesheet' );
 
-		$options_list = apply_filters( 'obfx_imgcdn_options_with_url', array(
-			"theme_mods_$theme_slug",
-		) );
+		$options_list = apply_filters(
+			'obfx_imgcdn_options_with_url', array(
+				"theme_mods_$theme_slug",
+			)
+		);
 
 		foreach ( $options_list as $option ) {
 			add_filter( "option_$option", array( $this, 'replace_option_url' ) );
 
 			// this one will not work for theme mods, since get_theme_mod('header_image', $default) has its own default.
-			//add_filter( "default_option_$option", array( $this, 'replace_option_url' ) );
+			// add_filter( "default_option_$option", array( $this, 'replace_option_url' ) );
 		}
 
 	}
@@ -491,9 +550,9 @@ class Image_CDN_Replacer {
 	/**
 	 * A filter which turns a local url into an optimized CDN image url or an array of image urls.
 	 *
-	 * @param $url string|array
+	 * @param string $url The url which should be replaced.
 	 *
-	 * @return string|array
+	 * @return array|mixed|object|string|void
 	 */
 	public function replace_option_url( $url ) {
 		if ( empty( $url ) ) {
@@ -531,10 +590,9 @@ class Image_CDN_Replacer {
 
 		// we handle only images uploaded to this site./
 		// @TODO this is still wrong, not all the images are coming from the uploads folder.
-//		if ( false === strpos( $url, $this->upload_dir ) ) {
-//			return $url;
-//		}
-
+		// if ( false === strpos( $url, $this->upload_dir ) ) {
+		// return $url;
+		// }
 		// get the optimized url.
 		$new_url = $this->get_imgcdn_url( $url );
 
