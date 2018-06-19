@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbit Fox Companion 2.4.7\n"
 "Report-Msgid-Bugs-To: https://github.com/Codeinwp/orbit-fox/issues\n"
-"POT-Creation-Date: 2018-06-07 12:43:15+00:00\n"
+"POT-Creation-Date: 2018-06-19 17:12:25+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -100,23 +100,23 @@ msgstr ""
 msgid "Module status changed!"
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:394
+#: core/app/class-orbit-fox-admin.php:395
 msgid "No modules found."
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:395
+#: core/app/class-orbit-fox-admin.php:396
 msgid "Please contact support for more help."
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:402
+#: core/app/class-orbit-fox-admin.php:403
 msgid "No active modules."
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:403
+#: core/app/class-orbit-fox-admin.php:404
 msgid "Activate a module using the toggles above."
 msgstr ""
 
-#: core/app/helpers/class-orbit-fox-render-helper.php:431
+#: core/app/helpers/class-orbit-fox-render-helper.php:123
 msgid "No option found for provided type"
 msgstr ""
 
@@ -1343,78 +1343,6 @@ msgstr ""
 msgid "Team"
 msgstr ""
 
-#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:157
-msgid "1-800-123-4567"
-msgstr ""
-
-#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:158
-msgid "tel:1-800-123-4567"
-msgstr ""
-
-#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:161
-msgid "friends@themeisle.com"
-msgstr ""
-
-#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:162
-msgid "mailto:friends@themeisle.com"
-msgstr ""
-
-#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:169
-msgid "Facebook"
-msgstr ""
-
-#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:170
-msgid "www.facebook.com"
-msgstr ""
-
-#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:173
-msgid "Twitter"
-msgstr ""
-
-#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:174
-msgid "www.twitter.com"
-msgstr ""
-
-#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:177
-msgid "Google"
-msgstr ""
-
-#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:178
-msgid "www.google.com"
-msgstr ""
-
-#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:181
-msgid "Linkedin"
-msgstr ""
-
-#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:182
-msgid "www.linkedin.com"
-msgstr ""
-
-#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:185
-msgid "Instagram"
-msgstr ""
-
-#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:186
-msgid "www.instagram.com"
-msgstr ""
-
-#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:189
-msgid "Pinterest"
-msgstr ""
-
-#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:190
-msgid "www.pinterest.com"
-msgstr ""
-
-#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:193
-msgid "Youtube"
-msgstr ""
-
-#: obfx_modules/companion-legacy/inc/hestia/common-functions.php:194
-msgid "www.youtube.com"
-msgstr ""
-
 #: obfx_modules/companion-legacy/inc/hestia/functions.php:66
 msgid "Front Page"
 msgstr ""
@@ -2147,6 +2075,80 @@ msgstr ""
 msgid "Unregister Site"
 msgstr ""
 
+#: obfx_modules/image-cdn/inc/class-orbit-fox-connector.php:190
+#: obfx_modules/image-cdn/inc/class-orbit-fox-connector.php:202
+#: obfx_modules/image-cdn/inc/class-orbit-fox-image-replacer.php:614
+#: obfx_modules/image-cdn/inc/class-orbit-fox-image-replacer.php:626
+#: vendor/codeinwp/elementor-extra-widgets/class-elementor-extra-widgets.php:251
+#: vendor/codeinwp/elementor-extra-widgets/class-elementor-extra-widgets.php:263
+#: vendor/codeinwp/full-width-page-templates/builders/class-elementor-full-width-templates.php:107
+#: vendor/codeinwp/full-width-page-templates/builders/class-elementor-full-width-templates.php:119
+#: vendor/codeinwp/full-width-page-templates/class-full-width-templates.php:188
+#: vendor/codeinwp/full-width-page-templates/class-full-width-templates.php:200
+#: vendor/codeinwp/templates-directory/class-page-templates-directory.php:560
+#: vendor/codeinwp/templates-directory/class-page-templates-directory.php:572
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:291
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:303
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-newsletter.php:256
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-newsletter.php:268
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-registration.php:220
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-registration.php:232
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-server.php:144
+#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-server.php:156
+msgid "Cheatin&#8217; huh?"
+msgstr ""
+
+#: obfx_modules/image-cdn/init.php:42
+msgid "Image Optimization &amp; CDN Module"
+msgstr ""
+
+#: obfx_modules/image-cdn/init.php:43
+msgid ""
+"Let us take care of you images sizes. With this feature we'll compress and "
+"resize every image on your website.<br/> <strong>* Requires account on "
+"orbitfox.com</strong>"
+msgstr ""
+
+#: obfx_modules/image-cdn/init.php:76
+msgid " Image Traffic"
+msgstr ""
+
+#: obfx_modules/image-cdn/init.php:107
+msgid "Logged in as"
+msgstr ""
+
+#: obfx_modules/image-cdn/init.php:108
+msgid "Your private CDN url"
+msgstr ""
+
+#: obfx_modules/image-cdn/init.php:109
+msgid "This month traffic usage"
+msgstr ""
+
+#: obfx_modules/image-cdn/init.php:110
+msgid "Your traffic quota"
+msgstr ""
+
+#: obfx_modules/image-cdn/init.php:111
+msgid "You can use our image service and CDN in the limit of "
+msgstr ""
+
+#: obfx_modules/image-cdn/init.php:168
+msgid "Your OrbitFox api key"
+msgstr ""
+
+#: obfx_modules/image-cdn/init.php:169
+msgid "Connect with Orbitfox"
+msgstr ""
+
+#: obfx_modules/image-cdn/init.php:181
+msgid "Connect to Orbitfox"
+msgstr ""
+
+#: obfx_modules/image-cdn/init.php:195
+msgid "Log-Out from Orbitfox"
+msgstr ""
+
 #: obfx_modules/menu-icons/init.php:33
 msgid "Menu Icons"
 msgstr ""
@@ -2221,6 +2223,52 @@ msgstr ""
 msgid "Import & insert image"
 msgstr ""
 
+#: obfx_modules/policy-notice/init.php:28
+msgid "Policy Notice"
+msgstr ""
+
+#: obfx_modules/policy-notice/init.php:29
+msgid ""
+"A simple notice bar which will help you inform users about your website "
+"policy."
+msgstr ""
+
+#: obfx_modules/policy-notice/init.php:94
+msgid ""
+"Allow OrbitFox to display a bottom bar with info about the website Private "
+"Policy."
+msgstr ""
+
+#: obfx_modules/policy-notice/init.php:101
+msgid "Policy description"
+msgstr ""
+
+#: obfx_modules/policy-notice/init.php:103
+msgid ""
+"This website uses cookies to improve your experience. We'll assume you "
+"accept this policy as long as you are using this website"
+msgstr ""
+
+#: obfx_modules/policy-notice/init.php:117
+msgid "Policy Page"
+msgstr ""
+
+#: obfx_modules/policy-notice/init.php:126
+msgid "Policy Button Label"
+msgstr ""
+
+#: obfx_modules/policy-notice/init.php:128
+msgid "View Policy"
+msgstr ""
+
+#: obfx_modules/policy-notice/init.php:190
+msgid "Agree"
+msgstr ""
+
+#: obfx_modules/policy-notice/init.php:330
+msgid "Default Core Policy"
+msgstr ""
+
 #: obfx_modules/safe-updates/init.php:33
 msgid "Safe Updates"
 msgstr ""
@@ -2232,7 +2280,7 @@ msgid ""
 "wordpress.org themes."
 msgstr ""
 
-#: obfx_modules/safe-updates/init.php:254
+#: obfx_modules/safe-updates/init.php:263
 msgid ""
 "According to OrbitFox<sup>&copy;</sup> there is a visual difference of "
 "%1$s%% between your current version and <b>v%2$s</b>. \n"
@@ -2293,25 +2341,6 @@ msgstr ""
 #: vendor/codeinwp/elementor-extra-widgets/class-elementor-extra-widgets.php:53
 #: vendor/codeinwp/themeisle-content-forms/class-content-form-base.php:170
 msgid "Orbit Fox Addons"
-msgstr ""
-
-#: vendor/codeinwp/elementor-extra-widgets/class-elementor-extra-widgets.php:251
-#: vendor/codeinwp/elementor-extra-widgets/class-elementor-extra-widgets.php:263
-#: vendor/codeinwp/full-width-page-templates/builders/class-elementor-full-width-templates.php:107
-#: vendor/codeinwp/full-width-page-templates/builders/class-elementor-full-width-templates.php:119
-#: vendor/codeinwp/full-width-page-templates/class-full-width-templates.php:188
-#: vendor/codeinwp/full-width-page-templates/class-full-width-templates.php:200
-#: vendor/codeinwp/templates-directory/class-page-templates-directory.php:560
-#: vendor/codeinwp/templates-directory/class-page-templates-directory.php:572
-#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:291
-#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-contact.php:303
-#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-newsletter.php:256
-#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-newsletter.php:268
-#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-registration.php:220
-#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-registration.php:232
-#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-server.php:144
-#: vendor/codeinwp/themeisle-content-forms/class-themeisle-content-forms-server.php:156
-msgid "Cheatin&#8217; huh?"
 msgstr ""
 
 #: vendor/codeinwp/elementor-extra-widgets/widgets/elementor/posts-grid.php:30

@@ -91,30 +91,30 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'name'    => 'enable_policy_notice',
 				'title'   => '',
 				'type'    => 'toggle',
-				'label'   => esc_html__( 'Allow OrbitFox to display a bottom bar with info about the website Private Policy.', 'textdomain' ),
+				'label'   => esc_html__( 'Allow OrbitFox to display a bottom bar with info about the website Private Policy.', 'themeisle-companion' ),
 				'default' => '0',
 			),
 
 			array(
 				'id'      => 'policy_notice_text',
 				'name'    => 'policy_notice_text',
-				'title'   => esc_html__( 'Policy description', 'textdomain' ),
+				'title'   => esc_html__( 'Policy description', 'themeisle-companion' ),
 				'type'    => 'text',
-				'default' => esc_html__( 'This website uses cookies to improve your experience. We\'ll assume you accept this policy as long as you are using this website', 'textdomain' ),
+				'default' => esc_html__( 'This website uses cookies to improve your experience. We\'ll assume you accept this policy as long as you are using this website', 'themeisle-companion' ),
 			),
 
 //			array(
 //				'id'      => 'notice_accept_label',
 //				'name'    => 'notice_accept_label',
-//				'title'   => esc_html__( 'Policy Link Label', 'textdomain' ),
+//				'title'   => esc_html__( 'Policy Link Label', 'themeisle-companion' ),
 //				'type'    => 'text',
-//				'default' => esc_html__( 'View Policy', 'textdomain' ),
+//				'default' => esc_html__( 'View Policy', 'themeisle-companion' ),
 //			),
 
 			array(
 				'id'      => 'policy_page',
 				'name'    => 'policy_page',
-				'title'   => esc_html__( 'Policy Page', 'textdomain' ),
+				'title'   => esc_html__( 'Policy Page', 'themeisle-companion' ),
 				'type'    => 'select',
 				'default' => 0,
 				'options' =>  $this->get_policy_pages_array()
@@ -123,9 +123,9 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			array(
 				'id'      => 'notice_link_label',
 				'name'    => 'notice_link_label',
-				'title'   => esc_html__( 'Policy Button Label', 'textdomain' ),
+				'title'   => esc_html__( 'Policy Button Label', 'themeisle-companion' ),
 				'type'    => 'text',
-				'default' => esc_html__( 'View Policy', 'textdomain' ),
+				'default' => esc_html__( 'View Policy', 'themeisle-companion' ),
 			),
 		);
 	}
@@ -187,7 +187,7 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		// we'll add the buttons as a separate var and we'll start with the close button
 		$buttons = '<label for="obfx-checkbox-cb" class="obfx-close-cb">X</label>';
 		// the "Acceptance" button
-		$buttons .= '<a href="#" id="obfx-accept-cookie-policy" >' . esc_html__( 'Agree', 'textdomain' ) . '</a>';
+		$buttons .= '<a href="#" id="obfx-accept-cookie-policy" >' . esc_html__( 'Agree', 'themeisle-companion' ) . '</a>';
 		// the "View Policy button"
 		$buttons .= '<a href="' . $policy_link . '" >' . $policy_button . '</a>';
 
@@ -327,7 +327,7 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	private function get_policy_pages_array(){
 		$options = array(
-			'0' => esc_html__( 'Default Core Policy', 'textdomain' )
+			'0' => esc_html__( 'Default Core Policy', 'themeisle-companion' )
 		);
 
 		$pages = get_pages( array(

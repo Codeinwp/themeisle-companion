@@ -59,25 +59,8 @@ class Connector {
 		$this->connect_url = apply_filters( 'obfx_dashboard_url', $this->connect_url );
 
 		add_action( 'admin_footer', array( $this, 'admin_inline_js' ) );
-		add_action( 'rest_api_init', array( $this, 'register_url_endpoints' ) );
 	}
 
-	/**
-	 * Register REST endpoints.
-	 */
-	public function register_url_endpoints() {
-		register_rest_route(
-			'obfx-connector', '/connector-url', array(
-				array(
-					'methods'             => \WP_REST_Server::CREATABLE,
-					'permission_callback' => function ( \WP_REST_Request $request ) {
-						return current_user_can( 'manage_options' );
-					},
-					'callback'            => array( $this, 'rest_handle_connector_url' ),
-				),
-			)
-		);
-	}
 
 	/**
 	 * Sync quota data.
@@ -108,7 +91,7 @@ class Connector {
 	public function rest_handle_connector_url( \WP_REST_Request $request ) {
 		$disconnect_flag = $request->get_param( 'disconnect' );
 		if ( ! empty( $disconnect_flag ) ) {
-			delete_option( 'obfx_connect_data' );
+			delete_option( self::API_DATA_KEY );
 
 			return new \WP_REST_Response( array( 'code' => 200, 'data' => 'Disconnected' ), 200 );
 		}
@@ -133,7 +116,8 @@ class Connector {
 	 * Print the inline script which get's the url for the Connector button.
 	 */
 	function admin_inline_js() {
-		$connect_endpoint = get_rest_url( null, 'obfx-connector/connector-url' );
+		$connect_endpoint = get_rest_url( null, 'obfx/connector-url' );
+		$update_replacer  = get_rest_url( null, 'obfx/update_replacer' );
 		$confirm_connect  = add_query_arg( array( 'loggedin' => 'true' ), admin_url( 'admin.php?page=obfx_companion' ) );
 
 		wp_enqueue_script( 'wp-api' ); ?>
@@ -160,6 +144,16 @@ class Connector {
 					});
 				});
 
+				$("input[name='enable_cdn_replacer'").on('change', function (event) {
+					event.preventDefault();
+					var flag_replacer = $(this).is(":checked");
+					wp.apiRequest({
+						url: "<?php echo $update_replacer; ?>",
+						type: 'POST',
+						data: {update_replacer: flag_replacer ? 'yes' : 'no'},
+						dataType: 'json'
+					});
+				});
 				$('#obfx_disconnect').on('click', function (event) {
 					event.preventDefault();
 					$('#obfx_connect').parent().addClass('loading');
@@ -174,6 +168,7 @@ class Connector {
 						$('#obfx_disconnect').parent().removeClass('loading');
 					});
 				});
+
 			})(jQuery)
 		</script>
 		<?php
@@ -192,7 +187,7 @@ class Connector {
 	 */
 	public function __clone() {
 		// Cloning instances of the class is forbidden.
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'textdomain' ), '1.0.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'themeisle-companion' ), '1.0.0' );
 	}
 
 	/**
@@ -204,6 +199,6 @@ class Connector {
 	 */
 	public function __wakeup() {
 		// Unserializing instances of the class is forbidden.
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'textdomain' ), '1.0.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'themeisle-companion' ), '1.0.0' );
 	}
 }

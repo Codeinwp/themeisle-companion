@@ -935,10 +935,6 @@ html {
 	color: #acb3c2;
 }
 
-.obfx-wrapper .form-input::-moz-placeholder {
-	color: #acb3c2;
-}
-
 .obfx-wrapper .form-input:-ms-input-placeholder {
 	color: #acb3c2;
 }
@@ -3646,18 +3642,22 @@ html {
 }
 
 .obfx-wrapper .panel.options .obfx-module-form.active {
-    display: block;
+	display: block;
 }
+
 .obfx-wrapper .panel.options .obfx-module-form {
-    display: none;
+	display: none;
 }
+
 .obfx-wrapper .panel.options.active {
-    max-height:1000px;
+	max-height: 1000px;
 }
+
 .obfx-wrapper .panel.options {
-    overflow:hidden;
-    transition:max-height 0.3s ease-out;
-    max-height:90px;
+	overflow: hidden;
+	max-height: 90px;
+	-webkit-transition: max-height 0.3s ease-out;
+	transition: max-height 0.3s ease-out;
 }
 
 /** TEMPORARY FIX FOR SOCIAL SHARING STYLE **/
@@ -3725,7 +3725,8 @@ html {
 	line-height: 1.8rem;
 	text-align: center;
 }
-.obfx-img-logout{
-    position: relative;
-    top:-15px;
+
+.obfx-img-logout {
+	position: relative;
+	top: -15px;
 }
