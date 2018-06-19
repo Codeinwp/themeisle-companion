@@ -297,7 +297,9 @@ abstract class Orbit_Fox_Module_Abstract {
 		if ( $this->auto == true ) {
 			return true;
 		}
-
+		if ( ! isset( $this->model ) ) {
+			return false;
+		}
 		return $this->model->get_is_module_active( $this->slug, $this->active_default );
 	}
 
