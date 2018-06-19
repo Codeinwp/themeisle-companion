@@ -1,17 +1,17 @@
 <?php
 /**
- * A module to check changes before theme updates.
+ * A module to display a notification bar which will inform users about the website Private Policy.
  *
  * @link       https://themeisle.com
  * @since      1.0.0
  *
- * @package    Theme_Update_Check_OBFX_Module
+ * @package    Policy_Notice_OBFX_Module
  */
 
 /**
  * The class defines a new module to be used by Orbit Fox plugin.
  *
- * @package    Theme_Update_Check_OBFX_Module
+ * @package    Policy_Notice_OBFX_Module
  * @author     Themeisle <friends@themeisle.com>
  */
 class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
@@ -97,7 +97,7 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 					admin_url( 'privacy.php' ),
 					esc_html__( 'here', 'textdomain' )
 				),
-				'default' => '1',
+				'default' => '0',
 			),
 
 			array(
