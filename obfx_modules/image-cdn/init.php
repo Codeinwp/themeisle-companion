@@ -39,7 +39,7 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			$this->show = true;
 		}
 		$this->beta        = true;
-		$this->no_save        = true;
+		$this->no_save     = true;
 		$this->name        = __( 'Image Optimization &amp; CDN Module', 'themeisle-companion' );
 		$this->description = __( 'Let us take care of you images sizes. With this feature we\'ll compress and resize every image on your website.<br/> <strong>* Requires account on orbitfox.com</strong>', 'themeisle-companion' );
 	}
@@ -107,7 +107,7 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		}
 
 		$html = '<h5>' . __( 'Logged in as', 'themeisle-companion' ) . ' : <b>' . $obfx_user_data['display_name'] . '</b></h5>';
-		$html .= '<p>' . __( 'Your private CDN url', 'themeisle-companion' ) . ' : <code>' . sprintf( '%s.i.orbitfox.com', $this->get_cdn_url() ) . '</code></p> ';
+		$html .= '<p>' . __( 'Your private CDN url', 'themeisle-companion' ) . ' : <code>' . $this->get_cdn_url() . '</code></p> ';
 		$html .= '<p>' . __( 'This month traffic usage', 'themeisle-companion' ) . ' : <code>' . number_format( floatval( ( $obfx_user_data['image_cdn']['usage'] / 1000 ) ), 3 ) . ' GB</code>';
 		$html .= ' ' . __( 'Your traffic quota', 'themeisle-companion' ) . ' : <code>' . number_format( floatval( ( $obfx_user_data['image_cdn']['quota'] / 1000 ) ), 3 ) . ' GB / month</code></p>';
 		$html .= '<p><i>' . __( 'You can use our image service and CDN in the limit of ', 'themeisle-companion' ) . number_format( floatval( ( $obfx_user_data['image_cdn']['quota'] / 1000 ) ), 0 ) . 'GB per month.  </i></p>';
