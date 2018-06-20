@@ -124,7 +124,7 @@ class Image_CDN_Replacer {
 
 		$this->cdn_url = sprintf(
 			'https://%s.%s/%s',
-			$this->connect_data['image_cdn']['key'],
+			strtolower( $this->connect_data['image_cdn']['key'] ),
 			'i.orbitfox.com',
 			'i' // api root; almost like /wp-json/
 		);

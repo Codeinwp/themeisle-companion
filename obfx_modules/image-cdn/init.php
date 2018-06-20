@@ -90,6 +90,7 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		if ( ! $this->get_is_active() ) {
 			return '';
 		}
+
 		return class_exists( '\OrbitFox\Connector' ) ? get_option( \OrbitFox\Connector::API_DATA_KEY, '' ) : '';
 	}
 
@@ -105,12 +106,30 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		}
 
 		$html = '<h5>' . __( 'Logged in as', 'themeisle-companion' ) . ' : <b>' . $obfx_user_data['display_name'] . '</b></h5>';
-		$html .= '<p>' . __( 'Your private CDN url', 'themeisle-companion' ) . ' : <code>' . sprintf( '%s.i.orbitfox.com', $obfx_user_data['image_cdn']['key'] ) . '</code></p> ';
+		$html .= '<p>' . __( 'Your private CDN url', 'themeisle-companion' ) . ' : <code>' . sprintf( '%s.i.orbitfox.com', $this->get_cdn_url() ) . '</code></p> ';
 		$html .= '<p>' . __( 'This month traffic usage', 'themeisle-companion' ) . ' : <code>' . number_format( floatval( ( $obfx_user_data['image_cdn']['usage'] / 1000 ) ), 3 ) . ' GB</code>';
 		$html .= ' ' . __( 'Your traffic quota', 'themeisle-companion' ) . ' : <code>' . number_format( floatval( ( $obfx_user_data['image_cdn']['quota'] / 1000 ) ), 3 ) . ' GB / month</code></p>';
-		$html .= '<p><i>' . __( 'You can use our image service and CDN in the limit of ', 'themeisle-companion') . number_format( floatval( ( $obfx_user_data['image_cdn']['quota'] / 1000 ) ), 0 ) . 'GB per month.  </i></p>';
+		$html .= '<p><i>' . __( 'You can use our image service and CDN in the limit of ', 'themeisle-companion' ) . number_format( floatval( ( $obfx_user_data['image_cdn']['quota'] / 1000 ) ), 0 ) . 'GB per month.  </i></p>';
 
 		return $html;
+	}
+
+	/**
+	 * Get CDN private url.
+	 *
+	 * @return string Get CDN private url.
+	 */
+	private function get_cdn_url() {
+		$obfx_user_data = $this->get_api_data();
+		if ( empty( $obfx_user_data ) ) {
+			return '';
+		}
+		if ( ! isset( $obfx_user_data['image_cdn']['key'] ) ) {
+			return '';
+		}
+
+		return sprintf( '%s.i.orbitfox.com', strtolower( $obfx_user_data['image_cdn']['key'] ) );
+
 	}
 
 	/**
@@ -234,6 +253,7 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		if ( ! is_admin() && $this->is_replacer_enabled() && $this->is_connected() ) {
 			require_once __DIR__ . '/inc/class-orbit-fox-image-replacer.php';
 			\OrbitFox\Image_CDN_Replacer::instance();
+			$this->loader->add_filter( 'wp_resource_hints', $this, 'add_dns_prefetch', 10, 2 );
 
 		}
 		/**
@@ -276,6 +296,27 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		return ! empty( $obfx_user_data );
 
+	}
+
+	/**
+	 * Adds cdn url for prefetch.
+	 *
+	 * @param array  $hints Hints array.
+	 * @param string $relation_type Type of relation.
+	 *
+	 * @return array Altered hints array.
+	 */
+	public function add_dns_prefetch( $hints, $relation_type ) {
+		if ( 'dns-prefetch' !== $relation_type ) {
+			return $hints;
+		}
+		$cdn_url = $this->get_cdn_url();
+		if ( empty( $cdn_url ) ) {
+			return $hints;
+		}
+		$hints[] = sprintf( '//%s', $cdn_url );
+
+		return $hints;
 	}
 
 	/**
