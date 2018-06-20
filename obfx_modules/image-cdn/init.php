@@ -70,7 +70,9 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @param WP_Admin_Bar $wp_admin_bar Admin bar resource.
 	 */
 	public function add_traffic_node( $wp_admin_bar ) {
-
+		if ( ! is_user_logged_in() ) {
+			return;
+		}
 		$obfx_user_data = $this->get_api_data();
 		$args           = array(
 			'id'    => 'obfx_img_quota',
