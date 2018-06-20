@@ -30,6 +30,7 @@ class Safe_Updates_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function __construct() {
 		parent::__construct();
 		$this->beta        = true;
+		$this->no_save     = true;
 		$this->name        = __( 'Safe Updates', 'themeisle-companion' );
 		$this->description = __( 'OrbitFox will give you visual feedback on how your current theme updates will affect your site. For the moment this is available only for wordpress.org themes.', 'themeisle-companion' );
 	}
@@ -258,14 +259,20 @@ class Safe_Updates_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return string Message string.
 	 */
 	public function get_message_notice( $args ) {
-		return sprintf(
-
-			__( 'According to OrbitFox<sup>&copy;</sup> there is a visual difference of %1$s%% between your current version and <b>v%2$s</b>. 
-									 <a href="%3$s" target="_blank">View report</a>.', 'themeisle-companion' ),
+		$diff    = floatval( $args['global_diff'] );
+		$message = sprintf(
+			__( 'According to OrbitFox<sup>&copy;</sup> there is a visual difference of %1$s%% between your current version and <b>v%2$s</b>. ', 'themeisle-companion' ),
 			$args['global_diff'],
-			$args['new_version'],
-			$args['gallery_url']
+			$args['new_version']
 		);
+		if ( $diff > 0.1 ) {
+			$message .= '<a href="%3$s" target="_blank">View report</a>';
+		} else {
+			$message .= __( 'Is very likely that the update is safe.', 'themeisle-companion' );
+		}
+
+		return $message;
+
 	}
 
 	/**
@@ -276,6 +283,9 @@ class Safe_Updates_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return array
 	 */
 	public function options() {
+
+		add_filter( 'obfx_custom_control_auto_update_toggle', array( $this, 'render_custom_control' ) );
+
 		return array(
 			array(
 				'name'    => 'checks',
@@ -283,14 +293,72 @@ class Safe_Updates_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'default' => array(),
 			),
 			array(
-				'id'      => 'auto_update_checks',
+				'id'      => 'auto_update_toggle',
 				'title'   => '',
-				'name'    => 'auto_update_checks',
-				'type'    => 'toggle',
+				'name'    => 'auto_update_toggle',
+				'type'    => 'custom',
 				'label'   => 'Allow OrbitFox to get your current theme slug and run a visual comparison report between your current and next version.',
 				'default' => '0',
 			),
 		);
+	}
+
+	/**
+	 * Render custom control outpu.
+	 *
+	 * @return string Custom control output.
+	 */
+	public function render_custom_control() {
+
+		if ( ! $this->is_wp_available() ) {
+			add_action( 'shutdown', function () {
+				$this->set_status( 'active', false );
+			} );
+			return __( 'Unfortunately, our service is available only if your are using an wordpress.org theme. We are still working to extend this feature to custom and premium themes soon. ', 'themeisle-companion' );
+		}
+
+
+		$output = '<p>' . __( 'OrbitFox will need your current theme slug in order to run a visual comparison report between your current and
+            next version. We will need your consent in order to do this. <br/>Read <a href="">more</a> about this process ', 'themeisle-companion' ) . '</p><a  id="obfx-safe-updates-allow" class="btn btn-success" href="#"><span class="dashicons dashicons-yes"></span>   <span>' . __( 'Allow', 'themeisle-companion' ) . '</span></a>';
+
+		return $output;
+	}
+
+	/**
+	 * Check if theme is available on wp.org.
+	 *
+	 * @return bool Check result.
+	 */
+	private function is_wp_available() {
+
+		$slug      = $this->get_active_theme_dir();
+		$cache_key = $slug . '_wporg_check';
+		$cache     = get_transient( $cache_key );
+		if ( $cache !== false ) {
+			return $cache === 'yes';
+		}
+		$response = wp_remote_get( 'http://api.wordpress.org/themes/info/1.1/?action=theme_information&request[slug]=' . $slug );
+		if ( is_wp_error( $response ) ) {
+			set_transient( $cache_key, 'no', HOUR_IN_SECONDS );
+
+			return false;
+		}
+		$body = wp_remote_retrieve_body( $response );
+		if ( empty( $body ) ) {
+			set_transient( $cache_key, 'no', HOUR_IN_SECONDS );
+
+			return false;
+		}
+		$body = json_decode( $body, true );
+		if ( ! is_array( $body ) ) {
+			set_transient( $cache_key, 'no', HOUR_IN_SECONDS );
+
+			return false;
+		}
+
+		set_transient( $cache_key, 'yes', HOUR_IN_SECONDS );
+
+		return true;
 	}
 
 	/**

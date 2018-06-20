@@ -114,9 +114,18 @@ abstract class Orbit_Fox_Module_Abstract {
 	 *
 	 * @since   1.0.0
 	 * @access  protected
-	 * @var     string $beta Is module in beta.
+	 * @var     boolean $beta Is module in beta.
 	 */
 	public $beta;
+
+	/**
+	 * Module needs save buttons.
+	 *
+	 * @since   1.0.0
+	 * @access  protected
+	 * @var     boolean $no_save Should we show the save buttons.
+	 */
+	public $no_save = false;
 
 	/**
 	 * Stores the localized arrays for both public and admin JS files that need to be loaded.
@@ -288,7 +297,9 @@ abstract class Orbit_Fox_Module_Abstract {
 		if ( $this->auto == true ) {
 			return true;
 		}
-
+		if ( ! isset( $this->model ) ) {
+			return false;
+		}
 		return $this->model->get_is_module_active( $this->slug, $this->active_default );
 	}
 
@@ -306,6 +317,9 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @return mixed
 	 */
 	final public function set_option( $key, $value ) {
+		if ( ! isset( $this->model ) ) {
+			return false;
+		}
 		return $this->model->set_module_option( $this->slug, $key, $value );
 	}
 
@@ -398,7 +412,7 @@ abstract class Orbit_Fox_Module_Abstract {
 		$db_option       = $this->model->get_module_option( $this->slug, $key );
 		$value           = $db_option;
 		if ( $db_option === false ) {
-			$value = $default_options[ $key ];
+			$value = isset( $default_options[ $key ] ) ? $default_options[ $key ] : '';
 		}
 
 		return $value;

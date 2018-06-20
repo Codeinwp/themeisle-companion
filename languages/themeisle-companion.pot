@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbit Fox Companion 2.4.7\n"
 "Report-Msgid-Bugs-To: https://github.com/Codeinwp/orbit-fox/issues\n"
-"POT-Creation-Date: 2018-06-19 17:12:25+00:00\n"
+"POT-Creation-Date: 2018-06-19 17:54:18+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -100,19 +100,19 @@ msgstr ""
 msgid "Module status changed!"
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:395
+#: core/app/class-orbit-fox-admin.php:396
 msgid "No modules found."
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:396
+#: core/app/class-orbit-fox-admin.php:397
 msgid "Please contact support for more help."
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:403
+#: core/app/class-orbit-fox-admin.php:404
 msgid "No active modules."
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:404
+#: core/app/class-orbit-fox-admin.php:405
 msgid "Activate a module using the toggles above."
 msgstr ""
 
@@ -2098,54 +2098,54 @@ msgstr ""
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 
-#: obfx_modules/image-cdn/init.php:42
+#: obfx_modules/image-cdn/init.php:43
 msgid "Image Optimization &amp; CDN Module"
 msgstr ""
 
-#: obfx_modules/image-cdn/init.php:43
+#: obfx_modules/image-cdn/init.php:44
 msgid ""
 "Let us take care of you images sizes. With this feature we'll compress and "
 "resize every image on your website.<br/> <strong>* Requires account on "
 "orbitfox.com</strong>"
 msgstr ""
 
-#: obfx_modules/image-cdn/init.php:76
+#: obfx_modules/image-cdn/init.php:77
 msgid " Image Traffic"
 msgstr ""
 
-#: obfx_modules/image-cdn/init.php:107
+#: obfx_modules/image-cdn/init.php:108
 msgid "Logged in as"
 msgstr ""
 
-#: obfx_modules/image-cdn/init.php:108
+#: obfx_modules/image-cdn/init.php:109
 msgid "Your private CDN url"
 msgstr ""
 
-#: obfx_modules/image-cdn/init.php:109
+#: obfx_modules/image-cdn/init.php:110
 msgid "This month traffic usage"
 msgstr ""
 
-#: obfx_modules/image-cdn/init.php:110
+#: obfx_modules/image-cdn/init.php:111
 msgid "Your traffic quota"
 msgstr ""
 
-#: obfx_modules/image-cdn/init.php:111
+#: obfx_modules/image-cdn/init.php:112
 msgid "You can use our image service and CDN in the limit of "
 msgstr ""
 
-#: obfx_modules/image-cdn/init.php:168
+#: obfx_modules/image-cdn/init.php:169
 msgid "Your OrbitFox api key"
 msgstr ""
 
-#: obfx_modules/image-cdn/init.php:169
+#: obfx_modules/image-cdn/init.php:170
 msgid "Connect with Orbitfox"
 msgstr ""
 
-#: obfx_modules/image-cdn/init.php:181
+#: obfx_modules/image-cdn/init.php:182
 msgid "Connect to Orbitfox"
 msgstr ""
 
-#: obfx_modules/image-cdn/init.php:195
+#: obfx_modules/image-cdn/init.php:196
 msgid "Log-Out from Orbitfox"
 msgstr ""
 
@@ -2269,22 +2269,44 @@ msgstr ""
 msgid "Default Core Policy"
 msgstr ""
 
-#: obfx_modules/safe-updates/init.php:33
+#: obfx_modules/safe-updates/init.php:34
 msgid "Safe Updates"
 msgstr ""
 
-#: obfx_modules/safe-updates/init.php:34
+#: obfx_modules/safe-updates/init.php:35
 msgid ""
 "OrbitFox will give you visual feedback on how your current theme updates "
 "will affect your site. For the moment this is available only for "
 "wordpress.org themes."
 msgstr ""
 
-#: obfx_modules/safe-updates/init.php:263
+#: obfx_modules/safe-updates/init.php:264
 msgid ""
 "According to OrbitFox<sup>&copy;</sup> there is a visual difference of "
-"%1$s%% between your current version and <b>v%2$s</b>. \n"
-"\t\t\t\t\t\t\t\t\t <a href=\"%3$s\" target=\"_blank\">View report</a>."
+"%1$s%% between your current version and <b>v%2$s</b>. "
+msgstr ""
+
+#: obfx_modules/safe-updates/init.php:271
+msgid "Is very likely that the update is safe."
+msgstr ""
+
+#: obfx_modules/safe-updates/init.php:317
+msgid ""
+"Unfortunately, our service is available only if your are using an "
+"wordpress.org theme. We are still working to extend this feature to custom "
+"and premium themes soon. "
+msgstr ""
+
+#: obfx_modules/safe-updates/init.php:321
+msgid ""
+"OrbitFox will need your current theme slug in order to run a visual "
+"comparison report between your current and\n"
+"            next version. We will need your consent in order to do this. "
+"<br/>Read <a href=\"\">more</a> about this process "
+msgstr ""
+
+#: obfx_modules/safe-updates/init.php:322
+msgid "Allow"
 msgstr ""
 
 #: obfx_modules/social-sharing/init.php:30

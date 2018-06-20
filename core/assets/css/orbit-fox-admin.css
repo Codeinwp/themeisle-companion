@@ -939,6 +939,10 @@ html {
 	color: #acb3c2;
 }
 
+.obfx-wrapper .form-input::-moz-placeholder {
+	color: #acb3c2;
+}
+
 .obfx-wrapper .form-input::placeholder {
 	color: #acb3c2;
 }

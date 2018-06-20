@@ -65,10 +65,12 @@ $styles = sprintf( 'style="%s"', implode( ':', $styles ) );
 				<?php echo $options_fields; ?>
 				<div class="divider"></div>
 			</div>
+			<?php if ( isset( $no_save ) && $no_save === false ) : ?>
 			<div class="panel-footer text-right">
 				<button class="btn obfx-mod-btn-cancel" disabled>Cancel</button>
 				<button type="submit" class="btn btn-primary obfx-mod-btn-save" disabled>Save</button>
 			</div>
+			<?php endif; ?>
 		</fieldset>
 	</form>
 </div>
