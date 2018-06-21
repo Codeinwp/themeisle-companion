@@ -279,7 +279,7 @@ class Safe_Updates_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		if ( $diff > 0.1 ) {
 			$message .= sprintf( '<a href="%1$s" target="_blank">', add_query_arg( array( 'from_orbitfox' => 'yes' ), $args['gallery_url'] ) ) . __( 'View report', 'themeisle-companion' ) . '</a> ';
 		} else {
-			$message .= __( 'Is very likely that the update is safe. ', 'themeisle - companion' );
+			$message .= __( 'Is very likely that the update is safe. ', 'themeisle-companion' );
 		}
 
 		return $message;
