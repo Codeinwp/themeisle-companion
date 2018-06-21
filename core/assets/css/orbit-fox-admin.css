@@ -3751,3 +3751,9 @@ html {
 .obfx-img-cdn-replacer-switch {
 	width: 70%;
 }
+
+.obfx-sf-feedback-notice {
+	width: 100%;
+	margin-bottom: 10px;
+	text-align: center;
+}

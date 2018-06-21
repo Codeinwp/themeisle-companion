@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbit Fox Companion 2.4.7\n"
 "Report-Msgid-Bugs-To: https://github.com/Codeinwp/orbit-fox/issues\n"
-"POT-Creation-Date: 2018-06-21 10:16:22+00:00\n"
+"POT-Creation-Date: 2018-06-21 17:36:15+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2135,19 +2135,19 @@ msgid ""
 "class=\"obfx-img-traffic-quota\">"
 msgstr ""
 
-#: obfx_modules/image-cdn/init.php:208
+#: obfx_modules/image-cdn/init.php:209
 msgid "Your OrbitFox api key"
 msgstr ""
 
-#: obfx_modules/image-cdn/init.php:209
+#: obfx_modules/image-cdn/init.php:210
 msgid "Connect with Orbitfox"
 msgstr ""
 
-#: obfx_modules/image-cdn/init.php:228
+#: obfx_modules/image-cdn/init.php:230
 msgid "Connect to OrbitFox service"
 msgstr ""
 
-#: obfx_modules/image-cdn/init.php:242
+#: obfx_modules/image-cdn/init.php:244
 msgid "Clear OrbitFox API key"
 msgstr ""
 
@@ -2282,33 +2282,47 @@ msgid ""
 "wordpress.org themes."
 msgstr ""
 
-#: obfx_modules/safe-updates/init.php:264
+#: obfx_modules/safe-updates/init.php:275
 msgid ""
-"According to OrbitFox<sup>&copy;</sup> there is a visual difference of "
-"%1$s%% between your current version and <b>v%2$s</b>. "
+"According to OrbitFox<sup>&copy;</sup> there is a visual difference of %1$s "
+"&#37; between your current version and the latest one. "
 msgstr ""
 
-#: obfx_modules/safe-updates/init.php:271
-msgid "Is very likely that the update is safe."
+#: obfx_modules/safe-updates/init.php:280
+msgid "View report"
 msgstr ""
 
-#: obfx_modules/safe-updates/init.php:317
+#: obfx_modules/safe-updates/init.php:282
+msgid "Is very likely that the update is safe. "
+msgstr ""
+
+#: obfx_modules/safe-updates/init.php:332
 msgid ""
 "Unfortunately, our service is available only if your are using an "
 "wordpress.org theme. We are still working to extend this feature to custom "
 "and premium themes soon. "
 msgstr ""
 
-#: obfx_modules/safe-updates/init.php:321
+#: obfx_modules/safe-updates/init.php:335
 msgid ""
-"OrbitFox will need your current theme slug in order to run a visual "
-"comparison report between your current and\n"
-"            next version. We will need your consent in order to do this. "
-"<br/>Read <a href=\"\">more</a> about this process "
+"OrbitFox<sup>&copy;</sup> will need your current theme slug in order to run "
+"a visual comparison report between your current and latest version. We will "
+"need your consent in order to do this. <br/>Read <a href=\"\">more</a> "
+"about this process."
 msgstr ""
 
-#: obfx_modules/safe-updates/init.php:322
+#: obfx_modules/safe-updates/init.php:337
 msgid "Allow"
+msgstr ""
+
+#: obfx_modules/safe-updates/init.php:392
+msgid ""
+"For the moment there is no update for your current theme. We will display a "
+"notice on the themes page as soon as there is one."
+msgstr ""
+
+#: obfx_modules/safe-updates/init.php:460
+msgid "Safe updates disabled"
 msgstr ""
 
 #: obfx_modules/social-sharing/init.php:30

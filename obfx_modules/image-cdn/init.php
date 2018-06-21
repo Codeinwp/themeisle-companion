@@ -216,6 +216,7 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'class'  => 'obfx-loggedin-hide ' . $class,
 				'url'    => 'https://dashboard.orbitfox.com/register',
 				'text'   => ' Sign-Up for your API key',
+				'name'   => 'obfx-register-service',
 			),
 
 		);
