@@ -191,6 +191,7 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			$this->set_option( 'enable_cdn_replacer', '0' );
 
 		}
+		$class = '';
 		if ( ! empty( $obfx_user_data ) ) {
 			$class = 'obfx-img-logged-in';
 		}
