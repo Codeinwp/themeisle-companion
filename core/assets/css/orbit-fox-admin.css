@@ -714,7 +714,7 @@ html {
 }
 
 .obfx-wrapper .btn.btn-success:focus {
-	box-shadow: 0 0 0 0.1rem rgba(50,182,67,0.2);
+	box-shadow: 0 0 0 0.1rem rgba(50, 182, 67, 0.2);
 }
 
 .obfx-wrapper .btn.btn-success:focus,
@@ -743,7 +743,7 @@ html {
 }
 
 .obfx-wrapper .btn.btn-error:focus {
-	box-shadow: 0 0 0 0.1rem rgba(232,86,0,0.2);
+	box-shadow: 0 0 0 0.1rem rgba(232, 86, 0, 0.2);
 }
 
 .obfx-wrapper .btn.btn-error:focus,
@@ -936,10 +936,6 @@ html {
 }
 
 .obfx-wrapper .form-input:-ms-input-placeholder {
-	color: #acb3c2;
-}
-
-.obfx-wrapper .form-input::-moz-placeholder {
 	color: #acb3c2;
 }
 
@@ -3640,9 +3636,9 @@ html {
 	transition: -webkit-transform 0.5s ease;
 	transition: transform 0.5s ease;
 	transition: transform 0.5s ease, -webkit-transform 0.5s ease;
-	-webkit-transform: rotate( 180deg );
-	-ms-transform: rotate( 180deg );
-	transform: rotate( 180deg );
+	-webkit-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	transform: rotate(180deg);
 }
 
 .obfx-wrapper .panel.options .obfx-module-form.active {
@@ -3733,4 +3729,25 @@ html {
 .obfx-img-logout {
 	position: relative;
 	top: -15px;
+}
+
+#obfx-register-service {
+	position: absolute;
+	left: 270px;
+}
+
+.obfx-loggedin-show {
+	display: none;
+}
+
+.obfx-img-logged-in.obfx-loggedin-hide {
+	display: none;
+}
+
+.obfx-img-logged-in.obfx-loggedin-show {
+	display: block;
+}
+
+.obfx-img-cdn-replacer-switch {
+	width: 70%;
 }

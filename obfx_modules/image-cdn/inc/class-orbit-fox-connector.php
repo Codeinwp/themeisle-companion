@@ -93,23 +93,28 @@ class Connector {
 		if ( ! empty( $disconnect_flag ) ) {
 			delete_option( self::API_DATA_KEY );
 
-			return new \WP_REST_Response( array( 'code' => 200, 'data' => 'Disconnected' ), 200 );
+			return new \WP_REST_Response( array( 'code' => 200, 'message' => 'Disconnected' ), 200 );
 		}
 		$api_key = $request->get_param( 'api_key' );
 		if ( empty( $api_key ) ) {
-			return new \WP_Error( '404', 'Invalid api key' );
+			return new \WP_REST_Response( array( 'code' => 'error', 'data' => 'Empty api key provided' ) );
 		}
 		$request = new \OrbitFox\Request( $this->connect_url . $this->cdn_path, 'POST', $api_key );
 
 		$response = $request->get_response();
 
 		if ( $response === false ) {
-			return new \WP_Error( '500', 'Error connecting to the OrbitFox api' );
+			return new \WP_REST_Response(
+				array(
+					'code'    => 'error',
+					'message' => 'Error connecting to the OrbitFox api. Invalid API key.',
+				)
+			);
 		}
 		$response['api_key'] = $api_key;
 		update_option( self::API_DATA_KEY, $response );
 
-		return new \WP_REST_Response( $response, 200 );
+		return new \WP_REST_Response( array( 'code' => 'success', 'data' => $response ), 200 );
 	}
 
 	/**
@@ -118,8 +123,6 @@ class Connector {
 	function admin_inline_js() {
 		$connect_endpoint = get_rest_url( null, 'obfx/connector-url' );
 		$update_replacer  = get_rest_url( null, 'obfx/update_replacer' );
-		$confirm_connect  = add_query_arg( array( 'loggedin' => 'true' ), admin_url( 'admin.php?page=obfx_companion' ) );
-
 		wp_enqueue_script( 'wp-api' ); ?>
 		<script type='text/javascript'>
 			(function ($) {
@@ -135,8 +138,24 @@ class Connector {
 						data: {api_key: api_key},
 						dataType: 'json'
 					}).done(function (response) {
-						if (response.id) {
-							location.href = '<?php echo esc_url_raw( $confirm_connect ); ?>';
+						$("#obfx-error-api").remove();
+						$('#obfx_connect').parent().removeClass('loading');
+						var elements = $("#obfx-module-form-image-cdn .obfx-loggedin-show, #obfx-module-form-image-cdn .obfx-loggedin-hide");
+						switch (response.code) {
+
+							case 'error':
+								$("#obfx-module-form-image-cdn").append('<p class="label label-error" id="obfx-error-api">' + response.message + '</p>');
+								elements.removeClass('obfx-img-logged-in');
+								break;
+							case 'success':
+
+								$("#obfx_connect_api_key").val(response.data.api_key);
+								$("#obfx-img-display-name").text(response.data.display_name);
+								$("#obfx-img-cdn-url").text(response.data.image_cdn.key + '.i.orbitfox.com');
+								$("#obfx-img-traffic-usage").text((parseInt(response.data.image_cdn.usage) / 1000).toFixed(3) + 'GB');
+								$(".obfx-img-traffic-quota").text((parseInt(response.data.image_cdn.quota) / 1000).toFixed(0) + 'GB');
+								elements.addClass('obfx-img-logged-in');
+								break;
 						}
 
 					}).fail(function (e) {
@@ -152,6 +171,11 @@ class Connector {
 						type: 'POST',
 						data: {update_replacer: flag_replacer ? 'yes' : 'no'},
 						dataType: 'json'
+					}).done(function(){
+						$("#obfx-module-form-image-cdn").append('<p class="label label-success" id="obfx-feedback-api">Image replacer option saved.</p>');
+						setTimeout(function(){
+							$("#obfx-feedback-api").remove();
+						},1000);
 					});
 				});
 				$('#obfx_disconnect').on('click', function (event) {

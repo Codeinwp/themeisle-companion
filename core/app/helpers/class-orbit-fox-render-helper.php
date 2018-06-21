@@ -447,8 +447,11 @@ class Orbit_Fox_Render_Helper {
 		if ( ! isset( $option['link-id'] ) ) {
 			$option['link-id'] = $option['id'];
 		}
+		if ( ! isset( $option['target'] ) ) {
+			$option['target'] = '';
+		}
 		$field = '
-			<a id="' . esc_attr( $option['link-id'] ) . '" class="' . esc_attr( $option['link-class'] ) . '" href="' . esc_url( $option['url'] ) . '">' .
+			<a id="' . esc_attr( $option['link-id'] ) . '" target="' . esc_attr( $option['target'] ) . '" class="' . esc_attr( $option['link-class'] ) . '" href="' . esc_url( $option['url'] ) . '">' .
 				 wp_kses_post( $option['text'] )
 				 . '</a>';
 

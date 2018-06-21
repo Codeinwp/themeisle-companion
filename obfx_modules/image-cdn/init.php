@@ -96,6 +96,16 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		return class_exists( '\OrbitFox\Connector' ) ? get_option( \OrbitFox\Connector::API_DATA_KEY, '' ) : '';
 	}
+	/**
+	 * Return api data.
+	 *
+	 * @return mixed|string APi data.
+	 */
+	private function clear_api_data() {
+
+
+		return update_option( \OrbitFox\Connector::API_DATA_KEY, '' );
+	}
 
 	/**
 	 * Render data from dashboard of orbitfox.com.
@@ -103,16 +113,20 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function render_connect_data( $html ) {
 
 		$obfx_user_data = $this->get_api_data();
-
-		if ( empty( $obfx_user_data ) ) {
-			return '';
+		$class          = '';
+		if ( ! empty( $obfx_user_data ) ) {
+			$class = 'obfx-img-logged-in';
 		}
-
-		$html = '<h5>' . __( 'Logged in as', 'themeisle-companion' ) . ' : <b>' . $obfx_user_data['display_name'] . '</b></h5>';
-		$html .= '<p>' . __( 'Your private CDN url', 'themeisle-companion' ) . ' : <code>' . $this->get_cdn_url() . '</code></p> ';
-		$html .= '<p>' . __( 'This month traffic usage', 'themeisle-companion' ) . ' : <code>' . number_format( floatval( ( $obfx_user_data['image_cdn']['usage'] / 1000 ) ), 3 ) . ' GB</code>';
-		$html .= ' ' . __( 'Your traffic quota', 'themeisle-companion' ) . ' : <code>' . number_format( floatval( ( $obfx_user_data['image_cdn']['quota'] / 1000 ) ), 3 ) . ' GB / month</code></p>';
-		$html .= '<p><i>' . __( 'You can use our image service and CDN in the limit of ', 'themeisle-companion' ) . number_format( floatval( ( $obfx_user_data['image_cdn']['quota'] / 1000 ) ), 0 ) . 'GB per month.  </i></p>';
+		$display_name = isset( $obfx_user_data['display_name'] ) ? $obfx_user_data['display_name'] : '';
+		$usage        = ( isset( $obfx_user_data['image_cdn'] ) && isset( $obfx_user_data['image_cdn']['usage'] ) ) ? $obfx_user_data['image_cdn']['usage'] : 0;
+		$quota        = ( isset( $obfx_user_data['image_cdn'] ) && isset( $obfx_user_data['image_cdn']['quota'] ) ) ? $obfx_user_data['image_cdn']['quota'] : 0;
+		$html         = '<div class="obfx-img-logged-in-data obfx-loggedin-show ' . $class . '" > ';
+		$html         .= '<h5>' . __( 'Logged in as', 'themeisle-companion' ) . ' : <b id="obfx-img-display-name">' . esc_attr( $display_name ) . '</b></h5>';
+		$html         .= '<p>' . __( 'Your private CDN url', 'themeisle-companion' ) . ' : <code id="obfx-img-cdn-url">' . $this->get_cdn_url() . '</code></p> ';
+		$html         .= '<p>' . __( 'This month traffic usage', 'themeisle-companion' ) . ' : <code id="obfx-img-traffic-usage">' . number_format( floatval( ( $usage / 1000 ) ), 3 ) . ' GB</code>';
+		$html         .= ' ' . __( 'Your traffic quota', 'themeisle-companion' ) . ' : <code class="obfx-img-traffic-quota">' . number_format( floatval( ( $quota / 1000 ) ), 3 ) . ' GB / month</code></p>';
+		$html         .= '<p><i>' . __( 'You can use our image service and CDN in the limit of <span class="obfx-img-traffic-quota">', 'themeisle-companion' ) . number_format( floatval( ( $quota / 1000 ) ), 0 ) . '</span> per month.  </i></p>';
+		$html         .= '</div>';
 
 		return $html;
 	}
@@ -171,13 +185,16 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		if ( is_admin() ) {
 			$this->hooks();
 		}
-		// let's check if this user needs to connect with orbitfox service
 		$obfx_user_data = $this->get_api_data();
 		if ( empty( $obfx_user_data ) ) {
 			$this->set_option( 'obfx_connect_api_key', '' );
-		}
+			$this->set_option( 'enable_cdn_replacer', '0' );
 
-		$fields = array(
+		}
+		if ( ! empty( $obfx_user_data ) ) {
+			$class = 'obfx-img-logged-in';
+		}
+		$fields   = array(
 			array(
 				'type'  => 'title',
 				'name'  => 'Tooltip',
@@ -191,42 +208,49 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'placeholder' => __( 'Your OrbitFox api key', 'themeisle-companion' ),
 				'text'        => '<span class="dashicons dashicons-share"></span>' . __( 'Connect with Orbitfox', 'themeisle-companion' ),
 			),
+			array(
+				'id'     => 'obfx-register-service',
+				'type'   => 'link',
+				'target' => '_blank',
+				'class'  => 'obfx-loggedin-hide ' . $class,
+				'url'    => 'https://dashboard.orbitfox.com/register',
+				'text'   => ' Sign-Up for your API key',
+			),
 
 		);
-		if ( empty( $obfx_user_data ) ) {
+		$fields[] = array(
+			'id'         => 'obfx_connect',
+			'name'       => 'obfx_connect',
+			'type'       => 'link',
+			'url'        => '#',
+			'class'      => 'obfx-loggedin-hide ' . $class,
+			'link-class' => 'btn btn-success',
+			'text'       => '<span class="dashicons dashicons-share"></span>' . __( 'Connect to OrbitFox service', 'themeisle-companion' ),
+		);
+		$fields[] = array(
+			'type' => 'custom',
+			'id'   => 'cdn_logged_in_data',
+			'name' => 'cdn_logged_in_data',
+		);
+		$fields[] = array(
+			'id'         => 'obfx_disconnect',
+			'name'       => 'obfx_disconnect',
+			'type'       => 'link',
+			'class'      => 'obfx-loggedin-show ' . $class,
+			'url'        => '#',
+			'link-class' => 'btn btn-danger float-right  mb-10 obfx-img-logout ',
+			'text'       => '<span class="dashicons dashicons-share"></span>' . __( 'Clear OrbitFox API key', 'themeisle-companion' ),
+		);
 
-			$fields[] = array(
-				'id'         => 'obfx_connect',
-				'name'       => 'obfx_connect',
-				'type'       => 'link',
-				'url'        => '#',
-				'link-class' => 'btn btn-success',
-				'text'       => '<span class="dashicons dashicons-share"></span>' . __( 'Connect to Orbitfox', 'themeisle-companion' ),
-			);
-		} else {
-			$fields[] = array(
-				'type' => 'custom',
-				'id'   => 'cdn_logged_in_data',
-				'name' => 'cdn_logged_in_data',
-			);
-			$fields[] = array(
-				'id'         => 'obfx_disconnect',
-				'name'       => 'obfx_disconnect',
-				'type'       => 'link',
-				'url'        => '#',
-				'link-class' => 'btn btn-danger float-right  mb-10 obfx-img-logout',
-				'text'       => '<span class="dashicons dashicons-share"></span>' . __( 'Log-Out from Orbitfox', 'themeisle-companion' ),
-			);
-			$fields[] = array(
-				'id'      => 'enable_cdn_replacer',
-				'title'   => '',
-				'name'    => 'enable_cdn_replacer',
-				'type'    => 'toggle',
-				'label'   => 'Allow OrbitFox to cache and optimize all the image from your website.',
-				'default' => '0',
-			);
-
-		}
+		$fields[] = array(
+			'id'      => 'enable_cdn_replacer',
+			'title'   => '',
+			'name'    => 'enable_cdn_replacer',
+			'type'    => 'toggle',
+			'class'   => ' obfx-img-cdn-replacer-switch obfx-loggedin-show ' . $class,
+			'label'   => 'Serve all images optimised through OrbitFox CDN for a boost in speed.',
+			'default' => '0',
+		);
 
 		return $fields;
 	}
@@ -249,6 +273,7 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$this->loader->add_action( 'rest_api_init', $this, 'register_url_endpoints' );
 		if ( ! $this->get_is_active() ) {
 			$this->set_option( 'enable_cdn_replacer', '0' );
+			$this->clear_api_data();
 		}
 		/**
 		 * Load the image replacement logic if we are on the frontend,

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orbit Fox Companion 2.4.7\n"
 "Report-Msgid-Bugs-To: https://github.com/Codeinwp/orbit-fox/issues\n"
-"POT-Creation-Date: 2018-06-19 17:54:18+00:00\n"
+"POT-Creation-Date: 2018-06-21 10:16:22+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2075,8 +2075,8 @@ msgstr ""
 msgid "Unregister Site"
 msgstr ""
 
-#: obfx_modules/image-cdn/inc/class-orbit-fox-connector.php:190
-#: obfx_modules/image-cdn/inc/class-orbit-fox-connector.php:202
+#: obfx_modules/image-cdn/inc/class-orbit-fox-connector.php:214
+#: obfx_modules/image-cdn/inc/class-orbit-fox-connector.php:226
 #: obfx_modules/image-cdn/inc/class-orbit-fox-image-replacer.php:614
 #: obfx_modules/image-cdn/inc/class-orbit-fox-image-replacer.php:626
 #: vendor/codeinwp/elementor-extra-widgets/class-elementor-extra-widgets.php:251
@@ -2109,44 +2109,46 @@ msgid ""
 "orbitfox.com</strong>"
 msgstr ""
 
-#: obfx_modules/image-cdn/init.php:77
+#: obfx_modules/image-cdn/init.php:79
 msgid " Image Traffic"
 msgstr ""
 
-#: obfx_modules/image-cdn/init.php:108
+#: obfx_modules/image-cdn/init.php:124
 msgid "Logged in as"
 msgstr ""
 
-#: obfx_modules/image-cdn/init.php:109
+#: obfx_modules/image-cdn/init.php:125
 msgid "Your private CDN url"
 msgstr ""
 
-#: obfx_modules/image-cdn/init.php:110
+#: obfx_modules/image-cdn/init.php:126
 msgid "This month traffic usage"
 msgstr ""
 
-#: obfx_modules/image-cdn/init.php:111
+#: obfx_modules/image-cdn/init.php:127
 msgid "Your traffic quota"
 msgstr ""
 
-#: obfx_modules/image-cdn/init.php:112
-msgid "You can use our image service and CDN in the limit of "
+#: obfx_modules/image-cdn/init.php:128
+msgid ""
+"You can use our image service and CDN in the limit of <span "
+"class=\"obfx-img-traffic-quota\">"
 msgstr ""
 
-#: obfx_modules/image-cdn/init.php:169
+#: obfx_modules/image-cdn/init.php:208
 msgid "Your OrbitFox api key"
 msgstr ""
 
-#: obfx_modules/image-cdn/init.php:170
+#: obfx_modules/image-cdn/init.php:209
 msgid "Connect with Orbitfox"
 msgstr ""
 
-#: obfx_modules/image-cdn/init.php:182
-msgid "Connect to Orbitfox"
+#: obfx_modules/image-cdn/init.php:228
+msgid "Connect to OrbitFox service"
 msgstr ""
 
-#: obfx_modules/image-cdn/init.php:196
-msgid "Log-Out from Orbitfox"
+#: obfx_modules/image-cdn/init.php:242
+msgid "Clear OrbitFox API key"
 msgstr ""
 
 #: obfx_modules/menu-icons/init.php:33
