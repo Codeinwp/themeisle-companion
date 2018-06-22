@@ -332,7 +332,7 @@ class Safe_Updates_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			return __( 'Unfortunately, our service is available only if your are using an wordpress.org theme. We are still working to extend this feature to custom and premium themes soon. ', 'themeisle-companion' );
 		}
 
-		$output = '<label>' . __( 'OrbitFox<sup>&copy;</sup> will need your current theme slug in order to run a visual comparison report between your current and latest version. We will need your consent in order to do this. <br/>Read <a href="">more</a> about this process.', 'themeisle-companion' ) . '';
+		$output = '<label>' . __( 'OrbitFox<sup>&copy;</sup> will need your current theme slug in order to run a visual comparison report between your current and latest version. We will need your consent in order to do this. <br/>Read <a href="https://orbitfox.com/safe-updates/" target="_blank"><b>more</b></a> about this process.', 'themeisle-companion' ) . '';
 		if ( ! $this->is_safe_updates_active() ) {
 			$output .= '</label></br></br><a  id="obfx-safe-updates-allow" class="btn btn-success" href="#"><span class="dashicons dashicons-yes"></span>   <span>' . __( 'Allow', 'themeisle-companion' ) . '</span></a>';
 		} else {
@@ -397,7 +397,7 @@ class Safe_Updates_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			return __( 'OrbitFox<sup>&copy;</sup> is now running a visual report for your theme update. Please check the themes <a href="' . admin_url( 'themes.php' ) . '" target="_blank">update</a> page in a few minutes to see the result.', 'themeisle-companion' );
 		}
 
-		return '<code class=" obfx-sf-feedback-notice  mb-10">' . $this->get_message_notice( $changes ) . '</code>';
+		return '<pre class=" obfx-sf-feedback-notice  mb-10">' . $this->get_message_notice( $changes ) . '</pre>';
 
 	}
 
