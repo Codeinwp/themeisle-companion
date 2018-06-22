@@ -30,17 +30,24 @@ if ( ! isset( $description ) ) {
 if ( ! isset( $options_fields ) ) {
 	$options_fields = __( 'No options provided.', 'themeisle-companion' );
 }
-
-$display         = '';
+$styles          = array();
 $disabled_fields = '';
 if ( ! $active ) {
-	$display         = 'style="display: none;"';
+	$styles []       = 'display: none';
 	$disabled_fields = 'disabled';
 }
+$btn_class = '';
+if ( isset( $show ) && $show ) {
+	$btn_class = 'active';
+
+}
+$styles = sprintf( 'style="%s"', implode( ':', $styles ) );
+
 ?>
-<div id="obfx-mod-<?php echo $slug; ?>" class="panel options" <?php echo $display; ?>>
+<div id="obfx-mod-<?php echo $slug; ?>" class="panel options <?php echo esc_attr( $btn_class ); ?>" <?php echo $styles; ?>>
 	<div class="panel-header">
-		<button class="btn btn-action circle btn-expand" style="float: right; margin-right: 10px;">
+		<button class="btn btn-action circle btn-expand <?php echo esc_attr( $btn_class ); ?>"
+				style="float: right; margin-right: 10px;">
 			<i class="dashicons dashicons-arrow-down-alt2"></i>
 		</button>
 		<div class="panel-title"><?php echo $name; ?></div>
@@ -50,7 +57,7 @@ if ( ! $active ) {
 			<span>Mock text for Toast Element</span>
 		</div>
 	</div>
-	<form id="obfx-module-form-<?php echo $slug; ?>" class="obfx-module-form">
+	<form id="obfx-module-form-<?php echo $slug; ?>" class="obfx-module-form <?php echo esc_attr( $btn_class ); ?> ">
 		<fieldset <?php echo $disabled_fields; ?> >
 			<input type="hidden" name="module-slug" value="<?php echo $slug; ?>">
 			<input type="hidden" name="noance" value="<?php echo $noance; ?>">
@@ -58,10 +65,12 @@ if ( ! $active ) {
 				<?php echo $options_fields; ?>
 				<div class="divider"></div>
 			</div>
+			<?php if ( isset( $no_save ) && $no_save === false ) : ?>
 			<div class="panel-footer text-right">
 				<button class="btn obfx-mod-btn-cancel" disabled>Cancel</button>
 				<button type="submit" class="btn btn-primary obfx-mod-btn-save" disabled>Save</button>
 			</div>
+			<?php endif; ?>
 		</fieldset>
 	</form>
 </div>

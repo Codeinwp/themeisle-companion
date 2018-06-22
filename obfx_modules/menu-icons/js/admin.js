@@ -83,10 +83,10 @@ var obfx_menuicons_module_admin = function( $, menu_icons ) {
 						hideOnSelect: true,
 						placement: 'bottomLeft',
 						selectedCustomClass: 'obfx-menu-icon-selected',
-                        showFooter: true,
-                        templates: {
-                            footer: '<div class="obfx-menu-icon-footer">' + menu_icons.i10n.powered_by + '</div>'
-                        }
+						showFooter: true,
+						templates: {
+							footer: '<div class="obfx-menu-icon-footer">' + menu_icons.i10n.powered_by + '</div>'
+						}
 					}
 				).on(
 					'iconpickerSelected', function(e) {
