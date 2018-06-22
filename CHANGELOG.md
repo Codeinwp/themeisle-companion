@@ -1,4 +1,12 @@
 
+ ### v2.5.0 - 2018-06-22 
+ **Changes:** 
+ * Adds privacy policy module, allows users to set a notice for their visitors.
+* Adds Image CDN and Optimization module in private BETA .
+* Adds Themes Safe Updates module in private BETA.
+* Adds more Elementor templates into the library.
+* Improvements for Hestia enhancements module.
+ 
  ### v2.4.7 - 2018-05-03 
  **Changes:** 
  * Add content forms for Beaver Builder

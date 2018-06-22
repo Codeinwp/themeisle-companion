@@ -3,7 +3,7 @@
 **Tags:** widget, admin, widgets, sharing, sections, themes, stock photos, custom icons, icons, menu icons, stock, templates  
 **Requires at least:** 4.7  
 **Tested up to:** 4.9  
-**Requires PHP:** 5.3  
+**Requires PHP:** 5.4  
 **Stable tag:** trunk  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
@@ -12,11 +12,14 @@ This swiss-knife plugin comes with a quality template library, menu/sharing icon
 
 ## Description ##
 
-Extend your theme functionality with <a href="https://themeisle.com/plugins/orbit-fox-companion/" rel="nofollow">Orbit Fox</a> with various modules like Social Media Share Buttons & Icons, Uptime Monitoring, Google Analytics, custom menu-icons, one click import page templates, page builder addons and free stock featured images.
+Extend your theme functionality with <a href="https://orbitfox.com/" rel="nofollow">Orbit Fox</a> with various modules like Social Media Share Buttons & Icons, Uptime Monitoring, Google Analytics, custom menu-icons, one click import page templates, page builder addons and free stock featured images.
 
 https://www.youtube.com/watch?v=YHhK_twfYB8
 
 **Features:**
+- Beta: Image CDN & Optimization
+- Beta: Themes Safe updates feedback
+- Privacy policy notice ( GDPR friendly )
 - Uptime Monitor
 - Google Analytics Integration
 - Template Directory
@@ -28,7 +31,7 @@ https://www.youtube.com/watch?v=YHhK_twfYB8
 - More widgets and sections for Hestia Theme
 - More widgets and sections for Zerif Theme
 
-You can check out the demo <a href="https://demo.themeisle.com/orbit-fox/#blog" rel="nofollow" target="_blank">here</a> for a more detailed overview of the features.
+You can check out the demo <a href="https://orbitfox.com/#blog" rel="nofollow" target="_blank">here</a> for a more detailed overview of the features.
 
 OrbitFox is a user-centred plugin with an easy-to-use admin panel. One of the most important features is that modules will only be loaded if they meet two conditions. If they are needed and if they are compatible with your existing themes and plugins. This will cut down on the unnecessary bloating of your website.
 
@@ -100,6 +103,15 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 ## Changelog ##
+### 2.5.0 - 2018-06-22  ###
+
+* Adds privacy policy module, allows users to set a notice for their visitors.
+* Adds Image CDN and Optimization module in private BETA .
+* Adds Themes Safe Updates module in private BETA.
+* Adds more Elementor templates into the library.
+* Improvements for Hestia enhancements module.
+
+
 ### 2.4.7 - 2018-05-03  ###
 
 * Add content forms for Beaver Builder
