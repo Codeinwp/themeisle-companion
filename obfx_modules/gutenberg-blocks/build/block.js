@@ -119,10 +119,11 @@ eval("/**\r\n * WordPress dependencies...\r\n */\nvar __ = wp.i18n.__;\nvar regi
 /*!********************************!*\
   !*** ./blocks/notice/index.js ***!
   \********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("/**\r\n * WordPress dependencies...\r\n */\nvar __ = wp.i18n.__;\nvar registerBlockType = wp.blocks.registerBlockType;\n\n\nregisterBlockType('orbitfox/notice', {\n  title: __('Notice'),\n  icon: 'info',\n  category: 'common',\n  keywords: ['notice', 'info', 'orbitfox'],\n\n  edit: function edit() {\n    return null;\n  },\n  save: function save() {\n    return null;\n  }\n});\n\n//# sourceURL=webpack:///./blocks/notice/index.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! classnames */ \"./node_modules/classnames/index.js\");\n/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_0__);\n/**\r\n * WordPress dependencies...\r\n */\nvar __ = wp.i18n.__;\n\n\n\n\nvar registerBlockType = wp.blocks.registerBlockType;\nvar RichText = wp.editor.RichText;\nvar Fragment = wp.element.Fragment;\n\n\nregisterBlockType('orbitfox/notice', {\n  title: __('Notice'),\n  icon: 'info',\n  category: 'common',\n  keywords: ['notice', 'info'],\n  attributes: {\n    type: {\n      source: 'attribute',\n      selector: '.obfx-block-notice',\n      attribute: 'data-type',\n      default: 'info'\n    },\n    title: {\n      source: 'text',\n      type: 'string',\n      selector: '.obfx-block-notice__title',\n      default: 'Info'\n    },\n    content: {\n      type: 'array',\n      source: 'children',\n      selector: '.obfx-block-notice__content'\n    }\n  },\n  edit: function edit(props) {\n    var _props$attributes = props.attributes,\n        type = _props$attributes.type,\n        content = _props$attributes.content,\n        title = _props$attributes.title,\n        className = props.className,\n        setAttributes = props.setAttributes;\n\n    // @TODO Add a toolbar control and create a custom svg icon for this block\n\n    return wp.element.createElement(\n      Fragment,\n      null,\n      wp.element.createElement(\n        'div',\n        { className: classnames__WEBPACK_IMPORTED_MODULE_0___default()(className, className + '--' + type) },\n        wp.element.createElement(RichText, {\n          tagName: 'p',\n          value: title,\n          className: 'obfx-block-notice__title',\n          onChange: function onChange(title) {\n            return setAttributes({ title: title });\n          }\n        }),\n        wp.element.createElement(RichText, {\n          tagName: 'p',\n          placeholder: __('Your tip/warning content'),\n          value: content,\n          className: 'obfx-block-notice__content',\n          onChange: function onChange(content) {\n            return setAttributes({ content: content });\n          },\n          keepPlaceholderOnFocus: 'true'\n        })\n      )\n    );\n  },\n  save: function save(props) {\n    var _props$attributes2 = props.attributes,\n        type = _props$attributes2.type,\n        title = _props$attributes2.title,\n        content = _props$attributes2.content;\n\n\n    return wp.element.createElement(\n      'div',\n      { className: 'obfx-block-notice--' + type, 'data-type': type },\n      wp.element.createElement(\n        'p',\n        { className: 'obfx-block-notice__title' },\n        title\n      ),\n      wp.element.createElement(\n        'p',\n        { className: 'obfx-block-notice__content' },\n        content\n      )\n    );\n  }\n});\n\n//# sourceURL=webpack:///./blocks/notice/index.js?");
 
 /***/ }),
 
@@ -178,6 +179,17 @@ eval("/**\r\n * WordPress dependencies...\r\n */\nvar __ = wp.i18n.__;\nvar regi
 /***/ (function(module, exports) {
 
 eval("/**\r\n * WordPress dependencies...\r\n */\nvar __ = wp.i18n.__;\nvar registerBlockType = wp.blocks.registerBlockType;\n\n\nregisterBlockType('orbitfox/testimonials', {\n  title: __('Testimonials'),\n  icon: 'info',\n  category: 'common',\n  keywords: ['testimonials', 'orbitfox'],\n\n  edit: function edit() {\n    return null;\n  },\n  save: function save() {\n    return null;\n  }\n});\n\n//# sourceURL=webpack:///./blocks/testimonials/index.js?");
+
+/***/ }),
+
+/***/ "./node_modules/classnames/index.js":
+/*!******************************************!*\
+  !*** ./node_modules/classnames/index.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!\n  Copyright (c) 2017 Jed Watson.\n  Licensed under the MIT License (MIT), see\n  http://jedwatson.github.io/classnames\n*/\n/* global define */\n\n(function () {\n\t'use strict';\n\n\tvar hasOwn = {}.hasOwnProperty;\n\n\tfunction classNames () {\n\t\tvar classes = [];\n\n\t\tfor (var i = 0; i < arguments.length; i++) {\n\t\t\tvar arg = arguments[i];\n\t\t\tif (!arg) continue;\n\n\t\t\tvar argType = typeof arg;\n\n\t\t\tif (argType === 'string' || argType === 'number') {\n\t\t\t\tclasses.push(arg);\n\t\t\t} else if (Array.isArray(arg) && arg.length) {\n\t\t\t\tvar inner = classNames.apply(null, arg);\n\t\t\t\tif (inner) {\n\t\t\t\t\tclasses.push(inner);\n\t\t\t\t}\n\t\t\t} else if (argType === 'object') {\n\t\t\t\tfor (var key in arg) {\n\t\t\t\t\tif (hasOwn.call(arg, key) && arg[key]) {\n\t\t\t\t\t\tclasses.push(key);\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\n\t\treturn classes.join(' ');\n\t}\n\n\tif (typeof module !== 'undefined' && module.exports) {\n\t\tclassNames.default = classNames;\n\t\tmodule.exports = classNames;\n\t} else if (true) {\n\t\t// register as 'classnames', consistent with npm package name\n\t\t!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {\n\t\t\treturn classNames;\n\t\t}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),\n\t\t\t\t__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));\n\t} else {}\n}());\n\n\n//# sourceURL=webpack:///./node_modules/classnames/index.js?");
 
 /***/ }),
 
