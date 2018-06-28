@@ -7,6 +7,8 @@ const {
   registerBlockType
 } = wp.blocks;
 
+import AboutAuthorEditor from './Editor';
+
 registerBlockType( 'orbitfox/about-author', {
   title: __( 'About Author' ),
   icon: 'index-card',
@@ -16,6 +18,6 @@ registerBlockType( 'orbitfox/about-author', {
     'author',
     'orbitfox'
   ],
-  edit() {return null;},
+  edit: AboutAuthorEditor,
   save() {return null;},
 } );

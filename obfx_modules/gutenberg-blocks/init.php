@@ -52,7 +52,8 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function hooks() {
-		$this->loader->add_action( 'init', $this, 'load_blocks', 11 );
+		$this->loader->add_action( 'init', $this, 'load_js_blocks', 11 );
+		$this->loader->add_action( 'init', $this, 'load_server_side_blocks', 11 );
 
 	}
 
@@ -97,7 +98,7 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @since   2.2.5
 	 * @access  public
 	 */
-	public function load_blocks(){
+	public function load_js_blocks(){
 
 		if ( ! is_admin() ) {
 			return;
@@ -113,4 +114,31 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		);
 	}
 
+	public function load_server_side_blocks() {
+
+		// load the base class
+		require_once plugin_dir_path( __FILE__ ) . 'class-gutenberg-block.php';
+
+		$ss_blocks = glob( __DIR__ . '/blocks/*/*.php');
+
+		foreach ( $ss_blocks as $block ) {
+			require_once $block;
+
+			// remove the class prefix and the extension
+			$classname = str_replace( array( 'class-' , '.php' ), '', basename( $block ) );
+			// get an array of words from class names and we'll make them capitalized.
+			$classname = explode( '-', $classname );
+			$classname = array_map( 'ucfirst', $classname );
+			// rebuild the classname string as capitalized and separated by underscores.
+			$classname = 'OrbitFox\Gutenberg_Blocks\\' . implode( '_', $classname );
+
+			if ( ! class_exists ( $classname ) ) {
+				continue;
+			}
+
+			$block = new $classname();
+			$block->register_block();
+		}
+
+	}
 }

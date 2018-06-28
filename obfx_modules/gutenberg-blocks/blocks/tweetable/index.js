@@ -1,7 +1,13 @@
 /**
+ * External dependencies
+ */
+import { find, compact, get, initial, last, isEmpty } from 'lodash';
+
+/**
  * WordPress dependencies.
  */
 const { __ } = wp.i18n;
+
 const {
   registerBlockType,
   createBlock
@@ -44,8 +50,8 @@ registerBlockType( 'orbitfox/tweetable', {
       {
         type: 'block',
         blocks: [ 'core/paragraph' ],
-        transform: ( { quote } ) => {
-          return createBlock( 'orbitfox/tweetable', { quote: quote } );
+        transform: ( { content } ) => {
+          return createBlock( 'orbitfox/tweetable', { quote: content } );
         },
       },
       {
@@ -55,10 +61,13 @@ registerBlockType( 'orbitfox/tweetable', {
           if ( ( ! value || ! value.length ) && ! citation ) {
             return createBlock( 'orbitfox/tweetable' );
           }
+
+          console.log( citation );
+
           return ( value || [] ).map( item => createBlock( 'orbitfox/tweetable', {
             quote: [ get( item, 'children.props.children', '' ) ],
           } ) ).concat( citation ? createBlock( 'core/paragraph', {
-            quote: citation,
+            content: citation,
           } ) : [] );
         },
       },
@@ -81,22 +90,22 @@ registerBlockType( 'orbitfox/tweetable', {
       {
         type: 'block',
         blocks: [ 'core/paragraph' ],
-        transform: ( { content } ) => {
-          if ( ! content || ! content.length ) {
+        transform: ( { content, quote } ) => {
+          if ( ! quote || ! quote.length ) {
             return createBlock( 'core/paragraph' );
           }
-          return ( content || [] ).map( item => createBlock( 'core/paragraph', {
-            content: content,
+          return ( quote || [] ).map( item => createBlock( 'core/paragraph', {
+            content: quote,
           } ) );
         },
       },
       {
         type: 'block',
         blocks: [ 'core/quote' ],
-        transform: ( { content } ) => {
+        transform: ( { quote } ) => {
           return createBlock( 'core/quote', {
             value: [
-              { children: <p key="1">{ content }</p> },
+              { children: <p key="1">{ quote }</p> },
             ],
           } );
         },
@@ -104,10 +113,10 @@ registerBlockType( 'orbitfox/tweetable', {
       {
         type: 'block',
         blocks: [ 'core/pullquote' ],
-        transform: ( { content } ) => {
+        transform: ( { quote } ) => {
           return createBlock( 'core/pullquote', {
             value: [
-              { children: <p key="1">{ content }</p> },
+              { children: <p key="1">{ quote }</p> },
             ],
           } );
         },
