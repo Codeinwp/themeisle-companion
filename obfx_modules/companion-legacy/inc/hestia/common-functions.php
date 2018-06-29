@@ -6,6 +6,12 @@
  * @package themeisle-companion
  */
 
+/**
+ * Change default alignment for top bar.
+ */
+function themeisle_hestia_top_bar_default_alignment(){
+	return 'left';
+}
 
 /**
  * Add default content to clients section;
