@@ -103,6 +103,12 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 ## Changelog ##
+### 2.5.1 - 2018-07-02  ###
+
+* Fix social icons saving bug. 
+* Fix z-index issue on policy notice.
+
+
 ### 2.5.0 - 2018-06-22  ###
 
 * Adds privacy policy module, allows users to set a notice for their visitors.

@@ -1,4 +1,9 @@
 
+ ### v2.5.1 - 2018-07-02 
+ **Changes:** 
+ * Fix social icons saving bug. 
+* Fix z-index issue on policy notice.
+ 
  ### v2.5.0 - 2018-06-22 
  **Changes:** 
  * Adds privacy policy module, allows users to set a notice for their visitors.
