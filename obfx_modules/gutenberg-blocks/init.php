@@ -33,7 +33,7 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function enable_module() {
 		require_once( ABSPATH . 'wp-admin' . '/includes/plugin.php' );
-		return is_plugin_active( 'gutenberg/gutenberg.php' );
+		return is_plugin_active( 'gutenberg/gutenberg.php' ) && function_exists( 'register_block_type');
 	}
 
 	/**
@@ -42,8 +42,7 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @since   2.2.5
 	 * @access  public
 	 */
-	public function load() {
-	}
+	public function load() {}
 
 	/**
 	 * Method to define hooks needed.
@@ -52,9 +51,11 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function hooks() {
-		$this->loader->add_action( 'init', $this, 'load_js_blocks', 11 );
+		$this->loader->add_action( 'init', $this, 'load_js_blocks' );
 		$this->loader->add_action( 'init', $this, 'load_server_side_blocks', 11 );
 
+		//add_action( 'enqueue_block_editor_assets', 'gutenberg_examples_02_enqueue_block_editor_assets' );
+		add_action( 'enqueue_block_assets', array( $this, 'enqueue_block_assets' ) );
 	}
 
 	/**
@@ -99,23 +100,28 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function load_js_blocks(){
-
 		if ( ! is_admin() ) {
 			return;
 		}
-
+		wp_enqueue_script('lodash');
 		// @TODO for the moment load one js file with all the blocks. Maybe in future we'll group and enable them selectively
 		wp_enqueue_script(
 			'obfx-gutenberg-blocks',
 			plugins_url( '/build/block.js', __FILE__ ),
-			array( ),
+			array(),
 			filemtime( plugin_dir_path( __FILE__ ) . '/build/block.js' ),
 			true
+		);
+
+		wp_enqueue_style(
+			'obfx-gutenberg-blocks-editor',
+			plugins_url( 'build/edit-blocks.css', __FILE__ ),
+			array( 'wp-edit-blocks' ),
+			filemtime( plugin_dir_path( __FILE__ ) . 'build/edit-blocks.css' )
 		);
 	}
 
 	public function load_server_side_blocks() {
-
 		// load the base class
 		require_once plugin_dir_path( __FILE__ ) . 'class-gutenberg-block.php';
 
@@ -141,4 +147,14 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		}
 
 	}
+
+	function enqueue_block_assets() {
+		wp_enqueue_style(
+			'obfx-block_styles',
+			plugins_url( 'build/style.css', __FILE__ ),
+			array( 'wp-blocks' ),
+			filemtime( plugin_dir_path( __FILE__ ) . 'build/style.css' )
+		);
+	}
+
 }

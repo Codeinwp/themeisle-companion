@@ -87,13 +87,15 @@ abstract class Base_Block {
 	 *
 	 */
 	public function register_block() {
-		register_block_type(
+		\register_block_type(
 			$this ->block_prefix . '/' . $this->block_slug, array(
 				'render_callback' => array( $this, 'render_callback' ),
 				'attributes'      => $this->get_attributes(),
 			)
 		);
 	}
+
+
 
 	/**
 	 * The render callback passed to the `register_block_type` function.
@@ -104,6 +106,7 @@ abstract class Base_Block {
 	 */
 	public function render_callback( $attributes ) {
 
+//		var_dump( $attributes );
 		// give a chance to our themes to overwrite the template of blocks
 		return apply_filters( "obfx_gutenberg_block_template_{$this->block_slug}", $this->render( $attributes ) );
 	}

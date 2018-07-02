@@ -18,6 +18,13 @@ registerBlockType( 'orbitfox/about-author', {
     'author',
     'orbitfox'
   ],
+
+  attributes: {
+    customLabel: {
+      type: 'string',
+    },
+  },
+
   edit: AboutAuthorEditor,
   save() {return null;},
 } );

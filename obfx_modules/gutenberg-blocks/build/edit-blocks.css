@@ -1,0 +1,70 @@
+/**
+ * Colors
+ */
+/**
+ * Breakpoints & Media Queries
+ */
+/**
+ * Often re-used variables
+ */
+/**
+ * Breakpoint mixins
+ */
+/**
+ * Long content fade mixin
+ *
+ * Creates a fading overlay to signify that the content is longer
+ * than the space allows.
+ */
+/**
+ * Button states and focus styles
+ */
+/**
+ * Applies editor left position to the selector passed as argument
+ */
+/**
+ * Applies editor right position to the selector passed as argument
+ */
+@keyframes fade-in {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@keyframes editor_region_focus {
+  from {
+    box-shadow: inset 0 0 0 0 #33B3DB; }
+  to {
+    box-shadow: inset 0 0 0 4px #33B3DB; } }
+
+.wp-block-orbitfox-pricing-table .editor-block-list__layout {
+  margin-left: 0;
+  margin-right: 0; }
+  .wp-block-orbitfox-pricing-table .editor-block-list__layout:first-child {
+    margin-left: -14px; }
+  .wp-block-orbitfox-pricing-table .editor-block-list__layout:last-child {
+    margin-right: -14px; }
+  .wp-block-orbitfox-pricing-table .editor-block-list__layout .editor-block-list__block {
+    max-width: none; }
+
+.editor-block-list__block[data-align="full"] .wp-block-orbitfox-pricing-table .editor-block-list__layout:first-child {
+  margin-left: 30px; }
+
+.editor-block-list__block[data-align="full"] .wp-block-orbitfox-pricing-table .editor-block-list__layout:last-child {
+  margin-right: 30px; }
+
+.wp-block-orbitfox-pricing-table {
+  display: block; }
+  .wp-block-orbitfox-pricing-table .editor-inner-blocks {
+    display: grid;
+    grid-auto-flow: dense; }
+  .wp-block-orbitfox-pricing-table.has-2-panels .editor-inner-blocks {
+    grid-auto-columns: 50%; }
+  .wp-block-orbitfox-pricing-table.has-3-panels .editor-inner-blocks {
+    grid-auto-columns: 33.33333%; }
+  .wp-block-orbitfox-pricing-table.has-4-panels .editor-inner-blocks {
+    grid-auto-columns: 25%; }
+  .wp-block-orbitfox-pricing-table.has-5-panels .editor-inner-blocks {
+    grid-auto-columns: 20%; }
+  .wp-block-orbitfox-pricing-table.has-6-panels .editor-inner-blocks {
+    grid-auto-columns: 16.66667%; }
