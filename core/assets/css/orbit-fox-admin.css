@@ -8,7 +8,7 @@
  * Extends Spectre.css Library
  */
 /*
-  Version: 2.5.0
+  Version: 2.5.1
  */
 
 /* Document
@@ -3650,7 +3650,7 @@ html {
 }
 
 .obfx-wrapper .panel.options.active {
-	max-height: 1000px;
+	max-height: 3000px;
 }
 
 .obfx-wrapper .panel.options {
