@@ -52,7 +52,7 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return bool
 	 */
 	public function enable_module() {
-		return ( $this->beta ) ? $this->is_lucky_user() : true;
+		return ( $this->beta ) ? $this->is_lucky_user( 30 ) : true;
 	}
 
 	/**

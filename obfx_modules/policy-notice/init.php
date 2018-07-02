@@ -240,6 +240,7 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			.obfx-cookie-bar {
 				padding: 12px 25px;
 				position: fixed;
+				z-index: 9999;
 				text-align: center;
 				bottom: 0;
 				left: 0;
