@@ -1,0 +1,24 @@
+.hestia-clients-bar {
+    padding: 75px 0 55px;
+}
+.hestia-clients-bar .clients-bar-wrapper {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.hestia-clients-bar .clients-bar-wrapper li {
+    display: inline-block;
+    margin: 25px;
+    vertical-align: middle;
+}
+.hestia-clients-bar .clients-bar-wrapper li a {
+    display: block;
+    padding: 5px;
+}
+.hestia-clients-bar .clients-bar-wrapper li img {
+    max-height: 40px;
+}
+
+.hestia-clients-bar .row > div {
+    padding: 30px;
+}

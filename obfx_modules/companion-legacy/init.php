@@ -321,6 +321,15 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	}
 
 	/**
+	 * Wrapper method for themeisle_hestia_enqueue_clients_style function call.
+	 *
+	 * @access  public
+	 */
+	public function hestia_enqueue_clients_style(){
+		themeisle_hestia_enqueue_clients_style();
+	}
+
+	/**
 	 * Wrapper method for themeisle_hestia_top_bar_default_alignment function call.
 	 * 
 	 * @since   2.1.1
@@ -421,6 +430,7 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		if ( $this->is_hestia() ) {
 			$this->loader->add_action( 'after_setup_theme', $this, 'hestia_require' );
 			$this->loader->add_action( 'after_setup_theme', $this, 'hestia_fix_duplicate_widgets' );
+			$this->loader->add_action( 'wp_enqueue_scripts', $this, 'hestia_enqueue_clients_style', 999 );
 			$this->loader->add_filter( 'hestia_clients_bar_default_content', $this, 'hestia_load_clients_default_content' );
 			$this->loader->add_filter( 'hestia_top_bar_alignment_default', $this, 'hestia_top_bar_default_alignment' );
 			$this->loader->add_action( 'customize_register', $this, 'hestia_require_customizer', 0 );
