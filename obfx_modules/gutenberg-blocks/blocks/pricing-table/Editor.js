@@ -23,13 +23,12 @@ const {
 const {
 	InspectorControls,
 	InnerBlocks,
+	RichText
 } = wp.editor;
-
 
 const {
 	Fragment
 } = wp.element;
-const {RichText} = wp.editor;
 
 
 /**

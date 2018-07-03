@@ -108,7 +108,7 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		wp_enqueue_script(
 			'obfx-gutenberg-blocks',
 			plugins_url( '/build/block.js', __FILE__ ),
-			array(),
+			array( 'wp-api' ),
 			filemtime( plugin_dir_path( __FILE__ ) . '/build/block.js' ),
 			true
 		);
