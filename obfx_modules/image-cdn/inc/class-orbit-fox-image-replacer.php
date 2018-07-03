@@ -305,6 +305,18 @@ class Image_CDN_Replacer {
 	 * @return string
 	 */
 	protected function get_imgcdn_url( $url, $args = array( 'width' => 'auto', 'height' => 'auto' ) ) {
+
+		$mimes = array(
+			'jpg|jpeg|jpe' => 'image/jpeg',
+			'png'          => 'image/png',
+			'webp'         => 'image/webp',
+		);
+
+		$type = wp_check_filetype( $url, $mimes );
+
+		if ( ! isset( $type['ext'] ) || empty( $type['ext'] ) ) {
+			return $url;
+		}
 		// not used yet.
 		$compress_level = 55;
 		// this will authorize the image
