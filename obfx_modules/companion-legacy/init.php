@@ -320,6 +320,24 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		return themeisle_hestia_clients_default_content();
 	}
 
+	/**
+	 * Wrapper method for themeisle_hestia_enqueue_clients_style function call.
+	 *
+	 * @access  public
+	 */
+	public function hestia_enqueue_clients_style(){
+		themeisle_hestia_enqueue_clients_style();
+	}
+
+	/**
+	 * Wrapper method for themeisle_hestia_top_bar_default_alignment function call.
+	 * 
+	 * @since   2.1.1
+	 * @access  public
+	 */
+	public function hestia_top_bar_default_alignment(){
+		return themeisle_hestia_top_bar_default_alignment();
+	}
 
 	/**
 	 * Wrapper method for themeisle_hestia_load_controls function call.
@@ -412,7 +430,9 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		if ( $this->is_hestia() ) {
 			$this->loader->add_action( 'after_setup_theme', $this, 'hestia_require' );
 			$this->loader->add_action( 'after_setup_theme', $this, 'hestia_fix_duplicate_widgets' );
+			$this->loader->add_action( 'wp_enqueue_scripts', $this, 'hestia_enqueue_clients_style' );
 			$this->loader->add_filter( 'hestia_clients_bar_default_content', $this, 'hestia_load_clients_default_content' );
+			$this->loader->add_filter( 'hestia_top_bar_alignment_default', $this, 'hestia_top_bar_default_alignment' );
 			$this->loader->add_action( 'customize_register', $this, 'hestia_require_customizer', 0 );
 			$this->loader->add_action( 'after_switch_theme', $this, 'hestia_set_front_page' );
 		}
@@ -420,6 +440,7 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		if ( $this->is_hestia_pro() ) {
 			$this->loader->add_action( 'after_setup_theme', $this, 'hestia_fix_duplicate_widgets' );
 			$this->loader->add_filter( 'hestia_clients_bar_default_content', $this, 'hestia_load_clients_default_content' );
+			$this->loader->add_filter( 'hestia_top_bar_alignment_default', $this, 'hestia_top_bar_default_alignment' );
 		}
 
 		if( $this->is_shop_isle() ) {
