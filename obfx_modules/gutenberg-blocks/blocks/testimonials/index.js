@@ -96,14 +96,12 @@ registerBlockType( 'orbitfox/testimonial', {
 					return <Button
 						className={ mediaID ? '' : 'button button-large' }
 						onClick={ obj.open } >
-						{
-							mediaID ? <div className="testimonial-image" style={{
+						{mediaID ? <div className="testimonial-image" style={{
 								backgroundImage: `url(${mediaURL})`,
 								backgroundSize: 'cover',
 								width: '200px',
 								height: '200px',
-							}}></div> : __( 'Upload Image' )
-						}
+							}}></div> : __( 'Upload Image' )}
 					</Button>
 				} }
 			/>
