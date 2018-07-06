@@ -1,4 +1,14 @@
 
+ ### v2.5.2 - 2018-07-06 
+ **Changes:** 
+ * Fixes post grid pagination issue
+* Fixes post grid colors not applying correctly
+* Fixes Templates directory import issue
+* New templates in the templates directory
+* Fixes content forms placeholder not used
+* Fixes for Hestia Theme enhancements module
+* Fixes issue where url's were replaced with CDN url for beta users
+ 
  ### v2.5.1 - 2018-07-02 
  **Changes:** 
  * Fix social icons saving bug. 
