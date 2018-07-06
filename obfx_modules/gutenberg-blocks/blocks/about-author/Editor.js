@@ -23,7 +23,6 @@ export class AboutAuthorEditor extends Component {
 			customLabel,
 		} = attributes;
 
-		console.log(postAuthor);
 		// @TODO this is wip; We need to build a nice preview of this block
 
 		return (<section className="blocks-single-author">

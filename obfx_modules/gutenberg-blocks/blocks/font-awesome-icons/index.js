@@ -103,7 +103,7 @@ registerBlockType('orbitfox/font-awesome-icons', {
 
 		return <i
 			style={ styles }
-			class={'fa fa-' + icon }
+			className={'fa fa-' + icon }
 		></i>;
 	},
 });

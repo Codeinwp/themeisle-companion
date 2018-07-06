@@ -52,7 +52,7 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function hooks() {
 		$this->loader->add_action( 'init', $this, 'load_js_blocks' );
-		$this->loader->add_action( 'init', $this, 'load_server_side_blocks', 11 );
+		$this->loader->add_action( 'wp', $this, 'load_server_side_blocks', 11 );
 
 		//add_action( 'enqueue_block_editor_assets', 'gutenberg_examples_02_enqueue_block_editor_assets' );
 		add_action( 'enqueue_block_assets', array( $this, 'enqueue_block_assets' ) );
