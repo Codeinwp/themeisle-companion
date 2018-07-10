@@ -7,6 +7,8 @@ import moment from 'moment';
 import classnames from 'classnames';
 import { stringify } from 'querystringify';
 
+import Thumbnail from './Thumbnail';
+
 const get = (obj, path, def) => (() => typeof path === 'string' ? path.replace(/\[(\d+)]/g,'.$1') : path.join('.'))()
 	.split('.')
 	.filter(Boolean)
@@ -25,7 +27,7 @@ const {
 	Spinner,
 	ToggleControl,
 	Toolbar,
-	withAPIData,
+	withAPIData
 } = wp.components;
 
 const { decodeEntities } = wp.utils;
@@ -36,6 +38,8 @@ const {
 	BlockControls,
 } = wp.editor;
 
+const MAX_POSTS_COLUMNS = 6;
+
 class PostsGridEdit extends Component {
 	constructor() {
 		super( ...arguments );
@@ -44,28 +48,36 @@ class PostsGridEdit extends Component {
 		this.toggleDisplayFeaturedImage = this.toggleDisplayFeaturedImage.bind( this );
 	}
 
-	toggleDisplayPostDate() {
-		const { displayPostDate } = this.props.attributes;
+	toggleDisplayPostDate( newValue ) {
 		const { setAttributes } = this.props;
-
-		setAttributes( { displayPostDate: ! displayPostDate } );
+		setAttributes( { displayPostDate: newValue } );
 	}
 
-	toggleDisplayFeaturedImage() {
-		const { displayFeaturedImage } = this.props.attributes;
+	toggleDisplayFeaturedImage( newValue ) {
 		const { setAttributes } = this.props;
-
-		setAttributes( { displayFeaturedImage: ! displayFeaturedImage } );
+		setAttributes( { displayFeaturedImage: newValue } );
 	}
 
 	render() {
 		const latestPosts = this.props.latestPosts.data;
 		const { attributes, categoriesList, setAttributes } = this.props;
-		const { displayFeaturedImage, displayPostDate, align, postLayout, columns, order, orderBy, categories, postsToShow } = attributes;
+		const {
+			displayFeaturedImage,
+			displayPostDate,
+			align,
+			postLayout,
+			columns,
+			order,
+			orderBy,
+			categories,
+			postsToShow,
+			postType,
+			taxonomy
+		} = attributes;
 
 		const inspectorControls = (
 			<InspectorControls>
-				<PanelBody title={ __( 'Latest Posts Settings' ) }>
+				<PanelBody title={ __( 'Posts Grid Settings' ) }>
 					<QueryControls
 						{ ...{ order, orderBy } }
 						numberOfItems={ postsToShow }
@@ -76,10 +88,11 @@ class PostsGridEdit extends Component {
 						onCategoryChange={ ( value ) => setAttributes( { categories: '' !== value ? value : undefined } ) }
 						onNumberOfItemsChange={ ( value ) => setAttributes( { postsToShow: value } ) }
 					/>
+
 					<ToggleControl
 						label={ __( 'Display featured image' ) }
 						checked={ displayFeaturedImage }
-						onChange={ this.toggleDisplayFeaturedImage }
+						onChange={this.toggleDisplayFeaturedImage}
 					/>
 
 					<ToggleControl
@@ -157,15 +170,16 @@ class PostsGridEdit extends Component {
 						[ `columns-${ columns }` ]: postLayout === 'grid',
 					} ) }
 				>
-					{ displayPosts.map( ( post, i ) =>
-						<li key={ i }>
+					{ displayPosts.map( ( post, i ) => {
+						return (<li key={ i }>
+							{( displayFeaturedImage && post.featured_media ) ? <Thumbnail id={post.featured_media} /> : null }
 							<a href={ post.link } target="_blank">{ decodeEntities( post.title.rendered.trim() ) || __( '(Untitled)' ) }</a>
 							{ displayPostDate && post.date_gmt &&
 							<time dateTime={ moment( post.date_gmt ).utc().format() } className={ `${ this.props.className }__post-date` }>
 								{ moment( post.date_gmt ).local().format( 'MMMM DD, Y' ) }
 							</time>
 							}
-						</li>
+						</li>)}
 					) }
 				</ul>
 			</Fragment>
@@ -174,20 +188,23 @@ class PostsGridEdit extends Component {
 }
 
 export default withAPIData( ( props ) => {
-	const { postsToShow, order, orderBy, categories } = props.attributes;
+	const { postsToShow, order, orderBy, categories, postType } = props.attributes;
 	const latestPostsQuery = stringify( _.pick( {
 		categories,
 		order,
 		orderby: orderBy,
 		per_page: postsToShow,
-		_fields: [ 'date_gmt', 'link', 'title' ],
+		_fields: [ 'date_gmt', 'link', 'title', 'featured_media' ],
 	}, ( value ) => ! _.isUndefined( value ) ) );
+
 	const categoriesListQuery = stringify( {
 		per_page: 100,
 		_fields: [ 'id', 'name', 'parent' ],
 	} );
+
 	return {
-		latestPosts: `/wp/v2/posts?${ latestPostsQuery }`,
-		categoriesList: `/wp/v2/categories?${ categoriesListQuery }`,
+		//types: "/wp/v2/types",
+		latestPosts: "/wp/v2/posts?" + latestPostsQuery ,
+		categoriesList: "/wp/v2/categories?" + categoriesListQuery,
 	};
 } )( PostsGridEdit );

@@ -39,7 +39,7 @@ const glob = require("glob"),
 	NODE_ENV = process.env.NODE_ENV || 'development',
 	webpackConfig = {
 		mode: 'development',
-		entry: glob.sync("./blocks/**/*.js"),
+		entry: glob.sync("./blocks/**/index.js"),
 		output: {
 			path: __dirname,
 			filename: './build/block.js',

@@ -1,0 +1,30 @@
+label {
+    display: block;
+    margin-top: 20px;
+}
+input, textarea {
+    width: 100%;
+    display: block;
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+}
+fieldset {
+    border: none;
+    margin: 0;
+}
+.content-form-loading {
+    opacity: .5;
+    pointer-events: none;
+}
+.content-form-notice {
+    font-size: 21px;
+    padding: 5px;
+}
+.content-form-success {
+    color: #53a813;
+    border: 2px solid #53a813;
+}
+.content-form-error {
+    color: #d5521a;
+    border: 2px solid #d5521a;
+}

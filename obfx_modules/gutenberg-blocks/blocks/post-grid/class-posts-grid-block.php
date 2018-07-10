@@ -70,19 +70,31 @@ class Posts_Grid_Block extends Base_Block {
 			'category'    => $attributes['categories'],
 		) );
 
-		$list_items_markup = '';
+		$list_items_markup = $featured_image_markup = '';
 
 		foreach ( $recent_posts as $post ) {
 			$post_id = $post['ID'];
 
+			if ( isset( $attributes['displayFeaturedImage'] ) && $attributes['displayFeaturedImage'] ) {
+				$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id(  $post['ID'] ) );
+
+				$featured_image_markup = sprintf(
+					'<div class="post-thumbnail"><img src="%1$s" alt="" /></div><!-- .post-thumbnail -->',
+					esc_url( $thumbnail[0] )
+				);
+			}
+
 			$title = get_the_title( $post_id );
+
 			if ( ! $title ) {
 				$title = __( '(Untitled)', 'gutenberg' );
 			}
+
 			$list_items_markup .= sprintf(
-				'<li><a href="%1$s">%2$s</a>',
+				'<li><a href="%1$s">%2$s %3$s</a>',
 				esc_url( get_permalink( $post_id ) ),
-				esc_html( $title )
+				esc_html( $title ),
+				$featured_image_markup
 			);
 
 			if ( isset( $attributes['displayPostDate'] ) && $attributes['displayPostDate'] ) {

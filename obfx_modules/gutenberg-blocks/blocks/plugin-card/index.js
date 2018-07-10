@@ -7,25 +7,25 @@ const {
 	registerBlockType
 } = wp.blocks;
 
-import AboutAuthorEditor from './Editor';
+import PluginCardEditor from './Editor';
 
-registerBlockType('orbitfox/about-author', {
-	title: __('About Author'),
+registerBlockType('orbitfox/plugin-cards', {
+	title: __('Plugin Card'),
 	icon: 'index-card',
-	category: 'common',
+	category: 'layout',
 	keywords: [
-		'about',
-		'author',
+		'plugin',
+		'card',
 		'orbitfox'
 	],
 
 	attributes: {
-		customLabel: {
+		slug: {
 			type: 'string',
 		},
 	},
 
-	edit: AboutAuthorEditor,
+	edit: PluginCardEditor,
 	save() {
 		return null;
 	},

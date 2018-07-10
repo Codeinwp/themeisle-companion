@@ -143,7 +143,12 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			}
 
 			$block = new $classname();
-			$block->register_block();
+
+			if ( method_exists( $block, 'register_block' ) ) {
+				$block->register_block();
+			} else if ( method_exists( $block, 'instance' ) ) {
+				$block->instance();
+			}
 		}
 
 	}
@@ -155,6 +160,28 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			array( 'wp-blocks' ),
 			filemtime( plugin_dir_path( __FILE__ ) . 'build/style.css' )
 		);
+
+		if ( is_admin() ) {
+			return;
+		}
+
+		// next scripts ar for front-end only
+
+		// @TODO content forms are not ready yet.
+//		wp_enqueue_style(
+//			'obfx-contact_form_styles',
+//			plugins_url( 'build/contact-form.css', __FILE__ ),
+//			array(),
+//			filemtime( plugin_dir_path( __FILE__ ) . 'build/contact-form.css' )
+//		);
+//
+//		wp_enqueue_script(
+//			'obfx-contact_form_script',
+//			plugins_url( 'build/contact-form.js', __FILE__ ),
+//			array( 'jquery' ),
+//			filemtime( plugin_dir_path( __FILE__ ) . 'build/contact-form.js' )
+//		);
+
 	}
 
 }
