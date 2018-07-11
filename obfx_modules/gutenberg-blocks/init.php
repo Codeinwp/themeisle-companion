@@ -11,6 +11,8 @@
  */
 class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
+	protected $blocks_classes = array();
+
 	/**
 	 * Gutenberg_Blocks_OBFX_Module constructor.
 	 *
@@ -52,6 +54,7 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function hooks() {
 		$this->loader->add_action( 'init', $this, 'load_js_blocks' );
+		$this->loader->add_action( 'init', $this, 'load_server_side_helpers', 11 );
 		$this->loader->add_action( 'wp', $this, 'load_server_side_blocks', 11 );
 
 		//add_action( 'enqueue_block_editor_assets', 'gutenberg_examples_02_enqueue_block_editor_assets' );
@@ -122,9 +125,24 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	}
 
 	public function load_server_side_blocks() {
+
+		foreach ( $this->blocks_classes as $classname ) {
+
+			if ( ! class_exists ( $classname ) ) {
+				continue;
+			}
+
+			$block = new $classname();
+
+			if ( method_exists( $block, 'register_block' ) ) {
+				$block->register_block();
+			}
+		}
+	}
+
+	function load_server_side_helpers(){
 		// load the base class
 		require_once plugin_dir_path( __FILE__ ) . 'class-gutenberg-block.php';
-
 		$ss_blocks = glob( __DIR__ . '/blocks/*/*.php');
 
 		foreach ( $ss_blocks as $block ) {
@@ -142,15 +160,18 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				continue;
 			}
 
+			if ( strpos( $classname, '-block.php' ) ) {
+				// we need to init these blocks on a hook later than "init". See `load_server_side_blocks`
+				$this->blocks_classes[] = $classname;
+				continue;
+			}
+
 			$block = new $classname();
 
-			if ( method_exists( $block, 'register_block' ) ) {
-				$block->register_block();
-			} else if ( method_exists( $block, 'instance' ) ) {
+			if ( method_exists( $block, 'instance' ) ) {
 				$block->instance();
 			}
 		}
-
 	}
 
 	function enqueue_block_assets() {

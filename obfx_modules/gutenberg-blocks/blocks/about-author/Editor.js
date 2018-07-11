@@ -4,6 +4,7 @@ const {withSelect} = wp.data;
 const {__} = wp.i18n;
 
 const {RichText} = wp.editor;
+const {Fragment} = wp.element;
 
 export class AboutAuthorEditor extends Component {
 	constructor() {
@@ -18,31 +19,25 @@ export class AboutAuthorEditor extends Component {
 		} = this.props;
 
 		const {
-			postAuthor,
-			authors,
 			customLabel,
 		} = attributes;
 
-		// @TODO this is wip; We need to build a nice preview of this block
+		// retrieve the post's author defaults
+		let postAuthor = this.props.postAuthor
+		let author_details = this.props.authors.filter((o) => {
+			return o.id === postAuthor
+		} );
 
-		return (<section className="blocks-single-author">
-			<h2>This author</h2>
-			<p>
-				<img src="http://2.gravatar.com/avatar/2103d6c58b7f6b25a98b25fcaafb2521?s=96&d=mm&r=g" alt=""/>
-				A possible short description here
-			</p>
+		if ( typeof author_details[0] === "undefined" ) {
+			return (<div></div>);
+		}
 
-			<RichText
-				tagName="p"
-				multiline="false"
-				placeholder={__('Custom ;abe;')}
-				value={customLabel}
-				formattingControls={[]}
-				onChange={(newValue) => {
-					setAttributes({customLabel: newValue})
-				}}
-				keepPlaceholderOnFocus
-			/>
+		author_details = author_details[0]
+
+		return (<section className="obfx-author-box">
+			<h3>{author_details.name}</h3>
+			<img src={author_details.avatar_urls['96']} alt=""/>
+			<p>{author_details.description}</p>
 		</section>);
 	}
 }

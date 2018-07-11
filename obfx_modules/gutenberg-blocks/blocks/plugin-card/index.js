@@ -2,7 +2,7 @@
  * WordPress dependencies...
  */
 const {__} = wp.i18n;
-
+const {Component, Fragment, RawHTML} = wp.element;
 const {
 	registerBlockType
 } = wp.blocks;
@@ -18,15 +18,42 @@ registerBlockType('orbitfox/plugin-cards', {
 		'card',
 		'orbitfox'
 	],
-
+	// @TODO we still need to decide which attributes we should handle
 	attributes: {
 		slug: {
+			type: 'string',
+		},
+		plugin_name: {
+			type: 'string',
+		},
+		plugin_author: {
+			type: 'raw',
+		},
+		plugin_desc: {
+			type: 'string',
+		},
+		plugin_version: {
 			type: 'string',
 		},
 	},
 
 	edit: PluginCardEditor,
-	save() {
-		return null;
+	save( {attributes} ) {
+		const {
+			plugin_name,
+			plugin_author,
+			plugin_desc,
+			plugin_version,
+		} = attributes;
+
+		const output = (<div>
+			<h3 className="plugin_name">{_.unescape(plugin_name) }</h3>
+			<ul>
+				<li><strong>Author:</strong><span>{ _.unescape( plugin_author ) }</span></li>
+				<li><strong>Description:</strong><span>{ plugin_desc }</span></li>
+				<li><strong>Version:</strong><span>{plugin_version}</span></li>
+			</ul>
+		</div>);
+		return output;
 	},
 });
