@@ -1,4 +1,9 @@
 
+ ### v2.5.3 - 2018-07-11 
+ **Changes:** 
+ * Small alignment fix for menu icons module
+* Added styling options for Elementor content forms
+ 
  ### v2.5.2 - 2018-07-06 
  **Changes:** 
  * Fixes post grid pagination issue

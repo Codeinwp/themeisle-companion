@@ -103,6 +103,12 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 ## Changelog ##
+### 2.5.3 - 2018-07-11  ###
+
+* Small alignment fix for menu icons module
+* Added styling options for Elementor content forms
+
+
 ### 2.5.2 - 2018-07-06  ###
 
 * Fixes post grid pagination issue
