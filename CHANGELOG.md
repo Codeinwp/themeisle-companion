@@ -1,4 +1,8 @@
 
+ ### v2.5.4 - 2018-07-11 
+ **Changes:** 
+ * Fixed undefined method for old elementor versions.
+ 
  ### v2.5.3 - 2018-07-11 
  **Changes:** 
  * Small alignment fix for menu icons module
