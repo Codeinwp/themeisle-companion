@@ -48,6 +48,65 @@
   to {
     box-shadow: inset 0 0 0 4px #33B3DB; } }
 
+.obfx-chart-entry {
+  width: 100%;
+  display: grid;
+  grid-auto-flow: column;
+  padding: 5px;
+  grid-auto-columns: 35% 15% 35% 15%;
+  border: 1px solid #333;
+  margin: 3px;
+  border-radius: 8px; }
+/**
+ * Colors
+ */
+/**
+ * Breakpoints & Media Queries
+ */
+/**
+ * Often re-used variables
+ */
+/**
+ * Breakpoint mixins
+ */
+/**
+ * Long content fade mixin
+ *
+ * Creates a fading overlay to signify that the content is longer
+ * than the space allows.
+ */
+/**
+ * Button states and focus styles
+ */
+/**
+ * Applies editor left position to the selector passed as argument
+ */
+/**
+ * Applies editor right position to the selector passed as argument
+ */
+@-webkit-keyframes fade-in {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+@keyframes fade-in {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@-webkit-keyframes editor_region_focus {
+  from {
+    box-shadow: inset 0 0 0 0 #33B3DB; }
+  to {
+    box-shadow: inset 0 0 0 4px #33B3DB; } }
+
+@keyframes editor_region_focus {
+  from {
+    box-shadow: inset 0 0 0 0 #33B3DB; }
+  to {
+    box-shadow: inset 0 0 0 4px #33B3DB; } }
+
 .wp-block-orbitfox-our-services .editor-block-list__layout {
   margin-left: 0;
   margin-right: 0; }

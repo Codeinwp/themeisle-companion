@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@wordpress/autop": "^1.0.4",
+    "chart.js": "^2.7.2",
     "memize": "^1.0.5",
     "react": "16.4.1",
     "redux": "^3.7.2"

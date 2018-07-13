@@ -182,6 +182,20 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			filemtime( plugin_dir_path( __FILE__ ) . 'build/style.css' )
 		);
 
+//		wp_enqueue_script(
+//			'obfx-charts',
+//			'https://unpkg.com/recharts/umd/Recharts.min.js',
+//			array( 'jquery' )
+//		);
+
+
+		wp_enqueue_script(
+			'obfx-charts',
+			plugins_url( 'blocks/chart/c.js', __FILE__ ),
+			array( 'jquery' ),
+			filemtime( plugin_dir_path( __FILE__ ) . 'blocks/chart/c.js' )
+		);
+
 		if ( is_admin() ) {
 			return;
 		}
@@ -202,6 +216,7 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 //			array( 'jquery' ),
 //			filemtime( plugin_dir_path( __FILE__ ) . 'build/contact-form.js' )
 //		);
+
 
 	}
 

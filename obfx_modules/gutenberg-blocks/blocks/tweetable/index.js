@@ -34,7 +34,7 @@ registerBlockType('orbitfox/tweetable', {
 			default: [],
 		},
 		permalink: {
-			type: 'attribute',
+			type: 'url',
 		},
 		via: {
 			type: 'string',

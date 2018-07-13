@@ -1,0 +1,10 @@
+.obfx-chart-entry {
+  width: 100%;
+  display: grid;
+  grid-auto-flow: column;
+  padding: 5px;
+  grid-auto-columns: 35% 15% 35% 15%;
+  border: 1px solid #333;
+  margin: 3px;
+  border-radius: 8px;
+}
