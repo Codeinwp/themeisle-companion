@@ -106,7 +106,6 @@ abstract class Base_Block {
 	 */
 	public function render_callback( $attributes ) {
 
-//		var_dump( $attributes );
 		// give a chance to our themes to overwrite the template of blocks
 		return apply_filters( "obfx_gutenberg_block_template_{$this->block_slug}", $this->render( $attributes ) );
 	}

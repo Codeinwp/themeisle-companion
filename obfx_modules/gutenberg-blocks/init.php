@@ -54,7 +54,7 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function hooks() {
 		$this->loader->add_action( 'init', $this, 'load_js_blocks' );
-		$this->loader->add_action( 'init', $this, 'load_server_side_helpers', 11 );
+		$this->loader->add_action( 'init', $this, 'autoload_block_classes', 11 );
 		$this->loader->add_action( 'wp', $this, 'load_server_side_blocks', 11 );
 
 		//add_action( 'enqueue_block_editor_assets', 'gutenberg_examples_02_enqueue_block_editor_assets' );
@@ -140,7 +140,7 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		}
 	}
 
-	function load_server_side_helpers(){
+	function autoload_block_classes(){
 		// load the base class
 		require_once plugin_dir_path( __FILE__ ) . 'class-gutenberg-block.php';
 		$ss_blocks = glob( __DIR__ . '/blocks/*/*.php');
@@ -160,7 +160,7 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				continue;
 			}
 
-			if ( strpos( $classname, '-block.php' ) ) {
+			if ( strpos( $block, '-block.php' ) ) {
 				// we need to init these blocks on a hook later than "init". See `load_server_side_blocks`
 				$this->blocks_classes[] = $classname;
 				continue;
@@ -182,18 +182,12 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			filemtime( plugin_dir_path( __FILE__ ) . 'build/style.css' )
 		);
 
-//		wp_enqueue_script(
-//			'obfx-charts',
-//			'https://unpkg.com/recharts/umd/Recharts.min.js',
-//			array( 'jquery' )
-//		);
-
-
+		// this should only be quequed when a chart block is present.
 		wp_enqueue_script(
 			'obfx-charts',
-			plugins_url( 'blocks/chart/c.js', __FILE__ ),
+			plugins_url( 'blocks/chart/chart.js', __FILE__ ),
 			array( 'jquery' ),
-			filemtime( plugin_dir_path( __FILE__ ) . 'blocks/chart/c.js' )
+			filemtime( plugin_dir_path( __FILE__ ) . 'blocks/chart/chart.js' )
 		);
 
 		if ( is_admin() ) {

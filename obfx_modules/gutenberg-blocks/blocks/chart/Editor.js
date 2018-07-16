@@ -1,6 +1,8 @@
 const {Component, Fragment} = wp.element;
 const {withSelect} = wp.data;
 
+import update from 'immutability-helper';
+
 const {__} = wp.i18n;
 const {
 	FormToggle,
@@ -19,43 +21,45 @@ import './editor.scss';
 export default class ChartEditor extends Component {
 	constructor() {
 		super(...arguments);
+
+		this.state = {}
+
+		this.props.attributes.blockID = this.props.clientId
 	}
 
 	static getDerivedStateFromProps( props, state ){
-		const {attributes} = props;
+		const {attributes, setAttributes, clientId} = props;
+
 		const {
+			doPreview,
 			chartName,
-			data
+			dataLabels,
+			dataValues,
+			dataColors,
+			blockID
 		} = attributes;
 
-		if ( data.labels.length < 1 ) {
+		if ( dataLabels.length < 1 ) {
 			return {}
 		}
 
-		const labels = data.labels;
-		const values = data.values;
-		const backColors = data.backgroundColors;
+		setTimeout(() => {
+			const el = document.getElementById('obfx-chart-pie-' + blockID);
 
-		const el = document.getElementById('obfx-chart-pie');
-		if ( null === el ) {
-			return {}
-		}
+			const chart = new Chart( el, {
+				type: 'pie',
+				data: {
+					labels: dataLabels,
+					datasets: [{
+						label: chartName,
+						data: dataValues,
+						backgroundColor: dataColors,
+					}]
+				}
+			});
 
-		if ( props.attributes === state.attributes ) {
-			//return props
-		}
+		}, 11 )
 
-		var chart = new Chart( el, {
-			type: 'pie',
-			data: {
-				labels: labels,
-				datasets: [{
-					label: chartName,
-					data: values,
-					backgroundColor: backColors,
-				}]
-			}
-		})
 		return props
 	}
 
@@ -63,21 +67,24 @@ export default class ChartEditor extends Component {
 		const {
 			isSelected,
 			setAttributes,
-			attributes
+			attributes,
+			clientId
 		} = this.props;
 
 		const {
 			chartName,
+			blockID,
 			backgroundColor,
-			data,
 			tempLabel,
-			tempValue
+			tempValue,
+			dataLabels,
+			dataValues,
+			dataColors
 		} = attributes;
 
-		const dataOptions = data.labels.map( (label,index) => {
-			// const {label, value, color} = entry
-			const value = data.values[index]
-			const color = data.backgroundColors[index]
+		const dataOptions = dataLabels.map( (label,index) => {
+			const value = dataValues[index]
+			const color = dataColors[index]
 
 			return (<div className="obfx-chart-entry" key={index}>
 				<RichText
@@ -85,10 +92,10 @@ export default class ChartEditor extends Component {
 					value={ label }
 					multiline="false"
 					formattingControls={ [] }
-					keepPlaceholderOnFocus
 					onChange={ (newValue) => {
-						data.labels[index] = newValue[0];
-						setAttributes( { data: data } )
+						const newLabels = [...dataLabels]
+						newLabels[index] = newValue[0];
+						setAttributes( { dataLabels: newLabels } )
 					} }
 					placeholder={__('Label')}
 				/>
@@ -98,10 +105,10 @@ export default class ChartEditor extends Component {
 					value={ value }
 					multiline="false"
 					formattingControls={ [] }
-					keepPlaceholderOnFocus
 					onChange={ (newValue) => {
-						data.values[index] = newValue[0];
-						setAttributes( { data: data } )
+						const newValues = [...dataValues]
+						newValues[index] = newValue[0];
+						setAttributes( { dataValues: newValues } )
 					} }
 					placeholder={__('value')}
 				/>
@@ -114,13 +121,9 @@ export default class ChartEditor extends Component {
 						label={ __( 'Color' ) }
 						value={ color }
 						onChange={ (newColor) => {
-							// let newEntry = data[index];
-							// newEntry = { ...newEntry, color: newColor};
-
-							data.backgroundColors[index] = newValue;
-							setAttributes( { data: data } )
-							//
-							// setAttributes( { data: [...data, newEntry] } )
+							const newColors = [...dataColors]
+							newColors[index] = newColor;
+							setAttributes( { dataColors: newColors } )
 						} }
 					/>
 				</PanelColor>
@@ -129,10 +132,15 @@ export default class ChartEditor extends Component {
 					isSmall
 					onClick={ (e) => {
 						e.preventDefault();
-						data.labels.splice(index, 1);
-						data.values.splice(index, 1);
-						data.backgroundColors.splice(index, 1);
-						setAttributes({data: data})
+						let newLabels = [...dataLabels];
+						let newValues = [...dataValues];
+						let newColors = [...dataColors];
+
+						newLabels.splice(index, 1);
+						newValues.splice(index, 1);
+						newColors.splice(index, 1);
+
+						setAttributes({ dataLabels: newLabels, dataValues: newValues, dataColors: newColors })
 					} }
 				>
 					{ __( 'Delete' ) }
@@ -160,7 +168,7 @@ export default class ChartEditor extends Component {
 				</PanelBody>
 			</InspectorControls>
 
-			<canvas id="obfx-chart-pie" style={{backgroundColor: backgroundColor}}></canvas>
+			<canvas id={"obfx-chart-pie-" + blockID} style={{backgroundColor: backgroundColor}}>loading</canvas>
 
 			{isSelected ? dataOptions : null }
 
@@ -168,6 +176,7 @@ export default class ChartEditor extends Component {
 				<RichText
 					tagName={'p'}
 					multiline="false"
+					value={tempLabel}
 					formattingControls={ [] }
 					keepPlaceholderOnFocus
 					placeholder={__('Label')}
@@ -179,6 +188,7 @@ export default class ChartEditor extends Component {
 				<RichText
 					tagName={'p'}
 					multiline="false"
+					value={tempValue}
 					formattingControls={ [] }
 					keepPlaceholderOnFocus
 					placeholder={__('Value')}
@@ -197,17 +207,19 @@ export default class ChartEditor extends Component {
 							return;
 						}
 
-						data.push( {
-							label: tempLabel,
-							value: tempValue,
-						} );
-
-						setAttributes({ data: data, tempLabel: '', tempValue: '' })
+						setAttributes({
+							dataLabels: update(dataLabels, {$push: [tempLabel]}),
+							dataValues: update(dataValues, {$push: [tempValue]}),
+							dataColors: update(dataColors, {$push: ['#333']}),
+							tempLabel: '',
+							tempValue: ''
+						})
 					} }
 				>
 					{ __( 'Add row' ) }
 				</Button>
 			</div> : null }
+
 		</div>)
 	}
 }

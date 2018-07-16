@@ -4,18 +4,14 @@
 const {__} = wp.i18n;
 
 const {
-	registerBlockType,
-	createBlock
+	registerBlockType
 } = wp.blocks;
-
-const {RichText} = wp.editor;
-
 
 import ChartEditor from './Editor';
 
-registerBlockType('orbitfox/pie-chart', {
-	title: __('Chart'),
-	icon: 'twitter',
+registerBlockType('orbitfox/chart-pie', {
+	title: __('Pie Chart'),
+	icon: 'chart-pie',
 	category: 'common',
 	keywords: [
 		__('pie'),
@@ -23,6 +19,9 @@ registerBlockType('orbitfox/pie-chart', {
 		__('orbitfox'),
 	],
 	attributes: {
+		blockID: {
+			type: 'string'
+		},
 		chartName: {
 			type: 'string',
 			default: 'Pie Chart',
@@ -31,6 +30,20 @@ registerBlockType('orbitfox/pie-chart', {
 			type: 'string',
 			default: '#e4e7e1'
 		},
+		dataLabels: {
+			type: 'array',
+			default: [ 'Blue', 'Red']
+		},
+
+		dataValues: {
+			type: 'array',
+			default: [ 22, 78]
+		},
+
+		dataColors: {
+			type: 'array',
+			default: [ 'red', 'blue']
+		}
 		// data: {
 		// 	type: 'array',
 		// 	source: 'attribute',
@@ -40,32 +53,9 @@ registerBlockType('orbitfox/pie-chart', {
 		// 		{label: 'Blue', value: 77, color: '#0693e3'}
 		// 	],
 		// },
-		data: {
-			source: 'query',
-			selector: '.obfx-chart-pie',
-			query: {
-				labels: { source: 'attribute', attribute: 'data-label' },
-				values: { source: 'attribute', attribute: 'data-value' },
-			}
-		},
-		// data: {
-		// 	type: 'array',
-		// 	default: {
-		// 		labels: ['Red', 'Blue'],
-		// 		values: [23, 77],
-		// 		backgroundColors: ['#cf2e2e', '#0693e3'],
-		// 	}
-		// }
-
 	},
 
 	edit: ChartEditor,
 
-	save({attributes, id}) {
-		const {data} = attributes
-
-		return (<div className="data-holder">
-			<canvas className="obfx-chart-pie" id={"obfx-p"}></canvas>
-		</div>);
-	},
+	save() { return null; },
 });
