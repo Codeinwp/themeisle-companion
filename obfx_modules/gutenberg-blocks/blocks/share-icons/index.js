@@ -24,14 +24,18 @@ import social_list from './social_list'
 
 // default block attributes
 const block_attributes = {
-	layout: {
+	output: {
 		type: 'string',
 		default: 'icons'
+	},
+	layout: {
+		type: 'string',
+		default: 'inline'
 	}
 }
 
 // generate block attributes for each social platform
-for ( let key in social_list) {
+for (let key in social_list) {
 	const attribute_key = 'show_' + key
 
 	block_attributes[attribute_key] = {
@@ -57,10 +61,10 @@ registerBlockType('orbitfox/share-icons', {
 			setAttributes,
 			id
 		} = props
-		const{ layout } = attributes
+		const {layout, output} = attributes
 
-		const get_icon_markup = function ( layout, name, label ) {
-			switch (layout) {
+		const get_icon_markup = function (output, name, label) {
+			switch (output) {
 				case 'text_and_icons':
 					return <span>{label} <i className={'fa fa-' + name}></i></span>
 				case 'icons_and_text':
@@ -104,7 +108,7 @@ registerBlockType('orbitfox/share-icons', {
 			if (typeof attributes[attribute_key] !== "undefined" && attributes[attribute_key]) {
 				preview_html.push(<div key={'preview-icon-' + social_name}>
 				<span>
-					{ get_icon_markup( layout, social_name, config.label ) }
+					{get_icon_markup(output, social_name, config.label)}
 				</span>
 				</div>)
 			}
@@ -116,9 +120,9 @@ registerBlockType('orbitfox/share-icons', {
 						{checkboxes_html}
 					</PanelBody>
 					<PanelBody className="components-panel__row">
-						<p><label htmlFor={'social-icons-layout-' + id}>{__('Layout')}</label></p>
-						<select name={'social-icons-layout-' + id} id={'social-icons-layout-' + id} onChange={(e) => {
-							setAttributes({layout: e.target.value})
+						<p><label htmlFor={'social-icons-output-' + id}>{__('Output')}</label></p>
+						<select name={'social-icons-output-' + id} id={'social-icons-output-' + id} onChange={(e) => {
+							setAttributes({output: e.target.value})
 						}}>
 							<option value="icons">{__('Icons')}</option>
 							<option value="text">{__('Text')}</option>
@@ -126,8 +130,16 @@ registerBlockType('orbitfox/share-icons', {
 							<option value="text_and_icons">{__('Text and Icons')}</option>
 						</select>
 					</PanelBody>
+					<PanelBody className="components-panel__row"  title={ __( 'Layout' ) }>
+						<select name={'social-icons-layout-' + id} id={'social-icons-layout-' + id} onChange={(e) => {
+							setAttributes({layout: e.target.value})
+						}}>
+							<option value="inline">{__('Inline')}</option>
+							<option value="stacked">{__('Stacked')}</option>
+						</select>
+					</PanelBody>
 				</InspectorControls>
-				<div className="preview-box">
+				<div className={ layout + "preview-box" }>
 					{preview_html}
 				</div>
 			</Fragment>

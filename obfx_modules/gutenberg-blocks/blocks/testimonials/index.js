@@ -154,7 +154,7 @@ registerBlockType( 'orbitfox/testimonial', {
 				backgroundImage: `url(${mediaURL})`,
 				backgroundSize: 'cover',
 				width: '200px',
-				height: 'auto',
+				height: '200px',
 			}} data-src={mediaURL}></div> : null }
 			{ name ? <h3>{name}</h3> : null }
 			{ title ? <h4>{title}</h4> : null }

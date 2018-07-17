@@ -46,10 +46,13 @@ registerBlockType('orbitfox/plugin-cards', {
 			plugin_version,
 		} = attributes;
 
+		// the author comes wrapped in <a href=> tag and we need to escape it
+		const link = <div dangerouslySetInnerHTML={{__html: plugin_author}}></div>
+
 		const output = (<div>
 			<h3 className="plugin_name">{_.unescape(plugin_name) }</h3>
 			<ul>
-				<li><strong>Author:</strong><span>{ _.unescape( plugin_author ) }</span></li>
+				<li><strong>Author:</strong><span>{link}</span></li>
 				<li><strong>Description:</strong><span>{ plugin_desc }</span></li>
 				<li><strong>Version:</strong><span>{plugin_version}</span></li>
 			</ul>

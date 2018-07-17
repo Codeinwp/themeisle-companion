@@ -87,7 +87,7 @@ registerBlockType('orbitfox/our-services', {
 				</InspectorControls>
 				<div className={ classes }>
 					<InnerBlocks
-
+						templateLock={ false }
 						layouts={ memoize( ( columns ) => {
 							return Array.apply(null, Array(columns)).map((i, n) => ({
 								name: `column-${ n + 1 }`,

@@ -3,10 +3,13 @@ import memoize from "memize";
 /**
  * WordPress dependencies
  */
-
 const {Component} = wp.element;
 const {Placeholder, Spinner, withAPIData, FormToggle, PanelBody} = wp.components;
 const {__, sprintf} = wp.i18n;
+
+const { compose } = wp.compose;
+const { withSelect, withDispatch } = wp.data;
+
 const {
 	Editable,
 	BlockEdit
@@ -17,7 +20,6 @@ const {
 	RichText,
 	InspectorControls
 } = wp.editor;
-
 
 const fieldStyle = {
 	width: '40%',
@@ -30,7 +32,7 @@ const fieldStyleR = {
 	textAlign: 'right'
 }
 
-export default class ContactFormEditor extends Component {
+export class ContactFormEditor extends Component {
 	constructor() {
 		super(...arguments);
 		this.config = {
@@ -83,6 +85,8 @@ export default class ContactFormEditor extends Component {
 				}
 			}
 		};
+
+		console.log( this.props.initBlockID() )
 	}
 
 	render() {
@@ -249,3 +253,21 @@ export default class ContactFormEditor extends Component {
 		// ]
 	}
 }
+
+export default compose(
+	withDispatch( ( dispatch, params ) => ( {
+		initBlockID() {
+			console.log( params )
+			//console.log( dispatch( 'obfx/blocks' ).initForm() );
+		},
+	} ) ),
+	withSelect( ( select, params ) => {
+		const store = select( 'obfx/blocks' );
+
+		//console.log( store.initForm() )
+
+		return {
+			postTypeID: store.initForm( params.id ),
+		};
+	} ),
+)( ContactFormEditor );

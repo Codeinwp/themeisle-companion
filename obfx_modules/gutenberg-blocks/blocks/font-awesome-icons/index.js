@@ -16,6 +16,7 @@ const {
 	AlignmentToolbar,
 	BlockControls,
 	InspectorControls,
+	RichText
 } = wp.editor;
 
 const {
@@ -24,6 +25,7 @@ const {
 } = wp.element;
 
 import './style.scss';
+// @TODO this block should get some options for colors and background color
 
 registerBlockType('orbitfox/font-awesome-icons', {
 	title: __('Font Awesome Icon'),
@@ -62,6 +64,7 @@ registerBlockType('orbitfox/font-awesome-icons', {
 			textAlign: align,
 		};
 
+		// @TODO The icon option should be set via some sort of select with autocomplete not a RichText
 		return (
 			<Fragment>
 				<BlockControls>
@@ -73,7 +76,19 @@ registerBlockType('orbitfox/font-awesome-icons', {
 					/>
 				</BlockControls>
 				<InspectorControls>
-					<PanelBody title={ __( 'Settings' ) } className="blocks-font-size">
+					<PanelBody title={ __( 'Icon' ) } className="blocks-font-size">
+						<p>{ __( 'Pick up an icon from the awesome ' ) }
+							<a href={'https://fontawesome.com/icons?d=gallery'} target="_blank">{__('list')}</a>
+						</p>
+						<RichText
+							tagName={ 'p' }
+							value={ icon }
+							placeholder={ __('The icon key ... ') }
+							onChange={ ( icon ) => setAttributes( { icon: icon } ) }
+							keepPlaceholderOnFocus
+						/>
+					</PanelBody>
+					<PanelBody title={ __( 'Size' ) } className="blocks-font-size">
 						<FontSizePicker
 							value={ size }
 							onChange={ ( next ) => {
@@ -101,9 +116,8 @@ registerBlockType('orbitfox/font-awesome-icons', {
 			textAlign: align,
 		};
 
-		return <i
-			style={ styles }
-			className={'fa fa-' + icon }
-		></i>;
+		return <p style={ styles }>
+			<i className={'fa fa-' + icon }></i>
+		</p> ;
 	},
 });

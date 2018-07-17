@@ -57,6 +57,8 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$this->loader->add_action( 'init', $this, 'autoload_block_classes', 11 );
 		$this->loader->add_action( 'wp', $this, 'load_server_side_blocks', 11 );
 
+		add_action( 'init', array( $this, 'register_post_types' ) );
+
 		//add_action( 'enqueue_block_editor_assets', 'gutenberg_examples_02_enqueue_block_editor_assets' );
 		add_action( 'enqueue_block_assets', array( $this, 'enqueue_block_assets' ) );
 	}
@@ -210,8 +212,30 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 //			array( 'jquery' ),
 //			filemtime( plugin_dir_path( __FILE__ ) . 'build/contact-form.js' )
 //		);
-
-
 	}
 
+
+	function register_post_types() {
+		register_post_type(
+			'obfx_contact_form',
+			array(
+				'description' => 'test',
+				'public' => true,
+				'publicly_queryable' => true,
+				'show_in_nav_menus' => true,
+				'show_in_admin_bar' => true,
+				'exclude_from_search' => true,
+				'show_ui' => true,
+				'show_in_menu' => true,
+				'can_export' => true,
+				'delete_with_user' => false,
+				'hierarchical' => false,
+				'has_archive' => false,
+				'query_var' => 'obfx_contact_form',
+				'show_in_rest' => true,
+				'rest_base' => 'obfx_contact_form',
+				'rest_controller_class' => 'WP_REST_Posts_Controller'
+			)
+		);
+	}
 }

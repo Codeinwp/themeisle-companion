@@ -52,9 +52,13 @@ class Share_Icons_Block extends Base_Block {
 		);
 
 		$this->attributes = array(
-			'layout'         => array(
+			'output'         => array(
 				'type'    => 'string',
 				'default' => 'icons'
+			),
+			'layout'         => array(
+				'type'    => 'string',
+				'default' => 'inline'
 			),
 			'show_facebook'  => array(
 				'type'    => 'boolean',
@@ -88,7 +92,7 @@ class Share_Icons_Block extends Base_Block {
 	function render( $attributes ) {
 		$layout = $attributes['layout'];
 
-		$html = '<div class="obfx-social-icons">';
+		$html = '<div class="obfx-social-icons obfx-social-icons-layout-' . $layout .'">';
 
 		foreach ( $attributes as $key => $attribute ) {
 			if ( strpos( $key, 'show_' ) !== 0 ) {
@@ -107,7 +111,7 @@ class Share_Icons_Block extends Base_Block {
 	/**
 	 * Get the html of a specific sharing icon
 	 *
-	 * @param $layout The layout of the icon
+	 * @param $layout string The layout of the icon
 	 * @param $name string The social platform key
 	 * @param $label string The social platform label
 	 * @param $url string The url which should be clicked

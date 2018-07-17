@@ -3,6 +3,7 @@
  * I'll disable it for the moment.
  */
 
+
 /**
  * WordPress dependencies...
  */
@@ -33,6 +34,9 @@ registerBlockType('orbitfox/contact-form', {
 		__( 'orbitfox' ),
 	],
 	attributes: {
+		postTypeID: {
+			type: 'string'
+		},
 		email: {
 			type: 'string',
 			source: 'meta',
@@ -279,3 +283,4 @@ registerBlockType('orbitfox/contact-form-submit', {
 		);
 	},
 });
+

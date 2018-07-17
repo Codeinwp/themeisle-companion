@@ -83,38 +83,47 @@ export default class PriceTableEditor extends Component {
 							['core/heading', {
 								content: 'Panel 1',
 								layout: 'panel-1',
+								align: "center",
 							}],
 							['core/heading', {
 								content: 'Panel 2',
 								layout: 'panel-2',
+								align: "center",
 							}],
 							['core/heading', {
 								content: 'Panel 3',
 								layout: 'panel-3',
+								align: "center",
 							}],
 							['core/paragraph', {
 								content: 'Small description',
 								layout: 'panel-1',
+								align: "center",
 							}],
 							['core/paragraph', {
 								content: 'Small description',
 								layout: 'panel-2',
+								align: "center",
 							}],
 							['core/paragraph', {
 								content: 'Small description',
 								layout: 'panel-3',
+								align: "center",
 							}],
-							['core/list', {
+							['core/paragraph', {
 								values: [ 'Feature 1' ],
 								layout: 'panel-1',
+								align: "center",
 							}],
-							['core/list', {
+							['core/paragraph', {
 								values: [ 'Feature 1' ],
 								layout: 'panel-2',
+								align: "center",
 							}],
-							['core/list', {
+							['core/paragraph', {
 								values: [ 'Feature 1' ],
 								layout: 'panel-3',
+								align: "center",
 							}],
 
 							['core/separator', {
@@ -133,18 +142,21 @@ export default class PriceTableEditor extends Component {
 								url: "#",
 								text: "Buy me",
 								layout: 'panel-1',
+								align: "center",
 							}],
 
 							['core/button', {
 								url: "#",
 								text: "Buy me",
 								layout: 'panel-2',
+								align: "center",
 							}],
 
 							['core/button', {
 								url: "#",
 								text: "Buy me",
 								layout: 'panel-3',
+								align: "center",
 							}],
 
 						]}

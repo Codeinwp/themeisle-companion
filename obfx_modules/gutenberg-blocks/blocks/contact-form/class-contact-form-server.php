@@ -20,22 +20,11 @@ class Contact_Form_Server extends \WP_Rest_Controller {
 
 	public function init() {
 		add_action( 'rest_api_init', array( $this, 'register_routes' ) );
-		add_action( 'init', array( $this, 'register_metata' ) );
 
 		$this->notices = array(
 			'success' => esc_html__( 'Your message has been sent!', 'textdomain' ),
 			'error'   => esc_html__( 'We failed to send your message!', 'textdomain' ),
 		);
-	}
-
-	function register_metata(){
-		register_meta( 'page', 'email', array(
-			'show_in_rest' => true
-		));
-
-		register_meta( 'post', 'email', array(
-			'show_in_rest' => true
-		));
 	}
 
 	public function register_routes() {
