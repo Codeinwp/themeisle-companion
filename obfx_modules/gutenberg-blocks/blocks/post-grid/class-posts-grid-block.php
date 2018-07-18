@@ -32,6 +32,14 @@ class Posts_Grid_Block extends Base_Block {
 				'type'    => 'boolean',
 				'default' => false,
 			),
+			'displayReadMore'      => array(
+				'type'    => 'boolean',
+				'default' => false,
+			),
+			'displayExcerpt'      => array(
+				'type'    => 'boolean',
+				'default' => false,
+			),
 			'postLayout'           => array(
 				'type'    => 'string',
 				'default' => 'list',
@@ -51,6 +59,10 @@ class Posts_Grid_Block extends Base_Block {
 			'orderBy'              => array(
 				'type'    => 'string',
 				'default' => 'date',
+			),
+			'readMoreLabel'        => array(
+				'type' => 'string',
+				'default' => esc_html__( 'Read More ...', 'textdomain' )
 			),
 		);
 	}
@@ -74,6 +86,7 @@ class Posts_Grid_Block extends Base_Block {
 
 		foreach ( $recent_posts as $post ) {
 			$post_id = $post['ID'];
+			$excerpt = $readMoreMarkup = '';
 
 			if ( isset( $attributes['displayFeaturedImage'] ) && $attributes['displayFeaturedImage'] ) {
 				$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id(  $post['ID'] ) );
@@ -84,22 +97,36 @@ class Posts_Grid_Block extends Base_Block {
 				);
 			}
 
+			if ( isset( $attributes['displayExcerpt'] ) && $attributes['displayExcerpt'] ) {
+				$excerpt = $this->get_gutenberg_excerpt( $post );
+			}
+
 			$title = get_the_title( $post_id );
 
 			if ( ! $title ) {
 				$title = __( '(Untitled)', 'gutenberg' );
 			}
 
+			if ( isset( $attributes['displayReadMore'] ) && $attributes['displayReadMore'] ) {
+				$readMoreMarkup = sprintf(
+					'<a href="%1$s">%2$s</a>',
+					get_the_permalink(),
+					$attributes['readMoreLabel']
+				);
+			}
+
 			$list_items_markup .= sprintf(
-				'<li><a href="%1$s">%2$s %3$s</a>',
+				'<li><a href="%1$s">%2$s</a>%3$s %4$s',
 				esc_url( get_permalink( $post_id ) ),
 				esc_html( $title ),
-				$featured_image_markup
+				$featured_image_markup,
+				$excerpt,
+				$readMoreMarkup
 			);
 
 			if ( isset( $attributes['displayPostDate'] ) && $attributes['displayPostDate'] ) {
 				$list_items_markup .= sprintf(
-					'<time datetime="%1$s" class="wp-block-latest-posts__post-date">%2$s</time>',
+					'<time datetime="%1$s" class="wp-block-posts-grid__post-date">%2$s</time>',
 					esc_attr( get_the_date( 'c', $post_id ) ),
 					esc_html( get_the_date( '', $post_id ) )
 				);
@@ -108,7 +135,7 @@ class Posts_Grid_Block extends Base_Block {
 			$list_items_markup .= "</li>\n";
 		}
 
-		$class = "wp-block-latest-posts align{$attributes['align']}";
+		$class = "wp-block-posts-grid align{$attributes['align']}";
 		if ( isset( $attributes['postLayout'] ) && 'grid' === $attributes['postLayout'] ) {
 			$class .= ' is-grid';
 		}
@@ -128,5 +155,25 @@ class Posts_Grid_Block extends Base_Block {
 		);
 
 		return $block_content;
+	}
+
+	function get_gutenberg_excerpt( $post, $words_length = 24 ){
+
+		if ( has_excerpt( $post ) ) {
+			return get_the_excerpt( $post['ID'] );
+		}
+
+		$blocks = gutenberg_parse_blocks( $post['post_content'] );
+
+		$output = '';
+
+		foreach ( $blocks as $block ) {
+			if ( isset( $block['blockName'] )
+			     && ( $block['blockName'] === 'core/paragraph' || $block['blockName'] === 'core/heading' ) ) {
+				$output .= $block['innerHTML'];
+			}
+		}
+
+		return wp_trim_words( $output, $words_length );
 	}
 }

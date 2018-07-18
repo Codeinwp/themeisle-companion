@@ -20,9 +20,9 @@ class Thumbnail extends Component {
 		const img = thumbnail ? <img src={ thumbnail } alt={ alt } data-id={ id } /> : <Spinner />;
 
 		return (
-			<figure >
+			<div className="post-thumbnail" >
 				{ img }
-			</figure>
+			</div>
 		);
 	}
 }

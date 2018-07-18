@@ -26,11 +26,14 @@ registerBlockType('orbitfox/posts-grid', {
 		postsToShow: {type: "number", default: 5},
 		displayFeaturedImage: {type: "boolean", default: false},
 		displayPostDate: {type: "boolean", default: false},
+		displayReadMore: {type: "boolean", default: false},
+		displayExcerpt: {type: "boolean", default: false},
 		postLayout: {type: "string", default: "list"},
 		columns: {type: "number", default: 3},
 		align: {type: "string", default: "center"},
 		order: {type: "string", default: "desc"},
-		orderBy: {type: "string", default: "date"}
+		orderBy: {type: "string", default: "date"},
+		readMoreLabel: {type: "string", default: "Read More ..."}
 	},
 
 	getEditWrapperProps(attributes) {

@@ -27,7 +27,8 @@ const {
 	Spinner,
 	ToggleControl,
 	Toolbar,
-	withAPIData
+	withAPIData,
+	TextControl
 } = wp.components;
 
 const { decodeEntities } = wp.utils;
@@ -35,7 +36,7 @@ const { decodeEntities } = wp.utils;
 const {
 	InspectorControls,
 	BlockAlignmentToolbar,
-	BlockControls,
+	BlockControls
 } = wp.editor;
 
 const MAX_POSTS_COLUMNS = 6;
@@ -64,6 +65,9 @@ class PostsGridEdit extends Component {
 		const {
 			displayFeaturedImage,
 			displayPostDate,
+			displayExcerpt,
+			displayReadMore,
+			readMoreLabel,
 			align,
 			postLayout,
 			columns,
@@ -99,6 +103,23 @@ class PostsGridEdit extends Component {
 						label={ __( 'Display post date' ) }
 						checked={ displayPostDate }
 						onChange={ this.toggleDisplayPostDate }
+					/>
+					<ToggleControl
+						label={ __( 'Display Read More link' ) }
+						checked={ displayReadMore }
+						onChange={ (newValue) => { setAttributes({displayReadMore:newValue })} }
+					/>
+					{ displayReadMore &&
+					<TextControl
+						value={ readMoreLabel }
+						label={ __('Read More Label') }
+						onChange={ ( newValue ) => setAttributes( { readMoreLabel: newValue } ) }
+					/>
+					}
+					<ToggleControl
+						label={ __( 'Display excerpt' ) }
+						checked={ displayExcerpt }
+						onChange={ (newValue) => { setAttributes({displayExcerpt:newValue })} }
 					/>
 					{ postLayout === 'grid' &&
 					<RangeControl
@@ -166,19 +187,22 @@ class PostsGridEdit extends Component {
 				</BlockControls>
 				<ul
 					className={ classnames( this.props.className, {
+						'wp-block-posts-grid': true,
 						'is-grid': postLayout === 'grid',
 						[ `columns-${ columns }` ]: postLayout === 'grid',
+						[`align${align}`]: typeof align !== "undefined"
 					} ) }
 				>
 					{ displayPosts.map( ( post, i ) => {
 						return (<li key={ i }>
 							{( displayFeaturedImage && post.featured_media ) ? <Thumbnail id={post.featured_media} /> : null }
-							<a href={ post.link } target="_blank">{ decodeEntities( post.title.rendered.trim() ) || __( '(Untitled)' ) }</a>
+							<a href="#">{ decodeEntities( post.title.rendered.trim() ) || __( '(Untitled)' ) }</a>
 							{ displayPostDate && post.date_gmt &&
 							<time dateTime={ moment( post.date_gmt ).utc().format() } className={ `${ this.props.className }__post-date` }>
 								{ moment( post.date_gmt ).local().format( 'MMMM DD, Y' ) }
-							</time>
-							}
+							</time>}
+							{( displayExcerpt ) ? <p dangerouslySetInnerHTML={{__html: post.excerpt.rendered}}></p> : null }
+							{ displayReadMore ? <a href={'#'}>{readMoreLabel}</a> : null }
 						</li>)}
 					) }
 				</ul>
@@ -194,7 +218,7 @@ export default withAPIData( ( props ) => {
 		order,
 		orderby: orderBy,
 		per_page: postsToShow,
-		_fields: [ 'date_gmt', 'link', 'title', 'featured_media' ],
+		_fields: [ 'date_gmt', 'link', 'title', 'featured_media', 'excerpt' ],
 	}, ( value ) => ! _.isUndefined( value ) ) );
 
 	const categoriesListQuery = stringify( {
