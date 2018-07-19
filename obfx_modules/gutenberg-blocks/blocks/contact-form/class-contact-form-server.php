@@ -51,11 +51,11 @@ class Contact_Form_Server extends \WP_Rest_Controller {
 						'required'    => true,
 						'description' => __( 'The form identifier.', 'textdomain' ),
 					),
-					'post_id'   => array(
-						'type'        => 'string',
-						'required'    => true,
-						'description' => __( 'The form\'s post.', 'textdomain' ),
-					)
+//					'post_id'   => array(
+//						'type'        => 'string',
+//						'required'    => true,
+//						'description' => __( 'The form\'s post.', 'textdomain' ),
+//					)
 				),
 			),
 		) );
@@ -78,14 +78,13 @@ class Contact_Form_Server extends \WP_Rest_Controller {
 
 		$nonce   = $request->get_param( 'nonce' );
 		$form_id = $request->get_param( 'form_id' );
-		$post_id = $request->get_param( 'post_id' );
+//		$post_id = $request->get_param( 'post_id' );
 
-		if ( ! wp_verify_nonce( $nonce, 'obfx-contact-form' ) ) {
+		if ( ! wp_verify_nonce( $nonce, 'wp_rest' ) ) {
 			$return['msg'] = 'Invalid nonce';
 			return rest_ensure_response( $return );
 		}
 
-		$form_builder = $request->get_param( 'form_builder' );
 		$data         = $request->get_param( 'data' );
 
 		if ( empty( $data[ $form_id ] ) ) {
@@ -93,8 +92,7 @@ class Contact_Form_Server extends \WP_Rest_Controller {
 			return $return;
 		}
 
-		$data = $data[ $form_id ];
-		// @TODO at this moment there isn't a way to retreat block attributes via PHP without a custom way.
+		$storedPost = get_post_meta( $form_id, 'form_data', true );
 
 		if ( empty( $data['email'] ) || ! is_email( $data['email'] ) ) {
 			$return['msg'] = esc_html__( 'Invalid email.', 'textdomain' );
@@ -120,16 +118,13 @@ class Contact_Form_Server extends \WP_Rest_Controller {
 
 		$msg = $data['message'];
 
-		// prepare settings for submit
-		$settings = $this->get_widget_settings( $form_id, $post_id, $form_builder );
-
-		if ( ! isset( $settings['to_send_email'] ) || ! is_email( $settings['to_send_email'] ) ) {
+		if ( ! isset( $storedPost['to_send_email'] ) || ! is_email( $storedPost['to_send_email'] ) ) {
 			$return['msg'] = esc_html__( 'Wrong email configuration! Please contact administration!', 'textdomain' );
 
 			return $return;
 		}
 
-		$result = $this->_send_mail( $settings['to_send_email'], $from, $name, $msg, $data );
+		$result = $this->_send_mail( $storedPost['to_send_email'], $from, $name, $msg, $data );
 
 		if ( $result ) {
 			$return['success'] = true;

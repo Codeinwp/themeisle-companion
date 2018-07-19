@@ -1,15 +1,15 @@
 import memoize from "memize";
-
+import { stringify } from 'querystringify'
 /**
  * WordPress dependencies
  */
-const {Component} = wp.element;
+const {Component, Fragment} = wp.element;
 const {Placeholder, Spinner, withAPIData, FormToggle, PanelBody} = wp.components;
 const {__, sprintf} = wp.i18n;
 
 const { compose } = wp.compose;
 const { withSelect, withDispatch } = wp.data;
-
+const { apiRequest } = wp;
 const {
 	Editable,
 	BlockEdit
@@ -85,23 +85,32 @@ export class ContactFormEditor extends Component {
 				}
 			}
 		};
-
-		console.log( this.props.initBlockID() )
 	}
 
 	render() {
-		const component = this
-		const { attributes, setAttributes, focus } = this.props
-		const {fields, email} = attributes
+		const { attributes, setAttributes, updatePostMeta } = this.props
+		const {
+			email
+		} = attributes
 		const placeholderEl = <Placeholder key="form-loader" icon="admin-post" label={__('Form')}>
 			<Spinner/>
 		</Placeholder>
 		let controlsEl = []
 		let fieldsEl = []
 
+		console.log( attributes )
+
 		return (
 			<div>
 				<InnerBlocks
+					templateLock="all"
+					allowedBlocks={ [
+						'core/heading',
+						'core/paragraph',
+						'orbitfox/contact-form-text',
+						'orbitfox/contact-form-textarea',
+						'orbitfox/contact-form-submit',
+					] }
 					template={[
 						['core/heading', {
 							content: 'Contact Form',
@@ -123,8 +132,7 @@ export class ContactFormEditor extends Component {
 
 						['core/paragraph', {
 							content: 'Lorem ipsum dolor sit amet elit do.',
-							align: "center",
-							customFontSize: "12",
+							align: "center"
 						}],
 
 						['orbitfox/contact-form-textarea', {
@@ -145,7 +153,10 @@ export class ContactFormEditor extends Component {
 							tagName={ 'p' }
 							value={ email }
 							placeholder={ __('Form email') }
-							onChange={ ( newValue ) => setAttributes( { email: newValue } ) }
+							onChange={ ( newValue ) => {
+								setAttributes( { email: newValue[0] } )
+								updatePostMeta( 'email', newValue[0])
+							} }
 							keepPlaceholderOnFocus
 						/>
 					</PanelBody>
@@ -255,19 +266,35 @@ export class ContactFormEditor extends Component {
 }
 
 export default compose(
-	withDispatch( ( dispatch, params ) => ( {
-		initBlockID() {
-			console.log( params )
-			//console.log( dispatch( 'obfx/blocks' ).initForm() );
-		},
-	} ) ),
-	withSelect( ( select, params ) => {
-		const store = select( 'obfx/blocks' );
-
-		//console.log( store.initForm() )
+	withDispatch( ( dispatch, {attributes} ) => {
 
 		return {
-			postTypeID: store.initForm( params.id ),
-		};
+			async updatePostMeta( key, value ) {
+				//const result = dispatch( 'obfx/blocks' ).updatePostMeta( attributes.storePostId, key, value );
+				//console.log( result )
+				let newObj = {}
+				newObj[key] = value
+
+				const query = stringify( _.pick( {
+					form_data: stringify( newObj ),
+				}, ( value ) => ! _.isUndefined( value ) ) );
+
+				const result = await apiRequest( { path: `/wp/v2/obfx_contact_form/${attributes.storePostId}?${query}`, method: 'POST' } );
+				///console.log( result )
+				//yield result
+			}
+		}
+	}),
+	withSelect( ( select, params ) => {
+		const {attributes, setAttributes} = params
+
+		if ( attributes.storePostId === 0 ) {
+			const result = select( 'obfx/blocks' ).dispatchInit( params.id );
+			setAttributes({storePostId: result.storePostId})
+		} else if ( typeof attributes.storePostId !== "undefined" ) {
+			const data = select( 'obfx/blocks' ).getPostMeta( attributes.storePostId );
+			console.log( data )
+		}
+
 	} ),
 )( ContactFormEditor );

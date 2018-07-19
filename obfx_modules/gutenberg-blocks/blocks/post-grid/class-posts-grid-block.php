@@ -157,6 +157,14 @@ class Posts_Grid_Block extends Base_Block {
 		return $block_content;
 	}
 
+	/**
+	 * Just because get_the_excerpt doesn't work https://github.com/WordPress/gutenberg/issues/5572
+	 *
+	 * @param $post
+	 * @param int $words_length
+	 *
+	 * @return string
+	 */
 	function get_gutenberg_excerpt( $post, $words_length = 24 ){
 
 		if ( has_excerpt( $post ) ) {

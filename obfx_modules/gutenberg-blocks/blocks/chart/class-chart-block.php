@@ -50,6 +50,23 @@ class Chart_Block extends Base_Block {
 	function render( $attributes ) {
 		$id = $attributes['blockID'];
 
+		// @TODO keep this as long as the array attributes will trigger a php warning when they have a default.
+		$dataLabels = array( 'Red', 'Blue' );
+		$dataValues = array( 22, 78 );
+		$dataColors = array( 'red', 'blue' );
+
+		if ( ! empty( $attributes['dataLabels'] ) ) {
+			$dataLabels = $attributes['dataLabels'];
+		}
+
+		if ( ! empty( $attributes['dataValues'] ) ) {
+			$dataValues = $attributes['dataValues'];
+		}
+
+		if ( ! empty( $attributes['dataColors'] ) ) {
+			$dataColors = $attributes['dataColors'];
+		}
+
 		// this is the mark-up of the canvas
 		$chart_markup = sprintf(
 			'<canvas id="obfx-chart-pie-%1$s" style="background-color: %2$s" data-chartName=\'%3$s\'></canvas>',
@@ -66,11 +83,11 @@ class Chart_Block extends Base_Block {
 			var chart = new Chart( el, {
 				type: \'pie\',
 				data: {
-					labels: ' . json_encode( $attributes['dataLabels'] ) . ',
+					labels: ' . json_encode( $dataLabels ) . ',
 					datasets: [{
 						label:\'' . $attributes['chartName'] . '\',
-						data: ' . json_encode( $attributes['dataValues'] ) . ',
-						backgroundColor: ' . json_encode( $attributes['dataColors'] ) . '
+						data: ' . json_encode( $dataValues ) . ',
+						backgroundColor: ' . json_encode( $dataColors ) . '
 					}]
 				}
 			});

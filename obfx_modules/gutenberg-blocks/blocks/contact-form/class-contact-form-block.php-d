@@ -23,5 +23,6 @@ class Contact_Form_Block extends Base_Block {
 	 */
 	function render( $attributes ) {
 		return 'tester';
+
 	}
 }

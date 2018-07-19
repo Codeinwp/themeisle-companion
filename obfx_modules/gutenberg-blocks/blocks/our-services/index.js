@@ -68,6 +68,15 @@ registerBlockType('orbitfox/our-services', {
 		const { columns } = attributes;
 		const classes = classnames( className, `obfx-our-services has-${ columns }-columns` );
 
+		const memlayout = memoize( ( columns ) => {
+			return Array.apply(null, Array(columns)).map((i, n) => ({
+				name: `column-${ n + 1 }`,
+				label: sprintf( __( 'Column %d' ), n + 1 ),
+				icon: 'columns',
+			} ) );
+		} )(columns)
+
+		console.log( memlayout  )
 		return (
 			<Fragment>
 				<InspectorControls>
@@ -88,13 +97,7 @@ registerBlockType('orbitfox/our-services', {
 				<div className={ classes }>
 					<InnerBlocks
 						templateLock={ false }
-						layouts={ memoize( ( columns ) => {
-							return Array.apply(null, Array(columns)).map((i, n) => ({
-								name: `column-${ n + 1 }`,
-								label: sprintf( __( 'Column %d' ), n + 1 ),
-								icon: 'columns',
-							} ) );
-						} )(columns) }
+						layouts={ memlayout }
 
 						template={[
 							['orbitfox/font-awesome-icons', {

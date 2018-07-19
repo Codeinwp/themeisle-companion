@@ -34,8 +34,9 @@ registerBlockType('orbitfox/contact-form', {
 		__( 'orbitfox' ),
 	],
 	attributes: {
-		postTypeID: {
-			type: 'string'
+		storePostId: {
+			type: 'string',
+			default: 0
 		},
 		email: {
 			type: 'string',
@@ -49,6 +50,7 @@ registerBlockType('orbitfox/contact-form', {
 
 		return (
 			<form className={ `obfx-contact-form` } method="post" name={'contact-form-' + id} id={'contact-form-' + id} >
+				<input type="hidden" name="form-store-id" value={attributes.storePostId}/>
 				<InnerBlocks.Content />
 			</form>
 		);
@@ -87,7 +89,7 @@ registerBlockType('orbitfox/contact-form-text', {
 	edit: ( props ) => {
 		const {id, attributes, setAttributes} = props;
 		const { label, placeholder, required, slug } = attributes;
-		console.log( props )
+
 		return (<div>
 			<RichText
 				tagName={ 'p' }
@@ -265,6 +267,7 @@ registerBlockType('orbitfox/contact-form-submit', {
 		return (<div>
 			<RichText
 				tagName={ 'p' }
+				multiline={false}
 				value={ label }
 				placeholder={ __('Label') }
 				onChange={ ( newValue ) => setAttributes( { label: newValue } ) }
