@@ -1,4 +1,8 @@
 
+ ### v2.5.5 - 2018-07-23 
+ **Changes:** 
+ * Add new controls for Elementor content forms.
+ 
  ### v2.5.4 - 2018-07-11 
  **Changes:** 
  * Fixed undefined method for old elementor versions.
