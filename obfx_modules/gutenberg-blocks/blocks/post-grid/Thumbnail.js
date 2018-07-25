@@ -29,8 +29,8 @@ class Thumbnail extends Component {
 
 export default withSelect( ( select, ownProps ) => {
 	const { getMedia } = select( 'core' );
-	const { id } = ownProps;
-	const image = id ? getMedia( id ) : null;
+	const { clientId } = ownProps;
+	const image = clientId ? getMedia( clientId ) : null;
 	const size = 'thumbnail';
 
 	const thumbnail = image ? image.media_details.sizes[size].source_url : null;

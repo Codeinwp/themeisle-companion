@@ -14,7 +14,6 @@ const {Component} = wp.element;
 
 import './editor.scss';
 
-
 const {
 	PanelBody,
 	RangeControl
@@ -30,23 +29,6 @@ const {
 	Fragment
 } = wp.element;
 
-
-/**
- * Returns the layouts configuration for a given number of panels.
- *
- * @param {number} panels Number of panels.
- *
- * @return {Object[]} Columns layout configuration.
- */
-const getPanelLayouts = memoize((panels) => {
-
-	return Array.apply(null, Array(panels)).map((i, n) => ({
-		name: `panel-${ n + 1 }`,
-		label: sprintf(__('Panel %d'), n + 1),
-		icon: 'panels',
-	}));
-});
-
 export default class PriceTableEditor extends Component {
 	constructor() {
 		super(...arguments);
@@ -54,10 +36,8 @@ export default class PriceTableEditor extends Component {
 
 	render() {
 		const {attributes, setAttributes} = this.props;
-		const {panels, className} = attributes;
-		const classes = classnames(className, `wp-block-orbitfox-pricing-table has-${ panels }-panels`);
-
-		// @TODO provide a better html structure and better css classes.
+		const {columns, className} = attributes;
+		const classes = classnames(className, `wp-block-orbitfox-pricing-table has-${ columns }-columns`);
 
 		return (
 			<Fragment>
@@ -65,101 +45,56 @@ export default class PriceTableEditor extends Component {
 					<PanelBody>
 						<RangeControl
 							label={__('Panels')}
-							value={panels}
+							value={columns}
 							onChange={(nextPanels) => {
 								setAttributes({
-									panels: nextPanels,
+									columns: nextPanels,
 								});
 							}}
 							min={2}
-							max={6}
+							max={4}
 						/>
 					</PanelBody>
 				</InspectorControls>
 				<div className={classes}>
 					<InnerBlocks
-						layouts={getPanelLayouts(panels)}
-						template={[
-							['core/heading', {
-								content: 'Panel 1',
-								layout: 'panel-1',
-								align: "center",
-							}],
-							['core/heading', {
-								content: 'Panel 2',
-								layout: 'panel-2',
-								align: "center",
-							}],
-							['core/heading', {
-								content: 'Panel 3',
-								layout: 'panel-3',
-								align: "center",
-							}],
-							['core/paragraph', {
-								content: 'Small description',
-								layout: 'panel-1',
-								align: "center",
-							}],
-							['core/paragraph', {
-								content: 'Small description',
-								layout: 'panel-2',
-								align: "center",
-							}],
-							['core/paragraph', {
-								content: 'Small description',
-								layout: 'panel-3',
-								align: "center",
-							}],
-							['core/paragraph', {
-								values: [ 'Feature 1' ],
-								layout: 'panel-1',
-								align: "center",
-							}],
-							['core/paragraph', {
-								values: [ 'Feature 1' ],
-								layout: 'panel-2',
-								align: "center",
-							}],
-							['core/paragraph', {
-								values: [ 'Feature 1' ],
-								layout: 'panel-3',
-								align: "center",
-							}],
-
-							['core/separator', {
-								layout: 'panel-1',
-							}],
-
-							['core/separator', {
-								layout: 'panel-2',
-							}],
-
-							['core/separator', {
-								layout: 'panel-3',
-							}],
-
-							['core/button', {
-								url: "#",
-								text: "Buy me",
-								layout: 'panel-1',
-								align: "center",
-							}],
-
-							['core/button', {
-								url: "#",
-								text: "Buy me",
-								layout: 'panel-2',
-								align: "center",
-							}],
-
-							['core/button', {
-								url: "#",
-								text: "Buy me",
-								layout: 'panel-3',
-								align: "center",
-							}],
-
-						]}
+						templateLock={ 'all' }
+						allowedBlocks={ [ 'core/column' ] }
+						template={memoize( ( columns ) => {
+							return _.times( columns, (i) => {
+								const index = i + 1;
+								return [ 'core/column', {}, [
+									['core/heading', {
+										content: 'Panel ' + index,
+										align: "center",
+									}],
+									['core/paragraph', {
+										content: 'Small description, but a pretty long one.',
+										align: "center",
+									}],
+									['core/separator', {}],
+									['core/paragraph', {
+										content: 'First Feature',
+										align: "center",
+									}],
+									['core/paragraph', {
+										content: 'Second Feature',
+										align: "center",
+									}],
+									['core/paragraph', {
+										content: 'Last Feature',
+										align: "center",
+									}],
+									['core/separator', {}],
+									['core/button', {
+										url: "#",
+										text: "Buy me",
+										align: "center",
+										backgroundColor: 'vivid-red'
+									}],
+								] ]
+							});
+						} )( columns )}
 					/>
 				</div>
 			</Fragment>

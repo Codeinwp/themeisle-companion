@@ -123,21 +123,17 @@
 .editor-block-list__block[data-align="full"] .wp-block-orbitfox-our-services .editor-block-list__layout:last-child {
   margin-right: 30px; }
 
-.wp-block-orbitfox-our-services {
+div.wp-block-orbitfox-our-services {
   display: block; }
-  .wp-block-orbitfox-our-services .editor-inner-blocks {
-    display: grid;
-    grid-auto-flow: dense; }
-  .wp-block-orbitfox-our-services.has-2-columns .editor-inner-blocks {
-    grid-auto-columns: 50%; }
-  .wp-block-orbitfox-our-services.has-3-columns .editor-inner-blocks {
-    grid-auto-columns: 33.33333%; }
-  .wp-block-orbitfox-our-services.has-4-columns .editor-inner-blocks {
-    grid-auto-columns: 25%; }
-  .wp-block-orbitfox-our-services.has-5-columns .editor-inner-blocks {
-    grid-auto-columns: 20%; }
-  .wp-block-orbitfox-our-services.has-6-columns .editor-inner-blocks {
-    grid-auto-columns: 16.66667%; }
+  div.wp-block-orbitfox-our-services > .editor-inner-blocks > .editor-block-list__layout {
+    display: flex; }
+    div.wp-block-orbitfox-our-services > .editor-inner-blocks > .editor-block-list__layout > [data-type="core/column"] {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      width: 0; }
+      div.wp-block-orbitfox-our-services > .editor-inner-blocks > .editor-block-list__layout > [data-type="core/column"] .editor-block-list__block-edit {
+        flex-basis: 100%; }
 /**
  * Colors
  */
@@ -204,18 +200,14 @@
 .editor-block-list__block[data-align="full"] .wp-block-orbitfox-pricing-table .editor-block-list__layout:last-child {
   margin-right: 30px; }
 
-.wp-block-orbitfox-pricing-table {
+div.wp-block-orbitfox-pricing-table {
   display: block; }
-  .wp-block-orbitfox-pricing-table .editor-inner-blocks {
-    display: grid;
-    grid-auto-flow: dense; }
-  .wp-block-orbitfox-pricing-table.has-2-panels .editor-inner-blocks {
-    grid-auto-columns: 50%; }
-  .wp-block-orbitfox-pricing-table.has-3-panels .editor-inner-blocks {
-    grid-auto-columns: 33.33333%; }
-  .wp-block-orbitfox-pricing-table.has-4-panels .editor-inner-blocks {
-    grid-auto-columns: 25%; }
-  .wp-block-orbitfox-pricing-table.has-5-panels .editor-inner-blocks {
-    grid-auto-columns: 20%; }
-  .wp-block-orbitfox-pricing-table.has-6-panels .editor-inner-blocks {
-    grid-auto-columns: 16.66667%; }
+  div.wp-block-orbitfox-pricing-table > .editor-inner-blocks > .editor-block-list__layout {
+    display: flex; }
+    div.wp-block-orbitfox-pricing-table > .editor-inner-blocks > .editor-block-list__layout > [data-type="core/column"] {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      width: 0; }
+      div.wp-block-orbitfox-pricing-table > .editor-inner-blocks > .editor-block-list__layout > [data-type="core/column"] .editor-block-list__block-edit {
+        flex-basis: 100%; }

@@ -2304,30 +2304,10 @@
     box-shadow: inset 0 0 0 4px #33B3DB; } }
 
 .wp-block-orbitfox-our-services {
-  display: grid;
-  grid-auto-flow: dense; }
-  .wp-block-orbitfox-our-services .has-2-columns {
-    grid-auto-columns: 50%; }
-  .wp-block-orbitfox-our-services .has-3-columns {
-    grid-auto-columns: 33.33333%; }
-  .wp-block-orbitfox-our-services .has-4-columns {
-    grid-auto-columns: 25%; }
-  .wp-block-orbitfox-our-services .has-5-columns {
-    grid-auto-columns: 20%; }
-  .wp-block-orbitfox-our-services .has-6-columns {
-    grid-auto-columns: 16.66667%; }
-  .wp-block-orbitfox-our-services .layout-column-1 {
-    grid-column: 1; }
-  .wp-block-orbitfox-our-services .layout-column-2 {
-    grid-column: 2; }
-  .wp-block-orbitfox-our-services .layout-column-3 {
-    grid-column: 3; }
-  .wp-block-orbitfox-our-services .layout-column-4 {
-    grid-column: 4; }
-  .wp-block-orbitfox-our-services .layout-column-5 {
-    grid-column: 5; }
-  .wp-block-orbitfox-our-services .layout-column-6 {
-    grid-column: 6; }
+  display: flex; }
+
+.wp-block-column {
+  flex: 1; }
 /**
  * Colors
  */
@@ -2379,27 +2359,7 @@
     box-shadow: inset 0 0 0 4px #33B3DB; } }
 
 .wp-block-orbitfox-pricing-table {
-  display: grid;
-  grid-auto-flow: dense; }
-  .wp-block-orbitfox-pricing-table .has-2-panels {
-    grid-auto-columns: 50%; }
-  .wp-block-orbitfox-pricing-table .has-3-panels {
-    grid-auto-columns: 33.33333%; }
-  .wp-block-orbitfox-pricing-table .has-4-panels {
-    grid-auto-columns: 25%; }
-  .wp-block-orbitfox-pricing-table .has-5-panels {
-    grid-auto-columns: 20%; }
-  .wp-block-orbitfox-pricing-table .has-6-panels {
-    grid-auto-columns: 16.66667%; }
-  .wp-block-orbitfox-pricing-table .layout-panel-1 {
-    grid-column: 1; }
-  .wp-block-orbitfox-pricing-table .layout-panel-2 {
-    grid-column: 2; }
-  .wp-block-orbitfox-pricing-table .layout-panel-3 {
-    grid-column: 3; }
-  .wp-block-orbitfox-pricing-table .layout-panel-4 {
-    grid-column: 4; }
-  .wp-block-orbitfox-pricing-table .layout-panel-5 {
-    grid-column: 5; }
-  .wp-block-orbitfox-pricing-table .layout-panel-6 {
-    grid-column: 6; }
+  display: flex; }
+
+.wp-block-column {
+  flex: 1; }

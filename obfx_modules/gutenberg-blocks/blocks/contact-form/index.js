@@ -46,10 +46,10 @@ registerBlockType('orbitfox/contact-form', {
 	},
 	edit: ContactFormEditor,
 
-	save( { attributes, id } ) {
+	save( { attributes, clientId } ) {
 
 		return (
-			<form className={ `obfx-contact-form` } method="post" name={'contact-form-' + id} id={'contact-form-' + id} >
+			<form className={ `obfx-contact-form` } method="post" name={'contact-form-' + clientId} id={'contact-form-' + clientId} >
 				<input type="hidden" name="form-store-id" value={attributes.storePostId}/>
 				<InnerBlocks.Content />
 			</form>
@@ -87,7 +87,7 @@ registerBlockType('orbitfox/contact-form-text', {
 	parent: [ 'orbitfox/contact-form' ],
 
 	edit: ( props ) => {
-		const {id, attributes, setAttributes} = props;
+		const {clientId, attributes, setAttributes} = props;
 		const { label, placeholder, required, slug } = attributes;
 
 		return (<div>
@@ -106,7 +106,7 @@ registerBlockType('orbitfox/contact-form-text', {
 				onChange={ ( newValue ) => setAttributes( { placeholder: newValue } ) }
 				keepPlaceholderOnFocus
 			/>
-			<input type="text" id={id} name={id} disabled="disabled" />
+			<input type="text" id={clientId} name={clientId} disabled="disabled" />
 			<InspectorControls>
 				<PanelBody>
 					<RichText
@@ -134,34 +134,7 @@ registerBlockType('orbitfox/contact-form-text', {
 				<label htmlFor={slug}>{label}</label>
 				<input type="text" id={slug} name={slug} />
 			</fieldset>);
-	},
-
-	// save( props ) {
-	// 	const component = this
-	// 	const {attributes} = props
-	// 	const {fields} = attributes
-	// 	let fieldsEl = []
-	//
-	// 	if ( typeof attributes.uid === "undefined" ) {
-	// 		attributes.uid = props.id
-	// 	}
-	//
-	// 	_.each(fields, function (args, key) {
-	// 		fieldsEl.push(<p
-	// 			key={key}
-	// 			className="content-form-field-label"
-	// 			data-field_id={args.field_id}
-	// 			data-label={args.label}
-	// 			data-field_type={args.type}
-	// 			data-requirement={args.requirement ? "true": "false"}
-	// 		/>)
-	// 	})
-	//
-	// 	return (<div key="content-form-fields" className={"content-form-fields content-form-" + form} data-uid={props.id}>
-	// 		{fieldsEl}
-	// 	</div>)
-	// }
-
+	}
 });
 
 registerBlockType('orbitfox/contact-form-textarea', {
@@ -193,7 +166,7 @@ registerBlockType('orbitfox/contact-form-textarea', {
 
 	parent: [ 'orbitfox/contact-form' ],
 
-	edit: ( {id, attributes, setAttributes} ) => {
+	edit: ( {clientId, attributes, setAttributes} ) => {
 		const { label, placeholder, required, slug } = attributes;
 
 		return (<div>
@@ -261,7 +234,7 @@ registerBlockType('orbitfox/contact-form-submit', {
 
 	parent: [ 'orbitfox/contact-form' ],
 
-	edit: ( {id, attributes, setAttributes} ) => {
+	edit: ( {clientId, attributes, setAttributes} ) => {
 		const { label } = attributes;
 
 		return (<div>

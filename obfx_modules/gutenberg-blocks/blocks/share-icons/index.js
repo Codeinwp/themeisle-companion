@@ -59,7 +59,7 @@ registerBlockType('orbitfox/share-icons', {
 		const {
 			attributes,
 			setAttributes,
-			id
+			clientId
 		} = props
 		const {layout, output} = attributes
 
@@ -82,7 +82,7 @@ registerBlockType('orbitfox/share-icons', {
 
 		Object.keys(social_list).map((social_name, i) => {
 			const config = social_list[social_name];
-			const checkbox_id = 'obfx-shareicon-checkbox-' + id + '-' + social_name
+			const checkbox_id = 'obfx-shareicon-checkbox-' + clientId + '-' + social_name
 			const attribute_key = 'show_' + social_name
 			let checked = false
 
@@ -121,7 +121,7 @@ registerBlockType('orbitfox/share-icons', {
 					</PanelBody>
 					<PanelBody className="components-panel__row">
 						<p><label htmlFor={'social-icons-output-' + id}>{__('Output')}</label></p>
-						<select name={'social-icons-output-' + id} id={'social-icons-output-' + id} onChange={(e) => {
+						<select name={'social-icons-output-' + clientId} id={'social-icons-output-' + clientId} onChange={(e) => {
 							setAttributes({output: e.target.value})
 						}}>
 							<option value="icons">{__('Icons')}</option>
@@ -131,7 +131,7 @@ registerBlockType('orbitfox/share-icons', {
 						</select>
 					</PanelBody>
 					<PanelBody className="components-panel__row"  title={ __( 'Layout' ) }>
-						<select name={'social-icons-layout-' + id} id={'social-icons-layout-' + id} onChange={(e) => {
+						<select name={'social-icons-layout-' + clientId} id={'social-icons-layout-' + clientId} onChange={(e) => {
 							setAttributes({layout: e.target.value})
 						}}>
 							<option value="inline">{__('Inline')}</option>

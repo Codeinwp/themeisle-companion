@@ -43,7 +43,6 @@ export class AboutAuthorEditor extends Component {
 }
 
 export default withSelect((select) => {
-	//const store = select( 'core/editor' );
 	const post = select('core/editor').getCurrentPost();
 
 	// @TODO maybe fetch all the authors and pluck the current one.

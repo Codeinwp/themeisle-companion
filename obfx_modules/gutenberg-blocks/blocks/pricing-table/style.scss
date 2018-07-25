@@ -1,16 +1,7 @@
 .wp-block-orbitfox-pricing-table {
-	display: grid;
-	grid-auto-flow: dense;
+  display: flex;
+}
 
-	@for $i from 2 through 6 {
-		& .has-#{ $i }-panels {
-			grid-auto-columns: #{ 100% / $i };
-		}
-	}
-
-	@for $i from 1 through 6 {
-		.layout-panel-#{ $i } {
-			grid-column: #{ $i };
-		}
-	}
+.wp-block-column {
+  flex: 1;
 }

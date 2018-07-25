@@ -3,8 +3,6 @@ const {withSelect} = wp.data;
 
 const {__, sprintf} = wp.i18n;
 
-const {ENTER, ESCAPE} = wp.utils.keycodes;
-
 const {Spinner} = wp.components;
 
 export default class PluginCardEditor extends Component {
@@ -56,12 +54,12 @@ export default class PluginCardEditor extends Component {
 					placeholder={__('Type a plugin name and hit Enter...')}
 					defaultValue={slug}
 					onKeyDown={(event) => {
-						if (event.keyCode === ESCAPE) {
+						if (event.keyCode === wp.utils.keycodes.ESCAPE) {
 							event.target.value = '';
 							setAttributes({slug: ''});
 						}
 
-						if (event.keyCode === ENTER) {
+						if (event.keyCode === wp.utils.keycodes.ENTER) {
 							this.searchPlugins(event.target.value)
 						}
 					}}

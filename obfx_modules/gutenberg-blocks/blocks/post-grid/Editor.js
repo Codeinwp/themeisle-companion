@@ -31,8 +31,6 @@ const {
 	TextControl
 } = wp.components;
 
-const { decodeEntities } = wp.utils;
-
 const {
 	InspectorControls,
 	BlockAlignmentToolbar,
@@ -196,7 +194,7 @@ class PostsGridEdit extends Component {
 					{ displayPosts.map( ( post, i ) => {
 						return (<li key={ i }>
 							{( displayFeaturedImage && post.featured_media ) ? <Thumbnail id={post.featured_media} /> : null }
-							<a href="#">{ decodeEntities( post.title.rendered.trim() ) || __( '(Untitled)' ) }</a>
+							<a href="#">{ wp.utils.decodeEntities( post.title.rendered.trim() ) || __( '(Untitled)' ) }</a>
 							{ displayPostDate && post.date_gmt &&
 							<time dateTime={ moment( post.date_gmt ).utc().format() } className={ `${ this.props.className }__post-date` }>
 								{ moment( post.date_gmt ).local().format( 'MMMM DD, Y' ) }

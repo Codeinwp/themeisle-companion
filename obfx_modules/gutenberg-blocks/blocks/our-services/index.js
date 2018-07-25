@@ -39,9 +39,8 @@ import './editor.scss';
 registerBlockType('orbitfox/our-services', {
 	title: sprintf(
 		/* translators: Block title modifier */
-		__( '%1$s (%2$s)' ),
-		__( 'Our Services' ),
-		__( 'beta' )
+		__( '%1$s' ),
+		__( 'Our Services' )
 	),
 
 	icon: 'columns',
@@ -90,70 +89,80 @@ registerBlockType('orbitfox/our-services', {
 								} );
 							} }
 							min={ 2 }
-							max={ 6 }
+							max={ 4 }
 						/>
 					</PanelBody>
 				</InspectorControls>
 				<div className={ classes }>
 					<InnerBlocks
-						templateLock={ false }
-						layouts={ memlayout }
-
-						template={[
-							['orbitfox/font-awesome-icons', {
-								layout: 'column-1',
-								size: '62',
-								icon: 'american-sign-language-interpreting'
-							}],
-							['orbitfox/font-awesome-icons', {
-								layout: 'column-2',
-								size: '62',
-								icon: 'android'
-							}],
-							['orbitfox/font-awesome-icons', {
-								layout: 'column-3',
-								size: '62',
-								icon: 'angellist'
-							}],
-
-							['core/heading', {
-								layout: 'column-1',
-								content: 'Happiness',
-								align: "center",
-								nodeName: "H3"
-							}],
-							['core/heading', {
-								layout: 'column-2',
-								content: 'Flexibility',
-								align: "center",
-								nodeName: "H3"
-							}],
-							['core/heading', {
-								layout: 'column-3',
-								content: 'Support',
-								align: "center",
-								nodeName: "H3"
-							}],
-
-							['core/paragraph', {
-								layout: 'column-1',
-								content: 'Lorem ipsum dolor sit amet elit do, consectetur adipiscing, sed eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-								align: "center",
-								customFontSize: "12",
-							}],
-							['core/paragraph', {
-								layout: 'column-2',
-								content: 'Lorem ipsum dolor sit amet elit do, consectetur adipiscing, sed eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-								align: "center",
-								customFontSize: "12",
-							}],
-							['core/paragraph', {
-								layout: 'column-3',
-								content: 'Lorem ipsum dolor sit amet elit do, consectetur adipiscing, sed eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-								align: "center",
-								customFontSize: "12",
-							}],
-						]}
+						templateLock={ 'all' }
+						allowedBlocks={ [ 'core/column' ] }
+						template={memoize( ( columns ) => {
+							return _.times( columns, () => [ 'core/column', {}, [
+								['orbitfox/font-awesome-icons', {
+									size: '62',
+									icon: 'angellist'
+								}],
+								['core/heading', {
+									content: 'Happiness',
+									align: "center",
+									nodeName: "H3"
+								}],
+								['core/paragraph', {
+									content: 'Lorem ipsum dolor sit amet elit do, consectetur adipiscing, sed eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+									align: "center"
+								}],
+							] ] );
+						} )( columns )}
+						// template={[
+						// 	['core/column', {}, [
+						// 		['orbitfox/font-awesome-icons', {
+						// 			size: '62',
+						// 			icon: 'american-sign-language-interpreting'
+						// 		}],
+						// 		['core/heading', {
+						// 			content: 'Happiness',
+						// 			align: "center",
+						// 			nodeName: "H3"
+						// 		}],
+						// 		['core/paragraph', {
+						// 			content: 'Lorem ipsum dolor sit amet elit do, consectetur adipiscing, sed eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+						// 			align: "center",
+						// 		}],
+						// 	]],
+						//
+						// 	['core/column', {}, [
+						// 		['orbitfox/font-awesome-icons', {
+						// 			size: '62',
+						// 			icon: 'android'
+						// 		}],
+						// 		['core/heading', {
+						// 			content: 'Flexibility',
+						// 			align: "center",
+						// 			nodeName: "H3"
+						// 		}],
+						// 		['core/paragraph', {
+						// 			content: 'Lorem ipsum dolor sit amet elit do, consectetur adipiscing, sed eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+						// 			align: "center",
+						// 		}],
+						// 	]],
+						//
+						// 	['core/column', {}, [
+						// 		['orbitfox/font-awesome-icons', {
+						// 			size: '62',
+						// 			icon: 'angellist'
+						// 		}],
+						// 		['core/heading', {
+						// 			content: 'Support',
+						// 			align: "center",
+						// 			nodeName: "H3"
+						// 		}],
+						// 		['core/paragraph', {
+						// 			content: 'Lorem ipsum dolor sit amet elit do, consectetur adipiscing, sed eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+						// 			align: "center",
+						// 		}],
+						// 	]],
+						// ]}
 					/>
 				</div>
 			</Fragment>

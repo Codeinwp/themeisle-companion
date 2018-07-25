@@ -1,12 +1,9 @@
 /**
  * WordPress dependencies...
  */
-const {
-	__
-} = wp.i18n;
+const {__} = wp.i18n;
 
 import classnames from 'classnames';
-
 import PriceTableEditor from './Editor'
 
 const {
@@ -28,7 +25,7 @@ import './style.scss';
 
 registerBlockType('orbitfox/pricing-table', {
 	title: __('Pricing Table'),
-	icon: 'info',
+	icon: 'slides',
 	category: 'layout',
 	keywords: [
 		'pricing',
@@ -37,7 +34,7 @@ registerBlockType('orbitfox/pricing-table', {
 	],
 
 	attributes: {
-		panels: {
+		columns: {
 			type: 'number',
 			default: 3,
 		},
@@ -46,41 +43,12 @@ registerBlockType('orbitfox/pricing-table', {
 	edit: PriceTableEditor,
 
 	save({attributes}) {
-		const {panels} = attributes;
+		const {columns} = attributes;
 
 		return (
-			<div className={`wp-block-orbitfox-pricing-table has-${ panels }-panels`}>
+			<div className={`wp-block-orbitfox-pricing-table has-${ columns }-columns`}>
 				<InnerBlocks.Content/>
 			</div>
 		);
-	},
-});
-
-registerBlockType('orbitfox/pricing-box', {
-	title: __('Pricing Box'),
-	icon: 'info',
-	category: 'layout',
-	parent: 'orbitfox/pricing-table',
-	keywords: [
-		'pricing',
-		'box',
-		'orbitfox'
-	],
-
-	edit({attributes, setAttributes, className}) {
-		const {panels} = attributes;
-		const classes = classnames(className, `has-${ panels }-panels`);
-
-		return (
-			<Fragment>
-				<div className={classes}>
-					<div>test test test</div>
-				</div>
-			</Fragment>
-		);
-	},
-
-	save() {
-		return null;
 	},
 });

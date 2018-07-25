@@ -94,7 +94,7 @@ registerBlockType('orbitfox/accordion-box', {
 	save(props){
 		const {
 			attributes,
-			id
+			clientId
 		} = props;
 
 		const {
