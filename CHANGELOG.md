@@ -1,7 +1,7 @@
 
  ### v2.5.6 - 2018-07-26 
  **Changes:** 
- * Release
+ * Fix Elementor content forms bug.
  
  ### v2.5.5 - 2018-07-23 
  **Changes:** 
