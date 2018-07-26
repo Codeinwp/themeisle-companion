@@ -103,6 +103,11 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 == Changelog ==
+= 2.5.6 - 2018-07-26  = 
+
+* Release
+
+
 = 2.5.5 - 2018-07-23  = 
 
 * Add new controls for Elementor content forms.

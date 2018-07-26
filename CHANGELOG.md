@@ -1,4 +1,8 @@
 
+ ### v2.5.6 - 2018-07-26 
+ **Changes:** 
+ * Release
+ 
  ### v2.5.5 - 2018-07-23 
  **Changes:** 
  * Add new controls for Elementor content forms.
