@@ -8,6 +8,7 @@ const DEFAULT_STATE = {
 
 registerStore( 'obfx/blocks', {
 	reducer( state = DEFAULT_STATE, action ) {
+
 		switch ( action.type ) {
 			case 'INIT_FORM':
 				return {
@@ -27,6 +28,11 @@ registerStore( 'obfx/blocks', {
 					key: action.key,
 					value: action.value,
 				};
+
+			case 'GET_ICONS_LIST':
+				return {
+					iconsList: action.data,
+				};
 		}
 
 		return state;
@@ -45,6 +51,12 @@ registerStore( 'obfx/blocks', {
 				key: key,
 				value: value
 			};
+		},
+		setFaIconsList(data) {
+			return {
+				type: 'GET_ICONS_LIST',
+				data: data
+			}
 		}
 	},
 
@@ -54,6 +66,18 @@ registerStore( 'obfx/blocks', {
 		},
 		getPostMeta(data){
 			return data
+		},
+		getFaIconsList( data ) {
+
+			if ( typeof data.iconsList !== "undefined" ) {
+				//let x = Object.keys(data.iconsList).map(function (key) { return data.iconsList[key]; });
+
+
+				return data.iconsList
+
+				// return Object.keys( data.iconsList ).map(k =>  data.iconsList[k])
+			}
+
 		}
 	},
 
@@ -74,7 +98,15 @@ registerStore( 'obfx/blocks', {
 			}, ( value ) => ! _.isUndefined( value ) ) );
 
 			const result = await apiRequest( { path: `/wp/v2/obfx_contact_form/${id}?${query}` } );
-			//return result
+
+			// @TODO call an action here to set the meta
+		},
+		async getFaIconsList() {
+			let result = []
+
+			result = await apiRequest( { path: `obfx-font-awesome-icons/v1/get_icons_list` } );
+
+			dispatch( 'obfx/blocks' ).setFaIconsList( result );
 		}
 	},
 } );

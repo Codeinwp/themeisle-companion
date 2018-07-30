@@ -78,7 +78,6 @@ class Contact_Form_Server extends \WP_Rest_Controller {
 
 		$nonce   = $request->get_param( 'nonce' );
 		$form_id = $request->get_param( 'form_id' );
-//		$post_id = $request->get_param( 'post_id' );
 
 		if ( ! wp_verify_nonce( $nonce, 'wp_rest' ) ) {
 			$return['msg'] = 'Invalid nonce';

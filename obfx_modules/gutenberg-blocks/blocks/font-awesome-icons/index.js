@@ -1,4 +1,9 @@
 /**
+ * External dependencies
+ */
+import classnames from 'classnames';
+
+/**
  * WordPress dependencies...
  */
 const {__} = wp.i18n;
@@ -8,24 +13,12 @@ const {
 } = wp.blocks;
 
 const {
-	FontSizePicker,
-	PanelBody
-} = wp.components;
-
-const {
-	AlignmentToolbar,
-	BlockControls,
-	InspectorControls,
-	RichText
+	getColorClass,
 } = wp.editor;
 
-const {
-	Component,
-	Fragment,
-} = wp.element;
+import FontAwesomeEditor from './Editor'
 
 import './style.scss';
-// @TODO this block should get some options for colors and background color
 
 registerBlockType('orbitfox/font-awesome-icons', {
 	title: __('Font Awesome Icon'),
@@ -38,9 +31,13 @@ registerBlockType('orbitfox/font-awesome-icons', {
 	],
 
 	attributes: {
+		icon_prefix: {
+			type: 'string',
+			default: 'fab'
+		},
 		icon: {
 			type: 'string',
-			default: 'twitter'
+			default: 'wordpress'
 		},
 		size: {
 			type: 'number',
@@ -50,74 +47,131 @@ registerBlockType('orbitfox/font-awesome-icons', {
 			type: 'string',
 			default: 'center'
 		},
+		textColor: {
+			type: 'string'
+		},
+		backgroundColor: {
+			type: 'string'
+		},
+		borderColor: {
+			type: 'string'
+		},
+		shadowColor: {
+			type: 'string'
+		},
+		customTextColor: {
+			type: 'string'
+		},
+		customBackgroundColor: {
+			type: 'string'
+		},
+		customBorderColor: {
+			type: 'string'
+		},
+		customShadowColor: {
+			type: 'string'
+		},
+		borderRadius: {
+			type: 'string',
+			default: 50
+		},
+		borderSize: {
+			type: 'string',
+			default: 0
+		},
+		borderStyle: {
+			type: 'string'
+		},
+		innerSpaceSize: {
+			type: 'string',
+			default: 0
+		},
+		outerSpaceSize: {
+			type: 'string',
+			default: 0
+		},
+
+		shadowSize: {
+			type: 'string',
+			default: 0
+		},
+		shadowBlurSize: {
+			type: 'string',
+			default: 0
+		},
+		shadowHorizontalSize: {
+			type: 'string',
+			default: 0
+		},
+		shadowVerticalSize: {
+			type: 'string',
+			default: 0
+		},
 	},
 
-	edit( {attributes, setAttributes, className} ) {
+	edit: FontAwesomeEditor,
+
+	save( props ) {
+		const { attributes } = props
+
 		const {
-			icon,
-			size,
-			align
+			align,
+			icon, icon_prefix, size,
+			borderRadius, borderSize, borderStyle,
+			innerSpaceSize, outerSpaceSize,
+			textColor, backgroundColor, borderColor, shadowColor,
+			customBackgroundColor, customTextColor, customBorderColor, customShadowColor,
+			shadowHorizontalSize, shadowVerticalSize, shadowBlurSize, shadowSize
 		} = attributes;
 
-		const styles = {
-			fontSize: size + 'px',
+		const textClass = getColorClass( 'color', textColor );
+		const backgroundClass = getColorClass( 'background-color', backgroundColor );
+		const borderClass = getColorClass( 'border-color', borderColor );
+		const shadowClass = getColorClass( 'shadow-color', shadowColor );
+
+		const className = classnames( {
+			'obfx-font-awesome-icon': true,
+			'has-background': backgroundColor || customBackgroundColor,
+			'has-color': textColor || customTextColor,
+			'has-border-color': borderColor || customBorderColor,
+			'has-shadow-color': shadowClass || customShadowColor,
+			[ textClass ]: textClass,
+			[ backgroundClass ]: backgroundClass,
+			[ borderClass ]: borderClass,
+			[ shadowClass ]: shadowClass,
+		} );
+
+		const pStyle = {
 			textAlign: align,
+		}
+
+		const iconStyle = {
+			padding: innerSpaceSize + 'px',
+			borderRadius: borderRadius + '%',
+			fontSize: size + 'px',
+			lineHeight: size + 'px',
+		}
+
+		const shb =  typeof shadowColor !== "undefined"
+			? shadowHorizontalSize + 'px ' + shadowVerticalSize + 'px ' + shadowBlurSize + 'px ' + shadowSize + 'px ' + ( typeof shadowColor.value ? shadowColor.value : 'inherited' )
+			: shadowHorizontalSize + 'px ' + shadowVerticalSize + 'px ' + shadowBlurSize + 'px ' + shadowSize + 'px ' + customShadowColor;
+
+		const wrapperStyle = {
+			display: 'inline-block',
+			color: typeof textColor !== "undefined" ? textColor.value : null,
+			backgroundColor: typeof backgroundColor !== "undefined" ? backgroundColor.value : 'transparent',
+			borderColor: typeof borderColor !== "undefined" ? borderColor.value : 'transparent' ,
+			borderRadius: borderRadius + '%',
+			borderStyle: 'solid',
+			borderWidth: borderSize + 'px',
+			margin: outerSpaceSize + 'px',
+			// boxShadow: shb
 		};
 
-		// @TODO The icon option should be set via some sort of select with autocomplete not a RichText
-		return (
-			<Fragment>
-				<BlockControls>
-					<AlignmentToolbar
-						value={ align }
-						onChange={ ( nextAlign ) => {
-							setAttributes( { align: nextAlign } );
-						} }
-					/>
-				</BlockControls>
-				<InspectorControls>
-					<PanelBody title={ __( 'Icon' ) } className="blocks-font-size">
-						<p>{ __( 'Pick up an icon from the awesome ' ) }
-							<a href={'https://fontawesome.com/icons?d=gallery'} target="_blank">{__('list')}</a>
-						</p>
-						<RichText
-							tagName={ 'p' }
-							value={ icon }
-							placeholder={ __('The icon key ... ') }
-							onChange={ ( icon ) => setAttributes( { icon: icon } ) }
-							keepPlaceholderOnFocus
-						/>
-					</PanelBody>
-					<PanelBody title={ __( 'Size' ) } className="blocks-font-size">
-						<FontSizePicker
-							value={ size }
-							onChange={ ( next ) => {
-								setAttributes( { size: next } );
-							} }
-						/>
-					</PanelBody>
-				</InspectorControls>
-				<div style={ styles }>
-					<i className={'fa fa-' + icon }></i>
-				</div>
-			</Fragment>
-		)
-	},
-
-	save( { attributes } ) {
-		const {
-			icon,
-			size,
-			align
-		} = attributes;
-
-		const styles = {
-			fontSize: size + 'px',
-			textAlign: align,
-		};
-
-		return <p style={ styles }>
-			<i className={'fa fa-' + icon }></i>
-		</p> ;
+		return <p style={pStyle} >
+			<span style={ wrapperStyle } className={className}>
+				<i className={icon_prefix + ' fa-' + icon } style={iconStyle}></i>
+			</span>
+		</p>
 	},
 });

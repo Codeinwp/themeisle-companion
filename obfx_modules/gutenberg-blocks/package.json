@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@wordpress/autop": "^1.0.4",
+    "accessible-autocomplete": "^1.6.1",
     "chart.js": "^2.7.2",
     "immutability-helper": "^2.7.1",
     "memize": "^1.0.5",
