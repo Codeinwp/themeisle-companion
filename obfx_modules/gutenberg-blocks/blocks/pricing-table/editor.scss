@@ -18,7 +18,7 @@ div.wp-block-orbitfox-pricing-table {
 	> .editor-inner-blocks > .editor-block-list__layout {
 		display: flex;
 
-		> [data-type="core/column"] {
+		> [data-type="orbitfox/pricing-block"] {
 			display: flex;
 			flex-direction: column;
 			flex: 1;
@@ -28,5 +28,24 @@ div.wp-block-orbitfox-pricing-table {
 				flex-basis: 100%;
 			}
 		}
+	}
+
+	.wp-block-column {
+		&:first-child {
+			margin-left: 0;
+		}
+
+		&:last-child {
+			margin-right: 0;
+		}
+
+	  padding: 20px 10px;
+	  margin: 0 20px;
+	}
+  
+	.raised {
+		-webkit-box-shadow: 0 16px 38px -12px rgba(0,0,0,.56),0 4px 25px 0 rgba(0,0,0,.12),0 8px 10px -5px rgba(0,0,0,.2);
+		-moz-box-shadow: 0 16px 38px -12px rgba(0,0,0,.56),0 4px 25px 0 rgba(0,0,0,.12),0 8px 10px -5px rgba(0,0,0,.2);
+		box-shadow: 0 16px 38px -12px rgba(0,0,0,.56),0 4px 25px 0 rgba(0,0,0,.12),0 8px 10px -5px rgba(0,0,0,.2);
 	}
 }
