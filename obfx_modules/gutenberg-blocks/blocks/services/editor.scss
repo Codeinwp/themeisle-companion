@@ -1,7 +1,7 @@
 // These margins make sure that nested blocks stack/overlay with the parent block chrome
 // This is sort of an experiment at making sure the editor looks as much like the end result as possible
 // Potentially the rules here can apply to all nested blocks and enable stacking, in which case it should be moved elsewhere
-.wp-block-orbitfox-our-services .editor-block-list__layout {
+.wp-block-orbitfox-services .editor-block-list__layout {
 	margin-left: 0;
 	margin-right: 0;
 
@@ -11,13 +11,13 @@
 	}
 }
 
-div.wp-block-orbitfox-our-services {
+div.wp-block-orbitfox-services {
 	display: block;
 
 	> .editor-inner-blocks > .editor-block-list__layout {
 		display: flex;
 
-		> [data-type="core/column"] {
+		> [data-type="orbitfox/service-block"] {
 			display: flex;
 			flex-direction: column;
 			flex: 1;
@@ -27,5 +27,18 @@ div.wp-block-orbitfox-our-services {
 				flex-basis: 100%;
 			}
 		}
+	}
+
+	.wp-block-column {
+		&:first-child {
+			margin-left: 0;
+		}
+
+		&:last-child {
+			margin-right: 0;
+		}
+
+	  padding: 20px 10px;
+	  margin: 0 20px;
 	}
 }
