@@ -1,0 +1,40 @@
+.obfx-block-notice {
+	background-color: #55b559;
+    color: #fff;
+	position: relative;
+	border: 0;
+	border-radius: 0;
+	padding: 20px;
+	margin-bottom: 1rem;
+	margin-right: auto;
+	margin-left: auto;
+	line-height: 20px;
+
+	.dashicon {
+		margin-right: 10px;
+		float: left;
+		fill: white;
+	}
+
+	.editor-rich-text {
+		display: inline-block;
+	}
+
+	p.obfx-notice {
+		color: #ffffff;
+		font-size: 16px;
+		margin: 0 !important;
+	}
+
+	&.is-style-info {
+		background-color: #00cae3;
+	}
+
+	&.is-style-error {
+		background-color: #f55145;
+	}
+
+	&.is-style-warning {
+		background-color: #ff9e0f;
+	}
+}

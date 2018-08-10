@@ -76,7 +76,7 @@ registerBlockType( 'orbitfox/sharing-icons', {
 		{ name: 'icons', label: __( 'Icons Only' ) },
 	],
 
-	edit( props ) {
+	edit: props => {
 		const toggleIcons = ( item ) => {
 			props.setAttributes( { [ item ]: !props.attributes[item] } );
 		};
@@ -123,7 +123,7 @@ registerBlockType( 'orbitfox/sharing-icons', {
 		];
 	},
 
-	save() {
+	save: () => {
 		return null;
 	},
 });

@@ -1,16 +1,21 @@
 /**
  * WordPress dependencies...
  */
-const {__} = wp.i18n;
+const { __ } = wp.i18n;
 
-const {
-	registerBlockType
-} = wp.blocks;
+const { registerBlockType } = wp.blocks;
 
-const {RichText} = wp.editor;
-const {Fragment} = wp.element;
+const { RichText } = wp.editor;
 
-registerBlockType('orbitfox/notice', {
+const { Dashicon } = wp.components;
+
+/**
+ * Internal dependencies
+ */
+import './style.scss';
+import './editor.scss';
+
+registerBlockType( 'orbitfox/notice', {
 	title: __('Notice'),
 	icon: 'info',
 	category: 'common',
@@ -33,44 +38,47 @@ registerBlockType('orbitfox/notice', {
 	},
 
 	styles: [
-		{ name: 'info', label: __( 'Info' ), isDefault: true },
+		{ name: 'sucess', label: __( 'Success' ), isDefault: true },
+		{ name: 'info', label: __( 'Info' ) },
 		{ name: 'warning', label: __( 'Warning' ) },
 		{ name: 'error', label: __( 'Error' ) },
 	],
 
 	edit: props => {
-		const {attributes: { content, title}, className, setAttributes} = props
-
-		// @TODO Add a toolbar control and create a custom svg icon for this block
+		let icon = <Dashicon icon='yes' size="28" />;
+		if ( props.attributes.className && props.attributes.className.includes( 'is-style-info') ) {
+			icon = <Dashicon icon='info' size="24" />;
+		} else if ( props.attributes.className && props.attributes.className.includes( 'is-style-warning') ) {
+			icon = <Dashicon icon='warning' size="24" />;
+		} else if ( props.attributes.className && props.attributes.className.includes( 'is-style-error') ) {
+			icon = <Dashicon icon='no' size="26" />;
+		}
 		return (
-			<Fragment>
-
+			<div className={ `obfx-block-notice ${ props.attributes.className ? props.attributes.className : '' }` }>
+				{ icon }
 				<RichText
 					tagName="p"
-					value={title}
-					className='obfx-block-notice__title'
-					onChange={title => setAttributes({title})}
-				/>
-
-				<RichText
-					tagName="p"
-					placeholder={__('Your tip/warning content')}
-					value={content}
-					className='obfx-block-notice__content'
-					onChange={content => setAttributes({content})}
+					placeholder={ __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' ) }
+					value={ props.attributes.content }
+					className="obfx-notice"
+					onChange={ content => props.setAttributes( { content } ) }
 					keepPlaceholderOnFocus="true"
 				/>
-
-			</Fragment>
+			</div>
 		)
 	},
 	save: props => {
-		const { title, content} = props.attributes
-
+		let icon = <Dashicon icon='yes' size="28" />;
+		if ( props.attributes.className && props.attributes.className.includes( 'is-style-info') ) {
+			icon = <Dashicon icon='info' size="24" />;
+		} else if ( props.attributes.className && props.attributes.className.includes( 'is-style-warning') ) {
+			icon = <Dashicon icon='warning' size="24" />;
+		} else if ( props.attributes.className && props.attributes.className.includes( 'is-style-error') ) {
+			icon = <Dashicon icon='no' size="26" />;
+		}
 		return (
-			<div className={`obfx-block-notice`}>
-				<p className='obfx-block-notice__title'>{title}</p>
-				<p className='obfx-block-notice__content'>{content}</p>
+			<div className={ `obfx-block-notice ${ props.attributes.className ? props.attributes.className : '' }` }>
+				{ icon }<p className="obfx-notice">{ props.attributes.content }</p>
 			</div>
 		)
 	},

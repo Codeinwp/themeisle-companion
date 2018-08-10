@@ -28,7 +28,7 @@ registerBlockType( 'orbitfox/service-block', {
 		},
 	},
 
-	edit( props ) {
+	edit: props => {
 		const setBackgroundColor = value => {
 			props.setAttributes( { backgroundColor: value } );
 		}
@@ -81,7 +81,7 @@ registerBlockType( 'orbitfox/service-block', {
 		];
 	},
 
-	save( props ) {
+	save: props => {
 		return (
 			<div
 				className="wp-block-column"	

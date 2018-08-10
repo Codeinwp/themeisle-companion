@@ -17,7 +17,7 @@ registerBlockType( 'orbitfox/services', {
 		'orbitfox'
 	],
 
-	edit( { className } ) {
+	edit: ( { className } ) => {
 		const ALLOWED_BLOCKS = [ 'orbitfox/service-block' ];
 		const TEMPLATE = [ [ 'orbitfox/service-block' ], [ 'orbitfox/service-block' ], [ 'orbitfox/service-block' ] ];
 		return (
@@ -30,7 +30,7 @@ registerBlockType( 'orbitfox/services', {
 		);
 	},
 
-	save() {
+	save: () => {
 		return (
 			<div className={ `obfx-services` }>
 				<InnerBlocks.Content/>
