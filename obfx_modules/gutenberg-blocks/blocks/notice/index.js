@@ -78,7 +78,12 @@ registerBlockType( 'orbitfox/notice', {
 		}
 		return (
 			<div className={ `obfx-block-notice ${ props.attributes.className ? props.attributes.className : '' }` }>
-				{ icon }<p className="obfx-notice">{ props.attributes.content }</p>
+				{ icon }
+				<RichText.Content
+					tagName="p"
+					className="obfx-notice"
+					value={ props.attributes.content }
+				/>
 			</div>
 		)
 	},
