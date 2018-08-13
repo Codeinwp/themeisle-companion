@@ -1,4 +1,8 @@
 
+ ### v2.5.7 - 2018-08-13 
+ **Changes:** 
+ * -fixed fatal error with Elementor extra widgets
+ 
  ### v2.5.6 - 2018-07-26 
  **Changes:** 
  * Fix Elementor content forms bug.
