@@ -30,13 +30,13 @@ class Sharing_Icons_Block extends Base_Block {
 
 			'googleplus' => array(
 				'label'   => esc_html__( 'Google Plus' ),
-				'icon' => 'google-plus',
+				'icon' => 'google-plus-g',
 				'url' => 'https://plus.google.com/share?url=' . get_the_permalink() . '&text=' . get_the_title(),
 			),
 
 			'linkedin' => array(
 				'label'   => esc_html__( 'Linkedin' ),
-				'icon' => 'linkedin',
+				'icon' => 'linkedin-in',
 				'url' => 'https://www.linkedin.com/shareArticle?mini=true&url=' . get_the_permalink() . '&title=' . get_the_title(),
 			),
 

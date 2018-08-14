@@ -18,7 +18,7 @@ registerBlockType( 'orbitfox/pricing-table', {
 		'orbitfox'
 	],
 
-	edit: ( {className} ) => {
+	edit: ( { className } ) => {
 		const ALLOWED_BLOCKS = [ 'orbitfox/pricing-block' ];
 		const TEMPLATE = [ [ 'orbitfox/pricing-block' ], [ 'orbitfox/pricing-block' ], [ 'orbitfox/pricing-block' ] ];
 		return (

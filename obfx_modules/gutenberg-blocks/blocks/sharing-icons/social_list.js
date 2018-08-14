@@ -14,11 +14,11 @@ const social_list = {
 	},
 	googleplus: {
 		label: __( 'Google+' ),
-		icon: 'google-plus',
+		icon: 'google-plus-g',
 	},
 	linkedin: {
 		label: __( 'Linkedin' ),
-		icon: 'linkedin',
+		icon: 'linkedin-in',
 	},
 	pinterest: {
 		label: __( 'Pinterest' ),
