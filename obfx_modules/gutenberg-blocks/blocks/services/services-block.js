@@ -9,8 +9,9 @@ const { InnerBlocks } = wp.editor;
 
 registerBlockType( 'orbitfox/services', {
 	title: __( 'Our Services' ),
+	description: __( 'Use this Services table to showcase services your website offers.' ),
 	icon: 'columns',
-	category: 'layout',
+	category: 'orbitfox',
 	keywords: [
 		'services',
 		'features',

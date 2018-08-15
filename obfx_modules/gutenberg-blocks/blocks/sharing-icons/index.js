@@ -30,8 +30,9 @@ import SocialIcons from './icons';
 
 registerBlockType( 'orbitfox/sharing-icons', {
 	title: __( 'Sharing Icons' ),
+	description: __( 'Share buttons for your website visitors to share content on any social sharing service.' ),
 	icon: 'networking',
-	category: 'common',
+	category: 'orbitfox',
 	keywords: [
 		'social media',
 		'sharing',

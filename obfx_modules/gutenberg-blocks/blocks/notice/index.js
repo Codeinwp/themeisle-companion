@@ -16,9 +16,10 @@ import './style.scss';
 import './editor.scss';
 
 registerBlockType( 'orbitfox/notice', {
-	title: __('Notice'),
+	title: __( 'Notice' ),
+	description: __( 'Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages.' ),
 	icon: 'info',
-	category: 'common',
+	category: 'orbitfox',
 	keywords: [
 		'notice',
 		'info'

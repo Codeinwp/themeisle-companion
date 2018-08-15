@@ -13,9 +13,10 @@ const {
 
 registerBlockType( 'orbitfox/service-block', {
 	title: __( 'Service Block' ),
+	description: __( 'Use this Services table to showcase services your website offers.' ),
 	parent: [ 'orbitfox/services' ],
 	icon: 'slides',
-	category: 'layout',
+	category: 'orbitfox',
 	keywords: [
 		'pricing',
 		'table',

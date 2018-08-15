@@ -65,6 +65,8 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		//add_action( 'enqueue_block_editor_assets', 'gutenberg_examples_02_enqueue_block_editor_assets' );
 		add_action( 'enqueue_block_assets', array( $this, 'enqueue_block_assets' ) );
+
+		add_filter( 'block_categories', array( $this, 'block_categories' ) );
 	}
 
 	/**
@@ -316,6 +318,26 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$return = update_post_meta( $object_id->ID, 'form_data', $new_values );
 
 		return $return;
+	}
+
+	/**
+	 * Register our custom block category.
+	 *
+	 * @access public
+	 * @param array $categories All categories.
+	 * @link https://wordpress.org/gutenberg/handbook/extensibility/extending-blocks/#managing-block-categories
+	 */
+	public function block_categories( $categories ) {
+
+		return array_merge(
+			$categories,
+			array(
+				array(
+					'slug'  => 'orbitfox',
+					'title' => __( 'Orbit Fox Blocks', 'themeisle-companion' ),
+				),
+			)
+		);
 	}
 
 

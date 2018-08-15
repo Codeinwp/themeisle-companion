@@ -29,9 +29,10 @@ const {
  */
 registerBlockType( 'orbitfox/pricing-block', {
 	title: __( 'Pricing Block' ),
+	description: __( 'Pricing tables are a critical part in showcasing your services, prices and overall offerings.' ),
 	parent: [ 'orbitfox/pricing-table' ],
 	icon: 'slides',
-	category: 'layout',
+	category: 'orbitfox',
 	keywords: [
 		'pricing',
 		'table',

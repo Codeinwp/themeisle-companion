@@ -24,26 +24,26 @@ class About_Author_Block extends Base_Block {
 	 */
 	function render( $attributes ) {
 		$img_markup = sprintf(
-			'<img src="%1$s" class="%2$s" />',
-			esc_attr( get_avatar_url( get_the_author_meta( 'ID' ) ) ),
-			'author_image'
+			'<a href="%1$s"><img src="%2$s" class="author-image" /></a>',
+			esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
+			esc_attr( get_avatar_url( get_the_author_meta( 'ID' ), array( 'size' => 130 ) ) )
 		);
 
 		$title_markup = sprintf(
-			'<h2>%1$s</h2>',
+			'<h4>%1$s</h4>',
 			esc_html( get_the_author_meta( 'display_name' ) )
 		);
 
 		$content_markup = sprintf(
-			'<p>%1$s%2$s</p>',
-			$img_markup,
+			'<p>%1$s</p>',
 			esc_html( strip_tags( get_the_author_meta( 'description' ) ) )
 		);
 
-		$class     = "blocks-single-author";
+		$class = "wp-block-orbitfox-about-author";
 		return sprintf(
-			'<section class="%1$s">%2$s%3$s</section>',
+			'<section class="%1$s"><div class="obfx-author-image">%2$s</div><div class="obfx-author-data">%3$s%4$s</div></section>',
 			esc_attr( $class ),
+			$img_markup,
 			$title_markup,
 			$content_markup
 		);

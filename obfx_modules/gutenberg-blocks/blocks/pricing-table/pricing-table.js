@@ -10,8 +10,9 @@ const { InnerBlocks } = wp.editor;
 
 registerBlockType( 'orbitfox/pricing-table', {
 	title: __( 'Pricing Table' ),
+	description: __( 'Pricing tables are a critical part in showcasing your services, prices and overall offerings.' ),
 	icon: 'slides',
-	category: 'layout',
+	category: 'orbitfox',
 	keywords: [
 		'pricing',
 		'table',

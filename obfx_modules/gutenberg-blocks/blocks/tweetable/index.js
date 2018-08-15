@@ -30,8 +30,9 @@ import './style.scss';
 
 registerBlockType( 'orbitfox/tweetable', {
 	title: __( 'Click To Tweet' ),
+	description: __( 'Click to Tweet allows visitors to easily share your content on Twitter.' ),
 	icon: 'twitter',
-	category: 'common',
+	category: 'orbitfox',
 	keywords: [
 		__( 'twitter' ),
 		__( 'tweet' ),
