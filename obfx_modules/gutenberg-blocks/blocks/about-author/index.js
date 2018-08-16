@@ -34,10 +34,10 @@ registerBlockType('orbitfox/about-author', {
 		id: {
 			type: 'number',
 		},
-		custom: {
-			type: 'boolean',
-			default: false,
-		},
+	},
+
+	supports: {
+		html: false,
 	},
 
 	edit: compose( [
@@ -57,12 +57,12 @@ registerBlockType('orbitfox/about-author', {
 
 	] )( ( { postAuthor, authors, status, author_details, setState, props, className } ) => {
 
-		if ( ( status === 0 && postAuthor && authors ) || ( props.attributes.custom === false && postAuthor !== props.attributes.id ) ) {
+		if ( status === 0 && postAuthor && authors && postAuthor !== props.attributes.id ) {
 			authors.find( ( o ) => {
 				if ( o.id === postAuthor ) {
 					props.setAttributes( { id: o.id } );
 					setState( {
-						author_details: o ,
+						author_details: o,
 						status: 1,
 					} );
 					return o.id === postAuthor;

@@ -31,7 +31,7 @@ class Plugin_Card_Server extends \WP_Rest_Controller {
 					'search'      => array(
 						'type'        => 'string',
 						'required'    => true,
-						'description' => __( 'The form must have data', 'textdomain' ),
+						'description' => __( 'The form must have data', 'themeisle-companion' ),
 					)
 				),
 			),
@@ -46,7 +46,7 @@ class Plugin_Card_Server extends \WP_Rest_Controller {
 	public function search( $request ) {
 		$return = array(
 			'success' => false,
-			'data'     => esc_html__( 'Something went wrong', 'textdomain' )
+			'data'     => esc_html__( 'Something went wrong', 'themeisle-companion' )
 		);
 
 		$search   = $request->get_param( 'search' );
@@ -57,22 +57,26 @@ class Plugin_Card_Server extends \WP_Rest_Controller {
 			'per_page' => 12,
 			'search' => $search,
 			'fields' => array(
+				'active_installs' => true,
+				'added' => false,
+				'donate_link' => false,
+				'downloadlink' => true,
+				'homepage' => true,
+				'icons' => true,
+				'last_updated' => false,
+				'requires' => true,
+				'requires_php' => false,
+				'screenshots' => false,
 				'short_description' => true,
+				'slug' => false,
 				'sections' => false,
 				'requires' => false,
-				'rating' => false,
+				'rating' => true,
 				'ratings' => false,
-				'downloaded' => false,
-				'last_updated' => false,
-				'added' => false,
-				'tags' => false,
-				'compatibility' => false,
-				'homepage' => true,
-				'donate_link' => false,
 			)
 		);
 
-		$results = plugins_api('query_plugins', $request);
+		$results = plugins_api( 'query_plugins', $request );
 
 		if ( is_wp_error( $request ) ) {
 			$return['data'] = 'error';
@@ -114,7 +118,7 @@ class Plugin_Card_Server extends \WP_Rest_Controller {
 	 */
 	public function __clone() {
 		// Cloning instances of the class is forbidden.
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'textdomain' ), '1.0.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'themeisle-companion' ), '1.0.0' );
 	}
 
 	/**
@@ -126,6 +130,6 @@ class Plugin_Card_Server extends \WP_Rest_Controller {
 	 */
 	public function __wakeup() {
 		// Unserializing instances of the class is forbidden.
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'textdomain' ), '1.0.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'themeisle-companion' ), '1.0.0' );
 	}
 }

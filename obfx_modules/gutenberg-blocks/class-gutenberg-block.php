@@ -87,7 +87,7 @@ abstract class Base_Block {
 	 *
 	 */
 	public function register_block() {
-		register_block_type(
+		\register_block_type(
 			$this ->block_prefix . '/' . $this->block_slug, array(
 				'render_callback' => array( $this, 'render_callback' ),
 				'attributes'      => $this->get_attributes(),
