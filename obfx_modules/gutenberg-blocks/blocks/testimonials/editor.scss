@@ -1,7 +1,7 @@
 // These margins make sure that nested blocks stack/overlay with the parent block chrome
 // This is sort of an experiment at making sure the editor looks as much like the end result as possible
 // Potentially the rules here can apply to all nested blocks and enable stacking, in which case it should be moved elsewhere
-.wp-block-orbitfox-pricing-table .editor-block-list__layout {
+.wp-block-orbitfox-testimonials-area .editor-block-list__layout {
 	margin-left: 0;
 	margin-right: 0;
 
@@ -12,13 +12,13 @@
 	}
 }
 
-.wp-block-orbitfox-pricing-table {
+.wp-block-orbitfox-testimonials-area {
 	display: block;
 
 	> .editor-inner-blocks > .editor-block-list__layout {
 		display: flex;
 
-		> [data-type="orbitfox/pricing-block"] {
+		> [data-type="orbitfox/testimonials-block"] {
 			display: flex;
 			flex-direction: column;
 			flex: 1;
@@ -39,19 +39,40 @@
 			margin-right: 0;
 		}
 
-	  padding: 20px 10px;
-	  margin: 0 20px;
-	}
-  
-	.raised {
-		-webkit-box-shadow: 0 16px 38px -12px rgba(0,0,0,.56),0 4px 25px 0 rgba(0,0,0,.12),0 8px 10px -5px rgba(0,0,0,.2);
-		-moz-box-shadow: 0 16px 38px -12px rgba(0,0,0,.56),0 4px 25px 0 rgba(0,0,0,.12),0 8px 10px -5px rgba(0,0,0,.2);
-		box-shadow: 0 16px 38px -12px rgba(0,0,0,.56),0 4px 25px 0 rgba(0,0,0,.12),0 8px 10px -5px rgba(0,0,0,.2);
+		padding: 20px 10px;
+		margin: 0 20px;
+
+		.wp-block-image {
+			margin: 0 auto;
+			width: 100px;
+			height: auto;
+
+			img {
+				border-radius: 100%;
+				box-shadow: 0 10px 25px 0 rgba(0,0,0,.3);
+			}
+		}
+
+		h3 {
+			&.testimonials-title {
+				margin: 20px 0 0 0 !important;
+			}
+		}
+
+		.testimonials-content {
+			&:before {
+				content: open-quote;
+			}
+
+			&:after {
+				content: close-quote;
+			}
+		}
 	}
 }
 
 @media ( max-width:768px ) {
-	.wp-block-orbitfox-pricing-table {
+	.wp-block-orbitfox-testimonials-area {
 		display: block;
 	}
 }

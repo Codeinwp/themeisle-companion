@@ -49,7 +49,7 @@ registerBlockType( 'orbitfox/pricing-block', {
 		},
 	},
 
-	edit( props ) {
+	edit: props => {
 		const toggleFeatured = () => {
 			props.setAttributes( { featured: !props.attributes.featured } );
 		};
@@ -59,6 +59,7 @@ registerBlockType( 'orbitfox/pricing-block', {
 		const TEMPLATE =  [
 			['core/heading', {
 				content: __( 'Basic' ),
+				className: 'pricing-title',
 				align: 'center',
 				level: 5,
 			}],
@@ -93,6 +94,7 @@ registerBlockType( 'orbitfox/pricing-block', {
 			['core/separator', {}],
 			['core/button', {
 				text: __('Buy Now'),
+				className: 'pricing-button',
 				align: 'center',
 			}],
 		];
@@ -148,7 +150,7 @@ registerBlockType( 'orbitfox/pricing-block', {
 		];
 	},
 
-	save( props ) {
+	save: props => {
 		return (
 			<div
 				className={ classnames(

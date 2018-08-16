@@ -40,15 +40,18 @@ registerBlockType( 'orbitfox/service-block', {
 			}],
 			['core/heading', {
 				content: __( 'Panel' ),
+				className: 'service-title',
 				align: 'center',
 				level: 4,
 			}],
 			['core/paragraph', {
 				content: __( 'Small description, but a pretty long one.' ),
+				className: 'service-content',
 				align: 'center',
 			}],
 			['core/button', {
 				text: __( 'Learn More' ),
+				className: 'service-button',
 				align: 'center',
 			}],
 		];

@@ -166,6 +166,7 @@ registerBlockType( 'orbitfox/plugin-cards', {
 					>
 						<Tooltip text={ __( 'Edit Plugin Card' )	}>
 							<Button
+								className="components-icon-button components-toolbar__control edit-plugin-card"
 								onClick={ () => {
 									props.setAttributes( {
 										plugin_icon: '',

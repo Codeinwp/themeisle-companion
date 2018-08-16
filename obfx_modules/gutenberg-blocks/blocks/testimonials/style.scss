@@ -1,0 +1,52 @@
+.wp-block-orbitfox-testimonials-area {
+	display: flex;
+  
+	.wp-block-column {
+		&:first-child {
+			margin-left: 0;
+		}
+
+		&:last-child {
+			margin-right: 0;
+		}
+
+		padding: 20px 10px;
+		margin: 0 20px;
+
+		.wp-block-image {
+			margin: 0 auto;
+			width: 100px;
+			height: auto;
+
+			img {
+				border-radius: 100%;
+				box-shadow: 0 10px 25px 0 rgba(0,0,0,.3);
+			}
+		}
+
+		h3 {
+			&.testimonials-title {
+				margin: 20px 0 0 0 !important;
+			}
+		}
+
+		.testimonials-content {
+			&:before {
+				content: open-quote;
+			}
+
+			&:after {
+				content: close-quote;
+			}
+		}
+	}
+
+	padding: 20px 10px;
+	margin: 20px 20px;
+}
+
+@media ( max-width:768px ) {
+	.wp-block-orbitfox-testimonials-area {
+		display: block;
+	}
+}
