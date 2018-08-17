@@ -7,7 +7,7 @@ const { registerBlockType } = wp.blocks;
 
 const { RichText } = wp.editor;
 
-const { Dashicon } = wp.components;
+const { Notice } = wp.components;
 
 /**
  * Internal dependencies
@@ -45,47 +45,53 @@ registerBlockType( 'orbitfox/notice', {
 		{ name: 'error', label: __( 'Error' ) },
 	],
 
-	edit: props => {
-		let icon = <Dashicon icon='yes' size="28" />;
+	edit: ( props, { className } ) => {
+		let status = "success";
 		if ( props.attributes.className && props.attributes.className.includes( 'is-style-info') ) {
-			icon = <Dashicon icon='info' size="24" />;
+			status = "";
 		} else if ( props.attributes.className && props.attributes.className.includes( 'is-style-warning') ) {
-			icon = <Dashicon icon='warning' size="24" />;
+			status = "warning";
 		} else if ( props.attributes.className && props.attributes.className.includes( 'is-style-error') ) {
-			icon = <Dashicon icon='no' size="26" />;
+			status = "error";
 		}
 		return (
-			<div className={ `obfx-block-notice ${ props.attributes.className ? props.attributes.className : '' }` }>
-				{ icon }
+			<Notice
+				className={ className }
+				isDismissible={ false }
+				status={ status }
+			>
 				<RichText
 					tagName="p"
 					placeholder={ __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' ) }
 					value={ props.attributes.content }
-					className="obfx-notice"
+					className="components-notice__content"
 					onChange={ content => props.setAttributes( { content } ) }
 					keepPlaceholderOnFocus="true"
 				/>
-			</div>
+			</Notice>
 		)
 	},
 	save: props => {
-		let icon = <Dashicon icon='yes' size="28" />;
+		let status = "success";
 		if ( props.attributes.className && props.attributes.className.includes( 'is-style-info') ) {
-			icon = <Dashicon icon='info' size="24" />;
+			status = "";
 		} else if ( props.attributes.className && props.attributes.className.includes( 'is-style-warning') ) {
-			icon = <Dashicon icon='warning' size="24" />;
+			status = "warning";
 		} else if ( props.attributes.className && props.attributes.className.includes( 'is-style-error') ) {
-			icon = <Dashicon icon='no' size="26" />;
+			status = "error";
 		}
 		return (
-			<div className={ `obfx-block-notice ${ props.attributes.className ? props.attributes.className : '' }` }>
-				{ icon }
+			<Notice
+				className="obfx-block-notice"
+				isDismissible={ false }
+				status={ status }
+			>
 				<RichText.Content
 					tagName="p"
-					className="obfx-notice"
+					className="components-notice__content"
 					value={ props.attributes.content }
 				/>
-			</div>
+			</Notice>
 		)
 	},
 });
