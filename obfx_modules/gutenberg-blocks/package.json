@@ -23,12 +23,13 @@
     "npm": ">=6.0.0"
   },
   "dependencies": {
+    "@handsontable/react": "^1.1.0",
     "@wordpress/autop": "^1.0.4",
     "accessible-autocomplete": "^1.6.1",
-    "chart.js": "^2.7.2",
-    "immutability-helper": "^2.7.1",
+    "handsontable": "^5.0.1",
     "memize": "^1.0.5",
     "react": "16.4.1",
+    "react-google-charts": "^3.0.5",
     "redux": "^3.7.2"
   },
   "devDependencies": {
@@ -43,7 +44,6 @@
     "cross-env": "3.2.4",
     "extract-text-webpack-plugin": "4.0.0-beta.0",
     "jquery": "3.3.1",
-    "lodash": "^4.17.10",
     "moment": "^2.22.2",
     "node-sass": "git://github.com/sass/node-sass.git#v4.7.0",
     "postcss-loader": "2.1.3",

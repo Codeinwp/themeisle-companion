@@ -59,7 +59,7 @@ registerBlockType( 'orbitfox/testimonials-block', {
 		];
 
 		return (
-			<div className="wp-block-column" >
+			<div className="wp-block-column">
 				<InnerBlocks
 					template={ TEMPLATE }
 				/>
@@ -69,7 +69,7 @@ registerBlockType( 'orbitfox/testimonials-block', {
 
 	save: () => {
 		return (
-			<div className="wp-block-column" >
+			<div className="wp-block-column">
 				<InnerBlocks.Content/>
 			</div>
 		);

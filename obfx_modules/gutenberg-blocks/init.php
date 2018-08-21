@@ -63,7 +63,6 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		add_action( 'rest_api_init', array( $this, 'create_api_field_form_data' ) );
 
-		//add_action( 'enqueue_block_editor_assets', 'gutenberg_examples_02_enqueue_block_editor_assets' );
 		add_action( 'enqueue_block_assets', array( $this, 'enqueue_block_assets' ) );
 
 		add_filter( 'block_categories', array( $this, 'block_categories' ) );
@@ -189,24 +188,17 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * Load assets for our blocks.
 	 */
 	function enqueue_block_assets() {
+
+		if ( is_admin() ) {
+			return;
+		}
+
 		wp_enqueue_style(
 			'obfx-block_styles',
 			plugins_url( 'build/style.css', __FILE__ ),
 			array( 'wp-blocks' ),
 			filemtime( plugin_dir_path( __FILE__ ) . 'build/style.css' )
 		);
-
-		// this should only be quequed when a chart block is present.
-		wp_enqueue_script(
-			'obfx-charts',
-			plugins_url( 'blocks/chart/chart.js', __FILE__ ),
-			array( 'jquery' ),
-			filemtime( plugin_dir_path( __FILE__ ) . 'blocks/chart/chart.js' )
-		);
-
-		if ( is_admin() ) {
-			return;
-		}
 
 
 		// @TODO this should be loaded only when a contact form is present

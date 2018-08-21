@@ -59,6 +59,11 @@ const glob = require("glob"),
 					test: /editor\.s?css$/,
 					use: editBlocksCSSPlugin.extract(extractConfig),
 				},
+				{
+					test: /\.css$/,  
+					include: /node_modules/,
+					use: editBlocksCSSPlugin.extract(extractConfig),
+				}
 			],
 		},
 		plugins: [

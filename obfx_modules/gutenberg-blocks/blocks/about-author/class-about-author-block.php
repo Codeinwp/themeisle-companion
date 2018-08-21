@@ -16,7 +16,6 @@ class About_Author_Block extends Base_Block {
 	}
 
 	/**
-	 * @TODO look for a semantic HTML markup and build a nice About Author box.
 	 *
 	 * @param $attributes
 	 *
