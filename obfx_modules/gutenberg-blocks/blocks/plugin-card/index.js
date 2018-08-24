@@ -141,6 +141,7 @@ registerBlockType( 'orbitfox/plugin-cards', {
 				icon = data.icons['default'];
 			}
 			props.setAttributes( {
+				slug: data.slug,
 				plugin_icon: icon,
 				plugin_name: data.name,
 				plugin_author: data.author,
@@ -280,47 +281,7 @@ registerBlockType( 'orbitfox/plugin-cards', {
 		]
 	} ),
 
-	save: props => {
-		return (
-			<div className="wp-block-orbitfox-plugin-cards">
-				<div class="obfx-plugin-card">
-					<div class="card-header">
-						<div class="card-main">
-							<div class="card-logo">
-								<img src={ props.attributes.plugin_icon } alt={ unescapeHTML( props.attributes.plugin_name ) } title={ unescapeHTML( props.attributes.plugin_name ) }/>
-							</div>
-							<div class="card-info">
-								<h4>{ unescapeHTML( props.attributes.plugin_name ) }</h4>
-								<h5 dangerouslySetInnerHTML={ { __html: _.unescape( props.attributes.plugin_author ) } }></h5>
-							</div>
-							<div class={ `card-ratings` } dangerouslySetInnerHTML={ { __html: _.unescape( starRating( props.attributes.plugin_rating ) ) } }></div>
-						</div>
-					</div>
-					<div class="card-details">
-						<div class="card-description">{ unescapeHTML( props.attributes.plugin_description ) }</div>
-						<div class="card-stats">
-							<h5>{__( 'Plugin Stats' ) }</h5>
-							<div class="card-stats-list">
-								<div class="card-stat">
-									<span class="card-text-large">{ props.attributes.plugin_installs.toLocaleString() }+</span>
-									{ __( 'active installs' ) }
-								</div>
-								<div class="card-stat">
-									<span class="card-text-large">{ props.attributes.plugin_version }</span>
-									{ __( 'version' ) }
-								</div>
-								<div class="card-stat">
-									<span class="card-text-large">{ props.attributes.plugin_tested }</span>
-									{ __( 'tested up to' ) }
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="card-download">
-						<a href={ props.attributes.plugin_link }>{ __( 'Download' ) }</a>
-					</div>
-				</div>
-			</div>
-		)
+	save: () => {
+		return null;
 	},
 });

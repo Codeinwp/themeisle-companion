@@ -189,6 +189,13 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	function enqueue_block_assets() {
 
+		wp_enqueue_style(
+			'obfx-block_styles',
+			plugins_url( 'build/style.css', __FILE__ ),
+			array( 'wp-blocks' ),
+			filemtime( plugin_dir_path( __FILE__ ) . 'build/style.css' )
+		);
+
 		if ( is_admin() ) {
 			return;
 		}
@@ -199,13 +206,6 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'https://www.gstatic.com/charts/loader.js'
 			);
 		}
-
-		wp_enqueue_style(
-			'obfx-block_styles',
-			plugins_url( 'build/style.css', __FILE__ ),
-			array( 'wp-blocks' ),
-			filemtime( plugin_dir_path( __FILE__ ) . 'build/style.css' )
-		);
 
 		wp_enqueue_script( 'https://www.gstatic.com/charts/loader.js', '', true );
 

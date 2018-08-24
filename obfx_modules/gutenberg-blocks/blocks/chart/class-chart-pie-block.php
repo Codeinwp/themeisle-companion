@@ -1,7 +1,7 @@
 <?php
 
 namespace OrbitFox\Gutenberg_Blocks;
-
+	
 class Chart_Pie_Block extends Base_Block {
 
 	public function __construct() {

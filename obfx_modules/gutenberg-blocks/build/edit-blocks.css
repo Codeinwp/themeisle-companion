@@ -1916,7 +1916,7 @@ div[data-type="orbitfox/chart-pie"] .edit-pie-chart:hover svg {
           position: absolute;
           left: 0;
           margin: 12px; }
-        .wp-block-orbitfox-plugin-cards .components-placeholder .components-placeholder__fieldset .search-plugin-field .spinner {
+        .wp-block-orbitfox-plugin-cards .components-placeholder .components-placeholder__fieldset .search-plugin-field .components-spinner {
           position: absolute;
           margin: 12px;
           right: 0; }
