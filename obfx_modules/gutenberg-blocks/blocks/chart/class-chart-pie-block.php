@@ -58,6 +58,6 @@ class Chart_Pie_Block extends Base_Block {
 			}
 		</script>";
 
-		return $chart_markup + $script;
+		return $chart_markup . $script;
 	}
 }
