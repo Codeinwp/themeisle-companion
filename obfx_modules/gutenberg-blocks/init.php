@@ -193,6 +193,13 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			return;
 		}
 
+		if ( has_block( 'orbitfox/chart-pie' ) ) {
+			wp_enqueue_script(
+				'google-charts',
+				'https://www.gstatic.com/charts/loader.js'
+			);
+		}
+
 		wp_enqueue_style(
 			'obfx-block_styles',
 			plugins_url( 'build/style.css', __FILE__ ),
@@ -200,6 +207,7 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			filemtime( plugin_dir_path( __FILE__ ) . 'build/style.css' )
 		);
 
+		wp_enqueue_script( 'https://www.gstatic.com/charts/loader.js', '', true );
 
 		// @TODO this should be loaded only when a contact form is present
 		wp_enqueue_script( 'obfx-contact-form', plugins_url( 'blocks/contact-form/contact-form.js', __FILE__ ), array( 'jquery' ) );

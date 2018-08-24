@@ -52,21 +52,25 @@ registerBlockType( 'orbitfox/chart-pie', {
 	],
 	attributes: {
 		data: {
-			type: 'object',
+			type: 'array',
 			default: [
-				[ "Label", "Data" ],
-				[ "Dogs", 40 ],
-				[ "Cats", 30 ],
-				[ "Racoons", 20 ],
-				[ "Monkeys", 10 ],
+				[ 'Label', 'Data' ],
+				[ 'Dogs', 40 ],
+				[ 'Cats', 30 ],
+				[ 'Racoons', 20 ],
+				[ 'Monkeys', 10 ],
 			],
 		},
 		options: {
 			type: 'object',
 			default: {
-				title: "Animals",
+				title: 'Animals',
 				is3D: true,
 			},
+		},
+		id: {
+			type: 'string',
+			default: '',
 		}
 	},
 
@@ -83,6 +87,16 @@ registerBlockType( 'orbitfox/chart-pie', {
 		} )
 
 	] )( ( { isOpen, setState, props, className } ) => {
+
+		const updateData = ( value, source ) => {
+			if ( value !== null ) {
+				const options = [ ...props.attributes.data ];
+				value.forEach( item => {
+					options[ item[0] ][ item[1] ] = item[3];
+				});
+				props.setAttributes( { data: options } );
+			}
+		};
 
 		const addRow = () => {
 			const options = [ ...props.attributes.data ];
@@ -101,6 +115,11 @@ registerBlockType( 'orbitfox/chart-pie', {
 			options['is3D'] = !props.attributes.options.is3D;
 			props.setAttributes( { options } );
 		};
+
+		if ( props.clientId && props.attributes.id === '' ) {
+			const id = props.clientId;
+			props.setAttributes( { id } );
+		}
 
 		return [
 			<BlockControls key="toolbar-controls">
@@ -174,6 +193,7 @@ registerBlockType( 'orbitfox/chart-pie', {
 							height="200"
 							rowHeaders={ true }
 							stretchH="all"
+							onAfterChange={ ( value, source ) => updateData( value, source ) }
 						/>
 						<Button
 							onClick={ addRow }
