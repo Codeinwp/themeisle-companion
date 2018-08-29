@@ -14,43 +14,20 @@ class Posts_Grid_Block extends Base_Block {
 
 	function set_attributes() {
 		$this->attributes = array(
-			'categories'           => array(
-				'type' => 'string',
+			'grid'                 => array(
+				'type' => 'boolean',
+				'default' => false,
 			),
-			'className'            => array(
+			'columns'              => array(
+				'type' => 'number',
+				'default' => 3,
+			),
+			'categories'           => array(
 				'type' => 'string',
 			),
 			'postsToShow'          => array(
 				'type'    => 'number',
 				'default' => 5,
-			),
-			'displayFeaturedImage' => array(
-				'type'    => 'boolean',
-				'default' => false,
-			),
-			'displayPostDate'      => array(
-				'type'    => 'boolean',
-				'default' => false,
-			),
-			'displayReadMore'      => array(
-				'type'    => 'boolean',
-				'default' => false,
-			),
-			'displayExcerpt'      => array(
-				'type'    => 'boolean',
-				'default' => false,
-			),
-			'postLayout'           => array(
-				'type'    => 'string',
-				'default' => 'list',
-			),
-			'columns'              => array(
-				'type'    => 'number',
-				'default' => 3,
-			),
-			'align'                => array(
-				'type'    => 'string',
-				'default' => 'center',
 			),
 			'order'                => array(
 				'type'    => 'string',
@@ -60,9 +37,25 @@ class Posts_Grid_Block extends Base_Block {
 				'type'    => 'string',
 				'default' => 'date',
 			),
-			'readMoreLabel'        => array(
-				'type' => 'string',
-				'default' => esc_html__( 'Read More ...', 'textdomain' )
+			'displayFeaturedImage' => array(
+				'type'    => 'boolean',
+				'default' => true,
+			),
+			'displayCategory'      => array(
+				'type'    => 'boolean',
+				'default' => true,
+			),
+			'displayDate'          => array(
+				'type'    => 'boolean',
+				'default' => true,
+			),
+			'displayAuthor'        => array(
+				'type'    => 'boolean',
+				'default' => true,
+			),
+			'excerptLength'        => array(
+				'type'    => 'number',
+				'default' => '200',
 			),
 		);
 	}
@@ -82,74 +75,83 @@ class Posts_Grid_Block extends Base_Block {
 			'category'    => $attributes['categories'],
 		) );
 
-		$list_items_markup = $featured_image_markup = '';
+		$list_items_markup = "";
 
 		foreach ( $recent_posts as $post ) {
-			$post_id = $post['ID'];
-			$excerpt = $readMoreMarkup = '';
+			$id = $post['ID'];
+			$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id(  $id ), 'medium' );
+			$category = get_the_category( $id );
+
+			$list_items_markup .= '<div class="grid-post grid-' . $attributes['columns'] . '"><div class="grid-post-row">';
 
 			if ( isset( $attributes['displayFeaturedImage'] ) && $attributes['displayFeaturedImage'] ) {
-				$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id(  $post['ID'] ) );
-
-				$featured_image_markup = sprintf(
-					'<div class="post-thumbnail"><img src="%1$s" alt="" /></div><!-- .post-thumbnail -->',
-					esc_url( $thumbnail[0] )
-				);
+				if ( $thumbnail ) {
+					$list_items_markup .= sprintf(
+						'<div class="grid-image-area"><div class="post-thumbnail"><a href="%1$s"><img src="%2$s" alt="%3$s" /></a></div></div>',
+						esc_url( get_the_permalink( $id ) ),
+						esc_url( $thumbnail[0] ),
+						esc_html( get_the_title( $id ) )
+					);
+				}
 			}
 
-			if ( isset( $attributes['displayExcerpt'] ) && $attributes['displayExcerpt'] ) {
-				$excerpt = $this->get_gutenberg_excerpt( $post );
-			}
+			$list_items_markup .= '<div class="grid-content-area' . ( $thumbnail && $attributes['displayFeaturedImage'] ? "" : " full" ) . '">';
 
-			$title = get_the_title( $post_id );
-
-			if ( ! $title ) {
-				$title = __( '(Untitled)', 'gutenberg' );
-			}
-
-			if ( isset( $attributes['displayReadMore'] ) && $attributes['displayReadMore'] ) {
-				$readMoreMarkup = sprintf(
-					'<a href="%1$s">%2$s</a>',
-					get_the_permalink(),
-					$attributes['readMoreLabel']
+			if ( isset( $attributes['displayCategory'] ) && $attributes['displayCategory'] ) {
+				$list_items_markup .= sprintf(
+					'<h6 class="grid-content-category"><a href="%1$s">%2$s</a></h6>',
+					esc_url( get_category_link( $category[0]->term_id ) ),
+					esc_html( $category[0]->cat_name )
 				);
 			}
 
 			$list_items_markup .= sprintf(
-				'<li><a href="%1$s">%2$s</a>%3$s %4$s',
-				esc_url( get_permalink( $post_id ) ),
-				esc_html( $title ),
-				$featured_image_markup,
-				$excerpt,
-				$readMoreMarkup
+				'<h3 class="grid-content-title"><a href="%1$s">%2$s</a></h6>',
+				esc_url( get_the_permalink( $id ) ),
+				esc_html( get_the_title( $id ) )
 			);
 
-			if ( isset( $attributes['displayPostDate'] ) && $attributes['displayPostDate'] ) {
+			if ( ( isset( $attributes['displayDate'] ) && $attributes['displayDate'] ) || ( isset( $attributes['displayAuthor'] ) && $attributes['displayAuthor'] ) ) {
+				$list_items_markup .= '<p class="grid-content-meta">';
+
+				if ( ( isset( $attributes['displayDate'] ) && $attributes['displayDate'] ) ) {
+					$list_items_markup .= sprintf(
+						'<time datetime="%1$s">%2$s %3$s </time>',
+						esc_attr( get_the_date( 'c', $id ) ),
+						__( 'on', 'themeisle-companion' ),
+						esc_html( get_the_date( 'j F, Y', $id ) )
+					);
+				}
+
+				if ( ( isset( $attributes['displayAuthor'] ) && $attributes['displayAuthor'] ) ) {
+					$list_items_markup .= sprintf(
+						'%1$s %2$s',
+						__( 'by', 'themeisle-companion' ),
+						get_the_author_posts_link( get_the_author_meta( $id ) )
+					);
+				}
+
+				$list_items_markup .= '</p>';
+			}
+
+			if ( ( isset( $attributes['excerptLength'] ) && $attributes['excerptLength'] > 0 ) ) {
 				$list_items_markup .= sprintf(
-					'<time datetime="%1$s" class="wp-block-posts-grid__post-date">%2$s</time>',
-					esc_attr( get_the_date( 'c', $post_id ) ),
-					esc_html( get_the_date( '', $post_id ) )
+					'<p class="grid-content-excerpt">%1$s</p>',
+					$this->get_excerpt_by_id( $id, $attributes['excerptLength'] )
 				);
 			}
 
-			$list_items_markup .= "</li>\n";
+			$list_items_markup .= '</div></div></div>';
 		}
 
-		$class = "wp-block-posts-grid align{$attributes['align']}";
-		if ( isset( $attributes['postLayout'] ) && 'grid' === $attributes['postLayout'] ) {
+		$class = "wp-block-orbitfox-posts-grid";
+
+		if ( isset( $attributes['grid'] ) && true === $attributes['grid'] ) {
 			$class .= ' is-grid';
 		}
 
-		if ( isset( $attributes['columns'] ) && 'grid' === $attributes['postLayout'] ) {
-			$class .= ' columns-' . $attributes['columns'];
-		}
-
-		if ( isset( $attributes['className'] ) ) {
-			$class .= ' ' . $attributes['className'];
-		}
-
 		$block_content = sprintf(
-			'<ul class="%1$s">%2$s</ul>',
+			'<div class="%1$s">%2$s</div>',
 			esc_attr( $class ),
 			$list_items_markup
 		);
@@ -158,30 +160,18 @@ class Posts_Grid_Block extends Base_Block {
 	}
 
 	/**
-	 * Just because get_the_excerpt doesn't work https://github.com/WordPress/gutenberg/issues/5572
+	 * Get post excerpt
 	 *
-	 * @param $post
+	 * @param $post_id
 	 * @param int $words_length
 	 *
 	 * @return string
 	 */
-	function get_gutenberg_excerpt( $post, $words_length = 24 ){
-
-		if ( has_excerpt( $post ) ) {
-			return get_the_excerpt( $post['ID'] );
-		}
-
-		$blocks = gutenberg_parse_blocks( $post['post_content'] );
-
-		$output = '';
-
-		foreach ( $blocks as $block ) {
-			if ( isset( $block['blockName'] )
-			     && ( $block['blockName'] === 'core/paragraph' || $block['blockName'] === 'core/heading' ) ) {
-				$output .= $block['innerHTML'];
-			}
-		}
-
-		return wp_trim_words( $output, $words_length );
+	function get_excerpt_by_id( $post_id, $excerpt_length = 200 ) {
+		$the_post = get_post( $post_id );
+		$the_excerpt = $the_post->post_content;
+		$the_excerpt = strip_tags( strip_shortcodes( $the_excerpt ) );
+		$the_excerpt = substr( $the_excerpt, 0, $excerpt_length ) . '…';
+		return $the_excerpt;
 	}
 }
