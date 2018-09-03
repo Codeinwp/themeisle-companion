@@ -41,7 +41,7 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$this->beta        = true;
 		$this->no_save     = true;
 		$this->name        = __( 'Image Optimization &amp; CDN Module', 'themeisle-companion' );
-		$this->description = __( 'Let us take care of you images sizes. With this feature we\'ll compress and resize every image on your website.<br/> <strong>* Requires account on orbitfox.com</strong>', 'themeisle-companion' );
+		$this->description = __( 'Let us take care of your images sizes. With this feature we\'ll compress and resize every image on your website.<br/> <strong>* Requires account on orbitfox.com</strong>', 'themeisle-companion' );
 	}
 
 	/**
