@@ -18,11 +18,11 @@ registerBlockType( 'orbitfox/services', {
 		'orbitfox'
 	],
 
-	edit: ( { className } ) => {
+	edit: props => {
 		const ALLOWED_BLOCKS = [ 'orbitfox/service-block' ];
 		const TEMPLATE = [ [ 'orbitfox/service-block' ], [ 'orbitfox/service-block' ], [ 'orbitfox/service-block' ] ];
 		return (
-			<div className={ className }>
+			<div className={ props.className }>
 				<InnerBlocks
 					allowedBlocks={ ALLOWED_BLOCKS }
 					template={ TEMPLATE }

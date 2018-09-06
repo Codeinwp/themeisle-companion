@@ -19,11 +19,11 @@ registerBlockType( 'orbitfox/pricing-table', {
 		'orbitfox'
 	],
 
-	edit: ( { className } ) => {
+	edit: props => {
 		const ALLOWED_BLOCKS = [ 'orbitfox/pricing-block' ];
 		const TEMPLATE = [ [ 'orbitfox/pricing-block' ], [ 'orbitfox/pricing-block' ], [ 'orbitfox/pricing-block' ] ];
 		return (
-			<div className={ className }>
+			<div className={ props.className }>
 				<InnerBlocks
 					allowedBlocks={ ALLOWED_BLOCKS }
 					template={ TEMPLATE }

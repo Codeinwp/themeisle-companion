@@ -102,9 +102,9 @@ class Sharing_Icons_Block extends Base_Block {
 	 */
 	function render( $attributes ) {
 		if ( strpos( $attributes[ 'className' ], 'is-style-icons' ) ) {
-			$class = "obfx-social-icons";
+			$class = "wp-block-orbitfox-sharing-icons";
 		} else {
-			$class = "obfx-social-icons has-label";
+			$class = "wp-block-orbitfox-sharing-icons has-label";
 		}
 		$html = '<div class="'. $class .'">';
 		foreach( $this->attributes as $key => $icon ) {

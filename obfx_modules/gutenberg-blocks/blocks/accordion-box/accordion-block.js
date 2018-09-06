@@ -12,6 +12,7 @@ const {
 
 registerBlockType( 'orbitfox/accordion-block', {
 	title: __( 'Accordion Item' ),
+	description: __( 'Accordion block allows you to add beautiful accordions in your posts.' ),
 	parent: [ 'orbitfox/accordion-area' ],
 	icon: 'menu',
 	category: 'orbitfox',
@@ -29,7 +30,7 @@ registerBlockType( 'orbitfox/accordion-block', {
 		},
 	},
 
-	edit: ( props, { className } ) => {
+	edit: props => {
 
 		const CONTENT =  [
 			['core/paragraph', {
@@ -39,7 +40,7 @@ registerBlockType( 'orbitfox/accordion-block', {
 		];
 
 		return (
-			<li className={ className }>
+			<li className={ props.className }>
 				<RichText
 					tagName="h4"
 					className="accordion-heading"

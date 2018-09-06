@@ -45,7 +45,7 @@ registerBlockType( 'orbitfox/notice', {
 		{ name: 'error', label: __( 'Error' ) },
 	],
 
-	edit: ( props, { className } ) => {
+	edit: props => {
 		let status = "success";
 		if ( props.attributes.className && props.attributes.className.includes( 'is-style-info') ) {
 			status = "";
@@ -56,7 +56,7 @@ registerBlockType( 'orbitfox/notice', {
 		}
 		return (
 			<Notice
-				className={ className }
+				className={ props.className }
 				isDismissible={ false }
 				status={ status }
 			>

@@ -13,6 +13,7 @@ const {
 
 registerBlockType( 'orbitfox/accordion-area', {
 	title: __( 'Accordion' ),
+	description: __( 'Accordion block allows you to add beautiful accordions in your posts.' ),
 	icon: 'menu',
 	category: 'orbitfox',
 	keywords: [
@@ -21,11 +22,11 @@ registerBlockType( 'orbitfox/accordion-area', {
 		'orbitfox'
 	],
 
-	edit: ( { className } ) => {
+	edit: props => {
 		const ALLOWED_BLOCKS = [ 'orbitfox/accordion-block' ];
 		const TEMPLATE = [ [ 'orbitfox/accordion-block' ], [ 'orbitfox/accordion-block' ], [ 'orbitfox/accordion-block' ] ];
 		return (
-			<div className={ className }>
+			<div className={ props.className }>
 				<ul>
 					<InnerBlocks
 						allowedBlocks={ ALLOWED_BLOCKS }

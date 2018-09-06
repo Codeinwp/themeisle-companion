@@ -19,11 +19,11 @@ registerBlockType( 'orbitfox/testimonials-area', {
 		'quotes'
 	],
 
-	edit: ( { className } ) => {
+	edit: props => {
 		const ALLOWED_BLOCKS = [ 'orbitfox/testimonials-block' ];
 		const TEMPLATE = [ [ 'orbitfox/testimonials-block' ], [ 'orbitfox/testimonials-block' ], [ 'orbitfox/testimonials-block' ] ];
 		return (
-			<div className={ className }>
+			<div className={ props.className }>
 				<InnerBlocks
 					allowedBlocks={ ALLOWED_BLOCKS }
 					template={ TEMPLATE }

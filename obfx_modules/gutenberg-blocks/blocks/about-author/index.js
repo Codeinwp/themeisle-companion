@@ -22,6 +22,7 @@ import './style.scss';
 
 registerBlockType('orbitfox/about-author', {
 	title: __( 'About Author' ),
+	description: __( 'About Author block is the easiest way to add a author bio below your posts.' ),
 	icon: 'admin-users',
 	category: 'orbitfox',
 	keywords: [

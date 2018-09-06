@@ -109,7 +109,7 @@ registerBlockType( 'orbitfox/sharing-icons', {
 
 			<div
 				className={ classnames(
-					'obfx-social-icons',
+					props.className,
 					{ 'has-label': ( props.attributes.className ? ! props.attributes.className.includes( 'is-style-icons' ) : true ) },
 				) }
 			>

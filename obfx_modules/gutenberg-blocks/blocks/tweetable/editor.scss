@@ -6,9 +6,12 @@
 
 .editor-block-list__block {
  .tweetable-controls {
+	.components-base-control__field {
+		margin-bottom: 0;
+	}
 	input[type="text"] {
 		width: auto;
-		padding: 10px 8px;
+		padding: 8px 8px;
 	}
  }
 }

@@ -6,7 +6,6 @@ class Google_Map_Block extends Base_Block {
 
 	public function __construct() {
 		parent::__construct();
-		add_action( 'init', array( $this, 'registerSettings' ) );
 	}
 
 	function set_block_slug() {
@@ -25,23 +24,11 @@ class Google_Map_Block extends Base_Block {
 			),
 			'zoom'        => array(
 				'type'    => 'number',
-				'default' => 13,
+				'default' => 10,
 			),
-			'maxWidth'    => array(
-				'type'    => 'number',
-				'default' => 1920,
-			),
-			'maxHeight'   => array(
-				'type'    => 'number',
-				'default' => 1329,
-			),
-			'interactive' => array(
-				'type'    => 'boolean',
-				'default' => true,
-			),
-			'aspectRatio' => array(
+			'height'      => array(
 				'type'    => 'string',
-				'default' => '2_1',
+				'default' => '400px',
 			),
 		);
 	}
@@ -65,14 +52,14 @@ class Google_Map_Block extends Base_Block {
 
 		// Exapnd all the atributes into separate variables
 		foreach ( $attributes as $key => $value ) {
-			${$key} = $value;
+			${ $key } = $value;
 		}
 
 		// URL encode the location for Google Maps
 		$location = urlencode( $location );
 
 		// Set the API url based to embed or static maps based on the interactive setting
-		$apiURL = ( $interactive ) ? "https://www.google.com/maps/embed/v1/place?key=${APIkey}&q=${location}&zoom=${zoom}&maptype=${mapType}" : "https://maps.googleapis.com/maps/api/staticmap?center=${location}&zoom=${zoom}&size=${maxWidth}x${maxHeight}&maptype=${mapType}&key=${APIkey}";
+		$apiURL = "https://www.google.com/maps/embed/v1/place?key=${APIkey}&q=${location}&zoom=${zoom}&maptype=${mapType}";
 
 		// Check status code of apiURL
 		$ch = curl_init( $apiURL );
@@ -89,35 +76,11 @@ class Google_Map_Block extends Base_Block {
 			return;
 		}
 
-		// Set the appropriate CSS class names
-		$classNames = ( $interactive ) ? "wp-block-orbitfox-google-map interactive ratio$aspectRatio" : "wp-block-orbitfox-google-map";
-
-		// Create the output
-		$output = "<div class='$classNames'><div class='map'>";
-		// If the map is interactive show the iframe
-		if ( $interactive ) {
-			$output .= "<iframe width='100%' height='100%' frameborder='0' style='border:0' src='$apiURL' allowfullscreen></iframe>";
-			// Otherwise use the static API
-		} else {
-			$output .= "<img src='$apiURL' />";
-		}
+		$output = "<div class='wp-block-orbitfox-google-map'><div class='map'>";
+			$output .= "<iframe width='100%' height='100%' frameborder='0' style='border:0; height:${height};' src='$apiURL' allowfullscreen></iframe>";
 		$output .= '</div></div>';
 
 		// Return the output
 		return $output;
-	}
-
-	function registerSettings() {
-		register_setting(
-			'orbitfox_google_map_block_api_key',
-			'orbitfox_google_map_block_api_key',
-			array(
-				'type'              => 'string',
-				'description'       => __( 'Google Map API key for the Gutenberg block plugin.' ),
-				'sanitize_callback' => 'sanitize_text_field',
-				'show_in_rest'      => true,
-				'default'           => ''
-			)
-		);
 	}
 }

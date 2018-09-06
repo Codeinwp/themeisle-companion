@@ -43,6 +43,7 @@ import './editor.scss';
 
 registerBlockType( 'orbitfox/chart-pie', {
 	title: __( 'Pie Chart' ),
+	description: __( 'Display a beautiful Pie Chart on your blog post with Pie Chart block.' ),
 	icon: 'chart-pie',
 	category: 'orbitfox',
 	keywords: [

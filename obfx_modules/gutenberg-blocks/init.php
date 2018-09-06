@@ -61,6 +61,8 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		add_action( 'init', array( $this, 'register_post_types' ) );
 
+		add_action( 'init', array( $this, 'registerSettings' ) );
+
 		add_action( 'rest_api_init', array( $this, 'create_api_field_form_data' ) );
 
 		add_action( 'enqueue_block_assets', array( $this, 'enqueue_block_assets' ) );
@@ -340,5 +342,23 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		);
 	}
 
+
+	/**
+	 * Register Settings for Google Maps Block
+	 *
+	 */
+	public function registerSettings() {
+		register_setting(
+			'orbitfox_google_map_block_api_key',
+			'orbitfox_google_map_block_api_key',
+			array(
+				'type'              => 'string',
+				'description'       => __( 'Google Map API key for the Gutenberg block plugin.' ),
+				'sanitize_callback' => 'sanitize_text_field',
+				'show_in_rest'      => true,
+				'default'           => ''
+			)
+		);
+	}
 
 }

@@ -16,18 +16,15 @@ const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 
 const {
-    PanelBody,
-} = wp.components;
-
-const {
+	Button,
+	Dashicon,
+	PanelBody,
 	QueryControls,
 	RangeControl,
 	Spinner,
 	TextControl,
 	ToggleControl,
-	Dashicon,
 	Toolbar,
-	Button,
 	Tooltip,
 } = wp.components;
 
@@ -71,6 +68,7 @@ import './editor.scss';
 
 registerBlockType( 'orbitfox/posts-grid', {
 	title: __( 'Posts Grid' ),
+	description: __( 'Display a list of your most recent posts in a beautiful grid.' ),
 	icon: 'screenoptions',
 	category: 'orbitfox',
 	keywords: [
