@@ -40,8 +40,8 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		}
 		$this->beta        = true;
 		$this->no_save     = true;
-		$this->name        = __( 'Image Optimization &amp; CDN Module', 'themeisle-companion' );
-		$this->description = __( 'Let us take care of your images sizes. With this feature we\'ll compress and resize every image on your website.<br/> <strong>* Requires account on orbitfox.com</strong>', 'themeisle-companion' );
+		$this->name        = __( 'Image Optimization &amp; CDN Module ', 'themeisle-companion' );
+		$this->description = __( 'Let us take care of your images sizes. With this feature we\'ll compress and resize every image on your website. <i>This service is powered by Optimole</i><br/> <strong>* Requires account on orbitfox.com</strong>', 'themeisle-companion' );
 	}
 
 	/**
@@ -52,7 +52,7 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return bool
 	 */
 	public function enable_module() {
-		return ( $this->beta ) ? $this->is_lucky_user( 30 ) : true;
+		return ( $this->beta ) ? $this->is_lucky_user( 50 ) : true;
 	}
 
 	/**
@@ -96,16 +96,6 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		return class_exists( '\OrbitFox\Connector' ) ? get_option( \OrbitFox\Connector::API_DATA_KEY, '' ) : '';
 	}
-	/**
-	 * Return api data.
-	 *
-	 * @return mixed|string APi data.
-	 */
-	private function clear_api_data() {
-
-
-		return update_option( \OrbitFox\Connector::API_DATA_KEY, '' );
-	}
 
 	/**
 	 * Render data from dashboard of orbitfox.com.
@@ -145,7 +135,7 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			return '';
 		}
 
-		return sprintf( '%s.i.orbitfox.com', strtolower( $obfx_user_data['image_cdn']['key'] ) );
+		return sprintf( '%s.i.optimole.com', strtolower( $obfx_user_data['image_cdn']['key'] ) );
 
 	}
 
@@ -299,6 +289,17 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			$this->loader->add_action( 'admin_bar_menu', $this, 'add_traffic_node', 9999 );
 		}
 
+	}
+
+	/**
+	 * Return api data.
+	 *
+	 * @return mixed|string APi data.
+	 */
+	private function clear_api_data() {
+
+
+		return update_option( \OrbitFox\Connector::API_DATA_KEY, '' );
 	}
 
 	/**

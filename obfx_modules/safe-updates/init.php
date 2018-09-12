@@ -29,7 +29,7 @@ class Safe_Updates_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function __construct() {
 		parent::__construct();
-		$this->beta        = true;
+		$this->beta        = false;
 		$this->no_save     = true;
 		$this->name        = __( 'Safe Updates', 'themeisle-companion' );
 		$this->description = __( 'OrbitFox will give you visual feedback on how your current theme updates will affect your site. For the moment this is available only for wordpress.org themes.', 'themeisle-companion' );
@@ -43,6 +43,7 @@ class Safe_Updates_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return bool
 	 */
 	public function enable_module() {
+
 		return ( $this->beta ) ? $this->is_lucky_user() : true;
 	}
 
