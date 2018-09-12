@@ -103,6 +103,13 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 == Changelog ==
+= 2.5.8 - 2018-09-12  = 
+
+* Extend image optimization module for 50% of users.
+* Enable safe updates for all users.
+* Adds image optimization integration with Optimole.
+
+
 = 2.5.7 - 2018-08-13  = 
 
 * -fixed fatal error with Elementor extra widgets

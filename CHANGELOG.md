@@ -1,4 +1,10 @@
 
+ ### v2.5.8 - 2018-09-12 
+ **Changes:** 
+ * Extend image optimization module for 50% of users.
+* Enable safe updates for all users.
+* Adds image optimization integration with Optimole.
+ 
  ### v2.5.7 - 2018-08-13 
  **Changes:** 
  * -fixed fatal error with Elementor extra widgets
