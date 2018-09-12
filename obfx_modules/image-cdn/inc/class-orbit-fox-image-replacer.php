@@ -160,7 +160,8 @@ class Image_CDN_Replacer {
 		$cdn_url  = $this->cdn_url;
 		$site_url = get_site_url();
 		$urls     = array_filter(
-			$urls, function ( $url ) use ( $cdn_url, $site_url ) {
+			$urls,
+			function ( $url ) use ( $cdn_url, $site_url ) {
 				if ( strpos( $url, $cdn_url ) !== false ) {
 					return false;
 				}
@@ -611,7 +612,8 @@ class Image_CDN_Replacer {
 		$theme_slug = get_option( 'stylesheet' );
 
 		$options_list = apply_filters(
-			'optml_imgcdn_options_with_url', array(
+			'optml_imgcdn_options_with_url',
+			array(
 				"theme_mods_$theme_slug",
 			)
 		);
