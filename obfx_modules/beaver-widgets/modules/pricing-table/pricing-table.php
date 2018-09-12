@@ -44,7 +44,8 @@ class PricingTableModule extends FLBuilderModule {
  * Register the module and its form settings.
  */
 FLBuilder::register_module(
-	'PricingTableModule', array(
+	'PricingTableModule',
+	array(
 		'content' => array(
 			'title' => esc_html__( 'Content', 'themeisle-companion' ), // Tab title
 			'sections' => array(
@@ -556,7 +557,8 @@ FLBuilder::register_module(
 
 
 FLBuilder::register_settings_form(
-	'feature_field', array(
+	'feature_field',
+	array(
 		'title' => __( 'Feature', 'themeisle-companion' ),
 		'tabs'  => array(
 			'general'      => array(

@@ -27,27 +27,32 @@ do_action( 'fl_builder_loop_settings_before_form', $settings ); // e.g Add custo
 
 			// Post type
 			FLBuilder::render_settings_field(
-				'post_type', array(
+				'post_type',
+				array(
 					'type'          => 'post-type',
 					'label'         => esc_html__( 'Post Type', 'themeisle-companion' ),
-				), $settings
+				),
+				$settings
 			);
 
 			// Order
 			FLBuilder::render_settings_field(
-				'order', array(
+				'order',
+				array(
 					'type'          => 'select',
 					'label'         => esc_html__( 'Order', 'themeisle-companion' ),
 					'options'       => array(
 						'DESC'          => esc_html__( 'Descending', 'themeisle-companion' ),
 						'ASC'           => esc_html__( 'Ascending', 'themeisle-companion' ),
 					),
-				), $settings
+				),
+				$settings
 			);
 
 			// Order by
 			FLBuilder::render_settings_field(
-				'order_by', array(
+				'order_by',
+				array(
 					'type'          => 'select',
 					'label'         => esc_html__( 'Order By', 'themeisle-companion' ),
 					'options'       => array(
@@ -70,48 +75,57 @@ do_action( 'fl_builder_loop_settings_before_form', $settings ); // e.g Add custo
 							'fields'        => array( 'order_by_meta_key' ),
 						),
 					),
-				), $settings
+				),
+				$settings
 			);
 
 			// Meta Key
 			FLBuilder::render_settings_field(
-				'order_by_meta_key', array(
+				'order_by_meta_key',
+				array(
 					'type'          => 'text',
 					'label'         => esc_html__( 'Meta Key', 'themeisle-companion' ),
-				), $settings
+				),
+				$settings
 			);
 
 			// Offset
 			FLBuilder::render_settings_field(
-				'offset', array(
+				'offset',
+				array(
 					'type'          => 'text',
 					'label'         => _x( 'Offset', 'How many posts to skip.', 'themeisle-companion' ),
 					'default'       => '0',
 					'size'          => '4',
 					'help'          => esc_html__( 'Skip this many posts that match the specified criteria.', 'themeisle-companion' ),
-				), $settings
+				),
+				$settings
 			);
 
 			// Posts per page
 			FLBuilder::render_settings_field(
-				'posts_per_page', array(
+				'posts_per_page',
+				array(
 					'type'          => 'obfx_number',
 					'label'         => esc_html__( 'Posts per page', 'themeisle-companion' ),
 					'default'       => $default_posts_per_page,
 					'min'       => '-1',
 					'help'          => esc_html__( '-1 means all posts', 'themeisle-companion' ),
-				), $settings
+				),
+				$settings
 			);
 
 			// Columns
 			FLBuilder::render_settings_field(
-				'columns', array(
+				'columns',
+				array(
 					'type'          => 'obfx_number',
 					'label'         => esc_html__( 'Number of columns', 'themeisle-companion' ),
 					'default'       => '3',
 					'min'       => '1',
 					'max'          => '5',
-				), $settings
+				),
+				$settings
 			);
 			?>
 		</table>
@@ -129,14 +143,16 @@ do_action( 'fl_builder_loop_settings_before_form', $settings ); // e.g Add custo
 
 				// Posts
 				FLBuilder::render_settings_field(
-					'posts_' . $slug, array(
+					'posts_' . $slug,
+					array(
 						'type'          => 'suggest',
 						'action'        => 'fl_as_posts',
 						'data'          => $slug,
 						'label'         => $type->label,
 						'help'          => sprintf( esc_html__( 'Enter a list of %1$s.', 'themeisle-companion' ), $type->label ),
 						'matching'      => true,
-					), $settings
+					),
+					$settings
 				);
 
 				// Taxonomies
@@ -145,14 +161,16 @@ do_action( 'fl_builder_loop_settings_before_form', $settings ); // e.g Add custo
 				foreach ( $taxonomies as $tax_slug => $tax ) {
 
 					FLBuilder::render_settings_field(
-						'tax_' . $slug . '_' . $tax_slug, array(
+						'tax_' . $slug . '_' . $tax_slug,
+						array(
 							'type'          => 'suggest',
 							'action'        => 'fl_as_terms',
 							'data'          => $tax_slug,
 							'label'         => $tax->label,
 							'help'          => sprintf( esc_html__( 'Enter a list of %1$s.', 'themeisle-companion' ), $tax->label ),
 							'matching'      => true,
-						), $settings
+						),
+						$settings
 					);
 				}
 
@@ -164,13 +182,15 @@ do_action( 'fl_builder_loop_settings_before_form', $settings ); // e.g Add custo
 
 			// Author
 			FLBuilder::render_settings_field(
-				'users', array(
+				'users',
+				array(
 					'type'          => 'suggest',
 					'action'        => 'fl_as_users',
 					'label'         => esc_html__( 'Authors', 'themeisle-companion' ),
 					'help'          => esc_html__( 'Enter a list of authors usernames.', 'themeisle-companion' ),
 					'matching'      => true,
-				), $settings
+				),
+				$settings
 			);
 
 			?>
@@ -183,7 +203,8 @@ do_action( 'fl_builder_loop_settings_before_form', $settings ); // e.g Add custo
 		<?php
 		// Vertical align
 		FLBuilder::render_settings_field(
-			'card_vertical_align', array(
+			'card_vertical_align',
+			array(
 				'type'          => 'select',
 				'label'         => esc_html__( 'Vertical align', 'themeisle-companion' ),
 				'default' => 'grid',
@@ -192,12 +213,14 @@ do_action( 'fl_builder_loop_settings_before_form', $settings ); // e.g Add custo
 					'middle'  => esc_html__( 'Middle', 'themeisle-companion' ),
 					'bottom'  => esc_html__( 'Bottom', 'themeisle-companion' ),
 				),
-			), $settings
+			),
+			$settings
 		);
 
 		// Display type
 		FLBuilder::render_settings_field(
-			'display_type', array(
+			'display_type',
+			array(
 				'type'          => 'select',
 				'label'         => esc_html__( 'Display type', 'themeisle-companion' ),
 				'default' => 'grid',
@@ -205,40 +228,48 @@ do_action( 'fl_builder_loop_settings_before_form', $settings ); // e.g Add custo
 					'grid'         => esc_html__( 'Grid', 'themeisle-companion' ),
 					'list'  => esc_html__( 'List', 'themeisle-companion' ),
 				),
-			), $settings
+			),
+			$settings
 		);
 
 		// Card layout
 		FLBuilder::render_settings_field(
-			'card_layout', array(
+			'card_layout',
+			array(
 				'type'          => 'obfx_toggle',
 				'label'         => esc_html__( 'Card layout', 'themeisle-companion' ),
-			), $settings
+			),
+			$settings
 		);
 
 		// Padding top
 		FLBuilder::render_settings_field(
-			'card_margin_top', array(
+			'card_margin_top',
+			array(
 				'type'          => 'obfx_number',
 				'label'         => esc_html__( 'Margin top', 'themeisle-companion' ),
 				'default'       => '0',
 				'min'       => '0',
-			), $settings
+			),
+			$settings
 		);
 
 		// Padding bottom
 		FLBuilder::render_settings_field(
-			'card_margin_bottom', array(
+			'card_margin_bottom',
+			array(
 				'type'          => 'obfx_number',
 				'label'         => esc_html__( 'Margin bottom', 'themeisle-companion' ),
 				'default'       => '30',
 				'min'       => '0',
-			), $settings
+			),
+			$settings
 		);
 
 		// Background color
 		FLBuilder::render_settings_field(
-			'post_bg_color', array(
+			'post_bg_color',
+			array(
 				'type'          => 'color',
 				'label'         => __( 'Background color', 'themeisle-companion' ),
 				'show_reset'    => true,
@@ -249,12 +280,14 @@ do_action( 'fl_builder_loop_settings_before_form', $settings ); // e.g Add custo
 					'property'     => 'background-color',
 				),
 
-			), $settings
+			),
+			$settings
 		);
 
 		// Link color
 		FLBuilder::render_settings_field(
-			'post_link_color', array(
+			'post_link_color',
+			array(
 				'type'          => 'color',
 				'label'         => __( 'Link color', 'themeisle-companion' ),
 				'show_reset'    => true,
@@ -263,12 +296,14 @@ do_action( 'fl_builder_loop_settings_before_form', $settings ); // e.g Add custo
 					'selector'     => '.obfx-post-grid a, .obfx-post-grid-pagination a',
 					'property'     => 'color',
 				),
-			), $settings
+			),
+			$settings
 		);
 
 		// Link color
 		FLBuilder::render_settings_field(
-			'post_text_color', array(
+			'post_text_color',
+			array(
 				'type'          => 'color',
 				'label'         => __( 'Text color', 'themeisle-companion' ),
 				'show_reset'    => true,
@@ -277,7 +312,8 @@ do_action( 'fl_builder_loop_settings_before_form', $settings ); // e.g Add custo
 					'selector'     => '.obfx-post-grid, .obfx-post-grid-pagination',
 					'property'     => 'color',
 				),
-			), $settings
+			),
+			$settings
 		);
 		?>
 		</table>

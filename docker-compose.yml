@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  db:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    volumes:
+    - db_data:/var/lib/mysql
+    env_file:
+    - .env
+  web:
+    image: vertigostudio/ubuntu-nginx-wpcli-gearman-php7:latest
+    volumes:
+    - "/D/web/default/app/public/wp-content/plugins/themeisle-companion:/var/www/html/wp-content/plugins/obfx-dashboard-rest"
+    - "/D/web/default/app/public/wp-content/plugins/themeisle-companion/init.sh:/usr/local/bin/init.sh"
+    ports:
+    - "800:80"
+    env_file:
+    - .env
+    command: ["init.sh"]
+volumes:
+  db_data:
