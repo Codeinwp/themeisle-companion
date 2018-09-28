@@ -46,7 +46,8 @@ if ( ! empty( $image_sizes ) ) {
 	}
 }
 FLBuilder::register_module(
-	'PostGridModule', array(
+	'PostGridModule',
+	array(
 		'loop_settings' => array(
 			'title'         => esc_html__( 'Loop Settings', 'themeisle-companion' ),
 			'file'          => BEAVER_WIDGETS_PATH . 'modules/post-grid/includes/loop-settings.php',

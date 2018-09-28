@@ -1,17 +1,34 @@
 <?php
-
 namespace OrbitFox\Gutenberg_Blocks;
 
+/**
+ * Class Posts_Grid_Block
+ */
 class Posts_Grid_Block extends Base_Block {
 
+	/**
+	 * Constructor function for the module.
+	 *
+	 * @method __construct
+	 */
 	public function __construct() {
 		parent::__construct();
 	}
 
+	/**
+	 * Every block needs a slug, so we need to define one and assign it to the `$this->block_slug` property
+	 *
+	 * @return mixed
+	 */
 	function set_block_slug() {
 		$this->block_slug = 'posts-grid';
 	}
 
+	/**
+	 * Set the attributes required on the server side.
+	 *
+	 * @return mixed
+	 */
 	function set_attributes() {
 		$this->attributes = array(
 			'grid'                 => array(
@@ -61,25 +78,29 @@ class Posts_Grid_Block extends Base_Block {
 	}
 
 	/**
+	 * Block render function for server-side.
 	 *
-	 * @param $attributes
+	 * This method will pe passed to the render_callback parameter and it will output
+	 * the server side output of the block.
 	 *
 	 * @return mixed|string
 	 */
 	function render( $attributes ) {
-		$recent_posts = wp_get_recent_posts( array(
-			'numberposts' => $attributes['postsToShow'],
-			'post_status' => 'publish',
-			'order'       => $attributes['order'],
-			'orderby'     => $attributes['orderBy'],
-			'category'    => $attributes['categories'],
-		) );
+		$recent_posts = wp_get_recent_posts(
+			array(
+				'numberposts' => $attributes['postsToShow'],
+				'post_status' => 'publish',
+				'order'       => $attributes['order'],
+				'orderby'     => $attributes['orderBy'],
+				'category'    => $attributes['categories'],
+			)
+		);
 
-		$list_items_markup = "";
+		$list_items_markup = '';
 
 		foreach ( $recent_posts as $post ) {
 			$id = $post['ID'];
-			$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id(  $id ), 'medium' );
+			$thumbnail = wp_get_attachment_image_src( get_post_thumbnail_id( $id ), 'medium' );
 			$category = get_the_category( $id );
 
 			$list_items_markup .= '<div class="grid-post grid-' . $attributes['columns'] . '"><div class="grid-post-row">';
@@ -95,7 +116,7 @@ class Posts_Grid_Block extends Base_Block {
 				}
 			}
 
-			$list_items_markup .= '<div class="grid-content-area' . ( $thumbnail && $attributes['displayFeaturedImage'] ? "" : " full" ) . '">';
+			$list_items_markup .= '<div class="grid-content-area' . ( $thumbnail && $attributes['displayFeaturedImage'] ? '' : ' full' ) . '">';
 
 			if ( isset( $attributes['displayCategory'] ) && $attributes['displayCategory'] ) {
 				$list_items_markup .= sprintf(
@@ -144,7 +165,7 @@ class Posts_Grid_Block extends Base_Block {
 			$list_items_markup .= '</div></div></div>';
 		}
 
-		$class = "wp-block-orbitfox-posts-grid";
+		$class = 'wp-block-orbitfox-posts-grid';
 
 		if ( isset( $attributes['grid'] ) && true === $attributes['grid'] ) {
 			$class .= ' is-grid';
@@ -161,9 +182,6 @@ class Posts_Grid_Block extends Base_Block {
 
 	/**
 	 * Get post excerpt
-	 *
-	 * @param $post_id
-	 * @param int $words_length
 	 *
 	 * @return string
 	 */

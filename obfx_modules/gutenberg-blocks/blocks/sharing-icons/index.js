@@ -40,6 +40,7 @@ registerBlockType( 'orbitfox/sharing-icons', {
 	],
 	supports: {
 		html: true,
+		align: true,
 	},
 	attributes: {
 		facebook: {

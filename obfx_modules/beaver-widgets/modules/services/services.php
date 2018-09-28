@@ -42,7 +42,8 @@ class ServicesModule extends FLBuilderModule {
  * Register the module and its form settings.
  */
 FLBuilder::register_module(
-	'ServicesModule', array(
+	'ServicesModule',
+	array(
 		'content' => array(
 			'title' => esc_html__( 'Content', 'themeisle-companion' ), // Tab title
 			'sections' => array(
@@ -214,7 +215,8 @@ FLBuilder::register_module(
 );
 
 FLBuilder::register_settings_form(
-	'service_content', array(
+	'service_content',
+	array(
 		'title' => __( 'Service', 'themeisle-companion' ),
 		'tabs'  => array(
 			'general'      => array(

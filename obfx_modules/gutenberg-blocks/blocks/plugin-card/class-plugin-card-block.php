@@ -1,48 +1,67 @@
 <?php
-
 namespace OrbitFox\Gutenberg_Blocks;
-	
+
+/**
+ * Class Plugin_Card_Block
+ */
 class Plugin_Card_Block extends Base_Block {
 
+	/**
+	 * Constructor function for the module.
+	 *
+	 * @method __construct
+	 */
 	public function __construct() {
 		parent::__construct();
 	}
 
+	/**
+	 * Every block needs a slug, so we need to define one and assign it to the `$this->block_slug` property
+	 *
+	 * @return mixed
+	 */
 	function set_block_slug() {
 		$this->block_slug = 'plugin-cards';
 	}
 
+	/**
+	 * Set the attributes required on the server side.
+	 *
+	 * @return mixed
+	 */
 	function set_attributes() {
 		$this->attributes = array(
 			'slug' => array(
 				'type' => 'string',
-			)
+			),
 		);
 	}
 
 	/**
+	 * Block render function for server-side.
 	 *
-	 * @param $attributes
+	 * This method will pe passed to the render_callback parameter and it will output
+	 * the server side output of the block.
 	 *
 	 * @return mixed|string
 	 */
 	function render( $attributes ) {
 		$results = $this->search( $attributes['slug'] );
-			
+
 		if ( ! is_wp_error( $results['data'] ) ) {
 			$results = $results['data'];
-	
+
 			$icon = '';
-			if ( $results->icons['svg'] ) {
+			if ( isset( $results->icons['svg'] ) ) {
 				$icon = $results->icons['svg'];
-			} if ( $results->icons['2x'] ) {
+			} if ( isset( $results->icons['2x'] ) ) {
 				$icon = $results->icons['2x'];
-			} if ( $results->icons['1x'] ) {
+			} if ( isset( $results->icons['1x'] ) ) {
 				$icon = $results->icons['1x'];
-			} if ( $results->icons['default'] ) {
+			} if ( isset( $results->icons['default'] ) ) {
 				$icon = $results->icons['default'];
 			}
-	
+
 			$markup = '<div class="wp-block-orbitfox-plugin-cards">
 				<div class="obfx-plugin-card">
 					<div class="card-header">
@@ -84,26 +103,28 @@ class Plugin_Card_Block extends Base_Block {
 					</div>
 				</div>
 			</div>';
-			
+
 			return $markup;
 		}
 
 	}
 
 	/**
-	 * @param $request
+	 * Search WordPress Plugin
+	 *
+	 * Search WordPress plugin using WordPress.org API.
 	 *
 	 * @return mixed
 	 */
 	function search( $request ) {
 		$return = array(
 			'success' => false,
-			'data'     => esc_html__( 'Something went wrong', 'themeisle-companion' )
+			'data'     => esc_html__( 'Something went wrong', 'themeisle-companion' ),
 		);
 
 		$slug = $request;
 
-		require_once( ABSPATH . "wp-admin" . '/includes/plugin-install.php' );
+		require_once( ABSPATH . 'wp-admin' . '/includes/plugin-install.php' );
 
 		$request = array(
 			'per_page' => 12,
@@ -125,7 +146,7 @@ class Plugin_Card_Block extends Base_Block {
 				'requires' => false,
 				'rating' => true,
 				'ratings' => false,
-			)
+			),
 		);
 
 		$results = plugins_api( 'plugin_information', $request );
@@ -143,6 +164,13 @@ class Plugin_Card_Block extends Base_Block {
 		return $return;
 	}
 
+	/**
+	 * Get Rating Stars
+	 *
+	 * Get 0-5 star rating from rating score.
+	 *
+	 * @return mixed|string
+	 */
 	function get_ratings( $rating ) {
 		$rating = round( $rating / 10, 0 ) / 2;
 		$full_stars = floor( $rating );

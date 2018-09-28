@@ -1,17 +1,34 @@
 <?php
-
 namespace OrbitFox\Gutenberg_Blocks;
-	
+
+/**
+ * Class Chart_Pie_Block
+ */
 class Chart_Pie_Block extends Base_Block {
 
+	/**
+	 * Constructor function for the module.
+	 *
+	 * @method __construct
+	 */
 	public function __construct() {
 		parent::__construct();
 	}
 
+	/**
+	 * Every block needs a slug, so we need to define one and assign it to the `$this->block_slug` property
+	 *
+	 * @return mixed
+	 */
 	function set_block_slug() {
 		$this->block_slug = 'chart-pie';
 	}
 
+	/**
+	 * Set the attributes required on the server side.
+	 *
+	 * @return mixed
+	 */
 	function set_attributes() {
 		$this->attributes = array(
 			'data' => array(
@@ -33,13 +50,15 @@ class Chart_Pie_Block extends Base_Block {
 			),
 			'id' => array(
 				'type' => 'string',
-			)
+			),
 		);
 	}
 
 	/**
+	 * Block render function for server-side.
 	 *
-	 * @param $attributes
+	 * This method will pe passed to the render_callback parameter and it will output
+	 * the server side output of the block.
 	 *
 	 * @return mixed|string
 	 */
@@ -51,8 +70,8 @@ class Chart_Pie_Block extends Base_Block {
 			google.charts.setOnLoadCallback(drawChart);
 	
 			function drawChart() {
-				var data = google.visualization.arrayToDataTable(" . json_encode( $attributes['data'] ) . ");
-				var options = " . json_encode( $attributes['options'] ) . ";
+				var data = google.visualization.arrayToDataTable(" . json_encode( $attributes['data'] ) . ');
+				var options = ' . json_encode( $attributes['options'] ) . ";
 				var chart = new google.visualization.PieChart(document.getElementById('" . $attributes['id'] . "'));
 				chart.draw(data, options);
 			}

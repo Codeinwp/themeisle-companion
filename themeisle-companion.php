@@ -71,7 +71,8 @@ function run_orbit_fox() {
 		require_once $vendor_file;
 	}
 	add_filter(
-		'themeisle_sdk_products', function ( $products ) {
+		'themeisle_sdk_products',
+		function ( $products ) {
 			$products[] = __FILE__;
 
 			return $products;
@@ -79,7 +80,8 @@ function run_orbit_fox() {
 	);
 
 	add_filter(
-		'themeisle_companion_friendly_name', function( $name ) {
+		'themeisle_companion_friendly_name',
+		function( $name ) {
 			return 'Orbit Fox';
 		}
 	);

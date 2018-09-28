@@ -533,7 +533,8 @@ class Image_CDN_Replacer {
 		$theme_slug = get_option( 'stylesheet' );
 
 		$options_list = apply_filters(
-			'obfx_imgcdn_options_with_url', array(
+			'obfx_imgcdn_options_with_url',
+			array(
 				"theme_mods_$theme_slug",
 			)
 		);

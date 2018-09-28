@@ -1,19 +1,42 @@
 <?php
-
 namespace OrbitFox\Gutenberg_Blocks;
 
+/**
+ * Class Sharing_Icons_Block
+ */
 class Sharing_Icons_Block extends Base_Block {
 
+
+	/**
+	 * Social media attribites.
+	 *
+	 * @var array
+	 */
 	protected $social_attributes = array();
 
+	/**
+	 * Constructor function for the module.
+	 *
+	 * @method __construct
+	 */
 	public function __construct() {
 		parent::__construct();
 	}
 
+	/**
+	 * Every block needs a slug, so we need to define one and assign it to the `$this->block_slug` property
+	 *
+	 * @return mixed
+	 */
 	function set_block_slug() {
 		$this->block_slug = 'sharing-icons';
 	}
 
+	/**
+	 * Set the attributes required on the server side.
+	 *
+	 * @return mixed
+	 */
 	function set_attributes() {
 		$this->social_attributes = array(
 			'facebook' => array(
@@ -62,31 +85,31 @@ class Sharing_Icons_Block extends Base_Block {
 		$this->attributes = array(
 			'facebook'  => array(
 				'type'    => 'boolean',
-				'default' => 1
+				'default' => 1,
 			),
 			'twitter'  => array(
 				'type'    => 'boolean',
-				'default' => 1
+				'default' => 1,
 			),
 			'googleplus'  => array(
 				'type'    => 'boolean',
-				'default' => 1
+				'default' => 1,
 			),
 			'linkedin'  => array(
 				'type'    => 'boolean',
-				'default' => 1
+				'default' => 1,
 			),
 			'pinterest'  => array(
 				'type'    => 'boolean',
-				'default' => 0
+				'default' => 0,
 			),
 			'tumblr'  => array(
 				'type'    => 'boolean',
-				'default' => 0
+				'default' => 0,
 			),
 			'reddit'  => array(
 				'type'    => 'boolean',
-				'default' => 0
+				'default' => 0,
 			),
 			'className'  => array(
 				'type'    => 'string',
@@ -95,24 +118,26 @@ class Sharing_Icons_Block extends Base_Block {
 	}
 
 	/**
+	 * Block render function for server-side.
 	 *
-	 * @param $attributes
+	 * This method will pe passed to the render_callback parameter and it will output
+	 * the server side output of the block.
 	 *
 	 * @return mixed|string
 	 */
 	function render( $attributes ) {
-		if ( strpos( $attributes[ 'className' ], 'is-style-icons' ) ) {
-			$class = "wp-block-orbitfox-sharing-icons";
+		if ( strpos( $attributes['className'], 'is-style-icons' ) !== false ) {
+			$class = 'wp-block-orbitfox-sharing-icons';
 		} else {
-			$class = "wp-block-orbitfox-sharing-icons has-label";
+			$class = 'wp-block-orbitfox-sharing-icons has-label';
 		}
-		$html = '<div class="'. $class .'">';
-		foreach( $this->attributes as $key => $icon ) {
+		$html = '<div class="' . $class . '">';
+		foreach ( $this->attributes as $key => $icon ) {
 			if ( $key !== 'className' && $attributes[ $key ] == 1 ) {
-				$html .= '<a class="social-icon is-'. $key .'" href="'. $this->social_attributes[$key]['url'] .'" target="_blank">';
-				$html .= '<i class="fab fa-'. $this->social_attributes[$key]['icon'] .'"></i>';
-				if ( ! strpos( $attributes[ 'className' ], 'is-style-icons' ) ) {
-					$html .= $this->social_attributes[$key]['label'];
+				$html .= '<a class="social-icon is-' . $key . '" href="' . $this->social_attributes[ $key ]['url'] . '" target="_blank">';
+				$html .= '<i class="fab fa-' . $this->social_attributes[ $key ]['icon'] . '"></i>';
+				if ( strpos( $attributes['className'], 'is-style-icons' ) === false ) {
+					$html .= $this->social_attributes[ $key ]['label'];
 				}
 				$html .= '</a>';
 			}

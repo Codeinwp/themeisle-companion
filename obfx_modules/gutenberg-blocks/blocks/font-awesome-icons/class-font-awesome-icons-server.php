@@ -4,7 +4,6 @@ namespace OrbitFox\Gutenberg_Blocks;
 
 /**
  * Class Font_Awesome_Icons_Server
- *
  */
 class Font_Awesome_Icons_Server extends \WP_Rest_Controller {
 
@@ -23,39 +22,43 @@ class Font_Awesome_Icons_Server extends \WP_Rest_Controller {
 	public function register_routes() {
 		$namespace = $this->namespace . $this->version;
 
-		register_rest_route( $namespace, '/get_icons_list', array(
+		register_rest_route(
+			$namespace,
+			'/get_icons_list',
 			array(
-				'methods'             => \WP_REST_Server::READABLE,
-				'callback'            => array( $this, 'get_icons_list' ),
-			),
-		) );
+				array(
+					'methods'             => \WP_REST_Server::READABLE,
+					'callback'            => array( $this, 'get_icons_list' ),
+				),
+			)
+		);
 	}
 
-	public function get_icons_list( $request ){
+	public function get_icons_list( $request ) {
 		$content = file_get_contents( 'fontawesome-5.2.0/metadata/icons.json', FILE_USE_INCLUDE_PATH );
 
-		$parsed_content =json_decode ($content, true);
+		$parsed_content = json_decode( $content, true );
 
 		$icons = array();
 
-		foreach( $parsed_content as $icon_key => $icon_args ) {
-			$icons[$icon_key] = array(
+		foreach ( $parsed_content as $icon_key => $icon_args ) {
+			$icons[ $icon_key ] = array(
 				'name' => $icon_key,
 				'unicode' => $icon_args['unicode'],
 			);
 
 			switch ( $icon_args['styles'][0] ) {
 				case 'brands': {
-					$icons[$icon_key]['prefix'] = 'fab';
+					$icons[ $icon_key ]['prefix'] = 'fab';
 					break;
 				}
 				case 'solid':
 				case 'regular':
 				default: {
-					$icons[$icon_key]['prefix'] = 'fas';
+					$icons[ $icon_key ]['prefix'] = 'fas';
 				}
 			}
-			$icons[$icon_key]['styles'] = $icon_args['styles'];
+			$icons[ $icon_key ]['styles'] = $icon_args['styles'];
 		}
 		return rest_ensure_response( $icons );
 	}
@@ -68,13 +71,12 @@ class Font_Awesome_Icons_Server extends \WP_Rest_Controller {
 	public function submit_form( $request ) {
 		$return = array(
 			'success' => false,
-			'msg'     => esc_html__( 'Something went wrong', 'textdomain' )
+			'msg'     => esc_html__( 'Something went wrong', 'textdomain' ),
 		);
 
 		$nonce   = $request->get_param( 'nonce' );
 		$form_id = $request->get_param( 'form_id' );
-//		$post_id = $request->get_param( 'post_id' );
-
+		// $post_id = $request->get_param( 'post_id' );
 		if ( ! wp_verify_nonce( $nonce, 'wp_rest' ) ) {
 			$return['msg'] = 'Invalid nonce';
 			return rest_ensure_response( $return );
@@ -127,7 +129,6 @@ class Font_Awesome_Icons_Server extends \WP_Rest_Controller {
 		} else {
 			$return['msg'] = esc_html__( 'Ops! I cannot send this email!', 'textdomain' );
 		}
-
 
 		return rest_ensure_response( $return );
 	}

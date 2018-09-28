@@ -4,11 +4,12 @@ namespace OrbitFox\Gutenberg_Blocks;
 
 /**
  * Class Contact_Form_Server
- *
  */
 class Contact_Form_Server extends \WP_Rest_Controller {
 
 	/**
+	 * The main instance var.
+	 * 
 	 * @var Contact_Form_Server
 	 */
 	public static $instance = null;
@@ -30,35 +31,39 @@ class Contact_Form_Server extends \WP_Rest_Controller {
 	public function register_routes() {
 		$namespace = $this->namespace . $this->version;
 
-		register_rest_route( $namespace, '/submit', array(
+		register_rest_route(
+			$namespace,
+			'/submit',
 			array(
-				'methods'             => \WP_REST_Server::CREATABLE,
-				'callback'            => array( $this, 'submit_form' ),
-				'permission_callback' => array( $this, 'submit_forms_permissions_check' ),
-				'args'                => array(
-					'nonce'     => array(
-						'type'        => 'string',
-						'required'    => true,
-						'description' => __( 'The security key', 'textdomain' ),
+				array(
+					'methods'             => \WP_REST_Server::CREATABLE,
+					'callback'            => array( $this, 'submit_form' ),
+					'permission_callback' => array( $this, 'submit_forms_permissions_check' ),
+					'args'                => array(
+						'nonce'     => array(
+							'type'        => 'string',
+							'required'    => true,
+							'description' => __( 'The security key', 'textdomain' ),
+						),
+						'data'      => array(
+							'type'        => 'json',
+							'required'    => true,
+							'description' => __( 'The form must have data', 'textdomain' ),
+						),
+						'form_id'   => array(
+							'type'        => 'string',
+							'required'    => true,
+							'description' => __( 'The form identifier.', 'textdomain' ),
+						),
+					// 'post_id'   => array(
+					// 'type'        => 'string',
+					// 'required'    => true,
+					// 'description' => __( 'The form\'s post.', 'textdomain' ),
+					// )
 					),
-					'data'      => array(
-						'type'        => 'json',
-						'required'    => true,
-						'description' => __( 'The form must have data', 'textdomain' ),
-					),
-					'form_id'   => array(
-						'type'        => 'string',
-						'required'    => true,
-						'description' => __( 'The form identifier.', 'textdomain' ),
-					),
-//					'post_id'   => array(
-//						'type'        => 'string',
-//						'required'    => true,
-//						'description' => __( 'The form\'s post.', 'textdomain' ),
-//					)
 				),
-			),
-		) );
+			)
+		);
 	}
 
 	public function rest_check( \WP_REST_Request $request ) {
@@ -73,7 +78,7 @@ class Contact_Form_Server extends \WP_Rest_Controller {
 	public function submit_form( $request ) {
 		$return = array(
 			'success' => false,
-			'msg'     => esc_html__( 'Something went wrong', 'textdomain' )
+			'msg'     => esc_html__( 'Something went wrong', 'textdomain' ),
 		);
 
 		$nonce   = $request->get_param( 'nonce' );
@@ -132,7 +137,6 @@ class Contact_Form_Server extends \WP_Rest_Controller {
 			$return['msg'] = esc_html__( 'Ops! I cannot send this email!', 'textdomain' );
 		}
 
-
 		return rest_ensure_response( $return );
 	}
 
@@ -148,7 +152,7 @@ class Contact_Form_Server extends \WP_Rest_Controller {
 	 * @param $mailto
 	 * @param $mailfrom
 	 * @param $body
-	 * @param array $extra_data
+	 * @param array    $extra_data
 	 *
 	 * @return bool
 	 */
@@ -180,12 +184,12 @@ class Contact_Form_Server extends \WP_Rest_Controller {
 	 * Body template preparation
 	 *
 	 * @param string $body
-	 * @param array $data
+	 * @param array  $data
 	 *
 	 * @return string
 	 */
 	private function prepare_body( $body, $data ) {
-		$tmpl = "";
+		$tmpl = '';
 
 		ob_start(); ?>
 		<!doctype html>
@@ -212,10 +216,11 @@ class Contact_Form_Server extends \WP_Rest_Controller {
 			</thead>
 			<tbody>
 			<?php
-			foreach ( $data as $key => $value ) { ?>
+			foreach ( $data as $key => $value ) {
+				?>
 				<tr>
 					<td>
-						<strong><?php echo esc_html( $key ) ?> : </strong>
+						<strong><?php echo esc_html( $key ); ?> : </strong>
 						<p><?php echo esc_html( $value ); ?></p>
 					</td>
 				</tr>
@@ -225,7 +230,7 @@ class Contact_Form_Server extends \WP_Rest_Controller {
 			<tr>
 				<td>
 					<hr/>
-					<?php esc_html_e( 'You received this email because your email address is set in the content form settings on ' ) ?>
+					<?php esc_html_e( 'You received this email because your email address is set in the content form settings on ' ); ?>
 					<a href="<?php echo esc_url( get_site_url() ); ?>"><?php bloginfo( 'name' ); ?></a>
 				</td>
 			</tr>

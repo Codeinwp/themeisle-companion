@@ -47,7 +47,7 @@ registerBlockType( 'orbitfox/google-map', {
 		location: {
 			type: 'string',
 		},
-		mapType: {
+		type: {
 			type: 'string',
 			default: 'roadmap',
 		},
@@ -129,7 +129,7 @@ registerBlockType( 'orbitfox/google-map', {
 		};
 
 		const changeMapType = ( value ) => {
-			props.setAttributes( { mapType: value } );
+			props.setAttributes( { type: value } );
 		};
 
 		const changeZoom = ( value ) => {
@@ -191,9 +191,9 @@ registerBlockType( 'orbitfox/google-map', {
 				>
 					<SelectControl
 						label={ __( 'Map Type' ) }
-						value={ props.attributes.mapType }
+						value={ props.attributes.type }
 						options={ [
-							{ label: __( 'Road Map' ), value: 'roadtype' },
+							{ label: __( 'Road Map' ), value: 'roadmap' },
 							{ label: __( 'Satellite View' ), value: 'satellite' },
 						] }
 						onChange={ changeMapType }
@@ -257,7 +257,7 @@ registerBlockType( 'orbitfox/google-map', {
 								border: 0,
 								height: props.attributes.height,
 							} }
-							src={ `https://www.google.com/maps/embed/v1/place?key=${ api }&q=${ props.attributes.location }&maptype=${ props.attributes.mapType }&zoom=${ props.attributes.zoom }` }
+							src={ `https://www.google.com/maps/embed/v1/place?key=${ api }&q=${ props.attributes.location }&maptype=${ props.attributes.type }&zoom=${ props.attributes.zoom }` }
 							allowFullScreen={ true }>
 						>
 						</iframe>

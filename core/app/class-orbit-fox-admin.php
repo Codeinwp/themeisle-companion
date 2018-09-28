@@ -119,7 +119,10 @@ class Orbit_Fox_Admin {
 	 */
 	public function menu_pages() {
 		add_menu_page(
-			__( 'Orbit Fox', 'themeisle-companion' ), __( 'Orbit Fox', 'themeisle-companion' ), 'manage_options', 'obfx_companion',
+			__( 'Orbit Fox', 'themeisle-companion' ),
+			__( 'Orbit Fox', 'themeisle-companion' ),
+			'manage_options',
+			'obfx_companion',
 			array(
 				$this,
 				'page_modules_render',

@@ -25,16 +25,10 @@ registerBlockType( 'orbitfox/notice', {
 		'info'
 	],
 	attributes: {
-		title: {
-			source: 'text',
-			type: 'string',
-			selector: '.obfx-block-notice__title',
-			default: 'Info',
-		},
 		content: {
 			type: 'array',
 			source: 'children',
-			selector: '.obfx-block-notice__content',
+			selector: '.components-notice__content',
 		},
 	},
 

@@ -26,7 +26,7 @@ registerBlockType( 'orbitfox/accordion-block', {
 		heading: {
 			type: 'array',
 			source: 'children',
-			selector: 'accordion-heading',
+			selector: '.accordion-heading',
 		},
 	},
 

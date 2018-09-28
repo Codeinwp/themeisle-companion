@@ -1,23 +1,43 @@
 <?php
 namespace OrbitFox\Gutenberg_Blocks;
 
+/**
+ * Class About_Author_Block
+ */
 class About_Author_Block extends Base_Block {
 
+	/**
+	 * Constructor function for the module.
+	 *
+	 * @method __construct
+	 */
 	public function __construct() {
 		parent::__construct();
 	}
 
+	/**
+	 * Every block needs a slug, so we need to define one and assign it to the `$this->block_slug` property
+	 *
+	 * @return mixed
+	 */
 	function set_block_slug() {
 		$this->block_slug = 'about-author';
 	}
 
-	function set_attributes(){
+	/**
+	 * Set the attributes required on the server side.
+	 *
+	 * @return mixed
+	 */
+	function set_attributes() {
 		$this->attributes = array();
 	}
 
 	/**
+	 * Block render function for server-side.
 	 *
-	 * @param $attributes
+	 * This method will pe passed to the render_callback parameter and it will output
+	 * the server side output of the block.
 	 *
 	 * @return mixed|string
 	 */
@@ -38,7 +58,7 @@ class About_Author_Block extends Base_Block {
 			esc_html( strip_tags( get_the_author_meta( 'description' ) ) )
 		);
 
-		$class = "wp-block-orbitfox-about-author";
+		$class = 'wp-block-orbitfox-about-author';
 		return sprintf(
 			'<section class="%1$s"><div class="obfx-author-image">%2$s</div><div class="obfx-author-data">%3$s%4$s</div></section>',
 			esc_attr( $class ),
