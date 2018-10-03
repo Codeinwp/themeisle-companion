@@ -58,16 +58,9 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$this->loader->add_action( 'enqueue_block_editor_assets', $this, 'load_js_blocks' );
 		$this->loader->add_action( 'init', $this, 'autoload_block_classes', 11 );
 		$this->loader->add_action( 'wp', $this, 'load_server_side_blocks', 11 );
-
-		add_action( 'init', array( $this, 'register_post_types' ) );
-
-		add_action( 'init', array( $this, 'registerSettings' ) );
-
-		add_action( 'rest_api_init', array( $this, 'create_api_field_form_data' ) );
-
-		add_action( 'enqueue_block_assets', array( $this, 'enqueue_block_assets' ) );
-
-		add_filter( 'block_categories', array( $this, 'block_categories' ) );
+		$this->loader->add_action( 'init', $this, 'registerSettings' );
+		$this->loader->add_action( 'enqueue_block_assets', $this, 'enqueue_block_assets' );
+		$this->loader->add_action( 'block_categories', $this, 'block_categories' );
 	}
 
 	/**
@@ -198,6 +191,8 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			filemtime( plugin_dir_path( __FILE__ ) . 'build/style.css' )
 		);
 
+		wp_enqueue_style( 'font-awesome', plugins_url( 'assets/fontawesome/css/all.min.css', __FILE__ ) );
+
 		if ( is_admin() ) {
 			return;
 		}
@@ -208,118 +203,6 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'https://www.gstatic.com/charts/loader.js'
 			);
 		}
-
-		wp_enqueue_script( 'https://www.gstatic.com/charts/loader.js', '', true );
-
-		// @TODO this should be loaded only when a contact form is present
-		wp_enqueue_script( 'obfx-contact-form', plugins_url( 'blocks/contact-form/contact-form.js', __FILE__ ), array( 'jquery' ) );
-
-		wp_localize_script( 'obfx-contact-form', 'obfxContactFormsSettings', array(
-			'restUrl' => esc_url_raw( rest_url() . 'obfx-contact-form/v1/' ),
-			'nonce'   => wp_create_nonce( 'wp_rest' ),
-		) );
-
-		// next scripts ar for front-end only
-
-		// @TODO content forms are not ready yet.
-//		wp_enqueue_style(
-//			'obfx-contact_form_styles',
-//			plugins_url( 'build/contact-form.css', __FILE__ ),
-//			array(),
-//			filemtime( plugin_dir_path( __FILE__ ) . 'build/contact-form.css' )
-//		);
-//
-//		wp_enqueue_script(
-//			'obfx-contact_form_script',
-//			plugins_url( 'build/contact-form.js', __FILE__ ),
-//			array( 'jquery' ),
-//			filemtime( plugin_dir_path( __FILE__ ) . 'build/contact-form.js' )
-//		);
-	}
-
-	/**
-	 * Register post types needed by our blocks.
-	 */
-	function register_post_types() {
-		register_post_type(
-			'obfx_contact_form',
-			array(
-				'description'           => 'test',
-				'public'                => true,
-				'publicly_queryable'    => true,
-				'show_in_nav_menus'     => true,
-				'show_in_admin_bar'     => true,
-				'exclude_from_search'   => true,
-				'show_ui'               => true,
-				'show_in_menu'          => true,
-				'can_export'            => true,
-				'delete_with_user'      => false,
-				'hierarchical'          => false,
-				'has_archive'           => false,
-				'query_var'             => 'obfx_contact_form',
-				'show_in_rest'          => true,
-				'rest_base'             => 'obfx_contact_form',
-				'rest_controller_class' => 'WP_REST_Posts_Controller',
-				'custom-fields' => array( 'custom-fields' )
-			)
-		);
-	}
-
-	/**
-	 * Register meta fields needed by our blocks.
-	 */
-	function create_api_field_form_data() {
-		// register_rest_field ( 'name-of-post-type', 'name-of-field-to-return', array-of-callbacks-and-schema() )
-		register_rest_field( 'obfx_contact_form', 'form_data', array(
-				'get_callback' => array( $this, 'get_post_meta_for_api_form_data' ),
-				'update_callback' => array( $this, 'update_post_meta_for_api_form_data' ),
-				'schema'       => null,
-			)
-		);
-	}
-
-	/**
-	 * Defines how REST API retrieves values for the `form_data` key.
-	 *
-	 * @param $object
-	 *
-	 * @return mixed
-	 */
-	function get_post_meta_for_api_form_data( $object ) {
-		//get the id of the post object array
-		$post_id = $object['id'];
-
-		//return the post meta
-		return get_post_meta( $post_id, 'form_data', true );
-	}
-
-	/**
-	 * Defines how REST API updates a value.
-	 *
-	 * @param $meta_value
-	 * @param $object_id
-	 *
-	 * @return bool|int
-	 */
-	function update_post_meta_for_api_form_data( $meta_value, $object_id ) {
-		$old_value = get_post_meta( $object_id->ID, 'form_data', true );
-
-		if ( empty( $old_value ) ) {
-			$old_value = array();
-		}
-
-		$data = explode( '=', $meta_value );
-
-		$parsed_values = array();
-
-		$parsed_values[ $data[0] ] = $data[1];
-
-		$new_values = array_replace ( $parsed_values, $old_value );
-
-		//return the post meta
-		$return = update_post_meta( $object_id->ID, 'form_data', $new_values );
-
-		return $return;
 	}
 
 	/**

@@ -35,7 +35,8 @@ registerBlockType( 'orbitfox/service-block', {
 		}
 		const TEMPLATE =  [
 			['orbitfox/font-awesome-icons', {
-				size: '62',
+				fontSize: '62',
+				prefix: 'fab',
 				icon: 'angellist'
 			}],
 			['core/heading', {
