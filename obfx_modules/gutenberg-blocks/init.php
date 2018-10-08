@@ -225,7 +225,7 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			'orbitfox_google_map_block_api_key',
 			array(
 				'type'              => 'string',
-				'description'       => __( 'Google Map API key for the Gutenberg block plugin.' ),
+				'description'       => __( 'Google Map API key for the Gutenberg block plugin.', 'themeisle-companion' ),
 				'sanitize_callback' => 'sanitize_text_field',
 				'show_in_rest'      => true,
 				'default'           => ''
