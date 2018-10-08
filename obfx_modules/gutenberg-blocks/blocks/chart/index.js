@@ -39,6 +39,9 @@ const {
 
 const { Fragment } = wp.element;
 
+/**
+ * Internal dependencies
+ */
 import './editor.scss';
 
 registerBlockType( 'orbitfox/chart-pie', {
@@ -73,6 +76,10 @@ registerBlockType( 'orbitfox/chart-pie', {
 			type: 'string',
 			default: '',
 		}
+	},
+
+	supports: {
+		align: true,
 	},
 
 	edit: compose( [

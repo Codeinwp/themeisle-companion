@@ -96,7 +96,7 @@ registerBlockType( 'orbitfox/plugin-cards', {
 
 	supports: {
 		html: false,
-		align: true,
+		align: [ 'left', 'center', 'right' ],
 	},
 
 	edit: compose( [

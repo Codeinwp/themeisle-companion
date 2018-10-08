@@ -39,10 +39,6 @@ registerBlockType( 'orbitfox/google-map', {
 		'google',
 		'orbitfox'
 	],
-	supports: {
-		className: true,
-		html: false
-	},
 	attributes: {
 		location: {
 			type: 'string',
@@ -59,6 +55,10 @@ registerBlockType( 'orbitfox/google-map', {
 			type: 'string',
 			default: '400px',
 		}
+	},
+
+	supports: {
+		html: false
 	},
 
 	edit: compose( [

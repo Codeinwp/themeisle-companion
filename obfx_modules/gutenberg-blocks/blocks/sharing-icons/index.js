@@ -38,10 +38,6 @@ registerBlockType( 'orbitfox/sharing-icons', {
 		'sharing',
 		'icons'
 	],
-	supports: {
-		html: true,
-		align: true,
-	},
 	attributes: {
 		facebook: {
 			type: 'boolean',
@@ -71,6 +67,11 @@ registerBlockType( 'orbitfox/sharing-icons', {
 			type: 'boolean',
 			default: false,
 		},
+	},
+
+	supports: {
+		html: true,
+		align: [ 'left', 'center', 'right' ],
 	},
 
 	styles: [

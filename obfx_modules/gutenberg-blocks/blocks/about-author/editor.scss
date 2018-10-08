@@ -5,7 +5,7 @@
     color: rgba(0,0,0,.87);
     width: 100%;
     position: relative;
-    display: inline-flex;
+    display: flex;
     min-width: 0;
 	word-wrap: break-word;
 
@@ -35,6 +35,25 @@
 
 		p {
 			font-size: 14px;
+		}
+	}
+}
+
+@media ( max-width:961px ) {
+	.wp-block-orbitfox-about-author {
+		display: inline-block;
+		text-align: center;
+
+		.obfx-author-image {
+			width: auto;
+			float: none;
+			max-width: 130px;
+			max-height: 130px;
+			margin: auto;
+		}
+		.obfx-author-data {
+			width: auto;
+			float: none;
 		}
 	}
 }

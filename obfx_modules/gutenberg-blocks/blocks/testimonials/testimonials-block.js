@@ -4,20 +4,13 @@
 
 const { __ } = wp.i18n;
 
-const {
-	registerBlockType
-} = wp.blocks;
+const { registerBlockType } = wp.blocks;
 
 const {
 	InnerBlocks,
+	InspectorControls,
+	PanelColorSettings,
 } = wp.editor;
-
-const { 
-	Dashicon,
-	Toolbar,
-	Button,
-	Tooltip,
-} = wp.components;
 
 /**
  * Internal dependencies
@@ -33,8 +26,17 @@ registerBlockType( 'orbitfox/testimonials-block', {
 		'clients',
 		'quotes'
 	],
+	attributes: {
+		backgroundColor: {
+			type: 'string',
+			default: '#ffffff',
+		},
+	},
 
-	edit: () => {
+	edit: props => {
+		const setBackgroundColor = value => {
+			props.setAttributes( { backgroundColor: value } );
+		}
 		const TEMPLATE =  [
 			['core/image', {
 				align: 'center',
@@ -58,18 +60,43 @@ registerBlockType( 'orbitfox/testimonials-block', {
 			}],
 		];
 
-		return (
-			<div className="wp-block-column">
+		return [
+			<InspectorControls>
+				<PanelColorSettings
+					title={ __( 'Color Settings' ) }
+					initialOpen={ true }
+					colorSettings={ [
+						{
+							value: props.attributes.backgroundColor,
+							onChange: setBackgroundColor,
+							label: __( 'Background Color' ),
+						},
+					] }
+				>
+				</PanelColorSettings>
+			</InspectorControls>,
+
+			<div
+				className="wp-block-column"
+				style={ {
+					backgroundColor: props.attributes.backgroundColor,
+				}}
+			>
 				<InnerBlocks
 					template={ TEMPLATE }
 				/>
 			</div>
-		);
+		];
 	},
 
-	save: () => {
+	save: props => {
 		return (
-			<div className="wp-block-column">
+			<div
+				className="wp-block-column"
+				style={ {
+					backgroundColor: props.attributes.backgroundColor,
+				}}
+			>
 				<InnerBlocks.Content/>
 			</div>
 		);

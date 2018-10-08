@@ -77,7 +77,7 @@ class Google_Map_Block extends Base_Block {
 		$location = urlencode( $location );
 
 		// Set the API url based to embed or static maps based on the interactive setting
-		$apiurl = "https://www.google.com/maps/embed/v1/place?key=${apikey}&q=${location}&zoom=${zoom}&type=${type}";
+		$apiurl = "https://www.google.com/maps/embed/v1/place?key=${apikey}&q=${location}&zoom=${zoom}&maptype=${type}";
 
 		// Check status code of apiurl
 		$ch = curl_init( $apiurl );

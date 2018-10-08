@@ -105,11 +105,6 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function load_js_blocks() {
-		if ( ! is_admin() ) {
-			return;
-		}
-
-		// @TODO for the moment load one js file with all the blocks. Maybe in future we'll group and enable them selectively
 		wp_enqueue_script(
 			'obfx-gutenberg-blocks',
 			plugins_url( '/build/block.js', __FILE__ ),
@@ -183,6 +178,11 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * Load assets for our blocks.
 	 */
 	function enqueue_block_assets() {
+		wp_enqueue_style( 'font-awesome', plugins_url( 'assets/fontawesome/css/all.min.css', __FILE__ ) );
+
+		if ( is_admin() ) {
+			return;
+		}
 
 		wp_enqueue_style(
 			'obfx-block_styles',
@@ -191,17 +191,8 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			filemtime( plugin_dir_path( __FILE__ ) . 'build/style.css' )
 		);
 
-		wp_enqueue_style( 'font-awesome', plugins_url( 'assets/fontawesome/css/all.min.css', __FILE__ ) );
-
-		if ( is_admin() ) {
-			return;
-		}
-
 		if ( has_block( 'orbitfox/chart-pie' ) ) {
-			wp_enqueue_script(
-				'google-charts',
-				'https://www.gstatic.com/charts/loader.js'
-			);
+			wp_enqueue_script( 'google-charts', 'https://www.gstatic.com/charts/loader.js' );
 		}
 	}
 
@@ -213,7 +204,6 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @link https://wordpress.org/gutenberg/handbook/extensibility/extending-blocks/#managing-block-categories
 	 */
 	public function block_categories( $categories ) {
-
 		return array_merge(
 			$categories,
 			array(
@@ -225,10 +215,9 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		);
 	}
 
-
 	/**
 	 * Register Settings for Google Maps Block
-	 *
+
 	 */
 	public function registerSettings() {
 		register_setting(

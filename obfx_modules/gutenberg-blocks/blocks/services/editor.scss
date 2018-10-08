@@ -13,6 +13,27 @@
 
 .wp-block-orbitfox-services {
 	display: block;
+	position: relative;
+
+	&.is-dim {
+		&:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			background-color: rgba(0,0,0,.5);
+		}
+
+		.wp-block-column {
+			z-index: 1;
+		}
+	}
+
+	&.is-parallax {
+		background-attachment: fixed !important;
+	}
 
 	> .editor-inner-blocks > .editor-block-list__layout {
 		display: flex;
@@ -24,6 +45,7 @@
 			width: 0;
 
 			.editor-block-list__block-edit {
+				margin-top: 12px;
 				flex-basis: 100%;
 			}
 		}
@@ -38,13 +60,60 @@
 			margin-right: 0;
 		}
 
-	  padding: 20px 10px;
-	  margin: 0 20px;
+		position: relative;
+		padding: 20px 10px;
+		margin: 0 20px;
+	}
+}
+
+[data-type="orbitfox/services"] {
+	&[data-align="full"] {
+		.wp-block-orbitfox-services {
+			padding: 100px 150px;
+		}
+	}
+
+	&[data-align="wide"] {
+		.wp-block-orbitfox-services {
+			padding: 30px 50px;
+		}
 	}
 }
 
 @media ( max-width:768px ) {
 	.wp-block-orbitfox-services {
 		display: block;
+
+		> .editor-inner-blocks > .editor-block-list__layout {
+			display: block;
+	
+			> [data-type="orbitfox/service-block"] {
+				display: flex;
+				flex-direction: column;
+				flex: 1;
+				width: auto;
+	
+				.editor-block-list__block-edit {
+					margin-top: 12px;
+					flex-basis: 100%;
+				}
+			}
+		}
+	}
+}
+
+@media ( max-width:1024px ) {
+	[data-type="orbitfox/services"] {
+		&[data-align="full"] {
+			.wp-block-orbitfox-services {
+				padding: 100px 20px;
+			}
+		}
+
+		&[data-align="wide"] {
+			.wp-block-orbitfox-services {
+				padding: 30px 50px;
+			}
+		}
 	}
 }

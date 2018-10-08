@@ -30,7 +30,6 @@ registerBlockType('orbitfox/about-author', {
 		'author',
 		'profile'
 	],
-
 	attributes: {
 		id: {
 			type: 'number',

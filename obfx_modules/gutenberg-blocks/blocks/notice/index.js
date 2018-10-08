@@ -32,6 +32,10 @@ registerBlockType( 'orbitfox/notice', {
 		},
 	},
 
+	supports: {
+		align: [ 'wide', 'full' ],
+	},
+
 	styles: [
 		{ name: 'sucess', label: __( 'Success' ), isDefault: true },
 		{ name: 'info', label: __( 'Info' ) },

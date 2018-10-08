@@ -93,8 +93,6 @@ abstract class Base_Block {
 		);
 	}
 
-
-
 	/**
 	 * The render callback passed to the `register_block_type` function.
 	 *

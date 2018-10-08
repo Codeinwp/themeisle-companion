@@ -25,10 +25,8 @@ const extractConfig = {
 		{
 			loader: 'sass-loader',
 			query: {
-				includePaths: ['assets/stylesheets'],
-				data: '@import "colors"; @import "breakpoints"; @import "variables"; @import "mixins"; @import "animations";@import "z-index";',
-				outputStyle: 'production' === process.env.NODE_ENV ?
-					'compressed' : 'nested',
+				outputStyle:
+					'production' === process.env.NODE_ENV ? 'compressed' : 'nested',
 			},
 		},
 	],

@@ -81,7 +81,7 @@ registerBlockType( 'orbitfox/font-awesome-icons', {
 	},
 
 	supports: {
-		align: true,
+		align: [ 'left', 'center', 'right' ],
 	},
 
 	edit: withSelect( ( select, props ) => {

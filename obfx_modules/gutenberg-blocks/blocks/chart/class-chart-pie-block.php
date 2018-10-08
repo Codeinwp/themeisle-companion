@@ -63,7 +63,7 @@ class Chart_Pie_Block extends Base_Block {
 	 * @return mixed|string
 	 */
 	function render( $attributes ) {
-		$chart_markup = "<div id='" . $attributes['id'] . "' style='width: 100%; height: 500px;'></div>";
+		$chart_markup = "<div class='wp-block-orbitfox-chart-pie' id='" . $attributes['id'] . "' style='width: 100%; min-height: 450px;'></div>";
 
 		$script = "<script>
 			google.charts.load('current', {'packages':['corechart']});

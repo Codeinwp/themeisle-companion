@@ -74,7 +74,7 @@ registerBlockType( 'orbitfox/service-block', {
 			</InspectorControls>,
 
 			<div
-				className="wp-block-column"	
+				className="wp-block-column"
 				style={ {
 					backgroundColor: props.attributes.backgroundColor,
 				}}

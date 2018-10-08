@@ -5,7 +5,6 @@
 	margin-left: 0;
 	margin-right: 0;
 
-
 	// This max-width is used to constrain the main editor panel, it should not cascade into columns
 	.editor-block-list__block {
 		max-width: none;
@@ -14,6 +13,27 @@
 
 .wp-block-orbitfox-testimonials-area {
 	display: block;
+	position: relative;
+
+	&.is-dim {
+		&:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			background-color: rgba(0,0,0,.5);
+		}
+
+		.wp-block-column {
+			z-index: 1;
+		}
+	}
+
+	&.is-parallax {
+		background-attachment: fixed !important;
+	}
 
 	> .editor-inner-blocks > .editor-block-list__layout {
 		display: flex;
@@ -25,6 +45,7 @@
 			width: 0;
 
 			.editor-block-list__block-edit {
+				margin-top: 12px;
 				flex-basis: 100%;
 			}
 		}
@@ -39,6 +60,7 @@
 			margin-right: 0;
 		}
 
+		position: relative;
 		padding: 20px 10px;
 		margin: 0 20px;
 
@@ -48,6 +70,7 @@
 			height: auto;
 
 			img {
+				width: 100px;
 				border-radius: 100%;
 				box-shadow: 0 10px 25px 0 rgba(0,0,0,.3);
 			}
@@ -69,10 +92,71 @@
 			}
 		}
 	}
+
+	> .editor-inner-blocks > .editor-block-list__layout {
+		display: flex;
+
+		> [data-type="orbitfox/testimonials-block"] {
+			display: flex;
+			flex-direction: column;
+			flex: 1;
+			width: 0;
+
+			.editor-block-list__block-edit {
+				flex-basis: 100%;
+			}
+		}
+	}
+}
+
+[data-type="orbitfox/testimonials-area"] {
+	&[data-align="full"] {
+		.wp-block-orbitfox-testimonials-area {
+			padding: 100px 150px;
+		}
+	}
+
+	&[data-align="wide"] {
+		.wp-block-orbitfox-testimonials-area {
+			padding: 30px 50px;
+		}
+	}
 }
 
 @media ( max-width:768px ) {
 	.wp-block-orbitfox-testimonials-area {
 		display: block;
+
+		> .editor-inner-blocks > .editor-block-list__layout {
+			display: block;
+	
+			> [data-type="orbitfox/testimonials-block"] {
+				display: flex;
+				flex-direction: column;
+				flex: 1;
+				width: auto;
+	
+				.editor-block-list__block-edit {
+					margin-top: 12px;
+					flex-basis: 100%;
+				}
+			}
+		}
+	}
+}
+
+@media ( max-width:1024px ) {
+	[data-type="orbitfox/testimonials-area"] {
+		&[data-align="full"] {
+			.wp-block-orbitfox-testimonials-area {
+				padding: 100px 20px;
+			}
+		}
+
+		&[data-align="wide"] {
+			.wp-block-orbitfox-testimonials-area {
+				padding: 30px 50px;
+			}
+		}
 	}
 }
