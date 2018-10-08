@@ -4,75 +4,103 @@ namespace OrbitFox\Gutenberg_Blocks;
 
 /**
  * Class Plugin_Card_Server
- *
  */
 class Plugin_Card_Server extends \WP_Rest_Controller {
 
 	/**
+	 * The main instance var.
+	 *
 	 * @var Plugin_Card_Server
 	 */
 	public static $instance = null;
 
+	/**
+	 * Rest route namespace.
+	 *
+	 * @var Plugin_Card_Server
+	 */
 	public $namespace = 'obfx-plugin-card/';
+
+	/**
+	 * Rest route version.
+	 *
+	 * @var Plugin_Card_Server
+	 */
 	public $version = 'v1';
 
+	/**
+	 * Initialize the class
+	 */
 	public function init() {
 		add_action( 'rest_api_init', array( $this, 'register_routes' ) );
 	}
 
+	/**
+	 * Register REST API route
+	 */
 	public function register_routes() {
 		$namespace = $this->namespace . $this->version;
 
-		register_rest_route( $namespace, '/search', array(
+		register_rest_route(
+			$namespace,
+			'/search',
 			array(
-				'methods'             => \WP_REST_Server::READABLE,
-				'callback'            => array( $this, 'search' ),
-				'args'                => array(
-					'search'      => array(
-						'type'        => 'string',
-						'required'    => true,
-						'description' => __( 'The form must have data', 'textdomain' ),
-					)
+				array(
+					'methods'             => \WP_REST_Server::READABLE,
+					'callback'            => array( $this, 'search' ),
+					'args'                => array(
+						'search'      => array(
+							'type'        => 'string',
+							'required'    => true,
+							'description' => __( 'The form must have data', 'themeisle-companion' ),
+						),
+					),
 				),
-			),
-		) );
+			)
+		);
 	}
 
 	/**
-	 * @param \WP_REST_Request $request
+	 * Search WordPress Plugin
+	 *
+	 * Search WordPress plugin using WordPress.org API.
 	 *
 	 * @return mixed|\WP_REST_Response
 	 */
 	public function search( $request ) {
 		$return = array(
 			'success' => false,
-			'data'     => esc_html__( 'Something went wrong', 'textdomain' )
+			'data'     => esc_html__( 'Something went wrong', 'themeisle-companion' ),
 		);
 
 		$search   = $request->get_param( 'search' );
 
-		require_once( ABSPATH . "wp-admin" . '/includes/plugin-install.php' );
+		require_once( ABSPATH . 'wp-admin' . '/includes/plugin-install.php' );
 
 		$request = array(
 			'per_page' => 12,
 			'search' => $search,
 			'fields' => array(
+				'active_installs' => true,
+				'added' => false,
+				'donate_link' => false,
+				'downloadlink' => true,
+				'homepage' => true,
+				'icons' => true,
+				'last_updated' => false,
+				'requires' => true,
+				'requires_php' => false,
+				'screenshots' => false,
 				'short_description' => true,
+				'slug' => false,
 				'sections' => false,
 				'requires' => false,
-				'rating' => false,
+				'rating' => true,
 				'ratings' => false,
-				'downloaded' => false,
-				'last_updated' => false,
-				'added' => false,
-				'tags' => false,
-				'compatibility' => false,
-				'homepage' => true,
-				'donate_link' => false,
-			)
+			),
 		);
 
-		$results = plugins_api('query_plugins', $request);
+		$results = plugins_api( 'query_plugins', $request );
 
 		if ( is_wp_error( $request ) ) {
 			$return['data'] = 'error';
@@ -88,6 +116,9 @@ class Plugin_Card_Server extends \WP_Rest_Controller {
 	}
 
 	/**
+	 * The instance method for the static class.
+	 * Defines and returns the instance of the static class.
+	 *
 	 * @static
 	 * @since 1.0.0
 	 * @access public
@@ -114,7 +145,7 @@ class Plugin_Card_Server extends \WP_Rest_Controller {
 	 */
 	public function __clone() {
 		// Cloning instances of the class is forbidden.
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'textdomain' ), '1.0.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'themeisle-companion' ), '1.0.0' );
 	}
 
 	/**
@@ -126,6 +157,6 @@ class Plugin_Card_Server extends \WP_Rest_Controller {
 	 */
 	public function __wakeup() {
 		// Unserializing instances of the class is forbidden.
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'textdomain' ), '1.0.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'themeisle-companion' ), '1.0.0' );
 	}
 }

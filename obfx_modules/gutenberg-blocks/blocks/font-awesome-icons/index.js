@@ -1,177 +1,333 @@
 /**
- * External dependencies
- */
-import classnames from 'classnames';
-
-/**
  * WordPress dependencies...
  */
-const {__} = wp.i18n;
+
+const { __ } = wp.i18n;
 
 const {
-	registerBlockType,
+	registerBlockType
 } = wp.blocks;
 
 const {
-	getColorClass,
+	Autocomplete,
+	PanelBody,
+	Spinner,
+	Placeholder,
+	RangeControl,
+} = wp.components;
+
+const { withSelect } = wp.data;
+
+const {
+	ContrastChecker,
+	InspectorControls,
+	PanelColorSettings,
 } = wp.editor;
 
-import FontAwesomeEditor from './Editor'
-
+/**
+ * Internal dependencies
+ */
 import './style.scss';
+import './editor.scss';
 
-registerBlockType('orbitfox/font-awesome-icons', {
-	title: __('Font Awesome Icon'),
-	icon: 'info',
-	category: 'common',
+registerBlockType( 'orbitfox/font-awesome-icons', {
+	title: __( 'Font Awesome Icons' ),
+	description: __( 'Share buttons for your website visitors to share content on any social sharing service.' ),
+	icon: 'smiley',
+	category: 'orbitfox',
 	keywords: [
-		'fontawesome',
-		'icon',
-		'orbitfox'
+		'font awesome',
+		'dashicons',
+		'icons'
 	],
-
 	attributes: {
-		icon_prefix: {
+		prefix: {
 			type: 'string',
-			default: 'fab'
+			default: 'fab',
 		},
 		icon: {
 			type: 'string',
-			default: 'wordpress'
+			default: 'themeisle',
 		},
-		size: {
+		fontSize: {
 			type: 'number',
-			default: 32
+			default: 16,
 		},
-		align: {
-			type: 'string',
-			default: 'center'
+		padding: {
+			type: 'number',
+			default: 5,
 		},
-		textColor: {
-			type: 'string'
+		margin: {
+			type: 'number',
+			default: 5,
 		},
 		backgroundColor: {
-			type: 'string'
+			type: 'string',
+		},
+		textColor: {
+			type: 'string',
 		},
 		borderColor: {
-			type: 'string'
-		},
-		shadowColor: {
-			type: 'string'
-		},
-		customTextColor: {
-			type: 'string'
-		},
-		customBackgroundColor: {
-			type: 'string'
-		},
-		customBorderColor: {
-			type: 'string'
-		},
-		customShadowColor: {
-			type: 'string'
-		},
-		borderRadius: {
 			type: 'string',
-			default: 50
 		},
 		borderSize: {
-			type: 'string',
-			default: 0
+			type: 'number',
+			default: 0,
 		},
-		borderStyle: {
-			type: 'string'
-		},
-		innerSpaceSize: {
-			type: 'string',
-			default: 0
-		},
-		outerSpaceSize: {
-			type: 'string',
-			default: 0
-		},
-
-		shadowSize: {
-			type: 'string',
-			default: 0
-		},
-		shadowBlurSize: {
-			type: 'string',
-			default: 0
-		},
-		shadowHorizontalSize: {
-			type: 'string',
-			default: 0
-		},
-		shadowVerticalSize: {
-			type: 'string',
-			default: 0
+		borderRadius: {
+			type: 'number',
+			default: 0,
 		},
 	},
 
-	edit: FontAwesomeEditor,
+	supports: {
+		align: [ 'left', 'center', 'right' ],
+	},
 
-	save( props ) {
-		const { attributes } = props
+	edit: withSelect( ( select, props ) => {
+		const iconsList = select( 'obfx/blocks' ).getFaIconsList();
+		return {
+			iconsList,
+			props,
+		};
+	} )( ( { iconsList, props } ) => {
 
-		const {
-			align,
-			icon, icon_prefix, size,
-			borderRadius, borderSize, borderStyle,
-			innerSpaceSize, outerSpaceSize,
-			textColor, backgroundColor, borderColor, shadowColor,
-			customBackgroundColor, customTextColor, customBorderColor, customShadowColor,
-			shadowHorizontalSize, shadowVerticalSize, shadowBlurSize, shadowSize
-		} = attributes;
+		const autocompleters = [
+			{
+				name: 'font-awesome',
+				triggerPrefix: '',
+				options: iconsList,
+				getOptionLabel: option => (
+					<span>
+						<i className={ `${ option.prefix } fa-fw fa-${ option.name }` }></i> { option.name }
+					</span>
+				),
+				getOptionKeywords: option => [ option.name ],
+				getOptionCompletion: option => {
+					props.setAttributes( {
+						prefix: option.prefix,
+						icon: option.name
+					} )
+					return option.name
+				},
+			}
+		];
 
-		const textClass = getColorClass( 'color', textColor );
-		const backgroundClass = getColorClass( 'background-color', backgroundColor );
-		const borderClass = getColorClass( 'border-color', borderColor );
-		const shadowClass = getColorClass( 'shadow-color', shadowColor );
-
-		const className = classnames( {
-			'obfx-font-awesome-icon': true,
-			'has-background': backgroundColor || customBackgroundColor,
-			'has-color': textColor || customTextColor,
-			'has-border-color': borderColor || customBorderColor,
-			'has-shadow-color': shadowClass || customShadowColor,
-			[ textClass ]: textClass,
-			[ backgroundClass ]: backgroundClass,
-			[ borderClass ]: borderClass,
-			[ shadowClass ]: shadowClass,
-		} );
-
-		const pStyle = {
-			textAlign: align,
-		}
-
-		const iconStyle = {
-			padding: innerSpaceSize + 'px',
-			borderRadius: borderRadius + '%',
-			fontSize: size + 'px',
-			lineHeight: size + 'px',
-		}
-
-		const shb =  typeof shadowColor !== "undefined"
-			? shadowHorizontalSize + 'px ' + shadowVerticalSize + 'px ' + shadowBlurSize + 'px ' + shadowSize + 'px ' + ( typeof shadowColor.value ? shadowColor.value : 'inherited' )
-			: shadowHorizontalSize + 'px ' + shadowVerticalSize + 'px ' + shadowBlurSize + 'px ' + shadowSize + 'px ' + customShadowColor;
-
-		const wrapperStyle = {
-			display: 'inline-block',
-			color: typeof textColor !== "undefined" ? textColor.value : null,
-			backgroundColor: typeof backgroundColor !== "undefined" ? backgroundColor.value : 'transparent',
-			borderColor: typeof borderColor !== "undefined" ? borderColor.value : 'transparent' ,
-			borderRadius: borderRadius + '%',
-			borderStyle: 'solid',
-			borderWidth: borderSize + 'px',
-			margin: outerSpaceSize + 'px',
-			// boxShadow: shb
+		const changeFontSize = ( value ) => {
+			props.setAttributes( { fontSize: value } );
 		};
 
-		return <p style={pStyle} >
-			<span style={ wrapperStyle } className={className}>
-				<i className={icon_prefix + ' fa-' + icon } style={iconStyle}></i>
-			</span>
-		</p>
+		const changePadding = ( value ) => {
+			props.setAttributes( { padding: value } );
+		};
+
+		const changeMargin = ( value ) => {
+			props.setAttributes( { margin: value } );
+		};
+
+		const changeBackgroundColor = ( value ) => {
+			props.setAttributes( { backgroundColor: value } );
+		};
+
+		const changeTextColor = ( value ) => {
+			props.setAttributes( { textColor: value } );
+		};
+
+		const changeBorderColor = ( value ) => {
+			props.setAttributes( { borderColor: value } );
+		};
+
+		const changeBorderSize = ( value ) => {
+			props.setAttributes( { borderSize: value } );
+		};
+
+		const changeBorderRadius = ( value ) => {
+			props.setAttributes( { borderRadius: value } );
+		};
+
+		const iconStyle = {
+			borderRadius: props.attributes.borderRadius + '%',
+			fontSize: props.attributes.fontSize + 'px',
+			padding: props.attributes.padding + 'px',
+		}
+
+		const containerStyle = {
+			color: props.attributes.textColor,
+			backgroundColor: props.attributes.backgroundColor,
+			borderColor: props.attributes.borderColor,
+			borderRadius: props.attributes.borderRadius + '%',
+			borderStyle: 'solid',
+			borderWidth: props.attributes.borderSize + 'px',
+			display: 'inline-block',
+			margin: props.attributes.margin + 'px',
+		}
+
+		return [
+			<InspectorControls>
+				<PanelBody
+					title={ __( 'Icon Settings' ) }
+				>
+					{ iconsList !== undefined && iconsList.length > 0 ?
+						<Autocomplete completers={ autocompleters }>
+							{ ( { isExpanded, listBoxId, activeId } ) => (
+								<div
+									className="font-awesome-auto-complete"
+								>
+									<label>
+										<i className={ `${ props.attributes.prefix } fa-${ props.attributes.icon }` }></i>
+									</label>
+									<div
+										className="icon-complete"
+										contentEditable
+										suppressContentEditableWarning
+										aria-autocomplete="list"
+										aria-expanded={ isExpanded }
+										aria-owns={ listBoxId }
+										aria-activedescendant={ activeId }
+									>
+										{ props.attributes.icon }
+									</div>
+								</div>
+							) }
+						</Autocomplete>
+					:
+						<Placeholder>
+							<Spinner />
+						</Placeholder>
+					}
+				</PanelBody>
+				<PanelBody
+					title={ __( 'Icon Sizes' ) }
+					className="blocks-font-size"
+					initialOpen={ false }
+				>
+					<RangeControl
+						label={ __( 'Text Size' ) }
+						value={ props.attributes.fontSize || '' }
+						initialPosition={ 16 }
+						onChange={ changeFontSize }
+						min={ 12 }
+						max={ 140 }
+						beforeIcon="editor-textcolor"
+						afterIcon="editor-textcolor"
+					/>
+					<RangeControl
+						label={ __( 'Inner Space' ) }
+						value={ props.attributes.padding || '' }
+						initialPosition={ 5 }
+						onChange={ changePadding }
+						min={ 0 }
+						max={ 100 }
+						beforeIcon="minus"
+						afterIcon="plus"
+					/>
+					<RangeControl
+						label={ __( 'Outer Space' ) }
+						value={ props.attributes.margin || '' }
+						initialPosition={ 5 }
+						onChange={ changeMargin }
+						min={ 0 }
+						max={ 100 }
+						beforeIcon="minus"
+						afterIcon="plus"
+					/>
+				</PanelBody>
+				<PanelColorSettings
+					title={ __( 'Color Settings' ) }
+					initialOpen={ false }
+					colorSettings={ [
+						{
+							value: props.attributes.backgroundColor,
+							onChange: changeBackgroundColor,
+							label: __( 'Background Color' ),
+						},
+						{
+							value: props.attributes.textColor,
+							onChange: changeTextColor,
+							label: __( 'Text Color' ),
+						},
+						{
+							value: props.attributes.borderColor,
+							onChange: changeBorderColor,
+							label: __( 'Border Color' ),
+						},
+					] }
+				>
+					<ContrastChecker
+						{ ...{
+							textColor: props.attributes.textColor,
+							backgroundColor: props.attributes.backgroundColor,
+						} }
+					/>
+				</PanelColorSettings>
+				<PanelBody
+					title={ __( 'Border Settings' ) }
+					initialOpen={ false }
+				>
+					<RangeControl
+						label={ __( 'Border Size' ) }
+						value={ props.attributes.borderSize }
+						onChange={ changeBorderSize }
+						min={ 0 }
+						max={ 120 }
+						beforeIcon="minus"
+						afterIcon="plus"
+					/>
+					<RangeControl
+						label={ __( 'Border Radius' ) }
+						value={ props.attributes.borderRadius }
+						onChange={ changeBorderRadius }
+						min={ 0 }
+						max={ 100 }
+						beforeIcon="grid-view"
+						afterIcon="marker"
+					/>
+				</PanelBody>
+			</InspectorControls>,
+
+			<p className={ props.className } >
+				<span
+					className={ `${ props.className }-container` }
+					style={ containerStyle }
+				>
+					<i
+						className={ `${ props.attributes.prefix } fa-${ props.attributes.icon }` }
+						style={ iconStyle }
+					>
+					</i>
+				</span>
+			</p>
+		];
+	} ),
+
+	save: props => {
+		const iconStyle = {
+			borderRadius: props.attributes.borderRadius + '%',
+			fontSize: props.attributes.fontSize + 'px',
+			padding: props.attributes.padding + 'px',
+		}
+
+		const containerStyle = {
+			color: props.attributes.textColor,
+			backgroundColor: props.attributes.backgroundColor,
+			borderColor: props.attributes.borderColor,
+			borderRadius: props.attributes.borderRadius + '%',
+			borderStyle: 'solid',
+			borderWidth: props.attributes.borderSize + 'px',
+			display: 'inline-block',
+			margin: props.attributes.margin + 'px',
+		}
+
+		return (
+			<p>
+				<span style={ containerStyle } >
+					<i
+						className={ `${ props.attributes.prefix } fa-${ props.attributes.icon }` }
+						style={ iconStyle }
+					>
+					</i>
+				</span>
+			</p>
+		)
 	},
 });

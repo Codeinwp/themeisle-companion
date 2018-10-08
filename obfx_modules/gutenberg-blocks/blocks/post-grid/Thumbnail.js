@@ -1,13 +1,11 @@
 /**
  * WordPress Dependencies
  */
-const {__} = wp.i18n;
+const { Spinner } = wp.components;
 
-const {Spinner} = wp.components;
+const { withSelect } = wp.data;
 
-const {withSelect} = wp.data;
-
-const {Component} = wp.element;
+const { Component } = wp.element;
 
 class Thumbnail extends Component {
 	constructor() {
@@ -15,32 +13,28 @@ class Thumbnail extends Component {
 	}
 
 	render() {
-		const { url, alt, id, thumbnail } = this.props;
+		const { alt, id, thumbnail, link } = this.props;
 
 		const img = thumbnail ? <img src={ thumbnail } alt={ alt } data-id={ id } /> : <Spinner />;
 
 		return (
 			<div className="post-thumbnail" >
-				{ img }
+				<a href={ link }>{ img }</a>
 			</div>
 		);
 	}
 }
 
 export default withSelect( ( select, ownProps ) => {
-	const { getMedia } = select( 'core' );
-	const { clientId } = ownProps;
-	const image = clientId ? getMedia( clientId ) : null;
-	const size = 'thumbnail';
-
+	const { id } = ownProps;
+	const image = id ? select( 'core' ).getMedia( id ) : undefined;
+	const size = 'medium';
 	const thumbnail = image ? image.media_details.sizes[size].source_url : null;
 
 	return image ? {
-		url: image.source_url,
 		thumbnail: thumbnail,
 		alt: image.alt_text,
 	} : {
-		url: null,
 		alt: null,
 	};
 } )( Thumbnail );

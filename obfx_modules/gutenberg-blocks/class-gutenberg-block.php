@@ -10,15 +10,15 @@ abstract class Base_Block {
 
 	/**
 	 * The namespace under which the blocks are registered.
-	 * 
-	 * @var string 
+	 *
+	 * @var string
 	 */
 	private $block_prefix = 'orbitfox';
 
 	/**
 	 * The slug of the block.
-	 * 
-	 * @var null 
+	 *
+	 * @var null
 	 */
 	protected $block_slug = null;
 
@@ -46,8 +46,6 @@ abstract class Base_Block {
 	/**
 	 * This method will pe passed to the render_callback parameter and it will output
 	 * the server side output of the block.
-	 *
-	 * @param $attributes
 	 *
 	 * @return mixed
 	 */
@@ -84,23 +82,19 @@ abstract class Base_Block {
 
 	/**
 	 * Based on the given arguments given on construction we'll build a Gutenberg Block.
-	 *
 	 */
 	public function register_block() {
 		\register_block_type(
-			$this ->block_prefix . '/' . $this->block_slug, array(
+			$this->block_prefix . '/' . $this->block_slug,
+			array(
 				'render_callback' => array( $this, 'render_callback' ),
 				'attributes'      => $this->get_attributes(),
 			)
 		);
 	}
 
-
-
 	/**
 	 * The render callback passed to the `register_block_type` function.
-	 *
-	 * @param $attributes
 	 *
 	 * @return string
 	 */

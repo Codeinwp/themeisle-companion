@@ -55,16 +55,12 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function hooks() {
-		$this->loader->add_action( 'init', $this, 'load_js_blocks' );
+		$this->loader->add_action( 'enqueue_block_editor_assets', $this, 'load_js_blocks' );
 		$this->loader->add_action( 'init', $this, 'autoload_block_classes', 11 );
 		$this->loader->add_action( 'wp', $this, 'load_server_side_blocks', 11 );
-
-		add_action( 'init', array( $this, 'register_post_types' ) );
-
-		add_action( 'rest_api_init', array( $this, 'create_api_field_form_data' ) );
-
-		//add_action( 'enqueue_block_editor_assets', 'gutenberg_examples_02_enqueue_block_editor_assets' );
-		add_action( 'enqueue_block_assets', array( $this, 'enqueue_block_assets' ) );
+		$this->loader->add_action( 'init', $this, 'registerSettings' );
+		$this->loader->add_action( 'enqueue_block_assets', $this, 'enqueue_block_assets' );
+		$this->loader->add_action( 'block_categories', $this, 'block_categories' );
 	}
 
 	/**
@@ -109,11 +105,6 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function load_js_blocks() {
-		if ( ! is_admin() ) {
-			return;
-		}
-
-		// @TODO for the moment load one js file with all the blocks. Maybe in future we'll group and enable them selectively
 		wp_enqueue_script(
 			'obfx-gutenberg-blocks',
 			plugins_url( '/build/block.js', __FILE__ ),
@@ -187,6 +178,12 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * Load assets for our blocks.
 	 */
 	function enqueue_block_assets() {
+		wp_enqueue_style( 'font-awesome', plugins_url( 'assets/fontawesome/css/all.min.css', __FILE__ ) );
+
+		if ( is_admin() ) {
+			return;
+		}
+
 		wp_enqueue_style(
 			'obfx-block_styles',
 			plugins_url( 'build/style.css', __FILE__ ),
@@ -194,129 +191,46 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			filemtime( plugin_dir_path( __FILE__ ) . 'build/style.css' )
 		);
 
-		// this should only be quequed when a chart block is present.
-		wp_enqueue_script(
-			'obfx-charts',
-			plugins_url( 'blocks/chart/chart.js', __FILE__ ),
-			array( 'jquery' ),
-			filemtime( plugin_dir_path( __FILE__ ) . 'blocks/chart/chart.js' )
-		);
-
-		if ( is_admin() ) {
-			return;
+		if ( has_block( 'orbitfox/chart-pie' ) ) {
+			wp_enqueue_script( 'google-charts', 'https://www.gstatic.com/charts/loader.js' );
 		}
-
-
-		// @TODO this should be loaded only when a contact form is present
-		wp_enqueue_script( 'obfx-contact-form', plugins_url( 'blocks/contact-form/contact-form.js', __FILE__ ), array( 'jquery' ) );
-
-		wp_localize_script( 'obfx-contact-form', 'obfxContactFormsSettings', array(
-			'restUrl' => esc_url_raw( rest_url() . 'obfx-contact-form/v1/' ),
-			'nonce'   => wp_create_nonce( 'wp_rest' ),
-		) );
-
-		// next scripts ar for front-end only
-
-		// @TODO content forms are not ready yet.
-//		wp_enqueue_style(
-//			'obfx-contact_form_styles',
-//			plugins_url( 'build/contact-form.css', __FILE__ ),
-//			array(),
-//			filemtime( plugin_dir_path( __FILE__ ) . 'build/contact-form.css' )
-//		);
-//
-//		wp_enqueue_script(
-//			'obfx-contact_form_script',
-//			plugins_url( 'build/contact-form.js', __FILE__ ),
-//			array( 'jquery' ),
-//			filemtime( plugin_dir_path( __FILE__ ) . 'build/contact-form.js' )
-//		);
 	}
 
 	/**
-	 * Register post types needed by our blocks.
+	 * Register our custom block category.
+	 *
+	 * @access public
+	 * @param array $categories All categories.
+	 * @link https://wordpress.org/gutenberg/handbook/extensibility/extending-blocks/#managing-block-categories
 	 */
-	function register_post_types() {
-		register_post_type(
-			'obfx_contact_form',
+	public function block_categories( $categories ) {
+		return array_merge(
+			$categories,
 			array(
-				'description'           => 'test',
-				'public'                => true,
-				'publicly_queryable'    => true,
-				'show_in_nav_menus'     => true,
-				'show_in_admin_bar'     => true,
-				'exclude_from_search'   => true,
-				'show_ui'               => true,
-				'show_in_menu'          => true,
-				'can_export'            => true,
-				'delete_with_user'      => false,
-				'hierarchical'          => false,
-				'has_archive'           => false,
-				'query_var'             => 'obfx_contact_form',
-				'show_in_rest'          => true,
-				'rest_base'             => 'obfx_contact_form',
-				'rest_controller_class' => 'WP_REST_Posts_Controller',
-				'custom-fields' => array( 'custom-fields' )
+				array(
+					'slug'  => 'orbitfox',
+					'title' => __( 'Orbit Fox Blocks', 'themeisle-companion' ),
+				),
 			)
 		);
 	}
 
 	/**
-	 * Register meta fields needed by our blocks.
+	 * Register Settings for Google Maps Block
+
 	 */
-	function create_api_field_form_data() {
-		// register_rest_field ( 'name-of-post-type', 'name-of-field-to-return', array-of-callbacks-and-schema() )
-		register_rest_field( 'obfx_contact_form', 'form_data', array(
-				'get_callback' => array( $this, 'get_post_meta_for_api_form_data' ),
-				'update_callback' => array( $this, 'update_post_meta_for_api_form_data' ),
-				'schema'       => null,
+	public function registerSettings() {
+		register_setting(
+			'orbitfox_google_map_block_api_key',
+			'orbitfox_google_map_block_api_key',
+			array(
+				'type'              => 'string',
+				'description'       => __( 'Google Map API key for the Gutenberg block plugin.', 'themeisle-companion' ),
+				'sanitize_callback' => 'sanitize_text_field',
+				'show_in_rest'      => true,
+				'default'           => ''
 			)
 		);
 	}
-
-	/**
-	 * Defines how REST API retrieves values for the `form_data` key.
-	 *
-	 * @param $object
-	 *
-	 * @return mixed
-	 */
-	function get_post_meta_for_api_form_data( $object ) {
-		//get the id of the post object array
-		$post_id = $object['id'];
-
-		//return the post meta
-		return get_post_meta( $post_id, 'form_data', true );
-	}
-
-	/**
-	 * Defines how REST API updates a value.
-	 *
-	 * @param $meta_value
-	 * @param $object_id
-	 *
-	 * @return bool|int
-	 */
-	function update_post_meta_for_api_form_data( $meta_value, $object_id ) {
-		$old_value = get_post_meta( $object_id->ID, 'form_data', true );
-
-		if ( empty( $old_value ) ) {
-			$old_value = array();
-		}
-
-		$data = explode( '=', $meta_value );
-
-		$parsed_values = array();
-
-		$parsed_values[ $data[0] ] = $data[1];
-
-		$new_values = array_replace ( $parsed_values, $old_value );
-
-		//return the post meta
-		$return = update_post_meta( $object_id->ID, 'form_data', $new_values );
-
-		return $return;
-	}
-
 
 }

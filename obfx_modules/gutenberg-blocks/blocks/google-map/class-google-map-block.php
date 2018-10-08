@@ -1,81 +1,86 @@
 <?php
-
 namespace OrbitFox\Gutenberg_Blocks;
 
+/**
+ * Class Google_Map_Block
+ */
 class Google_Map_Block extends Base_Block {
 
+	/**
+	 * Constructor function for the module.
+	 *
+	 * @method __construct
+	 */
 	public function __construct() {
 		parent::__construct();
-		add_action( 'init', array( $this, 'registerSettings' ) );
 	}
 
+	/**
+	 * Every block needs a slug, so we need to define one and assign it to the `$this->block_slug` property
+	 *
+	 * @return mixed
+	 */
 	function set_block_slug() {
 		$this->block_slug = 'google-map';
 	}
 
+	/**
+	 * Set the attributes required on the server side.
+	 *
+	 * @return mixed
+	 */
 	function set_attributes() {
 		$this->attributes = array(
 			'location'    => array(
 				'type'    => 'string',
 				'default' => '',
 			),
-			'mapType'     => array(
+			'type'     => array(
 				'type'    => 'string',
 				'default' => 'roadmap',
 			),
 			'zoom'        => array(
 				'type'    => 'number',
-				'default' => 13,
+				'default' => 10,
 			),
-			'maxWidth'    => array(
-				'type'    => 'number',
-				'default' => 1920,
-			),
-			'maxHeight'   => array(
-				'type'    => 'number',
-				'default' => 1329,
-			),
-			'interactive' => array(
-				'type'    => 'boolean',
-				'default' => true,
-			),
-			'aspectRatio' => array(
+			'height'      => array(
 				'type'    => 'string',
-				'default' => '2_1',
+				'default' => '400px',
 			),
 		);
 	}
 
 	/**
-	 * @TODO look for a semantic HTML markup and build a nice About Author box.
+	 * Block render function for server-side.
 	 *
-	 * @param $attributes
+	 * This method will pe passed to the render_callback parameter and it will output
+	 * the server side output of the block.
 	 *
 	 * @return mixed|string
 	 */
 	function render( $attributes ) {
 
 		// Get the API key
-		$APIkey = get_option( 'orbitfox_google_map_block_api_key' );
+		$apikey = get_option( 'orbitfox_google_map_block_api_key' );
 
 		// Don't output anything if there is no API key
-		if ( null === $APIkey || empty( $APIkey ) ) {
+		if ( null === $apikey || empty( $apikey ) ) {
 			return;
 		}
 
 		// Exapnd all the atributes into separate variables
 		foreach ( $attributes as $key => $value ) {
-			${$key} = $value;
+			${ $key } = $value;
 		}
 
 		// URL encode the location for Google Maps
 		$location = urlencode( $location );
 
 		// Set the API url based to embed or static maps based on the interactive setting
-		$apiURL = ( $interactive ) ? "https://www.google.com/maps/embed/v1/place?key=${APIkey}&q=${location}&zoom=${zoom}&maptype=${mapType}" : "https://maps.googleapis.com/maps/api/staticmap?center=${location}&zoom=${zoom}&size=${maxWidth}x${maxHeight}&maptype=${mapType}&key=${APIkey}";
+		$apiurl = "https://www.google.com/maps/embed/v1/place?key=${apikey}&q=${location}&zoom=${zoom}&maptype=${type}";
 
-		// Check status code of apiURL
-		$ch = curl_init( $apiURL );
+		// Check status code of apiurl
+		$ch = curl_init( $apiurl );
 		curl_setopt( $ch, CURLOPT_HEADER, true );
 		curl_setopt( $ch, CURLOPT_NOBODY, true );
 		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
@@ -89,35 +94,11 @@ class Google_Map_Block extends Base_Block {
 			return;
 		}
 
-		// Set the appropriate CSS class names
-		$classNames = ( $interactive ) ? "wp-block-orbitfox-google-map interactive ratio$aspectRatio" : "wp-block-orbitfox-google-map";
-
-		// Create the output
-		$output = "<div class='$classNames'><div class='map'>";
-		// If the map is interactive show the iframe
-		if ( $interactive ) {
-			$output .= "<iframe width='100%' height='100%' frameborder='0' style='border:0' src='$apiURL' allowfullscreen></iframe>";
-			// Otherwise use the static API
-		} else {
-			$output .= "<img src='$apiURL' />";
-		}
+		$output = "<div class='wp-block-orbitfox-google-map'><div class='map'>";
+			$output .= "<iframe width='100%' height='100%' frameborder='0' style='border:0; height:${height};' src='$apiurl' allowfullscreen></iframe>";
 		$output .= '</div></div>';
 
 		// Return the output
 		return $output;
-	}
-
-	function registerSettings() {
-		register_setting(
-			'orbitfox_google_map_block_api_key',
-			'orbitfox_google_map_block_api_key',
-			array(
-				'type'              => 'string',
-				'description'       => __( 'Google Map API key for the Gutenberg block plugin.' ),
-				'sanitize_callback' => 'sanitize_text_field',
-				'show_in_rest'      => true,
-				'default'           => ''
-			)
-		);
 	}
 }

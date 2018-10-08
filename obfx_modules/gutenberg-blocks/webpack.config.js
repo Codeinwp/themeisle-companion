@@ -25,10 +25,8 @@ const extractConfig = {
 		{
 			loader: 'sass-loader',
 			query: {
-				includePaths: ['assets/stylesheets'],
-				data: '@import "colors"; @import "breakpoints"; @import "variables"; @import "mixins"; @import "animations";@import "z-index";',
-				outputStyle: 'production' === process.env.NODE_ENV ?
-					'compressed' : 'nested',
+				outputStyle:
+					'production' === process.env.NODE_ENV ? 'compressed' : 'nested',
 			},
 		},
 	],
@@ -59,6 +57,11 @@ const glob = require("glob"),
 					test: /editor\.s?css$/,
 					use: editBlocksCSSPlugin.extract(extractConfig),
 				},
+				{
+					test: /\.css$/,  
+					include: /node_modules/,
+					use: editBlocksCSSPlugin.extract(extractConfig),
+				}
 			],
 		},
 		plugins: [

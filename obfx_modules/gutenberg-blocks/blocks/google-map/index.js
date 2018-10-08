@@ -1,37 +1,273 @@
 /**
  * WordPress dependencies...
  */
-const {__} = wp.i18n;
+const { __ } = wp.i18n;
+
+const { registerBlockType } = wp.blocks;
 
 const {
-	registerBlockType
-} = wp.blocks;
+	Button,
+	PanelBody,
+	Placeholder,
+	RangeControl,
+	SelectControl,
+	Spinner,
+	TextControl,
+} = wp.components;
 
-import GoogleMapEditor from './Editor.js';
+const {
+	compose,
+	withState
+} = wp.compose;
 
-registerBlockType('orbitfox/google-map', {
-	title: __('Google Map'),
-	icon: (<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' width='20' height='20'>
-		<g id='surface1'>
-			<path d='M 42 39 L 42 9 C 42 7.34375 40.65625 6 39 6 L 9 6 C 7.34375 6 6 7.34375 6 9 L 6 39 C 6 40.65625 7.34375 42 9 42 L 39 42 C 40.65625 42 42 40.65625 42 39 Z' fill='#1c9957'/>
-			<path d='M 9 42 L 39 42 C 40.65625 42 24 26 24 26 C 24 26 7.34375 42 9 42 Z' fill='#3e7bf1'/>
-			<path d='M 42 39 L 42 9 C 42 7.34375 26 24 26 24 C 26 24 42 40.65625 42 39 Z' fill='#cbccc9'/>
-			<path d='M 39 42 C 40.65625 42 42 40.65625 42 39 L 42 38.753906 L 26.246094 23 L 23 26.246094 L 38.753906 42 Z' fill='#efefef'/>
-			<path d='M 42 9 C 42 7.34375 40.65625 6 39 6 L 38.753906 6 L 6 38.753906 L 6 39 C 6 40.65625 7.34375 42 9 42 L 9.246094 42 L 42 9.246094 Z' fill='#ffd73d'/>
-			<path d='M 36 2 C 30.476563 2 26 6.476563 26 12 C 26 18.8125 33.664063 21.296875 35.332031 31.851563 C 35.441406 32.53125 35.449219 33 36 33 C 36.550781 33 36.558594 32.53125 36.667969 31.851563 C 38.335938 21.296875 46 18.8125 46 12 C 46 6.476563 41.523438 2 36 2 Z' fill='#d73f35'/>
-			<path d='M 39.5 12 C 39.5 13.933594 37.933594 15.5 36 15.5 C 34.066406 15.5 32.5 13.933594 32.5 12 C 32.5 10.066406 34.066406 8.5 36 8.5 C 37.933594 8.5 39.5 10.066406 39.5 12 Z' fill='#752622'/>
-			<path d='M 14.492188 12.53125 L 14.492188 14.632813 L 17.488281 14.632813 C 17.09375 15.90625 16.03125 16.816406 14.492188 16.816406 C 12.660156 16.816406 11.175781 15.332031 11.175781 13.5 C 11.175781 11.664063 12.660156 10.179688 14.492188 10.179688 C 15.316406 10.179688 16.070313 10.484375 16.648438 10.980469 L 18.195313 9.433594 C 17.21875 8.542969 15.921875 8 14.492188 8 C 11.453125 8 8.992188 10.464844 8.992188 13.5 C 8.992188 16.535156 11.453125 19 14.492188 19 C 19.304688 19 20.128906 14.683594 19.675781 12.539063 Z' fill='#fff'/>
-		</g>
-	</svg>),
-	category: 'embed',
+const { withSelect } = wp.data;
+
+const { InspectorControls } = wp.editor;
+
+/**
+ * Internal dependencies
+ */
+import './editor.scss';
+
+registerBlockType( 'orbitfox/google-map', {
+	title: __( 'Google Map' ),
+	description: __( 'Display a Google Map on your website with Google Map block.' ),
+	icon: 'admin-site',
+	category: 'orbitfox',
 	keywords: [
 		'map',
 		'google',
 		'orbitfox'
 	],
-	supports: {html: false},
-	edit: GoogleMapEditor,
-	save() {
+	attributes: {
+		location: {
+			type: 'string',
+		},
+		type: {
+			type: 'string',
+			default: 'roadmap',
+		},
+		zoom: {
+			type: 'number',
+			default: 10,
+		},
+		height: {
+			type: 'string',
+			default: '400px',
+		}
+	},
+
+	supports: {
+		html: false
+	},
+
+	edit: compose( [
+
+		withSelect( ( select, props ) => {
+			return {
+				props,
+			};
+		} ),
+
+		withState( {
+			api: '',
+			isAPILoaded: false,
+			isAPISaved: false,
+			isSaving: false,
+		} )
+
+	] )( ( { props, className, api, isAPILoaded, isAPISaved, isSaving, setState } ) => {
+
+		let settings;
+
+		wp.api.loadPromise.then( () => {
+			settings = new wp.api.models.Settings();
+		});
+
+		if ( isAPILoaded === false ) {
+			settings.fetch().then( response => {
+				setState( {
+					api: response.orbitfox_google_map_block_api_key,
+					isAPILoaded: true,
+				} );
+
+				if ( response.orbitfox_google_map_block_api_key !== '' ) {
+					setState( {
+						isAPISaved: true,
+					} );
+				}
+			} );
+		}
+
+		const changeAPI = ( value ) => {
+			setState( {
+				api: value,
+			} );
+		};
+
+		const saveAPIKey = () => {
+
+			setState( {
+				isSaving: true,
+			} );
+
+			const model = new wp.api.models.Settings( {
+				orbitfox_google_map_block_api_key: api,
+			} );
+
+			model.save().then( response => {
+				settings.fetch();
+				setState( {
+					isSaving: false,
+					isAPISaved: true,
+				} );
+			} );
+		};
+
+		const changeLocation = ( value ) => {
+			props.setAttributes( { location: value } );
+		};
+
+		const changeMapType = ( value ) => {
+			props.setAttributes( { type: value } );
+		};
+
+		const changeZoom = ( value ) => {
+			props.setAttributes( { zoom: value } );
+		};
+
+		const changeHeight = ( value ) => {
+			props.setAttributes( { height: value } );
+		};
+
+		if ( ! isAPILoaded ) {
+			return (
+				<Placeholder>
+					<Spinner></Spinner>
+					{ __( 'Loading…' ) }
+				</Placeholder>
+			)
+		}
+
+		if ( ! isAPISaved ) {
+			return (
+				<div className={ className }>
+					<Placeholder
+						icon="admin-site"
+						label={ __( 'Google Maps' ) }
+						instructions={ __( 'A Google Maps API key is required, please enter one below.' ) }
+					>
+						<TextControl
+							type="text"
+							placeholder={ __( 'Google Maps API Key' ) }
+							value={ api }
+							className="components-placeholder__input"
+							onChange={ changeAPI }
+						/>
+						<Button
+							isLarge
+							type="submit"
+							onClick={ saveAPIKey }
+							isBusy={ isSaving }
+							disabled={ api === ''}
+						>
+							{ __( 'Save API Key' ) }
+						</Button>
+						<div class="components-placeholder__instructions">
+							{ __( 'Need an API key? Get one' ) }
+							<a target="_blank" href="https://console.developers.google.com/flows/enableapi?apiid=maps_backend,static_maps_backend,maps_embed_backend&keyType=CLIENT_SIDE&reusekey=true">
+								{ __( ' here.' ) }
+							</a>
+						</div>
+					</Placeholder>
+				</div>
+			)
+		}
+
+		return [
+			<InspectorControls>
+				<PanelBody
+					title={ __( 'Map Settings' ) }
+				>
+					<SelectControl
+						label={ __( 'Map Type' ) }
+						value={ props.attributes.type }
+						options={ [
+							{ label: __( 'Road Map' ), value: 'roadmap' },
+							{ label: __( 'Satellite View' ), value: 'satellite' },
+						] }
+						onChange={ changeMapType }
+					/>
+
+					<RangeControl
+						label={ __( 'Map Zoom Level' ) }
+						value={ props.attributes.zoom }
+						onChange={ changeZoom }
+						min={ 0 }
+						max={ 21 }
+					/>
+
+					<TextControl
+						label={ __( 'Map Height' ) }
+						type="text"
+						value={ props.attributes.height }
+						onChange={ changeHeight }
+					/>
+				</PanelBody>
+				<PanelBody
+					title={ __( 'Global Settings' ) }
+					initialOpen={ false }
+				>
+					<TextControl
+						label={ __( 'Google Maps API Key' ) }
+						type="text"
+						placeholder={ __( 'Google Maps API Key' ) }
+						value={ api }
+						className="components-placeholder__input"
+						onChange={ changeAPI }
+						help={ __( 'Changing the API key effects all Google Map Embed blocks.' ) }
+					/>
+					<Button
+						isLarge
+						type="submit"
+						onClick={ saveAPIKey }
+						isBusy={ isSaving }
+						disabled={ api === ''}
+					>
+						{ __( 'Save API Key' ) }
+					</Button>
+				</PanelBody>
+			</InspectorControls>,
+
+			<TextControl
+				type="text"
+				placeholder={ __( 'Enter a location…' ) }
+				value={ props.attributes.location }
+				onChange={ changeLocation }
+			/>,
+
+			( props.attributes.location ) && (
+				<div className={ `${ className } interactive` }>
+					<div className="map" >
+						<iframe
+							width="100%"
+							height="100%"
+							frameBorder="0"
+							style={ {
+								border: 0,
+								height: props.attributes.height,
+							} }
+							src={ `https://www.google.com/maps/embed/v1/place?key=${ api }&q=${ props.attributes.location }&maptype=${ props.attributes.type }&zoom=${ props.attributes.zoom }` }
+							allowFullScreen={ true }>
+						>
+						</iframe>
+					</div>
+				</div>
+			)
+		]
+	} ),
+
+	save: () => {
 		return null;
 	},
 });

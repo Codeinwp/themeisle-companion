@@ -1,77 +1,95 @@
 /**
  * WordPress dependencies...
  */
-const {__} = wp.i18n;
+const { __ } = wp.i18n;
 
-const {
-	registerBlockType
-} = wp.blocks;
+const { registerBlockType } = wp.blocks;
 
-const {RichText} = wp.editor;
-const {Fragment} = wp.element;
+const { RichText } = wp.editor;
 
-registerBlockType('orbitfox/notice', {
-	title: __('Notice'),
+const { Notice } = wp.components;
+
+/**
+ * Internal dependencies
+ */
+import './style.scss';
+import './editor.scss';
+
+registerBlockType( 'orbitfox/notice', {
+	title: __( 'Notice' ),
+	description: __( 'Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages.' ),
 	icon: 'info',
-	category: 'common',
+	category: 'orbitfox',
 	keywords: [
 		'notice',
 		'info'
 	],
 	attributes: {
-		title: {
-			source: 'text',
-			type: 'string',
-			selector: '.obfx-block-notice__title',
-			default: 'Info',
-		},
 		content: {
 			type: 'array',
 			source: 'children',
-			selector: '.obfx-block-notice__content',
+			selector: '.components-notice__content',
 		},
 	},
 
+	supports: {
+		align: [ 'wide', 'full' ],
+	},
+
 	styles: [
-		{ name: 'info', label: __( 'Info' ), isDefault: true },
+		{ name: 'sucess', label: __( 'Success' ), isDefault: true },
+		{ name: 'info', label: __( 'Info' ) },
 		{ name: 'warning', label: __( 'Warning' ) },
 		{ name: 'error', label: __( 'Error' ) },
 	],
 
 	edit: props => {
-		const {attributes: { content, title}, className, setAttributes} = props
-
-		// @TODO Add a toolbar control and create a custom svg icon for this block
+		let status = "success";
+		if ( props.attributes.className && props.attributes.className.includes( 'is-style-info') ) {
+			status = "";
+		} else if ( props.attributes.className && props.attributes.className.includes( 'is-style-warning') ) {
+			status = "warning";
+		} else if ( props.attributes.className && props.attributes.className.includes( 'is-style-error') ) {
+			status = "error";
+		}
 		return (
-			<Fragment>
-
+			<Notice
+				className={ props.className }
+				isDismissible={ false }
+				status={ status }
+			>
 				<RichText
 					tagName="p"
-					value={title}
-					className='obfx-block-notice__title'
-					onChange={title => setAttributes({title})}
-				/>
-
-				<RichText
-					tagName="p"
-					placeholder={__('Your tip/warning content')}
-					value={content}
-					className='obfx-block-notice__content'
-					onChange={content => setAttributes({content})}
+					placeholder={ __( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.' ) }
+					value={ props.attributes.content }
+					className="components-notice__content"
+					onChange={ content => props.setAttributes( { content } ) }
 					keepPlaceholderOnFocus="true"
 				/>
-
-			</Fragment>
+			</Notice>
 		)
 	},
 	save: props => {
-		const { title, content} = props.attributes
-
+		let status = "success";
+		if ( props.attributes.className && props.attributes.className.includes( 'is-style-info') ) {
+			status = "";
+		} else if ( props.attributes.className && props.attributes.className.includes( 'is-style-warning') ) {
+			status = "warning";
+		} else if ( props.attributes.className && props.attributes.className.includes( 'is-style-error') ) {
+			status = "error";
+		}
 		return (
-			<div className={`obfx-block-notice`}>
-				<p className='obfx-block-notice__title'>{title}</p>
-				<p className='obfx-block-notice__content'>{content}</p>
-			</div>
+			<Notice
+				className="obfx-block-notice"
+				isDismissible={ false }
+				status={ status }
+			>
+				<RichText.Content
+					tagName="p"
+					className="components-notice__content"
+					value={ props.attributes.content }
+				/>
+			</Notice>
 		)
 	},
 });
