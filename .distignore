@@ -19,3 +19,6 @@ composer.json
 package-lock.json
 composer.lock
 key.enc
+.env
+docker-compose.yml
+init.sh

@@ -111,3 +111,12 @@ function themeisle_hestia_create_page( $slug, $page_title ) {
 	}
 	return $page_id;
 }
+
+/**
+ * Enqueue style for clients bar to make sure that style doesn't brake after removing bootstrap on this section.
+ * Note: this can be deleted in a future version. It's just for maintaining compatibility, if user updates plugin but
+ * not the theme.
+ */
+function themeisle_hestia_enqueue_clients_style(){
+	wp_enqueue_style( 'hestia-clients-bar', trailingslashit( THEMEISLE_COMPANION_URL ) . 'assets/css/hestia/clients-bar.css' );
+}

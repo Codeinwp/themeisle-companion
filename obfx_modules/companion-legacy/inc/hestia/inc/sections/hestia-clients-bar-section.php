@@ -57,7 +57,7 @@ if ( ! function_exists( 'hestia_clients_bar' ) ) :
 					hestia_clients_bar_section_content_trigger();
 				}
 				?>
-                <div class="row" <?php echo hestia_add_animationation( 'fade-up' ); ?>>
+                <ul class="clients-bar-wrapper" <?php echo hestia_add_animationation( 'fade-up' ); ?>>
 					<?php
 					if ( ! empty( $hestia_clients_bar_content_decoded ) ) {
 						foreach ( $hestia_clients_bar_content_decoded as $client ) {
@@ -71,7 +71,7 @@ if ( ! function_exists( 'hestia_clients_bar' ) ) :
 							}
 
 							if ( ! empty( $image ) ) {
-								echo '<div class="col-md-3">';
+								echo '<li class="clients-bar-item">';
 								if ( ! empty( $link ) ) {
 									$link_html = '<a href="' . esc_url( $link ) . '"';
 									if ( function_exists( 'hestia_is_external_url' ) ) {
@@ -84,12 +84,12 @@ if ( ! function_exists( 'hestia_clients_bar' ) ) :
 								if ( ! empty( $link ) ) {
 									echo '</a>';
 								}
-								echo '</div>';
+								echo '</li>';
 							}
 						}
 					}
 					?>
-                </div>
+                </ul>
             </div>
         </section>
 		<?php

@@ -16,15 +16,22 @@ class Image_CDN_Replacer {
 	 */
 	protected static $instance = null;
 
+
+	/**
+	 * A data holder.
+	 *
+	 * @var null
+	 */
+	protected $connect_data = null;
 	/**
 	 * A list of allowd extensions.
 	 *
 	 * @var array
 	 */
 	protected static $extensions = array(
-		'jpg',
-		'webp',
-		'png',
+		'jpg|jpeg|jpe' => 'image/jpeg',
+		'png'          => 'image/png',
+		'webp'         => 'image/webp',
 	);
 
 	/**
@@ -34,7 +41,6 @@ class Image_CDN_Replacer {
 	 */
 	protected static $image_sizes;
 
-	// @TODO provide a filter for this
 	/**
 	 * Te cdn url, it will be build on the run.
 	 *
@@ -43,25 +49,25 @@ class Image_CDN_Replacer {
 	protected $cdn_url = null;
 
 	/**
-	 * A data holder.
+	 * A secret key to encode payload.
 	 *
 	 * @var null
 	 */
-	protected $connect_data = null;
+	protected $cdn_secret = null;
 
 	/**
 	 * Defines which is the maximum width accepted in the optimization process.
 	 *
 	 * @var int
 	 */
-	protected $max_width = 2000;
+	protected $max_width = 3000;
 
 	/**
 	 * Defines which is the maximum width accepted in the optimization process.
 	 *
 	 * @var int
 	 */
-	protected $max_height = 2000;
+	protected $max_height = 3000;
 
 	/**
 	 * Holds the real images sizes as an array.
@@ -100,10 +106,11 @@ class Image_CDN_Replacer {
 	function init() {
 		$this->set_properties();
 
-		add_filter( 'image_downsize', array( $this, 'filter_image_downsize' ), 10, 3 );
-		add_filter( 'the_content', array( $this, 'filter_the_content' ), 999999 );
-		add_filter( 'wp_calculate_image_srcset', array( $this, 'filter_srcset_attr' ), 10, 5 );
+		add_filter( 'image_downsize', array( $this, 'filter_image_downsize' ), PHP_INT_MAX, 3 );
+		add_filter( 'the_content', array( $this, 'filter_the_content' ), PHP_INT_MAX );
+		add_filter( 'wp_calculate_image_srcset', array( $this, 'filter_srcset_attr' ), PHP_INT_MAX, 5 );
 		add_filter( 'init', array( $this, 'filter_options_and_mods' ) );
+		add_action( 'init', array( $this, 'init_html_replacer' ), PHP_INT_MAX );
 	}
 
 	/**
@@ -121,13 +128,72 @@ class Image_CDN_Replacer {
 		if ( empty( $this->connect_data['image_cdn'] ) ) {
 			return;
 		}
-
+		$this->cdn_secret = $this->connect_data['image_cdn']['secret'];
 		$this->cdn_url = sprintf(
-			'https://%s.%s/%s',
+			'https://%s.%s',
 			strtolower( $this->connect_data['image_cdn']['key'] ),
-			'i.orbitfox.com',
-			'i' // api root; almost like /wp-json/
+			'i.optimole.com'
 		);
+	}
+
+	/**
+	 * Init html replacer handler.
+	 */
+	public function init_html_replacer() {
+		if ( is_admin() ) {
+			return;
+		}
+		ob_start(
+			array( &$this, 'filter_raw_content' )
+		);
+	}
+
+	/**
+	 * Filter raw content for urls.
+	 *
+	 * @param string $html HTML to filter.
+	 *
+	 * @return mixed Filtered content.
+	 */
+	public function filter_raw_content( $html ) {
+		$urls     = wp_extract_urls( $html );
+		$cdn_url  = $this->cdn_url;
+		$site_url = get_site_url();
+		$urls     = array_filter(
+			$urls,
+			function ( $url ) use ( $cdn_url, $site_url ) {
+				if ( strpos( $url, $cdn_url ) !== false ) {
+					return false;
+				}
+				if ( strpos( $url, $site_url ) === false ) {
+					return false;
+				}
+
+				return $this->check_mimetype( $url );
+			}
+		);
+		$new_urls = array_map( array( $this, 'get_imgcdn_url' ), $urls );
+
+		return str_replace( $urls, $new_urls, $html );
+	}
+
+	/**
+	 * Check url mimetype.
+	 *
+	 * @param string $url Url to check.
+	 *
+	 * @return bool Is a valid image url or not.
+	 */
+	private function check_mimetype( $url ) {
+
+		$mimes = self::$extensions;
+		$type  = wp_check_filetype( $url, $mimes );
+
+		if ( ! isset( $type['ext'] ) || empty( $type['ext'] ) ) {
+			return false;
+		}
+
+		return true;
 	}
 
 	/**
@@ -154,8 +220,8 @@ class Image_CDN_Replacer {
 
 			// default size
 			$sizes = array(
-				'width'  => $image_meta['width'],
-				'height' => $image_meta['height'],
+				'width'  => isset( $image_meta['width'] ) ? $image_meta['width'] : 'auto',
+				'height' => isset( $image_meta['height'] ) ? $image_meta['height'] : 'auto',
 			);
 
 			// in case there is a custom image size $size will be an array.
@@ -264,7 +330,7 @@ class Image_CDN_Replacer {
 		if (
 			doing_filter( 'the_content' )
 			&& isset( $GLOBALS['content_width'] )
-			&& apply_filters( 'obfx_imgcdn_allow_resize_images_from_content_width', true )
+			&& apply_filters( 'optml_imgcdn_allow_resize_images_from_content_width', true )
 		) {
 			$content_width = (int) $GLOBALS['content_width'];
 
@@ -279,7 +345,7 @@ class Image_CDN_Replacer {
 			// we need to remember how much in percentage the width was resized and apply the same treatment to the height.
 			$percentWidth = ( 1 - $this->max_width / $width ) * 100;
 			$width        = $this->max_width;
-			$height       = round( $height * ( ( 100 - $percentWidth ) / 100 ), 2 );
+			$height       = round( $height * ( ( 100 - $percentWidth ) / 100 ), 0 );
 		}
 
 		// now for the height
@@ -287,7 +353,7 @@ class Image_CDN_Replacer {
 			$percentHeight = ( 1 - $this->max_height / $height ) * 100;
 			// if we reduce the height to max_height by $x percentage than we'll also reduce the width for the same amount.
 			$height = $this->max_height;
-			$width  = round( $width * ( ( 100 - $percentHeight ) / 100 ), 2 );
+			$width  = round( $width * ( ( 100 - $percentHeight ) / 100 ), 0 );
 		}
 
 		return array(
@@ -305,6 +371,10 @@ class Image_CDN_Replacer {
 	 * @return string
 	 */
 	protected function get_imgcdn_url( $url, $args = array( 'width' => 'auto', 'height' => 'auto' ) ) {
+
+		if ( ! $this->check_mimetype( $url ) ) {
+			return $url;
+		}
 		// not used yet.
 		$compress_level = 55;
 		// this will authorize the image
@@ -318,15 +388,17 @@ class Image_CDN_Replacer {
 			$args['height'] = round( $args['height'], 0 );
 		}
 		$payload = array(
-			'path'     => $this->urlception_encode( $path ),
-			'scheme'   => $scheme,
-			'width'    => (string) $args['width'],
-			'height'   => (string) $args['height'],
-			'compress' => $compress_level,
-			'secret'   => $this->connect_data['image_cdn']['secret'],
+			'path'    => $this->urlception_encode( $path ),
+			'scheme'  => $scheme,
+			'width'   => (string) $args['width'],
+			'height'  => (string) $args['height'],
+			'quality' => (string) $compress_level,
 		);
+		ksort( $payload );
 
-		$hash = md5( json_encode( $payload ) );
+		$values  = array_values( $payload );
+		$payload = implode( '', $values );
+		$hash    = hash_hmac( 'md5', $payload, $this->cdn_secret );
 
 		$new_url = sprintf(
 			'%s/%s/%s/%s/%s/%s/%s',
@@ -334,7 +406,7 @@ class Image_CDN_Replacer {
 			$hash,
 			(string) $args['width'],
 			(string) $args['height'],
-			$compress_level,
+			(string) $compress_level,
 			$scheme,
 			$path
 		);
@@ -356,12 +428,10 @@ class Image_CDN_Replacer {
 	}
 
 	/**
-	 * Identify images in post content, and if images are local (uploaded to the current site), pass through Photon.
+	 * Identify images in post content.
 	 *
 	 * @param string $content The post content which will be filtered.
 	 *
-	 * @uses   self::validate_image_url, apply_filters, jetpack_photon_url, esc_url
-	 * @filter the_content<
 	 * @return string
 	 */
 	public function filter_the_content( $content ) {
@@ -372,17 +442,16 @@ class Image_CDN_Replacer {
 		}
 
 		$image_sizes = self::image_sizes();
-
 		foreach ( $images[0] as $index => $tag ) {
 			$width   = $height = false;
 			$new_tag = $tag;
 			$src     = $images['img_url'][ $index ];
 
-			if ( apply_filters( 'obfx_imgcdn_disable_optimization_for_link', false, $src ) ) {
+			if ( apply_filters( 'optml_imgcdn_disable_optimization_for_link', false, $src ) ) {
 				continue;
 			}
 
-			if ( false !== strpos( $src, 'i.orbitfox.com' ) ) {
+			if ( false !== strpos( $src, 'i.optimole.com' ) ) {
 				continue; // we already have this
 			}
 
@@ -413,11 +482,14 @@ class Image_CDN_Replacer {
 			}
 
 			$new_sizes = $this->validate_image_sizes( $width, $height );
-			$new_url   = $this->get_imgcdn_url( $src, $new_sizes );
+
+			$new_url = $this->get_imgcdn_url( $src, $new_sizes );
 
 			// replace the url in hrefs or links
 			if ( ! empty( $images['link_url'][ $index ] ) ) {
-				$new_tag = preg_replace( '#(href=["|\'])' . $images['link_url'][ $index ] . '(["|\'])#i', '\1' . $new_url . '\2', $tag, 1 );
+				if ( $this->check_mimetype( $images['link_url'][ $index ] ) ) {
+					$new_tag = preg_replace( '#(href=["|\'])' . $images['link_url'][ $index ] . '(["|\'])#i', '\1' . $new_url . '\2', $tag, 1 );
+				}
 			}
 
 			// replace the new sizes
@@ -473,7 +545,8 @@ class Image_CDN_Replacer {
 		if ( ! is_array( $sources ) ) {
 			return $sources;
 		}
-
+		$used        = array();
+		$new_sources = array();
 		foreach ( $sources as $i => $source ) {
 
 			list( $width, $height ) = self::parse_dimensions_from_filename( $source['url'] );
@@ -488,12 +561,18 @@ class Image_CDN_Replacer {
 
 			$new_sizes = $this->validate_image_sizes( $width, $height );
 			$new_url   = $this->get_imgcdn_url( $source['url'], $new_sizes );
+			if ( isset( $used[ md5( $new_url ) ] ) ) {
+				continue;
+			}
 
-			$sources[ $i ]['url'] = $new_url;
-			if ( $sources[ $i ]['descriptor'] ) {
-				$sources[ $i ]['value'] = $new_sizes['width'];
+			$used[ md5( $new_url ) ]  = true;
+			$new_sources[ $i ]        = $sources[ $i ];
+			$new_sources[ $i ]['url'] = $new_url;
+
+			if ( $new_sources[ $i ]['descriptor'] ) {
+				$new_sources[ $i ]['value'] = $new_sizes['width'];
 			} else {
-				$sources[ $i ]['value'] = $new_sizes['height'];
+				$new_sources[ $i ]['value'] = $new_sizes['height'];
 			}
 		}
 
@@ -509,8 +588,8 @@ class Image_CDN_Replacer {
 	 */
 	public static function parse_dimensions_from_filename( $src ) {
 		$width_height_string = array();
-
-		if ( preg_match( '#-(\d+)x(\d+)\.(?:' . implode( '|', self::$extensions ) . '){1}$#i', $src, $width_height_string ) ) {
+		$extensions          = array_keys( self::$extensions );
+		if ( preg_match( '#-(\d+)x(\d+)\.(?:' . implode( '|', $extensions ) . '){1}$#i', $src, $width_height_string ) ) {
 			$width  = (int) $width_height_string[1];
 			$height = (int) $width_height_string[2];
 
@@ -527,13 +606,13 @@ class Image_CDN_Replacer {
 	 */
 	public function filter_options_and_mods() {
 		/**
-		 * `obfx_imgcdn_options_with_url` is a filter that allows themes or plugins to select which option
+		 * `optml_imgcdn_options_with_url` is a filter that allows themes or plugins to select which option
 		 * holds an url and needs an optimization.
 		 */
 		$theme_slug = get_option( 'stylesheet' );
 
 		$options_list = apply_filters(
-			'obfx_imgcdn_options_with_url',
+			'optml_imgcdn_options_with_url',
 			array(
 				"theme_mods_$theme_slug",
 			)
@@ -553,13 +632,12 @@ class Image_CDN_Replacer {
 	 *
 	 * @param string $url The url which should be replaced.
 	 *
-	 * @return array|mixed|object|string|void
+	 * @return string Replaced url.
 	 */
 	public function replace_option_url( $url ) {
 		if ( empty( $url ) ) {
 			return $url;
 		}
-
 		// $url might be an array or an json encoded array with urls.
 		if ( is_array( $url ) || filter_var( $url, FILTER_VALIDATE_URL ) === false ) {
 			$array   = $url;
@@ -626,5 +704,4 @@ class Image_CDN_Replacer {
 		// Unserializing instances of the class is forbidden.
 		_doing_it_wrong( __FUNCTION__, esc_html__( 'Cheatin&#8217; huh?', 'themeisle-companion' ), '1.0.0' );
 	}
-
 }

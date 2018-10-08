@@ -151,7 +151,7 @@ class Connector {
 
 								$("#obfx_connect_api_key").val(response.data.api_key);
 								$("#obfx-img-display-name").text(response.data.display_name);
-								$("#obfx-img-cdn-url").text(response.data.image_cdn.key + '.i.orbitfox.com');
+								$("#obfx-img-cdn-url").text(response.data.image_cdn.key + '.i.optimole.com');
 								$("#obfx-img-traffic-usage").text((parseInt(response.data.image_cdn.usage) / 1000).toFixed(3) + 'GB');
 								$(".obfx-img-traffic-quota").text((parseInt(response.data.image_cdn.quota) / 1000).toFixed(0) + 'GB');
 								elements.addClass('obfx-img-logged-in');
