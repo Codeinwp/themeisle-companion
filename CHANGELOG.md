@@ -1,4 +1,9 @@
 
+ ### v2.6.0 - 2018-10-08 
+ **Changes:** 
+ * Adds Gutenberg integration with various blocks.
+* Adds Font Awesome, Google maps, Notice, Sharing icons, Pie charts, Plugin Card, Pricing, Testimonial and Click to Tweet  Gutenberg block and Post grid block.
+ 
  ### v2.5.8 - 2018-09-12 
  **Changes:** 
  * Extend image optimization module for 50% of users.

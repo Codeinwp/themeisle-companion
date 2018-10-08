@@ -103,6 +103,12 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 ## Changelog ##
+### 2.6.0 - 2018-10-08  ###
+
+* Adds Gutenberg integration with various blocks.
+* Adds Font Awesome, Google maps, Notice, Sharing icons, Pie charts, Plugin Card, Pricing, Testimonial and Click to Tweet  Gutenberg block and Post grid block.
+
+
 ### 2.5.8 - 2018-09-12  ###
 
 * Extend image optimization module for 50% of users.
