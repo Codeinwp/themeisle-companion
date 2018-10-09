@@ -35,8 +35,9 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function enable_module() {
 		require_once( ABSPATH . 'wp-admin' . '/includes/plugin.php' );
-
-		return is_plugin_active( 'gutenberg/gutenberg.php' ) && function_exists( 'register_block_type' );
+		// TODO: Fix this check before gutenberg is merged into WordPress core.
+		// checking function_exists( 'register_block_type' ) returns false at first and true later in the code.
+		return is_plugin_active( 'gutenberg/gutenberg.php' );
 	}
 
 	/**
@@ -200,8 +201,10 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * Register our custom block category.
 	 *
 	 * @access public
+	 *
 	 * @param array $categories All categories.
-	 * @link https://wordpress.org/gutenberg/handbook/extensibility/extending-blocks/#managing-block-categories
+	 *
+	 * @link   https://wordpress.org/gutenberg/handbook/extensibility/extending-blocks/#managing-block-categories
 	 */
 	public function block_categories( $categories ) {
 		return array_merge(
@@ -217,7 +220,6 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 	/**
 	 * Register Settings for Google Maps Block
-
 	 */
 	public function registerSettings() {
 		register_setting(
