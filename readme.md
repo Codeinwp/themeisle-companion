@@ -110,6 +110,15 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 ## Changelog ##
+### 2.6.1 - 2018-10-10  ###
+
+* Added backward compatibility for Font Awesome 4
+* Fixed issue with Elementor dequeuing Font Awesome
+* Fixed issue with Gutenberg Module crashing Orbit Fox dashboard
+* Fixed issue with Pie Chart causing REST API error
+* Fixed z-index issue in Accordion block.
+
+
 ### 2.6.0 - 2018-10-08  ###
 
 * Adds Gutenberg integration with various blocks.
