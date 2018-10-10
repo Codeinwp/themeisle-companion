@@ -56,14 +56,8 @@ registerBlockType( 'orbitfox/chart-pie', {
 	],
 	attributes: {
 		data: {
-			type: 'array',
-			default: [
-				[ 'Label', 'Data' ],
-				[ 'Dogs', 40 ],
-				[ 'Cats', 30 ],
-				[ 'Racoons', 20 ],
-				[ 'Monkeys', 10 ],
-			],
+			type: 'string',
+			default: '[["Label","Data"],["Dogs",40],["Cats",30],["Racoons",20],["Monkeys",10]]',
 		},
 		options: {
 			type: 'object',
@@ -98,18 +92,18 @@ registerBlockType( 'orbitfox/chart-pie', {
 
 		const updateData = ( value, source ) => {
 			if ( value !== null ) {
-				const options = [ ...props.attributes.data ];
+				const options = JSON.parse( [ props.attributes.data ] );
 				value.forEach( item => {
 					options[ item[0] ][ item[1] ] = item[3];
 				});
-				props.setAttributes( { data: options } );
+				props.setAttributes( { data: JSON.stringify( options ) } );
 			}
 		};
 
 		const addRow = () => {
-			const options = [ ...props.attributes.data ];
+			const options = JSON.parse( [ props.attributes.data ] );
 			options.push( [ "", "" ] );
-			props.setAttributes( { data: options } );
+			props.setAttributes( { data: JSON.stringify( options ) } );
 		};
 
 		const changeChartTitle = value => {
@@ -174,7 +168,7 @@ registerBlockType( 'orbitfox/chart-pie', {
 				{ isOpen ?
 					<Fragment>
 						<HotTable
-							data={ props.attributes.data }
+							data={ JSON.parse( props.attributes.data ) }
 							allowInsertRow={ true }
 							cell={ [
 								{
@@ -213,7 +207,7 @@ registerBlockType( 'orbitfox/chart-pie', {
 				:
 					<Chart
 						chartType="PieChart"
-						data={ props.attributes.data }
+						data={ JSON.parse( props.attributes.data ) }
 						options={ props.attributes.options }
 						width="100%"
 						height="400px"

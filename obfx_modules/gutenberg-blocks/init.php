@@ -179,7 +179,8 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * Load assets for our blocks.
 	 */
 	function enqueue_block_assets() {
-		wp_enqueue_style( 'font-awesome', plugins_url( 'assets/fontawesome/css/all.min.css', __FILE__ ) );
+		wp_enqueue_style( 'font-awesome-5', plugins_url( 'assets/fontawesome/css/all.min.css', __FILE__ ) );
+		wp_enqueue_style( 'font-awesome-4-shims', plugins_url( 'assets/fontawesome/css/v4-shims.min.css', __FILE__ ) );
 
 		if ( is_admin() ) {
 			return;

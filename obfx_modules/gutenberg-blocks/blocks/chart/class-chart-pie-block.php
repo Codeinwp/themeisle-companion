@@ -32,14 +32,8 @@ class Chart_Pie_Block extends Base_Block {
 	function set_attributes() {
 		$this->attributes = array(
 			'data' => array(
-				'type'    => 'array',
-				'default' => [
-					[ __( 'Label', 'themeisle-companion' ), __( 'Data', 'themeisle-companion' ) ],
-					[ __( 'Dogs', 'themeisle-companion' ), 40 ],
-					[ __( 'Cats', 'themeisle-companion' ), 30 ],
-					[ __( 'Racoons', 'themeisle-companion' ), 20 ],
-					[ __( 'Monkeys', 'themeisle-companion' ), 10 ],
-				],
+				'type'    => 'string',
+				'default' => '[["Label","Data"],["Dogs",40],["Cats",30],["Racoons",20],["Monkeys",10]]',
 			),
 			'options' => array(
 				'type' => 'object',
@@ -70,7 +64,7 @@ class Chart_Pie_Block extends Base_Block {
 			google.charts.setOnLoadCallback(drawChart);
 	
 			function drawChart() {
-				var data = google.visualization.arrayToDataTable(" . json_encode( $attributes['data'] ) . ');
+				var data = google.visualization.arrayToDataTable(" . $attributes['data'] . ');
 				var options = ' . json_encode( $attributes['options'] ) . ";
 				var chart = new google.visualization.PieChart(document.getElementById('" . $attributes['id'] . "'));
 				chart.draw(data, options);
