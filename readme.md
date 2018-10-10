@@ -1,5 +1,5 @@
 # Orbit Fox by ThemeIsle #
-**Contributors:** [themeisle](https://profiles.wordpress.org/themeisle), [codeinwp](https://profiles.wordpress.org/codeinwp), [rodicaelena](https://profiles.wordpress.org/rodicaelena), [baicusandrei](https://profiles.wordpress.org/baicusandrei)  
+**Contributors:** [themeisle](https://profiles.wordpress.org/themeisle), [codeinwp](https://profiles.wordpress.org/codeinwp), [rodicaelena](https://profiles.wordpress.org/rodicaelena), [baicusandrei](https://profiles.wordpress.org/baicusandrei), [hardeepasrani](https://profiles.wordpress.org/hardeepasrani)  
 **Tags:** widget, admin, widgets, sharing, sections, themes, stock photos, custom icons, icons, menu icons, stock, templates  
 **Requires at least:** 4.7  
 **Tested up to:** 4.9  
@@ -8,7 +8,7 @@
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
-This swiss-knife plugin comes with a quality template library, menu/sharing icons, and newly added Elementor/BeaverBuilder page builder widgets.
+This swiss-knife plugin comes with a quality template library, menu/sharing icons, Gutenberg blocks and newly added Elementor/BeaverBuilder page builder widgets.
 
 ## Description ##
 
@@ -23,6 +23,7 @@ https://www.youtube.com/watch?v=YHhK_twfYB8
 - Uptime Monitor
 - Google Analytics Integration
 - Template Directory
+- Gutenberg Blocks
 - Elementor Addons and Widgets
 - Beaver Builder Widgets
 - Sharing module
@@ -79,6 +80,12 @@ This plugin extends the features of your sites by adding numerous features.
 **Why use our Template Directory:**
 - One-click import for awesome page templates.
 - Elementor templates will be added frequently for you to use creatively.
+
+**Why use our Gutenberg Blocks:**
+- We offer new widgets to add more value to the content you can create within the Gutenberg editor.
+- Pricing Table Widget to easily create pricing layouts.
+- Services Widget to easily create pricing layouts.
+- Post Grid Widget to easily list your Posts in a grid.
 
 **Why should I use this with Zerif/Hestia themes:**
  - By using it along with our themes you gain access to a lot of useful widgets like **Testimonials**, **Our Focus**, **About Us** and more other.
