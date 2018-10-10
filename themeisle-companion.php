@@ -14,7 +14,7 @@
  * @wordpress-plugin
  * Plugin Name:       Orbit Fox Companion
  * Plugin URI:        https://orbitfox.com/
- * Description:       This swiss-knife plugin comes with a quality template library, menu/sharing icons modules, and newly added Elementor/BeaverBuilder page builder widgets on each release.
+ * Description:       This swiss-knife plugin comes with a quality template library, menu/sharing icons modules, Gutenberg blocks, and newly added Elementor/BeaverBuilder page builder widgets on each release.
  * Version:           2.6.1
  * Author:            Themeisle
  * Author URI:        https://orbitfox.com/
