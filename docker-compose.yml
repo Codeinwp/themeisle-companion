@@ -27,4 +27,4 @@ services:
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_ROOT_PASSWORD: wordpress
-      WORDPRESS_DEBUG: 1
+      WORDPRESS_DEBUG: 'true'
