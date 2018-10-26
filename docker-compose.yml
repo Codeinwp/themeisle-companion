@@ -19,7 +19,7 @@ services:
     ports:
       - 8888:80
     volumes:
-       - ~/themeisle-companion/wordpress:/var/www/html/
+       - ~/wpcore:/var/www/html/
        - .:/var/www/html/wp-content/plugins/themeisle-companion/
     restart: always
     environment:
