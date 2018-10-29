@@ -38,10 +38,20 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		if ( isset( $_GET['loggedin'] ) && $_GET['loggedin'] == 'true' ) {
 			$this->show = true;
 		}
-		$this->beta        = true;
 		$this->no_save     = true;
-		$this->name        = __( 'Image Optimization &amp; CDN Module ', 'themeisle-companion' );
-		$this->description = __( 'Let us take care of your images sizes. With this feature we\'ll compress and resize every image on your website. <i>This service is powered by Optimole</i><br/> <strong>* Requires account on orbitfox.com</strong>', 'themeisle-companion' );
+		$this->name        = sprintf( __( 'Image Optimization &amp; CDN Module <sup class="obfx-title-new">NEW</sup>', 'themeisle-companion' ) );
+		$this->description = sprintf( __( 'Let us take care of your images sizes. With this feature we\'ll compress and resize every image on your website. <i>This service is powered by <b>%sOptimole%s</b></i>. <br/> <strong>* Requires account on orbitfox.com</strong>', 'themeisle-companion' ), '<a href="https://optimole.com" class="obfx-no-link" target="_blank">', '</a>' );
+		add_action( 'obfx_module_tile_after', [ $this, 'tryout' ], 10, 2 );
+	}
+
+	public function tryout( $slug = '', $active = false ) {
+		if ( $slug !== 'image-cdn' ) {
+			return;
+		}
+		if ( $active ) {
+			return;
+		}
+		echo sprintf( __( '%sTest your site%s','themeisle-companion' ), '<span class="obfx-tryout-message"><a href="' . esc_url( sprintf( 'https://speedtest.optimole.com/?url=%s', get_site_url() ) ) . '" target="_blank">', '</a></span>' );
 	}
 
 	/**
@@ -52,7 +62,7 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return bool
 	 */
 	public function enable_module() {
-		return ( $this->beta ) ? $this->is_lucky_user( 50 ) : true;
+		return true;
 	}
 
 	/**
@@ -81,6 +91,7 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			'meta'  => array( 'target' => '_blank' )
 		);
 		$wp_admin_bar->add_node( $args );
+
 	}
 
 	/**
@@ -189,7 +200,7 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			array(
 				'type'  => 'title',
 				'name'  => 'Tooltip',
-				'title' => 'In order to get access to free image optimization service you will need an account on <a href="https://dashboard.orbitfox.com/register" target="_blank">orbitfox.com</a>. You will get access to our image optimization and CDN service for free in the limit of 1GB traffic per month.'
+				'title' => sprintf( 'In order to get access to free image optimization service you will need an account on <a href="https://dashboard.orbitfox.com/register" target="_blank">orbitfox.com</a>. You will get access to our image optimization and CDN service for free in the limit of 1GB traffic per month.<br/> <i>Note: This is just a basic integration of the <a href="%s" target="_blank"> Optimole </a> service. For a more in-depth experience, try out the dedicated <a href="%s" target="_blank" >plugin</a>.</i>', 'https://optimole.com', 'http://wordpress.org/plugins/optimole-wp' )
 			),
 			array(
 				'id'          => 'obfx_connect_api_key',

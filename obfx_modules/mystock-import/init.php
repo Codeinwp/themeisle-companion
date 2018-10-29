@@ -46,9 +46,9 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function __construct() {
 		parent::__construct();
-		$this->name        = __( 'Mystock Import', 'themeisle-companion' );
-		$this->description = __( 'Module to import images directly from', 'themeisle-companion' ) . sprintf( ' <a href="%s" target="_blank">mystock.photos</a>', 'https://mystock.photos' );
-	    $this->active_default = true;
+		$this->name           = __( 'Mystock Import', 'themeisle-companion' );
+		$this->description    = __( 'Module to import images directly from', 'themeisle-companion' ) . sprintf( ' <a href="%s" target="_blank">mystock.photos</a>', 'https://mystock.photos' );
+		$this->active_default = true;
 	}
 
 
@@ -104,7 +104,7 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return array
 	 */
 	private function get_images( $page = 1 ) {
-		$photos	= get_transient( $this->slug . 'photos_' . self::MAX_IMAGES . '_' . $page );
+		$photos = get_transient( $this->slug . 'photos_' . self::MAX_IMAGES . '_' . $page );
 		if ( ! $photos ) {
 			require_once $this->get_dir() . '/vendor/phpflickr/phpflickr.php';
 			$api    = new phpFlickr( self::API_KEY );
@@ -113,11 +113,11 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			if ( $user && isset( $user['nsid'] ) ) {
 				$photos = $api->people_getPublicPhotos( $user['nsid'], null, 'url_sq, url_t, url_s, url_q, url_m, url_n, url_z, url_c, url_l, url_o', self::MAX_IMAGES, $page );
 				if ( ! empty( $photos ) ) {
-					$pages	= get_transient( $this->slug . 'photos_' . self::MAX_IMAGES . '_pages' );
+					$pages = get_transient( $this->slug . 'photos_' . self::MAX_IMAGES . '_pages' );
 					if ( false === $pages ) {
 						set_transient( $this->slug . 'photos_' . self::MAX_IMAGES . '_pages', $photos['photos']['pages'], self::CACHE_DAYS * DAY_IN_SECONDS );
 					}
-					$photos	= $photos['photos']['photo'];
+					$photos = $photos['photos']['photo'];
 				}
 			}
 			set_transient( $this->slug . 'photos_' . self::MAX_IMAGES . '_' . $page, $photos, self::CACHE_DAYS * DAY_IN_SECONDS );
@@ -233,13 +233,13 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 					'upload_image_complete' => esc_html__( 'Your image was imported. Go to Media Library tab to use it.', 'themeisle-companion' ),
 					'load_more'             => esc_html__( 'Loading more photos...', 'themeisle-companion' ),
 					'tab_name'              => esc_html__( 'MyStock Library', 'themeisle-companion' ),
-					'featured_image_new'	=> esc_html__( 'Import & set featured image', 'themeisle-companion' ),
-					'insert_image_new'		=> esc_html__( 'Import & insert image', 'themeisle-companion' ),
-					'featured_image'		=> $this->strings['setFeaturedImage'],
-					'insert_image'			=> $this->strings['insertIntoPost'],
+					'featured_image_new'    => esc_html__( 'Import & set featured image', 'themeisle-companion' ),
+					'insert_image_new'      => esc_html__( 'Import & insert image', 'themeisle-companion' ),
+					'featured_image'        => isset( $this->strings['setFeaturedImage'] ) ? $this->strings['setFeaturedImage'] : '',
+					'insert_image'          => isset( $this->strings['insertIntoPost'] ) ? $this->strings['insertIntoPost'] : '',
 				),
-				'slug'		=> $this->slug,
-				'pages'		=> get_transient( $this->slug . 'photos_' . self::MAX_IMAGES . '_pages' ),
+				'slug'    => $this->slug,
+				'pages'   => get_transient( $this->slug . 'photos_' . self::MAX_IMAGES . '_pages' ),
 			),
 		);
 
@@ -265,7 +265,8 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	}
 
 	public function media_view_strings( $strings ) {
-		$this->strings	= $strings;
+		$this->strings = $strings;
+
 		return $strings;
 	}
 }
