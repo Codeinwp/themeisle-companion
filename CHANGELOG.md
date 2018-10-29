@@ -1,4 +1,8 @@
 
+ ### v2.6.3 - 2018-10-29 
+ **Changes:** 
+ * - Minor bug fix in Gutenberg Blocks
+ 
  ### v2.6.2 - 2018-10-29 
  **Changes:** 
  * Adds Image Optimization and CDN module available for everyone.

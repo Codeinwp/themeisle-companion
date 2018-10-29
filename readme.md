@@ -110,6 +110,11 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 ## Changelog ##
+### 2.6.3 - 2018-10-29  ###
+
+* - Minor bug fix in Gutenberg Blocks
+
+
 ### 2.6.2 - 2018-10-29  ###
 
 * Adds Image Optimization and CDN module available for everyone.
