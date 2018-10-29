@@ -1,4 +1,9 @@
 
+ ### v2.6.2 - 2018-10-29 
+ **Changes:** 
+ * Adds Image Optimization and CDN module available for everyone.
+* Small improvements to the Gutenberg module.
+ 
  ### v2.6.1 - 2018-10-10 
  **Changes:** 
  * Added backward compatibility for Font Awesome 4

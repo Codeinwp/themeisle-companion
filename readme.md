@@ -110,6 +110,12 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 ## Changelog ##
+### 2.6.2 - 2018-10-29  ###
+
+* Adds Image Optimization and CDN module available for everyone.
+* Small improvements to the Gutenberg module.
+
+
 ### 2.6.1 - 2018-10-10  ###
 
 * Added backward compatibility for Font Awesome 4
