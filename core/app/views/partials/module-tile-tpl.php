@@ -48,7 +48,7 @@ if ( ! empty( $confirm_intent ) ) {
 $noance = wp_create_nonce( 'obfx_activate_mod_' . $slug );
 
 ?>
-<div class="tile">
+<div class="tile <?php echo 'obfx-tile-' . esc_attr( $slug ); ?>" >
 	<div class="tile-icon">
 		<div class="example-tile-icon">
 			<i class="dashicons dashicons-admin-plugins centered"></i>
@@ -74,8 +74,9 @@ $noance = wp_create_nonce( 'obfx_activate_mod_' . $slug );
 				echo wp_kses_post( $modal );
 			}
 			?>
+			<?php do_action( 'obfx_activate_btn_before', $slug, $checked === 'checked' ); ?>
 		</div>
 	</div>
-
+	<?php do_action( 'obfx_module_tile_after', $slug, $checked === 'checked' ); ?>
 </div>
 

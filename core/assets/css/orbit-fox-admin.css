@@ -8,7 +8,7 @@
  * Extends Spectre.css Library
  */
 /*
-  Version: 2.6.1
+  Version: 2.6.2
  */
 
 /* Document
@@ -3054,7 +3054,7 @@ html {
 	display: flex;
 	display: -ms-flexbox;
 	display: -webkit-flex;
-
+    position: relative;
 	-webkit-align-content: space-between;
 	align-content: space-between;
 	-webkit-align-items: flex-start;
@@ -3725,7 +3725,31 @@ html {
 	line-height: 1.8rem;
 	text-align: center;
 }
-
+a.obfx-no-link:hover,
+a.obfx-no-link{
+    color:#bbc1cd;
+}
+.obfx-tryout-message{
+    right: -9px;
+    font-size: 90%;
+    top: -9px;
+    position: absolute;
+    background: #5764c6;
+    padding: 5px;
+    border-bottom-left-radius: 10px;
+}
+.obfx-tile-image-cdn .tile-action{
+    margin-top: 35px;
+}
+.obfx-tryout-message a:hover,
+.obfx-tryout-message a{
+    color: #fff;
+    text-decoration: none;
+}
+.obfx-title-new{
+    color:#2faa3f;
+    font-weight: bold;
+}
 .obfx-img-logout {
 	position: relative;
 	top: -15px;
