@@ -1,4 +1,11 @@
 
+ ### v2.6.4 - 2018-11-12 
+ **Changes:** 
+ * Fix issue with elementor content forms php notice
+* Add alignment options to content forms
+* Security enhancements
+* Performance enhancements
+ 
  ### v2.6.3 - 2018-10-29 
  **Changes:** 
  * - Minor bug fix in Gutenberg Blocks
