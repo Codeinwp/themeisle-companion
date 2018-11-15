@@ -139,10 +139,14 @@ function hestia_features_content( $hestia_features_content, $is_callback = false
 								break;
 							case 'customizer_repeater_icon':
 								if ( ! empty( $icon ) ) {
+									$class_before = 'fa';
+									if( substr( $icon, 0, 3 ) !== "fa-" ){
+										$class_before = '';
+									}
 									?>
 									<div class="icon" <?php echo ( ! empty( $color ) ? 'style="color:' . $color . '"' : '' ); ?>>
-				<i class="fa <?php echo esc_html( $icon ); ?>"></i>
-										</div>
+                                        <i class="<?php echo esc_attr( $class_before . ' ' . $icon ); ?>"></i>
+                                    </div>
 										<?php
 								}
 								break;
@@ -182,7 +186,7 @@ function hestia_get_features_default() {
 		'hestia_features_default_content', json_encode(
 			array(
 				array(
-					'icon_value' => 'fa-wechat',
+					'icon_value' => 'fab fa-weixin',
 					'title'      => esc_html__( 'Responsive', 'themeisle-companion' ),
 					'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'themeisle-companion' ),
 					'link'       => '#',
@@ -196,7 +200,7 @@ function hestia_get_features_default() {
 					'color'      => '#00bcd4',
 				),
 				array(
-					'icon_value' => 'fa-support',
+					'icon_value' => 'fa-life-ring',
 					'title'      => esc_html__( 'Support', 'themeisle-companion' ),
 					'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'themeisle-companion' ),
 					'link'       => '#',
