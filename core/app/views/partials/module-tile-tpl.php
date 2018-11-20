@@ -60,7 +60,7 @@ $noance = wp_create_nonce( 'obfx_activate_mod_' . $slug );
 	</div>
 	<div class="tile-action">
 		<div class="form-group">
-			<label class="form-switch <?php echo empty( $checked ) ? '' : 'activated' ?>">
+			<label class="form-switch <?php echo empty( $checked ) ? '' : 'activated'; ?>">
 				<input class="<?php echo esc_attr( $toggle_class ); ?>" type="checkbox" name="<?php echo $slug; ?>"
 					   value="<?php echo $noance; ?>" <?php echo $checked; ?> >
 				<i class="form-icon"></i>
