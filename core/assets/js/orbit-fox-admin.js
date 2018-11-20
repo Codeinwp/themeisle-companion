@@ -65,7 +65,7 @@ var obfx_admin = function ( $ ) {
 					var name = switch_ref.attr( 'name' );
 					var noance = switch_ref.val();
 					var formSwitch = $( switch_ref ).parent();
-					$( formSwitch ).addClass( 'loading' );
+					$( formSwitch ).addClass( 'loading' ).removeClass( 'activated' );
 					if ( $( this ).hasClass( 'obfx-mod-confirm-intent' ) ) {
 						var modal = $( '.modal#' + name );
 					}
@@ -88,6 +88,7 @@ var obfx_admin = function ( $ ) {
 							if ( response.type === 'success' ) {
 								var modulePanel = $( '#obfx-mod-' + name );
 								if ( checked ) {
+                                    formSwitch.addClass( 'activated' );
 									$( modulePanel ).find( 'fieldset' ).removeAttr( 'disabled' );
 									$( modulePanel ).show();
 									if ( modal ) {
