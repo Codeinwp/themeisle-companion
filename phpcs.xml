@@ -38,6 +38,7 @@
         <exclude name="WordPress.WP.I18n.MissingTranslatorsComment" />
         <exclude name="WordPress.PHP.YodaConditions.NotYoda" />
         <exclude name="WordPress.WhiteSpace.PrecisionAlignment.Found" />
+        <exclude name="Generic.Files.LineEndings.InvalidEOLChar" />
     </rule>
     <rule ref="WordPress-Docs">
 

@@ -102,15 +102,6 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'type'    => 'text',
 				'default' => esc_html__( 'This website uses cookies to improve your experience. We\'ll assume you accept this policy as long as you are using this website', 'themeisle-companion' ),
 			),
-
-//			array(
-//				'id'      => 'notice_accept_label',
-//				'name'    => 'notice_accept_label',
-//				'title'   => esc_html__( 'Policy Link Label', 'themeisle-companion' ),
-//				'type'    => 'text',
-//				'default' => esc_html__( 'View Policy', 'themeisle-companion' ),
-//			),
-
 			array(
 				'id'      => 'policy_page',
 				'name'    => 'policy_page',
@@ -119,13 +110,19 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'default' => 0,
 				'options' =>  $this->get_policy_pages_array()
 			),
-
 			array(
 				'id'      => 'notice_link_label',
 				'name'    => 'notice_link_label',
 				'title'   => esc_html__( 'Policy Button Label', 'themeisle-companion' ),
 				'type'    => 'text',
 				'default' => esc_html__( 'View Policy', 'themeisle-companion' ),
+			),
+			array(
+				'id'      => 'notice_accept_label',
+				'name'    => 'notice_accept_label',
+				'title'   => esc_html__( 'Accept Cookie Button Label', 'themeisle-companion' ),
+				'type'    => 'text',
+				'default' => esc_html__( 'Accept', 'themeisle-companion' ),
 			),
 		);
 	}
@@ -172,11 +169,13 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		$policy_text   = $this->get_option( 'policy_notice_text' );
 		$policy_button = $this->get_option( 'notice_link_label' );
+		$accept_button = $this->get_option( 'notice_accept_label' );
 
 		$options = array(
 			'policy_link'   => $policy_link,
 			'policy_text'   => $policy_text,
-			'policy_button' => $policy_button
+			'policy_button' => $policy_button,
+			'accept_button' => $accept_button,
 		);
 
 		// @TODO maybe think at some template system for a further hookable customization.
@@ -187,7 +186,7 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		// we'll add the buttons as a separate var and we'll start with the close button
 		$buttons = '<label for="obfx-checkbox-cb" class="obfx-close-cb">X</label>';
 		// the "Acceptance" button
-		$buttons .= '<a href="#" id="obfx-accept-cookie-policy" >' . esc_html__( 'Agree', 'themeisle-companion' ) . '</a>';
+		$buttons .= '<a href="#" id="obfx-accept-cookie-policy" >' . $accept_button . '</a>';
 		// the "View Policy button"
 		$buttons .= '<a href="' . $policy_link . '" >' . $policy_button . '</a>';
 
