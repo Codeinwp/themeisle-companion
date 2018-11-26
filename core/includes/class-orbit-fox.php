@@ -34,7 +34,7 @@ class Orbit_Fox {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Orbit_Fox_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Orbit_Fox_Loader $loader Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -43,7 +43,7 @@ class Orbit_Fox {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      string    $plugin_name    The string used to uniquely identify this plugin.
+	 * @var      string $plugin_name The string used to uniquely identify this plugin.
 	 */
 	protected $plugin_name;
 
@@ -52,7 +52,7 @@ class Orbit_Fox {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      string    $version    The current version of the plugin.
+	 * @var      string $version The current version of the plugin.
 	 */
 	protected $version;
 
@@ -69,7 +69,7 @@ class Orbit_Fox {
 
 		$this->plugin_name = 'orbit-fox';
 
-			$this->version = '2.6.4';
+		$this->version = '2.7.0';
 
 		$this->load_dependencies();
 		$this->set_locale();
@@ -143,6 +143,26 @@ class Orbit_Fox {
 	}
 
 	/**
+	 * The reference to the class that orchestrates the hooks with the plugin.
+	 *
+	 * @since     1.0.0
+	 * @return    Orbit_Fox_Loader    Orchestrates the hooks of the plugin.
+	 */
+	public function get_loader() {
+		return $this->loader;
+	}
+
+	/**
+	 * Retrieve the version number of the plugin.
+	 *
+	 * @since     1.0.0
+	 * @return    string    The version number of the plugin.
+	 */
+	public function get_version() {
+		return $this->version;
+	}
+
+	/**
 	 * Register all of the hooks related to the functionality
 	 * of the plugin.
 	 *
@@ -167,15 +187,21 @@ class Orbit_Fox {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
-	}
+		$this->loader->add_action( 'init', Orbit_Fox_Neve_Dropin::instance(), 'init' );
 
-	/**
-	 * Run the loader to execute all of the hooks with WordPress.
-	 *
-	 * @since    1.0.0
-	 */
-	public function run() {
-		$this->loader->run();
+		// Fix update checks on themeisle.com for non-premium themes
+		add_filter( 'neve_enable_licenser', '__return_false' );
+		add_filter( 'hestia_enable_licenser', '__return_false' );
+		add_filter( 'orfeo_enable_licenser', '__return_false' );
+		add_filter( 'fagri_enable_licenser', '__return_false' );
+		add_filter( 'capri_lite_enable_licenser', '__return_false' );
+		add_filter( 'belise_lite_enable_licenser', '__return_false' );
+		add_filter( 'themotion_lite_enable_licenser', '__return_false' );
+		add_filter( 'capri_lite_enable_licenser', '__return_false' );
+		add_filter( 'visualizer_enable_licenser', '__return_false' );
+		add_filter( 'wp_product_review_enable_licenser', '__return_false' );
+		add_filter( 'feedzy_rss_feeds_licenser', '__return_false' );
+
 	}
 
 	/**
@@ -190,23 +216,12 @@ class Orbit_Fox {
 	}
 
 	/**
-	 * The reference to the class that orchestrates the hooks with the plugin.
+	 * Run the loader to execute all of the hooks with WordPress.
 	 *
-	 * @since     1.0.0
-	 * @return    Orbit_Fox_Loader    Orchestrates the hooks of the plugin.
+	 * @since    1.0.0
 	 */
-	public function get_loader() {
-		return $this->loader;
-	}
-
-	/**
-	 * Retrieve the version number of the plugin.
-	 *
-	 * @since     1.0.0
-	 * @return    string    The version number of the plugin.
-	 */
-	public function get_version() {
-		return $this->version;
+	public function run() {
+		$this->loader->run();
 	}
 
 }

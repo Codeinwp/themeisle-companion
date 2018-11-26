@@ -8,7 +8,7 @@
  * Extends Spectre.css Library
  */
 /*
-  Version: 2.6.4
+  Version: 2.7.0
  */
 
 /* Document
@@ -3375,6 +3375,16 @@ html {
 	content: "";
 	-webkit-animation: loading 500ms infinite linear;
 	animation: loading 500ms infinite linear;
+}
+
+.obfx-wrapper .form-switch.activated span.inactive,
+.obfx-wrapper .form-switch i.dashicons.dashicons-yes {
+	display: none;
+}
+
+.obfx-wrapper .form-switch.activated i.dashicons.dashicons-yes {
+	display: block;
+	color: #2faa3f;
 }
 
 .obfx-wrapper .clearfix::after,
