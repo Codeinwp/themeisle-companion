@@ -187,6 +187,8 @@ class Orbit_Fox {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
+		$this->loader->add_action( 'init', Orbit_Fox_Neve_Dropin::instance(), 'init' );
+
 		// Fix update checks on themeisle.com for non-premium themes
 		add_filter( 'neve_enable_licenser', '__return_false' );
 		add_filter( 'hestia_enable_licenser', '__return_false' );
