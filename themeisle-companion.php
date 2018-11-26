@@ -78,7 +78,7 @@ function run_orbit_fox() {
 			return $products;
 		}
 	);
-
+	add_filter('neve_enable_licenser','__return_false');
 	add_filter(
 		'themeisle_companion_friendly_name',
 		function( $name ) {
