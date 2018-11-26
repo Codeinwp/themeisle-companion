@@ -110,6 +110,99 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 == Changelog ==
+= 2.6.4 - 2018-11-12  = 
+
+* Fix issue with elementor content forms php notice
+* Add alignment options to content forms
+* Security enhancements
+* Performance enhancements
+
+
+= 2.6.3 - 2018-10-29  = 
+
+* - Minor bug fix in Gutenberg Blocks
+
+
+= 2.6.2 - 2018-10-29  = 
+
+* Adds Image Optimization and CDN module available for everyone.
+* Small improvements to the Gutenberg module.
+
+
+= 2.6.1 - 2018-10-10  = 
+
+* Added backward compatibility for Font Awesome 4
+* Fixed issue with Elementor dequeuing Font Awesome
+* Fixed issue with Gutenberg Module crashing Orbit Fox dashboard
+* Fixed issue with Pie Chart causing REST API error
+* Fixed z-index issue in Accordion block.
+
+
+= 2.6.0 - 2018-10-08  = 
+
+* Adds Gutenberg integration with various blocks.
+* Adds Font Awesome, Google maps, Notice, Sharing icons, Pie charts, Plugin Card, Pricing, Testimonial and Click to Tweet  Gutenberg block and Post grid block.
+
+
+= 2.5.8 - 2018-09-12  = 
+
+* Extend image optimization module for 50% of users.
+* Enable safe updates for all users.
+* Adds image optimization integration with Optimole.
+
+
+= 2.5.7 - 2018-08-13  = 
+
+* -fixed fatal error with Elementor extra widgets
+
+
+= 2.5.6 - 2018-07-26  = 
+
+* Release
+
+
+= 2.5.5 - 2018-07-23  = 
+
+* Add new controls for Elementor content forms.
+
+
+= 2.5.4 - 2018-07-11  = 
+
+* Fixed undefined method for old elementor versions.
+
+
+= 2.5.3 - 2018-07-11  = 
+
+* Small alignment fix for menu icons module
+* Added styling options for Elementor content forms
+
+
+= 2.5.2 - 2018-07-06  = 
+
+* Fixes post grid pagination issue
+* Fixes post grid colors not applying correctly
+* Fixes Templates directory import issue
+* New templates in the templates directory
+* Fixes content forms placeholder not used
+* Fixes for Hestia Theme enhancements module
+* Fixes issue where url's were replaced with CDN url for beta users
+
+
+= 2.5.1 - 2018-07-02  = 
+
+* Fix social icons saving bug. 
+* Fix z-index issue on policy notice.
+
+
+= 2.5.0 - 2018-06-22  = 
+
+* Adds privacy policy module, allows users to set a notice for their visitors.
+* Adds Image CDN and Optimization module in private BETA .
+* Adds Themes Safe Updates module in private BETA.
+* Adds more Elementor templates into the library.
+* Improvements for Hestia enhancements module.
+
+
 = 2.4.7 - 2018-05-03  = 
 
 * Add content forms for Beaver Builder
