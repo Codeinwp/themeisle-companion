@@ -110,6 +110,14 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 == Changelog ==
+= 2.7.0 - 2018-11-26  = 
+
+* Fix small typo on the module activation button.
+* Improves compatibility with Hestia Theme.
+* Adds compatibility for Neve theme.
+* Fix translation text for Agree button in Cookie notice.
+
+
 = 2.6.4 - 2018-11-12  = 
 
 * Fix issue with elementor content forms php notice
