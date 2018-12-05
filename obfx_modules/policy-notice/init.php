@@ -326,8 +326,9 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return array
 	 */
 	private function get_policy_pages_array(){
+		$core_policy_suffix	= empty( $url = get_option( 'wp_page_for_privacy_policy' ) ) ? ' (' . esc_html__( 'Not Set', 'themeisle-companion' ) . ')' : '';
 		$options = array(
-			'0' => esc_html__( 'Default Core Policy', 'themeisle-companion' )
+			'0' => esc_html__( 'Default Core Policy', 'themeisle-companion' ) . $core_policy_suffix
 		);
 
 		$pages = get_pages( array(
