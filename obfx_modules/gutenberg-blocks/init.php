@@ -36,7 +36,7 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function enable_module() {
 		global $wp_version;
 
-		if ( version_compare( $wp_version, '5.0.0' ) >= 0 ) {
+		if ( version_compare( $wp_version, '5.0', '>=' ) ) {
 			return true;
 		}
 
