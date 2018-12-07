@@ -68,6 +68,7 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$this->loader->add_action( 'wp_update_nav_menu_item', $this, 'save_fields', 10, 3 );
 		// Do not change the priority of this from 1.
 		$this->loader->add_filter( 'wp_edit_nav_menu_walker', $this, 'custom_walker', 1 );
+		$this->loader->add_filter( 'init', $this, 'enqueue_font_awesome', 10 );
 		$this->loader->add_filter( 'wp_setup_nav_menu_item', $this, 'show_menu', 10, 1 );
 
 	}
@@ -85,8 +86,12 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			if ( ! is_admin() ) {
 				// usually, icons are of the format fa-x or dashicons-x and when displayed they are displayed with classes 'fa fa-x' or 'dashicons dashicons-x'.
 				// so let's determine the prefix class.
-				$array			= explode( '-', $icon );
-				$prefix			= reset( $array );
+				if ( ( strpos( $icon, 'far fa-' ) !== false ) || ( strpos( $icon, 'fas fa-' ) !== false ) || ( strpos( $icon, 'fab fa-' ) !== false ) ) {
+					$prefix	= '';
+				} else if ( ( strpos( $icon, 'fa-' ) !== false ) || strpos( $icon, 'dashicons' ) !== false ) {
+					$array	= explode( '-', $icon );
+					$prefix	= reset( $array );
+				}
 				$prefix			= apply_filters( 'obfx_menu_icons_icon_class', $prefix, $icon );
 				$menu->title	= sprintf( '<i class="obfx-menu-icon %s %s"></i>%s', $prefix, $icon, $menu->title );
 			}
@@ -109,6 +114,17 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	}
 
 	/**
+	 * Font Awesome fonts and shims for the front end part.
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 */
+	public function enqueue_font_awesome() {
+		wp_register_style( 'font-awesome-5', OBFX_URL . 'assets/fontawesome/css/all.min.css' );
+		wp_register_style( 'font-awesome-4-shims', OBFX_URL . 'assets/fontawesome/css/v4-shims.min.css' );
+	}
+
+	/**
 	 * Method that returns an array of scripts and styles to be loaded
 	 * for the front end part.
 	 *
@@ -119,7 +135,7 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function public_enqueue() {
 		return array(
 			'css' => array(
-				'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' => array( 'dashicons' ),
+				array( 'font-awesome-5', 'font-awesome-4-shims', 'dashicons' ),
 				'public' => false,
 			),
 		);
@@ -160,8 +176,7 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		return array(
 			'css' => array(
-				'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' => false,
-				'vendor/fontawesome-iconpicker.min' => array( 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' ),
+				'vendor/fontawesome-iconpicker.min' => array( 'font-awesome-5', 'font-awesome-4-shims', 'dashicons' ),
 				'admin' => array( 'vendor/fontawesome-iconpicker.min' ),
 			),
 			'js' => array(

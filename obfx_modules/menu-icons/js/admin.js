@@ -12,20 +12,49 @@
 var obfx_menuicons_module_admin = function( $, menu_icons ) {
 	'use strict';
 
-	var default_icon = menu_icons.icon_default;
-	// added blank icon for deselection.
-	var all_icons = $.merge( [default_icon], $.merge( menu_icons.icons, $.iconpicker.defaultOptions.icons ) );
+	var default_icon = {
+		title: menu_icons.icon_default,
+		searchTerms: ['cancel', 'none']
+	};
 
-	function get_prefix(icon){
+	var custom_icons = menu_icons.icons.map( function( icon ) {
+		return {
+			title: icon,
+			searchTerms: icon.split( '-' )
+		};
+	});
+
+	var all_icons = $.merge( [default_icon], $.merge( custom_icons, $.iconpicker.defaultOptions.icons ) );
+
+	function get_prefix(icon, includeFA){
 		if (typeof icon === 'undefined') {
 			return '';
 		}
-		if (icon.match( /^fa-/ )) {
-			return 'fa ';
-		} else if (icon.match( /^dashicons-/ )) {
-			return 'dashicons ';
-		} else if (icon.match( /glyphicon-/ )) {
-			return 'glyphicon ';
+
+		if ( includeFA === true ) {
+			if (icon.match( /^fas fa-/ )) {
+				return 'fas ';
+			} else if (icon.match( /^far fa-/ )) {
+				return 'far ';
+			} else if (icon.match( /^fab fa-/ )) {
+				return 'fab ';
+			} else if (icon.match( /^fa-/ )) {
+				return 'fa ';
+			} else if (icon.match( /^dashicons-/ )) {
+				return 'dashicons ';
+			} else if (icon.match( /glyphicon-/ )) {
+				return 'glyphicon ';
+			} else {
+				return '';
+			}
+		} else {
+			if (icon.match( /^dashicons-/ )) {
+				return 'dashicons ';
+			} else if (icon.match( /glyphicon-/ )) {
+				return 'glyphicon ';
+			} else {
+				return '';
+			}
 		}
 	}
 
@@ -56,15 +85,15 @@ var obfx_menuicons_module_admin = function( $, menu_icons ) {
 		var icon    = $( '#menu-item-icon-' + item_id ).val();
 		var no_icon_class = '';
 		if ('' === icon) {
-			icon    = default_icon;
+			icon    = default_icon['title'];
 			no_icon_class = 'obfx-menu-icon-none';
 		}
-		var prefix  = get_prefix( icon );
+		var prefix  = get_prefix( icon, true );
 
 		if ( ! $( el ).find( '.menu-item-bar .menu-item-handle .item-title div' ).hasClass( 'obfx-menu-icon-container' ) ) {
 			$( el ).find( '.menu-item-bar .menu-item-handle .item-title' ).prepend(
 				$(
-					'<div class="input-group obfx-menu-icon-container" style="display: inline-block"><input class="form-control obfx-menu-icon ' + no_icon_class + '" value="' + icon + '" style="display: none" type="text" data-menu-item-id="' + item_id + '"><span class="input-group-addon" style="cursor: pointer"><i class="' + prefix + icon + '"></i></span></div>'
+					'<div class="input-group obfx-menu-icon-container" style="display: inline-block"><input class="form-control obfx-menu-icon ' + no_icon_class + '" value="' + icon + '" style="display: none" type="text" data-menu-item-id="' + item_id + '"><span class="input-group-addon" style="cursor: pointer"><i class="fa-fw ' + prefix + icon + '"></i></span></div>'
 				)
 			);
 		}
@@ -78,7 +107,7 @@ var obfx_menuicons_module_admin = function( $, menu_icons ) {
 					{
 						icons: all_icons,
 						fullClassFormatter: function(val){
-							return get_prefix( val ) + val;
+							return get_prefix( val, false ) + val;
 						},
 						hideOnSelect: true,
 						placement: 'bottomLeft',
