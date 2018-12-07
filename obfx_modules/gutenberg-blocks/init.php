@@ -34,10 +34,7 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return bool
 	 */
 	public function enable_module() {
-		require_once( ABSPATH . 'wp-admin' . '/includes/plugin.php' );
-		// TODO: Fix this check before gutenberg is merged into WordPress core.
-		// checking function_exists( 'register_block_type' ) returns false at first and true later in the code.
-		return is_plugin_active( 'gutenberg/gutenberg.php' );
+		return true;
 	}
 
 	/**
