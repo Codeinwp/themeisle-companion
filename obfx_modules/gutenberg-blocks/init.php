@@ -34,7 +34,18 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return bool
 	 */
 	public function enable_module() {
-		return true;
+		global $wp_version;
+
+		if ( version_compare( $wp_version, '5.0.0' ) > 0 ) {
+			return true;
+		}
+		
+		require_once( ABSPATH . 'wp-admin' . '/includes/plugin.php' );
+		if ( is_plugin_active( 'gutenberg/gutenberg.php' ) ) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
