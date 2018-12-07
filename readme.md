@@ -110,6 +110,11 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 ## Changelog ##
+### 2.7.1 - 2018-12-07  ###
+
+* - Fix for Gutenberg blocks module loading
+
+
 ### 2.7.0 - 2018-11-26  ###
 
 * Fix small typo on the module activation button.

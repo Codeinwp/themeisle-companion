@@ -1,4 +1,8 @@
 
+ ### v2.7.1 - 2018-12-07 
+ **Changes:** 
+ * - Fix for Gutenberg blocks module loading
+ 
  ### v2.7.0 - 2018-11-26 
  **Changes:** 
  * Fix small typo on the module activation button.
