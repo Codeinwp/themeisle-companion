@@ -85,7 +85,7 @@ var obfx_menuicons_module_admin = function( $, menu_icons ) {
 		var icon    = $( '#menu-item-icon-' + item_id ).val();
 		var no_icon_class = '';
 		if ('' === icon) {
-			icon    = default_icon['title'];
+			icon    = default_icon.title;
 			no_icon_class = 'obfx-menu-icon-none';
 		}
 		var prefix  = get_prefix( icon, true );
