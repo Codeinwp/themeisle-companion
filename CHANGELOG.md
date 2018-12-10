@@ -1,4 +1,15 @@
 
+ ### v2.7.1 - 2018-12-07 
+ **Changes:** 
+ * - Fix for Gutenberg blocks module loading
+ 
+ ### v2.7.0 - 2018-11-26 
+ **Changes:** 
+ * Fix small typo on the module activation button.
+* Improves compatibility with Hestia Theme.
+* Adds compatibility for Neve theme.
+* Fix translation text for Agree button in Cookie notice.
+ 
  ### v2.6.4 - 2018-11-12 
  **Changes:** 
  * Fix issue with elementor content forms php notice

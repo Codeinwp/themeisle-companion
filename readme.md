@@ -2,7 +2,7 @@
 **Contributors:** [themeisle](https://profiles.wordpress.org/themeisle), [codeinwp](https://profiles.wordpress.org/codeinwp), [rodicaelena](https://profiles.wordpress.org/rodicaelena), [baicusandrei](https://profiles.wordpress.org/baicusandrei), [hardeepasrani](https://profiles.wordpress.org/hardeepasrani)  
 **Tags:** widget, admin, widgets, sharing, sections, themes, stock photos, custom icons, icons, menu icons, stock, templates  
 **Requires at least:** 4.7  
-**Tested up to:** 4.9  
+**Tested up to:** 5.0  
 **Requires PHP:** 5.4  
 **Stable tag:** trunk  
 **License:** GPLv2 or later  
@@ -110,6 +110,19 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 ## Changelog ##
+### 2.7.1 - 2018-12-07  ###
+
+* - Fix for Gutenberg blocks module loading
+
+
+### 2.7.0 - 2018-11-26  ###
+
+* Fix small typo on the module activation button.
+* Improves compatibility with Hestia Theme.
+* Adds compatibility for Neve theme.
+* Fix translation text for Agree button in Cookie notice.
+
+
 ### 2.6.4 - 2018-11-12  ###
 
 * Fix issue with elementor content forms php notice
