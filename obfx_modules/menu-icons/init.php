@@ -173,7 +173,7 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				$font_awesome,
 				array(
 					'admin' => array( 'vendor/fontawesome-iconpicker.min' ),
-				),
+				)
 			),
 			'js' => array(
 				'vendor/bootstrap.min' => array( 'jquery' ),
