@@ -158,11 +158,22 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			),
 		);
 
+		$font_awesome = array(
+			'vendor/font-awesome.min.css' => false,
+			'vendor/fontawesome-iconpicker.min' => array( 'vendor/font-awesome.min.css' ),
+		);
+		if ( wp_style_is( 'font-awesome', 'registered' ) || wp_style_is( 'font-awesome', 'enqueued' ) ) {
+			$font_awesome = array(
+				'vendor/fontawesome-iconpicker.min' => array( 'font-awesome' ),
+			);
+		}
+
 		return array(
-			'css' => array(
-				'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' => false,
-				'vendor/fontawesome-iconpicker.min' => array( 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' ),
-				'admin' => array( 'vendor/fontawesome-iconpicker.min' ),
+			'css' => array_merge(
+				$font_awesome,
+				array(
+					'admin' => array( 'vendor/fontawesome-iconpicker.min' ),
+				),
 			),
 			'js' => array(
 				'vendor/bootstrap.min' => array( 'jquery' ),
