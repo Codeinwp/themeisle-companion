@@ -193,14 +193,14 @@ function hestia_get_features_default() {
 					'color'      => '#e91e63',
 				),
 				array(
-					'icon_value' => 'fas fa-check',
+					'icon_value' => 'fa-check',
 					'title'      => esc_html__( 'Quality', 'themeisle-companion' ),
 					'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'themeisle-companion' ),
 					'link'       => '#',
 					'color'      => '#00bcd4',
 				),
 				array(
-					'icon_value' => 'far fa-life-ring',
+					'icon_value' => 'fa-life-ring',
 					'title'      => esc_html__( 'Support', 'themeisle-companion' ),
 					'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'themeisle-companion' ),
 					'link'       => '#',
