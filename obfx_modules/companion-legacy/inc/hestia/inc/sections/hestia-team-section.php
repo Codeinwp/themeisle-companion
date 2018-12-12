@@ -209,11 +209,7 @@ function hestia_team_content( $hestia_team_content, $is_callback = false ) {
 														if ( function_exists( 'hestia_is_external_url' ) ) {
 															$link .= hestia_is_external_url( $social_link );
 														}
-														$class_before = 'fa';
-														if( substr( $social_icon, 0, 3 ) !== "fa-" ){
-															$class_before = '';
-														}
-														$link .= ' class="btn btn-just-icon btn-simple"><i class="' . esc_attr( $class_before . ' ' . $social_icon ) . '"></i></a>';
+														$link .= ' class="btn btn-just-icon btn-simple"><i class="fa ' . esc_attr( $social_icon ) . '"></i></a>';
 														echo $link;
 													}
 												}
@@ -262,22 +258,22 @@ function hestia_get_team_default() {
 							array(
 								'id'   => 'customizer-repeater-social-repeater-57fb908674e06',
 								'link' => 'facebook.com',
-								'icon' => 'fab fa-facebook-f',
+								'icon' => 'fa-facebook',
 							),
 							array(
 								'id'   => 'customizer-repeater-social-repeater-57fb9148530ft',
 								'link' => 'plus.google.com',
-								'icon' => 'fab fa-google-plus-g',
+								'icon' => 'fa-google-plus',
 							),
 							array(
 								'id'   => 'customizer-repeater-social-repeater-57fb9148530fc',
 								'link' => 'twitter.com',
-								'icon' => 'fab fa-twitter',
+								'icon' => 'fa-twitter',
 							),
 							array(
 								'id'   => 'customizer-repeater-social-repeater-57fb9150e1e89',
 								'link' => 'linkedin.com',
-								'icon' => 'fab fa-linkedin-in',
+								'icon' => 'fa-linkedin',
 							),
 						)
 					),
@@ -293,22 +289,22 @@ function hestia_get_team_default() {
 							array(
 								'id'   => 'customizer-repeater-social-repeater-57fb9155a1072',
 								'link' => 'facebook.com',
-								'icon' => 'fab fa-facebook-f',
+								'icon' => 'fa-facebook',
 							),
 							array(
 								'id'   => 'customizer-repeater-social-repeater-57fb9160ab683',
 								'link' => 'twitter.com',
-								'icon' => 'fab fa-twitter',
+								'icon' => 'fa-twitter',
 							),
 							array(
 								'id'   => 'customizer-repeater-social-repeater-57fb9160ab484',
 								'link' => 'pinterest.com',
-								'icon' => 'fab fa-pinterest',
+								'icon' => 'fa-pinterest',
 							),
 							array(
 								'id'   => 'customizer-repeater-social-repeater-57fb916ddffc9',
 								'link' => 'linkedin.com',
-								'icon' => 'fab fa-linkedin-in',
+								'icon' => 'fa-linkedin',
 							),
 						)
 					),
@@ -324,22 +320,22 @@ function hestia_get_team_default() {
 							array(
 								'id'   => 'customizer-repeater-social-repeater-57fb917e4c69e',
 								'link' => 'facebook.com',
-								'icon' => 'fab fa-facebook-f',
+								'icon' => 'fa-facebook',
 							),
 							array(
 								'id'   => 'customizer-repeater-social-repeater-57fb91830825c',
 								'link' => 'twitter.com',
-								'icon' => 'fab fa-twitter',
+								'icon' => 'fa-twitter',
 							),
 							array(
 								'id'   => 'customizer-repeater-social-repeater-57fb918d65f2e',
 								'link' => 'linkedin.com',
-								'icon' => 'fab fa-linkedin-in',
+								'icon' => 'fa-linkedin',
 							),
 							array(
 								'id'   => 'customizer-repeater-social-repeater-57fb918d65f2x',
 								'link' => 'dribbble.com',
-								'icon' => 'fab fa-dribbble',
+								'icon' => 'fa-dribbble',
 							),
 						)
 					),
@@ -355,22 +351,22 @@ function hestia_get_team_default() {
 							array(
 								'id'   => 'customizer-repeater-social-repeater-57fb925cedcg5',
 								'link' => 'github.com',
-								'icon' => 'fab fa-github-square',
+								'icon' => 'fa-github-square',
 							),
 							array(
 								'id'   => 'customizer-repeater-social-repeater-57fb925cedcb2',
 								'link' => 'facebook.com',
-								'icon' => 'fab fa-facebook-f',
+								'icon' => 'fa-facebook',
 							),
 							array(
 								'id'   => 'customizer-repeater-social-repeater-57fb92615f030',
 								'link' => 'twitter.com',
-								'icon' => 'fab fa-twitter',
+								'icon' => 'fa-twitter',
 							),
 							array(
 								'id'   => 'customizer-repeater-social-repeater-57fb9266c223a',
 								'link' => 'linkedin.com',
-								'icon' => 'fab fa-linkedin-in',
+								'icon' => 'fa-linkedin',
 							),
 						)
 					),
