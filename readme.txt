@@ -110,6 +110,11 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 == Changelog ==
+= 2.7.3 - 2018-12-12  = 
+
+* Revert Font Awesome 5 integration
+
+
 = 2.7.2 - 2018-12-10  = 
 
 * Tested with WP 5.0
