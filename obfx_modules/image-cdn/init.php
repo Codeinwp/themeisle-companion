@@ -39,7 +39,7 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			$this->show = true;
 		}
 		$this->no_save     = true;
-		$this->name        = sprintf( __( 'Image Optimization &amp; CDN Module <sup class="obfx-title-new">NEW</sup>', 'themeisle-companion' ) );
+		$this->name        = sprintf( __( 'Image Optimization &amp; CDN Module', 'themeisle-companion' ) );
 		$this->description = sprintf( __( 'Let us take care of your images sizes. With this feature we\'ll compress and resize every image on your website. <i>This service is powered by <b>%sOptimole%s</b></i>. <br/> <strong>* Requires account on orbitfox.com</strong>', 'themeisle-companion' ), '<a href="https://optimole.com" class="obfx-no-link" target="_blank">', '</a>' );
 		add_action( 'obfx_module_tile_after', [ $this, 'tryout' ], 10, 2 );
 	}

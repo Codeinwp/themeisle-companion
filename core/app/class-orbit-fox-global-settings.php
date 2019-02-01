@@ -63,9 +63,9 @@ class Orbit_Fox_Global_Settings {
 				array(
 					'social-sharing',
 					'image-cdn',
+					'gutenberg-blocks',
 					'uptime-monitor',
 					'google-analytics',
-					'gutenberg-blocks',
 					'companion-legacy',
 					'elementor-widgets',
 					'template-directory',

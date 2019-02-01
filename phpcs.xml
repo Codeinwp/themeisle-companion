@@ -14,6 +14,7 @@
     <!--<exclude-pattern>*</exclude-pattern>-->
     <rule ref="WordPress-Core">
         <exclude name="Squiz.Commenting.FileComment.SpacingAfterComment" />
+        <exclude name="WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase" />
         <exclude name="Generic.Files.LowercasedFilename" />
         <exclude name="Generic.NamingConventions.UpperCaseConstantName" />
         <exclude name="Generic.Formatting.MultipleStatementAlignment.IncorrectWarning" />
