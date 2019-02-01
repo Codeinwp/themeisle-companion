@@ -110,6 +110,13 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 == Changelog ==
+= 2.7.4 - 2019-02-01  = 
+
+* update Gutenberg blocks library to the latest version
+* fix dashicons issue with Neve theme
+* load fontawesome locally if is not already loaded
+
+
 = 2.7.3 - 2018-12-12  = 
 
 * Revert Font Awesome 5 integration

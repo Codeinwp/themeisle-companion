@@ -1,4 +1,10 @@
 
+ ### v2.7.4 - 2019-02-01 
+ **Changes:** 
+ * update Gutenberg blocks library to the latest version
+* fix dashicons issue with Neve theme
+* load fontawesome locally if is not already loaded
+ 
  ### v2.7.3 - 2018-12-12 
  **Changes:** 
  * Revert Font Awesome 5 integration
