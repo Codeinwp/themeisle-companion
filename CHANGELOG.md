@@ -1,4 +1,12 @@
 
+ ### v2.7.3 - 2018-12-12 
+ **Changes:** 
+ * Revert Font Awesome 5 integration
+ 
+ ### v2.7.2 - 2018-12-10 
+ **Changes:** 
+ * Tested with WP 5.0
+ 
  ### v2.7.1 - 2018-12-07 
  **Changes:** 
  * - Fix for Gutenberg blocks module loading
