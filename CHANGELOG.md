@@ -1,4 +1,8 @@
 
+ ### v2.7.5 - 2019-02-02 
+ **Changes:** 
+ * Improve compatibility with Image CDN module by disabling the feature if Optimole exits already
+ 
  ### v2.7.4 - 2019-02-01 
  **Changes:** 
  * update Gutenberg blocks library to the latest version
