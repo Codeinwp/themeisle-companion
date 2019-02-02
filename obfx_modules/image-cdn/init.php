@@ -62,6 +62,11 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return bool
 	 */
 	public function enable_module() {
+		require_once( ABSPATH . 'wp-admin' . '/includes/plugin.php' );
+		// Bail if we optimole already.
+		if ( is_plugin_active( 'optimole-wp/optimole-wp.php' ) ) {
+			return false;
+		}
 		return true;
 	}
 
