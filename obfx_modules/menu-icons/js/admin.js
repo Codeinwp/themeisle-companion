@@ -47,8 +47,9 @@ var obfx_menuicons_module_admin = function( $, menu_icons ) {
 				);
 			}
 		);
-
-		mutateObserver.observe( $( 'ul#menu-to-edit' ).get( 0 ), {childList: true} );
+		if ($('ul#menu-to-edit').length > 0) {
+			mutateObserver.observe($('ul#menu-to-edit').get(0), {childList: true});
+		}
 	}
 
 	function add_icon(el){

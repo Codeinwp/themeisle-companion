@@ -55,9 +55,9 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	/**
 	 * Determine if module should be loaded.
 	 *
+	 * @return bool
 	 * @since   1.0.0
 	 * @access  public
-	 * @return bool
 	 */
 	public function enable_module() {
 		return true;
@@ -92,6 +92,7 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function get_tab_content() {
 		$urls = $this->get_images();
+		$page = 1;
 		require $this->get_dir() . "/inc/photos.php";
 		wp_die();
 	}
@@ -173,23 +174,15 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		}
 
 		//Update last page that was loaded
-		$req_page = (int) $_POST['page'] + 1;
+		$page = (int) $_POST['page'] + 1;
 
 		//Request new page
-		$response    = '';
-		$new_request = $this->get_images( $req_page );
-		if ( ! empty( $new_request ) ) {
-			foreach ( $new_request as $photo ) {
-				$response .= '<li class="obfx-image" data-page="' . esc_attr( $req_page ) . '" data-pid="' . esc_attr( $photo['id'] ) . '">';
-				$response .= '<div class="obfx-preview"><div class="thumbnail"><div class="centered">';
-				$response .= '<img src="' . esc_url( $photo['url_m'] ) . '">';
-				$response .= '</div></div></div>';
-				$response .= '<button type="button" class="check obfx-image-check" tabindex="0"><span class="media-modal-icon"></span><span class="screen-reader-text">' . esc_html__( 'Deselect', 'themeisle-companion' ) . '</span></button>';
-				$response .= '</li>';
+		$urls = $this->get_images( $page );
+		if ( ! empty( $urls ) ) {
+			foreach ( $urls as $photo ) {
+				include $this->get_dir() . '/inc/photo.php';
 			}
 		}
-
-		echo $response;
 		wp_die();
 	}
 
@@ -197,9 +190,9 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * Method that returns an array of scripts and styles to be loaded
 	 * for the front end part.
 	 *
+	 * @return array
 	 * @since   1.0.0
 	 * @access  public
-	 * @return array
 	 */
 	public function public_enqueue() {
 		return array();
@@ -209,9 +202,9 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * Method that returns an array of scripts and styles to be loaded
 	 * for the admin part.
 	 *
+	 * @return array
 	 * @since   1.0.0
 	 * @access  public
-	 * @return array
 	 */
 	public function admin_enqueue() {
 		$current_screen = get_current_screen();
@@ -256,9 +249,9 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	/**
 	 * Method to define the options fields for the module
 	 *
+	 * @return array
 	 * @since   1.0.0
 	 * @access  public
-	 * @return array
 	 */
 	public function options() {
 		return array();

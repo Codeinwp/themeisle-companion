@@ -39,8 +39,8 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			$this->show = true;
 		}
 		$this->no_save     = true;
-		$this->name        = sprintf( __( 'Image Optimization &amp; CDN Module', 'themeisle-companion' ) );
-		$this->description = sprintf( __( 'Let us take care of your images sizes. With this feature we\'ll compress and resize every image on your website. <i>This service is powered by <b>%sOptimole%s</b></i>. <br/> <strong>* Requires account on orbitfox.com</strong>', 'themeisle-companion' ), '<a href="https://optimole.com" class="obfx-no-link" target="_blank">', '</a>' );
+		$this->name        = sprintf( __( 'Image Optimization &amp; CDN Module', 'themeisle-companion' ).' <sup class="obfx-title-deprecated">DEPRECATED<sup>' );
+		$this->description = sprintf( __( 'We are deprecating this module in favor of %sOptimole%s plugin for a more in depth integration and maintainability. You can safely disable this module and further use the dedicated plugin.', 'themeisle-companion' ), '<span class="dashicons dashicons-external"></span><a href="http://wordpress.org/plugins/optimole-wp"   target="_blank">', '</a>' );
 		add_action( 'obfx_module_tile_after', [ $this, 'tryout' ], 10, 2 );
 	}
 
@@ -67,7 +67,7 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		if ( is_plugin_active( 'optimole-wp/optimole-wp.php' ) ) {
 			return false;
 		}
-		return true;
+		return $this->is_replacer_enabled();
 	}
 
 	/**
@@ -91,7 +91,10 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$obfx_user_data = $this->get_api_data();
 		$args           = array(
 			'id'    => 'obfx_img_quota',
-			'title' => 'OrbitFox' . __( ' Image Traffic', 'themeisle-companion' ) . ': ' . number_format( floatval( ( $obfx_user_data['image_cdn']['usage'] / 1000 ) ), 3 ) . ' / ' . number_format( floatval( ( $obfx_user_data['image_cdn']['quota'] / 1000 ) ), 0 ) . 'GB',
+			'title' => 'OrbitFox' . __( ' Image Traffic', 'themeisle-companion' ) . ': ' .
+			           number_format( floatval( (
+			           isset( $obfx_user_data['image_cdn']['usage'] ) ? $obfx_user_data['image_cdn']['usage'] : 0 / 1000 ) ), 3 ) . ' / ' .
+			           number_format( floatval( ( isset( $obfx_user_data['image_cdn']['quota'] ) ? $obfx_user_data['image_cdn']['quota'] : 0 / 1000 ) ), 0 ) . 'GB',
 			'href'  => 'https://dashboard.orbitfox.com/',
 			'meta'  => array( 'target' => '_blank' )
 		);

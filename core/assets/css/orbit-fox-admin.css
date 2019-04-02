@@ -8,7 +8,7 @@
  * Extends Spectre.css Library
  */
 /*
-  Version: 2.7.5
+  Version: 2.8.0
  */
 
 /* Document
@@ -3760,6 +3760,13 @@ a.obfx-no-link{
     color:#2faa3f;
     font-weight: bold;
 }
+.obfx-title-deprecated{
+    color:#ca4a1f;
+    font-weight: bold;
+}
+#obfx-mod-image-cdn sup.obfx-title-deprecated{
+    font-size:50%;
+}
 .obfx-img-logout {
 	position: relative;
 	top: -15px;
@@ -3790,4 +3797,108 @@ a.obfx-no-link{
 	width: 100%;
 	margin-bottom: 10px;
 	text-align: center;
+}
+
+.obfx-full-page-container{
+    display: flex;
+    width: 100%;
+}
+#obfx-modules-wrapper{
+    flex:1;
+}
+.obfx-sidebar.obfx-wrapper .panel .panel-header{
+    padding:3px;
+}
+.obfx-sidebar{
+    padding:7px;
+    width: 250px;
+}
+.obfx-wrapper .panel .panel-title{
+  text-align: left;
+}
+ul.obfx-menu-tabs{
+    border-bottom: 1px solid #f0f1f4;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+
+.obfx-menu-tabs li:hover a,
+.obfx-menu-tabs li.obfx-tab-active a{
+
+    color: #f0f1f4;
+    text-decoration: none;
+}
+.obfx-menu-tabs li:hover,
+.obfx-menu-tabs li.obfx-tab-active {
+
+    background: #5764c6;
+    color: #f0f1f4;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.obfx-menu-tabs li:last-child{
+    border:none;
+}
+.obfx-menu-tabs li a {
+    font-size: 1.75rem;
+}
+.obfx-menu-tabs li{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-bottom: 0;
+    height: 38px;
+    padding: 4px 32px;
+    padding-bottom: 0;
+    width: auto;
+    display: inline-block;
+    list-style: none;
+}
+.obfx-recommended .button-primary:hover,
+.obfx-recommended .button-primary{
+    background: #5764c6;
+    text-decoration: none;
+    padding: 10px 40px;
+    line-height: 7px;
+}
+.obfx-recommended .tile-title{
+    padding-top:15px;
+    margin-bottom: 0px;
+}
+.obfx-recommended .obfx-icon-recommended{
+
+    padding:10px;
+}
+.obfx-recommended img{
+    width:50px;
+    border-radius: 10px;
+}
+.obfx-recommended-title .dashicons.dashicons-editor-help{
+    float:right;
+    cursor: pointer;
+}
+.obfx-recommended-title{
+
+    font-size: 1.5rem;
+    text-align: left;
+    padding: 14px;
+    color: #3b49af;
+}
+p.obfx-recommended-disclosure{
+    text-align: right;
+}
+.obfx-recommended-title-wrapper .obfx-recommended-disclosure{
+    float:right;
+    padding:14px;
+    padding-top:0px;
+}
+.obfx-recommended-title-wrapper .obfx-recommended-title{
+    float:left;
+    padding-top:0px;
+    min-width: 250px;
+}
+.obfx-recommended-title-wrapper{
+    padding-bottom: 20px;
+    margin-left:16px;
 }
