@@ -42,10 +42,10 @@ class Orbit_Fox_Admin {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    1.0.0
+	 * @param string $plugin_name The name of this plugin.
+	 * @param string $version The version of this plugin.
 	 *
-	 * @param      string $plugin_name The name of this plugin.
-	 * @param      string $version The version of this plugin.
+	 * @since    1.0.0
 	 */
 	public function __construct( $plugin_name, $version ) {
 
@@ -170,6 +170,19 @@ class Orbit_Fox_Admin {
 	}
 
 	/**
+	 * Define partners data.
+	 */
+	public function load_recommended_partners() {
+		if ( ! defined( 'WPFORMS_SHAREASALE_ID' ) ) {
+			define( 'WPFORMS_SHAREASALE_ID', '848264' );
+		}
+		if ( get_option( 'translatepress_avg_affiliate_id', false ) === false ) {
+			update_option( 'translatepress_avg_affiliate_id', '91096' );
+		}
+
+	}
+
+	/**
 	 * Calls the orbit_fox_modules hook.
 	 *
 	 * @since   1.0.0
@@ -206,12 +219,11 @@ class Orbit_Fox_Admin {
 	 *
 	 * @codeCoverageIgnore
 	 *
-	 * @since   1.0.0
-	 * @access  public
-	 *
-	 * @param   array $data The options data to try and save via the module model.
+	 * @param array $data The options data to try and save via the module model.
 	 *
 	 * @return array
+	 * @since   1.0.0
+	 * @access  public
 	 */
 	public function try_module_save( $data ) {
 		$response            = array();
@@ -233,6 +245,111 @@ class Orbit_Fox_Admin {
 		}
 
 		return $response;
+	}
+
+	/**
+	 * Define render function for recommended tab.
+	 */
+	public function load_recommended_plugins() {
+		$plugins = [
+			'optimole-wp',
+			'feedzy-rss-feeds',
+			'wpforms-lite',
+			'translatepress-multilingual',
+			'autoptimize',
+			'wordpress-seo',
+		];
+		shuffle( $plugins );
+		add_thickbox();
+		echo sprintf( '<div class="obfx-recommended-title-wrapper"><span class="obfx-recommended-title"><span class="dashicons dashicons-megaphone"></span> &nbsp; %s</i></span><span class="obfx-recommended-disclosure"><i> <span class="dashicons dashicons-editor-help obfx-show-disclosure"></span>Some of those plugins are developed by us and from some others if you use them and upgrade to pro, we might earn a comission.</i></span><div class="clearfix"></div> </div>', 'Orbit Fox recommends' );
+		foreach ( $plugins as $plugin ) {
+			$current_plugin = $this->call_plugin_api( $plugin );
+			if ( ! isset( $current_plugin->name ) ) {
+				continue;
+			}
+			$image = $current_plugin->icons['1x'];
+			$name  = $current_plugin->name;
+			$desc  = $current_plugin->short_description;
+			$url   = add_query_arg(
+				array(
+					'tab'       => 'plugin-information',
+					'plugin'    => $plugin,
+					'TB_iframe' => true,
+					'width'     => 800,
+					'height'    => 800,
+				),
+				network_admin_url( 'plugin-install.php' )
+			);
+			echo sprintf(
+				'<div class="tile obfx-recommended ">
+					<div class="tile-icon">
+						<div class="obfx-icon-recommended">
+							<img  width="100" src="%s"/>
+						</div>
+					</div>
+					<div class="tile-content">
+						<p class="tile-title">%s</p>
+						<p class="tile-subtitle">%s</p>
+					</div>
+					<div class="tile-action">
+						<div class="form-group">
+							<label class="form-switch activated">
+								 <a class="button button-primary thickbox " href="%s">%s</a>
+							</label>
+						</div>
+					</div>
+				</div>',
+				esc_url( $image ),
+				esc_attr( $name ),
+				esc_attr( $desc ),
+				esc_url( $url ),
+				__( 'Install', 'themeisle-companion' )
+			);
+		}
+
+	}
+
+	/**
+	 * Get info from wporg api.
+	 *
+	 * @param string $slug Plugin slug.
+	 *
+	 * @return array|mixed|object|WP_Error
+	 */
+	public function call_plugin_api( $slug ) {
+		include_once( ABSPATH . 'wp-admin/includes/plugin-install.php' );
+
+		$call_api = get_transient( 'ti_plugin_info_' . $slug );
+
+		if ( false === $call_api ) {
+			$call_api = plugins_api(
+				'plugin_information',
+				array(
+					'slug'   => $slug,
+					'fields' => array(
+						'downloaded'        => false,
+						'rating'            => false,
+						'description'       => false,
+						'short_description' => true,
+						'donate_link'       => false,
+						'tags'              => false,
+						'sections'          => true,
+						'homepage'          => true,
+						'added'             => false,
+						'last_updated'      => false,
+						'compatibility'     => false,
+						'tested'            => false,
+						'requires'          => false,
+						'downloadlink'      => false,
+						'icons'             => true,
+						'banners'           => true,
+					),
+				)
+			);
+			set_transient( 'ti_plugin_info_' . $slug, $call_api, 1 * DAY_IN_SECONDS );
+		}
+
+		return $call_api;
 	}
 
 	/**
@@ -262,12 +379,11 @@ class Orbit_Fox_Admin {
 	 *
 	 * @codeCoverageIgnore
 	 *
-	 * @since   1.0.0
-	 * @access  public
-	 *
-	 * @param   array $data The data to try and update status via the module model.
+	 * @param array $data The data to try and update status via the module model.
 	 *
 	 * @return array
+	 * @since   1.0.0
+	 * @access  public
 	 */
 	public function try_module_activate( $data ) {
 		$response            = array();
@@ -296,10 +412,11 @@ class Orbit_Fox_Admin {
 	 *
 	 * @codeCoverageIgnore
 	 *
+	 * @param boolean                   $active_status The active status.
+	 * @param Orbit_Fox_Module_Abstract $module The module referenced.
+	 *
 	 * @since   2.3.3
 	 * @access  public
-	 * @param   boolean                   $active_status The active status.
-	 * @param   Orbit_Fox_Module_Abstract $module The module referenced.
 	 */
 	public function trigger_activate_deactivate( $active_status, Orbit_Fox_Module_Abstract $module ) {
 		if ( $active_status == true ) {

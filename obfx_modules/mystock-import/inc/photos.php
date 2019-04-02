@@ -11,7 +11,7 @@
 			<?php
 			if ( ! empty( $urls ) ) {
 				foreach ( $urls as $photo ) {
-					include ( dirname( __FILE__ ) ) . '/photo.php';
+					include( dirname( __FILE__ ) ) . '/photo.php';
 				}
 			}
 			?>
