@@ -1,5 +1,8 @@
 /* global _wpMediaViewsL10n, mystock_import, jQuery */
-(function ($) {
+function loadMyStockTab($) {
+	if(  document.body.classList && document.body.classList.contains( 'block-editor-page' )){
+		return;
+	}
 	var media = wp.media,
 		l10n = media.view.l10n = typeof _wpMediaViewsL10n === 'undefined' ? {} : _wpMediaViewsL10n;
 
@@ -236,4 +239,7 @@
 			}
 		}
 	);
-})( jQuery );
+}
+document.addEventListener('DOMContentLoaded', function() {
+	loadMyStockTab(jQuery);
+});
