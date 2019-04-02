@@ -91,7 +91,10 @@ class Image_CDN_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$obfx_user_data = $this->get_api_data();
 		$args           = array(
 			'id'    => 'obfx_img_quota',
-			'title' => 'OrbitFox' . __( ' Image Traffic', 'themeisle-companion' ) . ': ' . number_format( floatval( ( $obfx_user_data['image_cdn']['usage'] / 1000 ) ), 3 ) . ' / ' . number_format( floatval( ( $obfx_user_data['image_cdn']['quota'] / 1000 ) ), 0 ) . 'GB',
+			'title' => 'OrbitFox' . __( ' Image Traffic', 'themeisle-companion' ) . ': ' .
+			           number_format( floatval( (
+			           isset( $obfx_user_data['image_cdn']['usage'] ) ? $obfx_user_data['image_cdn']['usage'] : 0 / 1000 ) ), 3 ) . ' / ' .
+			           number_format( floatval( ( isset( $obfx_user_data['image_cdn']['quota'] ) ? $obfx_user_data['image_cdn']['quota'] : 0 / 1000 ) ), 0 ) . 'GB',
 			'href'  => 'https://dashboard.orbitfox.com/',
 			'meta'  => array( 'target' => '_blank' )
 		);
