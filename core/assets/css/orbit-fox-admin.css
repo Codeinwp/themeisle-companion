@@ -3760,6 +3760,13 @@ a.obfx-no-link{
     color:#2faa3f;
     font-weight: bold;
 }
+.obfx-title-deprecated{
+    color:#ca4a1f;
+    font-weight: bold;
+}
+#obfx-mod-image-cdn sup.obfx-title-deprecated{
+    font-size:50%;
+}
 .obfx-img-logout {
 	position: relative;
 	top: -15px;

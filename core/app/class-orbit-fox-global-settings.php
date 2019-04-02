@@ -62,7 +62,6 @@ class Orbit_Fox_Global_Settings {
 				'obfx_modules',
 				array(
 					'social-sharing',
-					'image-cdn',
 					'gutenberg-blocks',
 					'uptime-monitor',
 					'google-analytics',
@@ -74,6 +73,7 @@ class Orbit_Fox_Global_Settings {
 					'policy-notice',
 					'beaver-widgets',
 					'safe-updates',
+					'image-cdn',
 				)
 			);
 		}// End if().
