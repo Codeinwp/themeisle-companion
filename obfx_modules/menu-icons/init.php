@@ -43,7 +43,7 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 *
 	 * @since   1.0.0
 	 * @access  public
-	 * @return bool	
+	 * @return bool
 	 */
 	public function enable_module() {
 		return true;
@@ -261,14 +261,13 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				$theme	= wp_get_theme();
 				$name	= $theme->get( 'Name' );
 			} else {
-				require_once( ABSPATH . 'wp-admin/includes/file.php' );
-				WP_Filesystem();
-				global $wp_filesystem;
-
-				$plugin_path	= str_replace( str_replace( '\\', '/', trailingslashit( dirname( OBX_PATH ) ) ), '', $path );
-				$array			= explode( '/', $path );
-				$name			= reset( $array );
-				$type			= __( 'plugin', 'themeisle-companion' );
+				$path = explode( 'plugins', $path );
+				$path = explode( DIRECTORY_SEPARATOR, isset($path[1]) ? $path[1] : '' );
+				$path = array_values( array_filter( $path ) );
+				if ( isset( $path[0] ) ) {
+					$name = '&nbsp; <b>' . esc_attr( $path[0] ) . '</b>';
+				}
+				$type = __( 'plugin', 'themeisle-companion' );
 			}
 
 			$this->description .= '<br><i class="chip">' . sprintf( __( 'There appears to be a conflict with the %s %s. This module may not work as expected.', 'themeisle-companion' ), $type, $name ) . '</i>';
