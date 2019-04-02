@@ -110,6 +110,11 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 ## Changelog ##
+### 2.7.5 - 2019-02-02  ###
+
+* Improve compatibility with Image CDN module by disabling the feature if Optimole exits already
+
+
 ### 2.7.4 - 2019-02-01  ###
 
 * update Gutenberg blocks library to the latest version
