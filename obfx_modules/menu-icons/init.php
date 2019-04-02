@@ -159,8 +159,8 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		);
 
 		$font_awesome = array(
-			'vendor/font-awesome.min.css' => false,
-			'vendor/fontawesome-iconpicker.min' => array( 'vendor/font-awesome.min.css' ),
+			'vendor/font-awesome.min' => false,
+			'vendor/fontawesome-iconpicker.min' => array( 'vendor/font-awesome.min' ),
 		);
 		if ( wp_style_is( 'font-awesome', 'registered' ) || wp_style_is( 'font-awesome', 'enqueued' ) ) {
 			$font_awesome = array(
