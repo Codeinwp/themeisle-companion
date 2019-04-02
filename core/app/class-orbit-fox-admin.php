@@ -144,8 +144,9 @@ class Orbit_Fox_Admin {
 		$user_id = $current_user->ID;
 		if ( ! get_user_meta( $user_id, 'obfx_ignore_visit_dashboard_notice' ) ) { ?>
 			<div class="notice notice-info" style="position:relative;">
-				<p><?php echo sprintf( __( 'You have activated Orbit Fox plugin! Go to the %s to get started with the extra features.', 'themeisle-companion' ), sprintf( '<a href="%s">%s</a>', admin_url( 'admin.php?page=obfx_companion&obfx_ignore_visit_dashboard_notice=0' ), __( 'Dashboard Page', 'themeisle-companion' ) ) ); ?></p>
-				<a href="?obfx_ignore_visit_dashboard_notice=0" class="notice-dismiss" style="text-decoration: none;">
+				<p><?php echo sprintf( __( 'You have activated Orbit Fox plugin! Go to the %s to get started with the extra features.', 'themeisle-companion' ), sprintf( '<a href="%s">%s</a>', add_query_arg( 'obfx_ignore_visit_dashboard_notice', '0', admin_url( 'admin.php?page=obfx_companion' ) ), __( 'Dashboard Page', 'themeisle-companion' ) ) ); ?></p>
+				<a href="<?php echo add_query_arg( 'obfx_ignore_visit_dashboard_notice', '0', admin_url( 'admin.php?page=obfx_companion' ) ); ?>"
+				   class="notice-dismiss" style="text-decoration: none;">
 					<span class="screen-reader-text">Dismiss this notice.</span>
 				</a>
 			</div>
@@ -164,6 +165,7 @@ class Orbit_Fox_Admin {
 		$user_id = $current_user->ID;
 		if ( isset( $_GET['obfx_ignore_visit_dashboard_notice'] ) && '0' == $_GET['obfx_ignore_visit_dashboard_notice'] ) {
 			add_user_meta( $user_id, 'obfx_ignore_visit_dashboard_notice', 'true', true );
+			wp_safe_redirect( admin_url( 'admin.php?page=obfx_companion' ) );
 		}
 	}
 
