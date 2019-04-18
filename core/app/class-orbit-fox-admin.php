@@ -76,7 +76,7 @@ class Orbit_Fox_Admin {
 		if ( empty( $screen ) ) {
 			return;
 		}
-		if ( in_array( $screen->id, array( 'toplevel_page_obfx_companion' ) ) ) {
+		if ( in_array( $screen->id, array( 'toplevel_page_obfx_companion' ), true ) ) {
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . '../assets/css/orbit-fox-admin.css', array(), $this->version, 'all' );
 		}
 		do_action( 'obfx_admin_enqueue_styles' );
@@ -105,7 +105,7 @@ class Orbit_Fox_Admin {
 		if ( empty( $screen ) ) {
 			return;
 		}
-		if ( in_array( $screen->id, array( 'toplevel_page_obfx_companion' ) ) ) {
+		if ( in_array( $screen->id, array( 'toplevel_page_obfx_companion' ), true ) ) {
 			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . '../assets/js/orbit-fox-admin.js', array( 'jquery' ), $this->version, false );
 		}
 		do_action( 'obfx_admin_enqueue_scripts' );
@@ -163,6 +163,7 @@ class Orbit_Fox_Admin {
 	function visit_dashboard_notice_dismiss() {
 		global $current_user;
 		$user_id = $current_user->ID;
+		// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
 		if ( isset( $_GET['obfx_ignore_visit_dashboard_notice'] ) && '0' == $_GET['obfx_ignore_visit_dashboard_notice'] ) {
 			add_user_meta( $user_id, 'obfx_ignore_visit_dashboard_notice', 'true', true );
 			wp_safe_redirect( admin_url( 'admin.php?page=obfx_companion' ) );
@@ -419,7 +420,7 @@ class Orbit_Fox_Admin {
 	 * @access  public
 	 */
 	public function trigger_activate_deactivate( $active_status, Orbit_Fox_Module_Abstract $module ) {
-		if ( $active_status == true ) {
+		if ( $active_status === true ) {
 			do_action( $module->get_slug() . '_activate' );
 		} else {
 			do_action( $module->get_slug() . '_deactivate' );
@@ -457,8 +458,10 @@ class Orbit_Fox_Admin {
 						$data = array(
 							'notice' => $notice,
 						);
-						if ( $notice['display_always'] == false && ! in_array( $hash, $showed_notices ) ) {
+						// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
+						if ( $notice['display_always'] == false && ! in_array( $hash, $showed_notices, true ) ) {
 							$toasts .= $rdh->get_partial( 'module-toast', $data );
+							// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
 						} elseif ( $notice['display_always'] == true ) {
 							$toasts .= $rdh->get_partial( 'module-toast', $data );
 						}
@@ -466,7 +469,7 @@ class Orbit_Fox_Admin {
 				}
 
 				$module->update_showed_notices();
-				if ( $module->auto == false ) {
+				if ( $module->auto === false ) {
 					$count_modules ++;
 					$checked = '';
 					if ( $module->get_is_active() ) {
@@ -510,7 +513,7 @@ class Orbit_Fox_Admin {
 
 		$no_modules = false;
 		$empty_tpl  = '';
-		if ( $count_modules == 0 ) {
+		if ( $count_modules === 0 ) {
 			$no_modules = true;
 			$empty_tpl  = $rdh->get_partial(
 				'empty',

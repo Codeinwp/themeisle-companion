@@ -272,7 +272,7 @@ class Image_CDN_Replacer {
 	 * @return array
 	 */
 	protected static function image_sizes() {
-		if ( null == self::$image_sizes ) {
+		if ( null === self::$image_sizes ) {
 			global $_wp_additional_image_sizes;
 
 			// Populate an array matching the data structure of $_wp_additional_image_sizes so we have a consistent structure for image sizes
@@ -473,7 +473,7 @@ class Image_CDN_Replacer {
 			if ( preg_match( '#class=["|\']?[^"\']*size-([^"\'\s]+)[^"\']*["|\']?#i', $images['img_tag'][ $index ], $size ) ) {
 				$size = array_pop( $size );
 
-				if ( false === $width && false === $height && 'full' != $size && array_key_exists( $size, $image_sizes ) ) {
+				if ( false === $width && false === $height && 'full' !== $size && array_key_exists( $size, $image_sizes, true ) ) {
 					$width  = (int) $image_sizes[ $size ]['width'];
 					$height = (int) $image_sizes[ $size ]['height'];
 				}
