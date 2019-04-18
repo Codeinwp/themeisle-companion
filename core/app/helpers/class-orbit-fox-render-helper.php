@@ -191,7 +191,7 @@ class Orbit_Fox_Render_Helper {
 	 */
 	private function set_field_value( $option = array() ) {
 		$field_value = $option['default'];
-		if ( isset( $option['value'] ) && $option['value'] != '' ) {
+		if ( isset( $option['value'] ) && $option['value'] !== '' ) {
 			$field_value = $option['value'];
 		}
 
@@ -306,6 +306,7 @@ class Orbit_Fox_Render_Helper {
 		$select_options = '';
 		foreach ( $option['options'] as $value => $label ) {
 			$is_selected = '';
+			// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
 			if ( $field_value == $value ) {
 				$is_selected = 'selected';
 			}
@@ -335,7 +336,7 @@ class Orbit_Fox_Render_Helper {
 		$select_options = '';
 		foreach ( $option['options'] as $value => $label ) {
 			$checked = '';
-			if ( $value == $field_value ) {
+			if ( $value === $field_value ) {
 				$checked = 'checked';
 			}
 			$select_options .= $this->generate_check_type( 'radio', $value, $checked, $label, $option );

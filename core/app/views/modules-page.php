@@ -92,7 +92,7 @@ if ( isset( $_GET['show_plugins'] ) && $_GET['show_plugins'] === 'yes' ) {
 				<div class="panel-header text-center">
 					<div class="panel-title mt-10"><?php echo __( 'Activated Modules Options', 'themeisle-companion' ); ?></div>
 				</div>
-				<?php echo ( $panels == '' ) ? '<p class="text-center">' . __( 'No modules activated.', 'themeisle-companion' ) . '</p>' : $panels; ?>
+				<?php echo ( $panels === '' ) ? '<p class="text-center">' . __( 'No modules activated.', 'themeisle-companion' ) . '</p>' : $panels; ?>
 			</div>
 			<?php
 		}
