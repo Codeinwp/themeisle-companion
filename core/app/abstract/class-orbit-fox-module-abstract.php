@@ -207,13 +207,15 @@ abstract class Orbit_Fox_Module_Abstract {
 	 */
 	public function update_showed_notices() {
 		$showed_notices = $this->get_status( 'showed_notices' );
+		// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
 		if ( $showed_notices == false ) {
 			$showed_notices = array();
 		}
 		foreach ( $this->notices as $notice ) {
+			// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
 			if ( $notice['display_always'] == false ) {
 				$hash = md5( serialize( $notice ) );
-				if ( ! in_array( $hash, $showed_notices ) ) {
+				if ( ! in_array( $hash, $showed_notices, true ) ) {
 					$showed_notices[] = $hash;
 				}
 			}
@@ -294,7 +296,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @return bool
 	 */
 	final public function get_is_active() {
-		if ( $this->auto == true ) {
+		if ( $this->auto === true ) {
 			return true;
 		}
 		if ( ! isset( $this->model ) ) {
@@ -490,7 +492,7 @@ abstract class Orbit_Fox_Module_Abstract {
 				$order = 0;
 				$map   = array();
 				foreach ( $enqueue['css'] as $file_name => $dependencies ) {
-					if ( $dependencies == false ) {
+					if ( $dependencies === false ) {
 						$dependencies = array();
 					} else {
 						// check if any dependency has been loaded by us. If yes, then use that id as the dependency.
@@ -564,7 +566,7 @@ abstract class Orbit_Fox_Module_Abstract {
 				$order = 0;
 				$map   = array();
 				foreach ( $enqueue['js'] as $file_name => $dependencies ) {
-					if ( $dependencies == false ) {
+					if ( $dependencies === false ) {
 						$dependencies = array();
 					} else {
 						// check if any dependency has been loaded by us. If yes, then use that id as the dependency.

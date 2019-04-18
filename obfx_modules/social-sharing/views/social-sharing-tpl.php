@@ -26,16 +26,22 @@ if ( ! empty( $social_links_array ) ) { ?>
 		<?php
 		foreach ( $social_links_array as $network_data ) {
 			$class = '';
+			// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
 			if ( $network_data['show_desktop'] == '0' ) {
 				$class .= 'obfx-hide-desktop-socials ';
 			}
+			// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
 			if ( $network_data['show_mobile'] == '0' ) {
 				$class .= 'obfx-hide-mobile-socials ';
 			}
 			?>
 			<li class="<?php echo esc_attr( $class ); ?>">
 				<a class = "<?php echo esc_attr( $network_data['icon'] ); ?>"
-					<?php echo ( isset( $network_data['target'] ) && $network_data['target'] != '0' ) ? 'target="_blank"' : ''; ?> href="<?php echo esc_url( $network_data['link'] ); ?>">
+					<?php
+					// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
+					echo ( isset( $network_data['target'] ) && $network_data['target'] != '0' ) ? 'target="_blank"' : '';
+					?>
+					 href="<?php echo esc_url( $network_data['link'] ); ?>">
 					<i class="socicon-<?php echo esc_attr( $network_data['icon'] ); ?>"></i>
 					<?php
 					if ( $show_name ) {

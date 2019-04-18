@@ -1,4 +1,14 @@
 
+ ### v2.8.0 - 2019-04-02 
+ **Changes:** 
+ * Fix font awesome menu icons issue in the menu builder
+* Fix issue on dismiss nag info for OrbitFox post install
+* Fix menu icon possible conflicts report info
+* FIx undefined error on new installs for image module
+* Fix issues with mystock import on certain use cases
+* Remove image CDN module for new users, service will be migrated to optimole plugin
+* Adds recommended plugins tab into Orbitfox settings page.
+ 
  ### v2.7.5 - 2019-02-02 
  **Changes:** 
  * Improve compatibility with Image CDN module by disabling the feature if Optimole exits already

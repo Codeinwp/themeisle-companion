@@ -90,10 +90,10 @@ class Autoloader {
 	protected static function check_namespaces( $class_name ) {
 		$found = false;
 		foreach ( static::$namespaces as $namespace ) {
-			if ( substr( $class_name, 0, strlen( $namespace ) ) == $namespace ) {
+			if ( substr( $class_name, 0, strlen( $namespace ) ) === $namespace ) {
 				$found = true;
 			}
-			if ( $namespace == 'OBFX_Module' && substr( $class_name, strlen( $namespace ) * ( -1 ), strlen( $namespace ) ) == $namespace ) {
+			if ( $namespace === 'OBFX_Module' && substr( $class_name, strlen( $namespace ) * ( -1 ), strlen( $namespace ) ) === $namespace ) {
 				return static::module_loader( $class_name );
 			}
 		}
@@ -147,7 +147,7 @@ class Autoloader {
 	 */
 	public static function module_loader( $class_name ) {
 		$module_name = str_replace( '_', '-', strtolower( str_replace( '_OBFX_Module', '', $class_name ) ) );
-		if ( static::$plugins_path != '' ) {
+		if ( static::$plugins_path !== '' ) {
 			$directories = glob( static::$plugins_path . '*' . DIRECTORY_SEPARATOR . 'obfx_modules' . DIRECTORY_SEPARATOR . $module_name, GLOB_ONLYDIR );
 			foreach ( $directories as $directory ) {
 				$filename = $directory . DIRECTORY_SEPARATOR . 'init.php';

@@ -135,7 +135,7 @@ do_action( 'fl_builder_loop_settings_before_form', $settings ); // e.g Add custo
 		<?php foreach ( FLBuilderLoop::post_types() as $slug => $type ) : ?>
 			<table class="fl-form-table fl-custom-query-filter fl-custom-query-<?php echo $slug; ?>-filter" 
 																							<?php
-																							if ( $slug == $settings->post_type ) {
+																							if ( $slug === $settings->post_type ) {
 																								echo 'style="display:table;"';}
 																							?>
 >
