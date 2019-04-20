@@ -110,6 +110,12 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 ## Changelog ##
+### 2.8.3 - 2019-04-20  ###
+
+* Fixed issue with constant not being checked in Otter
+* Added error handling in Backbone functions
+
+
 ### 2.8.2 - 2019-04-18  ###
 
 * Fix PHP notice

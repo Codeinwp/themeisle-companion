@@ -1,4 +1,9 @@
 
+ ### v2.8.3 - 2019-04-20 
+ **Changes:** 
+ * Fixed issue with constant not being checked in Otter
+* Added error handling in Backbone functions
+ 
  ### v2.8.2 - 2019-04-18 
  **Changes:** 
  * Fix PHP notice
