@@ -23,9 +23,9 @@
   },
   "devDependencies": {
     "grunt-plugin-fleet": "codeinwp/grunt-plugin-fleet",
-    "load-project-config": "~0.2.0"
+    "load-project-config": "0.2.1"
   },
   "dependencies": {
-    "grunt": "^1.0.3"
+    "grunt": "1.0.4"
   }
 }
