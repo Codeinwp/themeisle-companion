@@ -262,7 +262,7 @@ class Orbit_Fox_Admin {
 		];
 		shuffle( $plugins );
 		add_thickbox();
-		echo sprintf( '<div class="obfx-recommended-title-wrapper"><span class="obfx-recommended-title"><span class="dashicons dashicons-megaphone"></span> &nbsp; %s</i></span><span class="obfx-recommended-disclosure"><i> <span class="dashicons dashicons-editor-help obfx-show-disclosure"></span>Some of those plugins are developed by us and from some others if you use them and upgrade to pro, we might earn a comission.</i></span><div class="clearfix"></div> </div>', 'Orbit Fox recommends' );
+		echo sprintf( '<div class="obfx-recommended-title-wrapper"><span class="obfx-recommended-title"><span class="dashicons dashicons-megaphone"></span> &nbsp; %s</span><span class="obfx-recommended-disclosure"><i> <span class="dashicons dashicons-editor-help obfx-show-disclosure"></span>Some of these plugins are developed by us and from some others if you use them and upgrade to pro, we might earn a comission.</i></span><div class="clearfix"></div> </div>', 'Orbit Fox recommends' );
 		foreach ( $plugins as $plugin ) {
 			$current_plugin = $this->call_plugin_api( $plugin );
 			if ( ! isset( $current_plugin->name ) ) {
@@ -295,7 +295,7 @@ class Orbit_Fox_Admin {
 					<div class="tile-action">
 						<div class="form-group">
 							<label class="form-switch activated">
-								 <a class="button button-primary thickbox " href="%s">%s</a>
+								 <a class="button button-primary thickbox " href="%s"><span class="dashicons dashicons-download"></span>%s</a>
 							</label>
 						</div>
 					</div>
