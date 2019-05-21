@@ -17,7 +17,6 @@ Extend your theme functionality with <a href="https://orbitfox.com/" rel="nofoll
 https://www.youtube.com/watch?v=YHhK_twfYB8
 
 **Features:**
-- Beta: Image CDN & Optimization
 - Beta: Themes Safe updates feedback
 - Privacy policy notice ( GDPR friendly )
 - Uptime Monitor
