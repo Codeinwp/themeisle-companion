@@ -3064,6 +3064,9 @@ html {
 	-ms-flex-line-pack: justify;
 }
 
+.obfx-wrapper .tile .tile-icon .dashicons{
+    line-height: 20px;
+}
 .obfx-wrapper .tile .tile-icon,
 .obfx-wrapper .tile .tile-action {
 	-webkit-box-flex: 0;
@@ -3873,6 +3876,8 @@ ul.obfx-menu-tabs{
     text-decoration: none;
     padding: 10px 40px;
     line-height: 7px;
+    box-shadow: none;
+    text-shadow: none;
 }
 
 .obfx-recommended .button-primary:hover {
