@@ -645,8 +645,8 @@ html {
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-	-webkit-transition: all 0.2s ease;
-	transition: all 0.2s ease;
+	-webkit-transition: all 0.1s ease;
+	transition: all 0.1s ease;
 
 	-webkit-appearance: none;
 	-moz-appearance: none;
@@ -2154,7 +2154,7 @@ html {
 }
 
 .obfx-wrapper .panel .panel-subtitle {
-	color: #bbc1cd;
+	color: #50595E;
 }
 
 .obfx-wrapper .empty {
@@ -3064,12 +3064,20 @@ html {
 	-ms-flex-line-pack: justify;
 }
 
+.obfx-wrapper .tile .tile-icon .dashicons{
+    line-height: 20px;
+}
 .obfx-wrapper .tile .tile-icon,
 .obfx-wrapper .tile .tile-action {
 	-webkit-box-flex: 0;
 	-webkit-flex: 0 0 auto;
 	-ms-flex: 0 0 auto;
 	flex: 0 0 auto;
+}
+
+.obfx-wrapper .tile .dashicons {
+	transition: none;
+	line-height: 0.5;
 }
 
 .obfx-wrapper .tile .tile-content {
@@ -3089,11 +3097,16 @@ html {
 
 .obfx-wrapper .tile .tile-title {
 	line-height: 2rem;
+	color: #3B49AF;
+	font-size: 1.3em;
+	font-weight: 600;
 }
 
 .obfx-wrapper .tile .tile-subtitle {
 	color: #bbc1cd;
 	line-height: 2rem;
+	color: #50595E;
+	font-size: 14px;
 }
 
 .obfx-wrapper .tile.tile-centered {
@@ -3828,6 +3841,7 @@ ul.obfx-menu-tabs{
 
     color: #f0f1f4;
     text-decoration: none;
+	transition: all 0.2 ease;
 }
 .obfx-menu-tabs li:hover,
 .obfx-menu-tabs li.obfx-tab-active {
@@ -3843,6 +3857,7 @@ ul.obfx-menu-tabs{
 }
 .obfx-menu-tabs li a {
     font-size: 1.75rem;
+	font-weight: 500;
 }
 .obfx-menu-tabs li{
     border-top-left-radius: 5px;
@@ -3855,13 +3870,29 @@ ul.obfx-menu-tabs{
     display: inline-block;
     list-style: none;
 }
-.obfx-recommended .button-primary:hover,
+
 .obfx-recommended .button-primary{
     background: #5764c6;
     text-decoration: none;
     padding: 10px 40px;
     line-height: 7px;
+    box-shadow: none;
+    text-shadow: none;
 }
+
+.obfx-recommended .button-primary:hover {
+	background: #fff;
+	border-color: #5764c6;
+	color: #5764c6;
+	font-weight: 500;
+	text-decoration: none;
+	transition: 0.3s;
+}
+
+.wp-core-ui .button-primary:hover {
+	text-shadow: none;
+}
+
 .obfx-recommended .tile-title{
     padding-top:15px;
     margin-bottom: 0px;
