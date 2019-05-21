@@ -1,4 +1,17 @@
 
+ ### v2.8.3 - 2019-04-20 
+ **Changes:** 
+ * Fixed issue with constant not being checked in Otter
+* Added error handling in Backbone functions
+ 
+ ### v2.8.2 - 2019-04-18 
+ **Changes:** 
+ * Fix PHP notice
+ 
+ ### v2.8.1 - 2019-04-18 
+ **Changes:** 
+ * Fix issues with newsletter form
+ 
  ### v2.8.0 - 2019-04-02 
  **Changes:** 
  * Fix font awesome menu icons issue in the menu builder
