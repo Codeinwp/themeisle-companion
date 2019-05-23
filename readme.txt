@@ -109,6 +109,13 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 == Changelog ==
+= 2.8.4 - 2019-05-23  = 
+
+* minor adjustments to the dashboard UI
+* various updates to the Gutenberg blocks available
+* adds compatibility with WordPress 5.2
+
+
 = 2.8.3 - 2019-04-20  =
 
 * Fixed issue with constant not being checked in Otter

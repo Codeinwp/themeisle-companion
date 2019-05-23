@@ -2,7 +2,7 @@
 **Contributors:** [themeisle](https://profiles.wordpress.org/themeisle), [codeinwp](https://profiles.wordpress.org/codeinwp), [rodicaelena](https://profiles.wordpress.org/rodicaelena), [baicusandrei](https://profiles.wordpress.org/baicusandrei), [hardeepasrani](https://profiles.wordpress.org/hardeepasrani)  
 **Tags:** widget, admin, widgets, sharing, sections, themes, stock photos, custom icons, icons, menu icons, stock, templates  
 **Requires at least:** 4.7  
-**Tested up to:** 5.1  
+**Tested up to:** 5.2  
 **Requires PHP:** 5.4  
 **Stable tag:** trunk  
 **License:** GPLv2 or later  
@@ -17,7 +17,6 @@ Extend your theme functionality with <a href="https://orbitfox.com/" rel="nofoll
 https://www.youtube.com/watch?v=YHhK_twfYB8
 
 **Features:**
-- Beta: Image CDN & Optimization
 - Beta: Themes Safe updates feedback
 - Privacy policy notice ( GDPR friendly )
 - Uptime Monitor
@@ -42,7 +41,7 @@ We've also built some fantastic <a href="http://themeisle.com/wordpress-themes/f
 
 ### How I can get support for this plugin ? ###
 
-You can learn more about Orbit Fox and ask for help by <a href="https://wordpress.org/support/plugin/themeisle-companion/#new-post"  >visiting the Support forum</a>.
+You can learn more about Orbit Fox and ask for help by <a href="https://themeisle.com/contact/"  >visiting ThemeIsle website</a>.
 
 ### What can I do with this plugin ###
 This plugin extends the features of your sites by adding numerous features.
@@ -110,6 +109,13 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 ## Changelog ##
+### 2.8.4 - 2019-05-23  ###
+
+* minor adjustments to the dashboard UI
+* various updates to the Gutenberg blocks available
+* adds compatibility with WordPress 5.2
+
+
 ### 2.8.3 - 2019-04-20  ###
 
 * Fixed issue with constant not being checked in Otter
@@ -252,7 +258,7 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 ### 2.5.1 - 2018-07-02  ###
 
-* Fix social icons saving bug. 
+* Fix social icons saving bug.
 * Fix z-index issue on policy notice.
 
 
@@ -315,7 +321,7 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 ### 2.4.0 - 2018-02-16  ###
 
-* Adds a new module for uptime monitor of your website. 
+* Adds a new module for uptime monitor of your website.
 * Adds 4 more hooks for modules related actions.
 
 
@@ -327,7 +333,7 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 ### 2.3.0 - 2018-01-15  ###
 
 * Adds 3 forms widgets for Elementor (Contact form, Newsletter, and Registration form).
-* Improve menu icons copyright. 
+* Improve menu icons copyright.
 * Allows social icons on pages.
 * Adds beaver widgets module active by default.
 
@@ -439,7 +445,7 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 ### 2.0.4 - 2017-09-11  ###
 
-* Adds PHP minimum requirement. 
+* Adds PHP minimum requirement.
 * Fix for admin styles loading screen.
 
 
