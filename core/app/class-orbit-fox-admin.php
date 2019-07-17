@@ -549,4 +549,46 @@ class Orbit_Fox_Admin {
 		echo $output;
 	}
 
+	/**
+	 * A method to trigger module activation/deactivation (optionally, along with its options)
+	 * when a theme is activated.
+	 *
+	 * @codeCoverageIgnore
+	 *
+	 * @since   2.8.5
+	 * @access  public
+	 */
+	public function toggle_modules() {
+		$modules = apply_filters( 'obfx_toggle_modules', array() );
+		if ( ! $modules ) {
+			return;
+		}
+
+		$data       = array();
+		$errors     = array();
+		foreach ( $modules as $name => $options ) {
+			$data['name'] = $name;
+			$data['checked'] = 1;
+			// if $options is a boolean, this means we are only interested in activation/deactivation without options.
+			if ( is_bool( $options ) ) {
+				$data['checked'] = $options ? 1 : 0;
+			}
+
+			$response = $this->try_module_activate( $data );
+			if ( $response['type'] !== 'success' ) {
+				$errors[ $name ] = $response['message'];
+				continue;
+			}
+			// if $options is an array.
+			if ( $options && is_array( $options ) ) {
+				$options['module-slug'] = $name;
+				$response = $this->try_module_save( $options );
+				if ( $response['type'] !== 'success' ) {
+					$errors[ $name ] = $response['message'];
+				}
+			}
+		}
+		do_action( 'obfx_toggle_modules_errors', $errors );
+	}
+
 }

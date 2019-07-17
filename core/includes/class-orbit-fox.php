@@ -183,6 +183,7 @@ class Orbit_Fox {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'wp_ajax_obfx_update_module_options', $plugin_admin, 'obfx_update_module_options' );
 		$this->loader->add_action( 'wp_ajax_obfx_update_module_active_status', $plugin_admin, 'obfx_update_module_active_status' );
+		$this->loader->add_action( 'after_switch_theme', $plugin_admin, 'toggle_modules' );
 
 		$plugin_public = new Orbit_Fox_Public( $this->get_plugin_name(), $this->get_version() );
 
