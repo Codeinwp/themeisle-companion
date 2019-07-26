@@ -16,7 +16,7 @@ branches:
     - "/^*-v[0-9]/"
 env:
   global:
-    - MASTER_BRANCH=master UPSTREAM_REPO=Codeinwp/themeisle-companion STORE_URL=https://themeisle.com
+    - WP_VERSION=latest MASTER_BRANCH=master UPSTREAM_REPO=Codeinwp/themeisle-companion STORE_URL=https://themeisle.com
       DEPLOY_BUILD=7.0
 before_install:
   - mkdir -p bin && cd bin
