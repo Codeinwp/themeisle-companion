@@ -2,7 +2,7 @@
 Contributors: themeisle, codeinwp, rodicaelena, baicusandrei, hardeepasrani
 Tags: widget, admin, widgets, sharing, sections, themes, stock photos, custom icons, icons, menu icons, stock, templates
 Requires at least: 4.7
-Tested up to: 5.1
+Tested up to: 5.2
 Requires PHP: 5.4
 Stable tag: trunk
 License: GPLv2 or later
@@ -17,7 +17,6 @@ Extend your theme functionality with <a href="https://orbitfox.com/" rel="nofoll
 https://www.youtube.com/watch?v=YHhK_twfYB8
 
 **Features:**
-- Beta: Image CDN & Optimization
 - Beta: Themes Safe updates feedback
 - Privacy policy notice ( GDPR friendly )
 - Uptime Monitor
@@ -110,23 +109,30 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 == Changelog ==
-= 2.8.3 - 2019-04-20  = 
+= 2.8.4 - 2019-05-23  = 
+
+* minor adjustments to the dashboard UI
+* various updates to the Gutenberg blocks available
+* adds compatibility with WordPress 5.2
+
+
+= 2.8.3 - 2019-04-20  =
 
 * Fixed issue with constant not being checked in Otter
 * Added error handling in Backbone functions
 
 
-= 2.8.2 - 2019-04-18  = 
+= 2.8.2 - 2019-04-18  =
 
 * Fix PHP notice
 
 
-= 2.8.1 - 2019-04-18  = 
+= 2.8.1 - 2019-04-18  =
 
 * Fix issues with newsletter form
 
 
-= 2.8.0 - 2019-04-02  = 
+= 2.8.0 - 2019-04-02  =
 
 * Fix font awesome menu icons issue in the menu builder
 * Fix issue on dismiss nag info for OrbitFox post install
@@ -137,34 +143,34 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 * Adds recommended plugins tab into Orbitfox settings page.
 
 
-= 2.7.5 - 2019-02-02  = 
+= 2.7.5 - 2019-02-02  =
 
 * Improve compatibility with Image CDN module by disabling the feature if Optimole exits already
 
 
-= 2.7.4 - 2019-02-01  = 
+= 2.7.4 - 2019-02-01  =
 
 * update Gutenberg blocks library to the latest version
 * fix dashicons issue with Neve theme
 * load fontawesome locally if is not already loaded
 
 
-= 2.7.3 - 2018-12-12  = 
+= 2.7.3 - 2018-12-12  =
 
 * Revert Font Awesome 5 integration
 
 
-= 2.7.2 - 2018-12-10  = 
+= 2.7.2 - 2018-12-10  =
 
 * Tested with WP 5.0
 
 
-= 2.7.1 - 2018-12-07  = 
+= 2.7.1 - 2018-12-07  =
 
 * - Fix for Gutenberg blocks module loading
 
 
-= 2.7.0 - 2018-11-26  = 
+= 2.7.0 - 2018-11-26  =
 
 * Fix small typo on the module activation button.
 * Improves compatibility with Hestia Theme.
@@ -172,7 +178,7 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 * Fix translation text for Agree button in Cookie notice.
 
 
-= 2.6.4 - 2018-11-12  = 
+= 2.6.4 - 2018-11-12  =
 
 * Fix issue with elementor content forms php notice
 * Add alignment options to content forms
@@ -180,18 +186,18 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 * Performance enhancements
 
 
-= 2.6.3 - 2018-10-29  = 
+= 2.6.3 - 2018-10-29  =
 
 * - Minor bug fix in Gutenberg Blocks
 
 
-= 2.6.2 - 2018-10-29  = 
+= 2.6.2 - 2018-10-29  =
 
 * Adds Image Optimization and CDN module available for everyone.
 * Small improvements to the Gutenberg module.
 
 
-= 2.6.1 - 2018-10-10  = 
+= 2.6.1 - 2018-10-10  =
 
 * Added backward compatibility for Font Awesome 4
 * Fixed issue with Elementor dequeuing Font Awesome
@@ -200,46 +206,46 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 * Fixed z-index issue in Accordion block.
 
 
-= 2.6.0 - 2018-10-08  = 
+= 2.6.0 - 2018-10-08  =
 
 * Adds Gutenberg integration with various blocks.
 * Adds Font Awesome, Google maps, Notice, Sharing icons, Pie charts, Plugin Card, Pricing, Testimonial and Click to Tweet  Gutenberg block and Post grid block.
 
 
-= 2.5.8 - 2018-09-12  = 
+= 2.5.8 - 2018-09-12  =
 
 * Extend image optimization module for 50% of users.
 * Enable safe updates for all users.
 * Adds image optimization integration with Optimole.
 
 
-= 2.5.7 - 2018-08-13  = 
+= 2.5.7 - 2018-08-13  =
 
 * -fixed fatal error with Elementor extra widgets
 
 
-= 2.5.6 - 2018-07-26  = 
+= 2.5.6 - 2018-07-26  =
 
 * Release
 
 
-= 2.5.5 - 2018-07-23  = 
+= 2.5.5 - 2018-07-23  =
 
 * Add new controls for Elementor content forms.
 
 
-= 2.5.4 - 2018-07-11  = 
+= 2.5.4 - 2018-07-11  =
 
 * Fixed undefined method for old elementor versions.
 
 
-= 2.5.3 - 2018-07-11  = 
+= 2.5.3 - 2018-07-11  =
 
 * Small alignment fix for menu icons module
 * Added styling options for Elementor content forms
 
 
-= 2.5.2 - 2018-07-06  = 
+= 2.5.2 - 2018-07-06  =
 
 * Fixes post grid pagination issue
 * Fixes post grid colors not applying correctly
@@ -250,13 +256,13 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 * Fixes issue where url's were replaced with CDN url for beta users
 
 
-= 2.5.1 - 2018-07-02  = 
+= 2.5.1 - 2018-07-02  =
 
-* Fix social icons saving bug. 
+* Fix social icons saving bug.
 * Fix z-index issue on policy notice.
 
 
-= 2.5.0 - 2018-06-22  = 
+= 2.5.0 - 2018-06-22  =
 
 * Adds privacy policy module, allows users to set a notice for their visitors.
 * Adds Image CDN and Optimization module in private BETA .
@@ -265,14 +271,14 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 * Improvements for Hestia enhancements module.
 
 
-= 2.4.7 - 2018-05-03  = 
+= 2.4.7 - 2018-05-03  =
 
 * Add content forms for Beaver Builder
 * Bug fixes and performance enhancements for Hestia
 * Fix issue with plugin activation and deactivation
 
 
-= 2.4.6 - 2018-04-12  = 
+= 2.4.6 - 2018-04-12  =
 
 * Add video to readme file
 * Added notification about conflict with navwalker overrides
@@ -281,65 +287,65 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 * Added Azera Shop, Llorix One Lite, Shop Isle themes functionality to Legacy Module
 
 
-= 2.4.5 - 2018-03-29  = 
+= 2.4.5 - 2018-03-29  =
 
 * Fixed issue with duplicated widgets in Hestia theme
 * Fix undefined errors in Analytics Module
 * Unset monitor email field on deactivation
 
 
-= 2.4.4 - 2018-03-08  = 
+= 2.4.4 - 2018-03-08  =
 
 * Fixed Analytics module error.
 * UX Improvements.
 
 
-= 2.4.3 - 2018-03-04  = 
+= 2.4.3 - 2018-03-04  =
 
 * Fixed Analytics module issues.
 * Better UX on module activation.
 
 
-= 2.4.2 - 2018-03-02  = 
+= 2.4.2 - 2018-03-02  =
 
 * Added a new Google Analytics Integration module
 * Small UX improvements
 
 
-= 2.4.1 - 2018-02-20  = 
+= 2.4.1 - 2018-02-20  =
 
 * Added intent confirmation for uptime monitor.
 * Register site to endpoint only if we have a valid email address.
 * UX improvements for module activation.
 
 
-= 2.4.0 - 2018-02-16  = 
+= 2.4.0 - 2018-02-16  =
 
-* Adds a new module for uptime monitor of your website. 
+* Adds a new module for uptime monitor of your website.
 * Adds 4 more hooks for modules related actions.
 
 
-= 2.3.1 - 2018-01-17  = 
+= 2.3.1 - 2018-01-17  =
 
 * Disabled automatic display for sharing button on pages and added an option to toggle it.
 
 
-= 2.3.0 - 2018-01-15  = 
+= 2.3.0 - 2018-01-15  =
 
 * Adds 3 forms widgets for Elementor (Contact form, Newsletter, and Registration form).
-* Improve menu icons copyright. 
+* Improve menu icons copyright.
 * Allows social icons on pages.
 * Adds beaver widgets module active by default.
 
 
-= 2.2.7 - 2017-12-21  = 
+= 2.2.7 - 2017-12-21  =
 
 * Fix for Hestia clients section default content
 * Beaver Builder Widgets show only if you have beaver builder installed
 * Added Screenshots desciptions
 
 
-= 2.2.6 - 2017-12-19  = 
+= 2.2.6 - 2017-12-19  =
 
 * Added new Beaver Builder Widgets Module - Pricing table widget, Services widget, Posts Grid widget.
 * Better user experience for the template directory.
@@ -350,36 +356,36 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 * Removed the useless Stats module.
 
 
-= 2.2.5 - 2017-12-11  = 
+= 2.2.5 - 2017-12-11  =
 
 * Better UX for CC0 images import module.
 * Improved Elementor Services Widget.
 * Added new templates to the template directory.
 
 
-= 2.2.4 - 2017-12-04  = 
+= 2.2.4 - 2017-12-04  =
 
 * Fixed issue with menu icons module loading.
 
 
-= 2.2.3 - 2017-11-27  = 
+= 2.2.3 - 2017-11-27  =
 
 * [Hestia] Fixed issue with Team member section not opening external links in a new tab
 * [Hestia] Fixed alignment issues with the front page sections
 
 
-= 2.2.2 - 2017-11-24  = 
+= 2.2.2 - 2017-11-24  =
 
 * Renamed flickr api util file.
 * Fixed issue with template directory preview plugin install modal.
 
 
-= 2.2.1 - 2017-11-24  = 
+= 2.2.1 - 2017-11-24  =
 
 * Fixed module loading for Elementor widgets module.
 
 
-= 2.2.0 - 2017-11-23  = 
+= 2.2.0 - 2017-11-23  =
 
 * - Added new Elementor Widgets module;
 * - Added new Template Directory module;
@@ -388,72 +394,72 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 * - Moved Orbit Fox Companion out of Tools Menu;
 
 
-= 2.1.1 - 2017-11-16  = 
+= 2.1.1 - 2017-11-16  =
 
 * Adds compatibility with WordPress 4.9.
 
 
-= 2.1.0 - 2017-11-08  = 
+= 2.1.0 - 2017-11-08  =
 
 * Adds custom icons menu module.
 * Adds free stock images integration with mystock.photos .
 
 
-= 2.0.11 - 2017-10-19  = 
+= 2.0.11 - 2017-10-19  =
 
 * Fixed alignment issue for titles in Hestia
 
 
-= 2.0.10 - 2017-10-18  = 
+= 2.0.10 - 2017-10-18  =
 
 * Added selective refresh options for the Show/Hide frontpage controls in Hestia
 * Make external links open in new tab for the frontpage sections in Hestia
 * Added some new filters to control the number of items per row appear in the Features and Testimonials Frontpage section - http://docs.themeisle.com/article/669-how-to-add-4-feature-items-on-a-line-in-hestia
 
 
-= 2.0.9 - 2017-10-17  = 
+= 2.0.9 - 2017-10-17  =
 
 * Enhanced layout for Hestia sections.
 
 
-= 2.0.8 - 2017-10-11  = 
+= 2.0.8 - 2017-10-11  =
 
 * Fixed bug with URL protocols filter priority.
 * Fixed bug with icons background styled by URL address.
 
 
-= 2.0.7 - 2017-10-02  = 
+= 2.0.7 - 2017-10-02  =
 
 * New improved options for frontpage sections ordering/disabling in Hestia
 
 
-= 2.0.6 - 2017-09-19  = 
+= 2.0.6 - 2017-09-19  =
 
 * Added selective refresh for titles options in the frontpage sections in Hestia
 
 
-= 2.0.5 - 2017-09-12  = 
+= 2.0.5 - 2017-09-12  =
 
 * Added new Ribbon and Clients Bar sections in Hestia
 
 
-= 2.0.4 - 2017-09-11  = 
+= 2.0.4 - 2017-09-11  =
 
-* Adds PHP minimum requirement. 
+* Adds PHP minimum requirement.
 * Fix for admin styles loading screen.
 
 
-= 2.0.3 - 2017-08-24  = 
+= 2.0.3 - 2017-08-24  =
 
 * Improved compatibility with the new Hestia version.
 
 
-= 2.0.2 - 2017-08-16  = 
+= 2.0.2 - 2017-08-16  =
 
 * Fix accordion not opening to display save buttons for modules
 
 
-= 2.0.1 - 2017-08-14  = 
+= 2.0.1 - 2017-08-14  =
 
 * Fixed issues with grey icons in Hestia.
 * Fixed Recommended Actions flags in customizer.

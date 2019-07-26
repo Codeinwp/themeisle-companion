@@ -1,4 +1,10 @@
 
+ ### v2.8.4 - 2019-05-23 
+ **Changes:** 
+ * minor adjustments to the dashboard UI
+* various updates to the Gutenberg blocks available
+* adds compatibility with WordPress 5.2
+ 
  ### v2.8.3 - 2019-04-20 
  **Changes:** 
  * Fixed issue with constant not being checked in Otter
