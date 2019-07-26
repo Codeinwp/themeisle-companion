@@ -111,7 +111,8 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 == Changelog ==
 = 2.8.5 - 2019-07-26  = 
 
-* Merge pull request #368 from Codeinwp/master
+* Update Elementor content forms widgets compatiblity with the latest version.
+* Various fixes for the gutenberg blocks module.
 
 
 = 2.8.4 - 2019-05-23  = 
