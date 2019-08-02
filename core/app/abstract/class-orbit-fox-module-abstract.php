@@ -590,7 +590,7 @@ abstract class Orbit_Fox_Module_Abstract {
 						$resource,
 						$dependencies,
 						$this->version,
-						false
+						true
 					);
 
 					// check if we need to enqueue or localize.

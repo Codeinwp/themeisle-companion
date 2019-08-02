@@ -244,6 +244,12 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return array
 	 */
 	public function public_enqueue() {
+		$display_on_posts = (bool)$this->get_option('display_on_posts');
+		$display_on_pages = (bool)$this->get_option('display_on_pages');
+		if( ( $display_on_posts === false || ! is_single() ) && ( $display_on_pages === false || ! is_page() ) ) {
+			return array();
+		}
+
 	    return array(
 		    'css' => array(
 				'public' => false,
@@ -264,6 +270,13 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return array
 	 */
 	public function admin_enqueue() {
+		if( ! isset( $_GET['page'] ) ){
+			return array();
+		}
+		if( $_GET['page'] !== 'obfx_companion' ){
+			return array();
+		}
+
 		return array(
 			'css' => array(
 				'admin' => false,
