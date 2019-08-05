@@ -270,10 +270,12 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return array
 	 */
 	public function admin_enqueue() {
-		if( ! isset( $_GET['page'] ) ){
+
+		$current_screen = get_current_screen();
+		if ( ! isset( $current_screen->id ) ) {
 			return array();
 		}
-		if( $_GET['page'] !== 'obfx_companion' ){
+		if ( $current_screen->id != 'toplevel_page_obfx_companion' ) {
 			return array();
 		}
 

@@ -109,6 +109,32 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	}
 
 	/**
+	 * Check if font awesome should load.
+	 *
+	 * @return bool
+	 */
+	private function should_load_fa(){
+
+		// Get all locations
+		$locations = get_nav_menu_locations();
+
+		if( empty( $locations ) ){
+			return false;
+		}
+		foreach ( $locations as $location => $menu_id ){
+			$menu_items = wp_get_nav_menu_items( $menu_id );
+			foreach ( $menu_items as $menu_item ) {
+				$icon = get_post_meta( $menu_item->ID, 'obfx_menu_icon', true );
+				if ( !empty( $icon ) ){
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	/**
 	 * Method that returns an array of scripts and styles to be loaded
 	 * for the front end part.
 	 *
@@ -117,6 +143,10 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return array
 	 */
 	public function public_enqueue() {
+		if( $this->should_load_fa() === false ){
+			return array();
+		}
+
 		return array(
 			'css' => array(
 				'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' => array( 'dashicons' ),
