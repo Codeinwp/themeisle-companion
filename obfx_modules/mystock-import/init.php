@@ -33,11 +33,6 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	const MAX_IMAGES = 40;
 
 	/**
-	 * The username of the flickr account.
-	 */
-	const USER_NAME = 'themeisle';
-
-	/**
 	 * The cache time.
 	 */
 	const CACHE_DAYS = 7;
