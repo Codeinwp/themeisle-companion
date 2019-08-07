@@ -23,14 +23,14 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	const API_KEY = '97d007cf8f44203a2e578841a2c0f9ac';
 
 	/**
-	 * Flickr user id.
-	 */
-	const USER_ID = '136375272@N05';
-
-	/**
 	 * The number of images to fetch. Only the first page will be fetched.
 	 */
 	const MAX_IMAGES = 40;
+
+	/**
+	 * The username of the flickr account.
+	 */
+	const USER_NAME = 'themeisle';
 
 	/**
 	 * The cache time.
@@ -109,13 +109,17 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		if ( ! $photos ) {
 			require_once $this->get_dir() . '/vendor/phpflickr/phpflickr.php';
 			$api    = new phpFlickr( self::API_KEY );
-			$photos = $api->people_getPublicPhotos( self::USER_ID, null, 'url_sq, url_t, url_s, url_q, url_m, url_n, url_z, url_c, url_l, url_o', self::MAX_IMAGES, $page );
-			if ( ! empty( $photos ) ) {
-				$pages = get_transient( $this->slug . 'photos_' . self::MAX_IMAGES . '_pages' );
-				if ( false === $pages ) {
-					set_transient( $this->slug . 'photos_' . self::MAX_IMAGES . '_pages', $photos['photos']['pages'], self::CACHE_DAYS * DAY_IN_SECONDS );
+			$user   = $api->people_findByUsername( self::USER_NAME );
+			$photos = array();
+			if ( $user && isset( $user['nsid'] ) ) {
+				$photos = $api->people_getPublicPhotos( $user['nsid'], null, 'url_sq, url_t, url_s, url_q, url_m, url_n, url_z, url_c, url_l, url_o', self::MAX_IMAGES, $page );
+				if ( ! empty( $photos ) ) {
+					$pages = get_transient( $this->slug . 'photos_' . self::MAX_IMAGES . '_pages' );
+					if ( false === $pages ) {
+						set_transient( $this->slug . 'photos_' . self::MAX_IMAGES . '_pages', $photos['photos']['pages'], self::CACHE_DAYS * DAY_IN_SECONDS );
+					}
+					$photos = $photos['photos']['photo'];
 				}
-				$photos = $photos['photos']['photo'];
 			}
 			set_transient( $this->slug . 'photos_' . self::MAX_IMAGES . '_' . $page, $photos, self::CACHE_DAYS * DAY_IN_SECONDS );
 		}
@@ -204,6 +208,7 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function admin_enqueue() {
 		$current_screen = get_current_screen();
+
 		if ( ! isset( $current_screen->id ) ) {
 			return array();
 		}
