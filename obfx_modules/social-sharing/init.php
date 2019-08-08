@@ -244,6 +244,22 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return array
 	 */
 	public function public_enqueue() {
+		$data = get_option( 'obfx_data' );
+		$display_on_posts = true;
+		$display_on_pages = false;
+		if( isset( $data['module_settings']) && isset( $data['module_settings']['social-sharing']) ){
+			if( isset( $data['module_settings']['social-sharing']['display_on_posts'] ) ){
+				$display_on_posts = (bool)$data['module_settings']['social-sharing']['display_on_posts'];
+			}
+			if( isset( $data['module_settings']['social-sharing']['display_on_pages'] ) ){
+				$display_on_pages = (bool)$data['module_settings']['social-sharing']['display_on_pages'];
+			}
+		}
+
+		if( ( $display_on_posts === false || ! is_single() ) && ( $display_on_pages === false || ! is_page() ) ) {
+			return array();
+		}
+
 	    return array(
 		    'css' => array(
 				'public' => false,
@@ -264,6 +280,15 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return array
 	 */
 	public function admin_enqueue() {
+
+		$current_screen = get_current_screen();
+		if ( ! isset( $current_screen->id ) ) {
+			return array();
+		}
+		if ( $current_screen->id != 'toplevel_page_obfx_companion' ) {
+			return array();
+		}
+
 		return array(
 			'css' => array(
 				'admin' => false,

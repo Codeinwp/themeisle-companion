@@ -146,7 +146,7 @@ class Orbit_Fox_Model {
 		if ( isset( $data['module_settings'][ $slug ][ $key ] ) ) {
 			return $data['module_settings'][ $slug ][ $key ];
 		}
-		return false; // @codeCoverageIgnore
+		return false;
 	}
 
 	/**
