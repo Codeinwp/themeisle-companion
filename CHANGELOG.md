@@ -1,4 +1,8 @@
 
+ ### v2.8.5 - 2019-07-26 
+ **Changes:** 
+ * Merge pull request #368 from Codeinwp/master
+ 
  ### v2.8.4 - 2019-05-23 
  **Changes:** 
  * minor adjustments to the dashboard UI
