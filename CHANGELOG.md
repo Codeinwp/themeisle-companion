@@ -1,4 +1,8 @@
 
+ ### v2.8.7 - 2019-08-13 
+ **Changes:** 
+ * Release
+ 
  ### v2.8.6 - 2019-08-12 
  **Changes:** 
  * Improve script loading performance
