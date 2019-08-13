@@ -111,7 +111,7 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 == Changelog ==
 = 2.8.7 - 2019-08-13  = 
 
-* Release
+* Fix error notice in menu icons
 
 
 = 2.8.6 - 2019-08-12  = 
