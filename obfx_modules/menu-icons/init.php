@@ -123,6 +123,9 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		}
 		foreach ( $locations as $location => $menu_id ){
 			$menu_items = wp_get_nav_menu_items( $menu_id );
+			if ( ! is_array( $menu_items ) ) {
+				continue;
+			}
 			foreach ( $menu_items as $menu_item ) {
 				$icon = get_post_meta( $menu_item->ID, 'obfx_menu_icon', true );
 				if ( !empty( $icon ) ){
