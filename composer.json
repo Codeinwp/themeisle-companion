@@ -19,7 +19,7 @@
     "source": "https://github.com/Codeinwp/themeisle-companion"
   },
   "require": {
-    "codeinwp/themeisle-sdk": "3.1.1",
+    "codeinwp/themeisle-sdk": "*", 
     "codeinwp/full-width-page-templates": "master",
     "codeinwp/elementor-extra-widgets": "master",
     "codeinwp/templates-directory": "master",
