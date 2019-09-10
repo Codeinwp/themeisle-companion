@@ -37,8 +37,8 @@ add_action( 'fl_builder_control_obfx_toggle', 'obfx_toggle_field', 1, 3 );
  */
 function obfx_enqueue_toggle_field() {
 	if ( class_exists( 'FLBuilderModel' ) && FLBuilderModel::is_builder_active() ) {
-		wp_enqueue_style( 'obfx-toggle-css', BEAVER_WIDGETS_URL . 'custom-fields/toggle-field/toggle.css', null, THEMEISLE_COMPANION_VERSION, 'all' );
-		wp_enqueue_script( 'obfx-toggle-js', BEAVER_WIDGETS_URL . 'custom-fields/toggle-field/toggle.js', array(), THEMEISLE_COMPANION_VERSION, true );
+		wp_enqueue_style( 'obfx-toggle-css', BEAVER_WIDGETS_URL . 'custom-fields/toggle-field/toggle.css', array(), '1.0.0', 'all' );
+		wp_enqueue_script( 'obfx-toggle-js', BEAVER_WIDGETS_URL . 'custom-fields/toggle-field/toggle.js', array(), '1.0.0', true );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'obfx_enqueue_toggle_field' );

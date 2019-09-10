@@ -24,7 +24,7 @@ add_action( 'fl_builder_control_obfx_number', 'obfx_number_field', 1, 3 );
  */
 function obfx_enqueue_field() {
 	if ( class_exists( 'FLBuilderModel' ) && FLBuilderModel::is_builder_active() ) {
-		wp_enqueue_script( 'obfx-number-js', BEAVER_WIDGETS_URL . 'custom-fields/number-field/number.js', array(), THEMEISLE_COMPANION_VERSION, true );
+		wp_enqueue_script( 'obfx-number-js', BEAVER_WIDGETS_URL . 'custom-fields/number-field/number.js', array(), '1.0.0', true );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'obfx_enqueue_field' );
