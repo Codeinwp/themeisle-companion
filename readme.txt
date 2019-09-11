@@ -109,6 +109,11 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 == Changelog ==
+= 2.8.8 - 2019-09-11  = 
+
+* Fixes Constant Warning for Beaver Widgets Module
+
+
 = 2.8.7 - 2019-08-13  = 
 
 * Fix error notice in menu icons

@@ -1,4 +1,8 @@
 
+ ### v2.8.8 - 2019-09-11 
+ **Changes:** 
+ * Fixes Constant Warning for Beaver Widgets Module
+ 
  ### v2.8.7 - 2019-08-13 
  **Changes:** 
  * Release
