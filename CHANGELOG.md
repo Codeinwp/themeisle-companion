@@ -1,4 +1,13 @@
 
+ ### v2.8.7 - 2019-08-13 
+ **Changes:** 
+ * Release
+ 
+ ### v2.8.6 - 2019-08-12 
+ **Changes:** 
+ * Improve script loading performance
+* Fix issue with mystock import
+ 
  ### v2.8.5 - 2019-07-26 
  **Changes:** 
  * Merge pull request #368 from Codeinwp/master
