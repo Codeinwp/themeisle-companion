@@ -89,8 +89,8 @@ if ( ! function_exists( 'obfx_show_post_grid_meta' ) ) {
 		$show_icons = ! empty( $settings->show_icons ) ? $settings->show_icons : '';
 		echo '<div class="obfx-post-grid-meta">';
 		if ( in_array( 'author', $meta_data, true ) ) {
-			$author_id = get_post_field ( 'post_author', $pid );
-			$author    = get_the_author_meta( 'display_name' , $author_id );
+			$author_id = get_post_field( 'post_author', $pid );
+			$author    = get_the_author_meta( 'display_name', $author_id );
 			if ( ! empty( $author ) ) {
 				echo '<div class="obfx-author">';
 				if ( $show_icons === 'yes' ) {
