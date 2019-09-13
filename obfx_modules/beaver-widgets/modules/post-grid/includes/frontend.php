@@ -89,7 +89,8 @@ if ( ! function_exists( 'obfx_show_post_grid_meta' ) ) {
 		$show_icons = ! empty( $settings->show_icons ) ? $settings->show_icons : '';
 		echo '<div class="obfx-post-grid-meta">';
 		if ( in_array( 'author', $meta_data, true ) ) {
-			$author = get_the_author( $pid );
+			$author_id = get_post_field ( 'post_author', $pid );
+			$author    = get_the_author_meta( 'display_name' , $author_id );
 			if ( ! empty( $author ) ) {
 				echo '<div class="obfx-author">';
 				if ( $show_icons === 'yes' ) {
@@ -102,7 +103,7 @@ if ( ! function_exists( 'obfx_show_post_grid_meta' ) ) {
 						/* translators: %1$s is Author name, %2$s is author link */
 						'<a href="%2$s" title="%1$s"><b>%1$s</b></a>',
 						esc_html( get_the_author() ),
-						esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) )
+						esc_url( get_author_posts_url( $author_id ) )
 					)
 				);
 				echo '</div>';
