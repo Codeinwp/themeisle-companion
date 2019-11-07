@@ -10,6 +10,8 @@
 
 define( 'OBFX_MODULE_URL', __FILE__ );
 
+use \ThemeIsle\ContentForms\Form_Manager;
+
 /**
  * The class defines a new module to be used by Orbit Fox plugin.
  *
@@ -60,7 +62,7 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return mixed | array
 	 */
 	public function hooks() {
-		$this->loader->add_action( 'init_themeisle_content_forms', $this, 'load_content_forms' );
+		$this->loader->add_action( 'init', $this, 'load_content_forms' );
 		$this->loader->add_action( 'plugins_loaded', $this, 'load_elementor_extra_widgets' );
 	}
 
@@ -105,12 +107,13 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * If the content-forms library is available we should make the forms available for elementor
 	 */
 	public function load_content_forms() {
-
-		if ( class_exists( '\ThemeIsle\ContentForms\ContactForm' ) ) {
-			\ThemeIsle\ContentForms\ContactForm::instance();
-			\ThemeIsle\ContentForms\NewsletterForm::instance();
-			\ThemeIsle\ContentForms\RegistrationForm::instance();
+		if ( ! class_exists( '\ThemeIsle\ContentForms\Form_Manager' ) ) {
+			return false;
 		}
+		$content_forms = new Form_Manager();
+		$content_forms->init();
+
+		return true;
 	}
 
 	/**
