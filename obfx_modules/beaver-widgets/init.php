@@ -104,7 +104,7 @@ class Beaver_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			return false;
 		}
 		$content_forms = new Form_Manager();
-		$content_forms->init();
+		$content_forms->instance();
 
 		return true;
 	}
