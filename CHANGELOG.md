@@ -1,4 +1,8 @@
 
+ ### v2.8.13 - 2019-11-18 
+ **Changes:** 
+ * Fix dependency issues on content forms module
+ 
  ### v2.8.12 - 2019-11-18 
  **Changes:** 
  * sync dependencies
