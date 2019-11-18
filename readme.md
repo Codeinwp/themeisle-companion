@@ -2,7 +2,7 @@
 **Contributors:** [themeisle](https://profiles.wordpress.org/themeisle), [codeinwp](https://profiles.wordpress.org/codeinwp), [rodicaelena](https://profiles.wordpress.org/rodicaelena), [baicusandrei](https://profiles.wordpress.org/baicusandrei), [hardeepasrani](https://profiles.wordpress.org/hardeepasrani)  
 **Tags:** widget, admin, widgets, sharing, sections, themes, stock photos, custom icons, icons, menu icons, stock, templates  
 **Requires at least:** 4.7  
-**Tested up to:** 5.2  
+**Tested up to:** 5.3  
 **Requires PHP:** 5.6  
 **Stable tag:** trunk  
 **License:** GPLv2 or later  
@@ -17,7 +17,6 @@ Extend your theme functionality with <a href="https://orbitfox.com/" rel="nofoll
 https://www.youtube.com/watch?v=YHhK_twfYB8
 
 **Features:**
-- Beta: Themes Safe updates feedback
 - Privacy policy notice ( GDPR friendly )
 - Uptime Monitor
 - Google Analytics Integration
@@ -109,6 +108,13 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 ## Changelog ##
+### 2.8.11 - 2019-11-18  ###
+
+* Various improvements for Beaver and Elementor form widgets.
+* Improvements to the post grid Elementor module.
+* Compatibility with WordPress 5.3
+
+
 ### 2.8.10 - 2019-09-13  ###
 
 * Development

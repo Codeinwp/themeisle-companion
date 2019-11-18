@@ -1,4 +1,10 @@
 
+ ### v2.8.11 - 2019-11-18 
+ **Changes:** 
+ * Various improvements for Beaver and Elementor form widgets.
+* Improvements to the post grid Elementor module.
+* Compatibility with WordPress 5.3
+ 
  ### v2.8.10 - 2019-09-13 
  **Changes:** 
  * Development
