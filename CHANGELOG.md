@@ -1,4 +1,8 @@
 
+ ### v2.8.12 - 2019-11-18 
+ **Changes:** 
+ * sync dependencies
+ 
  ### v2.8.11 - 2019-11-18 
  **Changes:** 
  * Various improvements for Beaver and Elementor form widgets.

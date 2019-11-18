@@ -108,6 +108,11 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 == Changelog ==
+= 2.8.12 - 2019-11-18  = 
+
+* sync dependencies
+
+
 = 2.8.11 - 2019-11-18  = 
 
 * Various improvements for Beaver and Elementor form widgets.
