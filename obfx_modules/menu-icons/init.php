@@ -280,7 +280,7 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		require_once( ABSPATH . 'wp-admin/includes/nav-menu.php' );
 
 		// Let's check if another walker has been defined.
-		$walker = apply_filters( 'wp_edit_nav_menu_walker', '' );
+		$walker = apply_filters( 'wp_edit_nav_menu_walker', '', '' );
 
 		// Yes, a conflict!
 		if ( ! empty( $walker ) && $walker !== 'Menu_Icons_OBFX_Walker' ) {
