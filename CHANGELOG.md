@@ -1,4 +1,9 @@
 
+ ### v2.8.14 - 2019-12-02 
+ **Changes:** 
+ * Fix fatal error with Membership Pro
+* Various bug fixes to forms and Elementor widgets
+ 
  ### v2.8.13 - 2019-11-18 
  **Changes:** 
  * Fix dependency issues on content forms module
