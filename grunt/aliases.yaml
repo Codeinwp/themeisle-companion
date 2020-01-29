@@ -1,8 +1,0 @@
-deploy:
-  - 'pre_deploy'
-  - 'cachebuster'
-  - 'addtextdomain:dependencyDomains'
-  - 'mkdir:dist'
-  - 'mkdir:artifact'
-  - 'copy:deploy'
-  - 'compress'
