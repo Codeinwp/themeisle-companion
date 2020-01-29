@@ -108,6 +108,39 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 == Changelog ==
+= 2.8.14 - 2019-12-02  = 
+
+* Fix fatal error with Membership Pro
+* Various bug fixes to forms and Elementor widgets
+
+
+= 2.8.13 - 2019-11-18  = 
+
+* Fix dependency issues on content forms module
+
+
+= 2.8.12 - 2019-11-18  = 
+
+* sync dependencies
+
+
+= 2.8.11 - 2019-11-18  = 
+
+* Various improvements for Beaver and Elementor form widgets.
+* Improvements to the post grid Elementor module.
+* Compatibility with WordPress 5.3
+
+
+= 2.8.10 - 2019-09-13  = 
+
+* Development
+
+
+= 2.8.8 - 2019-09-11  = 
+
+* Fixes Constant Warning for Beaver Widgets Module
+
+
 = 2.8.7 - 2019-08-13  = 
 
 * Fix error notice in menu icons

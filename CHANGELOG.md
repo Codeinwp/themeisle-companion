@@ -1,4 +1,31 @@
 
+ ### v2.8.14 - 2019-12-02 
+ **Changes:** 
+ * Fix fatal error with Membership Pro
+* Various bug fixes to forms and Elementor widgets
+ 
+ ### v2.8.13 - 2019-11-18 
+ **Changes:** 
+ * Fix dependency issues on content forms module
+ 
+ ### v2.8.12 - 2019-11-18 
+ **Changes:** 
+ * sync dependencies
+ 
+ ### v2.8.11 - 2019-11-18 
+ **Changes:** 
+ * Various improvements for Beaver and Elementor form widgets.
+* Improvements to the post grid Elementor module.
+* Compatibility with WordPress 5.3
+ 
+ ### v2.8.10 - 2019-09-13 
+ **Changes:** 
+ * Development
+ 
+ ### v2.8.8 - 2019-09-11 
+ **Changes:** 
+ * Fixes Constant Warning for Beaver Widgets Module
+ 
  ### v2.8.7 - 2019-08-13 
  **Changes:** 
  * Release
