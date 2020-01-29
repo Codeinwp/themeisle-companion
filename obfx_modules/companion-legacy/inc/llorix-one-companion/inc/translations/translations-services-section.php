@@ -16,20 +16,20 @@ function llorix_one_companion_sevices_get_default_content() {
 				'choice'     => 'llorix_one_lite_icon',
 				'icon_value' => 'fa-cogs',
 				'title'      => esc_html__( 'Lorem Ipsum', 'themeisle-companion' ),
-				'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nullam vel eros sit amet arcu vestibulum accumsan in in leo.', 'themeisle-companion' )
+				'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nullam vel eros sit amet arcu vestibulum accumsan in in leo.', 'themeisle-companion' ),
 			),
 			array(
 				'choice'     => 'llorix_one_lite_icon',
 				'icon_value' => 'fa-bar-chart-o',
 				'title'      => esc_html__( 'Lorem Ipsum', 'themeisle-companion' ),
-				'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nullam vel eros sit amet arcu vestibulum accumsan in in leo.', 'themeisle-companion' )
+				'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nullam vel eros sit amet arcu vestibulum accumsan in in leo.', 'themeisle-companion' ),
 			),
 			array(
 				'choice'     => 'llorix_one_lite_icon',
 				'icon_value' => 'fa-globe',
 				'title'      => esc_html__( 'Lorem Ipsum', 'themeisle-companion' ),
-				'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nullam vel eros sit amet arcu vestibulum accumsan in in leo.', 'themeisle-companion' )
-			)
+				'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nullam vel eros sit amet arcu vestibulum accumsan in in leo.', 'themeisle-companion' ),
+			),
 		)
 	);
 }

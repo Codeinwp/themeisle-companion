@@ -30,7 +30,7 @@ $toggle_class = 'obfx-mod-switch';
 if ( ! empty( $confirm_intent ) ) {
 
 	$toggle_class .= ' obfx-mod-confirm-intent';
-	$modal        = '
+	$modal         = '
         <div id="' . esc_attr( $slug ) . '" class="modal">
             <a href="#close" class="close-confirm-intent modal-overlay" aria-label="Close"></a>
             <div class="modal-container"> 

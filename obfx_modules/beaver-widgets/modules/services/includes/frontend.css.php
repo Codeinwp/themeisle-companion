@@ -1,5 +1,5 @@
 <?php
-$columns = $settings->column_number;
+$columns      = $settings->column_number;
 $column_width = 100 / (int) $columns;
 
 echo '.fl-node-' . $id . ' .obfx-service-wrapper{';
@@ -18,12 +18,12 @@ if ( ! empty( $bg_color ) ) {
 echo '}';
 
 
-$icon_size = $settings->icon_size;
-$padding_top = $settings->icon_top;
+$icon_size      = $settings->icon_size;
+$padding_top    = $settings->icon_top;
 $padding_bottom = $settings->icon_bottom;
-$padding_left = $settings->icon_left;
-$padding_right = $settings->icon_right;
-$icon_position = $settings->icon_position;
+$padding_left   = $settings->icon_left;
+$padding_right  = $settings->icon_right;
+$icon_position  = $settings->icon_position;
 
 echo '.fl-node-' . $id . ' .obfx-service-icon{';
 if ( ! empty( $icon_size ) ) {
@@ -48,13 +48,13 @@ if ( ! empty( $icon_position ) && $icon_position !== 'center' ) {
 echo '}';
 
 
-$title_color = $settings->title_color;
-$title_size = $settings->title_font_size;
-$font_family = $settings->title_font_family['family'];
-$font_weight = $settings->title_font_family['weight'];
-$font_style = $settings->title_font_style;
-$transform = $settings->title_transform;
-$line_height = $settings->title_line_height;
+$title_color    = $settings->title_color;
+$title_size     = $settings->title_font_size;
+$font_family    = $settings->title_font_family['family'];
+$font_weight    = $settings->title_font_family['weight'];
+$font_style     = $settings->title_font_style;
+$transform      = $settings->title_transform;
+$line_height    = $settings->title_line_height;
 $letter_spacing = $settings->title_letter_spacing;
 echo '.fl-node-' . $id . ' .obfx-service-title{';
 if ( ! empty( $title_color ) ) {
@@ -84,14 +84,14 @@ if ( ! empty( $letter_spacing ) ) {
 echo '}';
 
 
-$content_color = $settings->content_color;
-$content_size = $settings->content_font_size;
-$font_family = $settings->content_font_family['family'];
-$font_weight = $settings->content_font_family['weight'];
-$font_style = $settings->content_font_style;
-$transform = $settings->content_transform;
-$line_height = $settings->content_line_height;
-$alignment = $settings->content_alignment;
+$content_color  = $settings->content_color;
+$content_size   = $settings->content_font_size;
+$font_family    = $settings->content_font_family['family'];
+$font_weight    = $settings->content_font_family['weight'];
+$font_style     = $settings->content_font_style;
+$transform      = $settings->content_transform;
+$line_height    = $settings->content_line_height;
+$alignment      = $settings->content_alignment;
 $letter_spacing = $settings->content_letter_spacing;
 echo '.fl-node-' . $id . ' .obfx-service-content{';
 if ( ! empty( $content_color ) ) {

@@ -49,11 +49,11 @@ class Rhea_Contact_Company extends WP_Widget {
 
 		$instance = $old_instance;
 
-		$instance['title'] = strip_tags( $new_instance['title'] );
-		$instance['adress'] = strip_tags( $new_instance['adress'] );
+		$instance['title']     = strip_tags( $new_instance['title'] );
+		$instance['adress']    = strip_tags( $new_instance['adress'] );
 		$instance['gmaps_url'] = esc_url( $new_instance['gmaps_url'] );
-		$instance['email'] = strip_tags( $new_instance['email'] );
-		$instance['phone'] = strip_tags( $new_instance['phone'] );
+		$instance['email']     = strip_tags( $new_instance['email'] );
+		$instance['phone']     = strip_tags( $new_instance['phone'] );
 
 		return $instance;
 
@@ -63,23 +63,48 @@ class Rhea_Contact_Company extends WP_Widget {
 		?>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title', 'themeisle-companion' ); ?></label><br/>
-			<input type="text" class="widefat" name="<?php echo $this->get_field_name( 'title' ); ?>" id="<?php echo $this->get_field_id( 'title' ); ?>" value="<?php if ( ! empty( $instance['title'] ) ) { echo $instance['title']; } ?>">
+			<input type="text" class="widefat" name="<?php echo $this->get_field_name( 'title' ); ?>" id="<?php echo $this->get_field_id( 'title' ); ?>" value="
+																<?php 
+																if ( ! empty( $instance['title'] ) ) {
+																	echo $instance['title']; } 
+																?>
+			">
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'adress' ); ?>"><?php esc_html_e( 'Company Adress', 'themeisle-companion' ); ?></label><br/>
-			<textarea class="widefat" rows="8" cols="20" name="<?php echo $this->get_field_name( 'adress' ); ?>" id="<?php echo $this->get_field_id( 'adress' ); ?>"><?php if ( ! empty( $instance['adress'] ) ) { echo htmlspecialchars_decode( $instance['adress'] ); } ?></textarea>
+			<textarea class="widefat" rows="8" cols="20" name="<?php echo $this->get_field_name( 'adress' ); ?>" id="<?php echo $this->get_field_id( 'adress' ); ?>">
+																		  <?php 
+																			if ( ! empty( $instance['adress'] ) ) {
+																				echo htmlspecialchars_decode( $instance['adress'] ); } 
+																			?>
+			</textarea>
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'gmaps_url' ); ?>"><?php esc_html_e( 'Google Maps URL', 'themeisle-companion' ); ?></label><br/>
-			<input type="text" class="widefat" name="<?php echo $this->get_field_name( 'gmaps_url' ); ?>" id="<?php echo $this->get_field_id( 'gmaps_url' ); ?>" value="<?php if ( ! empty( $instance['gmaps_url'] ) ) { echo $instance['gmaps_url']; } ?>">
+			<input type="text" class="widefat" name="<?php echo $this->get_field_name( 'gmaps_url' ); ?>" id="<?php echo $this->get_field_id( 'gmaps_url' ); ?>" value="
+																<?php 
+																if ( ! empty( $instance['gmaps_url'] ) ) {
+																	echo $instance['gmaps_url']; } 
+																?>
+			">
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'email' ); ?>"><?php esc_html_e( 'Email', 'themeisle-companion' ); ?></label><br/>
-			<input type="text" class="widefat" name="<?php echo $this->get_field_name( 'email' ); ?>" id="<?php echo $this->get_field_id( 'email' ); ?>" value="<?php if ( ! empty( $instance['email'] ) ) { echo $instance['email']; } ?>">
+			<input type="text" class="widefat" name="<?php echo $this->get_field_name( 'email' ); ?>" id="<?php echo $this->get_field_id( 'email' ); ?>" value="
+																<?php 
+																if ( ! empty( $instance['email'] ) ) {
+																	echo $instance['email']; } 
+																?>
+			">
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'phone' ); ?>"><?php esc_html_e( 'Phone', 'themeisle-companion' ); ?></label><br/>
-			<input type="text" class="widefat" name="<?php echo $this->get_field_name( 'phone' ); ?>" id="<?php echo $this->get_field_id( 'phone' ); ?>" value="<?php if ( ! empty( $instance['phone'] ) ) { echo $instance['phone']; } ?>">
+			<input type="text" class="widefat" name="<?php echo $this->get_field_name( 'phone' ); ?>" id="<?php echo $this->get_field_id( 'phone' ); ?>" value="
+																<?php 
+																if ( ! empty( $instance['phone'] ) ) {
+																	echo $instance['phone']; } 
+																?>
+			">
 		</p>
 
 		<?php

@@ -322,7 +322,7 @@ class Orbit_Fox_Admin {
 	 * @return array|mixed|object|WP_Error
 	 */
 	public function call_plugin_api( $slug ) {
-		include_once( ABSPATH . 'wp-admin/includes/plugin-install.php' );
+		include_once ABSPATH . 'wp-admin/includes/plugin-install.php';
 
 		$call_api = get_transient( 'ti_plugin_info_' . $slug );
 
@@ -480,7 +480,7 @@ class Orbit_Fox_Admin {
 						$checked = 'checked';
 					}
 
-					$data  = array(
+					$data   = array(
 						'slug'           => $slug,
 						'name'           => $module->name,
 						'description'    => $module->description,

@@ -6,10 +6,10 @@ if ( ! empty( $text_position ) ) {
 	echo '}';
 }
 
-$padding_top = ! empty( $settings->top ) ? $settings->top : '';
+$padding_top    = ! empty( $settings->top ) ? $settings->top : '';
 $padding_bottom = ! empty( $settings->bottom ) ? $settings->bottom : '';
-$padding_left = ! empty( $settings->left ) ? $settings->left : '';
-$padding_right = ! empty( $settings->right ) ? $settings->right : '';
+$padding_left   = ! empty( $settings->left ) ? $settings->left : '';
+$padding_right  = ! empty( $settings->right ) ? $settings->right : '';
 echo '.fl-node-' . $id . '.obfx-pricing-header{';
 	echo ! empty( $padding_top ) ? 'padding-top: ' . $padding_top . 'px;' : '';
 	echo ! empty( $padding_bottom ) ? 'padding-bottom: ' . $padding_bottom . 'px;' : '';
@@ -32,12 +32,12 @@ switch ( $type ) {
 		}
 		break;
 	case 'gradient':
-		$gradient_color1 = ! empty( $settings->gradient_color1 ) ? $settings->gradient_color1 : '';
-		$gradient_color2 = ! empty( $settings->gradient_color2 ) ? $settings->gradient_color2 : '';
+		$gradient_color1      = ! empty( $settings->gradient_color1 ) ? $settings->gradient_color1 : '';
+		$gradient_color2      = ! empty( $settings->gradient_color2 ) ? $settings->gradient_color2 : '';
 		$gradient_orientation = ! empty( $settings->gradient_orientation ) ? $settings->gradient_orientation : '';
-		$pos1 = 'left';
-		$pos2 = 'left';
-		$pos3 = 'to right';
+		$pos1                 = 'left';
+		$pos2                 = 'left';
+		$pos3                 = 'to right';
 		switch ( $gradient_orientation ) {
 			case 'vertical':
 				$pos1 = 'top';
@@ -81,12 +81,12 @@ $title_color = ! empty( $settings->title_color ) ? $settings->title_color : '';
 if ( ! empty( $title_color ) ) {
 	$title_color = strpos( $title_color, 'rgba' ) !== false ? $title_color : '#' . $title_color;
 }
-$title_font_size = ! empty( $settings->title_font_size ) ? $settings->title_font_size : '';
-$title_font_family = ! empty( $settings->title_font_family['family'] ) ? $settings->title_font_family['family'] : '';
-$title_font_weight = ! empty( $settings->title_font_family['weight'] ) ? $settings->title_font_family['weight'] : '';
-$title_transform = ! empty( $settings->title_transform ) ? $settings->title_transform : '';
-$title_font_style = ! empty( $settings->title_font_style ) ? $settings->title_font_style : '';
-$title_line_height = ! empty( $settings->title_line_height ) ? $settings->title_line_height : '';
+$title_font_size      = ! empty( $settings->title_font_size ) ? $settings->title_font_size : '';
+$title_font_family    = ! empty( $settings->title_font_family['family'] ) ? $settings->title_font_family['family'] : '';
+$title_font_weight    = ! empty( $settings->title_font_family['weight'] ) ? $settings->title_font_family['weight'] : '';
+$title_transform      = ! empty( $settings->title_transform ) ? $settings->title_transform : '';
+$title_font_style     = ! empty( $settings->title_font_style ) ? $settings->title_font_style : '';
+$title_line_height    = ! empty( $settings->title_line_height ) ? $settings->title_line_height : '';
 $title_letter_spacing = ! empty( $settings->title_letter_spacing ) ? $settings->title_letter_spacing : '';
 echo '.fl-node-' . $id . ' .obfx-pricing-header *:first-child{';
 	echo ! empty( $title_color ) ? 'color: ' . $title_color . ';' : '';
@@ -104,12 +104,12 @@ $subtitle_color = ! empty( $settings->subtitle_color ) ? $settings->subtitle_col
 if ( ! empty( $subtitle_color ) ) {
 	$subtitle_color = strpos( $subtitle_color, 'rgba' ) !== false ? $subtitle_color : '#' . $subtitle_color;
 }
-$subtitle_font_size = ! empty( $settings->subtitle_font_size ) ? $settings->subtitle_font_size : '';
-$subtitle_font_family = ! empty( $settings->subtitle_font_family['family'] ) ? $settings->subtitle_font_family : '';
-$subtitle_font_weight = ! empty( $settings->subtitle_font_family['weight'] ) ? $settings->subtitle_font_family : '';
-$subtitle_transform = ! empty( $settings->subtitle_transform ) ? $settings->subtitle_transform : '';
-$subtitle_font_style = ! empty( $settings->subtitle_font_style ) ? $settings->subtitle_font_style : '';
-$subtitle_line_height = ! empty( $settings->subtitle_line_height ) ? $settings->subtitle_line_height : '';
+$subtitle_font_size      = ! empty( $settings->subtitle_font_size ) ? $settings->subtitle_font_size : '';
+$subtitle_font_family    = ! empty( $settings->subtitle_font_family['family'] ) ? $settings->subtitle_font_family : '';
+$subtitle_font_weight    = ! empty( $settings->subtitle_font_family['weight'] ) ? $settings->subtitle_font_family : '';
+$subtitle_transform      = ! empty( $settings->subtitle_transform ) ? $settings->subtitle_transform : '';
+$subtitle_font_style     = ! empty( $settings->subtitle_font_style ) ? $settings->subtitle_font_style : '';
+$subtitle_line_height    = ! empty( $settings->subtitle_line_height ) ? $settings->subtitle_line_height : '';
 $subtitle_letter_spacing = ! empty( $settings->subtitle_letter_spacing ) ? $settings->subtitle_letter_spacing : '';
 echo '.fl-node-' . $id . ' .obfx-pricing-header *:last-child{';
 	echo ! empty( $subtitle_color ) ? 'color: ' . $subtitle_color . ';' : '';
@@ -122,16 +122,16 @@ echo '.fl-node-' . $id . ' .obfx-pricing-header *:last-child{';
 	echo ! empty( $subtitle_letter_spacing ) ? 'letter-spacing: ' . $subtitle_letter_spacing . 'px;' : '';
 echo '}';
 
-$price_top = ! empty( $settings->price_top ) ? $settings->price_top : '';
-$price_bottom = ! empty( $settings->price_bottom ) ? $settings->price_bottom : '';
-$price_left = ! empty( $settings->price_left ) ? $settings->price_left : '';
-$price_right = ! empty( $settings->price_right ) ? $settings->price_right : '';
-$price_font_size = ! empty( $settings->price_font_size ) ? $settings->price_font_size : '';
-$price_font_family = ! empty( $settings->price_font_family['family'] ) ? $settings->price_font_family['family'] : '';
-$price_font_weight = ! empty( $settings->price_font_family['weight'] ) ? $settings->price_font_family['weight'] : '';
-$price_transform = ! empty( $settings->price_transform ) ? $settings->price_transform : '';
-$price_font_style = ! empty( $settings->price_font_style ) ? $settings->price_font_style : '';
-$price_line_height = ! empty( $settings->price_line_height ) ? $settings->price_line_height : '';
+$price_top            = ! empty( $settings->price_top ) ? $settings->price_top : '';
+$price_bottom         = ! empty( $settings->price_bottom ) ? $settings->price_bottom : '';
+$price_left           = ! empty( $settings->price_left ) ? $settings->price_left : '';
+$price_right          = ! empty( $settings->price_right ) ? $settings->price_right : '';
+$price_font_size      = ! empty( $settings->price_font_size ) ? $settings->price_font_size : '';
+$price_font_family    = ! empty( $settings->price_font_family['family'] ) ? $settings->price_font_family['family'] : '';
+$price_font_weight    = ! empty( $settings->price_font_family['weight'] ) ? $settings->price_font_family['weight'] : '';
+$price_transform      = ! empty( $settings->price_transform ) ? $settings->price_transform : '';
+$price_font_style     = ! empty( $settings->price_font_style ) ? $settings->price_font_style : '';
+$price_line_height    = ! empty( $settings->price_line_height ) ? $settings->price_line_height : '';
 $price_letter_spacing = ! empty( $settings->price_letter_spacing ) ? $settings->price_letter_spacing : '';
 echo '.fl-node-' . $id . ' .obfx-pricing-price{';
 	echo ! empty( $price_top ) ? 'padding-top: ' . $price_top . 'px;' : '';
@@ -167,10 +167,10 @@ if ( ! empty( $settings->period_color ) ) {
 	echo 'color: ' . $period_color . ';';
 	echo '}';
 }
-$features_top = ! empty( $settings->features_right ) ? $settings->features_right : '';
+$features_top    = ! empty( $settings->features_right ) ? $settings->features_right : '';
 $features_bottom = ! empty( $settings->features_right ) ? $settings->features_right : '';
-$features_left = ! empty( $settings->features_right ) ? $settings->features_right : '';
-$features_right = ! empty( $settings->features_right ) ? $settings->features_right : '';
+$features_left   = ! empty( $settings->features_right ) ? $settings->features_right : '';
+$features_right  = ! empty( $settings->features_right ) ? $settings->features_right : '';
 echo '.fl-node-' . $id . ' .obfx-pricing-features .obfx-pricing-feature-content{';
 	echo ! empty( $features_top ) ? 'padding-top: ' . $features_top . 'px;' : '';
 	echo ! empty( $features_bottom ) ? 'padding-bottom: ' . $features_bottom . 'px;' : '';
@@ -178,11 +178,11 @@ echo '.fl-node-' . $id . ' .obfx-pricing-features .obfx-pricing-feature-content{
 	echo ! empty( $features_right ) ? 'padding-right: ' . $features_right . 'px;' : '';
 echo '}';
 
-$feature_font_size  = ! empty( $settings->feature_font_size ) ? $settings->feature_font_size : '';
-$feature_transform  = ! empty( $settings->feature_transform ) ? $settings->feature_transform : '';
-$feature_font_style  = ! empty( $settings->feature_font_style ) ? $settings->feature_font_style : '';
-$feature_line_height  = ! empty( $settings->feature_line_height ) ? $settings->feature_line_height : '';
-$feature_letter_spacing  = ! empty( $settings->feature_letter_spacing ) ? $settings->feature_letter_spacing : '';
+$feature_font_size      = ! empty( $settings->feature_font_size ) ? $settings->feature_font_size : '';
+$feature_transform      = ! empty( $settings->feature_transform ) ? $settings->feature_transform : '';
+$feature_font_style     = ! empty( $settings->feature_font_style ) ? $settings->feature_font_style : '';
+$feature_line_height    = ! empty( $settings->feature_line_height ) ? $settings->feature_line_height : '';
+$feature_letter_spacing = ! empty( $settings->feature_letter_spacing ) ? $settings->feature_letter_spacing : '';
 echo '.fl-node-' . $id . ' .obfx-pricing-features .obfx-pricing-feature-content * {';
 	echo ! empty( $feature_font_size ) ? 'font-size: ' . $feature_font_size . 'px;' : '';
 	echo ! empty( $feature_transform ) ? 'text-transform: ' . $feature_transform . ';' : '';
@@ -224,9 +224,9 @@ if ( ! empty( $settings->feature_color ) ) {
 }
 
 $button_margin_bottom = ! empty( $settings->button_margin_bottom ) ? $settings->button_margin_bottom : '';
-$button_margin_left = ! empty( $settings->button_margin_left ) ? $settings->button_margin_left : '';
-$button_margin_right = ! empty( $settings->button_margin_right ) ? $settings->button_margin_right : '';
-$button_margin_top = ! empty( $settings->button_margin_top ) ? $settings->button_margin_top : '';
+$button_margin_left   = ! empty( $settings->button_margin_left ) ? $settings->button_margin_left : '';
+$button_margin_right  = ! empty( $settings->button_margin_right ) ? $settings->button_margin_right : '';
+$button_margin_top    = ! empty( $settings->button_margin_top ) ? $settings->button_margin_top : '';
 echo '.fl-node-' . $id . ' .obfx-plan-bottom{';
 	echo ! empty( $button_margin_bottom ) ? 'margin-bottom: ' . $button_margin_bottom . 'px;' : '';
 	echo ! empty( $button_margin_left ) ? 'margin-left: ' . $button_margin_left . 'px;' : '';
@@ -234,19 +234,19 @@ echo '.fl-node-' . $id . ' .obfx-plan-bottom{';
 	echo ! empty( $button_margin_top ) ? 'margin-top: ' . $button_margin_top . 'px;' : '';
 echo '}';
 
-$button_padding_top = ! empty( $settings->button_padding_top ) ? $settings->button_padding_top : '';
+$button_padding_top    = ! empty( $settings->button_padding_top ) ? $settings->button_padding_top : '';
 $button_padding_bottom = ! empty( $settings->button_padding_bottom ) ? $settings->button_padding_bottom : '';
-$button_padding_left = ! empty( $settings->button_padding_left ) ? $settings->button_padding_left : '';
-$button_padding_right = ! empty( $settings->button_padding_right ) ? $settings->button_padding_right : '';
-$button_font_size = ! empty( $settings->button_font_size ) ? $settings->button_font_size : '';
-$button_transform = ! empty( $settings->button_transform ) ? $settings->button_transform : '';
-$button_font_style = ! empty( $settings->button_font_style ) ? $settings->button_font_style : '';
-$button_line_height = ! empty( $settings->button_line_height ) ? $settings->button_line_height : '';
+$button_padding_left   = ! empty( $settings->button_padding_left ) ? $settings->button_padding_left : '';
+$button_padding_right  = ! empty( $settings->button_padding_right ) ? $settings->button_padding_right : '';
+$button_font_size      = ! empty( $settings->button_font_size ) ? $settings->button_font_size : '';
+$button_transform      = ! empty( $settings->button_transform ) ? $settings->button_transform : '';
+$button_font_style     = ! empty( $settings->button_font_style ) ? $settings->button_font_style : '';
+$button_line_height    = ! empty( $settings->button_line_height ) ? $settings->button_line_height : '';
 $button_letter_spacing = ! empty( $settings->button_letter_spacing ) ? $settings->button_letter_spacing : '';
-$button_font_family = ! empty( $settings->button_font_family['family'] ) ? $settings->button_font_family['family'] : '';
-$button_font_weight = ! empty( $settings->button_font_family['weight'] ) ? $settings->button_font_family['weight'] : '';
-$button_text_color = ! empty( $settings->button_text_color ) ? ( strpos( $settings->button_text_color, 'rgba' ) !== false ? $settings->button_text_color : '#' . $settings->button_text_color ) : '';
-$button_bg_color = ! empty( $settings->button_bg_color ) ? ( strpos( $settings->button_bg_color, 'rgba' ) !== false ? $settings->button_bg_color : '#' . $settings->button_bg_color ) : '';
+$button_font_family    = ! empty( $settings->button_font_family['family'] ) ? $settings->button_font_family['family'] : '';
+$button_font_weight    = ! empty( $settings->button_font_family['weight'] ) ? $settings->button_font_family['weight'] : '';
+$button_text_color     = ! empty( $settings->button_text_color ) ? ( strpos( $settings->button_text_color, 'rgba' ) !== false ? $settings->button_text_color : '#' . $settings->button_text_color ) : '';
+$button_bg_color       = ! empty( $settings->button_bg_color ) ? ( strpos( $settings->button_bg_color, 'rgba' ) !== false ? $settings->button_bg_color : '#' . $settings->button_bg_color ) : '';
 echo '.fl-node-' . $id . ' .obfx-plan-button{';
 	echo ! empty( $button_padding_top ) ? 'padding-top: ' . $button_padding_top . 'px;' : '';
 	echo ! empty( $button_padding_bottom ) ? 'padding-bottom: ' . $button_padding_bottom . 'px;' : '';
@@ -264,7 +264,7 @@ echo '.fl-node-' . $id . ' .obfx-plan-button{';
 echo '}';
 
 $button_text_color_hover = ! empty( $settings->button_text_color_hover ) ? ( strpos( $settings->button_text_color_hover, 'rgba' ) !== false ? $settings->button_text_color_hover : '#' . $settings->button_text_color_hover ) : '';
-$button_bg_color_hover = ! empty( $settings->button_bg_color_hover ) ? ( strpos( $settings->button_bg_color_hover, 'rgba' ) !== false ? $settings->button_bg_color_hover : '#' . $settings->button_bg_color_hover ) : '';
+$button_bg_color_hover   = ! empty( $settings->button_bg_color_hover ) ? ( strpos( $settings->button_bg_color_hover, 'rgba' ) !== false ? $settings->button_bg_color_hover : '#' . $settings->button_bg_color_hover ) : '';
 echo '.fl-node-' . $id . ' .obfx-plan-button:hover{';
 	echo ! empty( $button_text_color_hover ) ? 'color: ' . $button_text_color_hover . ';' : '';
 	echo ! empty( $button_bg_color_hover ) ? 'background-color: ' . $button_bg_color_hover . ';' : '';

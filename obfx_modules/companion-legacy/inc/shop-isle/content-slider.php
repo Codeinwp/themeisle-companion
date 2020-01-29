@@ -2,18 +2,47 @@
 /**
  *
  * *****    SLIDER   *******
- *
  */
 
-$shop_isle_homepage_slider_shortcode = get_theme_mod('shop_isle_homepage_slider_shortcode');
+$shop_isle_homepage_slider_shortcode = get_theme_mod( 'shop_isle_homepage_slider_shortcode' );
 
-echo '<section id="home" class="home-section home-parallax home-fade'. (empty($shop_isle_homepage_slider_shortcode) ? ' home-full-height' : ' home-slider-plugin' ) .'">';
+echo '<section id="home" class="home-section home-parallax home-fade' . ( empty( $shop_isle_homepage_slider_shortcode ) ? ' home-full-height' : ' home-slider-plugin' ) . '">';
 
-if( !empty($shop_isle_homepage_slider_shortcode) ) {
+if ( ! empty( $shop_isle_homepage_slider_shortcode ) ) {
 	echo do_shortcode( $shop_isle_homepage_slider_shortcode );
 } else {
 
-	$shop_isle_slider = get_theme_mod( 'shop_isle_slider',json_encode( array( array( 'image_url' => get_template_directory_uri() . '/assets/images/slide1.jpg', 'link' => '#', 'text' => __( 'ShopIsle','themeisle-companion' ), 'subtext' => __( 'WooCommerce Theme','themeisle-companion' ), 'label' => __( 'FIND OUT MORE','themeisle-companion' ) ), array( 'image_url' => get_template_directory_uri() . '/assets/images/slide2.jpg', 'link' => '#', 'text' => __( 'ShopIsle','themeisle-companion' ), 'subtext' => __( 'Hight quality store','themeisle-companion' ), 'label' => __( 'FIND OUT MORE','themeisle-companion' ) ), array( 'image_url' => get_template_directory_uri() . '/assets/images/slide3.jpg', 'link' => '#', 'text' => __( 'ShopIsle','themeisle-companion' ), 'subtext' => __( 'Responsive Theme','themeisle-companion' ), 'label' => __( 'FIND OUT MORE','themeisle-companion' ) ) ) ) );
+	$shop_isle_slider = get_theme_mod(
+		'shop_isle_slider',
+		json_encode(
+			array(
+				array(
+					'image_url' => get_template_directory_uri() . '/assets/images/slide1.jpg',
+					'link'      => '#',
+					'text'      => __( 'ShopIsle', 'themeisle-companion' ),
+					'subtext'   => __( 'WooCommerce Theme', 'themeisle-companion' ),
+					'label'     => __( 'FIND OUT MORE', 'themeisle-companion' ),
+				),
+				array(
+					'image_url' => get_template_directory_uri() . '/assets/images/slide2.jpg',
+					'link'      => '#',
+					'text'      => __( 'ShopIsle', 'themeisle-companion' ),
+					'subtext'   => __( 'Hight quality store', 'themeisle-companion' ),
+					'label'     => __( 'FIND OUT MORE', 'themeisle-companion' ),
+				),
+				array(
+					'image_url' => get_template_directory_uri() . '/assets/images/slide3.jpg',
+					'link'      => '#',
+					'text'      => __( 'ShopIsle', 'themeisle-companion' ),
+					'subtext'   => __( 'Responsive Theme', 'themeisle-companion' ),
+					'label'     => __(
+						'FIND OUT MORE',
+						'themeisle-companion' 
+					),
+				),
+			) 
+		) 
+	);
 
 	if ( ! empty( $shop_isle_slider ) ) {
 

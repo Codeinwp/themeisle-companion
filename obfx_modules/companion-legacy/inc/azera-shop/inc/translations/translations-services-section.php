@@ -9,23 +9,26 @@
  * Get services section default content.
  */
 function azera_shop_companion_sevices_get_default_content() {
-	return json_encode( array(
+	return json_encode(
+		array(
 			array(
 				'choice'     => 'azera_shop_icon',
 				'icon_value' => 'fa-cogs',
 				'title'      => esc_html__( 'Lorem Ipsum', 'themeisle-companion' ),
-				'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nullam vel eros sit amet arcu vestibulum accumsan in in leo.', 'themeisle-companion' )
+				'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nullam vel eros sit amet arcu vestibulum accumsan in in leo.', 'themeisle-companion' ),
 			),
-			array( 'choice'     => 'azera_shop_icon',
-			       'icon_value' => 'fa-bar-chart-o',
-			       'title'      => esc_html__( 'Lorem Ipsum', 'themeisle-companion' ),
-			       'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nullam vel eros sit amet arcu vestibulum accumsan in in leo.', 'themeisle-companion' )
+			array(
+				'choice'     => 'azera_shop_icon',
+				'icon_value' => 'fa-bar-chart-o',
+				'title'      => esc_html__( 'Lorem Ipsum', 'themeisle-companion' ),
+				'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nullam vel eros sit amet arcu vestibulum accumsan in in leo.', 'themeisle-companion' ),
 			),
-			array( 'choice'     => 'azera_shop_icon',
-			       'icon_value' => 'fa-globe',
-			       'title'      => esc_html__( 'Lorem Ipsum', 'themeisle-companion' ),
-			       'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nullam vel eros sit amet arcu vestibulum accumsan in in leo.', 'themeisle-companion' )
-			)
+			array(
+				'choice'     => 'azera_shop_icon',
+				'icon_value' => 'fa-globe',
+				'title'      => esc_html__( 'Lorem Ipsum', 'themeisle-companion' ),
+				'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nullam vel eros sit amet arcu vestibulum accumsan in in leo.', 'themeisle-companion' ),
+			),
 		)
 	);
 }

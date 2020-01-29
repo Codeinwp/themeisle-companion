@@ -63,7 +63,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		// Get the full-width pages feature
 		$this->loader->add_action( 'init', $this, 'load_template_directory_library' );
 		$this->loader->add_action( 'init', $this, 'load_full_width_page_templates' );
-		$this->loader->add_filter( 'obfx_template_dir_products',$this, 'add_page', 90 );
+		$this->loader->add_filter( 'obfx_template_dir_products', $this, 'add_page', 90 );
 	}
 
 	/**
@@ -76,11 +76,14 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			wp_enqueue_script( 'plugin-install' );
 			wp_enqueue_script( 'updates' );
 			wp_register_script( $script_handle, plugin_dir_url( $this->get_dir() ) . $this->slug . '/js/script.js', array( 'jquery' ), $this->version );
-			wp_localize_script( $script_handle, 'importer_endpoint',
+			wp_localize_script(
+				$script_handle,
+				'importer_endpoint',
 				array(
 					'url'   => $this->get_endpoint_url( '/import_elementor' ),
 					'nonce' => wp_create_nonce( 'wp_rest' ),
-				) );
+				) 
+			);
 			wp_enqueue_script( $script_handle );
 		}
 	}
@@ -98,9 +101,9 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'directory_page_title' => __( 'Orbit Fox Template Directory', 'themeisle-companion' ),
 				'parent_page_slug'     => 'obfx_companion',
 				'page_slug'            => 'obfx_template_dir',
-			)
+			),
 		);
-		return array_merge($products, $sizzify );
+		return array_merge( $products, $sizzify );
 	}
 
 	/**
@@ -176,7 +179,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 *
 	 * @return array
 	 */
-	public function filter_fwpt_templates_list( $list ){
+	public function filter_fwpt_templates_list( $list ) {
 		unset( $list['templates/builder-fullwidth.php'] );
 		return $list;
 	}

@@ -16,14 +16,15 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 /**
  * Filter to replace big title section with slider.
  */
-add_filter ( 'shop-isle-subheader', 'shop_isle_companion_slider');
+add_filter( 'shop-isle-subheader', 'shop_isle_companion_slider' );
 
 /**
  * Function used for subheader filter/
+ *
  * @return string
  */
 function shop_isle_companion_slider() {
-    return plugin_dir_path( __FILE__ ) . 'content-slider.php';
+	return plugin_dir_path( __FILE__ ) . 'content-slider.php';
 }
 
 /**
@@ -37,4 +38,4 @@ require plugin_dir_path( __FILE__ ) . 'customizer.php';
 require plugin_dir_path( __FILE__ ) . 'class-template-loader.php';
 
 
-add_action('shop-isle-about-page-after-content', 'shop_isle_companion_about_addon');
+add_action( 'shop-isle-about-page-after-content', 'shop_isle_companion_about_addon' );

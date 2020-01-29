@@ -131,7 +131,7 @@ class Autoloader {
 		$filename = 'class-' . str_replace( '_', '-', strtolower( $class_name ) ) . static::$file_ext;
 		foreach ( static::$file_iterator as $file ) {
 			if ( strtolower( $file->getFileName() ) === strtolower( $filename ) && is_readable( $file->getPathName() ) ) {
-				require( $file->getPathName() );
+				require $file->getPathName();
 				return true;
 			}
 		}
@@ -152,7 +152,7 @@ class Autoloader {
 			foreach ( $directories as $directory ) {
 				$filename = $directory . DIRECTORY_SEPARATOR . 'init.php';
 				if ( is_readable( $filename ) ) {
-					require( $filename );
+					require $filename;
 					return true;
 				}
 			}

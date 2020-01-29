@@ -79,7 +79,10 @@ class Uptime_Monitor_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$monitor_url = $this->monitor_url . '/api/monitor/create';
 		$url         = home_url();
 		$args        = array(
-			'body' => array( 'url' => $url, 'email' => $email )
+			'body' => array(
+				'url'   => $url,
+				'email' => $email,
+			),
 		);
 		$response    = wp_remote_post( $monitor_url, $args );
 	}
@@ -106,7 +109,7 @@ class Uptime_Monitor_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$monitor_url  = $this->monitor_url . '/api/monitor/remove';
 		$url          = home_url();
 		$args         = array(
-			'body' => array( 'url' => $url )
+			'body' => array( 'url' => $url ),
 		);
 		$response     = wp_remote_post( $monitor_url, $args );
 		$api_response = json_decode( $response['body'] );
@@ -180,7 +183,7 @@ class Uptime_Monitor_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'type'        => 'email',
 				'default'     => '',
 				'placeholder' => 'Add your email.',
-			)
+			),
 		);
 	}
 }

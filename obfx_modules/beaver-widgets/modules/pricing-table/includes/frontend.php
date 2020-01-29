@@ -29,9 +29,9 @@ switch ( $settings->currency_position ) {
 if ( ! empty( $features ) ) {
 	echo '<ul class="obfx-pricing-features text-center">';
 	foreach ( $features as $feature ) {
-		$icon = ! empty( $feature->icon ) ? $feature->icon : '';
-		$bold_text = ! empty( $feature->bold_text ) ? $feature->bold_text : '';
-		$text = ! empty( $feature->text ) ? $feature->text : '';
+		$icon             = ! empty( $feature->icon ) ? $feature->icon : '';
+		$bold_text        = ! empty( $feature->bold_text ) ? $feature->bold_text : '';
+		$text             = ! empty( $feature->text ) ? $feature->text : '';
 		$section_is_empty = empty( $icon ) && empty( $bold_text ) && empty( $text );
 		if ( ! $section_is_empty ) {
 			echo '<li><span class="obfx-pricing-feature-content">';

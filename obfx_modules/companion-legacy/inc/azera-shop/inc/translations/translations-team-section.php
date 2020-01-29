@@ -10,23 +10,25 @@
  * Get team section default content.
  */
 function azera_shop_companion_team_get_default_content() {
-	return json_encode( array(
+	return json_encode(
 		array(
-			'image_url' => azera_shop_get_file( '/images/team/1.jpg' ),
-			'title'     => esc_html__( 'Albert Jacobs', 'themeisle-companion' ),
-			'subtitle'  => esc_html__( 'Founder & CEO', 'themeisle-companion' )
-		),
-		array(
-			'image_url' => azera_shop_get_file( '/images/team/2.jpg' ),
-			'title'     => esc_html__( 'Tonya Garcia', 'themeisle-companion' ),
-			'subtitle'  => esc_html__( 'Account Manager', 'themeisle-companion' )
-		),
-		array(
-			'image_url' => azera_shop_get_file( '/images/team/3.jpg' ),
-			'title'     => esc_html__( 'Linda Guthrie', 'themeisle-companion' ),
-			'subtitle'  => esc_html__( 'Business Development', 'themeisle-companion' )
-		)
-	) );
+			array(
+				'image_url' => azera_shop_get_file( '/images/team/1.jpg' ),
+				'title'     => esc_html__( 'Albert Jacobs', 'themeisle-companion' ),
+				'subtitle'  => esc_html__( 'Founder & CEO', 'themeisle-companion' ),
+			),
+			array(
+				'image_url' => azera_shop_get_file( '/images/team/2.jpg' ),
+				'title'     => esc_html__( 'Tonya Garcia', 'themeisle-companion' ),
+				'subtitle'  => esc_html__( 'Account Manager', 'themeisle-companion' ),
+			),
+			array(
+				'image_url' => azera_shop_get_file( '/images/team/3.jpg' ),
+				'title'     => esc_html__( 'Linda Guthrie', 'themeisle-companion' ),
+				'subtitle'  => esc_html__( 'Business Development', 'themeisle-companion' ),
+			),
+		) 
+	);
 }
 
 /**

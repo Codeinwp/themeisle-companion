@@ -108,7 +108,7 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'title'   => esc_html__( 'Policy Page', 'themeisle-companion' ),
 				'type'    => 'select',
 				'default' => 0,
-				'options' =>  $this->get_policy_pages_array()
+				'options' => $this->get_policy_pages_array(),
 			),
 			array(
 				'id'      => 'notice_link_label',
@@ -159,9 +159,9 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * Here we display the cookie bar template based on the given options.
 	 */
 	public function display_cookie_notice() {
-		$policy_link   = get_option( 'wp_page_for_privacy_policy' ) ? get_permalink( (int) get_option( 'wp_page_for_privacy_policy' ) ) : '#';
+		$policy_link = get_option( 'wp_page_for_privacy_policy' ) ? get_permalink( (int) get_option( 'wp_page_for_privacy_policy' ) ) : '#';
 
-		$policy_page   = $this->get_option( 'policy_page' );
+		$policy_page = $this->get_option( 'policy_page' );
 
 		if ( ! empty( $policy_page ) ) {
 			$policy_link = get_permalink( (int) get_option( 'wp_page_for_privacy_policy' ) );
@@ -179,7 +179,6 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		);
 
 		// @TODO maybe think at some template system for a further hookable customization.
-
 		// message output will start with a wrapper and an input tag which will decide if the template is visible or not
 		$output = '<div class="obfx-cookie-bar-container"><input class="obfx-checkbox-cb" id="obfx-checkbox-cb" type="checkbox" />';
 
@@ -220,13 +219,15 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				}, false);
 
 			})(window);
-		</script><?php
+		</script>
+		<?php
 	}
 
 	/**
 	 * This modules needs a few CSS lines so there is no need to load a file for it.
 	 */
-	public function wp_print_footer_style() { ?>
+	public function wp_print_footer_style() { 
+		?>
 		<style>
 			.obfx-cookie-bar-container {
 				height: 0;
@@ -268,7 +269,8 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				cursor: pointer;
 			}
 		</style>
-	<?php }
+		<?php 
+	}
 
 	/**
 	 * When the core privacy page is changed, we'll also change the option within our module.
@@ -279,10 +281,10 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 *
 	 * @return mixed
 	 */
-	public function on_page_for_privacy_policy_save( $old_value, $value, $option ){
+	public function on_page_for_privacy_policy_save( $old_value, $value, $option ) {
 
 		// if this action comes from our dashboard we need to stop and avoid a save loop.
-		if( doing_action( $this->get_slug() . '_before_options_save' ) ){
+		if ( doing_action( $this->get_slug() . '_before_options_save' ) ) {
 			return $value;
 		}
 
@@ -293,9 +295,10 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 	/**
 	 * When the OrbitFox Module changes it's value, we also need to change the core version.
+	 *
 	 * @param $options
 	 */
-	public function before_options_save( $options ){
+	public function before_options_save( $options ) {
 
 		// the default option doesn't need a a change.
 		if ( empty( $options ) ) {
@@ -325,24 +328,26 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 *
 	 * @return array
 	 */
-	private function get_policy_pages_array(){
-		$core_policy_suffix	= '';
-		$url = get_option( 'wp_page_for_privacy_policy' );
+	private function get_policy_pages_array() {
+		$core_policy_suffix = '';
+		$url                = get_option( 'wp_page_for_privacy_policy' );
 		if ( empty( $url ) ) {
-			$core_policy_suffix	= ' (' . esc_html__( 'Not Set', 'themeisle-companion' ) . ')';
+			$core_policy_suffix = ' (' . esc_html__( 'Not Set', 'themeisle-companion' ) . ')';
 		}
 		$options = array(
-			'0' => esc_html__( 'Default Core Policy', 'themeisle-companion' ) . $core_policy_suffix
+			'0' => esc_html__( 'Default Core Policy', 'themeisle-companion' ) . $core_policy_suffix,
 		);
 
-		$pages = get_pages( array(
-			'echo'              => '0',
-			'post_status'       => array( 'draft', 'publish' ),
-			'depth' => 0,
-			'child_of' => 0,
-			'selected' => 0,
-			'value_field' => 'ID',
-		) );
+		$pages = get_pages(
+			array(
+				'echo'        => '0',
+				'post_status' => array( 'draft', 'publish' ),
+				'depth'       => 0,
+				'child_of'    => 0,
+				'selected'    => 0,
+				'value_field' => 'ID',
+			) 
+		);
 
 		if ( empty( $pages ) ) {
 			return $options;

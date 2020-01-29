@@ -93,7 +93,7 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function get_tab_content() {
 		$urls = $this->get_images();
 		$page = 1;
-		require $this->get_dir() . "/inc/photos.php";
+		require $this->get_dir() . '/inc/photos.php';
 		wp_die();
 	}
 
@@ -169,10 +169,10 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			wp_die();
 		}
 
-		//Update last page that was loaded
+		// Update last page that was loaded
 		$page = (int) $_POST['page'] + 1;
 
-		//Request new page
+		// Request new page
 		$urls = $this->get_images( $page );
 		if ( ! empty( $urls ) ) {
 			foreach ( $urls as $photo ) {

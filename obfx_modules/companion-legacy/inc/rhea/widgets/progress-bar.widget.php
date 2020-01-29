@@ -32,7 +32,7 @@ class Rhea_Progress_Bar extends WP_Widget {
 
 			?>
 			<div class="progress">
-				<div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo absint( $percentage ) ?>%"></div>
+				<div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo absint( $percentage ); ?>%"></div>
 			</div>
 		</div>
 
@@ -46,9 +46,9 @@ class Rhea_Progress_Bar extends WP_Widget {
 
 	function update( $new_instance, $old_instance ) {
 
-		$instance = $old_instance;
-		$instance['title'] = stripslashes( wp_filter_post_kses( $new_instance['title'] ) );
-		$instance['info'] = strip_tags( $new_instance['info'] );
+		$instance               = $old_instance;
+		$instance['title']      = stripslashes( wp_filter_post_kses( $new_instance['title'] ) );
+		$instance['info']       = strip_tags( $new_instance['info'] );
 		$instance['percentage'] = strip_tags( $new_instance['percentage'] );
 
 		return $instance;
@@ -60,15 +60,30 @@ class Rhea_Progress_Bar extends WP_Widget {
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title', 'themeisle-companion' ); ?></label><br/>
-			<input type="text" name="<?php echo $this->get_field_name( 'title' ); ?>" id="<?php echo $this->get_field_id( 'title' ); ?>" value="<?php if ( ! empty( $instance['title'] ) ) { echo $instance['title']; } ?>" placeholder="Wordpress" class="widefat">
+			<input type="text" name="<?php echo $this->get_field_name( 'title' ); ?>" id="<?php echo $this->get_field_id( 'title' ); ?>" value="
+												<?php 
+												if ( ! empty( $instance['title'] ) ) {
+													echo $instance['title']; } 
+												?>
+			" placeholder="Wordpress" class="widefat">
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'info' ); ?>"><?php esc_html_e( 'Info', 'themeisle-companion' ); ?></label><br/>
-			<input type="text" name="<?php echo $this->get_field_name( 'info' ); ?>" id="<?php echo $this->get_field_id( 'info' ); ?>" value="<?php if ( ! empty( $instance['info'] ) ) { echo $instance['info']; } ?>" placeholder="70%" class="widefat">
+			<input type="text" name="<?php echo $this->get_field_name( 'info' ); ?>" id="<?php echo $this->get_field_id( 'info' ); ?>" value="
+												<?php 
+												if ( ! empty( $instance['info'] ) ) {
+													echo $instance['info']; } 
+												?>
+			" placeholder="70%" class="widefat">
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'percentage' ); ?>"><?php esc_html_e( 'Percentage','themeisle-companion' ); ?></label><br />
-			<input type="text" name="<?php echo $this->get_field_name( 'percentage' ); ?>" id="<?php echo $this->get_field_id( 'percentage' ); ?>" value="<?php if ( ! empty( $instance['percentage'] ) ) { echo $instance['percentage']; } ?>"  placeholder="70" class="widefat">
+			<label for="<?php echo $this->get_field_id( 'percentage' ); ?>"><?php esc_html_e( 'Percentage', 'themeisle-companion' ); ?></label><br />
+			<input type="text" name="<?php echo $this->get_field_name( 'percentage' ); ?>" id="<?php echo $this->get_field_id( 'percentage' ); ?>" value="
+												<?php 
+												if ( ! empty( $instance['percentage'] ) ) {
+													echo $instance['percentage']; } 
+												?>
+			"  placeholder="70" class="widefat">
 		</p>
 
 		<?php

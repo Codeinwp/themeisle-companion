@@ -18,24 +18,24 @@ define( 'AZERA_SHOP_COMPANION_PATH', plugin_dir_path( __FILE__ ) );
 require AZERA_SHOP_COMPANION_PATH . 'inc/translations/general.php';
 
 /* Required helper functions */
-include_once( dirname( __FILE__ ) . '/inc/settings.php' );
+require_once dirname( __FILE__ ) . '/inc/settings.php';
 
 
 /* Add new sections in Azera Shop */
 function azera_shop_companion_sections() {
 	return array(
 
-			'sections/azera_shop_logos_section',
-			'azera_shop_our_services_section',
-			'sections/azera_shop_shop_section',
-			'azera_shop_our_team_section',
-			'azera_shop_happy_customers_section',
-			'sections/azera_shop_shortcodes_section',
-			'sections/azera_shop_ribbon_section',
-			'sections/azera_shop_contact_info_section',
-			'sections/azera_shop_map_section'
+		'sections/azera_shop_logos_section',
+		'azera_shop_our_services_section',
+		'sections/azera_shop_shop_section',
+		'azera_shop_our_team_section',
+		'azera_shop_happy_customers_section',
+		'sections/azera_shop_shortcodes_section',
+		'sections/azera_shop_ribbon_section',
+		'sections/azera_shop_contact_info_section',
+		'sections/azera_shop_map_section',
 
-			);
+	);
 }
 
 /**
@@ -45,7 +45,7 @@ function azera_shop_companion_sections() {
  */
 function azera_shop_companion_load_sections() {
 
-	add_filter('azera_shop_companion_sections_filter', 'azera_shop_companion_sections');
+	add_filter( 'azera_shop_companion_sections_filter', 'azera_shop_companion_sections' );
 }
 
 add_action( 'plugins_loaded', 'azera_shop_companion_load_sections' );

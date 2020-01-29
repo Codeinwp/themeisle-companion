@@ -56,10 +56,10 @@ class Rhea_Icon_Box extends WP_Widget {
 
 	function update( $new_instance, $old_instance ) {
 
-		$instance = $old_instance;
-		$instance['title'] = stripslashes( wp_filter_post_kses( $new_instance['title'] ) );
-		$instance['subtitle'] = strip_tags( $new_instance['subtitle'] );
-		$instance['icon'] = strip_tags( $new_instance['icon'] );
+		$instance                = $old_instance;
+		$instance['title']       = stripslashes( wp_filter_post_kses( $new_instance['title'] ) );
+		$instance['subtitle']    = strip_tags( $new_instance['subtitle'] );
+		$instance['icon']        = strip_tags( $new_instance['icon'] );
 		$instance['description'] = strip_tags( $new_instance['description'] );
 
 		return $instance;
@@ -67,34 +67,60 @@ class Rhea_Icon_Box extends WP_Widget {
 	}
 
 	function form( $instance ) {
-		$icon_holder_class = empty( $instance['icon'] ) ? ' empty-icon' : ''; ?>
+		$icon_holder_class = empty( $instance['icon'] ) ? ' empty-icon' : ''; 
+		?>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'icon' ); ?>"><?php esc_html_e( 'Icon', 'themeisle-companion' ); ?></label><br/>
 			<div class="fontawesome-icon-container<?php echo esc_attr( $icon_holder_class ); ?>">
-				<input type="hidden" class="widefat" name="<?php echo $this->get_field_name( 'icon' ); ?>" id="<?php echo $this->get_field_id( 'icon' ); ?>" value="<?php if ( ! empty( $instance['icon'] ) ) { echo esc_html( $instance['icon'] ); } ?>">
+				<input type="hidden" class="widefat" name="<?php echo $this->get_field_name( 'icon' ); ?>" id="<?php echo $this->get_field_id( 'icon' ); ?>" value="
+																	  <?php 
+																		if ( ! empty( $instance['icon'] ) ) {
+																			echo esc_html( $instance['icon'] ); } 
+																		?>
+				">
 				<div class="icon-holder">
-		<p><?php esc_html_e( 'No icon selected :( ...', 'themeisle-companion' ) ?></p>
-		<i class="<?php if ( ! empty( $instance['icon'] ) ) { echo esc_attr( $instance['icon'] ); } ?>"></i>
+		<p><?php esc_html_e( 'No icon selected :( ...', 'themeisle-companion' ); ?></p>
+		<i class="
+		<?php 
+		if ( ! empty( $instance['icon'] ) ) {
+			echo esc_attr( $instance['icon'] ); } 
+		?>
+		"></i>
 		</div>
 		<div class="actions">
-			<button type="button" class="button add-icon-button"><?php esc_html_e( 'Select Icon', 'themeisle-companion' ) ?></button>
-			<button type="button" class="button change-icon-button"><?php esc_html_e( 'Change Icon', 'themeisle-companion' ) ?></button>
-			<button type="button" class="button remove-icon-button"><?php esc_html_e( 'Remove', 'themeisle-companion' ) ?></button>
+			<button type="button" class="button add-icon-button"><?php esc_html_e( 'Select Icon', 'themeisle-companion' ); ?></button>
+			<button type="button" class="button change-icon-button"><?php esc_html_e( 'Change Icon', 'themeisle-companion' ); ?></button>
+			<button type="button" class="button remove-icon-button"><?php esc_html_e( 'Remove', 'themeisle-companion' ); ?></button>
 		</div>
 		</div>
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php esc_html_e( 'Title', 'themeisle-companion' ); ?></label><br/>
-			<input type="text" name="<?php echo $this->get_field_name( 'title' ); ?>" id="<?php echo $this->get_field_id( 'title' ); ?>" value="<?php if ( ! empty( $instance['title'] ) ) { echo $instance['title']; } ?>" class="widefat">
+			<input type="text" name="<?php echo $this->get_field_name( 'title' ); ?>" id="<?php echo $this->get_field_id( 'title' ); ?>" value="
+												<?php 
+												if ( ! empty( $instance['title'] ) ) {
+													echo $instance['title']; } 
+												?>
+			" class="widefat">
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'subtitle' ); ?>"><?php esc_html_e( 'Subtitle', 'themeisle-companion' ); ?></label><br/>
-			<input type="text" name="<?php echo $this->get_field_name( 'subtitle' ); ?>" id="<?php echo $this->get_field_id( 'subtitle' ); ?>" value="<?php if ( ! empty( $instance['subtitle'] ) ) { echo $instance['subtitle']; } ?>" class="widefat">
+			<input type="text" name="<?php echo $this->get_field_name( 'subtitle' ); ?>" id="<?php echo $this->get_field_id( 'subtitle' ); ?>" value="
+												<?php 
+												if ( ! empty( $instance['subtitle'] ) ) {
+													echo $instance['subtitle']; } 
+												?>
+			" class="widefat">
 		</p>
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'description' ); ?>"><?php esc_html_e( 'Description', 'themeisle-companion' ); ?></label><br/>
-			<textarea class="widefat" rows="8" cols="20" name="<?php echo $this->get_field_name( 'description' ); ?>" id="<?php echo $this->get_field_id( 'description' ); ?>"><?php if ( ! empty( $instance['description'] ) ) { echo htmlspecialchars_decode( $instance['description'] ); } ?></textarea>
+			<textarea class="widefat" rows="8" cols="20" name="<?php echo $this->get_field_name( 'description' ); ?>" id="<?php echo $this->get_field_id( 'description' ); ?>">
+																		  <?php 
+																			if ( ! empty( $instance['description'] ) ) {
+																				echo htmlspecialchars_decode( $instance['description'] ); } 
+																			?>
+			</textarea>
 		</p>
 
 		<?php

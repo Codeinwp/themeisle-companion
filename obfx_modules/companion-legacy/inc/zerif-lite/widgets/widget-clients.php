@@ -53,10 +53,15 @@ if ( ! class_exists( 'zerif_clients_widget' ) ) {
 
 			?>
 
-			<a href="<?php if ( ! empty( $instance['link'] ) ) :  echo apply_filters( 'widget_title', $instance['link'] );
-endif; ?>">
+			<a href="
+			<?php 
+			if ( ! empty( $instance['link'] ) ) :
+				echo apply_filters( 'widget_title', $instance['link'] );
+endif; 
+			?>
+			">
 				<?php
-				if ( ! empty( $instance['image_uri'] ) && ( preg_match('/(\.jpg|\.png|\.jpeg|\.gif|\.bmp)$/', $instance['image_uri'] ) ) ) {
+				if ( ! empty( $instance['image_uri'] ) && ( preg_match( '/(\.jpg|\.png|\.jpeg|\.gif|\.bmp)$/', $instance['image_uri'] ) ) ) {
 
 					echo '<img src="' . esc_url( $instance['image_uri'] ) . '" alt="' . __( 'Client', 'themeisle-companion' ) . '">';
 
@@ -114,10 +119,15 @@ endif; ?>">
 				<label
 					for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Link', 'themeisle-companion' ); ?></label><br/>
 				<input type="text" name="<?php echo $this->get_field_name( 'link' ); ?>"
-				       id="<?php echo $this->get_field_id( 'link' ); ?>"
-				       value="<?php if ( ! empty( $instance['link'] ) ) :  echo $instance['link'];
-endif; ?>"
-				       class="widefat">
+					   id="<?php echo $this->get_field_id( 'link' ); ?>"
+					   value="
+					   <?php 
+						if ( ! empty( $instance['link'] ) ) :
+							echo $instance['link'];
+endif; 
+						?>
+						"
+					   class="widefat">
 			</p>
 			<p>
 				<label
@@ -138,31 +148,50 @@ endif; ?>"
 				$zerif_image_in_customizer = $this->get_field_name( 'image_in_customizer' );
 				?>
 				<input type="hidden" class="custom_media_display_in_customizer"
-				       name="<?php if ( ! empty( $zerif_image_in_customizer ) ) {
+					   name="
+					   <?php 
+						if ( ! empty( $zerif_image_in_customizer ) ) {
 							echo $zerif_image_in_customizer;
-} ?>"
-				       value="<?php if ( ! empty( $instance['image_in_customizer'] ) ) :  echo $instance['image_in_customizer'];
-endif; ?>">
+						} 
+						?>
+						"
+					   value="
+					   <?php 
+						if ( ! empty( $instance['image_in_customizer'] ) ) :
+							echo $instance['image_in_customizer'];
+endif; 
+						?>
+						">
 				<img class="custom_media_image" src="<?php echo $image_in_customizer; ?>"
-				     style="margin:0;padding:0;max-width:100px;float:left;display:<?php echo $display; ?>"
-				     alt="<?php echo __( 'Uploaded image', 'themeisle-companion' ); ?>"/><br/>
+					 style="margin:0;padding:0;max-width:100px;float:left;display:<?php echo $display; ?>"
+					 alt="<?php echo __( 'Uploaded image', 'themeisle-companion' ); ?>"/><br/>
 
 				<input type="text" class="widefat custom_media_url"
-				       name="<?php echo $this->get_field_name( 'image_uri' ); ?>"
-				       id="<?php echo $this->get_field_id( 'image_uri' ); ?>"
-				       value="<?php if ( ! empty( $instance['image_uri'] ) ) :  echo $instance['image_uri'];
-endif; ?>"
-				       style="margin-top:5px;">
+					   name="<?php echo $this->get_field_name( 'image_uri' ); ?>"
+					   id="<?php echo $this->get_field_id( 'image_uri' ); ?>"
+					   value="
+					   <?php 
+						if ( ! empty( $instance['image_uri'] ) ) :
+							echo $instance['image_uri'];
+endif; 
+						?>
+						"
+					   style="margin-top:5px;">
 
 				<input type="button" class="button button-primary custom_media_button" id="custom_media_button"
-				       name="<?php echo $this->get_field_name( 'image_uri' ); ?>"
-				       value="<?php _e( 'Upload Image', 'themeisle-companion' ); ?>" style="margin-top:5px;">
+					   name="<?php echo $this->get_field_name( 'image_uri' ); ?>"
+					   value="<?php _e( 'Upload Image', 'themeisle-companion' ); ?>" style="margin-top:5px;">
 			</p>
 
 			<input class="custom_media_id" id="<?php echo $this->get_field_id( 'custom_media_id' ); ?>"
-			       name="<?php echo $this->get_field_name( 'custom_media_id' ); ?>" type="hidden"
-			       value="<?php if ( ! empty( $instance['custom_media_id'] ) ) :  echo $instance['custom_media_id'];
-endif; ?>"/>
+				   name="<?php echo $this->get_field_name( 'custom_media_id' ); ?>" type="hidden"
+				   value="
+				   <?php 
+					if ( ! empty( $instance['custom_media_id'] ) ) :
+						echo $instance['custom_media_id'];
+endif; 
+					?>
+					"/>
 			<?php
 
 		}

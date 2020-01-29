@@ -6,7 +6,7 @@
 function themeisle_populate_with_default_widgets() {
 
 	$zerif_lite_sidebars = array(
-	'sidebar-ourfocus'     => 'sidebar-ourfocus',
+		'sidebar-ourfocus'     => 'sidebar-ourfocus',
 		'sidebar-testimonials' => 'sidebar-testimonials',
 		'sidebar-ourteam'      => 'sidebar-ourteam',
 		'sidebar-aboutus'      => 'sidebar-aboutus',

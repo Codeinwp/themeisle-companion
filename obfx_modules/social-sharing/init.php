@@ -27,17 +27,17 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function __construct() {
 		parent::__construct();
-		$this->name               = __( 'Social Sharing Module', 'themeisle-companion' );
-		$this->description        = sprintf( __( 'Add basic social sharing to your posts and pages. Check out the %s to learn more!', 'themeisle-companion' ), sprintf( '<a href="https://demo.themeisle.com/orbit-fox/2018/01/15/social-sharing-modules/" rel="nofollow" target="_blank">%s</a>', __( 'demo', 'themeisle-companion' ) ) );
+		$this->name        = __( 'Social Sharing Module', 'themeisle-companion' );
+		$this->description = sprintf( __( 'Add basic social sharing to your posts and pages. Check out the %s to learn more!', 'themeisle-companion' ), sprintf( '<a href="https://demo.themeisle.com/orbit-fox/2018/01/15/social-sharing-modules/" rel="nofollow" target="_blank">%s</a>', __( 'demo', 'themeisle-companion' ) ) );
 	}
 
 	/**
 	 * Define the array that contains the social networks.
 	 */
 	private function define_networks() {
-    	$post_categories = strip_tags( get_the_category_list( ',' ) );
-		$post_title = get_the_title();
-		$post_link = get_the_permalink();
+		$post_categories = strip_tags( get_the_category_list( ',' ) );
+		$post_title      = get_the_title();
+		$post_link       = get_the_permalink();
 
 		$this->social_share_links = array(
 			'facebook'  => array(
@@ -75,19 +75,19 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'nicename' => 'Reddit',
 				'icon'     => 'reddit',
 			),
-			'whatsapp'     => array(
+			'whatsapp'  => array(
 				'link'     => 'whatsapp://send?text=' . $post_link,
 				'nicename' => 'WhatsApp',
 				'icon'     => 'whatsapp',
 				'target'   => '0',
 			),
-			'mail'     => array(
+			'mail'      => array(
 				'link'     => 'mailto:?&subject=' . $post_title . '&body=' . $post_link,
 				'nicename' => 'Email',
 				'icon'     => 'mail',
-				'target'   => '0'
+				'target'   => '0',
 			),
-			'sms'     => array(
+			'sms'       => array(
 				'link'     => 'sms://?&body=' . $post_title . ' - ' . $post_link,
 				'nicename' => 'SMS',
 				'icon'     => 'viber',
@@ -149,59 +149,59 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function load() {
-    }
-
-    /**
-     * Method to define hooks needed.
-     *
-     * @since   1.0.0
-     * @access  public
-     * @return mixed | array
-     */
-    public function hooks() {
-	    $this->loader->add_filter('kses_allowed_protocols', $this, 'custom_allowed_protocols', 1000 );
-
-	    if( $this -> get_option( 'socials_position' ) == 2 ) {
-		    $this->loader->add_filter('hestia_filter_blog_social_icons', $this, 'social_sharing_function' );
-		    return true;
-	    }
-	    $this->loader->add_action('wp_footer', $this, 'social_sharing_function' );
-    }
+	}
 
 	/**
-     * Display method for the Social Sharing.
-     *
-     * @since   1.0.0
-     * @access  public
-     */
-    public function social_sharing_function() {
-        if ( ( $this->get_option('display_on_posts') && is_single() ) || ( $this->get_option('display_on_pages') && is_page() ) ) {
-        	$class_desktop = 'obfx-sharing-left ';
-        	switch ( $this->get_option( 'socials_position' ) ) {
-		        case '1':
-			        $class_desktop = 'obfx-sharing-right ';
-			        break;
-		        case '2':
-		        	$class_desktop = 'obfx-sharing-inline ';
-	        }
+	 * Method to define hooks needed.
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 * @return mixed | array
+	 */
+	public function hooks() {
+		$this->loader->add_filter( 'kses_allowed_protocols', $this, 'custom_allowed_protocols', 1000 );
 
-	        $class_mobile = '';
-        	if( $this->get_option( 'mobile_position' ) == '0' ) {
-	            $class_mobile = 'obfx-sharing-bottom';
-	        }
-		    $data = array(
-		    	'desktop_class' => $class_desktop,
-		    	'mobile_class'  => $class_mobile,
-		    	'show_name' => $this->get_option( 'network_name' ),
-		    	'social_links_array' => $this->social_links_array(),
-		    );
+		if ( $this->get_option( 'socials_position' ) == 2 ) {
+			$this->loader->add_filter( 'hestia_filter_blog_social_icons', $this, 'social_sharing_function' );
+			return true;
+		}
+		$this->loader->add_action( 'wp_footer', $this, 'social_sharing_function' );
+	}
 
-	        if( $this -> get_option( 'socials_position' ) == 2 ) {
-	            return $this->render_view( 'hestia-social-sharing', $data );
-	        }
-		        echo $this->render_view( 'social-sharing', $data );
-	    }
-    }
+	/**
+	 * Display method for the Social Sharing.
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 */
+	public function social_sharing_function() {
+		if ( ( $this->get_option( 'display_on_posts' ) && is_single() ) || ( $this->get_option( 'display_on_pages' ) && is_page() ) ) {
+			$class_desktop = 'obfx-sharing-left ';
+			switch ( $this->get_option( 'socials_position' ) ) {
+				case '1':
+					$class_desktop = 'obfx-sharing-right ';
+					break;
+				case '2':
+					$class_desktop = 'obfx-sharing-inline ';
+			}
+
+			$class_mobile = '';
+			if ( $this->get_option( 'mobile_position' ) == '0' ) {
+				$class_mobile = 'obfx-sharing-bottom';
+			}
+			$data = array(
+				'desktop_class'      => $class_desktop,
+				'mobile_class'       => $class_mobile,
+				'show_name'          => $this->get_option( 'network_name' ),
+				'social_links_array' => $this->social_links_array(),
+			);
+
+			if ( $this->get_option( 'socials_position' ) == 2 ) {
+				return $this->render_view( 'hestia-social-sharing', $data );
+			}
+				echo $this->render_view( 'social-sharing', $data );
+		}
+	}
 
 	/**
 	 * Create the social links array to be passed to the front end view.
@@ -210,30 +210,30 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  private
 	 * @return array
 	 */
-    private function social_links_array() {
-    	$social_links = array();
+	private function social_links_array() {
+		$social_links = array();
 		foreach ( $this->social_share_links as $network => $network_links ) {
-			if( $this->get_option( $network ) ) {
-				$social_links[ $network ] = $network_links;
-				$social_links[ $network ][ 'show_mobile' ] = $this->get_option( $network . '-mobile-show' );
-				$social_links[ $network ][ 'show_desktop' ] = $this->get_option( $network . '-desktop-show' );
+			if ( $this->get_option( $network ) ) {
+				$social_links[ $network ]                 = $network_links;
+				$social_links[ $network ]['show_mobile']  = $this->get_option( $network . '-mobile-show' );
+				$social_links[ $network ]['show_desktop'] = $this->get_option( $network . '-desktop-show' );
 			}
 		}
-	    return $social_links;
-    }
+		return $social_links;
+	}
 
-    /**
-     * Add extra protocols to list of allowed protocols.
-     *
+	/**
+	 * Add extra protocols to list of allowed protocols.
+	 *
 	 * @param array $protocols List of protocols from core.
-     *
-     * @return array Updated list including extra protocols added.
-     */
-    public function custom_allowed_protocols( $protocols ){
-    	$protocols[] = 'whatsapp';
-	    $protocols[] = 'sms';
-	    return $protocols;
-    }
+	 *
+	 * @return array Updated list including extra protocols added.
+	 */
+	public function custom_allowed_protocols( $protocols ) {
+		$protocols[] = 'whatsapp';
+		$protocols[] = 'sms';
+		return $protocols;
+	}
 
 	/**
 	 * Method that returns an array of scripts and styles to be loaded
@@ -244,31 +244,31 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return array
 	 */
 	public function public_enqueue() {
-		$data = get_option( 'obfx_data' );
+		$data             = get_option( 'obfx_data' );
 		$display_on_posts = true;
 		$display_on_pages = false;
-		if( isset( $data['module_settings']) && isset( $data['module_settings']['social-sharing']) ){
-			if( isset( $data['module_settings']['social-sharing']['display_on_posts'] ) ){
-				$display_on_posts = (bool)$data['module_settings']['social-sharing']['display_on_posts'];
+		if ( isset( $data['module_settings'] ) && isset( $data['module_settings']['social-sharing'] ) ) {
+			if ( isset( $data['module_settings']['social-sharing']['display_on_posts'] ) ) {
+				$display_on_posts = (bool) $data['module_settings']['social-sharing']['display_on_posts'];
 			}
-			if( isset( $data['module_settings']['social-sharing']['display_on_pages'] ) ){
-				$display_on_pages = (bool)$data['module_settings']['social-sharing']['display_on_pages'];
+			if ( isset( $data['module_settings']['social-sharing']['display_on_pages'] ) ) {
+				$display_on_pages = (bool) $data['module_settings']['social-sharing']['display_on_pages'];
 			}
 		}
 
-		if( ( $display_on_posts === false || ! is_single() ) && ( $display_on_pages === false || ! is_page() ) ) {
+		if ( ( $display_on_posts === false || ! is_single() ) && ( $display_on_pages === false || ! is_page() ) ) {
 			return array();
 		}
 
-	    return array(
-		    'css' => array(
-				'public' => false,
+		return array(
+			'css' => array(
+				'public'                 => false,
 				'vendor/socicon/socicon' => false,
-		    ),
-		    'js' => array(
+			),
+			'js'  => array(
 				'public' => array( 'jquery' ),
-		    ),
-	    );
+			),
+		);
 	}
 
 	/**
@@ -291,10 +291,10 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		return array(
 			'css' => array(
-				'admin' => false,
+				'admin'                  => false,
 				'vendor/socicon/socicon' => false,
 			),
-			'js' => array(
+			'js'  => array(
 				'admin' => array( 'jquery' ),
 			),
 		);
@@ -403,9 +403,9 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * Add hestia options.
 	 */
 	private function add_hestia_options( $options ) {
-		if( defined( 'HESTIA_VERSION' ) ) {
-			$option_id = $this->search_for_id( 'socials_position', $options );
-			$options[$option_id]['options']['2'] = 'Inline after content';
+		if ( defined( 'HESTIA_VERSION' ) ) {
+			$option_id                             = $this->search_for_id( 'socials_position', $options );
+			$options[ $option_id ]['options']['2'] = 'Inline after content';
 		}
 		return $options;
 	}
