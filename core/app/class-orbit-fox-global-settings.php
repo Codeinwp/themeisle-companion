@@ -72,7 +72,6 @@ class Orbit_Fox_Global_Settings {
 					'mystock-import',
 					'policy-notice',
 					'beaver-widgets',
-					'image-cdn',
 				)
 			);
 		}// End if().
