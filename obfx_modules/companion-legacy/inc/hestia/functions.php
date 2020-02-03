@@ -11,14 +11,17 @@
  */
 function themeisle_hestia_require() {
 	if ( function_exists( 'hestia_setup_theme' ) ) {
-		$sections_paths = apply_filters( 'themeisle_companion_hestia_sections',array(
-			'hestia/inc/features/import-zerif-content.php',
-			'hestia/inc/sections/hestia-features-section.php',
-			'hestia/inc/sections/hestia-testimonials-section.php',
-			'hestia/inc/sections/hestia-team-section.php',
-			'hestia/inc/sections/hestia-ribbon-section.php',
-			'hestia/inc/sections/hestia-clients-bar-section.php',
-		) );
+		$sections_paths = apply_filters(
+			'themeisle_companion_hestia_sections', 
+			array(
+				'hestia/inc/features/import-zerif-content.php',
+				'hestia/inc/sections/hestia-features-section.php',
+				'hestia/inc/sections/hestia-testimonials-section.php',
+				'hestia/inc/sections/hestia-team-section.php',
+				'hestia/inc/sections/hestia-ribbon-section.php',
+				'hestia/inc/sections/hestia-clients-bar-section.php',
+			) 
+		);
 		themeisle_hestia_require_files( $sections_paths );
 	}
 }
@@ -29,14 +32,17 @@ function themeisle_hestia_require() {
  */
 function themeisle_hestia_load_controls() {
 	if ( function_exists( 'hestia_setup_theme' ) ) {
-		$features_paths = apply_filters( 'themeisle_companion_hestia_controls',array(
-			'hestia/inc/features/feature-features-section.php',
-			'hestia/inc/features/feature-testimonials-section.php',
-			'hestia/inc/features/feature-team-section.php',
-			'hestia/inc/features/feature-ribbon-section.php',
-			'hestia/inc/features/feature-clients-bar-section.php',
-			'hestia/inc/customizer.php',
-		) );
+		$features_paths = apply_filters(
+			'themeisle_companion_hestia_controls', 
+			array(
+				'hestia/inc/features/feature-features-section.php',
+				'hestia/inc/features/feature-testimonials-section.php',
+				'hestia/inc/features/feature-team-section.php',
+				'hestia/inc/features/feature-ribbon-section.php',
+				'hestia/inc/features/feature-clients-bar-section.php',
+				'hestia/inc/customizer.php',
+			) 
+		);
 		themeisle_hestia_require_files( $features_paths );
 	}
 }
@@ -51,7 +57,7 @@ function themeisle_hestia_require_files( $array ) {
 	foreach ( $array as $path ) {
 		$file_path = trailingslashit( THEMEISLE_COMPANION_PATH ) . $path;
 		if ( file_exists( $file_path ) ) {
-			require_once( $file_path );
+			require_once $file_path;
 		}
 	}
 }
@@ -64,10 +70,10 @@ function themeisle_hestia_set_frontpage() {
 		$is_fresh_site = get_option( 'fresh_site' );
 		if ( (bool) $is_fresh_site === false ) {
 			$frontpage_title = esc_html__( 'Front Page', 'themeisle-companion' );
-			$front_id = themeisle_hestia_create_page( 'hestia-front', $frontpage_title );
-			$blogpage_title = esc_html__( 'Blog', 'themeisle-companion' );
-			$blog_id = themeisle_hestia_create_page( 'blog', $blogpage_title );
-			set_theme_mod( 'show_on_front','page' );
+			$front_id        = themeisle_hestia_create_page( 'hestia-front', $frontpage_title );
+			$blogpage_title  = esc_html__( 'Blog', 'themeisle-companion' );
+			$blog_id         = themeisle_hestia_create_page( 'blog', $blogpage_title );
+			set_theme_mod( 'show_on_front', 'page' );
 			update_option( 'show_on_front', 'page' );
 			if ( ! empty( $front_id ) ) {
 				update_option( 'page_on_front', $front_id );
@@ -100,11 +106,11 @@ function themeisle_hestia_create_page( $slug, $page_title ) {
 	} else {
 		// Page doesn't exist. Create one.
 		$postargs = array(
-			'post_type'     => 'page',
-			'post_name'     => $slug,
-			'post_title'    => $page_title,
-			'post_status'   => 'publish',
-			'post_author'   => 1,
+			'post_type'   => 'page',
+			'post_name'   => $slug,
+			'post_title'  => $page_title,
+			'post_status' => 'publish',
+			'post_author' => 1,
 		);
 		// Insert the post into the database
 		$page_id = wp_insert_post( $postargs );
@@ -117,6 +123,6 @@ function themeisle_hestia_create_page( $slug, $page_title ) {
  * Note: this can be deleted in a future version. It's just for maintaining compatibility, if user updates plugin but
  * not the theme.
  */
-function themeisle_hestia_enqueue_clients_style(){
+function themeisle_hestia_enqueue_clients_style() {
 	wp_enqueue_style( 'hestia-clients-bar', trailingslashit( THEMEISLE_COMPANION_URL ) . 'assets/css/hestia/clients-bar.css' );
 }

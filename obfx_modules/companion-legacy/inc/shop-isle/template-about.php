@@ -78,8 +78,8 @@ get_header(); ?>
 		<section class="module">
 			<div class="container">
 				<?php
-				$shop_isle_our_team_title = get_theme_mod( 'shop_isle_our_team_title', __( 'Meet our team', 'themeisle-companion' ) );
-				$shop_isle_our_team_subtitle = get_theme_mod( 'shop_isle_our_team_subtitle',__( 'An awesome way to introduce the members of your team.', 'themeisle-companion' ) );
+				$shop_isle_our_team_title    = get_theme_mod( 'shop_isle_our_team_title', __( 'Meet our team', 'themeisle-companion' ) );
+				$shop_isle_our_team_subtitle = get_theme_mod( 'shop_isle_our_team_subtitle', __( 'An awesome way to introduce the members of your team.', 'themeisle-companion' ) );
 
 				if ( ! empty( $shop_isle_our_team_title ) || ! empty( $shop_isle_our_team_subtitle ) ) {
 
@@ -112,13 +112,13 @@ get_header(); ?>
 				
 		<!-- Video start -->
 		<?php
-		$shop_isle_about_page_video_background = get_theme_mod( 'shop_isle_about_page_video_background',get_template_directory_uri() . '/assets/images/background-video.jpg' );
+		$shop_isle_about_page_video_background = get_theme_mod( 'shop_isle_about_page_video_background', get_template_directory_uri() . '/assets/images/background-video.jpg' );
 		?>
 		<section class="module bg-dark-60 about-page-video" 
 		<?php
 		if ( ! empty( $shop_isle_about_page_video_background ) ) {
 			echo 'data-background="' . esc_url( $shop_isle_about_page_video_background ) . '"';}
-?>
+		?>
 >
 			<div class="container">
 				<div class="row">
@@ -137,8 +137,8 @@ get_header(); ?>
 								echo '</div>';
 							endif;
 
-							$shop_isle_about_page_video_title = get_theme_mod( 'shop_isle_about_page_video_title',__( 'Presentation', 'themeisle-companion' ) );
-							$shop_isle_about_page_video_subtitle = get_theme_mod( 'shop_isle_about_page_video_subtitle',__( 'What the video about our new products', 'themeisle-companion' ) );
+							$shop_isle_about_page_video_title    = get_theme_mod( 'shop_isle_about_page_video_title', __( 'Presentation', 'themeisle-companion' ) );
+							$shop_isle_about_page_video_subtitle = get_theme_mod( 'shop_isle_about_page_video_subtitle', __( 'What the video about our new products', 'themeisle-companion' ) );
 
 							if ( ! empty( $shop_isle_about_page_video_title ) ) :
 								echo '<div class="video-title font-alt">' . wp_kses_post( $shop_isle_about_page_video_title ) . '</div>';
@@ -159,7 +159,7 @@ get_header(); ?>
 		<section class="module module-advantages">
 			<div class="container">
 				<?php
-				$shop_isle_our_advantages_title = get_theme_mod( 'shop_isle_our_advantages_title',__( 'Our advantages', 'themeisle-companion' ) );
+				$shop_isle_our_advantages_title = get_theme_mod( 'shop_isle_our_advantages_title', __( 'Our advantages', 'themeisle-companion' ) );
 				if ( ! empty( $shop_isle_our_advantages_title ) ) :
 					echo '<div class="row">';
 						echo '<div class="col-sm-6 col-sm-offset-3">';

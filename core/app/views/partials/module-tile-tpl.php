@@ -30,7 +30,7 @@ $toggle_class = 'obfx-mod-switch';
 if ( ! empty( $confirm_intent ) ) {
 
 	$toggle_class .= ' obfx-mod-confirm-intent';
-	$modal        = '
+	$modal         = '
         <div id="' . esc_attr( $slug ) . '" class="modal">
             <a href="#close" class="close-confirm-intent modal-overlay" aria-label="Close"></a>
             <div class="modal-container"> 
@@ -55,25 +55,25 @@ $noance = wp_create_nonce( 'obfx_activate_mod_' . $slug );
 		</div>
 	</div>
 	<div class="tile-content">
-		<p class="tile-title"><?php echo $name; ?></p>
-		<p class="tile-subtitle"><?php echo $description; ?></p>
+		<p class="tile-title"><?php echo wp_kses_post( $name ); ?></p>
+		<p class="tile-subtitle"><?php echo wp_kses_post( $description ); ?></p>
 	</div>
 	<div class="tile-action">
 		<div class="form-group">
 			<label class="form-switch <?php echo empty( $checked ) ? '' : 'activated'; ?>">
-				<input class="<?php echo esc_attr( $toggle_class ); ?>" type="checkbox" name="<?php echo $slug; ?>"
-					   value="<?php echo $noance; ?>" <?php echo $checked; ?> >
+				<input class="<?php echo esc_attr( $toggle_class ); ?>" type="checkbox" name="<?php echo esc_attr( $slug ); ?>"
+					   value="<?php echo esc_attr( $noance ); ?>" <?php echo esc_attr( $checked ); ?> >
 				<i class="form-icon"></i>
-				<span class="inactive"><?php echo __( 'Activate', 'themeisle-companion' ); ?></span>
+				<span class="inactive"><?php esc_attr_e( 'Activate', 'themeisle-companion' ); ?></span>
 				<i class="dashicons dashicons-yes"></i>
 
 			</label>
 			<?php if ( $beta ) { ?>
-				<p class="obfx-beta-module"><?php echo __( 'Beta module', 'themeisle-companion' ); ?></p>
+				<p class="obfx-beta-module"><?php esc_attr_e( 'Beta module', 'themeisle-companion' ); ?></p>
 			<?php } ?>
 			<?php
 			if ( ! empty( $modal ) ) {
-				echo wp_kses_post( $modal );
+				echo ( $modal ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 			?>
 			<?php do_action( 'obfx_activate_btn_before', $slug, $checked === 'checked' ); ?>

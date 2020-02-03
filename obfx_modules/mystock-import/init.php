@@ -93,7 +93,7 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function get_tab_content() {
 		$urls = $this->get_images();
 		$page = 1;
-		require $this->get_dir() . "/inc/photos.php";
+		require $this->get_dir() . '/inc/photos.php';
 		wp_die();
 	}
 
@@ -126,7 +126,7 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	/**
 	 * Upload image.
 	 */
-	function handle_request() {
+	public function handle_request() {
 		check_ajax_referer( $this->slug . filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ), 'security' );
 
 		if ( ! isset( $_POST['url'] ) ) {
@@ -134,7 +134,7 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			wp_die();
 		}
 
-		$url      = $_POST['url'];
+		$url      = esc_url_raw( $_POST['url'] );
 		$name     = basename( $url );
 		$tmp_file = download_url( $url );
 		if ( is_wp_error( $tmp_file ) ) {
@@ -162,17 +162,17 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	/**
 	 * Ajax function to load new images.
 	 */
-	function infinite_scroll() {
+	public function infinite_scroll() {
 		check_ajax_referer( $this->slug . filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ), 'security' );
 
 		if ( ! isset( $_POST['page'] ) ) {
 			wp_die();
 		}
 
-		//Update last page that was loaded
+		// Update last page that was loaded
 		$page = (int) $_POST['page'] + 1;
 
-		//Request new page
+		// Request new page
 		$urls = $this->get_images( $page );
 		if ( ! empty( $urls ) ) {
 			foreach ( $urls as $photo ) {

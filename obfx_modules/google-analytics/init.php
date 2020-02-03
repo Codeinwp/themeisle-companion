@@ -89,12 +89,16 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * Register endpoint for refreshing analytics.
 	 */
 	public function register_endpoints() {
-		register_rest_route( 'obfx-' . $this->slug, '/obfx-analytics', array(
+		register_rest_route(
+			'obfx-' . $this->slug,
+			'/obfx-analytics',
 			array(
-				'methods'  => WP_REST_Server::CREATABLE,
-				'callback' => array( $this, 'refresh_tracking_links' )
-			),
-		) );
+				array(
+					'methods'  => WP_REST_Server::CREATABLE,
+					'callback' => array( $this, 'refresh_tracking_links' ),
+				),
+			) 
+		);
 	}
 
 	/**
@@ -110,7 +114,7 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		$obfx_token = get_option( 'obfx_token', '' );
 
-		if ( ( $_POST['deactivate'] === 'unregister' ) ) {
+		if ( ( $_POST['deactivate'] === 'unregister' ) ) { //phpcs:ignore WordPress.VIP.ValidatedSanitizedInput.InputNotValidated
 			return $this->unregister_website( $obfx_token );
 		}
 		if ( empty( $obfx_token ) ) {
@@ -133,13 +137,18 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		delete_option( 'obfx_token' );
 		delete_option( 'obfx_google_accounts_tracking_codes' );
 		$req_headers = array( 'x-obfx-auth' => $obfx_token );
-		$req_body    = array( 'site_url' => home_url(), 'site_hash' => $this->get_site_hash() );
+		$req_body    = array(
+			'site_url'  => home_url(),
+			'site_hash' => $this->get_site_hash(),
+		);
 
-		$request = wp_remote_post( $this->api_url . '/remove_website',
+		$request = wp_remote_post(
+			$this->api_url . '/remove_website',
 			array(
 				'headers' => $req_headers,
 				'body'    => $req_body,
-			) );
+			) 
+		);
 
 		return $request;
 	}
@@ -170,11 +179,14 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		$script_handle = $this->slug . '-script';
 		wp_register_script( $script_handle, plugin_dir_url( $this->get_dir() ) . $this->slug . '/js/script.js', array( 'jquery' ), $this->version, true );
-		wp_localize_script( $script_handle, 'obfxAnalyticsObj',
+		wp_localize_script(
+			$script_handle,
+			'obfxAnalyticsObj',
 			array(
 				'url'   => $this->get_endpoint_url( '/obfx-analytics' ),
 				'nonce' => wp_create_nonce( 'wp_rest' ),
-			) );
+			) 
+		);
 		wp_enqueue_script( $script_handle );
 	}
 
@@ -212,11 +224,14 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$token = get_option( 'obfx_token', '' );
 		if ( empty( $token ) ) {
 			$url = $this->api_url . '/auth';
-			$url = add_query_arg( array(
-				'site_hash'   => $this->get_site_hash(),
-				'site_url'    => home_url(),
-				'site_return' => admin_url( 'admin.php?page=obfx_companion#obfx-mod-google-analytics' ),
-			), $url );
+			$url = add_query_arg(
+				array(
+					'site_hash'   => $this->get_site_hash(),
+					'site_url'    => home_url(),
+					'site_return' => admin_url( 'admin.php?page=obfx_companion#obfx-mod-google-analytics' ),
+				),
+				$url 
+			);
 
 			return array(
 				array(
@@ -234,7 +249,7 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		$accounts = get_option( 'obfx_google_accounts_tracking_codes', array() );
 
-		if ( ! empty ( $accounts ) ) {
+		if ( ! empty( $accounts ) ) {
 			foreach ( $accounts as $account ) {
 				$options[ $account->tracking_code ] = $account->account_name . ' - ' . $account->tracking_code;
 			}
@@ -249,7 +264,7 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'link-class' => 'btn btn-primary btn-sm',
 				'link-id'    => 'refresh-analytics-accounts',
 				'text'       => '<i class="dashicons dashicons-update"></i> ' . __( 'Refresh Accounts', 'themeisle-companion' ),
-				'url'        => ''
+				'url'        => '',
 			),
 			array(
 				'id'      => 'analytics_accounts_select',
@@ -265,8 +280,8 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'link-class' => 'btn btn-sm',
 				'link-id'    => 'unregister-analytics',
 				'text'       => '<i class="dashicons dashicons-no"></i>' . __( 'Unregister Site', 'themeisle-companion' ),
-				'url'        => ''
-			)
+				'url'        => '',
+			),
 		);
 	}
 
@@ -274,7 +289,7 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * Get tracking codes from server.
 	 *
 	 * @param string $obfx_token
-	 * @param bool $forced
+	 * @param bool   $forced
 	 *
 	 * @return bool|string
 	 */
@@ -288,20 +303,22 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$req_body    = array(
 			'site_url'      => home_url(),
 			'site_hash'     => $this->get_site_hash(),
-			'forced_update' => 'not_forced'
+			'forced_update' => 'not_forced',
 		);
 
 		if ( $forced === true ) {
 			$req_body['forced_update'] = 'forced_update';
 		}
 
-		$request = wp_remote_post( $this->api_url . '/get_tracking_links',
+		$request = wp_remote_post(
+			$this->api_url . '/get_tracking_links',
 			array(
 				'headers' => $req_headers,
 				'body'    => $req_body,
-			) );
+			) 
+		);
 
-		if ( empty ( $request['body'] ) ) {
+		if ( empty( $request['body'] ) ) {
 			return false;
 		}
 		$accounts = json_decode( $request['body'] );
@@ -317,13 +334,13 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 *
 	 * @return string
 	 */
-	private final function get_site_hash() {
-	    $hash_base = '';
-        if( defined ( 'AUTH_KEY' ) && defined ('SECURE_AUTH_KEY' ) && defined ('LOGGED_IN_KEY' ) ){
-            $hash_base = AUTH_KEY . SECURE_AUTH_KEY . LOGGED_IN_KEY;
-        }else{
-            $hash_base = sha1(ABSPATH ) . sha1( get_site_url( ) );
-        }
+	final private function get_site_hash() {
+		$hash_base = '';
+		if ( defined( 'AUTH_KEY' ) && defined( 'SECURE_AUTH_KEY' ) && defined( 'LOGGED_IN_KEY' ) ) {
+			$hash_base = AUTH_KEY . SECURE_AUTH_KEY . LOGGED_IN_KEY;
+		} else {
+			$hash_base = sha1( ABSPATH ) . sha1( get_site_url() );
+		}
 		$pre_hash = rtrim( ltrim( sanitize_text_field( preg_replace( '/[^a-zA-Z0-9]/', '', $hash_base ) ) ) );
 		if ( function_exists( 'mb_strimwidth' ) ) {
 			return mb_strimwidth( $pre_hash, 0, 100 );
@@ -332,7 +349,7 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		return substr( $pre_hash, 0, 100 );
 	}
 
-	public final function maybe_save_obfx_token() {
+	final public function maybe_save_obfx_token() {
 		$obfx_token = isset( $_GET['obfx_token'] ) ? sanitize_text_field( $_GET['obfx_token'] ) : '';
 		if ( empty( $obfx_token ) ) {
 			return '';
@@ -353,10 +370,10 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		update_option( 'obfx_token', $obfx_token );
 		$this->get_tracking_codes( $obfx_token );
 		wp_safe_redirect( admin_url( 'admin.php?page=obfx_companion' ) );
-
+		exit;
 	}
 
-	public final function output_analytics_code() {
+	final public function output_analytics_code() {
 		$ua_code = $this->get_option( 'analytics_accounts_select' ); ?>
 		<!-- Google Analytics -->
 		<!-- Global site tag (gtag.js) - Google Analytics -->

@@ -7,20 +7,20 @@
  * $settings The module's settings.
  */
 
-$columns = $settings->column_number;
-$services = $settings->services;
-$services_nb = sizeof( $services );
-$card_layout = $settings->card_layout;
+$columns         = $settings->column_number;
+$services        = $settings->services;
+$services_nb     = count( $services );
+$card_layout     = $settings->card_layout;
 $container_class = $card_layout === 'yes' ? 'obfx-card obfx-service' : 'obfx-service';
 if ( ! empty( $columns ) ) {
 	echo '<div class="obfx-services-section">';
 	foreach ( $services as $service ) {
 		echo '<div class="obfx-service-wrapper">';
 			echo '<div class="' . esc_attr( $container_class ) . '">';
-				$title = $service->title;
-				$text = $service->text;
-				$icon = $service->icon;
-				$link = $service->link;
+				$title = $service->title; //phpcs:ignore WordPress.WP.GlobalVariablesOverride.OverrideProhibited
+				$text  = $service->text;
+				$icon  = $service->icon;
+				$link  = $service->link; //phpcs:ignore WordPress.WP.GlobalVariablesOverride.OverrideProhibited
 
 		if ( ! empty( $icon ) ) {
 			$icon_color = ! empty( $service->icon_color ) ? '#' . $service->icon_color : '#d6d6d6';

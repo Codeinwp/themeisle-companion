@@ -21,6 +21,7 @@ services:
     volumes:
        - ~/wpcore:/var/www/html/
        - .:/var/www/html/wp-content/plugins/themeisle-companion/
+       - ../neve:/var/www/html/wp-content/themes/neve/
     restart: always
     environment:
       WORDPRESS_DB_NAME: wordpress

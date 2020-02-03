@@ -41,28 +41,28 @@ if ( isset( $show ) && $show ) {
 	$btn_class = 'active';
 
 }
-$styles = sprintf( 'style="%s"', implode( ':', $styles ) );
+$styles = sprintf( 'style="%s"', esc_attr( implode( ':', $styles ) ) );
 
 ?>
-<div id="obfx-mod-<?php echo $slug; ?>" class="panel options <?php echo esc_attr( $btn_class ); ?>" <?php echo $styles; ?>>
+<div id="obfx-mod-<?php echo esc_attr( $slug ); ?>" class="panel options <?php echo esc_attr( $btn_class ); ?>" <?php echo ( $styles ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 	<div class="panel-header">
 		<button class="btn btn-action circle btn-expand <?php echo esc_attr( $btn_class ); ?>"
 				style="float: right; margin-right: 10px;">
 			<i class="dashicons dashicons-arrow-down-alt2"></i>
 		</button>
-		<div class="panel-title"><?php echo $name; ?></div>
-		<div class="panel-subtitle"><?php echo $description; ?></div>
+		<div class="panel-title"><?php echo wp_kses_post( $name ); ?></div>
+		<div class="panel-subtitle"><?php echo wp_kses_post( $description ); ?></div>
 		<div class="obfx-mod-toast toast" style="display: none;">
 			<button class="obfx-toast-dismiss btn btn-clear float-right"></button>
 			<span>Mock text for Toast Element</span>
 		</div>
 	</div>
-	<form id="obfx-module-form-<?php echo $slug; ?>" class="obfx-module-form <?php echo esc_attr( $btn_class ); ?> ">
-		<fieldset <?php echo $disabled_fields; ?> >
-			<input type="hidden" name="module-slug" value="<?php echo $slug; ?>">
-			<input type="hidden" name="noance" value="<?php echo $noance; ?>">
+	<form id="obfx-module-form-<?php echo esc_attr( $slug ); ?>" class="obfx-module-form <?php echo esc_attr( $btn_class ); ?> ">
+		<fieldset <?php echo esc_attr( $disabled_fields ); ?> >
+			<input type="hidden" name="module-slug" value="<?php echo esc_attr( $slug ); ?>">
+			<input type="hidden" name="noance" value="<?php echo esc_attr( $noance ); ?>">
 			<div class="panel-body">
-				<?php echo $options_fields; ?>
+				<?php echo ( $options_fields ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				<div class="divider"></div>
 			</div>
 			<?php if ( isset( $no_save ) && $no_save === false ) : ?>

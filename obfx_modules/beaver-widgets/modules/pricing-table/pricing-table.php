@@ -9,10 +9,10 @@
 $module_directory = $this->get_dir();
 
 // Include common functions file.
-require_once( $module_directory . '/inc/common-functions.php' );
+require_once $module_directory . '/inc/common-functions.php';
 
 // Include custom fields
-require_once( $module_directory . '/custom-fields/toggle-field/toggle_field.php' );
+require_once $module_directory . '/custom-fields/toggle-field/toggle_field.php';
 
 /**
  * Class PricingTableModule
@@ -46,13 +46,13 @@ class PricingTableModule extends FLBuilderModule {
 FLBuilder::register_module(
 	'PricingTableModule',
 	array(
-		'content' => array(
-			'title' => esc_html__( 'Content', 'themeisle-companion' ), // Tab title
+		'content'        => array(
+			'title'    => esc_html__( 'Content', 'themeisle-companion' ), // Tab title
 			'sections' => array(
-				'header' => array(
+				'header'     => array(
 					'title'  => esc_html__( 'Plan Header', 'themeisle-companion' ),
 					'fields' => array(
-						'plan_title' => array(
+						'plan_title'        => array(
 							'type'    => 'text',
 							'label'   => esc_html__( 'Title', 'themeisle-companion' ),
 							'default' => esc_html__( 'Plan title', 'themeisle-companion' ),
@@ -61,7 +61,7 @@ FLBuilder::register_module(
 								'selector' => '.obfx-plan-title',
 							),
 						),
-						'plan_title_tag' => array(
+						'plan_title_tag'    => array(
 							'type'    => 'select',
 							'label'   => esc_html__( 'Title tag', 'themeisle-companion' ),
 							'default' => 'h2',
@@ -75,7 +75,7 @@ FLBuilder::register_module(
 								'p'  => esc_html__( 'p', 'themeisle-companion' ),
 							),
 						),
-						'plan_subtitle' => array(
+						'plan_subtitle'     => array(
 							'type'    => 'text',
 							'label'   => esc_html__( 'Subtitle', 'themeisle-companion' ),
 							'default' => esc_html__( 'Plan subtitle', 'themeisle-companion' ),
@@ -100,10 +100,10 @@ FLBuilder::register_module(
 						),
 					),
 				),
-				'price' => array(
+				'price'      => array(
 					'title'  => esc_html__( 'Price Tag', 'themeisle-companion' ),
 					'fields' => array(
-						'price' => array(
+						'price'             => array(
 							'type'    => 'text',
 							'label'   => esc_html__( 'Price', 'themeisle-companion' ),
 							'default' => '50',
@@ -112,7 +112,7 @@ FLBuilder::register_module(
 								'selector' => '.obfx-price',
 							),
 						),
-						'currency' => array(
+						'currency'          => array(
 							'type'    => 'text',
 							'label'   => esc_html__( 'Currency', 'themeisle-companion' ),
 							'default' => '$',
@@ -130,7 +130,7 @@ FLBuilder::register_module(
 								'after'  => esc_html__( 'After', 'themeisle-companion' ),
 							),
 						),
-						'period' => array(
+						'period'            => array(
 							'type'    => 'text',
 							'label'   => esc_html__( 'Period', 'themeisle-companion' ),
 							'default' => esc_html__( '/month', 'themeisle-companion' ),
@@ -141,20 +141,20 @@ FLBuilder::register_module(
 						),
 					),
 				),
-				'features' => array(
-					'title' => esc_html__( 'Features list', 'themeisle-companion' ),
+				'features'   => array(
+					'title'  => esc_html__( 'Features list', 'themeisle-companion' ),
 					'fields' => array(
 						'features' => array(
-							'multiple' => true,
-							'type'          => 'form',
-							'label'         => esc_html__( 'Feature', 'themeisle-companion' ),
-							'form'          => 'feature_field', // ID of a registered form.
-							'preview_text'  => 'text', // ID of a field to use for the preview text.
+							'multiple'     => true,
+							'type'         => 'form',
+							'label'        => esc_html__( 'Feature', 'themeisle-companion' ),
+							'form'         => 'feature_field', // ID of a registered form.
+							'preview_text' => 'text', // ID of a field to use for the preview text.
 						),
 					),
 				),
-				'button' => array(
-					'title' => esc_html__( 'Button', 'themeisle-companion' ),
+				'button'     => array(
+					'title'  => esc_html__( 'Button', 'themeisle-companion' ),
 					'fields' => array(
 						'text' => array(
 							'type'    => 'text',
@@ -166,18 +166,18 @@ FLBuilder::register_module(
 							),
 						),
 						'link' => array(
-							'type' => 'link',
+							'type'  => 'link',
 							'label' => esc_html__( 'Button link', 'themeisle-companion' ),
 						),
 					),
 				),
 				'appearance' => array(
-					'title' => esc_html__( 'Appearance', 'themeisle-companion' ),
+					'title'  => esc_html__( 'Appearance', 'themeisle-companion' ),
 					'fields' => array(
-						'card_layout' => array(
-							'type'          => 'obfx_toggle',
-							'label'         => esc_html__( 'Card layout', 'themeisle-companion' ),
-							'default'       => 'yes',
+						'card_layout'   => array(
+							'type'    => 'obfx_toggle',
+							'label'   => esc_html__( 'Card layout', 'themeisle-companion' ),
+							'default' => 'yes',
 						),
 						'text_position' => array(
 							'type'    => 'select',
@@ -185,7 +185,7 @@ FLBuilder::register_module(
 							'default' => 'center',
 							'options' => array(
 								'center' => esc_html__( 'Center', 'themeisle-companion' ),
-								'left'  => esc_html__( 'Left', 'themeisle-companion' ),
+								'left'   => esc_html__( 'Left', 'themeisle-companion' ),
 								'right'  => esc_html__( 'Right', 'themeisle-companion' ),
 							),
 						),
@@ -193,188 +193,188 @@ FLBuilder::register_module(
 				),
 			),
 		),
-		'header_style' => array(
-			'title' => esc_html__( 'Header Style', 'themeisle-companion' ),
+		'header_style'   => array(
+			'title'    => esc_html__( 'Header Style', 'themeisle-companion' ),
 			'sections' => array(
-				'header_padding' => themeisle_four_fields_control(
+				'header_padding'      => themeisle_four_fields_control(
 					array(
-						'default' => array(
-							'top' => 15,
+						'default'           => array(
+							'top'    => 15,
 							'bottom' => 15,
-							'left' => 0,
-							'right' => 0,
+							'left'   => 0,
+							'right'  => 0,
 						),
-						'selector' => '.obfx-pricing-header',
+						'selector'          => '.obfx-pricing-header',
 						'field_name_prefix' => '',
 					)
 				),
-				'colors' => array(
+				'colors'              => array(
 					'title'  => esc_html__( 'Colors', 'themeisle-companion' ),
 					'fields' => array(
-						'title_color' => array(
-							'type' => 'color',
-							'label' => esc_html__( 'Title color', 'themeisle-companion' ),
+						'title_color'    => array(
+							'type'    => 'color',
+							'label'   => esc_html__( 'Title color', 'themeisle-companion' ),
 							'preview' => array(
-								'type' => 'css',
+								'type'  => 'css',
 								'rules' => array(
 									array(
 										'selector' => '.obfx-pricing-header *:first-child',
-										'property'     => 'color',
+										'property' => 'color',
 									),
 								),
 							),
 						),
 						'subtitle_color' => array(
-							'type' => 'color',
-							'label' => esc_html__( 'Subtitle color', 'themeisle-companion' ),
+							'type'    => 'color',
+							'label'   => esc_html__( 'Subtitle color', 'themeisle-companion' ),
 							'preview' => array(
-								'type' => 'css',
+								'type'  => 'css',
 								'rules' => array(
 									array(
 										'selector' => '.obfx-pricing-header *:last-child',
-										'property'     => 'color',
+										'property' => 'color',
 									),
 								),
 							),
 						),
 					),
 				),
-				'title_typography' => themeisle_typography_settings(
+				'title_typography'    => themeisle_typography_settings(
 					array(
-						'title' => esc_html__( 'Title typography', 'themeisle-companion' ),
-						'prefix' => 'title_',
+						'title'    => esc_html__( 'Title typography', 'themeisle-companion' ),
+						'prefix'   => 'title_',
 						'selector' => '.obfx-pricing-header *:first-child',
 					)
 				),
 				'subtitle_typography' => themeisle_typography_settings(
 					array(
-						'title' => esc_html__( 'Subtitle typography', 'themeisle-companion' ),
-						'prefix' => 'subtitle_',
+						'title'    => esc_html__( 'Subtitle typography', 'themeisle-companion' ),
+						'prefix'   => 'subtitle_',
 						'selector' => '.obfx-pricing-header *:last-child',
 					)
 				),
-				'header_background' => array(
-					'title' => esc_html__( 'Background', 'themeisle-companion' ),
+				'header_background'   => array(
+					'title'  => esc_html__( 'Background', 'themeisle-companion' ),
 					'fields' => array(
-						'bg_type' => array(
+						'bg_type'              => array(
 							'type'    => 'select',
 							'label'   => esc_html__( 'Type', 'themeisle-companion' ),
 							'default' => 'color',
 							'options' => array(
-								'color' => esc_html__( 'Color', 'themeisle-companion' ),
-								'image' => esc_html__( 'Background', 'themeisle-companion' ),
+								'color'    => esc_html__( 'Color', 'themeisle-companion' ),
+								'image'    => esc_html__( 'Background', 'themeisle-companion' ),
 								'gradient' => esc_html__( 'Gradient', 'themeisle-companion' ),
 							),
-							'toggle' => array(
-								'color' => array(
-									'fields' => array('header_bg_color'),
+							'toggle'  => array(
+								'color'    => array(
+									'fields' => array( 'header_bg_color' ),
 								),
-								'image' => array(
-									'fields' => array('header_bg_image'),
+								'image'    => array(
+									'fields' => array( 'header_bg_image' ),
 								),
 								'gradient' => array(
-									'fields' => array('gradient_color1', 'gradient_color2', 'gradient_orientation'),
+									'fields' => array( 'gradient_color1', 'gradient_color2', 'gradient_orientation' ),
 								),
 							),
 						),
-						'header_bg_color' => array(
-							'type' => 'color',
-							'label' => esc_html__( 'Background color', 'themeisle-companion' ),
-							'show_reset'    => true,
-							'preview' => array(
-								'type' => 'css',
+						'header_bg_color'      => array(
+							'type'       => 'color',
+							'label'      => esc_html__( 'Background color', 'themeisle-companion' ),
+							'show_reset' => true,
+							'preview'    => array(
+								'type'  => 'css',
 								'rules' => array(
 									array(
 										'selector' => '.obfx-pricing-header',
-										'property'     => 'background-color',
+										'property' => 'background-color',
 									),
 								),
 							),
 						),
-						'header_bg_image' => array(
-							'type'          => 'photo',
-							'label'         => esc_html__( 'Photo Field', 'themeisle-companion' ),
-							'show_remove'    => true,
+						'header_bg_image'      => array(
+							'type'        => 'photo',
+							'label'       => esc_html__( 'Photo Field', 'themeisle-companion' ),
+							'show_remove' => true,
 						),
-						'gradient_color1' => array(
-							'type' => 'color',
-							'label' => esc_html__( 'Gradient color 1', 'themeisle-companion' ),
-							'show_reset'    => true,
+						'gradient_color1'      => array(
+							'type'       => 'color',
+							'label'      => esc_html__( 'Gradient color 1', 'themeisle-companion' ),
+							'show_reset' => true,
 						),
-						'gradient_color2' => array(
-							'type' => 'color',
-							'label' => esc_html__( 'Gradient color 2', 'themeisle-companion' ),
-							'show_reset'    => true,
+						'gradient_color2'      => array(
+							'type'       => 'color',
+							'label'      => esc_html__( 'Gradient color 2', 'themeisle-companion' ),
+							'show_reset' => true,
 						),
 						'gradient_orientation' => array(
 							'type'    => 'select',
 							'label'   => esc_html__( 'Orientation', 'themeisle-companion' ),
 							'default' => 'horizontal',
 							'options' => array(
-								'horizontal' => esc_html__( 'Horizontal', 'themeisle-companion' ),
-								'vertical' => esc_html__( 'Vertical', 'themeisle-companion' ),
+								'horizontal'      => esc_html__( 'Horizontal', 'themeisle-companion' ),
+								'vertical'        => esc_html__( 'Vertical', 'themeisle-companion' ),
 								'diagonal_bottom' => esc_html__( 'Diagonal bottom', 'themeisle-companion' ),
-								'diagonal_top' => esc_html__( 'Diagonal top', 'themeisle-companion' ),
-								'radial' => esc_html__( 'Radial', 'themeisle-companion' ),
+								'diagonal_top'    => esc_html__( 'Diagonal top', 'themeisle-companion' ),
+								'radial'          => esc_html__( 'Radial', 'themeisle-companion' ),
 							),
 						),
 					),
 				),
 			),
 		),
-		'price_style' => array(
-			'title' => esc_html__( 'Price Style', 'themeisle-companion' ),
+		'price_style'    => array(
+			'title'    => esc_html__( 'Price Style', 'themeisle-companion' ),
 			'sections' => array(
-				'price_padding' => themeisle_four_fields_control(
+				'price_padding'    => themeisle_four_fields_control(
 					array(
-						'default' => array(
-							'top' => 15,
+						'default'           => array(
+							'top'    => 15,
 							'bottom' => 15,
-							'left' => 0,
-							'right' => 0,
+							'left'   => 0,
+							'right'  => 0,
 						),
-						'selector' => '.obfx-pricing-price',
+						'selector'          => '.obfx-pricing-price',
 						'field_name_prefix' => 'price_',
 					)
 				),
-				'price_colors' => array(
-					'title' => esc_html__( 'Colors', 'themeisle-companion' ),
+				'price_colors'     => array(
+					'title'  => esc_html__( 'Colors', 'themeisle-companion' ),
 					'fields' => array(
-						'price_color' => array(
-							'type'          => 'color',
-							'label'         => esc_html__( 'Price color', 'themeisle-companion' ),
-							'preview'       => array(
-								'type'          => 'css',
-								'rules'           => array(
+						'price_color'    => array(
+							'type'    => 'color',
+							'label'   => esc_html__( 'Price color', 'themeisle-companion' ),
+							'preview' => array(
+								'type'  => 'css',
+								'rules' => array(
 									array(
-										'selector'     => '.obfx-price',
-										'property'     => 'color',
+										'selector' => '.obfx-price',
+										'property' => 'color',
 									),
 								),
 							),
 						),
 						'currency_color' => array(
-							'type'          => 'color',
-							'label'         => esc_html__( 'Currency color', 'themeisle-companion' ),
-							'preview'       => array(
-								'type'          => 'css',
-								'rules'           => array(
+							'type'    => 'color',
+							'label'   => esc_html__( 'Currency color', 'themeisle-companion' ),
+							'preview' => array(
+								'type'  => 'css',
+								'rules' => array(
 									array(
-										'selector'     => '.obfx-pricing-price sup',
-										'property'     => 'color',
+										'selector' => '.obfx-pricing-price sup',
+										'property' => 'color',
 									),
 								),
 							),
 						),
-						'period_color' => array(
-							'type'          => 'color',
-							'label'         => esc_html__( 'Period color', 'themeisle-companion' ),
-							'preview'       => array(
-								'type'          => 'css',
-								'rules'           => array(
+						'period_color'   => array(
+							'type'    => 'color',
+							'label'   => esc_html__( 'Period color', 'themeisle-companion' ),
+							'preview' => array(
+								'type'  => 'css',
+								'rules' => array(
 									array(
-										'selector'     => '.obfx-period',
-										'property'     => 'color',
+										'selector' => '.obfx-period',
+										'property' => 'color',
 									),
 								),
 							),
@@ -383,66 +383,66 @@ FLBuilder::register_module(
 				),
 				'price_typography' => themeisle_typography_settings(
 					array(
-						'prefix' => 'price_',
-						'selector' => '.obfx-pricing-price',
+						'prefix'            => 'price_',
+						'selector'          => '.obfx-pricing-price',
 						'font_size_default' => 40,
 					)
 				),
 			),
 		),
 		'features_style' => array(
-			'title' => esc_html__( 'Features Style', 'themeisle-companion' ),
+			'title'    => esc_html__( 'Features Style', 'themeisle-companion' ),
 			'sections' => array(
-				'features_padding' => themeisle_four_fields_control(
+				'features_padding'   => themeisle_four_fields_control(
 					array(
-						'default' => array(
-							'top' => 15,
+						'default'           => array(
+							'top'    => 15,
 							'bottom' => 15,
-							'left' => 0,
-							'right' => 0,
+							'left'   => 0,
+							'right'  => 0,
 						),
-						'selector' => '.obfx-pricing-price',
+						'selector'          => '.obfx-pricing-price',
 						'field_name_prefix' => 'features_',
 					)
 				),
-				'features_colors' => array(
-					'title' => esc_html__( 'Colors', 'themeisle-companion' ),
+				'features_colors'    => array(
+					'title'  => esc_html__( 'Colors', 'themeisle-companion' ),
 					'fields' => array(
-						'icon_color' => array(
-							'type'          => 'color',
-							'label'         => esc_html__( 'Icon color', 'themeisle-companion' ),
-							'preview'       => array(
-								'type'          => 'css',
-								'rules'           => array(
+						'icon_color'    => array(
+							'type'    => 'color',
+							'label'   => esc_html__( 'Icon color', 'themeisle-companion' ),
+							'preview' => array(
+								'type'  => 'css',
+								'rules' => array(
 									array(
-										'selector'     => '.obfx-pricing-feature-content i',
-										'property'     => 'color',
+										'selector' => '.obfx-pricing-feature-content i',
+										'property' => 'color',
 									),
 								),
 							),
 						),
-						'bold_color' => array(
-							'type'          => 'color',
-							'label'         => esc_html__( 'Bold text color', 'themeisle-companion' ),
-							'preview'       => array(
-								'type'          => 'css',
-								'rules'           => array(
+						'bold_color'    => array(
+							'type'    => 'color',
+							'label'   => esc_html__( 'Bold text color', 'themeisle-companion' ),
+							'preview' => array(
+								'type'  => 'css',
+								'rules' => array(
 									array(
-										'selector'     => '.obfx-pricing-feature-content strong',
-										'property'     => 'color',
+										'selector' => '.obfx-pricing-feature-content strong',
+										'property' => 'color',
 									),
 								),
 							),
 						),
 						'feature_color' => array(
-							'type'          => 'color',
-							'label'         => esc_html__( 'Text color', 'themeisle-companion' ),
-							'preview'       => array(
-								'type'          => 'css',
-								'rules'           => array(
+							'type'    => 'color',
+							'label'   => esc_html__( 'Text color', 'themeisle-companion' ),
+							'preview' => array(
+								'type'  => 'css',
+								'rules' => array(
 									array(
-										'selector'     => '.obfx-pricing-feature-content:not(i):not(strong)',
-										'property'     => 'color',
+										'selector' => '.obfx-pricing-feature-content:not(i):not(strong)',
+										'property' => 'color',
 									),
 								),
 							),
@@ -451,92 +451,92 @@ FLBuilder::register_module(
 				),
 				'feature_typography' => themeisle_typography_settings(
 					array(
-						'prefix' => 'feature_',
-						'selector' => '.obfx-pricing-feature-content *',
+						'prefix'            => 'feature_',
+						'selector'          => '.obfx-pricing-feature-content *',
 						'font_size_default' => 17,
 					)
 				),
 			),
 		),
-		'button_style' => array(
-			'title' => esc_html__( 'Button Style', 'themeisle-companion' ),
+		'button_style'   => array(
+			'title'    => esc_html__( 'Button Style', 'themeisle-companion' ),
 			'sections' => array(
-				'button_margins' => themeisle_four_fields_control(
+				'button_margins'    => themeisle_four_fields_control(
 					array(
-						'default' => array(
-							'top' => 15,
+						'default'           => array(
+							'top'    => 15,
 							'bottom' => 15,
-							'left' => 0,
-							'right' => 0,
+							'left'   => 0,
+							'right'  => 0,
 						),
-						'selector' => '.obfx-plan-bottom',
+						'selector'          => '.obfx-plan-bottom',
 						'field_name_prefix' => 'button_margin_',
-						'type' => 'margin',
+						'type'              => 'margin',
 					)
 				),
-				'button_padding' => themeisle_four_fields_control(
+				'button_padding'    => themeisle_four_fields_control(
 					array(
-						'default' => array(
-							'top' => 6,
+						'default'           => array(
+							'top'    => 6,
 							'bottom' => 6,
-							'left' => 12,
-							'right' => 12,
+							'left'   => 12,
+							'right'  => 12,
 						),
-						'selector' => '.obfx-plan-button',
+						'selector'          => '.obfx-plan-button',
 						'field_name_prefix' => 'button_padding_',
 					)
 				),
-				'button_colors' => array(
-					'title' => esc_html__( 'Colors', 'themeisle-companion' ),
+				'button_colors'     => array(
+					'title'  => esc_html__( 'Colors', 'themeisle-companion' ),
 					'fields' => array(
-						'button_text_color' => array(
-							'type'          => 'color',
-							'label'         => esc_html__( 'Text', 'themeisle-companion' ),
-							'preview'       => array(
-								'type'          => 'css',
-								'rules'           => array(
+						'button_text_color'       => array(
+							'type'    => 'color',
+							'label'   => esc_html__( 'Text', 'themeisle-companion' ),
+							'preview' => array(
+								'type'  => 'css',
+								'rules' => array(
 									array(
-										'selector'     => '.obfx-plan-button',
-										'property'     => 'color',
+										'selector' => '.obfx-plan-button',
+										'property' => 'color',
 									),
 								),
 							),
 						),
 						'button_text_color_hover' => array(
-							'type'          => 'color',
-							'label'         => esc_html__( 'Text on hover', 'themeisle-companion' ),
-							'preview'       => array(
-								'type'          => 'css',
-								'rules'           => array(
+							'type'    => 'color',
+							'label'   => esc_html__( 'Text on hover', 'themeisle-companion' ),
+							'preview' => array(
+								'type'  => 'css',
+								'rules' => array(
 									array(
-										'selector'     => '.obfx-plan-button:hover',
-										'property'     => 'color',
+										'selector' => '.obfx-plan-button:hover',
+										'property' => 'color',
 									),
 								),
 							),
 						),
-						'button_bg_color' => array(
-							'type'          => 'color',
-							'label'         => esc_html__( 'Button background', 'themeisle-companion' ),
-							'preview'       => array(
-								'type'          => 'css',
-								'rules'           => array(
+						'button_bg_color'         => array(
+							'type'    => 'color',
+							'label'   => esc_html__( 'Button background', 'themeisle-companion' ),
+							'preview' => array(
+								'type'  => 'css',
+								'rules' => array(
 									array(
-										'selector'     => '.obfx-plan-button',
-										'property'     => 'background-color',
+										'selector' => '.obfx-plan-button',
+										'property' => 'background-color',
 									),
 								),
 							),
 						),
-						'button_bg_color_hover' => array(
-							'type'          => 'color',
-							'label'         => esc_html__( 'Button background on hover', 'themeisle-companion' ),
-							'preview'       => array(
-								'type'          => 'css',
-								'rules'           => array(
+						'button_bg_color_hover'   => array(
+							'type'    => 'color',
+							'label'   => esc_html__( 'Button background on hover', 'themeisle-companion' ),
+							'preview' => array(
+								'type'  => 'css',
+								'rules' => array(
 									array(
-										'selector'     => '.obfx-plan-button:hover',
-										'property'     => 'background-color',
+										'selector' => '.obfx-plan-button:hover',
+										'property' => 'background-color',
 									),
 								),
 							),
@@ -545,8 +545,8 @@ FLBuilder::register_module(
 				),
 				'button_typography' => themeisle_typography_settings(
 					array(
-						'prefix' => 'button_',
-						'selector' => '.obfx-plan-button',
+						'prefix'            => 'button_',
+						'selector'          => '.obfx-plan-button',
 						'font_size_default' => 15,
 					)
 				),
@@ -561,24 +561,24 @@ FLBuilder::register_settings_form(
 	array(
 		'title' => __( 'Feature', 'themeisle-companion' ),
 		'tabs'  => array(
-			'general'      => array(
-				'title'         => esc_html__( 'General', 'themeisle-companion' ),
-				'sections'      => array(
-					'general'       => array(
-						'title'         => '',
-						'fields'        => array(
+			'general' => array(
+				'title'    => esc_html__( 'General', 'themeisle-companion' ),
+				'sections' => array(
+					'general' => array(
+						'title'  => '',
+						'fields' => array(
 							'bold_text' => array(
 								'type'  => 'text',
 								'label' => esc_html__( 'Bold text', 'themeisle-companion' ),
 							),
-							'text' => array(
+							'text'      => array(
 								'type'  => 'text',
 								'label' => esc_html__( 'Text', 'themeisle-companion' ),
 							),
-							'icon' => array(
-								'type'          => 'icon',
-								'label'         => esc_html__( 'Icon', 'themeisle-companion' ),
-								'show_remove'   => true,
+							'icon'      => array(
+								'type'        => 'icon',
+								'label'       => esc_html__( 'Icon', 'themeisle-companion' ),
+								'show_remove' => true,
 							),
 						),
 					),

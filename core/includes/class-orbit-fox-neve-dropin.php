@@ -46,8 +46,8 @@ class Orbit_Fox_Neve_Dropin {
 	 * Drop-in actions
 	 */
 	public function init() {
-		add_action( 'admin_notices', array( $this, 'admin_notice' ), defined( 'PHP_INT_MIN' ) ? PHP_INT_MIN : 99999 );
-		add_action( 'admin_init', array( $this, 'remove_notice' ), defined( 'PHP_INT_MIN' ) ? PHP_INT_MIN : 99999 );
+		add_action( 'admin_notices', array( $this, 'admin_notice' ), defined( 'PHP_INT_MIN' ) ? PHP_INT_MIN : 99999 ); //phpcs:ignore PHPCompatibility.Constants.NewConstants.php_int_minFound
+		add_action( 'admin_init', array( $this, 'remove_notice' ), defined( 'PHP_INT_MIN' ) ? PHP_INT_MIN : 99999 ); //phpcs:ignore PHPCompatibility.Constants.NewConstants.php_int_minFound
 	}
 
 	/**
@@ -63,7 +63,7 @@ class Orbit_Fox_Neve_Dropin {
 		if ( ! isset( $_GET['remove_upsell'] ) ) {
 			return;
 		}
-		if ( ! wp_verify_nonce( $_GET['remove_upsell'], 'remove_upsell_confirmation' ) ) {
+		if ( ! wp_verify_nonce( $_GET['remove_upsell'], 'remove_upsell_confirmation' ) ) { //phpcs:ignore WordPress.VIP.ValidatedSanitizedInput.InputNotSanitized
 			return;
 		}
 		update_option( self::$dismiss_key, 'yes' );
@@ -99,7 +99,7 @@ class Orbit_Fox_Neve_Dropin {
 			return;
 		}
 
-		if ( ( $expiration = get_option( self::$dismiss_key . '_exp', '' ) ) === '' ) {
+		if ( ( $expiration = get_option( self::$dismiss_key . '_exp', '' ) ) === '' ) { //phpcs:ignore Squiz.PHP.DisallowMultipleAssignments.FoundInControlStructure
 			update_option( self::$dismiss_key . '_exp', time() );
 		}
 
@@ -139,7 +139,7 @@ class Orbit_Fox_Neve_Dropin {
 				<a href="<?php echo esc_url( admin_url( 'theme-install.php?theme=neve' ) ); ?>" target="_blank"
 				   class="button neve-upsell-try button-primary"><span class="dashicons dashicons-external"></span>Get
 					started</a></p>
-			<a href="<?php echo wp_nonce_url( add_query_arg( array( self::$dismiss_key => 'yes' ) ), 'remove_upsell_confirmation', 'remove_upsell' ); ?>"
+			<a href="<?php echo esc_url( wp_nonce_url( add_query_arg( array( self::$dismiss_key => 'yes' ) ), 'remove_upsell_confirmation', 'remove_upsell' ) ); ?>"
 			   class=" notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></a>
 		</div>
 		<?php

@@ -45,19 +45,19 @@ if ( ! function_exists( 'hestia_clients_bar' ) ) :
 		$wrapper_class = $is_shortcode === true ? 'is-shortcode' : '';
 
 		hestia_before_clients_bar_section_trigger(); ?>
-        <section class="hestia-clients-bar text-center <?php echo esc_attr( $wrapper_class ); ?>" id="clients" data-sorder="hestia_clients_bar" <?php echo wp_kses_post( $section_style ); ?>>
+		<section class="hestia-clients-bar text-center <?php echo esc_attr( $wrapper_class ); ?>" id="clients" data-sorder="hestia_clients_bar" <?php echo wp_kses_post( $section_style ); ?>>
 			<?php
-			if ( $is_shortcode === false && function_exists('hestia_display_customizer_shortcut') ) {
+			if ( $is_shortcode === false && function_exists( 'hestia_display_customizer_shortcut' ) ) {
 				hestia_display_customizer_shortcut( 'hestia_clients_bar_hide', true );
 			}
 			?>
-            <div class="container">
+			<div class="container">
 				<?php
 				if ( function_exists( 'hestia_clients_bar_section_content_trigger' ) ) {
 					hestia_clients_bar_section_content_trigger();
 				}
 				?>
-                <ul class="clients-bar-wrapper" <?php echo hestia_add_animationation( 'fade-up' ); ?>>
+				<ul class="clients-bar-wrapper" <?php echo hestia_add_animationation( 'fade-up' ); ?>>
 					<?php
 					if ( ! empty( $hestia_clients_bar_content_decoded ) ) {
 						foreach ( $hestia_clients_bar_content_decoded as $client ) {
@@ -89,9 +89,9 @@ if ( ! function_exists( 'hestia_clients_bar' ) ) :
 						}
 					}
 					?>
-                </ul>
-            </div>
-        </section>
+				</ul>
+			</div>
+		</section>
 		<?php
 
 		hestia_after_clients_bar_section_trigger();

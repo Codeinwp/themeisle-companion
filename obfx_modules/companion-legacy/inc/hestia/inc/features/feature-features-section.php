@@ -15,12 +15,14 @@ if ( ! function_exists( 'hestia_features_customize_register' ) ) :
 	 */
 	function hestia_features_customize_register( $wp_customize ) {
 
-		$selective_refresh = isset( $wp_customize->selective_refresh ) && function_exists('hestia_display_customizer_shortcut') ? 'postMessage' : 'refresh';
+		$selective_refresh = isset( $wp_customize->selective_refresh ) && function_exists( 'hestia_display_customizer_shortcut' ) ? 'postMessage' : 'refresh';
 
 		if ( class_exists( 'Hestia_Hiding_Section' ) ) {
 			$wp_customize->add_section(
 				new Hestia_Hiding_Section(
-					$wp_customize, 'hestia_features', array(
+					$wp_customize,
+					'hestia_features',
+					array(
 						'title'          => esc_html__( 'Features', 'themeisle-companion' ),
 						'panel'          => 'hestia_frontpage_sections',
 						'priority'       => apply_filters( 'hestia_section_priority', 10, 'hestia_features' ),
@@ -30,7 +32,8 @@ if ( ! function_exists( 'hestia_features_customize_register' ) ) :
 			);
 		} else {
 			$wp_customize->add_section(
-				'hestia_features', array(
+				'hestia_features',
+				array(
 					'title'    => esc_html__( 'Features', 'themeisle-companion' ),
 					'panel'    => 'hestia_frontpage_sections',
 					'priority' => apply_filters( 'hestia_section_priority', 10, 'hestia_features' ),
@@ -39,7 +42,8 @@ if ( ! function_exists( 'hestia_features_customize_register' ) ) :
 		}
 
 		$wp_customize->add_setting(
-			'hestia_features_hide', array(
+			'hestia_features_hide',
+			array(
 				'sanitize_callback' => 'hestia_sanitize_checkbox',
 				'default'           => false,
 				'transport'         => $selective_refresh,
@@ -47,7 +51,8 @@ if ( ! function_exists( 'hestia_features_customize_register' ) ) :
 		);
 
 		$wp_customize->add_control(
-			'hestia_features_hide', array(
+			'hestia_features_hide',
+			array(
 				'type'     => 'checkbox',
 				'label'    => esc_html__( 'Disable section', 'themeisle-companion' ),
 				'section'  => 'hestia_features',
@@ -56,14 +61,16 @@ if ( ! function_exists( 'hestia_features_customize_register' ) ) :
 		);
 
 		$wp_customize->add_setting(
-			'hestia_features_title', array(
+			'hestia_features_title',
+			array(
 				'sanitize_callback' => 'wp_kses_post',
 				'transport'         => $selective_refresh,
 			)
 		);
 
 		$wp_customize->add_control(
-			'hestia_features_title', array(
+			'hestia_features_title',
+			array(
 				'label'    => esc_html__( 'Section Title', 'themeisle-companion' ),
 				'section'  => 'hestia_features',
 				'priority' => 5,
@@ -71,14 +78,16 @@ if ( ! function_exists( 'hestia_features_customize_register' ) ) :
 		);
 
 		$wp_customize->add_setting(
-			'hestia_features_subtitle', array(
+			'hestia_features_subtitle',
+			array(
 				'sanitize_callback' => 'wp_kses_post',
 				'transport'         => $selective_refresh,
 			)
 		);
 
 		$wp_customize->add_control(
-			'hestia_features_subtitle', array(
+			'hestia_features_subtitle',
+			array(
 				'label'    => esc_html__( 'Section Subtitle', 'themeisle-companion' ),
 				'section'  => 'hestia_features',
 				'priority' => 10,
@@ -87,7 +96,8 @@ if ( ! function_exists( 'hestia_features_customize_register' ) ) :
 
 		if ( class_exists( 'Hestia_Repeater' ) ) {
 			$wp_customize->add_setting(
-				'hestia_features_content', array(
+				'hestia_features_content',
+				array(
 					'sanitize_callback' => 'hestia_repeater_sanitize',
 					'transport'         => $selective_refresh,
 				)
@@ -95,16 +105,18 @@ if ( ! function_exists( 'hestia_features_customize_register' ) ) :
 
 			$wp_customize->add_control(
 				new Hestia_Repeater(
-					$wp_customize, 'hestia_features_content', array(
-						'label'                             => esc_html__( 'Features Content', 'themeisle-companion' ),
-						'section'                           => 'hestia_features',
-						'priority'                          => 15,
-						'add_field_label'                   => esc_html__( 'Add new Feature', 'themeisle-companion' ),
-						'item_name'                         => esc_html__( 'Feature', 'themeisle-companion' ),
-						'customizer_repeater_icon_control'  => true,
+					$wp_customize,
+					'hestia_features_content',
+					array(
+						'label'                            => esc_html__( 'Features Content', 'themeisle-companion' ),
+						'section'                          => 'hestia_features',
+						'priority'                         => 15,
+						'add_field_label'                  => esc_html__( 'Add new Feature', 'themeisle-companion' ),
+						'item_name'                        => esc_html__( 'Feature', 'themeisle-companion' ),
+						'customizer_repeater_icon_control' => true,
 						'customizer_repeater_title_control' => true,
-						'customizer_repeater_text_control'  => true,
-						'customizer_repeater_link_control'  => true,
+						'customizer_repeater_text_control' => true,
+						'customizer_repeater_link_control' => true,
 						'customizer_repeater_color_control' => true,
 					)
 				)
@@ -131,9 +143,10 @@ function hestia_register_features_partials( $wp_customize ) {
 	}
 
 	$wp_customize->selective_refresh->add_partial(
-		'hestia_features_content', array(
-			'selector' => '.hestia-features-content',
-			'settings' => 'hestia_features_content',
+		'hestia_features_content',
+		array(
+			'selector'        => '.hestia-features-content',
+			'settings'        => 'hestia_features_content',
 			'render_callback' => 'hestia_features_content_callback',
 		)
 	);

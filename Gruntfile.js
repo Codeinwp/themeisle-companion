@@ -1,15 +1,40 @@
 /* jshint node:true */
 /* global require */
+
 module.exports = function (grunt) {
-	'use strict';
+	grunt.loadNpmTasks('grunt-version');
+	grunt.loadNpmTasks('grunt-wp-readme-to-markdown');
+	grunt.initConfig({
+		version: {
+			json: {
+				options: {
+					flags: ''
+				},
+				src: [ 'package.json', 'package-lock.json' ]
+			},
+			metatag: {
+				options: {
+					prefix: 'Version:\\s*',
+					flags: ''
+				},
+				src: [ 'themeisle-companion.php' ]
+			},
+			php: {
+				options: {
+					prefix: '->version\\s.*?=\\s.*?\'',
+					flags: ''
+				},
+				src: [ 'core/includes/class-orbit-fox.php' ]
 
-	var loader = require('load-project-config'),
-		config = require('grunt-plugin-fleet');
-	config = config();
-	// Ignore all legacy items.
-	config.files.php.push('!obfx_modules/companion-legacy/inc/**/*.php', '!obfx_modules/mystock-import/vendor/phpflickr/phpflickr.php', '!tests/test-plugin.php');
-	config.files.js.push('!obfx_modules/companion-legacy/assets/**/*.js');
-	config.files.js.push('!obfx_modules/companion-legacy/inc/**/*.js');
+			}
+		},
+		wp_readme_to_markdown: {
+			plugin: {
+				files: {
+					'readme.md': 'readme.txt'
+				},
+			},
+		},
+	});
 
-	loader(grunt, config).init();
 };

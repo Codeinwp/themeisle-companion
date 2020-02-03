@@ -11,7 +11,7 @@
  */
 
 if ( ! isset( $title ) ) {
-	$title = __( 'There are no modules for the Fox!', 'themeisle-companion' );
+	$title = __( 'There are no modules for the Fox!', 'themeisle-companion' ); //phpcs:ignore WordPress.WP.GlobalVariablesOverride.OverrideProhibited
 }
 
 if ( ! isset( $btn_text ) ) {
@@ -27,13 +27,13 @@ if ( ! isset( $show_btn ) ) {
 	<div class="empty-icon">
 		<i class="dashicons dashicons-warning" style="width: 48px; height: 48px; font-size: 48px; "></i>
 	</div>
-	<h4 class="empty-title"><?php echo $title; ?></h4>
-	<?php echo ( isset( $sub_title ) ) ? '<p class="empty-subtitle">' . $sub_title . '</p>' : ''; ?>
+	<h4 class="empty-title"><?php echo wp_kses_post( $title ); ?></h4>
+	<?php echo ( isset( $sub_title ) ) ? '<p class="empty-subtitle">' . wp_kses_post( $sub_title ) . '</p>' : ''; ?>
 	<?php
 	if ( $show_btn ) {
 		?>
 		<div class="empty-action">
-			<button class="btn btn-primary"><?php echo $btn_text; ?></button>
+			<button class="btn btn-primary"><?php echo wp_kses_post( $btn_text ); ?></button>
 		</div>
 		<?php
 	}

@@ -3077,7 +3077,7 @@ html {
 
 .obfx-wrapper .tile .dashicons {
 	transition: none;
-	line-height: 0.5;
+	line-height: 1;
 }
 
 .obfx-wrapper .tile .tile-content {
@@ -3875,7 +3875,7 @@ ul.obfx-menu-tabs{
     background: #5764c6;
     text-decoration: none;
     padding: 10px 40px;
-    line-height: 7px;
+    line-height: 15px;
     box-shadow: none;
     text-shadow: none;
 }

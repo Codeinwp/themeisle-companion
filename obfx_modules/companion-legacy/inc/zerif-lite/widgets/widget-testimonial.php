@@ -60,7 +60,7 @@ if ( ! class_exists( 'zerif_testimonial_widget' ) ) {
 
 			<!-- MESSAGE OF THE CLIENT -->
 
-			<?php if ( ! empty( $instance['text'] ) ) :  ?>
+			<?php if ( ! empty( $instance['text'] ) ) : ?>
 				<div class="message">
 					<?php echo htmlspecialchars_decode( apply_filters( 'widget_title', $instance['text'] ) ); ?>
 				</div>
@@ -79,12 +79,22 @@ if ( ! class_exists( 'zerif_testimonial_widget' ) ) {
 				<div class="client-info">
 
 					<a <?php echo $attribut_new_tab; ?>
-						class="client-name" <?php if ( ! empty( $instance['link'] ) ) :  echo 'href="' . esc_url( $instance['link'] ) . '"';
-endif; ?>><?php if ( ! empty( $instance['title'] ) ) :  echo apply_filters( 'widget_title', $instance['title'] );
-endif; ?></a>
+						class="client-name" 
+						<?php 
+						if ( ! empty( $instance['link'] ) ) :
+							echo 'href="' . esc_url( $instance['link'] ) . '"';
+endif; 
+						?>
+						>
+			<?php 
+			if ( ! empty( $instance['title'] ) ) :
+				echo apply_filters( 'widget_title', $instance['title'] );
+endif; 
+			?>
+</a>
 
 
-					<?php if ( ! empty( $instance['details'] ) ) :  ?>
+					<?php if ( ! empty( $instance['details'] ) ) : ?>
 						<div class="client-company">
 
 							<?php echo apply_filters( 'widget_title', $instance['details'] ); ?>
@@ -96,7 +106,7 @@ endif; ?></a>
 
 				<?php
 
-				if ( ! empty( $instance['image_uri'] ) && ( preg_match('/(\.jpg|\.png|\.jpeg|\.gif|\.bmp)$/', $instance['image_uri'] ) ) ) {
+				if ( ! empty( $instance['image_uri'] ) && ( preg_match( '/(\.jpg|\.png|\.jpeg|\.gif|\.bmp)$/', $instance['image_uri'] ) ) ) {
 
 					echo '<div class="client-image hidden-xs">';
 
@@ -167,35 +177,55 @@ endif; ?></a>
 				<label
 					for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Author', 'themeisle-companion' ); ?></label><br/>
 				<input type="text" name="<?php echo $this->get_field_name( 'title' ); ?>"
-				       id="<?php echo $this->get_field_id( 'title' ); ?>"
-				       value="<?php if ( ! empty( $instance['title'] ) ) :  echo $instance['title'];
-endif; ?>"
-				       class="widefat">
+					   id="<?php echo $this->get_field_id( 'title' ); ?>"
+					   value="
+					   <?php 
+						if ( ! empty( $instance['title'] ) ) :
+							echo $instance['title'];
+endif; 
+						?>
+						"
+					   class="widefat">
 			</p>
 			<p>
 				<label
 					for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Author link', 'themeisle-companion' ); ?></label><br/>
 				<input type="text" name="<?php echo $this->get_field_name( 'link' ); ?>"
-				       id="<?php echo $this->get_field_id( 'link' ); ?>"
-				       value="<?php if ( ! empty( $instance['link'] ) ) :  echo esc_url( $instance['link'] );
-endif; ?>"
-				       class="widefat">
+					   id="<?php echo $this->get_field_id( 'link' ); ?>"
+					   value="
+					   <?php 
+						if ( ! empty( $instance['link'] ) ) :
+							echo esc_url( $instance['link'] );
+endif; 
+						?>
+						"
+					   class="widefat">
 			</p>
 			<p>
 				<label
 					for="<?php echo $this->get_field_id( 'details' ); ?>"><?php _e( 'Author details', 'themeisle-companion' ); ?></label><br/>
 				<input type="text" name="<?php echo $this->get_field_name( 'details' ); ?>"
-				       id="<?php echo $this->get_field_id( 'details' ); ?>"
-				       value="<?php if ( ! empty( $instance['details'] ) ) :  echo $instance['details'];
-endif; ?>"
-				       class="widefat">
+					   id="<?php echo $this->get_field_id( 'details' ); ?>"
+					   value="
+					   <?php 
+						if ( ! empty( $instance['details'] ) ) :
+							echo $instance['details'];
+endif; 
+						?>
+						"
+					   class="widefat">
 			</p>
 			<p>
 				<label
 					for="<?php echo $this->get_field_id( 'text' ); ?>"><?php _e( 'Text', 'themeisle-companion' ); ?></label><br/>
 				<textarea class="widefat" rows="8" cols="20" name="<?php echo $this->get_field_name( 'text' ); ?>"
-				          id="<?php echo $this->get_field_id( 'text' ); ?>"><?php if ( ! empty( $instance['text'] ) ) :  echo htmlspecialchars_decode( $instance['text'] );
-endif; ?></textarea>
+						  id="<?php echo $this->get_field_id( 'text' ); ?>">
+										 <?php 
+											if ( ! empty( $instance['text'] ) ) :
+												echo htmlspecialchars_decode( $instance['text'] );
+endif; 
+											?>
+							</textarea>
 			</p>
 			<p>
 				<label
@@ -216,31 +246,50 @@ endif; ?></textarea>
 				$zerif_image_in_customizer = $this->get_field_name( 'image_in_customizer' );
 				?>
 				<input type="hidden" class="custom_media_display_in_customizer"
-				       name="<?php if ( ! empty( $zerif_image_in_customizer ) ) {
+					   name="
+					   <?php 
+						if ( ! empty( $zerif_image_in_customizer ) ) {
 							echo $zerif_image_in_customizer;
-} ?>"
-				       value="<?php if ( ! empty( $instance['image_in_customizer'] ) ) :  echo $instance['image_in_customizer'];
-endif; ?>">
+						} 
+						?>
+						"
+					   value="
+					   <?php 
+						if ( ! empty( $instance['image_in_customizer'] ) ) :
+							echo $instance['image_in_customizer'];
+endif; 
+						?>
+						">
 				<img class="custom_media_image" src="<?php echo $image_in_customizer; ?>"
-				     style="margin:0;padding:0;max-width:100px;float:left;display:<?php echo $display; ?>"
-				     alt="<?php echo __( 'Uploaded image', 'themeisle-companion' ); ?>"/><br/>
+					 style="margin:0;padding:0;max-width:100px;float:left;display:<?php echo $display; ?>"
+					 alt="<?php echo __( 'Uploaded image', 'themeisle-companion' ); ?>"/><br/>
 
 				<input type="text" class="widefat custom_media_url"
-				       name="<?php echo $this->get_field_name( 'image_uri' ); ?>"
-				       id="<?php echo $this->get_field_id( 'image_uri' ); ?>"
-				       value="<?php if ( ! empty( $instance['image_uri'] ) ) :   echo $instance['image_uri'];
-endif; ?>"
-				       style="margin-top:5px;">
+					   name="<?php echo $this->get_field_name( 'image_uri' ); ?>"
+					   id="<?php echo $this->get_field_id( 'image_uri' ); ?>"
+					   value="
+					   <?php 
+						if ( ! empty( $instance['image_uri'] ) ) :
+							echo $instance['image_uri'];
+endif; 
+						?>
+						"
+					   style="margin-top:5px;">
 
 				<input type="button" class="button button-primary custom_media_button" id="custom_media_button"
-				       name="<?php echo $this->get_field_name( 'image_uri' ); ?>"
-				       value="<?php _e( 'Upload Image', 'themeisle-companion' ); ?>" style="margin-top:5px;">
+					   name="<?php echo $this->get_field_name( 'image_uri' ); ?>"
+					   value="<?php _e( 'Upload Image', 'themeisle-companion' ); ?>" style="margin-top:5px;">
 			</p>
 
 			<input class="custom_media_id" id="<?php echo $this->get_field_id( 'custom_media_id' ); ?>"
-			       name="<?php echo $this->get_field_name( 'custom_media_id' ); ?>" type="hidden"
-			       value="<?php if ( ! empty( $instance['custom_media_id'] ) ) :  echo $instance['custom_media_id'];
-endif; ?>"/>
+				   name="<?php echo $this->get_field_name( 'custom_media_id' ); ?>" type="hidden"
+				   value="
+				   <?php 
+					if ( ! empty( $instance['custom_media_id'] ) ) :
+						echo $instance['custom_media_id'];
+endif; 
+					?>
+					"/>
 
 			<?php
 

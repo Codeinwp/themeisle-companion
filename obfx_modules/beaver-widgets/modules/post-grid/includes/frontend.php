@@ -31,7 +31,7 @@ if ( ! function_exists( 'obfx_show_post_grid_thumbnail' ) ) {
 			$thumbnail_shadow = ! empty( $settings->thumbnail_shadow ) && $settings->thumbnail_shadow === 'yes' ? 'obfx-card' : '';
 			echo '<div class="obfx-post-grid-thumbnail ' . esc_attr( $thumbnail_shadow ) . '">';
 			if ( ! empty( $settings->show_thumbnail_link ) && $settings->show_thumbnail_link === 'yes' ) {
-				echo '<a href="' . get_permalink() . '">';
+				echo '<a href="' . esc_url( get_permalink() ) . '">';
 			}
 			echo '<img src="' . esc_url( $img ) . '"/></div>';
 			if ( ! empty( $settings->show_thumbnail_link ) && $settings->show_thumbnail_link === 'yes' ) {
@@ -58,7 +58,7 @@ if ( ! function_exists( 'obfx_show_post_grid_title' ) ) {
 		}
 
 		if ( ! empty( $settings->show_title_link ) && $settings->show_title_link === 'yes' ) {
-			echo '<a href="' . get_permalink() . '">';
+			echo '<a href="' . esc_url( get_permalink() ) . '">';
 		}
 		$tag = ! empty( $settings->title_tag ) ? $settings->title_tag : 'h4';
 		the_title( '<' . $tag . ' class="obfx-post-grid-title">', '</' . $tag . '>' );
@@ -134,7 +134,7 @@ if ( ! function_exists( 'obfx_show_post_grid_meta' ) ) {
 						if ( ! empty( $link ) ) {
 							echo '<a href="' . esc_url( $link ) . '">';
 						}
-						echo $name;
+						echo esc_attr( $name );
 						if ( ! empty( $link ) ) {
 							echo '</a>';
 						}
@@ -159,7 +159,7 @@ if ( ! function_exists( 'obfx_show_post_grid_meta' ) ) {
 						if ( ! empty( $link ) ) {
 							echo '<a href="' . esc_url( $link ) . '">';
 						}
-						echo $name;
+						echo esc_attr( $name );
 						if ( ! empty( $link ) ) {
 							echo '</a>';
 						}
@@ -181,16 +181,18 @@ if ( ! function_exists( 'obfx_show_post_grid_meta' ) ) {
 					/* translators: %s: post title */
 					_x( 'One comment', 'comments title', 'themeisle-companion' );
 				} else {
-					printf(
+					esc_html(
+						printf(
 						/* translators: 1: number of comments, 2: post title */
-						_nx(
-							'%1$s Comment',
-							'%1$s Comments',
-							$comments_number,
-							'comments title',
-							'themeisle-companion'
-						),
-						number_format_i18n( $comments_number )
+							_nx( //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+								'%1$s Comment',
+								'%1$s Comments',
+								$comments_number,
+								'comments title',
+								'themeisle-companion'
+							),
+							number_format_i18n( $comments_number ) //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						)
 					);
 				}
 			}

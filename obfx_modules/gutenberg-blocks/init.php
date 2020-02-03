@@ -21,21 +21,24 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function __construct() {
 		parent::__construct();
-		$this->name           = __( 'Gutenberg Blocks <sup class="obfx-title-new">NEW</sup>', 'themeisle-companion' );
-		$this->description    =sprintf(  __(  'A set of awesome Gutenberg Blocks provided by %sOtter\'s%s plugin!', 'themeisle-companion' ),'<span class="dashicons dashicons-external"></span><a target="_blank" href="https://wordpress.org/plugins/otter-blocks/">','</a>');
+		$this->name = __( 'Gutenberg Blocks <sup class="obfx-title-new">NEW</sup>', 'themeisle-companion' );
+		/*
+		 * translators: %1$s Start anchor tag, %2$s End anchor tag
+		 */
+		$this->description    = sprintf( __( 'A set of awesome Gutenberg Blocks provided by %1$sOtter\'s%2$s plugin!', 'themeisle-companion' ), '<span class="dashicons dashicons-external"></span><a target="_blank" href="https://wordpress.org/plugins/otter-blocks/">', '</a>' );
 		$this->active_default = true;
 	}
 
 	/**
 	 * Determine if module should be loaded.
 	 *
+	 * @return bool
 	 * @since   2.2.5
 	 * @access  public
-	 * @return bool
 	 */
 	public function enable_module() {
 		global $wp_version;
-		require_once( ABSPATH . 'wp-admin' . '/includes/plugin.php' );
+		require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		if ( is_plugin_active( 'otter-blocks/otter-blocks.php' ) ) {
 			return false;
 		}
@@ -74,9 +77,9 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * Method that returns an array of scripts and styles to be loaded
 	 * for the front end part.
 	 *
+	 * @return array
 	 * @since   2.2.5
 	 * @access  public
-	 * @return array
 	 */
 	public function public_enqueue() {
 		return array();
@@ -86,9 +89,9 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * Method that returns an array of scripts and styles to be loaded
 	 * for the admin part.
 	 *
+	 * @return array
 	 * @since   2.2.5
 	 * @access  public
-	 * @return array
 	 */
 	public function admin_enqueue() {
 		return array();
@@ -97,9 +100,9 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	/**
 	 * Method to define the options fields for the module
 	 *
+	 * @return array
 	 * @since   2.2.5
 	 * @access  public
-	 * @return array
 	 */
 	public function options() {
 		return array();
@@ -108,18 +111,16 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	/**
 	 * Load assets for our blocks.
 	 */
-	function enqueue_block_assets() {
-		wp_enqueue_style( 'font-awesome-5', plugins_url( 'assets/fontawesome/css/all.min.css', __FILE__ ) );
-		wp_enqueue_style( 'font-awesome-4-shims', plugins_url( 'assets/fontawesome/css/v4-shims.min.css', __FILE__ ) );
+	public function enqueue_block_assets() {
+		wp_enqueue_style( 'font-awesome-5', plugins_url( 'assets/fontawesome/css/all.min.css', __FILE__ ), [], $this->version );
+		wp_enqueue_style( 'font-awesome-4-shims', plugins_url( 'assets/fontawesome/css/v4-shims.min.css', __FILE__ ), [], $this->version );
 	}
 
 	/**
 	 * If the composer library is present let's try to init.
 	 */
-	function load_gutenberg_blocks() {
-		if ( class_exists( '\ThemeIsle\GutenbergBlocks' ) ) {
-			\ThemeIsle\GutenbergBlocks::instance( __( 'Blocks by OrbitFox and Otter', 'themeisle-companion' ) );
-		}
+	public function load_gutenberg_blocks() {
+		\ThemeIsle\GutenbergBlocks\Main::instance( __( 'Blocks by OrbitFox and Otter', 'themeisle-companion' ) );
 	}
 
 }

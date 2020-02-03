@@ -1,4 +1,0 @@
-obfx_modules/gutenberg-blocks/build/block.js
-obfx_modules/gutenberg-blocks/blocks/**/*.js
-obfx_modules/gutenberg-blocks/store/index.js
-obfx_modules/gutenberg-blocks/webpack.config.js

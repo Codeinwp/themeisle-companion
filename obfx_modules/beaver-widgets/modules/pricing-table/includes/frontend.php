@@ -11,8 +11,8 @@ $class_to_add = $settings->card_layout === 'yes' ? 'obfx-card' : '';
 
 echo '<div class="obfx-pricing-plan ' . esc_attr( $class_to_add ) . '">';
 	echo '<div class="obfx-pricing-header">';
-		echo '<' . $settings->plan_title_tag . ' class="obfx-plan-title text-center">' . wp_kses_post( $settings->plan_title ) . '</' . $settings->plan_title_tag . '>';
-		echo '<' . $settings->plan_subtitle_tag . ' class="obfx-plan-subtitle text-center">' . wp_kses_post( $settings->plan_subtitle ) . '</' . $settings->plan_subtitle_tag . '>';
+		echo '<' . esc_attr( $settings->plan_title_tag ) . ' class="obfx-plan-title text-center">' . wp_kses_post( $settings->plan_title ) . '</' . esc_attr( $settings->plan_title_tag ) . '>';
+		echo '<' . esc_attr( $settings->plan_subtitle_tag ) . ' class="obfx-plan-subtitle text-center">' . wp_kses_post( $settings->plan_subtitle ) . '</' . esc_attr( $settings->plan_subtitle_tag ) . '>';
 	echo '</div>';
 	echo '<div class="obfx-pricing-price text-center">';
 switch ( $settings->currency_position ) {
@@ -29,9 +29,9 @@ switch ( $settings->currency_position ) {
 if ( ! empty( $features ) ) {
 	echo '<ul class="obfx-pricing-features text-center">';
 	foreach ( $features as $feature ) {
-		$icon = ! empty( $feature->icon ) ? $feature->icon : '';
-		$bold_text = ! empty( $feature->bold_text ) ? $feature->bold_text : '';
-		$text = ! empty( $feature->text ) ? $feature->text : '';
+		$icon             = ! empty( $feature->icon ) ? $feature->icon : '';
+		$bold_text        = ! empty( $feature->bold_text ) ? $feature->bold_text : '';
+		$text             = ! empty( $feature->text ) ? $feature->text : '';
 		$section_is_empty = empty( $icon ) && empty( $bold_text ) && empty( $text );
 		if ( ! $section_is_empty ) {
 			echo '<li><span class="obfx-pricing-feature-content">';

@@ -144,8 +144,15 @@ class Orbit_Fox_Admin {
 		$user_id = $current_user->ID;
 		if ( ! get_user_meta( $user_id, 'obfx_ignore_visit_dashboard_notice' ) ) { ?>
 			<div class="notice notice-info" style="position:relative;">
-				<p><?php echo sprintf( __( 'You have activated Orbit Fox plugin! Go to the %s to get started with the extra features.', 'themeisle-companion' ), sprintf( '<a href="%s">%s</a>', add_query_arg( 'obfx_ignore_visit_dashboard_notice', '0', admin_url( 'admin.php?page=obfx_companion' ) ), __( 'Dashboard Page', 'themeisle-companion' ) ) ); ?></p>
-				<a href="<?php echo add_query_arg( 'obfx_ignore_visit_dashboard_notice', '0', admin_url( 'admin.php?page=obfx_companion' ) ); ?>"
+				<p>
+				<?php
+					/*
+					 * translators: Go to url.
+					 */
+					echo sprintf( esc_attr__( 'You have activated Orbit Fox plugin! Go to the %s to get started with the extra features.', 'themeisle-companion' ), sprintf( '<a href="%s">%s</a>', esc_url( add_query_arg( 'obfx_ignore_visit_dashboard_notice', '0', admin_url( 'admin.php?page=obfx_companion' ) ) ), esc_attr__( 'Dashboard Page', 'themeisle-companion' ) ) );
+				?>
+					</p>
+				<a href="<?php echo esc_url( add_query_arg( 'obfx_ignore_visit_dashboard_notice', '0', admin_url( 'admin.php?page=obfx_companion' ) ) ); ?>"
 				   class="notice-dismiss" style="text-decoration: none;">
 					<span class="screen-reader-text">Dismiss this notice.</span>
 				</a>
@@ -160,13 +167,14 @@ class Orbit_Fox_Admin {
 	 * @since   2.3.4
 	 * @access  public
 	 */
-	function visit_dashboard_notice_dismiss() {
+	public function visit_dashboard_notice_dismiss() {
 		global $current_user;
 		$user_id = $current_user->ID;
 		// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
 		if ( isset( $_GET['obfx_ignore_visit_dashboard_notice'] ) && '0' == $_GET['obfx_ignore_visit_dashboard_notice'] ) {
 			add_user_meta( $user_id, 'obfx_ignore_visit_dashboard_notice', 'true', true );
 			wp_safe_redirect( admin_url( 'admin.php?page=obfx_companion' ) );
+			exit;
 		}
 	}
 
@@ -207,7 +215,7 @@ class Orbit_Fox_Admin {
 	 * @access  public
 	 */
 	public function obfx_update_module_options() {
-		$json                = stripslashes( str_replace( '&quot;', '"', $_POST['data'] ) );
+		$json                = stripslashes( str_replace( '&quot;', '"', $_POST['data'] ) ); //phpcs:ignore WordPress.VIP.ValidatedSanitizedInput.InputNotValidated, WordPress.VIP.ValidatedSanitizedInput.InputNotSanitized
 		$data                = json_decode( $json, true );
 		$response['type']    = 'error';
 		$response['message'] = __( 'Could not process the request!', 'themeisle-companion' );
@@ -308,7 +316,7 @@ class Orbit_Fox_Admin {
 				esc_attr( $name ),
 				esc_attr( $desc ),
 				esc_url( $url ),
-				__( 'Install', 'themeisle-companion' )
+				esc_attr__( 'Install', 'themeisle-companion' )
 			);
 		}
 
@@ -322,7 +330,7 @@ class Orbit_Fox_Admin {
 	 * @return array|mixed|object|WP_Error
 	 */
 	public function call_plugin_api( $slug ) {
-		include_once( ABSPATH . 'wp-admin/includes/plugin-install.php' );
+		include_once ABSPATH . 'wp-admin/includes/plugin-install.php';
 
 		$call_api = get_transient( 'ti_plugin_info_' . $slug );
 
@@ -367,7 +375,7 @@ class Orbit_Fox_Admin {
 	 * @access  public
 	 */
 	public function obfx_update_module_active_status() {
-		$json                = stripslashes( str_replace( '&quot;', '"', $_POST['data'] ) );
+		$json                = stripslashes( str_replace( '&quot;', '"', $_POST['data'] ) ); //phpcs:ignore WordPress.VIP.ValidatedSanitizedInput.InputNotValidated, WordPress.VIP.ValidatedSanitizedInput.InputNotSanitized
 		$data                = json_decode( $json, true );
 		$response['type']    = 'error';
 		$response['message'] = __( 'Could not process the request!', 'themeisle-companion' );
@@ -480,7 +488,7 @@ class Orbit_Fox_Admin {
 						$checked = 'checked';
 					}
 
-					$data  = array(
+					$data   = array(
 						'slug'           => $slug,
 						'name'           => $module->name,
 						'description'    => $module->description,
@@ -546,7 +554,7 @@ class Orbit_Fox_Admin {
 			'panels'        => $panels,
 		);
 		$output = $rdh->get_view( 'modules', $data );
-		echo $output;
+		echo $output; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 }
