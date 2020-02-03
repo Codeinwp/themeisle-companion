@@ -1,5 +1,9 @@
+#### [Version 2.9.0](https://github.com/Codeinwp/themeisle-companion/compare/v2.8.14...v2.9.0) (2020-02-03)
 
- ### v2.8.14 - 2019-12-02 
+* Update dependencies 
+* Remove legacy modules
+
+### v2.8.14 - 2019-12-02 
  **Changes:** 
  * Fix fatal error with Membership Pro
 * Various bug fixes to forms and Elementor widgets
@@ -346,4 +350,3 @@
 * Added simple reporting functionality.
 * Added support for upcoming caching, security and analytics feature.
 * Branded to Orbit Fox companion
- 
