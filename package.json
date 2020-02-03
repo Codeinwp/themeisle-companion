@@ -4,7 +4,7 @@
   "description": "Orbit Fox",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Codeinwp/orbit-fox.git"
+    "url": "git+https://github.com/Codeinwp/themeisle-companion.git"
   },
   "keywords": [
     "wordpress-plugin"
@@ -14,10 +14,10 @@
   "license": "GPL-2.0+",
   "category": "plugins",
   "bugs": {
-    "url": "https://github.com/Codeinwp/orbit-fox/issues"
+    "url": "https://github.com/Codeinwp/themeisle-companion/issues"
   },
   "pot": {
-    "reportmsgidbugsto": "https://github.com/Codeinwp/orbit-fox/issues",
+    "reportmsgidbugsto": "https://github.com/Codeinwp/themeisle-companion/issues",
     "languageteam": "Themeisle Translate <friends@themeisle.com>",
     "lasttranslator": "Themeisle Translate Team <friends@themeisle.com>"
   },
@@ -32,8 +32,5 @@
     "grunt": "^1.0.4",
     "grunt-version": "^1.3.2",
     "semantic-release": "^15.14.0"
-  },
-  "dependencies": {
-    "grunt": "1.0.4"
   }
 }
