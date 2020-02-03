@@ -332,7 +332,10 @@ class Orbit_Fox_Render_Helper {
 	 * @return mixed
 	 */
 	private function field_radio( $option = array() ) {
-		$field_value    = $this->set_field_value( $option );
+		$field_value = $this->set_field_value( $option );
+		if ( is_numeric( $field_value ) ) {
+			$field_value = (int) $field_value;
+		}
 		$select_options = '';
 		foreach ( $option['options'] as $value => $label ) {
 			$checked = '';

@@ -42,7 +42,7 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return bool
 	 */
 	public function enable_module() {
-		require_once ABSPATH . 'wp-admin' . '/includes/plugin.php';
+		require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		return is_plugin_active( 'elementor/elementor.php' );
 	}
 

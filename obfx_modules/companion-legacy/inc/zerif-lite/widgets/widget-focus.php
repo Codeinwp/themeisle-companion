@@ -12,9 +12,8 @@
  * Class zerif_ourfocus
  */
 if ( ! class_exists( 'zerif_ourfocus' ) ) {
-
+	//phpcs:ignore PEAR.NamingConventions.ValidClassName
 	class zerif_ourfocus extends WP_Widget {
-
 		/**
 		 * zerif_ourfocus constructor.
 		 */
@@ -34,7 +33,7 @@ if ( ! class_exists( 'zerif_ourfocus' ) ) {
 		 *
 		 * @param $hook
 		 */
-		function widget_scripts() {
+		public function widget_scripts() {
 			wp_enqueue_media();
 			wp_enqueue_script( 'zerif_widget_media_script', THEMEISLE_COMPANION_URL . 'assets/js/widget-media.js', false, '1.1', true );
 		}
@@ -45,11 +44,11 @@ if ( ! class_exists( 'zerif_ourfocus' ) ) {
 		 * @param $args
 		 * @param $instance
 		 */
-		function widget( $args, $instance ) {
+		public function widget( $args, $instance ) {
 
 			extract( $args );
 
-			echo $before_widget;
+			echo wp_kses_post( $before_widget );
 
 			?>
 
@@ -64,8 +63,8 @@ if ( ! class_exists( 'zerif_ourfocus' ) ) {
 							if ( ! empty( $instance['title'] ) ) { 
 								?>
 								<span class="sr-only">
-								<?php _e( 'Go to', 'themeisle-companion' ); ?>
-								<?php echo apply_filters( 'widget_title', $instance['title'] ); ?>
+								<?php echo esc_attr( 'Go to', 'themeisle-companion' ); ?>
+								<?php echo wp_kses_post( apply_filters( 'widget_title', $instance['title'] ) ); ?>
 							</span>
 								<?php
 							} 
@@ -100,8 +99,8 @@ if ( ! class_exists( 'zerif_ourfocus' ) ) {
 								if ( ! empty( $instance['title'] ) ) { 
 									?>
 									<span class="sr-only">
-										<?php _e( 'Go to', 'themeisle-companion' ); ?>
-										<?php echo apply_filters( 'widget_title', $instance['title'] ); ?>
+										<?php esc_attr_e( 'Go to', 'themeisle-companion' ); ?>
+										<?php echo wp_kses_post( apply_filters( 'widget_title', $instance['title'] ) ); ?>
 									</span>
 									<?php
 								} 
@@ -126,7 +125,7 @@ if ( ! class_exists( 'zerif_ourfocus' ) ) {
 				<h3 class="red-border-bottom">
 				<?php 
 				if ( ! empty( $instance['title'] ) ) :
-					echo apply_filters( 'widget_title', $instance['title'] );
+					echo wp_kses_post( apply_filters( 'widget_title', $instance['title'] ) );
 endif; 
 				?>
 				</h3>
@@ -135,7 +134,7 @@ endif;
 				<?php
 				if ( ! empty( $instance['text'] ) ) {
 					echo '<p>';
-					echo htmlspecialchars_decode( apply_filters( 'widget_title', $instance['text'] ) );
+					echo wp_kses_post( htmlspecialchars_decode( apply_filters( 'widget_title', $instance['text'] ) ) );
 					echo '</p>';
 				}
 				?>
@@ -144,7 +143,7 @@ endif;
 
 			<?php
 
-			echo $after_widget;
+			echo wp_kses_post( $after_widget );
 
 		}
 
@@ -156,15 +155,15 @@ endif;
 		 *
 		 * @return mixed
 		 */
-		function update( $new_instance, $old_instance ) {
+		public function update( $new_instance, $old_instance ) {
 
 			$instance                        = $old_instance;
 			$instance['text']                = stripslashes( wp_filter_post_kses( $new_instance['text'] ) );
-			$instance['title']               = strip_tags( $new_instance['title'] );
-			$instance['link']                = strip_tags( $new_instance['link'] );
-			$instance['image_uri']           = strip_tags( $new_instance['image_uri'] );
-			$instance['custom_media_id']     = strip_tags( $new_instance['custom_media_id'] );
-			$instance['image_in_customizer'] = strip_tags( $new_instance['image_in_customizer'] );
+			$instance['title']               = wp_strip_all_tags( $new_instance['title'] );
+			$instance['link']                = wp_strip_all_tags( $new_instance['link'] );
+			$instance['image_uri']           = wp_strip_all_tags( $new_instance['image_uri'] );
+			$instance['custom_media_id']     = wp_strip_all_tags( $new_instance['custom_media_id'] );
+			$instance['image_in_customizer'] = wp_strip_all_tags( $new_instance['image_in_customizer'] );
 
 			return $instance;
 
@@ -175,17 +174,17 @@ endif;
 		 *
 		 * @param $instance
 		 */
-		function form( $instance ) {
+		public function form( $instance ) {
 			?>
 
 			<p>
-				<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title', 'themeisle-companion' ); ?></label><br/>
-				<input type="text" name="<?php echo $this->get_field_name( 'title' ); ?>"
-					   id="<?php echo $this->get_field_id( 'title' ); ?>"
+				<label for="<?php echo wp_kses_post( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Title', 'themeisle-companion' ); ?></label><br/>
+				<input type="text" name="<?php echo wp_kses_post( $this->get_field_name( 'title' ) ); ?>"
+					   id="<?php echo wp_kses_post( $this->get_field_id( 'title' ) ); ?>"
 					   value="
 					   <?php 
 						if ( ! empty( $instance['title'] ) ) :
-							echo $instance['title'];
+							echo wp_kses_post( $instance['title'] );
 endif; 
 						?>
 						"
@@ -193,21 +192,21 @@ endif;
 			</p>
 			<p>
 				<label
-					for="<?php echo $this->get_field_id( 'text' ); ?>"><?php _e( 'Text', 'themeisle-companion' ); ?></label><br/>
-				<textarea class="widefat" rows="8" cols="20" name="<?php echo $this->get_field_name( 'text' ); ?>"
-						  id="<?php echo $this->get_field_id( 'text' ); ?>">
+					for="<?php echo wp_kses_post( $this->get_field_id( 'text' ) ); ?>"><?php esc_attr_e( 'Text', 'themeisle-companion' ); ?></label><br/>
+				<textarea class="widefat" rows="8" cols="20" name="<?php echo wp_kses_post( $this->get_field_name( 'text' ) ); ?>"
+						  id="<?php echo wp_kses_post( $this->get_field_id( 'text' ) ); ?>">
 										 <?php 
 											if ( ! empty( $instance['text'] ) ) :
-												echo htmlspecialchars_decode( $instance['text'] );
+												echo wp_kses_post( htmlspecialchars_decode( $instance['text'] ) );
 endif; 
 											?>
 							</textarea>
 			</p>
 			<p>
 				<label
-					for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Link', 'themeisle-companion' ); ?></label><br/>
-				<input type="text" name="<?php echo $this->get_field_name( 'link' ); ?>"
-					   id="<?php echo $this->get_field_id( 'link' ); ?>"
+					for="<?php echo wp_kses_post( $this->get_field_id( 'link' ) ); ?>"><?php esc_attr_e( 'Link', 'themeisle-companion' ); ?></label><br/>
+				<input type="text" name="<?php echo wp_kses_post( $this->get_field_name( 'link' ) ); ?>"
+					   id="<?php echo wp_kses_post( $this->get_field_id( 'link' ) ); ?>"
 					   value="
 					   <?php 
 						if ( ! empty( $instance['link'] ) ) :
@@ -219,7 +218,7 @@ endif;
 			</p>
 			<p>
 				<label
-					for="<?php echo $this->get_field_id( 'image_uri' ); ?>"><?php _e( 'Image', 'themeisle-companion' ); ?></label><br/>
+					for="<?php echo wp_kses_post( $this->get_field_id( 'image_uri' ) ); ?>"><?php esc_attr_e( 'Image', 'themeisle-companion' ); ?></label><br/>
 
 				<?php
 				$image_in_customizer = '';
@@ -239,44 +238,44 @@ endif;
 					   name="
 					   <?php 
 						if ( ! empty( $zerif_image_in_customizer ) ) {
-							echo $zerif_image_in_customizer;
+							echo wp_kses_post( $zerif_image_in_customizer );
 						} 
 						?>
 						"
 					   value="
 					   <?php 
 						if ( ! empty( $instance['image_in_customizer'] ) ) :
-							echo $instance['image_in_customizer'];
+							echo wp_kses_post( $instance['image_in_customizer'] );
 endif; 
 						?>
 						">
-				<img class="custom_media_image" src="<?php echo $image_in_customizer; ?>"
-					 style="margin:0;padding:0;max-width:100px;float:left;display:<?php echo $display; ?>"
-					 alt="<?php echo __( 'Uploaded image', 'themeisle-companion' ); ?>"/><br/>
+				<img class="custom_media_image" src="<?php echo esc_url( $image_in_customizer ); ?>"
+					 style="margin:0;padding:0;max-width:100px;float:left;display:<?php echo esc_attr( $display ); ?>"
+					 alt="<?php echo esc_attr_e( 'Uploaded image', 'themeisle-companion' ); ?>"/><br/>
 
 				<input type="text" class="widefat custom_media_url"
-					   name="<?php echo $this->get_field_name( 'image_uri' ); ?>"
-					   id="<?php echo $this->get_field_id( 'image_uri' ); ?>"
+					   name="<?php echo esc_attr( $this->get_field_name( 'image_uri' ) ); ?>"
+					   id="<?php echo esc_attr( $this->get_field_id( 'image_uri' ) ); ?>"
 					   value="
 					   <?php 
 						if ( ! empty( $instance['image_uri'] ) ) :
-							echo $instance['image_uri'];
+							echo esc_url( $instance['image_uri'] );
 endif; 
 						?>
 						"
 					   style="margin-top:5px;">
 
 				<input type="button" class="button button-primary custom_media_button" id="custom_media_button"
-					   name="<?php echo $this->get_field_name( 'image_uri' ); ?>"
-					   value="<?php _e( 'Upload Image', 'themeisle-companion' ); ?>" style="margin-top:5px;">
+					   name="<?php echo esc_attr( $this->get_field_name( 'image_uri' ) ); ?>"
+					   value="<?php esc_attr_e( 'Upload Image', 'themeisle-companion' ); ?>" style="margin-top:5px;">
 			</p>
 
-			<input class="custom_media_id" id="<?php echo $this->get_field_id( 'custom_media_id' ); ?>"
-				   name="<?php echo $this->get_field_name( 'custom_media_id' ); ?>" type="hidden"
+			<input class="custom_media_id" id="<?php echo esc_attr( $this->get_field_id( 'custom_media_id' ) ); ?>"
+				   name="<?php echo esc_attr( $this->get_field_name( 'custom_media_id' ) ); ?>" type="hidden"
 				   value="
 				   <?php 
 					if ( ! empty( $instance['custom_media_id'] ) ) :
-						echo $instance['custom_media_id'];
+						echo esc_attr( $instance['custom_media_id'] );
 endif; 
 					?>
 					"/>

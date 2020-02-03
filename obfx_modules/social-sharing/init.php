@@ -27,7 +27,10 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function __construct() {
 		parent::__construct();
-		$this->name        = __( 'Social Sharing Module', 'themeisle-companion' );
+		$this->name = __( 'Social Sharing Module', 'themeisle-companion' );
+		/*
+		 * translators: %s Document anchor link.
+		 */
 		$this->description = sprintf( __( 'Add basic social sharing to your posts and pages. Check out the %s to learn more!', 'themeisle-companion' ), sprintf( '<a href="https://demo.themeisle.com/orbit-fox/2018/01/15/social-sharing-modules/" rel="nofollow" target="_blank">%s</a>', __( 'demo', 'themeisle-companion' ) ) );
 	}
 
@@ -35,7 +38,7 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * Define the array that contains the social networks.
 	 */
 	private function define_networks() {
-		$post_categories = strip_tags( get_the_category_list( ',' ) );
+		$post_categories = wp_strip_all_tags( get_the_category_list( ',' ) );
 		$post_title      = get_the_title();
 		$post_link       = get_the_permalink();
 
@@ -199,7 +202,7 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			if ( $this->get_option( 'socials_position' ) == 2 ) {
 				return $this->render_view( 'hestia-social-sharing', $data );
 			}
-				echo $this->render_view( 'social-sharing', $data );
+			echo $this->render_view( 'social-sharing', $data ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 	}
 

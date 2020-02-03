@@ -47,15 +47,6 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			require_once $this->inc_dir . 'zerif-lite' . DIRECTORY_SEPARATOR . 'functions.php';
 		}
 
-		if ( $this->is_rhea() ) {
-			$theme_name = 'Rhea';
-			require_once $this->inc_dir . 'rhea' . DIRECTORY_SEPARATOR . 'widgets' . DIRECTORY_SEPARATOR . 'features.widget.php';
-			require_once $this->inc_dir . 'rhea' . DIRECTORY_SEPARATOR . 'widgets' . DIRECTORY_SEPARATOR . 'about.widget.php';
-			require_once $this->inc_dir . 'rhea' . DIRECTORY_SEPARATOR . 'widgets' . DIRECTORY_SEPARATOR . 'hours.widget.php';
-			require_once $this->inc_dir . 'rhea' . DIRECTORY_SEPARATOR . 'widgets' . DIRECTORY_SEPARATOR . 'contact.widget.php';
-			require_once $this->inc_dir . 'rhea' . DIRECTORY_SEPARATOR . 'widgets' . DIRECTORY_SEPARATOR . 'progress-bar.widget.php';
-			require_once $this->inc_dir . 'rhea' . DIRECTORY_SEPARATOR . 'widgets' . DIRECTORY_SEPARATOR . 'icon-box.widget.php';
-		}
 
 		if ( $this->is_hestia() ) {
 			require_once $this->inc_dir . 'hestia' . DIRECTORY_SEPARATOR . 'functions.php';
@@ -73,14 +64,6 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			$theme_name = 'Shop Isle';
 		}
 
-		if ( $this->is_azera_shop() ) {
-			$theme_name = 'Azera Shop';
-		}
-
-		if ( $this->is_llorix_one_lite() ) {
-			$theme_name = 'Llorix One Lite';
-		}
-
 		$this->name        = sprintf( __( '%s enhancements ', 'themeisle-companion' ), $theme_name );
 		$this->description = sprintf( __( 'Module containing frontpage improvements for %s theme.', 'themeisle-companion' ), $theme_name );
 	}
@@ -93,13 +76,6 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		return false;
 	}
 
-	private function is_rhea() {
-		if ( $this->get_active_theme_dir( true ) == 'rhea' ) {
-			return true;
-		}
-
-		return false;
-	}
 
 	private function is_hestia() {
 		if ( $this->get_active_theme_dir() == 'hestia' ) {
@@ -129,35 +105,6 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		return false;
 	}
 
-	private function is_azera_shop() {
-		include_once ABSPATH . 'wp-admin/includes/plugin.php';
-		if ( is_plugin_active( 'azera-shop-companion/azera-shop-companion.php' ) ) {
-			return false;
-		}
-		if ( is_plugin_active( 'azera-shop-plus/azera-shop-plus.php' ) ) {
-			return false;
-		}
-		if ( $this->get_active_theme_dir() == 'azera-shop' ) {
-			return true;
-		}
-
-		return false;
-	}
-
-	private function is_llorix_one_lite() {
-		include_once ABSPATH . 'wp-admin/includes/plugin.php';
-		if ( is_plugin_active( 'llorix-one-companion/llorix-one-companion.php' ) ) {
-			return false;
-		}
-		if ( is_plugin_active( 'llorix-one-plus/llorix_one_plus.php' ) ) {
-			return false;
-		}
-		if ( $this->get_active_theme_dir() == 'llorix-one-lite' ) {
-			return true;
-		}
-
-		return false;
-	}
 
 	/**
 	 * Determine if module should be loaded.
@@ -167,7 +114,7 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return bool
 	 */
 	public function enable_module() {
-		if ( $this->is_hestia() || $this->is_rhea() || $this->is_zerif() || $this->is_hestia_pro() || $this->is_shop_isle() || $this->is_azera_shop() || $this->is_llorix_one_lite() ) {
+		if ( $this->is_hestia() || $this->is_zerif() || $this->is_hestia_pro() || $this->is_shop_isle() ) {
 			return true;
 		} else {
 			return false;
@@ -186,39 +133,6 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		}
 	}
 
-	public function rhea_register_widgets() {
-		register_widget( 'rhea_features_block' );
-		register_widget( 'Rhea_Progress_Bar' );
-		register_widget( 'Rhea_Icon_Box' );
-		register_widget( 'Rhea_About_Company' );
-		register_widget( 'Rhea_Hours' );
-		register_widget( 'Rhea_Contact_Company' );
-	}
-
-	function rhea_load_custom_wp_admin_style() {
-		wp_enqueue_style( 'fontawesome-style', get_template_directory_uri() . '/css/font-awesome.min.css' );
-		wp_enqueue_style( 'rhea-admin-style', trailingslashit( THEMEISLE_COMPANION_URL ) . 'inc/rhea/assets/css/admin-style.css' );
-		wp_enqueue_script( 'fontawesome-icons', trailingslashit( THEMEISLE_COMPANION_URL ) . 'inc/rhea/assets/js/icons.js', false, '1.0.0' );
-		wp_enqueue_script( 'jquery-ui-dialog' );
-		wp_enqueue_script( 'fontawesome-script', trailingslashit( THEMEISLE_COMPANION_URL ) . 'inc/rhea/assets/js/fontawesome.jquery.js', false, '1.0.0' );
-	}
-
-	public function rhea_add_html_to_admin_footer() {
-		$output = '
-        <div id="fontawesome-popup">
-            <div class="left-side">
-                <label for="fontawesome-live-search">' . esc_html_e( 'Search icon', 'themeisle-companion' ) . ':</label>
-                <ul class="filter-icons">
-                    <li data-filter="all" class="active">' . esc_html_e( 'All Icons', 'themeisle-companion' ) . '</li>
-                </ul>
-            </div>
-            <div class="right-side">
-            </div>
-        </div>
-        ';
-
-		echo $output;
-	}
 
 	/**
 	 * Function to import customizer big title settings into first slide.
@@ -358,45 +272,6 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		themeisle_hestia_set_frontpage();
 	}
 
-	/**
-	 * Wrapper method for Azera Shop Companion styles
-	 *
-	 * @since 2.4.5
-	 * @access public
-	 */
-	public function azera_shop_companion_register_plugin_styles() {
-		azera_shop_companion_register_plugin_styles();
-	}
-
-	/**
-	 * Wrapper method for Azera Shop Companion sections
-	 *
-	 * @since 2.4.5
-	 * @access public
-	 */
-	public function azera_shop_companion_load_sections() {
-		azera_shop_companion_load_sections();
-	}
-
-	/**
-	 * Wrapper method for Llorix One Companion styles
-	 *
-	 * @since 2.4.5
-	 * @access public
-	 */
-	public function llorix_one_companion_register_plugin_styles() {
-		llorix_one_companion_register_plugin_styles();
-	}
-
-	/**
-	 * Wrapper method for Llorix One Companion sections
-	 *
-	 * @since 2.4.5
-	 * @access public
-	 */
-	public function llorix_one_companion_load_sections() {
-		llorix_one_companion_load_sections();
-	}
 
 	/**
 	 * The loading logic for the module.
@@ -419,12 +294,7 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			$this->loader->add_action( 'widgets_init', $this, 'zerif_register_widgets' );
 		}
 
-		if ( $this->is_rhea() ) {
-			$this->loader->add_action( 'widgets_init', $this, 'rhea_register_widgets' );
-			$this->loader->add_action( 'admin_enqueue_scripts', $this, 'rhea_load_custom_wp_admin_style' );
-			$this->loader->add_action( 'admin_footer', $this, 'rhea_add_html_to_admin_footer' );
-			$this->loader->add_action( 'customize_controls_print_footer_scripts', $this, 'rhea_add_html_to_admin_footer' );
-		}
+
 
 		if ( $this->is_hestia() ) {
 			$this->loader->add_action( 'after_setup_theme', $this, 'hestia_require' );
@@ -444,18 +314,6 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		if ( $this->is_shop_isle() ) {
 			require_once $this->inc_dir . 'shop-isle' . DIRECTORY_SEPARATOR . 'functions.php';
-		}
-
-		if ( $this->is_azera_shop() ) {
-			require_once $this->inc_dir . 'azera-shop' . DIRECTORY_SEPARATOR . 'functions.php';
-			$this->loader->add_action( 'wp_enqueue_scripts', $this, 'azera_shop_companion_register_plugin_styles' );
-			$this->loader->add_action( 'plugins_loaded', $this, 'azera_shop_companion_load_sections' );
-		}
-
-		if ( $this->is_llorix_one_lite() ) {
-			require_once $this->inc_dir . 'llorix-one-companion' . DIRECTORY_SEPARATOR . 'functions.php';
-			$this->loader->add_action( 'wp_enqueue_scripts', $this, 'llorix_one_companion_register_plugin_styles' );
-			$this->loader->add_action( 'plugins_loaded', $this, 'llorix_one_companion_load_sections' );
 		}
 	}
 

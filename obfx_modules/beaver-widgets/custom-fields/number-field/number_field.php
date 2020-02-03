@@ -11,7 +11,7 @@
 function obfx_number_field( $name, $value, $field ) {
 	$min = ! empty( $field['min'] ) ? 'min="' . esc_attr( $field['min'] ) . '"' : '';
 	$max = ! empty( $field['max'] ) ? 'max="' . esc_attr( $field['max'] ) . '"' : ''; ?>
-	<input type="number" value="<?php echo esc_attr( $value ); ?>" name="<?php echo esc_attr( $name ); ?>" class="obfx-number-field" <?php echo $min; ?> <?php echo $max; ?> />
+	<input type="number" value="<?php echo esc_attr( $value ); ?>" name="<?php echo esc_attr( $name ); ?>" class="obfx-number-field" <?php echo esc_attr( $min ); ?> <?php echo esc_attr( $max ); ?> />
 	<?php
 }
 

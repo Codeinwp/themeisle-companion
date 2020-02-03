@@ -20,7 +20,7 @@ function shop_isle_companion_customize_register( $wp_customize ) {
 		 * Render about page instruction
 		 */
 		public function render_content() {
-			echo __( 'To customize the About us Page you need to first select the template "About us page" for the page you want to use for this purpose. Then open that page in the browser and press "Customize" in the top bar.', 'themeisle-companion' ) . '<br><br>' . __( 'Need further assistance? Check out this', 'themeisle-companion' ) . ' <a href="http://docs.themeisle.com/article/211-shopisle-customizing-the-contact-and-about-us-page" target="_blank">' . __( 'doc', 'themeisle-companion' ) . '</a>';
+			echo wp_kses_post( __( 'To customize the About us Page you need to first select the template "About us page" for the page you want to use for this purpose. Then open that page in the browser and press "Customize" in the top bar.', 'themeisle-companion' ) . '<br><br>' . __( 'Need further assistance? Check out this', 'themeisle-companion' ) . ' <a href="http://docs.themeisle.com/article/211-shopisle-customizing-the-contact-and-about-us-page" target="_blank">' . __( 'doc', 'themeisle-companion' ) . '</a>' );
 		}
 	}
 
@@ -118,9 +118,7 @@ function shop_isle_companion_customize_register( $wp_customize ) {
 		) 
 	);
 
-	/*********************************/*/ * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * /
-	/******  About us page  */
-	/*********************************/*/ * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * /
+
 	if ( class_exists( 'WP_Customize_Panel' ) ) :
 		$wp_customize->add_panel(
 			'panel_team',
@@ -243,9 +241,6 @@ function shop_isle_companion_customize_register( $wp_customize ) {
 			) 
 		);
 	}
-	/***********************************************************************************/*/ * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * /
-	/******  About us page - instructions for users when not on About us page  */
-	/***********************************************************************************/*/ * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * / * /
 	$wp_customize->add_section(
 		'shop_isle_aboutus_page_instructions',
 		array(
@@ -717,7 +712,7 @@ if ( ! function_exists( 'shop_isle_about_page_display_advantages' ) ) :
 
 		$shop_isle_advantages = get_theme_mod(
 			'shop_isle_advantages',
-			json_encode(
+			wp_json_encode(
 				array(
 					array(
 						'icon_value' => 'icon_lightbulb',

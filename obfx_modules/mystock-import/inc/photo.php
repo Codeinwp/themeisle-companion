@@ -10,7 +10,7 @@ $pid = $photo['id'];
 if ( ! empty( $pid ) ) {
 	$thumb = $photo['url_m'];
 	?>
-	<li class='obfx-image' data-page="<?php esc_attr( $page ); ?>" data-pid="<?php echo esc_attr( $pid ); ?>" data-url="<?php echo esc_attr( $photo['url_l'] ); ?>">
+	<li class='obfx-image' data-page="<?php esc_attr( $page ); ?>" data-pid="<?php echo esc_attr( $pid ); ?>" data-url="<?php echo esc_url( $photo['url_l'] ); ?>">
 		<div class="obfx-preview">
 			<div class="thumbnail">
 				<div class="centered">

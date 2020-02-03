@@ -114,7 +114,7 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		$obfx_token = get_option( 'obfx_token', '' );
 
-		if ( ( $_POST['deactivate'] === 'unregister' ) ) {
+		if ( ( $_POST['deactivate'] === 'unregister' ) ) { //phpcs:ignore WordPress.VIP.ValidatedSanitizedInput.InputNotValidated
 			return $this->unregister_website( $obfx_token );
 		}
 		if ( empty( $obfx_token ) ) {
@@ -370,7 +370,7 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		update_option( 'obfx_token', $obfx_token );
 		$this->get_tracking_codes( $obfx_token );
 		wp_safe_redirect( admin_url( 'admin.php?page=obfx_companion' ) );
-
+		exit;
 	}
 
 	final public function output_analytics_code() {

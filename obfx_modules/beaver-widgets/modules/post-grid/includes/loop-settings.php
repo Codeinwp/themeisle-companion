@@ -21,7 +21,7 @@ do_action( 'fl_builder_loop_settings_before_form', $settings ); // e.g Add custo
 ?>
 <div class="fl-custom-query fl-loop-data-source" data-source="custom_query">
 	<div id="fl-builder-settings-section-general" class="fl-builder-settings-section">
-		<h3 class="fl-builder-settings-title"><?php _e( 'Custom Query', 'themeisle-companion' ); ?></h3>
+		<h3 class="fl-builder-settings-title"><?php esc_attr_e( 'Custom Query', 'themeisle-companion' ); ?></h3>
 		<table class="fl-form-table">
 			<?php
 
@@ -131,9 +131,9 @@ do_action( 'fl_builder_loop_settings_before_form', $settings ); // e.g Add custo
 		</table>
 	</div>
 	<div id="fl-builder-settings-section-filter" class="fl-builder-settings-section">
-		<h3 class="fl-builder-settings-title"><?php _e( 'Filter', 'themeisle-companion' ); ?></h3>
-		<?php foreach ( FLBuilderLoop::post_types() as $slug => $type ) : ?>
-			<table class="fl-form-table fl-custom-query-filter fl-custom-query-<?php echo $slug; ?>-filter" 
+		<h3 class="fl-builder-settings-title"><?php esc_attr_e( 'Filter', 'themeisle-companion' ); ?></h3>
+		<?php foreach ( FLBuilderLoop::post_types() as $slug => $type ) : //phpcs:ignore WordPress.WP.GlobalVariablesOverride.OverrideProhibited ?>
+			<table class="fl-form-table fl-custom-query-filter fl-custom-query-<?php echo esc_attr( $slug ); ?>-filter"
 																							<?php
 																							if ( $slug === $settings->post_type ) {
 																								echo 'style="display:table;"';}
@@ -149,6 +149,9 @@ do_action( 'fl_builder_loop_settings_before_form', $settings ); // e.g Add custo
 						'action'   => 'fl_as_posts',
 						'data'     => $slug,
 						'label'    => $type->label,
+						/*
+						 * translators: %1$s is Post type label.
+						 */
 						'help'     => sprintf( esc_html__( 'Enter a list of %1$s.', 'themeisle-companion' ), $type->label ),
 						'matching' => true,
 					),
@@ -158,7 +161,7 @@ do_action( 'fl_builder_loop_settings_before_form', $settings ); // e.g Add custo
 				// Taxonomies
 				$taxonomies = FLBuilderLoop::taxonomies( $slug );
 
-				foreach ( $taxonomies as $tax_slug => $tax ) {
+				foreach ( $taxonomies as $tax_slug => $tax ) { //phpcs:ignore: WordPress.WP.GlobalVariablesOverride.OverrideProhibited
 
 					FLBuilder::render_settings_field(
 						'tax_' . $slug . '_' . $tax_slug,
@@ -167,6 +170,9 @@ do_action( 'fl_builder_loop_settings_before_form', $settings ); // e.g Add custo
 							'action'   => 'fl_as_terms',
 							'data'     => $tax_slug,
 							'label'    => $tax->label,
+							/*
+							 * translators: %1$s is Taxonomy label.
+							 */
 							'help'     => sprintf( esc_html__( 'Enter a list of %1$s.', 'themeisle-companion' ), $tax->label ),
 							'matching' => true,
 						),
@@ -197,7 +203,7 @@ do_action( 'fl_builder_loop_settings_before_form', $settings ); // e.g Add custo
 		</table>
 	</div>
 	<div id="fl-builder-settings-section-filter" class="fl-builder-settings-section">
-		<h3 class="fl-builder-settings-title"><?php _e( 'Appearance', 'themeisle-companion' ); ?></h3>
+		<h3 class="fl-builder-settings-title"><?php esc_attr_e( 'Appearance', 'themeisle-companion' ); ?></h3>
 		<table class="fl-form-table">
 
 		<?php

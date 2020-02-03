@@ -14,7 +14,7 @@ if ( ! empty( $shop_isle_homepage_slider_shortcode ) ) {
 
 	$shop_isle_slider = get_theme_mod(
 		'shop_isle_slider',
-		json_encode(
+		wp_json_encode(
 			array(
 				array(
 					'image_url' => get_template_directory_uri() . '/assets/images/slide1.jpg',
@@ -71,18 +71,18 @@ if ( ! empty( $shop_isle_homepage_slider_shortcode ) ) {
 					if ( ! empty( $shop_isle_slide->text ) ) {
 						if ( function_exists( 'icl_t' ) && ! empty( $shop_isle_slide->id ) ) {
 							$shop_isle_slider_text = icl_t( 'Slide ' . $shop_isle_slide->id, 'Slide text', $shop_isle_slide->text );
-							echo '<div class="hs-title-size-4 font-alt mb-30">' . $shop_isle_slider_text . '</div>';
+							echo '<div class="hs-title-size-4 font-alt mb-30">' . wp_kses_post( $shop_isle_slider_text ) . '</div>';
 						} else {
-							echo '<div class="hs-title-size-4 font-alt mb-30">' . $shop_isle_slide->text . '</div>';
+							echo '<div class="hs-title-size-4 font-alt mb-30">' . wp_kses_post( $shop_isle_slide->text ) . '</div>';
 						}
 					}
 
 					if ( ! empty( $shop_isle_slide->subtext ) ) {
 						if ( function_exists( 'icl_t' ) && ! empty( $shop_isle_slide->id ) ) {
 							$shop_isle_slider_subtext = icl_t( 'Slide ' . $shop_isle_slide->id, 'Slide subtext', $shop_isle_slide->subtext );
-							echo '<div class="hs-title-size-1 font-alt mb-40">' . $shop_isle_slider_subtext . '</div>';
+							echo '<div class="hs-title-size-1 font-alt mb-40">' . wp_kses_post( $shop_isle_slider_subtext ) . '</div>';
 						} else {
-							echo '<div class="hs-title-size-1 font-alt mb-40">' . $shop_isle_slide->subtext . '</div>';
+							echo '<div class="hs-title-size-1 font-alt mb-40">' . wp_kses_post( $shop_isle_slide->subtext ) . '</div>';
 						}
 					}
 
@@ -90,9 +90,9 @@ if ( ! empty( $shop_isle_homepage_slider_shortcode ) ) {
 						if ( function_exists( 'icl_t' ) && ! empty( $shop_isle_slide->id ) ) {
 							$shop_isle_slider_link  = icl_t( 'Slide ' . $shop_isle_slide->id, 'Slide button link', $shop_isle_slide->link );
 							$shop_isle_slider_label = icl_t( 'Slide ' . $shop_isle_slide->id, 'Slide button label', $shop_isle_slide->label );
-							echo '<a href="' . esc_url( $shop_isle_slider_link ) . '" class="section-scroll btn btn-border-w btn-round">' . $shop_isle_slider_label . '</a>';
+							echo '<a href="' . esc_url( $shop_isle_slider_link ) . '" class="section-scroll btn btn-border-w btn-round">' . wp_kses_post( $shop_isle_slider_label ) . '</a>';
 						} else {
-							echo '<a href="' . esc_url( $shop_isle_slide->link ) . '" class="section-scroll btn btn-border-w btn-round">' . $shop_isle_slide->label . '</a>';
+							echo '<a href="' . esc_url( $shop_isle_slide->link ) . '" class="section-scroll btn btn-border-w btn-round">' . wp_kses_post( $shop_isle_slide->label ) . '</a>';
 						}
 					}
 					echo '</div>';

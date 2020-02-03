@@ -37,7 +37,7 @@ class Beaver_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return bool
 	 */
 	public function enable_module() {
-		require_once ABSPATH . 'wp-admin' . '/includes/plugin.php';
+		require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		return is_plugin_active( 'beaver-builder-lite-version/fl-builder.php' ) || is_plugin_active( 'bb-plugin/fl-builder.php' );
 	}
 

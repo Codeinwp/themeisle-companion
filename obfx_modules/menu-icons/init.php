@@ -186,6 +186,9 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'icons'        => apply_filters( 'obfx_menu_icons_icon_list', $this->get_dashicons() ),
 				'icon_default' => self::DEFAULT_ICON,
 				'i10n'         => array(
+					/*
+					 * translators: %s Plugin name
+					 */
 					'powered_by' => sprintf( __( 'Powered by %s plugin', 'themeisle-companion' ), '<b>' . apply_filters( 'themeisle_companion_friendly_name', '' ) . '</b>' ),
 				),
 			),
@@ -263,7 +266,7 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		check_admin_referer( 'update-nav_menu', 'update-nav-menu-nonce' );
 
 		if ( isset( $_POST['menu-item-icon'][ $menu_item_db_id ] ) ) {
-			$icon = $_POST['menu-item-icon'][ $menu_item_db_id ];
+			$icon = sanitize_text_field( $_POST['menu-item-icon'][ $menu_item_db_id ] );
 			if ( self::DEFAULT_ICON === $icon ) {
 				$icon = '';
 			}
@@ -302,7 +305,9 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				}
 				$type = __( 'plugin', 'themeisle-companion' );
 			}
-
+			/*
+			 * translators: %1$s Component name %2$s Component type
+			 */
 			$this->description   .= '<br><i class="chip">' . sprintf( __( 'There appears to be a conflict with the %1$s %2$s. This module may not work as expected.', 'themeisle-companion' ), $type, $name ) . '</i>';
 			$this->active_default = false;
 		}
