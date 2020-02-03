@@ -108,6 +108,14 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 ## Changelog ##
+
+#### [Version 2.9.0](https://github.com/Codeinwp/themeisle-companion/compare/v2.8.14...v2.9.0) (2020-02-03)
+
+* Update dependencies 
+* Remove legacy modules
+
+
+
 ### 2.8.14 - 2019-12-02  ###
 
 * Fix fatal error with Membership Pro
