@@ -25,7 +25,7 @@
     "release": "npx semantic-release"
   },
   "devDependencies": {
-    "@semantic-release/changelog": "^3.0.6",
+    "@semantic-release/changelog": "^5.0.0",
     "@semantic-release/exec": "^3.3.8",
     "@semantic-release/git": "^7.0.18",
     "conventional-changelog-simple-preset": "^1.0.13",
