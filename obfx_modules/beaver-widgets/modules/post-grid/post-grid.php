@@ -36,7 +36,7 @@ class PostGridModule extends FLBuilderModule {
 /**
  * Register the module and its form settings.
  */
-$image_sizes = get_intermediate_image_sizes(); //phpcs:ignore WordPressVIPMinimum.VIP.RestrictedFunctions.get_intermediate_image_sizes_get_intermediate_image_sizes
+$image_sizes = get_intermediate_image_sizes(); //phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.get_intermediate_image_sizes_get_intermediate_image_sizes
 $choices     = array();
 if ( ! empty( $image_sizes ) ) {
 	foreach ( $image_sizes as $size ) {

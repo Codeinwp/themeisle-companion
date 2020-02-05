@@ -215,7 +215,7 @@ class Orbit_Fox_Admin {
 	 * @access  public
 	 */
 	public function obfx_update_module_options() {
-		$json                = stripslashes( str_replace( '&quot;', '"', $_POST['data'] ) ); //phpcs:ignore WordPress.VIP.ValidatedSanitizedInput.InputNotValidated, WordPress.VIP.ValidatedSanitizedInput.InputNotSanitized
+		$json                = stripslashes( str_replace( '&quot;', '"', $_POST['data'] ) ); //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
 		$data                = json_decode( $json, true );
 		$response['type']    = 'error';
 		$response['message'] = __( 'Could not process the request!', 'themeisle-companion' );
@@ -375,7 +375,7 @@ class Orbit_Fox_Admin {
 	 * @access  public
 	 */
 	public function obfx_update_module_active_status() {
-		$json                = stripslashes( str_replace( '&quot;', '"', $_POST['data'] ) ); //phpcs:ignore WordPress.VIP.ValidatedSanitizedInput.InputNotValidated, WordPress.VIP.ValidatedSanitizedInput.InputNotSanitized
+		$json                = stripslashes( str_replace( '&quot;', '"', $_POST['data'] ) ); //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
 		$data                = json_decode( $json, true );
 		$response['type']    = 'error';
 		$response['message'] = __( 'Could not process the request!', 'themeisle-companion' );

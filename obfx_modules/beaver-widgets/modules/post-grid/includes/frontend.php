@@ -181,8 +181,8 @@ if ( ! function_exists( 'obfx_show_post_grid_meta' ) ) {
 					/* translators: %s: post title */
 					_x( 'One comment', 'comments title', 'themeisle-companion' );
 				} else {
-					esc_html(
-						printf(
+					echo esc_html(
+						sprintf(
 						/* translators: 1: number of comments, 2: post title */
 							_nx( //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 								'%1$s Comment',

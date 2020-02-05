@@ -130,6 +130,9 @@ class Orbit_Fox {
 		$module_factory = new Orbit_Fox_Module_Factory();
 		foreach ( $modules_to_load as $module_name ) {
 			$module = $module_factory::build( $module_name );
+			if ( $module === false ) {
+				continue;
+			}
 			$global_settings->register_module_reference( $module_name, $module );
 			if ( $module->enable_module() ) {
 				$module->register_loader( $this->get_loader() );
