@@ -145,7 +145,7 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$this->loader->add_action( $this->get_slug() . '_before_options_save', $this, 'before_options_save', 10, 1 );
 
 		// if the cookie policy is already accepted we quit.
-		if ( isset( $_COOKIE['obfx-policy-consent'] ) && 'accepted' === $_COOKIE['obfx-policy-consent'] ) { //phpcs:ignore WordPress.VIP.RestrictedVariables.cache_constraints___COOKIE
+		if ( isset( $_COOKIE['obfx-policy-consent'] ) && 'accepted' === $_COOKIE['obfx-policy-consent'] ) { //phpcs:ignore WordPressVIPMinimum.Variables.RestrictedVariables.cache_constraints___COOKIE
 			return;
 		}
 

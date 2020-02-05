@@ -114,7 +114,7 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		$obfx_token = get_option( 'obfx_token', '' );
 
-		if ( ( $_POST['deactivate'] === 'unregister' ) ) { //phpcs:ignore WordPress.VIP.ValidatedSanitizedInput.InputNotValidated
+		if ( ( $_POST['deactivate'] === 'unregister' ) ) { //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
 			return $this->unregister_website( $obfx_token );
 		}
 		if ( empty( $obfx_token ) ) {
