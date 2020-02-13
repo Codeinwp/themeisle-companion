@@ -180,7 +180,7 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		// @TODO maybe think at some template system for a further hookable customization.
 		// message output will start with a wrapper and an input tag which will decide if the template is visible or not
-		$output = '<div class="obfx-cookie-bar-container"><input class="obfx-checkbox-cb" id="obfx-checkbox-cb" type="checkbox" />';
+		$output = '<div class="obfx-cookie-bar-container" id="obfx-cookie-bar"><input class="obfx-checkbox-cb" id="obfx-checkbox-cb" type="checkbox" />';
 
 		// we'll add the buttons as a separate var and we'll start with the close button
 		$buttons = '<label for="obfx-checkbox-cb" class="obfx-close-cb">X</label>';
@@ -190,9 +190,15 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$buttons .= '<a href="' . $policy_link . '" >' . $policy_button . '</a>';
 
 		// combine the buttons with the bar and close the wrapper.
-		$output .= '<span class="obfx-cookie-bar">' . $policy_text . $buttons . '</span></div>';
+		$output               .= '<span class="obfx-cookie-bar">' . $policy_text . $buttons . '</span></div>';
+		$allowed_html          = wp_kses_allowed_html( 'post' );
+		$allowed_html['input'] = [
+			'class' => [],
+			'id'    => [],
+			'type'  => [],
+		];
 
-		echo wp_kses_post( apply_filters( 'obfx_cookie_notice_output', $output, $options ) );
+		echo wp_kses( apply_filters( 'obfx_cookie_notice_output', $output, $options ), $allowed_html );
 	}
 
 	/**
@@ -203,7 +209,25 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		<script>
 			(function (window) {
 
-				document.getElementById('obfx-accept-cookie-policy').addEventListener('click', function( e ) {
+				function getCookie(cname) {
+					var name = cname + "=";
+					var ca = document.cookie.split(';');
+					for(var i = 0; i < ca.length; i++) {
+						var c = ca[i];
+						while (c.charAt(0) == ' ') {
+							c = c.substring(1);
+						}
+						if (c.indexOf(name) == 0) {
+							return c.substring(name.length, c.length);
+						}
+					}
+					return "";
+				}
+				let cookie = getCookie('obfx-policy-consent');
+				if(cookie === 'accepted'){
+					document.getElementById('obfx-cookie-bar').style.display = 'none';
+				}
+				document.getElementById('obfx-accept-cookie-policy').addEventListener('click', function (e) {
 					e.preventDefault();
 					var days = 365;
 					var date = new Date();
@@ -226,13 +250,13 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	/**
 	 * This modules needs a few CSS lines so there is no need to load a file for it.
 	 */
-	public function wp_print_footer_style() { 
+	public function wp_print_footer_style() {
 		?>
 		<style>
 			.obfx-cookie-bar-container {
 				height: 0;
 			}
-			
+
 			.obfx-checkbox-cb {
 				display: none;
 			}
@@ -269,7 +293,7 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				cursor: pointer;
 			}
 		</style>
-		<?php 
+		<?php
 	}
 
 	/**
@@ -346,7 +370,7 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'child_of'    => 0,
 				'selected'    => 0,
 				'value_field' => 'ID',
-			) 
+			)
 		);
 
 		if ( empty( $pages ) ) {
