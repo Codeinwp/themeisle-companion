@@ -71,6 +71,7 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function hooks() {
 		$this->loader->add_action( 'enqueue_block_assets', $this, 'enqueue_block_assets' );
 		$this->loader->add_action( 'init', $this, 'load_gutenberg_blocks' );
+
 	}
 
 	/**
@@ -120,6 +121,10 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * If the composer library is present let's try to init.
 	 */
 	public function load_gutenberg_blocks() {
+		$file = OBX_PATH . '/vendor/codeinwp/gutenberg-blocks/load.php';
+		if ( is_file( $file ) ) {
+			require_once $file;
+		}
 		\ThemeIsle\GutenbergBlocks\Main::instance( __( 'Blocks by OrbitFox and Otter', 'themeisle-companion' ) );
 	}
 
