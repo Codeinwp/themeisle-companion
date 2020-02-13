@@ -1,3 +1,8 @@
+##### [Version 2.9.2](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.1...v2.9.2) (2020-02-13)
+
+* Fix issue with cookie notices closing behavior. 
+* Fix notice when Otter and Orbit Fox were both active.
+
 ##### [Version 2.9.1](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.0...v2.9.1) (2020-02-05)
 
 * Fix possible error with edge case legacy module loading.
