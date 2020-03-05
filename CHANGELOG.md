@@ -1,3 +1,8 @@
+##### [Version 2.9.3](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.2...v2.9.3) (2020-03-05)
+
+* Update dependencies
+* Fix admin notice viewed by non-admins
+
 ##### [Version 2.9.2](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.1...v2.9.2) (2020-02-13)
 
 * Fix issue with cookie notices closing behavior. 
