@@ -142,6 +142,9 @@ class Orbit_Fox_Admin {
 	public function visit_dashboard_notice() {
 		global $current_user;
 		$user_id = $current_user->ID;
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
 		if ( ! get_user_meta( $user_id, 'obfx_ignore_visit_dashboard_notice' ) ) { ?>
 			<div class="notice notice-info" style="position:relative;">
 				<p>
