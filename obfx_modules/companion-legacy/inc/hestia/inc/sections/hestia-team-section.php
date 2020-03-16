@@ -51,6 +51,14 @@ if ( ! function_exists( 'hestia_team' ) ) :
 		$wrapper_class   = $is_shortcode === true ? 'is-shortcode' : '';
 		$container_class = $is_shortcode === true ? '' : 'container';
 
+		if( function_exists( 'maybe_trigger_fa_loading' ) ){
+			$html_allowed_strings = array(
+				$hestia_team_title,
+				$hestia_team_subtitle,
+			);
+			maybe_trigger_fa_loading( $html_allowed_strings );
+		}
+
 		hestia_before_team_section_trigger();
 		?>
 		<section class="hestia-team <?php echo esc_attr( $wrapper_class ); ?>" id="team" data-sorder="hestia_team">
@@ -121,7 +129,10 @@ function hestia_team_content( $hestia_team_content, $is_callback = false ) {
 					$subtitle = ! empty( $team_item->subtitle ) ? apply_filters( 'hestia_translate_single_string', $team_item->subtitle, 'Team section' ) : '';
 					$text     = ! empty( $team_item->text ) ? apply_filters( 'hestia_translate_single_string', $team_item->text, 'Team section' ) : '';
 					$link     = ! empty( $team_item->link ) ? apply_filters( 'hestia_translate_single_string', $team_item->link, 'Team section' ) : '';
-					?>
+
+					if( function_exists( 'maybe_trigger_fa_loading' ) ) {
+						maybe_trigger_fa_loading( $text );
+					} ?>
 					<div class="col-xs-12 col-ms-6 col-sm-6">
 						<div class="card card-profile card-plain">
 							<div class="col-md-5">
@@ -209,7 +220,7 @@ function hestia_team_content( $hestia_team_content, $is_callback = false ) {
 														if ( function_exists( 'hestia_is_external_url' ) ) {
 															$link .= hestia_is_external_url( $social_link );
 														}
-														$link .= ' class="btn btn-just-icon btn-simple"><i class="fa ' . esc_attr( $social_icon ) . '"></i></a>';
+														$link .= ' class="btn btn-just-icon btn-simple"><i class="' . esc_attr( hestia_display_fa_icon( $social_icon ) ) . '"></i></a>';
 														echo $link;
 													}
 												}

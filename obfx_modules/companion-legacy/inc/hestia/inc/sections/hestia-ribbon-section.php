@@ -58,6 +58,10 @@ if ( ! function_exists( 'hestia_ribbon' ) ) :
 		$class_to_add  = $is_shortcode === true ? 'is-shortcode ' : '';
 		$class_to_add .= ! empty( $hestia_ribbon_background ) ? 'section-image' : '';
 
+		if ( function_exists( 'maybe_trigger_fa_loading' ) ){
+			maybe_trigger_fa_loading( $hestia_ribbon_text );
+		}
+
 		hestia_before_ribbon_section_trigger(); ?>
 		<section class="hestia-ribbon section <?php echo esc_attr( $class_to_add ); ?>" id="ribbon" data-sorder="hestia_ribbon" <?php echo wp_kses_post( $section_style ); ?>>
 			<?php
@@ -70,7 +74,7 @@ if ( ! function_exists( 'hestia_ribbon' ) ) :
 					<?php
 					if ( function_exists( 'hestia_display_customizer_shortcut' ) ) {
 						hestia_display_customizer_shortcut( 'hestia_ribbon_text' );
-					} 
+					}
 					?>
 					<div class="col-md-8 hestia-ribbon-content-left" <?php echo hestia_add_animationation( 'fade-right' ); ?>>
 						<?php
