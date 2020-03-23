@@ -41,6 +41,14 @@ if ( ! function_exists( 'hestia_features' ) ) :
 			return;
 		}
 
+		if( function_exists( 'maybe_trigger_fa_loading' ) ) {
+			$html_allowed_strings = array(
+				$hestia_features_title,
+				$hestia_features_subtitle,
+			);
+			maybe_trigger_fa_loading( $html_allowed_strings );
+		}
+
 		$wrapper_class   = $is_shortcode === true ? 'is-shortcode' : '';
 		$container_class = $is_shortcode === true ? '' : 'container';
 
@@ -114,6 +122,9 @@ function hestia_features_content( $hestia_features_content, $is_callback = false
 				$link   = ! empty( $features_item->link ) ? apply_filters( 'hestia_translate_single_string', $features_item->link, 'Features section' ) : '';
 				$color  = ! empty( $features_item->color ) ? $features_item->color : '';
 				$choice = ! empty( $features_item->choice ) ? $features_item->choice : 'customizer_repeater_icon';
+				if ( function_exists( 'maybe_trigger_fa_loading' ) ) {
+					maybe_trigger_fa_loading( $text );
+				}
 				?>
 				<div class="col-xs-12 <?php echo apply_filters( 'hestia_features_per_row_class', 'col-md-4' ); ?> feature-box">
 					<div class="hestia-info">
@@ -138,12 +149,11 @@ function hestia_features_content( $hestia_features_content, $is_callback = false
 								}
 								break;
 							case 'customizer_repeater_icon':
-								if ( ! empty( $icon ) ) {
-									?>
+								if ( ! empty( $icon ) ) { ?>
 									<div class="icon" <?php echo ( ! empty( $color ) ? 'style="color:' . $color . '"' : '' ); ?>>
-				<i class="fa <?php echo esc_attr( $icon ); ?>"></i>
-										</div>
-										<?php
+										<i class="<?php echo esc_attr( hestia_display_fa_icon( $icon ) ); ?>"></i>
+									</div>
+									<?php
 								}
 								break;
 						}
