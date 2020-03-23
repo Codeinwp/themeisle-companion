@@ -58,6 +58,14 @@ if ( ! function_exists( 'hestia_testimonials' ) ) :
 		$wrapper_class   = $is_shortcode === true ? 'is-shortcode' : '';
 		$container_class = $is_shortcode === true ? '' : 'container';
 
+		if ( function_exists( 'maybe_trigger_fa_loading' ) ) {
+			$html_allowed_strings = array(
+				$hestia_testimonials_title,
+				$hestia_testimonials_subtitle,
+			);
+			maybe_trigger_fa_loading( $html_allowed_strings );
+		}
+
 		hestia_before_testimonials_section_trigger(); ?>
 		<section class="hestia-testimonials <?php echo esc_attr( $wrapper_class ); ?>" id="testimonials" data-sorder="hestia_testimonials" <?php echo wp_kses_post( $section_style ); ?>>
 			<?php
@@ -125,6 +133,10 @@ function hestia_testimonials_content( $hestia_testimonials_content, $is_callback
 				$subtitle = ! empty( $testimonial_item->subtitle ) ? apply_filters( 'hestia_translate_single_string', $testimonial_item->subtitle, 'Testimonials section' ) : '';
 				$text     = ! empty( $testimonial_item->text ) ? apply_filters( 'hestia_translate_single_string', $testimonial_item->text, 'Testimonials section' ) : '';
 				$link     = ! empty( $testimonial_item->link ) ? apply_filters( 'hestia_translate_single_string', $testimonial_item->link, 'Testimonials section' ) : '';
+
+				if ( function_exists( 'maybe_trigger_fa_loading' ) ) {
+					maybe_trigger_fa_loading( $text );
+				}
 				?>
 				<div class="col-xs-12 col-ms-6 col-sm-6 <?php echo apply_filters( 'hestia_testimonials_per_row_class', 'col-md-4' ); ?>">
 					<div class="card card-testimonial card-plain" <?php echo hestia_add_animationation( 'fade-right' ); ?>>
