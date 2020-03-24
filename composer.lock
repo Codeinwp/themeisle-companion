@@ -252,16 +252,16 @@
         },
         {
             "name": "codeinwp/themeisle-sdk",
-            "version": "3.2.4",
+            "version": "3.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/themeisle-sdk.git",
-                "reference": "9fb53a254d8eb7490ce51dd613bda765ec6138ce"
+                "reference": "41046ea36eb4336152517e0f81994fd1497d7de4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/themeisle-sdk/zipball/9fb53a254d8eb7490ce51dd613bda765ec6138ce",
-                "reference": "9fb53a254d8eb7490ce51dd613bda765ec6138ce",
+                "url": "https://api.github.com/repos/Codeinwp/themeisle-sdk/zipball/41046ea36eb4336152517e0f81994fd1497d7de4",
+                "reference": "41046ea36eb4336152517e0f81994fd1497d7de4",
                 "shasum": ""
             },
             "require-dev": {
@@ -286,7 +286,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2020-03-21T13:43:39+00:00"
+            "time": "2020-03-23T21:32:23+00:00"
         },
         {
             "name": "codeinwp/ti-onboarding",
