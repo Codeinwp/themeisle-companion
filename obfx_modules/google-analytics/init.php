@@ -251,6 +251,9 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		if ( ! empty( $accounts ) ) {
 			foreach ( $accounts as $account ) {
+				if ( ! isset( $account->tracking_code ) ) {
+					continue;
+				}
 				$options[ $account->tracking_code ] = $account->account_name . ' - ' . $account->tracking_code;
 			}
 		}
