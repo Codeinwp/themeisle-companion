@@ -109,6 +109,15 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 == Changelog ==
 
+##### [Version 2.9.6](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.5...v2.9.6) (2020-04-06)
+
+* Update compatibility with WordPress 5.4 
+* Sync dependencies
+* Fix selective refresh for Hestia enhacements features
+
+
+
+
 ##### [Version 2.9.5](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.4...v2.9.5) (2020-03-30)
 
 * Fix notice on analytics module when the codes are missing
