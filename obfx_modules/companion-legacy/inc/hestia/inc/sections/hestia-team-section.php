@@ -39,13 +39,17 @@ if ( ! function_exists( 'hestia_team' ) ) :
 		$section_is_empty     = empty( $hestia_team_title ) && empty( $hestia_team_subtitle ) && empty( $hestia_team_content );
 
 		$hide_section = get_theme_mod( 'hestia_team_hide', false );
-
-		/* Don't show section if Disable section is checked or it doesn't have any content. Show it if it's called as a shortcode */
+		$section_style        = '';
+		/**
+		 * Don't show section if Disable section is checked or it doesn't have any content.
+		 * Show it if it's called as a shortcode.
+		 */
 		if ( ( $is_shortcode === false ) && ( $section_is_empty || (bool) $hide_section === true ) ) {
 			if ( is_customize_preview() ) {
-				echo '<section class="hestia-team" id="team" data-sorder="hestia_team" style="display: none"></section>';
+				$section_style = 'style="display: none"';
+			} else {
+				return;
 			}
-			return;
 		}
 
 		$wrapper_class   = $is_shortcode === true ? 'is-shortcode' : '';
@@ -61,7 +65,7 @@ if ( ! function_exists( 'hestia_team' ) ) :
 
 		hestia_before_team_section_trigger();
 		?>
-		<section class="hestia-team <?php echo esc_attr( $wrapper_class ); ?>" id="team" data-sorder="hestia_team">
+		<section class="hestia-team <?php echo esc_attr( $wrapper_class ); ?>" id="team" data-sorder="hestia_team" <?php echo wp_kses_post( $section_style ); ?>>
 			<?php
 			hestia_before_team_section_content_trigger();
 			if ( function_exists( 'hestia_display_customizer_shortcut' ) && $is_shortcode === false ) {
