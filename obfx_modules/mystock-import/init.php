@@ -127,36 +127,37 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * Upload image.
 	 */
 	public function handle_request() {
-		check_ajax_referer( $this->slug . filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ), 'security' );
-
-		if ( ! isset( $_POST['url'] ) ) {
-			echo esc_html__( 'Image failed to upload', 'themeisle-companion' );
-			wp_die();
-		}
-
-		$url      = esc_url_raw( $_POST['url'] );
-		$name     = basename( $url );
-		$tmp_file = download_url( $url );
-		if ( is_wp_error( $tmp_file ) ) {
-			echo esc_html__( 'Image failed to upload', 'themeisle-companion' );
-			wp_die();
-		}
-		$file             = array();
-		$file['name']     = $name;
-		$file['tmp_name'] = $tmp_file;
-		$image_id         = media_handle_sideload( $file, 0 );
-		if ( is_wp_error( $image_id ) ) {
-			echo esc_html__( 'Image failed to upload', 'themeisle-companion' );
-			wp_die();
-		}
-		$attach_data = wp_generate_attachment_metadata( $image_id, get_attached_file( $image_id ) );
-		if ( is_wp_error( $attach_data ) ) {
-			echo esc_html__( 'Image failed to upload', 'themeisle-companion' );
-			wp_die();
-		}
-		wp_update_attachment_metadata( $image_id, $attach_data );
-
-		wp_send_json_success( array( 'id' => $image_id ) );
+		echo 'sss';
+//		check_ajax_referer( $this->slug . filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ), 'security' );
+//
+//		if ( ! isset( $_POST['url'] ) ) {
+//			echo esc_html__( 'Image failed to upload', 'themeisle-companion' );
+//			wp_die();
+//		}
+//
+//		$url      = esc_url_raw( $_POST['url'] );
+//		$name     = basename( $url );
+//		$tmp_file = download_url( $url );
+//		if ( is_wp_error( $tmp_file ) ) {
+//			echo esc_html__( 'Image failed to upload', 'themeisle-companion' );
+//			wp_die();
+//		}
+//		$file             = array();
+//		$file['name']     = $name;
+//		$file['tmp_name'] = $tmp_file;
+//		$image_id         = media_handle_sideload( $file, 0 );
+//		if ( is_wp_error( $image_id ) ) {
+//			echo esc_html__( 'Image failed to upload', 'themeisle-companion' );
+//			wp_die();
+//		}
+//		$attach_data = wp_generate_attachment_metadata( $image_id, get_attached_file( $image_id ) );
+//		if ( is_wp_error( $attach_data ) ) {
+//			echo esc_html__( 'Image failed to upload', 'themeisle-companion' );
+//			wp_die();
+//		}
+//		wp_update_attachment_metadata( $image_id, $attach_data );
+//
+//		wp_send_json_success( array( 'id' => $image_id ) );
 	}
 
 	/**

@@ -1,3 +1,4 @@
+import PhotoList from "./PhotoList";
 
 const { PluginSidebar, PluginSidebarMoreMenuItem } = wp.editPost;
 
@@ -9,7 +10,7 @@ const Mystock = () => {
 			title="MyStockPhotos"
 		>
 			<div className="mystock-img-container">
-				gfwqewq
+				<PhotoList page='1' />
 			</div>
 		</PluginSidebar>
 	);

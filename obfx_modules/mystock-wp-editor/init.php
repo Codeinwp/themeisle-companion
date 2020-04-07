@@ -55,9 +55,25 @@ class Mystock_Wp_Editor_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function sidebar_register(){
 		wp_register_script(
-			'mystock-sidebar',
+			'mystock-main',
 			plugins_url( 'js/script.js', __FILE__ ),
 			array( 'wp-plugins', 'wp-edit-post', 'wp-element' )
+		);
+		wp_localize_script(
+			'mystock-main',
+			'mystock_localize',
+			array(
+				'ajaxurl'          => admin_url( 'admin-ajax.php' ),
+				'nonce'            => wp_create_nonce( 'mystock-import' . filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ) ),
+				'slug'             => 'mystock-import',
+				'api_key'          => '97d007cf8f44203a2e578841a2c0f9ac',
+				'user_id'          => '136375272@N05',
+				'per_page'         => 10,
+				'error_restapi'    => __('There was an error accessing the server. Please try again later. If you still receive this error, contact the support team.', 'themeisle-companion' ),
+				'insert_into_post' => __('Insert into post', 'themeisle-companion'),
+				'set_as_featured'  => __('Set as featured image', 'themeisle-companion'),
+				'saving'           => __('Downloading Image...', 'themeisle-companion'),
+			)
 		);
 	}
 
@@ -81,7 +97,7 @@ class Mystock_Wp_Editor_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function admin_enqueue() {
-		wp_enqueue_script( 'mystock-sidebar' );
+		wp_enqueue_script( 'mystock-main' );
 	}
 
 	/**
