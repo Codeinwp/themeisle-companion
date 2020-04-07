@@ -229,10 +229,15 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 					'set_as_featured'  => __('Set as featured image', 'themeisle-companion'),
 					'saving'           => __('Downloading Image...', 'themeisle-companion'),
 					'error_upload'     => __('Unable to download image to server, please check your server permissions.', 'themeisle-companion'),
+					'load_more'        => __( 'Load More Images', 'themeisle-companion' ),
+					'download_image'   => __( 'Add to Media Library', 'themeisle-companion' ),
 				)
 			);
 
 			return array(
+				'css' => array(
+					'editor-style' => array(),
+				),
 				'js'  => array(
 					'script' => array( 'wp-plugins', 'wp-edit-post', 'wp-element' ),
 				),

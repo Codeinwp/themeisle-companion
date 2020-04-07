@@ -128,13 +128,18 @@ class PhotoList extends React.Component {
 	render(){
 		return (
 			<div id="photo-listing">
-			<div className="error-messaging"></div>
+				<div className="error-messaging"></div>
 
-			<div id="photos">
-			{ this.state.results.map((result, iterator) =>
-					<Photo result={result} key={result.id+iterator} SetFeaturedImage={this.SetFeaturedImage} InsertImage={this.InsertImage} />
-			)}
-			</div>
+				<div id="photos">
+				{ this.state.results.map((result, iterator) =>
+						<Photo result={result} key={result.id+iterator} SetFeaturedImage={this.SetFeaturedImage} InsertImage={this.InsertImage} />
+				)}
+				</div>
+
+				<div className="load-more-wrap">
+					<button type="button" className="button" onClick={() => this.getPhotos()}>{ mystock_import.load_more }</button>
+				</div>
+
 			</div>
 		);
 	}

@@ -1,0 +1,417 @@
+
+.mystock-img-container {
+    font-size: 14px;
+    color: #666;
+    position: relative;
+    /*
+        Admin Screens - Setting page
+        wp-admin/upload.php?page=instant-images
+     */
+}
+
+.mystock-img-container * {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.mystock-img-container a {
+    color: #5d72c3;
+    -webkit-transition: all 0.25s ease;
+    -o-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+}
+
+.mystock-img-container a:hover {
+    color: #5568ae;
+    text-decoration: none;
+}
+
+.mystock-img-container img {
+    max-width: 100%;
+}
+
+.mystock-img-container p {
+    display: block;
+    color: #666;
+    width: 100%;
+    display: block;
+    clear: both;
+    text-transform: none;
+    padding: 0;
+    margin: 0 0 15px;
+    font-size: 14px;
+}
+
+.mystock-img-container .error-messaging {
+    display: none;
+}
+
+.mystock-img-container .error-messaging.active {
+    padding: 17px 17px 17px 57px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    background: #df3333;
+    color: #fff;
+    font-size: 13px;
+    margin-bottom: 25px;
+    display: block;
+    position: relative;
+}
+
+.mystock-img-container .error-messaging.active:before {
+    font-family: 'FontAwesome';
+    content: '\F06A';
+    display: block;
+    left: 17px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    position: absolute;
+    font-size: 30px;
+    opacity: 0.75;
+}
+
+.mystock-img-container .load-more-wrap {
+    margin: 1% 0 0;
+    padding: 25px 0;
+    text-align: center;
+    display: none;
+    border-top: 1px solid #efefef;
+}
+
+.mystock-img-container .load-more-wrap button {
+    display: inline-block;
+    margin: 0;
+    padding: 12px 15px;
+    font-size: 15px;
+    font-weight: 600;
+    -webkit-transition: all 0.1s ease;
+    -o-transition: all 0.1s ease;
+    transition: all 0.1s ease;
+    height: auto;
+    line-height: 1;
+    cursor: pointer;
+    background-image: none;
+    background-repeat: no-repeat !important;
+    background-position: 15px center !important;
+}
+
+.mystock-img-container .load-more-wrap button.disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+.mystock-img-container h2,
+.mystock-img-container h3,
+.mystock-img-container h4 {
+    margin-top: 0;
+}
+
+#photos {
+    width: 100%;
+    width: -webkit-calc(100% + 10px);
+    width: calc(100% + 10px);
+    margin: 0 0 0 -5px;
+    padding: 0;
+    position: relative;
+}
+
+#photos .photo {
+    width: 20%;
+    margin: 0;
+    padding: 0 5px 10px;
+    opacity: 0;
+    -webkit-transition: opacity 0.3s ease;
+    -o-transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease;
+}
+
+#photos .photo--wrap {
+    position: relative;
+}
+
+#photos .photo.in-progress .fade {
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+#photos .photo .img-wrap {
+    display: block;
+    overflow: hidden;
+    position: relative;
+}
+
+#photos .photo:focus a.upload img {
+    opacity: 0.6;
+}
+
+#photos .photo:focus .fade {
+    opacity: 1;
+    visibility: visible;
+}
+
+#photos .photo:focus-within .user-controls {
+    opacity: 1;
+}
+
+#photos .photo a.upload {
+    display: block;
+    position: relative;
+    background-color: #222;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: url(../img/ajax-loader.gif);
+    overflow: hidden;
+}
+
+#photos .photo a.upload.loaded {
+    background-image: none;
+}
+
+#photos .photo a.upload:focus, #photos .photo a.upload:active {
+    outline: none;
+    border: none;
+}
+
+#photos .photo a.upload img {
+    -webkit-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    width: 100%;
+    height: auto !important;
+    padding: 0;
+    vertical-align: top;
+}
+
+#photos .photo a.upload .status {
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: all 0.2575s ease-in-out;
+    -o-transition: all 0.2575s ease-in-out;
+    transition: all 0.2575s ease-in-out;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    -webkit-border-radius: 100%;
+    border-radius: 100%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 5;
+    -webkit-transform: translate(-50%, -50%) scale(1.5);
+    -ms-transform: translate(-50%, -50%) scale(1.5);
+    transform: translate(-50%, -50%) scale(1.5);
+    -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.15);
+}
+
+#photos .photo a.upload .status:before {
+    font-family: 'dashicons';
+    display: block;
+    color: #fff;
+    font-size: 22px;
+    opacity: 0.8;
+}
+
+#photos .photo a.upload .status a {
+    color: #fff;
+}
+
+#photos .photo a.upload.uploading .status,
+#photos .photo a.upload.resizing .status,
+#photos .photo a.upload.success .status,
+#photos .photo a.upload.errors .status {
+    text-align: center;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%) scale(1);
+    -ms-transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(1);
+}
+
+#photos .photo a.upload.uploading {
+    cursor: default !important;
+}
+
+#photos .photo a.upload.uploading .status {
+    visibility: visible;
+    opacity: 1;
+    background-color: #5d72c3;
+}
+
+#photos .photo a.upload.uploading .status:before {
+    content: '';
+}
+
+#photos .photo a.upload.success {
+    cursor: default !important;
+}
+
+#photos .photo a.upload.success .status {
+    visibility: visible;
+    opacity: 1;
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    background-color: #63d875;
+    -webkit-border-radius: 100%;
+    border-radius: 100%;
+}
+
+#photos .photo a.upload.success .status:before {
+    content: '';
+    color: #fff;
+}
+
+#photos .photo a.upload.success img {
+    -webkit-transform: scale(1) !important;
+    -ms-transform: scale(1) !important;
+    transform: scale(1) !important;
+}
+
+#photos .photo a.upload.errors {
+    cursor: help !important;
+}
+
+#photos .photo a.upload.errors .status {
+    visibility: visible;
+    opacity: 1;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    background-color: #df3333;
+    -webkit-border-radius: 100%;
+    border-radius: 100%;
+}
+
+#photos .photo a.upload.errors .status:before {
+    content: '';
+    color: #fff;
+    opacity: 0.8;
+}
+
+#photos .photo.uploaded a.upload img {
+    opacity: 0.25 !important;
+}
+
+#photos .photo:hover a.upload img,
+#photos .photo.in-progress a.upload img {
+    opacity: 0.6;
+    -webkit-transform: scale(1.075);
+    -ms-transform: scale(1.075);
+    transform: scale(1.075);
+}
+
+#photos .photo:hover .options,
+#photos .photo.in-progress .options {
+    opacity: 1;
+    visibility: visible;
+}
+
+#photos .photo:hover .user-controls,
+#photos .photo.in-progress .user-controls {
+    opacity: 1;
+}
+
+#photos .photo.in-progress .notice-msg {
+    top: 0;
+    opacity: 1;
+}
+
+#photos .photo.in-progress .user-controls {
+    opacity: 0;
+}
+
+#photos .photo .user-controls {
+    position: absolute;
+    z-index: 6;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.45);
+    padding: 0;
+    opacity: 0.4;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+#photos .photo .photo-options {
+    width: 100%;
+    display: inline-block;
+    float: none;
+    max-width: 100%;
+}
+
+#photos .photo .fade {
+    -webkit-transition: all 0.35s ease;
+    -o-transition: all 0.35s ease;
+    transition: all 0.35s ease;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.75);
+    background: transparent;
+    -webkit-border-radius: 1px;
+    border-radius: 1px;
+    height: 34px;
+    line-height: 34px;
+    font-size: 17px;
+    z-index: 6;
+    float: left;
+    margin: 1px 1px 1px 0;
+    padding: 0;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+#photos .photo .fade.set-featured,
+#photos .photo .fade.insert {
+    display: inline-block;
+    width: 34px;
+    text-align: center;
+}
+
+#photos .photo .fade.set-featured span,
+#photos .photo .fade.insert span {
+    line-height: 27px;
+    position: relative;
+    left: 1px;
+    top: 1px;
+}
+
+#photos .photo .fade.set-featured:hover,
+#photos .photo .fade.set-featured:focus,
+#photos .photo .fade.insert:hover,
+#photos .photo .fade.insert:focus {
+    color: #222;
+    background: rgba(255, 255, 255, 0.95);
+}
+
+#photos .photo .fade.set-featured span {
+    top: 0;
+    left: 0;
+}
+
+#photos .photo .notice-msg {
+    position: absolute;
+    z-index: 999;
+    top: -40px;
+    left: 0;
+    height: 40px;
+    line-height: 40px;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    text-align: center;
+    color: #e0e4f5;
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+    -webkit-transition: all 0.25s ease-in-out;
+    -o-transition: all 0.25s ease-in-out;
+    transition: all 0.25s ease-in-out;
+    opacity: 0;
+    z-index: 9999;
+}
+
+/*# sourceMappingURL=instant-images.css.map*/

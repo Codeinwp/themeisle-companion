@@ -30,7 +30,7 @@ class Photo extends React.Component {
 
 		let self = this;
 		let target = e.currentTarget; // get current <a/>
-		let photo = target.parentElement.parentElement.parentElement; // Get parent .photo el
+		let photo = target.parentElement.parentElement.parentElement.parentElement.parentElement; // Get parent .photo el
 		let notice = photo.querySelector('.notice-msg'); // Locate .notice-msg div
 
 		if(!target.classList.contains('upload')){ // If target is .download-photo, switch target definition
@@ -54,7 +54,6 @@ class Photo extends React.Component {
 		axios.post(mystock_import.ajaxurl, formData )
 			.then(function (res) {
 				let response = res.data;
-				console.log( response );
 				if( response && res.status === 200 ) {
 					self.uploadComplete( target, photo );
 
@@ -95,7 +94,6 @@ class Photo extends React.Component {
 	*/
 	uploadError(target, photo, msg){
 		target.classList.remove('uploading');
-		target.classList.remove('resizing');
 		target.classList.add('errors');
 		this.inProgress = false;
 		console.warn(msg);
@@ -132,11 +130,11 @@ class Photo extends React.Component {
 			return false;
 		}
 
-		let parent = target.parentNode.parentNode.parentNode;
-		let photo = parent.querySelector('a.upload');
-		if(photo){
+		let parent = target.parentNode;
+		let downloadButton = parent.querySelector('a.download');
+		if(downloadButton){
 			this.setAsFeaturedImage = true;
-			photo.click();
+			downloadButton.click();
 		}
 	}
 
@@ -152,11 +150,11 @@ class Photo extends React.Component {
 			return false;
 		}
 
-		let parent = target.parentNode.parentNode.parentNode;
-		let photo = parent.querySelector('a.upload');
-		if(photo){
+		let parent = target.parentNode;
+		let downloadButton = parent.querySelector('a.download');
+		if(downloadButton){
 			this.insertIntoPost = true;
-			photo.click();
+			downloadButton.click();
 		}
 	}
 
@@ -173,15 +171,9 @@ class Photo extends React.Component {
 					<div className='img-wrap'>
 						<a
 							className='upload loaded'
-							href={this.fullSize}
-							// data-id={this.id}
+							href="#"
 							data-url={this.fullSize}
-							// data-filename={this.state.filename}
-							// data-title={this.state.title}
-							// data-alt={this.state.alt}
-							// data-caption={this.state.caption}
-							// title={instant_img_localize.upload}
-							onClick={(e) => this.uploadPhoto(e)}>
+							>
 							<img src={this.img} alt={this.imgTitle} />
 							<div className="status" />
 						</a>
@@ -190,13 +182,20 @@ class Photo extends React.Component {
 
 						<div className="user-controls">
 							<div className="photo-options">
+								<a className="download fade"
+								   href='#'
+								   onClick={(e) => this.uploadPhoto(e)}
+								   title={mystock_import.download_image}
+								>
+									<span className="dashicons dashicons-download"></span>
+								</a>
+
 								<a className="set-featured fade"
 								   href='#'
 								   onClick={(e) => this.setFeaturedImageClick(e)}
 								   title={mystock_import.set_as_featured}
 								>
-									<i className="fa fa-picture-o" aria-hidden="true"/>
-									<span className="offscreen">{mystock_import.set_as_featured}</span>
+									<span className="dashicons dashicons-format-image"></span>
 								</a>
 
 								<a className="insert fade"
@@ -204,8 +203,7 @@ class Photo extends React.Component {
 								   onClick={(e) => this.insertImageIntoPost(e)}
 								   title={mystock_import.insert_into_post}
 								>
-									<i className="fa fa-plus" aria-hidden="true"/>
-									<span className="offscreen">{mystock_import.insert_into_post}</span>
+									<span className="dashicons dashicons-plus"></span>
 								</a>
 							</div>
 						</div>
