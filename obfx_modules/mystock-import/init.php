@@ -80,11 +80,14 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function hooks() {
 
-		/*Get tab content*/
-		$this->loader->add_action( 'wp_ajax_get-tab-' . $this->slug, $this, 'get_tab_content' );
-		$this->loader->add_action( 'wp_ajax_infinite-' . $this->slug, $this, 'infinite_scroll' );
 		$this->loader->add_action( 'wp_ajax_handle-request-' . $this->slug, $this, 'handle_request' );
-		$this->loader->add_filter( 'media_view_strings', $this, 'media_view_strings' );
+
+		if ( ! $this->is_gutenberg_active() ){
+			$this->loader->add_action( 'wp_ajax_get-tab-' . $this->slug, $this, 'get_tab_content' );
+			$this->loader->add_action( 'wp_ajax_infinite-' . $this->slug, $this, 'infinite_scroll' );
+			$this->loader->add_filter( 'media_view_strings', $this, 'media_view_strings' );
+		}
+
 	}
 
 	/**
@@ -127,37 +130,36 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * Upload image.
 	 */
 	public function handle_request() {
-		echo 'sss';
-//		check_ajax_referer( $this->slug . filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ), 'security' );
-//
-//		if ( ! isset( $_POST['url'] ) ) {
-//			echo esc_html__( 'Image failed to upload', 'themeisle-companion' );
-//			wp_die();
-//		}
-//
-//		$url      = esc_url_raw( $_POST['url'] );
-//		$name     = basename( $url );
-//		$tmp_file = download_url( $url );
-//		if ( is_wp_error( $tmp_file ) ) {
-//			echo esc_html__( 'Image failed to upload', 'themeisle-companion' );
-//			wp_die();
-//		}
-//		$file             = array();
-//		$file['name']     = $name;
-//		$file['tmp_name'] = $tmp_file;
-//		$image_id         = media_handle_sideload( $file, 0 );
-//		if ( is_wp_error( $image_id ) ) {
-//			echo esc_html__( 'Image failed to upload', 'themeisle-companion' );
-//			wp_die();
-//		}
-//		$attach_data = wp_generate_attachment_metadata( $image_id, get_attached_file( $image_id ) );
-//		if ( is_wp_error( $attach_data ) ) {
-//			echo esc_html__( 'Image failed to upload', 'themeisle-companion' );
-//			wp_die();
-//		}
-//		wp_update_attachment_metadata( $image_id, $attach_data );
-//
-//		wp_send_json_success( array( 'id' => $image_id ) );
+		check_ajax_referer( $this->slug . filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ), 'security' );
+
+		if ( ! isset( $_POST['url'] ) ) {
+			echo esc_html__( 'Image failed to upload', 'themeisle-companion' );
+			wp_die();
+		}
+
+		$url      = esc_url_raw( $_POST['url'] );
+		$name     = basename( $url );
+		$tmp_file = download_url( $url );
+		if ( is_wp_error( $tmp_file ) ) {
+			echo esc_html__( 'Image failed to upload', 'themeisle-companion' );
+			wp_die();
+		}
+		$file             = array();
+		$file['name']     = $name;
+		$file['tmp_name'] = $tmp_file;
+		$image_id         = media_handle_sideload( $file, 0 );
+		if ( is_wp_error( $image_id ) ) {
+			echo esc_html__( 'Image failed to upload', 'themeisle-companion' );
+			wp_die();
+		}
+		$attach_data = wp_generate_attachment_metadata( $image_id, get_attached_file( $image_id ) );
+		if ( is_wp_error( $attach_data ) ) {
+			echo esc_html__( 'Image failed to upload', 'themeisle-companion' );
+			wp_die();
+		}
+		wp_update_attachment_metadata( $image_id, $attach_data );
+
+		wp_send_json_success( array( 'id' => $image_id ) );
 	}
 
 	/**
@@ -212,6 +214,31 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			return array();
 		}
 
+		if( $this->is_gutenberg_active() ){
+
+			$this->localized = array(
+				'script' => array(
+					'ajaxurl'          => admin_url( 'admin-ajax.php' ),
+					'nonce'            => wp_create_nonce( $this->slug . filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ) ),
+					'slug'             => $this->slug,
+					'api_key'          => '97d007cf8f44203a2e578841a2c0f9ac',
+					'user_id'          => '136375272@N05',
+					'per_page'         => 10,
+					'error_restapi'    => __('There was an error accessing the server. Please try again later. If you still receive this error, contact the support team.', 'themeisle-companion' ),
+					'insert_into_post' => __('Insert into post', 'themeisle-companion'),
+					'set_as_featured'  => __('Set as featured image', 'themeisle-companion'),
+					'saving'           => __('Downloading Image...', 'themeisle-companion'),
+					'error_upload'     => __('Unable to download image to server, please check your server permissions.', 'themeisle-companion'),
+				)
+			);
+
+			return array(
+				'js'  => array(
+					'script' => array( 'wp-plugins', 'wp-edit-post', 'wp-element' ),
+				),
+			);
+		}
+
 		$this->localized = array(
 			'admin' => array(
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
@@ -240,6 +267,7 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'media' => array(),
 			),
 		);
+
 	}
 
 	/**
@@ -253,9 +281,50 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		return array();
 	}
 
+	/**
+	 * Media view strings
+	 * @param array $strings Strings
+	 *
+	 * @return array
+	 */
 	public function media_view_strings( $strings ) {
 		$this->strings = $strings;
 
 		return $strings;
+	}
+
+	/**
+	 * Check if Gutenberg is active.
+	 * Must be used not earlier than plugins_loaded action fired.
+	 *
+	 * @return bool
+	 */
+	private function is_gutenberg_active() {
+		$gutenberg    = false;
+		$block_editor = false;
+
+		if ( has_filter( 'replace_editor', 'gutenberg_init' ) ) {
+			// Gutenberg is installed and activated.
+			$gutenberg = true;
+		}
+
+		if ( version_compare( $GLOBALS['wp_version'], '5.0-beta', '>' ) ) {
+			// Block editor.
+			$block_editor = true;
+		}
+
+		if ( ! $gutenberg && ! $block_editor ) {
+			return false;
+		}
+
+		include_once ABSPATH . 'wp-admin/includes/plugin.php';
+
+		if ( ! is_plugin_active( 'classic-editor/classic-editor.php' ) ) {
+			return true;
+		}
+
+		$use_block_editor = ( get_option( 'classic-editor-replace' ) === 'no-replace' );
+
+		return $use_block_editor;
 	}
 }

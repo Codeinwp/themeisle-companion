@@ -2,7 +2,7 @@ var path = require('path');
 
 module.exports = {
 	entry: {
-		'obfx_modules/mystock-wp-editor/js/script' : path.resolve(__dirname, 'obfx_modules/mystock-wp-editor/js/src/registerPlugin.js'),
+		'obfx_modules/mystock-import/js/script' : path.resolve(__dirname, 'obfx_modules/mystock-import/js/src/registerPlugin.js'),
 	},
 	output: {
 		path: path.resolve(__dirname),

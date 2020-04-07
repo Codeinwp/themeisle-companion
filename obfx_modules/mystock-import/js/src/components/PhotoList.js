@@ -1,4 +1,4 @@
-/* global mystock_localize */
+/* global mystock_import */
 import React from 'react';
 import Flickr from "flickr-sdk";
 import Photo from './Photo';
@@ -8,9 +8,9 @@ class PhotoList extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.apiKey = mystock_localize.api_key;
-		this.userId = mystock_localize.user_id;
-		this.perPage = mystock_localize.per_page;
+		this.apiKey = mystock_import.api_key;
+		this.userId = mystock_import.user_id;
+		this.perPage = mystock_import.per_page;
 
 		this.flickr = new Flickr( this.apiKey );
 		this.results = (this.props.results) ? this.props.results : [];
@@ -26,6 +26,9 @@ class PhotoList extends React.Component {
 		this.container = document.querySelector('body');
 		this.container.classList.add('loading');
 		this.wrapper = document.querySelector('body');
+
+		this.SetFeaturedImage = (this.props.SetFeaturedImage) ? this.props.SetFeaturedImage.bind(this) : '';
+		this.InsertImage = (this.props.InsertImage) ? this.props.InsertImage.bind(this) : '';
 
 	}
 
@@ -52,7 +55,7 @@ class PhotoList extends React.Component {
 	 */
 	renderTestError(target){
 		target.classList.add('active');
-		target.innerHTML = mystock_localize.error_restapi;
+		target.innerHTML = mystock_import.error_restapi;
 	}
 
 	/**
@@ -129,7 +132,7 @@ class PhotoList extends React.Component {
 
 			<div id="photos">
 			{ this.state.results.map((result, iterator) =>
-					<Photo result={result} key={result.id+iterator} />
+					<Photo result={result} key={result.id+iterator} SetFeaturedImage={this.SetFeaturedImage} InsertImage={this.InsertImage} />
 			)}
 			</div>
 			</div>

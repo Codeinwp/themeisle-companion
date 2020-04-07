@@ -70,7 +70,6 @@ class Orbit_Fox_Global_Settings {
 					'template-directory',
 					'menu-icons',
 					'mystock-import',
-					'mystock-wp-editor',
 					'policy-notice',
 					'beaver-widgets',
 				)
