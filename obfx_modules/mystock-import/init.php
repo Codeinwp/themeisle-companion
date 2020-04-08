@@ -224,13 +224,16 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 					'api_key'          => '97d007cf8f44203a2e578841a2c0f9ac',
 					'user_id'          => '136375272@N05',
 					'per_page'         => 20,
-					'error_restapi'    => __('There was an error accessing the server. Please try again later. If you still receive this error, contact the support team.', 'themeisle-companion' ),
-					'insert_into_post' => __('Insert into post', 'themeisle-companion'),
-					'set_as_featured'  => __('Set as featured image', 'themeisle-companion'),
-					'saving'           => __('Downloading Image...', 'themeisle-companion'),
-					'error_upload'     => __('Unable to download image to server, please check your server permissions.', 'themeisle-companion'),
+					'error_restapi'    => __( 'There was an error accessing the server. Please try again later. If you still receive this error, contact the support team.', 'themeisle-companion' ),
+					'insert_into_post' => __( 'Insert into post', 'themeisle-companion' ),
+					'set_as_featured'  => __( 'Set as featured image', 'themeisle-companion' ),
+					'saving'           => __( 'Downloading Image...', 'themeisle-companion' ),
+					'error_upload'     => __( 'Unable to download image to server, please check your server permissions.', 'themeisle-companion' ),
 					'load_more'        => __( 'Load More Images', 'themeisle-companion' ),
 					'download_image'   => __( 'Add to Media Library', 'themeisle-companion' ),
+					'search'           => __( 'Search', 'themeisle-companion'),
+					'no_results'       => __( 'Sorry, nothing matched your query.', 'themeisle-companion'),
+					'no_results_desc'  => __( 'Please try with another word.', 'themeisle-companion'),
 				)
 			);
 

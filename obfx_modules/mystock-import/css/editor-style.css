@@ -410,4 +410,70 @@
     z-index: 9999;
 }
 
-/*# sourceMappingURL=instant-images.css.map*/
+.mystock-img-container .search-field {
+    padding: 10px;
+}
+
+.mystock-img-container .search-field form {
+    position: relative;
+}
+
+.mystock-img-container .search-field #photo-search-submit,
+.mystock-img-container .search-field #clear-search {
+    position: absolute;
+    top: 0;
+    width: 36px;
+    height: 36px;
+    z-index: 1;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #666;
+    -webkit-transition: all 0.25s ease;
+    -o-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+    opacity: 0.5;
+    margin: 0;
+}
+.mystock-img-container .search-field #photo-search-submit{
+    left: 0;
+}
+.mystock-img-container .search-field #clear-search{
+    right: 0;
+}
+.mystock-img-container .search-field input{
+    width: 100%;
+    background-color: #f7f7f7;
+    -webkit-transition: padding 0.15s ease;
+    -o-transition: padding 0.15s ease;
+    transition: padding 0.15s ease;
+    line-height: 36px;
+    height: 36px;
+    padding-right: 8px;
+    padding-left: 30px;
+    border-color: #e2e4e7;
+    font-size: 13px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.no-results {
+    display: none;
+    padding: 150px 0;
+    text-align: center;
+}
+
+.no-results.show {
+    display: block;
+}
+
+.no-results h3 {
+    font-size: 24px;
+    line-height: 29px;
+    margin: 0 0 10px;
+}
+
+.no-results p {
+    font-size: 16px;
+    margin: 0;
+}
