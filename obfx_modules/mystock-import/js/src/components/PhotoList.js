@@ -105,7 +105,7 @@ class PhotoList extends React.Component {
 	 * @since 3.0
 	 */
 	checkTotalResults(num){
-		this.isDone = ( num === 0 );
+		this.isDone = ( num < this.perPage );
 	}
 
 		/**
@@ -126,20 +126,23 @@ class PhotoList extends React.Component {
 	 * @returns {*}
 	 */
 	render(){
+		let button = '';
+		if ( ! this.isDone) {
+			button = <div className="load-more-wrap">
+				<button type="button" className="button" onClick={() => this.getPhotos()}>{ mystock_import.load_more }</button>
+			</div>;
+		}
+
 		return (
 			<div id="photo-listing">
 				<div className="error-messaging"></div>
 
-				<div id="photos">
+				<div id="msp-photos">
 				{ this.state.results.map((result, iterator) =>
 						<Photo result={result} key={result.id+iterator} SetFeaturedImage={this.SetFeaturedImage} InsertImage={this.InsertImage} />
 				)}
 				</div>
-
-				<div className="load-more-wrap">
-					<button type="button" className="button" onClick={() => this.getPhotos()}>{ mystock_import.load_more }</button>
-				</div>
-
+				{button}
 			</div>
 		);
 	}

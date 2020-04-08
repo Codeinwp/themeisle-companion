@@ -37,9 +37,6 @@ class Photo extends React.Component {
 			target = photo.querySelector('a.upload');
 		}
 
-		if(target.classList.contains('success') || this.inProgress)
-			return false; // Exit if already uploaded or in progress.
-
 		target.classList.add('uploading');
 		photo.classList.add('in-progress');
 		notice.innerHTML = mystock_import.saving;
@@ -115,8 +112,19 @@ class Photo extends React.Component {
 		photo.classList.add('uploaded');
 
 		target.classList.remove('uploading');
-		target.classList.add('success');
 
+		target.classList.add('success');
+		target.parentNode.querySelector( '.user-controls').classList.add('disabled');
+		setTimeout(
+	function(){
+				target.classList.remove('success');
+				photo.classList.remove('uploaded');
+				target.parentNode.querySelector( '.user-controls').classList.remove('disabled');
+			},
+	3000,
+			target,
+			photo
+		);
 		this.inProgress = false;
 	}
 

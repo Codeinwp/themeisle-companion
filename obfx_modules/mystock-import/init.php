@@ -223,7 +223,7 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 					'slug'             => $this->slug,
 					'api_key'          => '97d007cf8f44203a2e578841a2c0f9ac',
 					'user_id'          => '136375272@N05',
-					'per_page'         => 10,
+					'per_page'         => 20,
 					'error_restapi'    => __('There was an error accessing the server. Please try again later. If you still receive this error, contact the support team.', 'themeisle-companion' ),
 					'insert_into_post' => __('Insert into post', 'themeisle-companion'),
 					'set_as_featured'  => __('Set as featured image', 'themeisle-companion'),
