@@ -193,23 +193,23 @@ function hestia_get_features_default() {
 		json_encode(
 			array(
 				array(
-					'icon_value' => 'fa-wechat',
-					'title'      => esc_html__( 'Responsive', 'themeisle-companion' ),
-					'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'themeisle-companion' ),
+					'icon_value' => 'fab fa-weixin',
+					'title'      => esc_html__( 'Responsive', 'hestia-pro' ),
+					'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'hestia-pro' ),
 					'link'       => '#',
 					'color'      => '#e91e63',
 				),
 				array(
-					'icon_value' => 'fa-check',
-					'title'      => esc_html__( 'Quality', 'themeisle-companion' ),
-					'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'themeisle-companion' ),
+					'icon_value' => 'fas fa-check',
+					'title'      => esc_html__( 'Quality', 'hestia-pro' ),
+					'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'hestia-pro' ),
 					'link'       => '#',
 					'color'      => '#00bcd4',
 				),
 				array(
-					'icon_value' => 'fa-support',
-					'title'      => esc_html__( 'Support', 'themeisle-companion' ),
-					'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'themeisle-companion' ),
+					'icon_value' => 'far fa-life-ring',
+					'title'      => esc_html__( 'Support', 'hestia-pro' ),
+					'text'       => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', 'hestia-pro' ),
 					'link'       => '#',
 					'color'      => '#4caf50',
 				),
