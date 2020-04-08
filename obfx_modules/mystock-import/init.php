@@ -82,7 +82,7 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		$this->loader->add_action( 'wp_ajax_handle-request-' . $this->slug, $this, 'handle_request' );
 
-		if ( ! $this->is_gutenberg_active() ){
+		if ( ! $this->is_gutenberg_active() ) {
 			$this->loader->add_action( 'wp_ajax_get-tab-' . $this->slug, $this, 'get_tab_content' );
 			$this->loader->add_action( 'wp_ajax_infinite-' . $this->slug, $this, 'infinite_scroll' );
 			$this->loader->add_filter( 'media_view_strings', $this, 'media_view_strings' );
@@ -214,7 +214,7 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			return array();
 		}
 
-		if( $this->is_gutenberg_active() ){
+		if ( $this->is_gutenberg_active() ) {
 
 			$this->localized = array(
 				'script' => array(
@@ -231,10 +231,10 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 					'error_upload'     => __( 'Unable to download image to server, please check your server permissions.', 'themeisle-companion' ),
 					'load_more'        => __( 'Load More Images', 'themeisle-companion' ),
 					'download_image'   => __( 'Add to Media Library', 'themeisle-companion' ),
-					'search'           => __( 'Search', 'themeisle-companion'),
-					'no_results'       => __( 'Sorry, nothing matched your query.', 'themeisle-companion'),
-					'no_results_desc'  => __( 'Please try with another word.', 'themeisle-companion'),
-				)
+					'search'           => __( 'Search', 'themeisle-companion' ),
+					'no_results'       => __( 'Sorry, nothing matched your query.', 'themeisle-companion' ),
+					'no_results_desc'  => __( 'Please try with another word.', 'themeisle-companion' ),
+				),
 			);
 
 			return array(
