@@ -46,8 +46,6 @@
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {
-    "axios": "^0.19.2",
-    "flickr-sdk": "^3.9.0",
-    "react": "^16.13.1"
+    "flickr-sdk": "^3.9.0"
   }
 }

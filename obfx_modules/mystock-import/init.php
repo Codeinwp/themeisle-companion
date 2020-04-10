@@ -242,7 +242,7 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 					'editor-style' => array(),
 				),
 				'js'  => array(
-					'script' => array( 'wp-plugins', 'wp-edit-post', 'wp-element' ),
+					'script' => array( 'wp-plugins', 'wp-edit-post', 'wp-element', 'wp-api-fetch', 'wp-blocks' ),
 				),
 			);
 		}

@@ -2,7 +2,7 @@ import PhotoList from "./PhotoList";
 import SetFeaturedImage from "./SetFeaturedImage";
 import InsertImage from "./InsertImage";
 
-const { PluginSidebar, PluginSidebarMoreMenuItem } = wp.editPost;
+const { PluginSidebar } = wp.editPost;
 
 const Mystock = () => {
 	return (

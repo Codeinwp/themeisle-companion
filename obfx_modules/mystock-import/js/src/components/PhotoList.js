@@ -1,9 +1,9 @@
 /* global mystock_import */
-import React from 'react';
 import Flickr from "flickr-sdk";
 import Photo from './Photo';
+const { Component } = wp.element;
 
-class PhotoList extends React.Component {
+class PhotoList extends Component {
 
 	constructor(props) {
 		super(props);

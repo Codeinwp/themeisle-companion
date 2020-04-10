@@ -1,4 +1,6 @@
 const { createBlock } = wp.blocks;
+const { dispatch } = wp.data;
+const { insertBlocks } = dispatch( 'core/block-editor' ) || dispatch('core/editor');
 
 const InsertImage = (url = '', alt = '') => {
 	if(url === ''){

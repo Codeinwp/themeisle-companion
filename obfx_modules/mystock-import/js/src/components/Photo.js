@@ -1,8 +1,7 @@
 /* global mystock_import */
-import React from 'react';
-import axios from 'axios';
 
-class Photo extends React.Component {
+const { Component } = wp.element;
+class Photo extends Component {
 
 	constructor(props) {
 		super(props);
@@ -48,36 +47,38 @@ class Photo extends React.Component {
 		formData.append('url', target.getAttribute('data-url') );
 		formData.append('security',  mystock_import.nonce );
 
-		axios.post(mystock_import.ajaxurl, formData )
-			.then(function (res) {
-				let response = res.data;
-				if( response && res.status === 200 ) {
-					self.uploadComplete( target, photo );
+		wp.apiFetch({
+			url: mystock_import.ajaxurl,
+			method: 'POST',
+			body: formData
+		})
+		.then(function (res) {
+			if( res && res.success === true ) {
+				self.uploadComplete( target, photo );
 
-
-					// Set as featured Image in Gutenberg
-					if(self.setAsFeaturedImage){
-						if( response.data.id ){
-							self.SetFeaturedImage(response.data.id);
-						}
-						self.setAsFeaturedImage = false;
+				// Set as featured Image in Gutenberg
+				if(self.setAsFeaturedImage){
+					if( res.data.id ){
+						self.SetFeaturedImage(res.data.id);
 					}
-
-					if(self.insertIntoPost){
-						if(response.data.id){
-							self.InsertImage( target.getAttribute('data-url'), self.imgTitle );
-						}
-						self.insertIntoPost = false;
-					}
-
-				} else {
-					self.uploadError(target, photo, mystock_import.error_upload);
+					self.setAsFeaturedImage = false;
 				}
 
-			})
-			.catch(function (error) {
-				console.log(error);
-			});
+				if(self.insertIntoPost){
+					if(res.data.id){
+						self.InsertImage( target.getAttribute('data-url'), self.imgTitle );
+					}
+					self.insertIntoPost = false;
+				}
+
+			} else {
+				self.uploadError(target, photo, mystock_import.error_upload);
+			}
+
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
 	}
 
 	/*
