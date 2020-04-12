@@ -1,6 +1,8 @@
 /* global mystock_import */
 import Flickr from "flickr-sdk";
 import Photo from './Photo';
+
+const { Spinner } = wp.components;
 const { Component } = wp.element;
 const { __ } = wp.i18n;
 
@@ -19,15 +21,12 @@ class PhotoList extends Component {
 
 		this.isSearch = false;
 		this.search_term = '';
+		this.nothingFound = false;
 
 		this.isLoading = false; // loading flag
 		this.isDone = false; // Done flag - no photos remain
 
 		this.page = this.props.page;
-
-		this.container = document.querySelector('body');
-		this.container.classList.add('loading');
-		this.wrapper = document.querySelector('body');
 
 		this.SetFeaturedImage = (this.props.SetFeaturedImage) ? this.props.SetFeaturedImage.bind(this) : '';
 		this.InsertImage = (this.props.InsertImage) ? this.props.InsertImage.bind(this) : '';
@@ -69,7 +68,6 @@ class PhotoList extends Component {
 	getPhotos() {
 		let self = this;
 		this.page = parseInt(this.page) + 1;
-		this.container.classList.add('loading');
 		this.isLoading = true;
 
 		if(this.isSearch){
@@ -101,7 +99,6 @@ class PhotoList extends Component {
 					self.isLoading = false;
 				});
 		}
-
 	}
 
 	/**
@@ -129,8 +126,8 @@ class PhotoList extends Component {
 		let term = input.value;
 		if(term.length > 2){
 			input.classList.add('searching');
-			this.container.classList.add('loading');
 			this.search_term = term;
+			this.nothingFound = false;
 			this.isSearch = true;
 			this.page = 0;
 			this.doSearch(this.search_term);
@@ -144,17 +141,21 @@ class PhotoList extends Component {
 	 * doSearch
 	 * Run the search
 	 *
-	 * @param term   string    the search term
-	 * @param type   string    the type of search, standard or by ID
+	 * @param term   string the search term
+	 * @param append bool   should append
 	 * @since 3.0
 	 * @updated 3.1
 	 */
-	doSearch(term, append = false){
+	doSearch( term, append = false ){
 
 		let self = this;
 		this.page = parseInt(this.page) + 1;
 		let input = document.querySelector('#photo-search');
 
+		if( append !== true ){
+			self.results = [];
+			self.setState({ results: [] });
+		}
 		let args = {
 			'api_key': this.apiKey,
 			'user_id': this.userId,
@@ -166,19 +167,17 @@ class PhotoList extends Component {
 		this.flickr.photos.search( args )
 			.then( function( res ) {
 				let photos =  res.body.photos.photo;
-
-				let photoArray = [];
-				photos.map( data => {
-					if( append !== true ){
-						photoArray.push(data);
-					} else {
-						self.results.push(data);
-					}
-				});
-
-				if( append !== true ) {
-					self.results = photoArray;
+				if ( photos.length === 0 ){
+					self.nothingFound = true;
 				}
+
+				if ( photos.length === 0 && self.append === false ){
+					self.nothingFound = true;
+				}
+
+				photos.map( data => {
+					self.results.push(data);
+				});
 
 				// Check for returned data
 				self.checkTotalResults(photos.length);
@@ -225,10 +224,15 @@ class PhotoList extends Component {
 	 */
 	render(){
 		let button = '';
+		let spinner = '';
 		if ( ! this.isDone) {
 			button = <div className="load-more-wrap">
 				<button type="button" className="button" onClick={() => this.getPhotos()}>{ __( 'Load More Images', 'themeisle-companion' ) }</button>
 			</div>;
+		}
+
+		if ( this.results.length === 0 && ! this.nothingFound ) {
+			spinner = <div className="loading-wrap"><h3>{ __( 'Loading images...', 'themeisle-companion' ) }</h3><Spinner/></div>
 		}
 
 		return (
@@ -237,19 +241,21 @@ class PhotoList extends Component {
 					<form onSubmit={(e) => this.search(e)} autoComplete="off">
 						<input type="text" id="photo-search" placeholder={ __( 'Search', 'themeisle-companion' ) } />
 						<button type="submit" id="photo-search-submit"><span className="dashicons dashicons-search"></span></button>
-						<button id="clear-search" onClick={(e) =>this.resetSearch()}><span className="dashicons dashicons-no"></span></button>
+						<button id="clear-search" onClick={ ( e ) => this.resetSearch() } ><span className="dashicons dashicons-no"></span></button>
 					</form>
 				</div>
 
 				<div className="error-messaging"></div>
 
 				<div id="msp-photos">
-				{ this.state.results.map((result, iterator) =>
-						<Photo result={result} key={result.id+iterator} SetFeaturedImage={this.SetFeaturedImage} InsertImage={this.InsertImage} />
-				)}
+					{ spinner }
+					{ this.state.results.map(
+						( result, iterator ) =>
+							<Photo result={result} key={result.id+iterator} SetFeaturedImage={this.SetFeaturedImage} InsertImage={this.InsertImage} />
+						)
+					}
 				</div>
-
-				<div className={ this.results.length === 0 && this.isSearch === true ? 'no-results show' : 'no-results'} title={ this.props.title }>
+				<div className={ this.nothingFound === true ? 'no-results show ' + { } : 'no-results'} title={ this.props.title }>
 					<h3>{ __( 'Sorry, nothing matched your query.', 'themeisle-companion' ) } </h3>
 					<p>{ __( 'Please try with another word.', 'themeisle-companion' ) } </p>
 				</div>
