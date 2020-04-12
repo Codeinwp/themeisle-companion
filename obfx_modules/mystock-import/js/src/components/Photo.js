@@ -1,10 +1,12 @@
 /* global mystock_import */
 
 const { Component } = wp.element;
+const { __ } = wp.i18n;
+
 class Photo extends Component {
 
-	constructor(props) {
-		super(props);
+	constructor( props ) {
+		super( props );
 		this.img = this.props.result.url_m;
 		this.fullSize = this.props.result.url_o;
 		this.imgTitle = this.props.result.title;
@@ -30,54 +32,70 @@ class Photo extends Component {
 		let self = this;
 		let target = e.currentTarget; // get current <a/>
 		let photo = target.parentElement.parentElement.parentElement.parentElement.parentElement; // Get parent .photo el
-		let notice = photo.querySelector('.notice-msg'); // Locate .notice-msg div
-
-		if(!target.classList.contains('upload')){ // If target is .download-photo, switch target definition
-			target = photo.querySelector('a.upload');
+		let notice = photo.querySelector( '.notice-msg' ); // Locate .notice-msg div
+		let attachmentId = photo.getAttribute( 'data-attachment' );
+		
+		if ( target.classList.contains( 'download' ) && attachmentId ) {
+			return false;
 		}
 
-		target.classList.add('uploading');
-		photo.classList.add('in-progress');
-		notice.innerHTML = mystock_import.saving;
+		if (!target.classList.contains( 'upload' )){ // If target is .download-photo, switch target definition
+			target = photo.querySelector( 'a.upload' );
+		}
+
+		target.classList.add( 'uploading' );
+		photo.classList.add( 'in-progress' );
+		notice.innerHTML = __( 'Downloading Image...', 'themeisle-companion' );
 		this.inProgress = true;
 
 
+		if ( attachmentId ) {
+			self.uploadComplete( target, photo, attachmentId );
+
+			if ( self.setAsFeaturedImage ) {
+				self.SetFeaturedImage( attachmentId );
+				self.setAsFeaturedImage = false;
+			}
+
+			if ( self.insertIntoPost ){
+				self.InsertImage( target.getAttribute( 'data-url' ), self.imgTitle );
+				self.insertIntoPost = false;
+			}
+
+			return true;
+		}
+
 		let formData = new FormData;
-		formData.append('action', 'handle-request-' + mystock_import.slug );
-		formData.append('url', target.getAttribute('data-url') );
-		formData.append('security',  mystock_import.nonce );
+		formData.append( 'action', 'handle-request-' + mystock_import.slug );
+		formData.append( 'url', target.getAttribute( 'data-url' ) );
+		formData.append( 'security',  mystock_import.nonce );
 
 		wp.apiFetch({
 			url: mystock_import.ajaxurl,
 			method: 'POST',
 			body: formData
 		})
-		.then(function (res) {
-			if( res && res.success === true ) {
-				self.uploadComplete( target, photo );
+		.then( function ( res ) {
+			if ( res && res.success === true && res.data.id ) {
+				self.uploadComplete( target, photo, res.data.id );
 
-				// Set as featured Image in Gutenberg
-				if(self.setAsFeaturedImage){
-					if( res.data.id ){
-						self.SetFeaturedImage(res.data.id);
-					}
+				if ( self.setAsFeaturedImage ) {
+					self.SetFeaturedImage( res.data.id );
 					self.setAsFeaturedImage = false;
 				}
 
-				if(self.insertIntoPost){
-					if(res.data.id){
-						self.InsertImage( target.getAttribute('data-url'), self.imgTitle );
-					}
+				if ( self.insertIntoPost ){
+					self.InsertImage( target.getAttribute( 'data-url' ), self.imgTitle );
 					self.insertIntoPost = false;
 				}
 
 			} else {
-				self.uploadError(target, photo, mystock_import.error_upload);
+				self.uploadError( target, photo, __( 'Unable to download image to server, please check your server permissions.', 'themeisle-companion' ) );
 			}
 
 		})
-		.catch(function (error) {
-			console.log(error);
+		.catch( function ( error ) {
+			console.log( error );
 		});
 	}
 
@@ -90,9 +108,9 @@ class Photo extends Component {
 	* @param msg      string     Error Msg
 	* @since 3.0
 	*/
-	uploadError(target, photo, msg){
-		target.classList.remove('uploading');
-		target.classList.add('errors');
+	uploadError( target, photo, msg ){
+		target.classList.remove( 'uploading' );
+		target.classList.add( 'errors' );
 		this.inProgress = false;
 		console.warn(msg);
 	}
@@ -107,20 +125,21 @@ class Photo extends Component {
 	 * @param url      string     The attachment edit link
 	 * @since 3.0
 	 */
-	uploadComplete( target, photo ){
+	uploadComplete( target, photo, attachment ){
 
-		photo.classList.remove('in-progress');
-		photo.classList.add('uploaded');
+		photo.classList.remove( 'in-progress' );
+		photo.classList.add( 'uploaded' );
+		photo.setAttribute( 'data-attachment', attachment );
 
-		target.classList.remove('uploading');
+		target.classList.remove( 'uploading' );
 
-		target.classList.add('success');
-		target.parentNode.querySelector( '.user-controls').classList.add('disabled');
+		target.classList.add( 'success' );
+		target.parentNode.querySelector( '.user-controls' ).classList.add( 'disabled' );
 		setTimeout(
 	function(){
-				target.classList.remove('success');
-				photo.classList.remove('uploaded');
-				target.parentNode.querySelector( '.user-controls').classList.remove('disabled');
+				target.classList.remove( 'success' );
+				photo.classList.remove( 'uploaded' );
+				target.parentNode.querySelector( '.user-controls' ).classList.remove( 'disabled') ;
 			},
 	3000,
 			target,
@@ -133,18 +152,14 @@ class Photo extends Component {
 	 * setFeaturedImageClick
 	 * Function used to trigger a download and then set as featured image
 	 */
-	setFeaturedImageClick(e) {
+	setFeaturedImageClick( e ) {
 		let target = e.currentTarget;
-		if(!target){
+		if ( ! target ){
 			return false;
 		}
 
-		let parent = target.parentNode;
-		let downloadButton = parent.querySelector('a.download');
-		if(downloadButton){
-			this.setAsFeaturedImage = true;
-			downloadButton.click();
-		}
+		this.setAsFeaturedImage = true;
+		this.uploadPhoto( e );
 	}
 
 	/*
@@ -155,16 +170,12 @@ class Photo extends Component {
 	 */
 	insertImageIntoPost(e){
 		let target = e.currentTarget;
-		if(!target){
+		if ( ! target ){
 			return false;
 		}
 
-		let parent = target.parentNode;
-		let downloadButton = parent.querySelector('a.download');
-		if(downloadButton){
-			this.insertIntoPost = true;
-			downloadButton.click();
-		}
+		this.insertIntoPost = true;
+		this.uploadPhoto( e );
 	}
 
 	/**
@@ -193,24 +204,24 @@ class Photo extends Component {
 							<div className="photo-options">
 								<a className="download fade"
 								   href='#'
-								   onClick={(e) => this.uploadPhoto(e)}
-								   title={mystock_import.download_image}
+								   onClick={ ( e ) => this.uploadPhoto( e )}
+								   title={__( 'Add to Media Library', 'themeisle-companion' )}
 								>
 									<span className="dashicons dashicons-download"></span>
 								</a>
 
 								<a className="set-featured fade"
 								   href='#'
-								   onClick={(e) => this.setFeaturedImageClick(e)}
-								   title={mystock_import.set_as_featured}
+								   onClick={ ( e ) => this.setFeaturedImageClick( e ) }
+								   title={__( 'Set as featured image', 'themeisle-companion' )}
 								>
 									<span className="dashicons dashicons-format-image"></span>
 								</a>
 
 								<a className="insert fade"
 								   href='#'
-								   onClick={(e) => this.insertImageIntoPost(e)}
-								   title={mystock_import.insert_into_post}
+								   onClick={ ( e ) => this.insertImageIntoPost( e ) }
+								   title={ __( 'Insert into post', 'themeisle-companion' ) }
 								>
 									<span className="dashicons dashicons-plus"></span>
 								</a>

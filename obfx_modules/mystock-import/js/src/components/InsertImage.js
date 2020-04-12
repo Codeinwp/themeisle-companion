@@ -10,6 +10,6 @@ const InsertImage = (url = '', alt = '') => {
 		url: url,
 		alt: alt
 	});
-	wp.data.dispatch('core/editor').insertBlocks(block)
+	insertBlocks(block);
 };
 export default InsertImage;

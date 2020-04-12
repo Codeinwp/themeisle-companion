@@ -2,6 +2,7 @@
 import Flickr from "flickr-sdk";
 import Photo from './Photo';
 const { Component } = wp.element;
+const { __ } = wp.i18n;
 
 class PhotoList extends Component {
 
@@ -56,7 +57,7 @@ class PhotoList extends Component {
 	 */
 	renderTestError(target){
 		target.classList.add('active');
-		target.innerHTML = mystock_import.error_restapi;
+		target.innerHTML = __( 'There was an error accessing the server. Please try again later. If you still receive this error, contact the support team.', 'themeisle-companion' );
 	}
 
 	/**
@@ -226,7 +227,7 @@ class PhotoList extends Component {
 		let button = '';
 		if ( ! this.isDone) {
 			button = <div className="load-more-wrap">
-				<button type="button" className="button" onClick={() => this.getPhotos()}>{ mystock_import.load_more }</button>
+				<button type="button" className="button" onClick={() => this.getPhotos()}>{ __( 'Load More Images', 'themeisle-companion' ) }</button>
 			</div>;
 		}
 
@@ -234,7 +235,7 @@ class PhotoList extends Component {
 			<div id="photo-listing">
 				<div className="search-field" id="search-bar">
 					<form onSubmit={(e) => this.search(e)} autoComplete="off">
-						<input type="text" id="photo-search" placeholder={ mystock_import.search } />
+						<input type="text" id="photo-search" placeholder={ __( 'Search', 'themeisle-companion' ) } />
 						<button type="submit" id="photo-search-submit"><span className="dashicons dashicons-search"></span></button>
 						<button id="clear-search" onClick={(e) =>this.resetSearch()}><span className="dashicons dashicons-no"></span></button>
 					</form>
@@ -249,8 +250,8 @@ class PhotoList extends Component {
 				</div>
 
 				<div className={ this.results.length === 0 && this.isSearch === true ? 'no-results show' : 'no-results'} title={ this.props.title }>
-					<h3>{ mystock_import.no_results } </h3>
-					<p>{ mystock_import.no_results_desc } </p>
+					<h3>{ __( 'Sorry, nothing matched your query.', 'themeisle-companion' ) } </h3>
+					<p>{ __( 'Please try with another word.', 'themeisle-companion' ) } </p>
 				</div>
 
 				{button}

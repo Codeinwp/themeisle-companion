@@ -286,6 +286,7 @@
     opacity: 1;
 }
 
+#msp-photos .photo.uploaded .user-controls,
 #msp-photos .photo.in-progress .user-controls {
     opacity: 0;
 }
@@ -349,6 +350,12 @@
 #msp-photos .photo .fade.download:hover,
 #msp-photos .photo .fade.download:focus{
     background-color: #f36424;
+}
+
+#msp-photos .photo[data-attachment] .fade.download,
+#msp-photos .photo[data-attachment] .fade.download:hover{
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 #msp-photos .photo .fade.set-featured:hover,
