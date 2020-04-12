@@ -3,7 +3,7 @@ import Flickr from "flickr-sdk";
 import Photo from './Photo';
 
 const { Spinner } = wp.components;
-const { Component } = wp.element;
+const { Component, createRef } = wp.element;
 const { __ } = wp.i18n;
 
 class PhotoList extends Component {
@@ -31,6 +31,7 @@ class PhotoList extends Component {
 		this.SetFeaturedImage = (this.props.SetFeaturedImage) ? this.props.SetFeaturedImage.bind(this) : '';
 		this.InsertImage = (this.props.InsertImage) ? this.props.InsertImage.bind(this) : '';
 
+		this.errorRef = createRef();
 	}
 
 	/**
@@ -41,7 +42,7 @@ class PhotoList extends Component {
 	 */
 	test() {
 		let self   = this;
-		let target = document.querySelector('.error-messaging');
+		let target = this.errorRef.current;
 		this.flickr.test.echo( this.apiKey ).then(function (res) {
 			if( res.statusCode < 200 || res.statusCode >= 400 ){
 				self.renderTestError(target);
@@ -245,7 +246,7 @@ class PhotoList extends Component {
 					</form>
 				</div>
 
-				<div className="error-messaging"></div>
+				<div ref={this.errorRef} className="error-messaging"></div>
 
 				<div id="msp-photos">
 					{ spinner }

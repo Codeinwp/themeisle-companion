@@ -1,7 +1,23 @@
 /* global mystock_import */
 
-const { Component } = wp.element;
+const { Component, createRef } = wp.element;
 const { __ } = wp.i18n;
+const { Snackbar } = wp.components;
+const { createNotice } = wp.data.dispatch( 'core/notices' );
+const dispatchNotice = value => {
+	if ( ! Snackbar ) {
+		return;
+	}
+
+	createNotice(
+		'info',
+		value,
+		{
+			isDismissible: true,
+			type: 'snackbar'
+		}
+	);
+};
 
 class Photo extends Component {
 
@@ -17,57 +33,51 @@ class Photo extends Component {
 		this.SetFeaturedImage = this.props.SetFeaturedImage;
 		this.InsertImage = this.props.InsertImage;
 
+		this.noticeRef = createRef();
+		this.imageRef  = createRef();
+
+		this.state = { attachmentId: '' };
 	}
 
-	/*
-   * uploadPhoto
-   * Function to trigger image upload
-   *
-   * @param target   element    clicked item
-   * @since 3.0
-   */
+	/**
+	 * uploadPhoto
+	 * Function to trigger image upload
+	 *
+	 * @param e  element    clicked item
+	 * @returns {boolean}
+	 */
 	uploadPhoto(e){
 		e.preventDefault();
 
 		let self = this;
-		let target = e.currentTarget; // get current <a/>
-		let photo = target.parentElement.parentElement.parentElement.parentElement.parentElement; // Get parent .photo el
-		let notice = photo.querySelector( '.notice-msg' ); // Locate .notice-msg div
-		let attachmentId = photo.getAttribute( 'data-attachment' );
-		
-		if ( target.classList.contains( 'download' ) && attachmentId ) {
+		let target = e.currentTarget;
+		let photo = target.parentElement.parentElement.parentElement.parentElement.parentElement;
+		let notice = this.noticeRef.current;
+		let photoContainer = this.imageRef.current;
+		/**
+		 * Bail if image was imported and the user clicks on Add to Media Library
+		 */
+		if ( target.classList.contains( 'download' ) && this.state.attachmentId !== '' ) {
 			return false;
 		}
 
-		if (!target.classList.contains( 'upload' )){ // If target is .download-photo, switch target definition
-			target = photo.querySelector( 'a.upload' );
-		}
 
-		target.classList.add( 'uploading' );
+		photoContainer.classList.add( 'uploading' );
 		photo.classList.add( 'in-progress' );
 		notice.innerHTML = __( 'Downloading Image...', 'themeisle-companion' );
 		this.inProgress = true;
 
-
-		if ( attachmentId ) {
-			self.uploadComplete( target, photo, attachmentId );
-
-			if ( self.setAsFeaturedImage ) {
-				self.SetFeaturedImage( attachmentId );
-				self.setAsFeaturedImage = false;
-			}
-
-			if ( self.insertIntoPost ){
-				self.InsertImage( target.getAttribute( 'data-url' ), self.imgTitle );
-				self.insertIntoPost = false;
-			}
-
+		/**
+		 * Skip the uploading image part if image was already uploaded
+		 */
+		if ( this.state.attachmentId !== '' ) {
+			this.doPhotoAction( target, photo, this.state.attachmentId );
 			return true;
 		}
 
 		let formData = new FormData;
 		formData.append( 'action', 'handle-request-' + mystock_import.slug );
-		formData.append( 'url', target.getAttribute( 'data-url' ) );
+		formData.append( 'url', this.fullSize );
 		formData.append( 'security',  mystock_import.nonce );
 
 		wp.apiFetch({
@@ -77,26 +87,36 @@ class Photo extends Component {
 		})
 		.then( function ( res ) {
 			if ( res && res.success === true && res.data.id ) {
-				self.uploadComplete( target, photo, res.data.id );
-
-				if ( self.setAsFeaturedImage ) {
-					self.SetFeaturedImage( res.data.id );
-					self.setAsFeaturedImage = false;
-				}
-
-				if ( self.insertIntoPost ){
-					self.InsertImage( target.getAttribute( 'data-url' ), self.imgTitle );
-					self.insertIntoPost = false;
-				}
-
+				self.doPhotoAction( target, photo, res.data.id );
+				self.setState( { attachmentId: res.data.id } );
 			} else {
 				self.uploadError( target, photo, __( 'Unable to download image to server, please check your server permissions.', 'themeisle-companion' ) );
 			}
-
 		})
 		.catch( function ( error ) {
 			console.log( error );
 		});
+	}
+
+	/**
+	 * Insert image into post or set image as thumbnail
+	 *
+	 * @param target        element clicked item
+	 * @param photo         element current photo element
+	 * @param attachmentId  attachement id
+	 */
+	doPhotoAction( target, photo, attachmentId ) {
+		this.uploadComplete( target, photo, attachmentId );
+
+		if ( this.setAsFeaturedImage ) {
+			this.SetFeaturedImage( attachmentId );
+			this.setAsFeaturedImage = false;
+		}
+
+		if ( this.insertIntoPost ){
+			this.InsertImage( this.fullSize, this.imgTitle );
+			this.insertIntoPost = false;
+		}
 	}
 
 	/*
@@ -109,7 +129,9 @@ class Photo extends Component {
 	* @since 3.0
 	*/
 	uploadError( target, photo, msg ){
-		target.classList.remove( 'uploading' );
+		let photoContainer = this.imageRef.current;
+		photoContainer.classList.remove( 'uploading' );
+
 		target.classList.add( 'errors' );
 		this.inProgress = false;
 		console.warn(msg);
@@ -127,25 +149,27 @@ class Photo extends Component {
 	 */
 	uploadComplete( target, photo, attachment ){
 
+		this.setState( { attachmentId: attachment } );
+
+		let photoContainer = this.imageRef.current;
+		photoContainer.classList.remove( 'uploading' );
+		photoContainer.classList.add( 'success' );
+
 		photo.classList.remove( 'in-progress' );
-		photo.classList.add( 'uploaded' );
-		photo.setAttribute( 'data-attachment', attachment );
-
-		target.classList.remove( 'uploading' );
-
-		target.classList.add( 'success' );
-		target.parentNode.querySelector( '.user-controls' ).classList.add( 'disabled' );
+		photo.classList.add( 'uploaded', 'done' );
+		target.parentNode.parentNode.classList.add( 'disabled' );
 		setTimeout(
 	function(){
-				target.classList.remove( 'success' );
+				photoContainer.classList.remove( 'success' );
 				photo.classList.remove( 'uploaded' );
-				target.parentNode.querySelector( '.user-controls' ).classList.remove( 'disabled') ;
+				target.parentNode.parentNode.classList.remove( 'disabled') ;
 			},
 	3000,
 			target,
 			photo
 		);
 		this.inProgress = false;
+		dispatchNotice( __( 'Image was added to Media Library.', 'themeisle-companion' ) );
 	}
 
 	/*
@@ -192,13 +216,13 @@ class Photo extends Component {
 						<a
 							className='upload loaded'
 							href="#"
-							data-url={this.fullSize}
+							ref={this.imageRef}
 							>
 							<img src={this.img} alt={this.imgTitle} />
 							<div className="status" />
 						</a>
 
-						<div className="notice-msg"/>
+						<div ref={this.noticeRef} className="notice-msg"/>
 
 						<div className="user-controls">
 							<div className="photo-options">
