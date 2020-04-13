@@ -214,7 +214,7 @@ class Photo extends Component {
 				<div className="photo--wrap">
 					<div className='img-wrap'>
 						<a
-							className='upload loaded'
+							className='upload'
 							href="#"
 							ref={this.imageRef}
 							>

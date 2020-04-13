@@ -1,43 +1,3 @@
-
-.mystock-img-container {
-    font-size: 14px;
-    color: #666;
-    position: relative;
-}
-
-.mystock-img-container * {
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-.mystock-img-container a {
-    color: #5d72c3;
-    -webkit-transition: all 0.25s ease;
-    -o-transition: all 0.25s ease;
-    transition: all 0.25s ease;
-}
-
-.mystock-img-container a:hover {
-    color: #5568ae;
-    text-decoration: none;
-}
-
-.mystock-img-container img {
-    max-width: 100%;
-}
-
-.mystock-img-container p {
-    display: block;
-    color: #666;
-    width: 100%;
-    display: block;
-    clear: both;
-    text-transform: none;
-    padding: 0;
-    margin: 0 0 15px;
-    font-size: 14px;
-}
-
 .mystock-img-container .error-messaging {
     display: none;
 }
@@ -45,7 +5,6 @@
 .mystock-img-container .error-messaging.active {
     padding: 17px 17px 17px 57px;
     -webkit-border-radius: 3px;
-    border-radius: 3px;
     background: #df3333;
     color: #fff;
     font-size: 13px;
@@ -55,8 +14,8 @@
 }
 
 .mystock-img-container .error-messaging.active:before {
-    font-family: 'FontAwesome';
-    content: '\F06A';
+    font-family: 'dashicons';
+    content: '\f534';
     display: block;
     left: 17px;
     top: 50%;
@@ -75,37 +34,25 @@
     border-top: 1px solid #efefef;
 }
 
-.mystock-img-container .load-more-wrap button.disabled {
-    opacity: 0.3;
-    cursor: default;
-}
-
-.mystock-img-container h2,
-.mystock-img-container h3,
-.mystock-img-container h4 {
-    margin-top: 0;
-}
-
 #msp-photos .photo {
-    width: 100%;
-    margin: 0;
     padding: 0 5px 10px;
-    -webkit-transition: opacity 0.3s ease;
-    -o-transition: opacity 0.3s ease;
-    transition: opacity 0.3s ease;
 }
 
-#msp-photos .photo--wrap {
-    position: relative;
+#msp-photos .photo .photo-options {
+    width: 100%;
+    display: inline-block;
+    float: none;
+    max-width: 100%;
 }
 
-#msp-photos .photo.in-progress .fade {
-    opacity: 0 !important;
-    visibility: hidden !important;
+#msp-photos .photo.in-progress .photo-options,
+#msp-photos .photo.uploaded .photo-options {
+    opacity: 0;
+    visibility: hidden;
 }
 
 #msp-photos .photo .img-wrap {
-    display: block;
+
     overflow: hidden;
     position: relative;
 }
@@ -114,41 +61,20 @@
     opacity: 0.6;
 }
 
-#msp-photos .photo:focus .fade {
+#msp-photos .photo:focus .user-controls {
     opacity: 1;
     visibility: visible;
 }
 
-#msp-photos .photo:focus-within .user-controls {
-    opacity: 1;
-}
-
 #msp-photos .photo a.upload {
     display: block;
-    position: relative;
     background-color: #222;
-    background-position: center center;
-    background-repeat: no-repeat;
-    overflow: hidden;
-}
-
-#msp-photos .photo a.upload.loaded {
-    background-image: none;
-}
-
-#msp-photos .photo a.upload:focus, #msp-photos .photo a.upload:active {
-    outline: none;
-    border: none;
 }
 
 #msp-photos .photo a.upload img {
     -webkit-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
-    width: 100%;
-    height: auto !important;
-    padding: 0;
-    vertical-align: top;
 }
 
 #msp-photos .photo a.upload .status {
@@ -186,7 +112,6 @@
 }
 
 #msp-photos .photo a.upload.uploading .status,
-#msp-photos .photo a.upload.resizing .status,
 #msp-photos .photo a.upload.success .status,
 #msp-photos .photo a.upload.errors .status {
     text-align: center;
@@ -198,7 +123,7 @@
 }
 
 #msp-photos .photo a.upload.uploading {
-    cursor: default !important;
+    cursor: default;
 }
 
 #msp-photos .photo a.upload.uploading .status {
@@ -308,16 +233,8 @@
     transition: all 0.3s ease;
 }
 
-#msp-photos .photo .photo-options {
-    width: 100%;
-    display: inline-block;
-    float: none;
-    max-width: 100%;
-}
-
 #msp-photos .photo .fade {
     color: #fff;
-    background: rgba(255, 255, 255, 0.75);
     background: transparent;
     -webkit-border-radius: 1px;
     border-radius: 1px;
@@ -400,7 +317,6 @@
 
 #msp-photos .photo .notice-msg {
     position: absolute;
-    z-index: 999;
     top: -40px;
     left: 0;
     height: 40px;

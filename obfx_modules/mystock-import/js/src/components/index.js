@@ -21,7 +21,7 @@ const Mystock = () => {
 				title={ __( 'MyStockPhotos', 'themeisle-companion' ) }
 			>
 				<div className="mystock-img-container">
-					<PhotoList page='1' SetFeaturedImage={SetFeaturedImage} InsertImage={InsertImage} />
+					<PhotoList page={1} SetFeaturedImage={SetFeaturedImage} InsertImage={InsertImage} />
 				</div>
 			</PluginSidebar>
 		</Fragment>

@@ -55,7 +55,7 @@ class PhotoList extends Component {
 	 *
 	 * @param target
 	 */
-	renderTestError(target){
+	renderTestError( target ){
 		target.classList.add('active');
 		target.innerHTML = __( 'There was an error accessing the server. Please try again later. If you still receive this error, contact the support team.', 'themeisle-companion' );
 	}
@@ -246,7 +246,7 @@ class PhotoList extends Component {
 					</form>
 				</div>
 
-				<div ref={this.errorRef} className="error-messaging"></div>
+				<div ref={ this.errorRef } className="error-messaging"></div>
 
 				<div id="msp-photos">
 					{ spinner }
@@ -256,7 +256,7 @@ class PhotoList extends Component {
 						)
 					}
 				</div>
-				<div className={ this.nothingFound === true ? 'no-results show ' + { } : 'no-results'} title={ this.props.title }>
+				<div className={ this.nothingFound === true && this.isSearch ? 'no-results show' : 'no-results'} title={ this.props.title }>
 					<h3>{ __( 'Sorry, nothing matched your query.', 'themeisle-companion' ) } </h3>
 					<p>{ __( 'Please try with another word.', 'themeisle-companion' ) } </p>
 				</div>
