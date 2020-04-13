@@ -79,15 +79,10 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function hooks() {
-
 		$this->loader->add_action( 'wp_ajax_handle-request-' . $this->slug, $this, 'handle_request' );
-
-		if ( ! $this->is_gutenberg_active() ) {
-			$this->loader->add_action( 'wp_ajax_get-tab-' . $this->slug, $this, 'get_tab_content' );
-			$this->loader->add_action( 'wp_ajax_infinite-' . $this->slug, $this, 'infinite_scroll' );
-			$this->loader->add_filter( 'media_view_strings', $this, 'media_view_strings' );
-		}
-
+		$this->loader->add_action( 'wp_ajax_get-tab-' . $this->slug, $this, 'get_tab_content' );
+		$this->loader->add_action( 'wp_ajax_infinite-' . $this->slug, $this, 'infinite_scroll' );
+		$this->loader->add_filter( 'media_view_strings', $this, 'media_view_strings' );
 	}
 
 	/**
@@ -214,7 +209,8 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			return array();
 		}
 
-		if ( $this->is_gutenberg_active() ) {
+
+		if ( method_exists( $current_screen, 'is_block_editor' ) && $current_screen->is_block_editor() ) {
 
 			$this->localized = array(
 				'script' => array(
@@ -291,38 +287,4 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		return $strings;
 	}
 
-	/**
-	 * Check if Gutenberg is active.
-	 * Must be used not earlier than plugins_loaded action fired.
-	 *
-	 * @return bool
-	 */
-	private function is_gutenberg_active() {
-		$gutenberg    = false;
-		$block_editor = false;
-
-		if ( has_filter( 'replace_editor', 'gutenberg_init' ) ) {
-			// Gutenberg is installed and activated.
-			$gutenberg = true;
-		}
-
-		if ( version_compare( $GLOBALS['wp_version'], '5.0-beta', '>' ) ) {
-			// Block editor.
-			$block_editor = true;
-		}
-
-		if ( ! $gutenberg && ! $block_editor ) {
-			return false;
-		}
-
-		include_once ABSPATH . 'wp-admin/includes/plugin.php';
-
-		if ( ! is_plugin_active( 'classic-editor/classic-editor.php' ) ) {
-			return true;
-		}
-
-		$use_block_editor = ( get_option( 'classic-editor-replace' ) === 'no-replace' );
-
-		return $use_block_editor;
-	}
 }

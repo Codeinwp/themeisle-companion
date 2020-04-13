@@ -32,6 +32,7 @@ class PhotoList extends Component {
 		this.InsertImage = (this.props.InsertImage) ? this.props.InsertImage.bind(this) : '';
 
 		this.errorRef = createRef();
+		this.searchRef = createRef();
 	}
 
 	/**
@@ -123,7 +124,7 @@ class PhotoList extends Component {
 	search(e){
 
 		e.preventDefault();
-		let input = document.querySelector('#photo-search');
+		let input = this.searchRef.current;
 		let term = input.value;
 		if(term.length > 2){
 			input.classList.add('searching');
@@ -151,7 +152,7 @@ class PhotoList extends Component {
 
 		let self = this;
 		this.page = parseInt(this.page) + 1;
-		let input = document.querySelector('#photo-search');
+		let input = this.searchRef.current;
 
 		if( append !== true ){
 			self.results = [];
@@ -198,7 +199,7 @@ class PhotoList extends Component {
 	 * Reset search
 	 */
 	resetSearch(){
-		let input = document.querySelector('#photo-search');
+		let input = this.searchRef.current;
 		this.isSearch = false;
 		this.page = 0;
 		this.results = [];
@@ -240,7 +241,7 @@ class PhotoList extends Component {
 			<div id="photo-listing">
 				<div className="search-field" id="search-bar">
 					<form onSubmit={(e) => this.search(e)} autoComplete="off">
-						<input type="text" id="photo-search" placeholder={ __( 'Search', 'themeisle-companion' ) } />
+						<input ref={ this.searchRef } type="text" id="photo-search" placeholder={ __( 'Search', 'themeisle-companion' ) } />
 						<button type="submit" id="photo-search-submit"><span className="dashicons dashicons-search"></span></button>
 						<button id="clear-search" onClick={ ( e ) => this.resetSearch() } ><span className="dashicons dashicons-no"></span></button>
 					</form>
