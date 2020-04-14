@@ -32,13 +32,15 @@ if ( ! function_exists( 'hestia_features' ) ) :
 		$hestia_features_subtitle = get_theme_mod( 'hestia_features_subtitle', $default_subtitle );
 		$hestia_features_content  = get_theme_mod( 'hestia_features_content', $default_content );
 		$section_is_empty         = empty( $hestia_features_content ) && empty( $hestia_features_subtitle ) && empty( $hestia_features_title );
+		$section_style            = '';
 
 		/* Don't show section if Disable section is checked or it doesn't have any content. Show it if it's called as a shortcode */
 		if ( $is_shortcode === false && ( $section_is_empty || (bool) $hide_section === true ) ) {
 			if ( is_customize_preview() ) {
-				echo '<section class="hestia-features" id="features" data-sorder="hestia_features" style="display: none"></section>';
+				$section_style = 'style="display: none"';
+			} else {
+				return;
 			}
-			return;
 		}
 
 		if( function_exists( 'maybe_trigger_fa_loading' ) ) {
@@ -54,7 +56,7 @@ if ( ! function_exists( 'hestia_features' ) ) :
 
 		hestia_before_features_section_trigger();
 		?>
-		<section class="hestia-features <?php echo esc_attr( $wrapper_class ); ?>" id="features" data-sorder="hestia_features">
+		<section class="hestia-features <?php echo esc_attr( $wrapper_class ); ?>" id="features" data-sorder="hestia_features" <?php echo $section_style; ?>>
 			<?php
 			hestia_before_features_section_content_trigger();
 			if ( $is_shortcode === false && function_exists( 'hestia_display_customizer_shortcut' ) ) {

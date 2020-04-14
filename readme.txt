@@ -2,7 +2,7 @@
 Contributors: themeisle, codeinwp, rodicaelena, baicusandrei, hardeepasrani
 Tags: widget, admin, widgets, sharing, sections, themes, stock photos, custom icons, icons, menu icons, stock, templates
 Requires at least: 4.7
-Tested up to: 5.3
+Tested up to: 5.4
 Requires PHP: 5.6
 Stable tag: trunk
 License: GPLv2 or later
@@ -108,6 +108,30 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 == Changelog ==
+
+##### [Version 2.9.5](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.4...v2.9.5) (2020-03-30)
+
+* Fix notice on analytics module when the codes are missing
+* Update dependencies to the latest versions
+
+
+
+
+##### [Version 2.9.4](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.3...v2.9.4) (2020-03-23)
+
+* Improve FA loading in Hestia compatibility features
+* Update dependencies
+
+
+
+
+##### [Version 2.9.3](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.2...v2.9.3) (2020-03-05)
+
+* Update dependencies
+* Fix admin notice viewed by non-admins
+
+
+
 
 ##### [Version 2.9.2](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.1...v2.9.2) (2020-02-13)
 
