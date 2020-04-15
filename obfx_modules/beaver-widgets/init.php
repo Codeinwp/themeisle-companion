@@ -113,12 +113,26 @@ class Beaver_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 *
 	 * @since   2.2.5
 	 * @access  public
+	 * @return bool
 	 */
 	public function load_widgets_modules() {
-		if ( class_exists( 'FLBuilder' ) ) {
-			require_once 'modules/pricing-table/pricing-table.php';
-			require_once 'modules/services/services.php';
-			require_once 'modules/post-grid/post-grid.php';
+		if( ! class_exists( 'FLBuilderModel' ) || ! class_exists( 'FLBuilder' ) ){
+			return false;
 		}
+		$modules_list =  FLBuilderModel::$modules;
+
+		$modules_to_load = array(
+			'pricing-table', 'services', 'post-grid'
+		);
+
+		foreach ( $modules_to_load as $module ){
+			$prefix = '';
+			if ( array_key_exists( $module, $modules_list ) ){
+				$prefix = 'obfx-';
+			}
+			require_once 'modules/' . $module . '/'. $prefix . $module . '.php';
+		}
+		return true;
 	}
+
 }

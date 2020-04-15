@@ -1,10 +1,14 @@
 <?php
 /**
+ * This file is the same as post-grid.php. Beaver takes the name of the file and make it the id for the widget.
+ * There can't be two identical ID's so if Beaver Widgets Pro plugin is installed it adds a post grid widget,
+ * and the widget we add need to have another id. If we change the id from post-grid to obfx-post-grid,
+ * for users that are using beaver lite and OBFX the widgets will disappear so we need to have both files.
+ *
  * Post grid widget.
  *
  * @package themeisle-companion
  */
-
 // Get the module directory.
 $module_directory = $this->get_dir();
 
