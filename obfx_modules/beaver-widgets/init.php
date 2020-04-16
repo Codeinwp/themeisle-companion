@@ -115,7 +115,7 @@ class Beaver_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 *
 	 * @return bool
 	 */
-	private function is_new_user(){
+	private function is_new_user() {
 		$is_new_use = get_option( 'obfx_new_user' );
 		if ( ! empty( $is_new_use ) ) {
 			return $is_new_use === 'yes';
@@ -151,7 +151,7 @@ class Beaver_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		);
 
 		$prefix = '';
-		if( $this->is_new_user() ) {
+		if ( $this->is_new_user() ) {
 			$prefix = 'obfx-';
 		}
 
