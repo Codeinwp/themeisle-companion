@@ -108,6 +108,29 @@ class Beaver_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		return true;
 	}
+
+
+	/**
+	 * Check if it's a new user for orbit fox.
+	 *
+	 * @return bool
+	 */
+	private function is_new_user(){
+		$is_new_use = get_option( 'obfx_new_user' );
+		if ( ! empty( $is_new_use ) ) {
+			return $is_new_use === 'yes';
+		}
+
+		$install_time = get_option( 'themeisle_companion_install' );
+		$current_time = time();
+		if ( ( $current_time - $install_time ) > 60 ) {
+			update_option( 'obfx_new_user', 'yes' );
+			return true;
+		}
+		update_option( 'obfx_new_user', 'no' );
+		return false;
+	}
+
 	/**
 	 * Require Beaver Builder modules
 	 *
@@ -127,8 +150,12 @@ class Beaver_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			'post-grid',
 		);
 
+		$prefix = '';
+		if( $this->is_new_user() ) {
+			$prefix = 'obfx-';
+		}
+
 		foreach ( $modules_to_load as $module ) {
-			$prefix = '';
 			if ( array_key_exists( $module, $modules_list ) ) {
 				$prefix = 'obfx-';
 			}
