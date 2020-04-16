@@ -150,13 +150,14 @@ class Beaver_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			'post-grid',
 		);
 
-		$prefix = '';
+		$new_user_prefix = '';
 		if ( $this->is_new_user() ) {
-			$prefix = 'obfx-';
+			$new_user_prefix = 'obfx-';
 		}
 
 		foreach ( $modules_to_load as $module ) {
-			if ( array_key_exists( $module, $modules_list ) ) {
+			$prefix = $new_user_prefix;
+			if ( empty( $prefix ) && array_key_exists( $module, $modules_list ) ) {
 				$prefix = 'obfx-';
 			}
 			require_once 'modules/' . $module . '/' . $prefix . $module . '.php';
