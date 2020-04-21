@@ -123,7 +123,7 @@ class Beaver_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		$install_time = get_option( 'themeisle_companion_install' );
 		$current_time = time();
-		if ( ( $current_time - $install_time ) > 60 ) {
+		if ( ( $current_time - $install_time ) <= 60 ) {
 			update_option( 'obfx_new_user', 'yes' );
 			return true;
 		}
