@@ -178,6 +178,10 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function social_sharing_function() {
+		if ( class_exists( 'WooCommerce' ) && ( is_cart() || is_checkout() ) ) {
+			return false;
+		}
+
 		if ( ( $this->get_option( 'display_on_posts' ) && is_single() ) || ( $this->get_option( 'display_on_pages' ) && is_page() ) ) {
 			$class_desktop = 'obfx-sharing-left ';
 			switch ( $this->get_option( 'socials_position' ) ) {

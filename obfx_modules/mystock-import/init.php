@@ -79,11 +79,9 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function hooks() {
-
-		/*Get tab content*/
+		$this->loader->add_action( 'wp_ajax_handle-request-' . $this->slug, $this, 'handle_request' );
 		$this->loader->add_action( 'wp_ajax_get-tab-' . $this->slug, $this, 'get_tab_content' );
 		$this->loader->add_action( 'wp_ajax_infinite-' . $this->slug, $this, 'infinite_scroll' );
-		$this->loader->add_action( 'wp_ajax_handle-request-' . $this->slug, $this, 'handle_request' );
 		$this->loader->add_filter( 'media_view_strings', $this, 'media_view_strings' );
 	}
 
@@ -211,6 +209,30 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			return array();
 		}
 
+
+		if ( method_exists( $current_screen, 'is_block_editor' ) && $current_screen->is_block_editor() ) {
+
+			$this->localized = array(
+				'script' => array(
+					'ajaxurl'  => admin_url( 'admin-ajax.php' ),
+					'nonce'    => wp_create_nonce( $this->slug . filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ) ),
+					'slug'     => $this->slug,
+					'api_key'  => self::API_KEY,
+					'user_id'  => self::USER_ID,
+					'per_page' => 20,
+				),
+			);
+
+			return array(
+				'css' => array(
+					'editor-style' => array(),
+				),
+				'js'  => array(
+					'script' => array( 'wp-plugins', 'wp-edit-post', 'wp-element', 'wp-api-fetch', 'wp-blocks' ),
+				),
+			);
+		}
+
 		$this->localized = array(
 			'admin' => array(
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
@@ -239,6 +261,7 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'media' => array(),
 			),
 		);
+
 	}
 
 	/**
@@ -252,9 +275,16 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		return array();
 	}
 
+	/**
+	 * Media view strings
+	 * @param array $strings Strings
+	 *
+	 * @return array
+	 */
 	public function media_view_strings( $strings ) {
 		$this->strings = $strings;
 
 		return $strings;
 	}
+
 }

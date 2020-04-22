@@ -64,12 +64,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/elementor-extra-widgets.git",
-                "reference": "f908127bd044b81a7aa74fb92d61a63ad19f5b7a"
+                "reference": "88bcf00006a5d655b0d74359bbc5ed49bcb54754"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/elementor-extra-widgets/zipball/f908127bd044b81a7aa74fb92d61a63ad19f5b7a",
-                "reference": "f908127bd044b81a7aa74fb92d61a63ad19f5b7a",
+                "url": "https://api.github.com/repos/Codeinwp/elementor-extra-widgets/zipball/88bcf00006a5d655b0d74359bbc5ed49bcb54754",
+                "reference": "88bcf00006a5d655b0d74359bbc5ed49bcb54754",
                 "shasum": ""
             },
             "type": "library",
@@ -90,7 +90,7 @@
                 }
             ],
             "homepage": "https://github.com/Codeinwp/elementor-extra-widgets",
-            "time": "2019-12-02T09:28:52+00:00"
+            "time": "2020-04-15T09:34:10+00:00"
         },
         {
             "name": "codeinwp/full-width-page-templates",
@@ -129,16 +129,16 @@
         },
         {
             "name": "codeinwp/gutenberg-blocks",
-            "version": "1.5.0",
+            "version": "1.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/gutenberg-blocks.git",
-                "reference": "e26d624bbe6946d070bdfa95383fa8e55dee5d0d"
+                "reference": "0d85a6a780dcafcc8895d003d7b3249cc4109489"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/gutenberg-blocks/zipball/e26d624bbe6946d070bdfa95383fa8e55dee5d0d",
-                "reference": "e26d624bbe6946d070bdfa95383fa8e55dee5d0d",
+                "url": "https://api.github.com/repos/Codeinwp/gutenberg-blocks/zipball/0d85a6a780dcafcc8895d003d7b3249cc4109489",
+                "reference": "0d85a6a780dcafcc8895d003d7b3249cc4109489",
                 "shasum": ""
             },
             "require": {
@@ -168,7 +168,7 @@
             ],
             "description": "A set of awesome Gutenberg Blocks!",
             "homepage": "https://github.com/Codeinwp/gutenberg-blocks",
-            "time": "2020-03-30T21:49:53+00:00"
+            "time": "2020-04-10T22:03:57+00:00"
         },
         {
             "name": "codeinwp/templates-directory",
@@ -214,12 +214,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/themeisle-content-forms.git",
-                "reference": "cdb970b402799248b372054685e3cea8e6cae992"
+                "reference": "94cdac98f97d78b2ec48458fb4112aae2b54b9be"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/themeisle-content-forms/zipball/cdb970b402799248b372054685e3cea8e6cae992",
-                "reference": "cdb970b402799248b372054685e3cea8e6cae992",
+                "url": "https://api.github.com/repos/Codeinwp/themeisle-content-forms/zipball/94cdac98f97d78b2ec48458fb4112aae2b54b9be",
+                "reference": "94cdac98f97d78b2ec48458fb4112aae2b54b9be",
                 "shasum": ""
             },
             "require": {
@@ -248,7 +248,7 @@
             ],
             "description": "ThemeIsle Content Forms.",
             "homepage": "https://github.com/Codeinwp/themeisle-content-forms",
-            "time": "2019-12-02T09:28:39+00:00"
+            "time": "2020-04-22T07:45:52+00:00"
         },
         {
             "name": "codeinwp/themeisle-sdk",
@@ -1106,16 +1106,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.5.4",
+            "version": "3.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "dceec07328401de6211037abbb18bda423677e26"
+                "reference": "73e2e7f57d958e7228fce50dc0c61f58f017f9f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/dceec07328401de6211037abbb18bda423677e26",
-                "reference": "dceec07328401de6211037abbb18bda423677e26",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/73e2e7f57d958e7228fce50dc0c61f58f017f9f6",
+                "reference": "73e2e7f57d958e7228fce50dc0c61f58f017f9f6",
                 "shasum": ""
             },
             "require": {
@@ -1153,7 +1153,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2020-01-30T22:20:29+00:00"
+            "time": "2020-04-17T01:09:41+00:00"
         },
         {
             "name": "wp-coding-standards/wpcs",
