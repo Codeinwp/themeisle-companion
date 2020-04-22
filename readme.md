@@ -109,6 +109,19 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 ## Changelog ##
 
+##### [Version 2.9.7](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.6...v2.9.7) (2020-04-22)
+
+- New Hidden field in the contact form widget
+- Fix Mystock Import in the Gutenberg editor
+- Fix overlapping widgets names with Beaver Builder Pro version
+- Fix undefined index notice in Elementor Services widget
+- Upgrade FontAwesome icons to FA5 for Hestia default content
+- Make inline social icons round in Hestia
+- Fix inline social icons not applying on pages in Hestia
+
+
+
+
 ##### [Version 2.9.6](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.5...v2.9.6) (2020-04-06)
 
 * Update compatibility with WordPress 5.4 
