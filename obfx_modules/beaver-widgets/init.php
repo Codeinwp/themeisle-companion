@@ -124,11 +124,11 @@ class Beaver_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		$install_time = get_option( 'themeisle_companion_install' );
 		$current_time = get_option( 'module_check_time' );
-		if( empty( $current_time ) ){
+		if ( empty( $current_time ) ) {
 			$current_time = time();
 			update_option( 'module_check_time', $current_time );
 		}
-		if ( empty( $install_time ) || empty( $current_time ) ){
+		if ( empty( $install_time ) || empty( $current_time ) ) {
 			return false;
 		}
 
@@ -162,7 +162,7 @@ class Beaver_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		);
 
 		$new_user_prefix = '';
-		if ( $is_new_user  === 'yes' ) {
+		if ( $is_new_user === 'yes' ) {
 			$new_user_prefix = 'obfx-';
 		}
 
