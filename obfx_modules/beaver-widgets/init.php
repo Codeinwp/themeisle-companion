@@ -37,7 +37,7 @@ class Beaver_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return bool
 	 */
 	public function enable_module() {
-		$this->is_new_user();
+		$this->check_new_user();
 		require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		return is_plugin_active( 'beaver-builder-lite-version/fl-builder.php' ) || is_plugin_active( 'bb-plugin/fl-builder.php' );
 	}
@@ -116,18 +116,27 @@ class Beaver_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 *
 	 * @return bool
 	 */
-	private function is_new_user() {
-		$is_new_use = get_option( 'obfx_new_user' );
-		if ( ! empty( $is_new_use ) ) {
-			return $is_new_use === 'yes';
+	private function check_new_user() {
+		$is_new_user = get_option( 'obfx_new_user' );
+		if ( $is_new_user === 'yes' ) {
+			return true;
 		}
 
 		$install_time = get_option( 'themeisle_companion_install' );
-		$current_time = time();
+		$current_time = get_option( 'module_check_time' );
+		if( empty( $current_time ) ){
+			$current_time = time();
+			update_option( 'module_check_time', $current_time );
+		}
+		if ( empty( $install_time ) || empty( $current_time ) ){
+			return false;
+		}
+
 		if ( ( $current_time - $install_time ) <= 60 ) {
 			update_option( 'obfx_new_user', 'yes' );
 			return true;
 		}
+
 		update_option( 'obfx_new_user', 'no' );
 		return false;
 	}
@@ -143,6 +152,7 @@ class Beaver_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		if ( ! class_exists( 'FLBuilderModel' ) || ! class_exists( 'FLBuilder' ) ) {
 			return false;
 		}
+		$is_new_user  = get_option( 'obfx_new_user' );
 		$modules_list = FLBuilderModel::$modules;
 
 		$modules_to_load = array(
@@ -152,7 +162,7 @@ class Beaver_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		);
 
 		$new_user_prefix = '';
-		if ( $this->is_new_user() ) {
+		if ( $is_new_user  === 'yes' ) {
 			$new_user_prefix = 'obfx-';
 		}
 
