@@ -214,12 +214,12 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 			$this->localized = array(
 				'script' => array(
-					'ajaxurl'          => admin_url( 'admin-ajax.php' ),
-					'nonce'            => wp_create_nonce( $this->slug . filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ) ),
-					'slug'             => $this->slug,
-					'api_key'          => self::API_KEY,
-					'user_id'          => self::USER_ID,
-					'per_page'         => 20,
+					'ajaxurl'  => admin_url( 'admin-ajax.php' ),
+					'nonce'    => wp_create_nonce( $this->slug . filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ) ),
+					'slug'     => $this->slug,
+					'api_key'  => self::API_KEY,
+					'user_id'  => self::USER_ID,
+					'per_page' => 20,
 				),
 			);
 
