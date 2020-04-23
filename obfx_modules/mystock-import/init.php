@@ -125,36 +125,69 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * Upload image.
 	 */
 	public function handle_request() {
-		check_ajax_referer( $this->slug . filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ), 'security' );
+		$response = array(
+			'success'    => false,
+			'msg'        => __( 'There was an error getting image details from the request, please try again.', 'themeisle-companion' ),
+			'attachment' => '',
+		);
+
+		if ( ! current_user_can( 'upload_files' ) ) {
+			$response['msg'] = __( 'The current user does not have permission to upload files.', 'themeisle-companion' );
+			wp_send_json_error( $response );
+		}
+
+		$check_referer = check_ajax_referer( $this->slug . filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ), 'security', false );
+		if ( $check_referer === false ) {
+			$response['msg'] = __( 'Invalid nonce.', 'themeisle-companion' );
+			wp_send_json_error( $response );
+		}
 
 		if ( ! isset( $_POST['url'] ) ) {
-			echo esc_html__( 'Image failed to upload', 'themeisle-companion' );
-			wp_die();
+			$response['msg'] = __( 'The URL of the image does not exist.', 'themeisle-companion' );
+			wp_send_json_error( $response );
 		}
 
+		// Send request to `wp_remote_get`
 		$url      = esc_url_raw( $_POST['url'] );
-		$name     = basename( $url );
-		$tmp_file = download_url( $url );
-		if ( is_wp_error( $tmp_file ) ) {
-			echo esc_html__( 'Image failed to upload', 'themeisle-companion' );
-			wp_die();
+		$response = wp_remote_get( $url );
+		if ( is_wp_error( $response ) ) {
+			$response['msg'] = __( 'Image download failed, please try again.', 'themeisle-companion' );
+			wp_send_json_error( $response );
 		}
-		$file             = array();
-		$file['name']     = $name;
-		$file['tmp_name'] = $tmp_file;
-		$image_id         = media_handle_sideload( $file, 0 );
-		if ( is_wp_error( $image_id ) ) {
-			echo esc_html__( 'Image failed to upload', 'themeisle-companion' );
-			wp_die();
+
+		// Get Headers
+		$type = wp_remote_retrieve_header( $response, 'content-type' );
+		if ( ! $type ) {
+			$response['msg'] = __( 'Image type could not be determined', 'themeisle-companion' );
+			wp_send_json_error( $response );
 		}
-		$attach_data = wp_generate_attachment_metadata( $image_id, get_attached_file( $image_id ) );
-		if ( is_wp_error( $attach_data ) ) {
-			echo esc_html__( 'Image failed to upload', 'themeisle-companion' );
-			wp_die();
-		}
+
+		// Upload remote file
+		$name   = basename( $url );
+		$mirror = wp_upload_bits( $name, null, wp_remote_retrieve_body( $response ) );
+
+		// Build Attachment Data Array
+		$attachment = array(
+			'post_content'   => '',
+			'post_status'    => 'inherit',
+			'post_mime_type' => $type,
+		);
+
+		// Insert as attachment
+		$image_id  = wp_insert_attachment( $attachment, $mirror['file'], 0 );
+
+		// Generate Metadata
+		$attach_data = wp_generate_attachment_metadata( $image_id, $mirror['file'] );
 		wp_update_attachment_metadata( $image_id, $attach_data );
 
-		wp_send_json_success( array( 'id' => $image_id ) );
+		$response['success']    = true;
+		$response['msg']        = __( 'Image successfully uploaded to the media library!', 'themeisle-companion' );
+		$response['attachment'] = array(
+			'id'  => $image_id,
+			'url' => wp_get_attachment_url( $image_id ),
+		);
+
+		wp_send_json_success( $response );
 	}
 
 	/**

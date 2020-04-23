@@ -24,7 +24,7 @@ class Photo extends Component {
 	constructor( props ) {
 		super( props );
 		this.img = this.props.result.url_m;
-		this.fullSize = this.props.result.url_o;
+		this.fullSize = this.props.result.url_l;
 		this.imgTitle = this.props.result.title;
 		this.setAsFeaturedImage = false;
 		this.insertIntoPost = false;
@@ -35,6 +35,7 @@ class Photo extends Component {
 
 		this.noticeRef = createRef();
 		this.imageRef  = createRef();
+		this.photoContainerRef  = createRef();
 
 		this.state = { attachmentId: '' };
 	}
@@ -86,15 +87,15 @@ class Photo extends Component {
 			body: formData
 		})
 		.then( function ( res ) {
-			if ( res && res.success === true && res.data.id ) {
-				self.doPhotoAction( target, photo, res.data.id );
-				self.setState( { attachmentId: res.data.id } );
+			if ( res && res.success === true && res.data.attachment.id ) {
+				self.doPhotoAction( target, photo, res.data.attachment.id );
+				self.setState( { attachmentId: res.data.attachment.id } );
 			} else {
-				self.uploadError( target, photo, __( 'Unable to download image to server, please check your server permissions.', 'themeisle-companion' ) );
+				self.uploadError( target, photo, res.data.msg );
 			}
 		})
-		.catch( function ( error ) {
-			console.log( error );
+		.catch( function () {
+			self.uploadError( target, photo, __( 'There was an error. Please try again.', 'themeisle-companion' ) );
 		});
 	}
 
@@ -129,10 +130,26 @@ class Photo extends Component {
 	* @since 3.0
 	*/
 	uploadError( target, photo, msg ){
-		let photoContainer = this.imageRef.current;
-		photoContainer.classList.remove( 'uploading' );
+		let imageWrapper = this.imageRef.current;
+		imageWrapper.classList.remove( 'uploading' );
+		imageWrapper.classList.add( 'errors' );
 
-		target.classList.add( 'errors' );
+		let photoContainer = this.photoContainerRef.current;
+		photoContainer.classList.remove( 'in-progress' );
+
+		target.parentNode.parentNode.classList.add( 'disabled' );
+		setTimeout(
+			function(){
+				imageWrapper.classList.remove( 'errors' );
+				target.parentNode.parentNode.classList.remove( 'disabled') ;
+			},
+			3000,
+			target,
+			photo
+		);
+
+		dispatchNotice( msg );
+
 		this.inProgress = false;
 		console.warn(msg);
 	}
@@ -169,7 +186,17 @@ class Photo extends Component {
 			photo
 		);
 		this.inProgress = false;
-		dispatchNotice( __( 'Image was added to Media Library.', 'themeisle-companion' ) );
+
+		if ( target.classList.contains( 'download' ) ) {
+			dispatchNotice( __( 'Image was added to Media Library.', 'themeisle-companion' ) );
+		}
+		if ( target.classList.contains( 'set-featured' ) ) {
+			dispatchNotice( __( 'Image was set as featured image.', 'themeisle-companion' ) );
+		}
+		if ( target.classList.contains( 'insert' ) ) {
+			dispatchNotice( __( 'Image was inserted in post content.', 'themeisle-companion' ) );
+		}
+
 	}
 
 	/*
@@ -210,7 +237,7 @@ class Photo extends Component {
 	render(){
 
 		return (
-			<article className="photo">
+			<article className="photo" ref={this.photoContainerRef}>
 				<div className="photo--wrap">
 					<div className='img-wrap'>
 						<a
