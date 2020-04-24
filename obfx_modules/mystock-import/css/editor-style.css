@@ -407,3 +407,7 @@
     text-align: center;
     padding: 10px 0;
 }
+
+.components-editor-notices__snackbar{
+    z-index: 0;
+}

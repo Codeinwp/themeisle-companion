@@ -76,6 +76,11 @@ class Photo extends Component {
 			return true;
 		}
 
+		if( typeof( this.fullSize ) === 'undefined' ){
+			self.uploadError( target, photo, __( 'Error! Empty image.', 'themeisle-companion' ) );
+			return false;
+		}
+
 		let formData = new FormData;
 		formData.append( 'action', 'handle-request-' + mystock_import.slug );
 		formData.append( 'url', this.fullSize );
