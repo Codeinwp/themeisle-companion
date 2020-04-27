@@ -195,13 +195,13 @@ function loadMyStockTab($) {
 									'security' : mystock_import.nonce
 								},
 								url : mystock_import.ajaxurl,
-								success : function(data) {
+								success : function(res) {
 									$( document ).find( '.media-button-insert' ).attr( 'disabled', 'disabled' ).html( mystock_import.l10n.insert_image_new );
 									if ( 'mystock' === wp.media.frame.content.mode() ) {
 										wp.media.frame.content.get( 'library' ).collection.props.set( { '__ignore_force_update': (+ new Date()) } );
 										wp.media.frame.content.mode( 'browse' );
 										$( document ).find( '.media-button-insert' ).attr( 'disabled', 'disabled' );
-										wp.media.frame.state().get( 'selection' ).reset( wp.media.attachment( data.data.id ) );
+										wp.media.frame.state().get( 'selection' ).reset( wp.media.attachment( res.data.attachment.id ) );
 										$( document ).find( '.media-button-insert' ).trigger( 'click' );
 									}
 								}
@@ -222,13 +222,13 @@ function loadMyStockTab($) {
 									'security' : mystock_import.nonce
 								},
 								url : mystock_import.ajaxurl,
-								success : function(data) {
+								success : function(res) {
 									$( document ).find( '.media-button-select' ).attr( 'disabled', 'disabled' ).html( mystock_import.l10n.featured_image_new );
 									if ( 'mystock' === wp.media.frame.content.mode() ) {
 										wp.media.frame.content.get( 'library' ).collection.props.set( { '__ignore_force_update': (+ new Date()) } );
 										wp.media.frame.content.mode( 'browse' );
 										$( document ).find( '.media-button-select' ).attr( 'disabled', 'disabled' );
-										wp.media.frame.state().get( 'selection' ).reset( wp.media.attachment( data.data.id ) );
+										wp.media.frame.state().get( 'selection' ).reset( wp.media.attachment( res.data.attachment.id ) );
 										$( document ).find( '.media-button-select' ).trigger( 'click' );
 									}
 								}
