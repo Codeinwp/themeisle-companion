@@ -408,6 +408,6 @@
     padding: 10px 0;
 }
 
-.components-editor-notices__snackbar{
-    z-index: 0;
+.is-sidebar-opened .block-editor-editor-skeleton__sidebar{
+    z-index: 100001;
 }
