@@ -79,7 +79,7 @@ class PhotoList extends Component {
 				'api_key': this.apiKey,
 				'user_id': this.userId,
 				'per_page': this.perPage,
-				'extras': 'url_m, url_o',
+				'extras': 'url_m, url_l',
 				'page': this.page,
 			};
 			this.flickr.people.getPublicPhotos( args )
@@ -163,7 +163,7 @@ class PhotoList extends Component {
 			'user_id': this.userId,
 			'text': this.search_term,
 			'per_page' : this.perPage,
-			'extras': 'url_m, url_o',
+			'extras': 'url_m, url_l',
 			'page': this.page,
 		};
 		this.flickr.photos.search( args )

@@ -407,3 +407,7 @@
     text-align: center;
     padding: 10px 0;
 }
+
+.is-sidebar-opened .block-editor-editor-skeleton__sidebar{
+    z-index: 100001;
+}
