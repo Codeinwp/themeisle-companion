@@ -109,6 +109,13 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 ## Changelog ##
 
+##### [Version 2.9.8](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.7...v2.9.8) (2020-04-28)
+
+- Fixed importing multiple photos and better error handling in the Mystock module
+
+
+
+
 ##### [Version 2.9.7](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.6...v2.9.7) (2020-04-22)
 
 - New Hidden field in the contact form widget
