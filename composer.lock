@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "175fb2141c32cdef8fe0127d3dc4956e",
+    "content-hash": "e5a481b4aa426d3424cada1f218fbb13",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -251,6 +251,49 @@
             "time": "2020-04-22T07:45:52+00:00"
         },
         {
+            "name": "codeinwp/themeisle-onboarding",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Codeinwp/themeisle-onboarding.git",
+                "reference": "cf8812607ef1c17e5da2fc2ba75727c294eff043"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Codeinwp/themeisle-onboarding/zipball/cf8812607ef1c17e5da2fc2ba75727c294eff043",
+                "reference": "cf8812607ef1c17e5da2fc2ba75727c294eff043",
+                "shasum": ""
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4 || ^0.5.0 || ^0.6.0",
+                "squizlabs/php_codesniffer": "^3.1",
+                "wp-coding-standards/wpcs": "^1.0.0 || ^2.0.0"
+            },
+            "type": "library",
+            "extra": {
+                "installer-disable": "true"
+            },
+            "autoload": {
+                "psr-4": {
+                    "TIOB\\": "includes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "ThemeIsle team",
+                    "email": "friends@themeisle.com",
+                    "homepage": "https://themeisle.com"
+                }
+            ],
+            "description": "ThemeIsle Onboarding Module.",
+            "homepage": "https://github.com/Codeinwp/themeisle-onboarding",
+            "time": "2020-04-22T13:32:46+00:00"
+        },
+        {
             "name": "codeinwp/themeisle-sdk",
             "version": "3.2.8",
             "source": {
@@ -287,41 +330,6 @@
                 "wordpress"
             ],
             "time": "2020-03-24T16:54:54+00:00"
-        },
-        {
-            "name": "codeinwp/ti-onboarding",
-            "version": "1.8.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Codeinwp/ti-onboarding.git",
-                "reference": "03d872013eeef2a7e6b088f4af5a36f5d61b56d8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/ti-onboarding/zipball/03d872013eeef2a7e6b088f4af5a36f5d61b56d8",
-                "reference": "03d872013eeef2a7e6b088f4af5a36f5d61b56d8",
-                "shasum": ""
-            },
-            "require-dev": {
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4 || ^0.5.0 || ^0.6.0",
-                "squizlabs/php_codesniffer": "^3.1",
-                "wp-coding-standards/wpcs": "^1.0.0 || ^2.0.0"
-            },
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-3.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "ThemeIsle team",
-                    "email": "friends@themeisle.com",
-                    "homepage": "https://themeisle.com"
-                }
-            ],
-            "description": "Onboarding for themeisle themes.",
-            "homepage": "https://github.com/Codeinwp/ti-onboarding",
-            "time": "2020-02-03T11:53:11+00:00"
         },
         {
             "name": "guzzlehttp/psr7",

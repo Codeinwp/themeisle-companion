@@ -225,7 +225,7 @@ class Orbit_Fox {
 			return;
 		}
 
-		$library = OBX_PATH . '/vendor/codeinwp/ti-onboarding/load.php';
+		$library = OBX_PATH . '/vendor/codeinwp/themeisle-onboarding/load.php';
 
 		if ( ! is_file( $library ) ) {
 			return;
@@ -235,11 +235,11 @@ class Orbit_Fox {
 		add_filter(
 			'themeisle_site_import_uri',
 			function () {
-				return OBFX_URL . Themeisle_Onboarding::OBOARDING_PATH;
+				return OBFX_URL . \TIOB\Main::OBOARDING_PATH;
 			}
 		);
 
-		\Themeisle_Onboarding::instance();
+		\TIOB\Main::instance();
 
 	}
 
