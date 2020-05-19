@@ -256,12 +256,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/themeisle-onboarding.git",
-                "reference": "cf8812607ef1c17e5da2fc2ba75727c294eff043"
+                "reference": "28de95be4154bd996d53475f295ebae6d630d16a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/themeisle-onboarding/zipball/cf8812607ef1c17e5da2fc2ba75727c294eff043",
-                "reference": "cf8812607ef1c17e5da2fc2ba75727c294eff043",
+                "url": "https://api.github.com/repos/Codeinwp/themeisle-onboarding/zipball/28de95be4154bd996d53475f295ebae6d630d16a",
+                "reference": "28de95be4154bd996d53475f295ebae6d630d16a",
                 "shasum": ""
             },
             "require-dev": {
@@ -291,20 +291,20 @@
             ],
             "description": "ThemeIsle Onboarding Module.",
             "homepage": "https://github.com/Codeinwp/themeisle-onboarding",
-            "time": "2020-04-22T13:32:46+00:00"
+            "time": "2020-05-18T17:50:59+00:00"
         },
         {
             "name": "codeinwp/themeisle-sdk",
-            "version": "3.2.8",
+            "version": "3.2.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/themeisle-sdk.git",
-                "reference": "ce152edef1634d7c3ce75ed292efcc7a5f73806e"
+                "reference": "5923b377554028b3e2c2e98a5f752b9bcd23d4da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/themeisle-sdk/zipball/ce152edef1634d7c3ce75ed292efcc7a5f73806e",
-                "reference": "ce152edef1634d7c3ce75ed292efcc7a5f73806e",
+                "url": "https://api.github.com/repos/Codeinwp/themeisle-sdk/zipball/5923b377554028b3e2c2e98a5f752b9bcd23d4da",
+                "reference": "5923b377554028b3e2c2e98a5f752b9bcd23d4da",
                 "shasum": ""
             },
             "require-dev": {
@@ -329,7 +329,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2020-03-24T16:54:54+00:00"
+            "time": "2020-05-18T16:59:05+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
