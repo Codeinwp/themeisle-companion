@@ -20,13 +20,6 @@ class Header_Footer_Scripts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	private $meta_controls = array();
 
 	/**
-	 * Allowed html.
-	 *
-	 * @var array
-	 */
-	private $allowed_html = array();
-
-	/**
 	 * Header_Footer_Scripts_OBFX_Module constructor.
 	 *
 	 * @since   2.9.6
@@ -51,7 +44,7 @@ class Header_Footer_Scripts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'type'        => 'textarea',
 				'label'       => __( 'Header scripts', 'themeisle-companion' ),
 				'description' => sprintf(
-					/* translators: %s is head tag */
+				/* translators: %s is head tag */
 					__( 'Output before the closing %s tag, after sitewide header scripts.', 'themeisle-companion' ),
 					'<code>&lt;/head&gt;</code>'
 				),
@@ -60,16 +53,11 @@ class Header_Footer_Scripts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'type'        => 'textarea',
 				'label'       => __( 'Footer scripts', 'themeisle-companion' ),
 				'description' => sprintf(
-					/* translators: %s is body tag */
+				/* translators: %s is body tag */
 					__( 'Output before the closing %s tag, after sitewide footer scripts.', 'themeisle-companion' ),
 					'<code>&lt;/body&gt;</code>'
 				),
 			),
-		);
-		$this->allowed_html           = wp_kses_allowed_html( 'post' );
-		$this->allowed_html['script'] = array(
-			'async' => array(),
-			'src'   => array(),
 		);
 	}
 
@@ -130,16 +118,15 @@ class Header_Footer_Scripts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$wp_customize->add_setting(
 			'obfx_header_scripts',
 			array(
-				'default'           => sprintf(
-					/* translators: %s is placeholder value */
+				'default'    => sprintf(
+				/* translators: %s is placeholder value */
 					'<!-- %s -->',
 					__(
 						'Enter your scripts here',
 						'themeisle-companion'
 					)
 				),
-				'sanitize_callback' => array( $this, 'sanitize_script' ),
-				'capability'        => 'edit_theme_options',
+				'capability' => 'edit_theme_options',
 			)
 		);
 
@@ -151,7 +138,7 @@ class Header_Footer_Scripts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'priority'    => 10,
 				'label'       => __( 'Header scripts', 'themeisle-companion' ),
 				'description' => sprintf(
-					/* translators: %s is head tag */
+				/* translators: %s is head tag */
 					__( 'This code will output immediately before the closing %s tag in document source.', 'themeisle-companion' ),
 					'<code>&lt;/head&gt;</code>'
 				),
@@ -161,16 +148,15 @@ class Header_Footer_Scripts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$wp_customize->add_setting(
 			'obfx_footer_scripts',
 			array(
-				'default'           => sprintf(
-					/* translators: %s is placeholder value */
+				'default'    => sprintf(
+				/* translators: %s is placeholder value */
 					'<!-- %s -->',
 					__(
 						'Enter your scripts here',
 						'themeisle-companion'
 					)
 				),
-				'sanitize_callback' => array( $this, 'sanitize_script' ),
-				'capability'        => 'edit_theme_options',
+				'capability' => 'edit_theme_options',
 			)
 		);
 
@@ -182,23 +168,12 @@ class Header_Footer_Scripts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'priority'    => 10,
 				'label'       => __( 'Footer scripts', 'themeisle-companion' ),
 				'description' => sprintf(
-					/* translators: %s is body tag */
+				/* translators: %s is body tag */
 					__( 'This code will output immediately before the closing %s tag in document source.', 'themeisle-companion' ),
 					'<code>&lt;/body&gt;</code>'
 				),
 			)
 		);
-	}
-
-	/**
-	 * Sanitize customizer header footer scripts.
-	 *
-	 * @param string $script Input value
-	 *
-	 * @return mixed
-	 */
-	public function sanitize_script( $script ) {
-		return wp_kses( $script, $this->allowed_html );
 	}
 
 	/**
@@ -231,12 +206,14 @@ class Header_Footer_Scripts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		echo '<table class="form-table">';
 		echo '<tbody>';
 		foreach ( $this->meta_controls as $control_id => $control_settings ) {
+
 			echo '<tr>';
 			echo '<th scope="row">';
 			echo '<label for="' . esc_attr( $control_id ) . '"><strong>' . esc_html( $control_settings['label'] ) . '</strong></label>';
 			echo '</th>';
 			echo '<td>';
 			echo '<p>';
+			wp_nonce_field( 'obfx_hfs_metabox_nonce', $control_id . '_meta_nonce' );
 			$this->render_control( $post, $control_id, $control_settings );
 			echo '</p>';
 			echo '</td>';
@@ -257,15 +234,13 @@ class Header_Footer_Scripts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  private
 	 */
 	private function render_control( $post, $control_id, $control_settings ) {
-		$post_meta = get_post_meta( $post->ID, 'obfx_scripts', true );
-		if ( ! empty( $post_meta ) ) {
-			$post_meta = json_decode( $post_meta, true );
-		}
+		$post_meta = get_post_meta( $post->ID, $control_id, true );
+
 		if ( $control_settings['type'] === 'textarea' ) {
-			echo '<textarea class="widefat" rows="4" name="obfx_scripts[' . esc_attr( $control_id ) . ']">';
-			if ( ! empty( $post_meta ) && array_key_exists( $control_id, $post_meta ) ) {
-				$input_val = html_entity_decode( $post_meta[ $control_id ], ENT_QUOTES );
-				echo wp_kses( $input_val, $this->allowed_html );
+			echo '<textarea class="widefat" rows="4" name="' . esc_attr( $control_id ) . '">';
+			if ( ! empty( $post_meta ) ) {
+				// phpcs:ignore
+				echo $post_meta;
 			}
 			echo '</textarea>';
 		}
@@ -281,25 +256,41 @@ class Header_Footer_Scripts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 *
 	 * @param int $post_id Current post id.
 	 *
+	 * @return  bool
 	 * @since   2.9.6
 	 * @access  public
-	 * @return  bool
 	 */
 	public function save_meta( $post_id ) {
-		if ( ! isset( $_POST['obfx_scripts'] ) ) {
+
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return false;
 		}
-		if ( array_key_exists( 'obfx_scripts', $_POST ) ) {
-			foreach ( $_POST['obfx_scripts'] as $script_position => $script_value ) {
-				$_POST['obfx_scripts'][ $script_position ] = htmlentities( stripslashes( utf8_encode( $script_value ) ), ENT_QUOTES );
+
+		if ( ! isset( $_POST['post_type'] ) ) {
+			return false;
+		}
+		if ( 'page' == $_POST['post_type'] && ! current_user_can( 'edit_page', $post_id ) ) {
+			return false;
+		}
+
+		if ( 'post' == $_POST['post_type'] && ! current_user_can( 'edit_post', $post_id ) ) {
+			return false;
+		}
+
+		foreach ( $this->meta_controls as $control_id => $control_settings ) {
+			if ( ! isset( $_POST[ $control_id . '_meta_nonce' ] ) || ! wp_verify_nonce( $_POST[ $control_id . '_meta_nonce' ], 'obfx_hfs_metabox_nonce' ) ) {
+				return false;
 			}
-			$meta_value = json_encode( $_POST['obfx_scripts'], true );
+			if ( ! isset( $_POST[ $control_id ] ) ) {
+				continue;
+			}
 			update_post_meta(
 				$post_id,
-				'obfx_scripts',
-				$meta_value
+				$control_id,
+				$_POST[ $control_id ]
 			);
 		}
+
 		return true;
 	}
 
@@ -311,22 +302,22 @@ class Header_Footer_Scripts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function do_header_scripts() {
 		$default = sprintf(
-			/* translators: %s is placeholder value */
+		/* translators: %s is placeholder value */
 			'<!-- %s -->',
 			__(
 				'Enter your scripts here',
 				'themeisle-companion'
 			)
 		);
-		$header_scripts = get_theme_mod( 'obfx_header_scripts', $default );
-		echo wp_kses( $header_scripts, $this->allowed_html );
+
+		// phpcs:ignore
+		echo get_theme_mod( 'obfx_header_scripts', $default );
 
 		if ( is_singular() ) {
 			global $post;
-			$post_meta = get_post_meta( $post->ID, 'obfx_scripts', true );
-			$post_meta = json_decode( $post_meta, true );
-			$value = html_entity_decode( $post_meta['obfx-header-scripts'], ENT_QUOTES );
-			echo wp_kses( $value, $this->allowed_html );
+
+			// phpcs:ignore
+			echo get_post_meta( $post->ID, 'obfx-header-scripts', true );
 		}
 	}
 
@@ -338,22 +329,22 @@ class Header_Footer_Scripts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function do_footer_scripts() {
 		$default = sprintf(
-			/* translators: %s is placeholder value */
+		/* translators: %s is placeholder value */
 			'<!-- %s -->',
 			__(
 				'Enter your scripts here',
 				'themeisle-companion'
 			)
 		);
-		$footer_scripts = get_theme_mod( 'obfx_footer_scripts', $default );
-		echo wp_kses( $footer_scripts, $this->allowed_html );
+
+		// phpcs:ignore
+		echo get_theme_mod( 'obfx_footer_scripts', $default );
 
 		if ( is_singular() ) {
 			global $post;
-			$post_meta = get_post_meta( $post->ID, 'obfx_scripts', true );
-			$post_meta = json_decode( $post_meta, true );
-			$value = html_entity_decode( $post_meta['obfx-footer-scripts'], ENT_QUOTES );
-			echo wp_kses( $value, $this->allowed_html );
+
+			// phpcs:ignore
+			echo get_post_meta( $post->ID, 'obfx-footer-scripts', true );
 		}
 	}
 
