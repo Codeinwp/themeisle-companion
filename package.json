@@ -41,8 +41,8 @@
     "grunt-version": "^2.0.0",
     "grunt-wp-readme-to-markdown": "^2.0.1",
     "replace-in-file": "^6.0.0",
-    "semantic-release": "^17.0.7",
     "webpack": "^4.43.0",
+    "semantic-release": "^17.0.8",
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {

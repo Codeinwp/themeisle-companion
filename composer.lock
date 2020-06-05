@@ -129,19 +129,20 @@
         },
         {
             "name": "codeinwp/gutenberg-blocks",
-            "version": "1.5.1",
+            "version": "1.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/gutenberg-blocks.git",
-                "reference": "0d85a6a780dcafcc8895d003d7b3249cc4109489"
+                "reference": "39af85f894e67fca1a8ac3a172bebe6688b83480"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/gutenberg-blocks/zipball/0d85a6a780dcafcc8895d003d7b3249cc4109489",
-                "reference": "0d85a6a780dcafcc8895d003d7b3249cc4109489",
+                "url": "https://api.github.com/repos/Codeinwp/gutenberg-blocks/zipball/39af85f894e67fca1a8ac3a172bebe6688b83480",
+                "reference": "39af85f894e67fca1a8ac3a172bebe6688b83480",
                 "shasum": ""
             },
             "require": {
+                "masterminds/html5": "^2.7",
                 "tubalmartin/cssmin": "^4.1"
             },
             "require-dev": {
@@ -168,7 +169,7 @@
             ],
             "description": "A set of awesome Gutenberg Blocks!",
             "homepage": "https://github.com/Codeinwp/gutenberg-blocks",
-            "time": "2020-04-10T22:03:57+00:00"
+            "time": "2020-05-26T15:53:06+00:00"
         },
         {
             "name": "codeinwp/templates-directory",
@@ -256,12 +257,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/themeisle-onboarding.git",
-                "reference": "28de95be4154bd996d53475f295ebae6d630d16a"
+                "reference": "070ba60f2ec08ac29da709c97ee198b1f8bf880e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/themeisle-onboarding/zipball/28de95be4154bd996d53475f295ebae6d630d16a",
-                "reference": "28de95be4154bd996d53475f295ebae6d630d16a",
+                "url": "https://api.github.com/repos/Codeinwp/themeisle-onboarding/zipball/070ba60f2ec08ac29da709c97ee198b1f8bf880e",
+                "reference": "070ba60f2ec08ac29da709c97ee198b1f8bf880e",
                 "shasum": ""
             },
             "require-dev": {
@@ -291,20 +292,20 @@
             ],
             "description": "ThemeIsle Onboarding Module.",
             "homepage": "https://github.com/Codeinwp/themeisle-onboarding",
-            "time": "2020-05-18T17:50:59+00:00"
+            "time": "2020-05-25T11:40:05+00:00"
         },
         {
             "name": "codeinwp/themeisle-sdk",
-            "version": "3.2.9",
+            "version": "3.2.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/themeisle-sdk.git",
-                "reference": "5923b377554028b3e2c2e98a5f752b9bcd23d4da"
+                "reference": "708ba8b6012c2a6411c23557f3b4d0fcd7a270e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/themeisle-sdk/zipball/5923b377554028b3e2c2e98a5f752b9bcd23d4da",
-                "reference": "5923b377554028b3e2c2e98a5f752b9bcd23d4da",
+                "url": "https://api.github.com/repos/Codeinwp/themeisle-sdk/zipball/708ba8b6012c2a6411c23557f3b4d0fcd7a270e3",
+                "reference": "708ba8b6012c2a6411c23557f3b4d0fcd7a270e3",
                 "shasum": ""
             },
             "require-dev": {
@@ -329,7 +330,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2020-05-18T16:59:05+00:00"
+            "time": "2020-05-28T16:39:44+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -447,6 +448,73 @@
                 "sdk"
             ],
             "time": "2019-01-31T13:14:26+00:00"
+        },
+        {
+            "name": "masterminds/html5",
+            "version": "2.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Masterminds/html5-php.git",
+                "reference": "104443ad663d15981225f99532ba73c2f1d6b6f2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Masterminds/html5-php/zipball/104443ad663d15981225f99532ba73c2f1d6b6f2",
+                "reference": "104443ad663d15981225f99532ba73c2f1d6b6f2",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ctype": "*",
+                "ext-dom": "*",
+                "ext-libxml": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.35",
+                "sami/sami": "~2.0",
+                "satooshi/php-coveralls": "1.0.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Masterminds\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matt Butcher",
+                    "email": "technosophos@gmail.com"
+                },
+                {
+                    "name": "Matt Farina",
+                    "email": "matt@mattfarina.com"
+                },
+                {
+                    "name": "Asmir Mustafic",
+                    "email": "goetas@gmail.com"
+                }
+            ],
+            "description": "An HTML5 parser and serializer.",
+            "homepage": "http://masterminds.github.io/html5-php",
+            "keywords": [
+                "HTML5",
+                "dom",
+                "html",
+                "parser",
+                "querypath",
+                "serializer",
+                "xml"
+            ],
+            "time": "2019-07-25T07:03:26+00:00"
         },
         {
             "name": "php-http/curl-client",

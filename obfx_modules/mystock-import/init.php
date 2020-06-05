@@ -174,7 +174,7 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		);
 
 		// Insert as attachment
-		$image_id  = wp_insert_attachment( $attachment, $mirror['file'], 0 );
+		$image_id = wp_insert_attachment( $attachment, $mirror['file'], 0 );
 
 		// Generate Metadata
 		$attach_data = wp_generate_attachment_metadata( $image_id, $mirror['file'] );
