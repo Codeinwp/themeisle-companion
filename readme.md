@@ -2,7 +2,7 @@
 **Contributors:** [themeisle](https://profiles.wordpress.org/themeisle), [codeinwp](https://profiles.wordpress.org/codeinwp), [rodicaelena](https://profiles.wordpress.org/rodicaelena), [baicusandrei](https://profiles.wordpress.org/baicusandrei), [hardeepasrani](https://profiles.wordpress.org/hardeepasrani)  
 **Tags:** widget, admin, widgets, sharing, sections, themes, stock photos, custom icons, icons, menu icons, stock, templates  
 **Requires at least:** 4.7  
-**Tested up to:** 5.3  
+**Tested up to:** 5.4  
 **Requires PHP:** 5.6  
 **Stable tag:** trunk  
 **License:** GPLv2 or later  
@@ -108,6 +108,35 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 ## Changelog ##
+
+##### [Version 2.9.8](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.7...v2.9.8) (2020-04-28)
+
+- Fixed importing multiple photos and better error handling in the Mystock module
+
+
+
+
+##### [Version 2.9.7](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.6...v2.9.7) (2020-04-22)
+
+- New Hidden field in the contact form widget
+- Fix Mystock Import in the Gutenberg editor
+- Fix overlapping widgets names with Beaver Builder Pro version
+- Fix undefined index notice in Elementor Services widget
+- Upgrade FontAwesome icons to FA5 for Hestia default content
+- Make inline social icons round in Hestia
+- Fix inline social icons not applying on pages in Hestia
+
+
+
+
+##### [Version 2.9.6](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.5...v2.9.6) (2020-04-06)
+
+* Update compatibility with WordPress 5.4 
+* Sync dependencies
+* Fix selective refresh for Hestia enhacements features
+
+
+
 
 ##### [Version 2.9.5](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.4...v2.9.5) (2020-03-30)
 
