@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "175fb2141c32cdef8fe0127d3dc4956e",
+    "content-hash": "e5a481b4aa426d3424cada1f218fbb13",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -129,19 +129,20 @@
         },
         {
             "name": "codeinwp/gutenberg-blocks",
-            "version": "1.5.1",
+            "version": "1.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/gutenberg-blocks.git",
-                "reference": "0d85a6a780dcafcc8895d003d7b3249cc4109489"
+                "reference": "39af85f894e67fca1a8ac3a172bebe6688b83480"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/gutenberg-blocks/zipball/0d85a6a780dcafcc8895d003d7b3249cc4109489",
-                "reference": "0d85a6a780dcafcc8895d003d7b3249cc4109489",
+                "url": "https://api.github.com/repos/Codeinwp/gutenberg-blocks/zipball/39af85f894e67fca1a8ac3a172bebe6688b83480",
+                "reference": "39af85f894e67fca1a8ac3a172bebe6688b83480",
                 "shasum": ""
             },
             "require": {
+                "masterminds/html5": "^2.7",
                 "tubalmartin/cssmin": "^4.1"
             },
             "require-dev": {
@@ -168,7 +169,7 @@
             ],
             "description": "A set of awesome Gutenberg Blocks!",
             "homepage": "https://github.com/Codeinwp/gutenberg-blocks",
-            "time": "2020-04-10T22:03:57+00:00"
+            "time": "2020-05-26T15:53:06+00:00"
         },
         {
             "name": "codeinwp/templates-directory",
@@ -251,17 +252,60 @@
             "time": "2020-04-22T07:45:52+00:00"
         },
         {
-            "name": "codeinwp/themeisle-sdk",
-            "version": "3.2.8",
+            "name": "codeinwp/themeisle-onboarding",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/Codeinwp/themeisle-sdk.git",
-                "reference": "ce152edef1634d7c3ce75ed292efcc7a5f73806e"
+                "url": "https://github.com/Codeinwp/themeisle-onboarding.git",
+                "reference": "0a2b1cbad14b4c23a77f1de92ee98addb5b8fd92"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/themeisle-sdk/zipball/ce152edef1634d7c3ce75ed292efcc7a5f73806e",
-                "reference": "ce152edef1634d7c3ce75ed292efcc7a5f73806e",
+                "url": "https://api.github.com/repos/Codeinwp/themeisle-onboarding/zipball/0a2b1cbad14b4c23a77f1de92ee98addb5b8fd92",
+                "reference": "0a2b1cbad14b4c23a77f1de92ee98addb5b8fd92",
+                "shasum": ""
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4 || ^0.5.0 || ^0.6.0",
+                "squizlabs/php_codesniffer": "^3.1",
+                "wp-coding-standards/wpcs": "^1.0.0 || ^2.0.0"
+            },
+            "type": "library",
+            "extra": {
+                "installer-disable": "true"
+            },
+            "autoload": {
+                "psr-4": {
+                    "TIOB\\": "includes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "ThemeIsle team",
+                    "email": "friends@themeisle.com",
+                    "homepage": "https://themeisle.com"
+                }
+            ],
+            "description": "ThemeIsle Onboarding Module.",
+            "homepage": "https://github.com/Codeinwp/themeisle-onboarding",
+            "time": "2020-06-04T16:02:15+00:00"
+        },
+        {
+            "name": "codeinwp/themeisle-sdk",
+            "version": "3.2.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Codeinwp/themeisle-sdk.git",
+                "reference": "18a519764465be0f7aeb8ea33e6cb41b5956020c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Codeinwp/themeisle-sdk/zipball/18a519764465be0f7aeb8ea33e6cb41b5956020c",
+                "reference": "18a519764465be0f7aeb8ea33e6cb41b5956020c",
                 "shasum": ""
             },
             "require-dev": {
@@ -286,42 +330,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2020-03-24T16:54:54+00:00"
-        },
-        {
-            "name": "codeinwp/ti-onboarding",
-            "version": "1.8.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Codeinwp/ti-onboarding.git",
-                "reference": "03d872013eeef2a7e6b088f4af5a36f5d61b56d8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/ti-onboarding/zipball/03d872013eeef2a7e6b088f4af5a36f5d61b56d8",
-                "reference": "03d872013eeef2a7e6b088f4af5a36f5d61b56d8",
-                "shasum": ""
-            },
-            "require-dev": {
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4 || ^0.5.0 || ^0.6.0",
-                "squizlabs/php_codesniffer": "^3.1",
-                "wp-coding-standards/wpcs": "^1.0.0 || ^2.0.0"
-            },
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-3.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "ThemeIsle team",
-                    "email": "friends@themeisle.com",
-                    "homepage": "https://themeisle.com"
-                }
-            ],
-            "description": "Onboarding for themeisle themes.",
-            "homepage": "https://github.com/Codeinwp/ti-onboarding",
-            "time": "2020-02-03T11:53:11+00:00"
+            "time": "2020-06-04T16:15:18+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -439,6 +448,73 @@
                 "sdk"
             ],
             "time": "2019-01-31T13:14:26+00:00"
+        },
+        {
+            "name": "masterminds/html5",
+            "version": "2.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Masterminds/html5-php.git",
+                "reference": "104443ad663d15981225f99532ba73c2f1d6b6f2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Masterminds/html5-php/zipball/104443ad663d15981225f99532ba73c2f1d6b6f2",
+                "reference": "104443ad663d15981225f99532ba73c2f1d6b6f2",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ctype": "*",
+                "ext-dom": "*",
+                "ext-libxml": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.35",
+                "sami/sami": "~2.0",
+                "satooshi/php-coveralls": "1.0.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Masterminds\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matt Butcher",
+                    "email": "technosophos@gmail.com"
+                },
+                {
+                    "name": "Matt Farina",
+                    "email": "matt@mattfarina.com"
+                },
+                {
+                    "name": "Asmir Mustafic",
+                    "email": "goetas@gmail.com"
+                }
+            ],
+            "description": "An HTML5 parser and serializer.",
+            "homepage": "http://masterminds.github.io/html5-php",
+            "keywords": [
+                "HTML5",
+                "dom",
+                "html",
+                "parser",
+                "querypath",
+                "serializer",
+                "xml"
+            ],
+            "time": "2019-07-25T07:03:26+00:00"
         },
         {
             "name": "php-http/curl-client",
