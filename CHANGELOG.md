@@ -1,3 +1,7 @@
+##### [Version 2.9.9](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.8...v2.9.9) (2020-06-05)
+
+New Header/Footer Scripts module
+
 ##### [Version 2.9.8](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.7...v2.9.8) (2020-04-28)
 
 - Fixed importing multiple photos and better error handling in the Mystock module
