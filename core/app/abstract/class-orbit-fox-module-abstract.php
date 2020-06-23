@@ -557,8 +557,6 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @param   string $prefix The string to prefix in the enqueued name.
 	 */
 	private function set_scripts( $enqueue, $prefix ) {
-		$sanitized = str_replace( ' ', '-', strtolower( $this->name ) );
-
 		$module_dir = $this->slug;
 
 		if ( ! empty( $enqueue ) ) {
@@ -582,7 +580,7 @@ abstract class Orbit_Fox_Module_Abstract {
 					if ( ! filter_var( $url, FILTER_VALIDATE_URL ) === false ) {
 						$resource = $url;
 					}
-					$id                = 'obfx-module-' . $prefix . '-js-' . $sanitized . '-' . $order;
+					$id                = 'obfx-module-' . $prefix . '-js-' . $module_dir . '-' . $order;
 					$map[ $file_name ] = $id;
 
 					wp_enqueue_script(
@@ -597,7 +595,7 @@ abstract class Orbit_Fox_Module_Abstract {
 					if ( array_key_exists( $file_name, $this->localized ) ) {
 						wp_localize_script(
 							$id,
-							str_replace( '-', '_', $sanitized ),
+							str_replace( '-', '_', $module_dir ),
 							$this->localized[ $file_name ]
 						);
 					}
