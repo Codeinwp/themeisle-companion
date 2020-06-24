@@ -1,3 +1,7 @@
+##### [Version 2.9.10](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.9...v2.9.10) (2020-06-24)
+
+- [Fix] JS error for some modules when the module names are translated
+
 ##### [Version 2.9.9](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.8...v2.9.9) (2020-06-05)
 
 New Header/Footer Scripts module
