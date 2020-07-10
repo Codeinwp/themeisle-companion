@@ -109,6 +109,13 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 ## Changelog ##
 
+##### [Version 2.9.11](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.10...v2.9.11) (2020-07-10)
+
+- Starter Sites library and import process from the Neve theme
+
+
+
+
 ##### [Version 2.9.10](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.9...v2.9.10) (2020-06-24)
 
 - [Fix] JS error for some modules when the module names are translated
