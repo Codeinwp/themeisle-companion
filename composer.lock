@@ -215,12 +215,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/themeisle-content-forms.git",
-                "reference": "94cdac98f97d78b2ec48458fb4112aae2b54b9be"
+                "reference": "d639a0bbb24a32ae554805f4acc01eafe6b7a327"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/themeisle-content-forms/zipball/94cdac98f97d78b2ec48458fb4112aae2b54b9be",
-                "reference": "94cdac98f97d78b2ec48458fb4112aae2b54b9be",
+                "url": "https://api.github.com/repos/Codeinwp/themeisle-content-forms/zipball/d639a0bbb24a32ae554805f4acc01eafe6b7a327",
+                "reference": "d639a0bbb24a32ae554805f4acc01eafe6b7a327",
                 "shasum": ""
             },
             "require": {
@@ -249,7 +249,7 @@
             ],
             "description": "ThemeIsle Content Forms.",
             "homepage": "https://github.com/Codeinwp/themeisle-content-forms",
-            "time": "2020-04-22T07:45:52+00:00"
+            "time": "2020-07-17T08:28:46+00:00"
         },
         {
             "name": "codeinwp/themeisle-onboarding",
