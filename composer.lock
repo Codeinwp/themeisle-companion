@@ -215,12 +215,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/themeisle-content-forms.git",
-                "reference": "94cdac98f97d78b2ec48458fb4112aae2b54b9be"
+                "reference": "d639a0bbb24a32ae554805f4acc01eafe6b7a327"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/themeisle-content-forms/zipball/94cdac98f97d78b2ec48458fb4112aae2b54b9be",
-                "reference": "94cdac98f97d78b2ec48458fb4112aae2b54b9be",
+                "url": "https://api.github.com/repos/Codeinwp/themeisle-content-forms/zipball/d639a0bbb24a32ae554805f4acc01eafe6b7a327",
+                "reference": "d639a0bbb24a32ae554805f4acc01eafe6b7a327",
                 "shasum": ""
             },
             "require": {
@@ -249,7 +249,7 @@
             ],
             "description": "ThemeIsle Content Forms.",
             "homepage": "https://github.com/Codeinwp/themeisle-content-forms",
-            "time": "2020-04-22T07:45:52+00:00"
+            "time": "2020-07-17T08:28:46+00:00"
         },
         {
             "name": "codeinwp/themeisle-onboarding",
@@ -257,12 +257,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/themeisle-onboarding.git",
-                "reference": "4a3c170303c4cd184b38d3f2d136eb0464fb60fb"
+                "reference": "3404cc9f5880101c23f178e07bbac2bc973294f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/themeisle-onboarding/zipball/4a3c170303c4cd184b38d3f2d136eb0464fb60fb",
-                "reference": "4a3c170303c4cd184b38d3f2d136eb0464fb60fb",
+                "url": "https://api.github.com/repos/Codeinwp/themeisle-onboarding/zipball/3404cc9f5880101c23f178e07bbac2bc973294f1",
+                "reference": "3404cc9f5880101c23f178e07bbac2bc973294f1",
                 "shasum": ""
             },
             "require-dev": {
@@ -292,7 +292,7 @@
             ],
             "description": "ThemeIsle Onboarding Module.",
             "homepage": "https://github.com/Codeinwp/themeisle-onboarding",
-            "time": "2020-07-10T09:04:15+00:00"
+            "time": "2020-07-16T11:06:16+00:00"
         },
         {
             "name": "codeinwp/themeisle-sdk",
@@ -574,29 +574,29 @@
         },
         {
             "name": "php-http/discovery",
-            "version": "1.9.0",
+            "version": "1.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/discovery.git",
-                "reference": "9ab7668fee74a5ad61996095e50917bd50ee8bfe"
+                "reference": "64a18cc891957e05d91910b3c717d6bd11fbede9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/discovery/zipball/9ab7668fee74a5ad61996095e50917bd50ee8bfe",
-                "reference": "9ab7668fee74a5ad61996095e50917bd50ee8bfe",
+                "url": "https://api.github.com/repos/php-http/discovery/zipball/64a18cc891957e05d91910b3c717d6bd11fbede9",
+                "reference": "64a18cc891957e05d91910b3c717d6bd11fbede9",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1"
+                "php": "^7.1 || ^8.0"
             },
             "conflict": {
                 "nyholm/psr7": "<1.0"
             },
             "require-dev": {
-                "akeneo/phpspec-skip-example-extension": "^4.0",
+                "graham-campbell/phpspec-skip-example-extension": "^5.0",
                 "php-http/httplug": "^1.0 || ^2.0",
                 "php-http/message-factory": "^1.0",
-                "phpspec/phpspec": "^5.1",
+                "phpspec/phpspec": "^5.1 || ^6.1",
                 "puli/composer-plugin": "1.0.0-beta10"
             },
             "suggest": {
@@ -635,7 +635,7 @@
                 "message",
                 "psr7"
             ],
-            "time": "2020-07-02T11:43:45+00:00"
+            "time": "2020-07-13T15:44:45+00:00"
         },
         {
             "name": "php-http/httplug",
