@@ -193,8 +193,6 @@ class Orbit_Fox {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
-		$this->loader->add_action( 'after_setup_theme', $this, 'load_onboarding', 999999 );
-
 		$this->loader->add_action( 'init', Orbit_Fox_Neve_Dropin::instance(), 'init' );
 
 		// Fix update checks on themeisle.com for non-premium themes
@@ -209,37 +207,6 @@ class Orbit_Fox {
 		add_filter( 'visualizer_enable_licenser', '__return_false' );
 		add_filter( 'wp_product_review_enable_licenser', '__return_false' );
 		add_filter( 'feedzy_rss_feeds_licenser', '__return_false' );
-
-	}
-
-	/**
-	 * Load onboarding, if missing.
-	 */
-	public function load_onboarding() {
-		if ( defined( 'TI_ONBOARDING_DISABLED' ) ) {
-			return;
-		}
-		$theme_support = get_theme_support( 'themeisle-demo-import' );
-
-		if ( empty( $theme_support ) ) {
-			return;
-		}
-
-		$library = OBX_PATH . '/vendor/codeinwp/themeisle-onboarding/load.php';
-
-		if ( ! is_file( $library ) ) {
-			return;
-		}
-		require_once $library;
-
-		add_filter(
-			'themeisle_site_import_uri',
-			function () {
-				return OBFX_URL . \TIOB\Main::OBOARDING_PATH;
-			}
-		);
-
-		\TIOB\Main::instance();
 
 	}
 

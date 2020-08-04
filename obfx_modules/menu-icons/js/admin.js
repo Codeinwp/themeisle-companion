@@ -74,7 +74,7 @@ var obfx_menuicons_module_admin = function( $, menu_icons ) {
 		$( el ).find( '.menu-item-bar .menu-item-handle' ).css( 'overflow', 'initial' );
 
 		$( el ).find( '.obfx-menu-icon ~ span' ).on(
-			'hover', function(){
+			'mouseover', function(){
 				$( this ).parent().find( '.obfx-menu-icon' ).iconpicker(
 					{
 						icons: all_icons,
