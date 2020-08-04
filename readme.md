@@ -109,6 +109,15 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 ## Changelog ##
 
+##### [Version 2.9.13](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.12...v2.9.13) (2020-08-04)
+
+- Removed Starter Sites library and import process used for the Neve theme
+- [Fix] Menu Icons module not working with WP 5.5
+- [Fix] Empty team member widget appearing on mobile in Hestia theme
+
+
+
+
 ##### [Version 2.9.12](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.11...v2.9.12) (2020-07-20)
 
 - New checkbox field in the Contact widget for both Elementor and Beaver Builder
