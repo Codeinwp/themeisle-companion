@@ -1,3 +1,8 @@
+##### [Version 2.9.12](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.11...v2.9.12) (2020-07-20)
+
+- New checkbox field in the Contact widget for both Elementor and Beaver Builder
+- [Fix] Newsletter widget not taking into account the double opt-in option from Mailchimp
+
 ##### [Version 2.9.11](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.10...v2.9.11) (2020-07-10)
 
 - Starter Sites library and import process from the Neve theme
