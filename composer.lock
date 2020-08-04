@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d00295f54520080d0a01cd4b61391b7b",
+    "content-hash": "e263f5bb5abbd4c64fa85d2a197190ae",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -129,16 +129,16 @@
         },
         {
             "name": "codeinwp/gutenberg-blocks",
-            "version": "1.5.3",
+            "version": "1.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/gutenberg-blocks.git",
-                "reference": "ad512c53be4f7ebe79ac2ed40f39cf9a9d4a4885"
+                "reference": "6ae404626b17e9677f5340da22d31f8f9a5279fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/gutenberg-blocks/zipball/ad512c53be4f7ebe79ac2ed40f39cf9a9d4a4885",
-                "reference": "ad512c53be4f7ebe79ac2ed40f39cf9a9d4a4885",
+                "url": "https://api.github.com/repos/Codeinwp/gutenberg-blocks/zipball/6ae404626b17e9677f5340da22d31f8f9a5279fd",
+                "reference": "6ae404626b17e9677f5340da22d31f8f9a5279fd",
                 "shasum": ""
             },
             "require": {
@@ -147,7 +147,7 @@
             },
             "require-dev": {
                 "automattic/vipwpcs": "^0.3.0",
-                "dealerdirect/phpcodesniffer-composer-installer": "0.6.2",
+                "dealerdirect/phpcodesniffer-composer-installer": "0.7.0",
                 "phpcompatibility/php-compatibility": "^9",
                 "squizlabs/php_codesniffer": "^3.3",
                 "wp-coding-standards/wpcs": "^1"
@@ -169,7 +169,7 @@
             ],
             "description": "A set of awesome Gutenberg Blocks!",
             "homepage": "https://github.com/Codeinwp/gutenberg-blocks",
-            "time": "2020-06-22T21:35:29+00:00"
+            "time": "2020-08-03T06:25:38+00:00"
         },
         {
             "name": "codeinwp/templates-directory",
@@ -250,49 +250,6 @@
             "description": "ThemeIsle Content Forms.",
             "homepage": "https://github.com/Codeinwp/themeisle-content-forms",
             "time": "2020-07-17T08:28:46+00:00"
-        },
-        {
-            "name": "codeinwp/themeisle-onboarding",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Codeinwp/themeisle-onboarding.git",
-                "reference": "3404cc9f5880101c23f178e07bbac2bc973294f1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/themeisle-onboarding/zipball/3404cc9f5880101c23f178e07bbac2bc973294f1",
-                "reference": "3404cc9f5880101c23f178e07bbac2bc973294f1",
-                "shasum": ""
-            },
-            "require-dev": {
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4 || ^0.5.0 || ^0.6.0",
-                "squizlabs/php_codesniffer": "^3.1",
-                "wp-coding-standards/wpcs": "^1.0.0 || ^2.0.0"
-            },
-            "type": "library",
-            "extra": {
-                "installer-disable": "true"
-            },
-            "autoload": {
-                "psr-4": {
-                    "TIOB\\": "includes/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-3.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "ThemeIsle team",
-                    "email": "friends@themeisle.com",
-                    "homepage": "https://themeisle.com"
-                }
-            ],
-            "description": "ThemeIsle Onboarding Module.",
-            "homepage": "https://github.com/Codeinwp/themeisle-onboarding",
-            "time": "2020-07-16T11:06:16+00:00"
         },
         {
             "name": "codeinwp/themeisle-sdk",
