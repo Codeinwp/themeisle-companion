@@ -182,23 +182,6 @@ class Orbit_Fox_Admin {
 	}
 
 	/**
-	 * Define partners data.
-	 */
-	public function load_recommended_partners() {
-		add_filter(
-			'wpforms_upgrade_link',
-			function ( $url ) {
-				return 'http://www.shareasale.com/r.cfm?B=837827&U=848264&M=64312&urllink=' . rawurlencode( $url );
-			}
-		);
-
-		if ( get_option( 'translatepress_avg_affiliate_id', false ) === false ) {
-			update_option( 'translatepress_avg_affiliate_id', '91096' );
-		}
-
-	}
-
-	/**
 	 * Calls the orbit_fox_modules hook.
 	 *
 	 * @since   1.0.0
