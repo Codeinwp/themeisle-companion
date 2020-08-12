@@ -2,7 +2,7 @@
 Contributors: themeisle, codeinwp, rodicaelena, baicusandrei, hardeepasrani
 Tags: widget, admin, widgets, sharing, sections, themes, stock photos, custom icons, icons, menu icons, stock, templates
 Requires at least: 4.7
-Tested up to: 5.4
+Tested up to: 5.5
 Requires PHP: 5.6
 Stable tag: trunk
 License: GPLv2 or later
@@ -176,7 +176,7 @@ New Header/Footer Scripts module
 
 ##### [Version 2.9.6](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.5...v2.9.6) (2020-04-06)
 
-* Update compatibility with WordPress 5.4 
+* Update compatibility with WordPress 5.4
 * Sync dependencies
 * Fix selective refresh for Hestia enhacements features
 
@@ -209,7 +209,7 @@ New Header/Footer Scripts module
 
 ##### [Version 2.9.2](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.1...v2.9.2) (2020-02-13)
 
-* Fix issue with cookie notices closing behavior. 
+* Fix issue with cookie notices closing behavior.
 * Fix notice when Otter and Orbit Fox were both active.
 
 
@@ -224,62 +224,62 @@ New Header/Footer Scripts module
 
 #### [Version 2.9.0](https://github.com/Codeinwp/themeisle-companion/compare/v2.8.14...v2.9.0) (2020-02-03)
 
-* Update dependencies 
+* Update dependencies
 * Remove legacy modules
 
 
 
-= 2.8.14 - 2019-12-02  = 
+= 2.8.14 - 2019-12-02  =
 
 * Fix fatal error with Membership Pro
 * Various bug fixes to forms and Elementor widgets
 
 
-= 2.8.13 - 2019-11-18  = 
+= 2.8.13 - 2019-11-18  =
 
 * Fix dependency issues on content forms module
 
 
-= 2.8.12 - 2019-11-18  = 
+= 2.8.12 - 2019-11-18  =
 
 * sync dependencies
 
 
-= 2.8.11 - 2019-11-18  = 
+= 2.8.11 - 2019-11-18  =
 
 * Various improvements for Beaver and Elementor form widgets.
 * Improvements to the post grid Elementor module.
 * Compatibility with WordPress 5.3
 
 
-= 2.8.10 - 2019-09-13  = 
+= 2.8.10 - 2019-09-13  =
 
 * Development
 
 
-= 2.8.8 - 2019-09-11  = 
+= 2.8.8 - 2019-09-11  =
 
 * Fixes Constant Warning for Beaver Widgets Module
 
 
-= 2.8.7 - 2019-08-13  = 
+= 2.8.7 - 2019-08-13  =
 
 * Fix error notice in menu icons
 
 
-= 2.8.6 - 2019-08-12  = 
+= 2.8.6 - 2019-08-12  =
 
 * Improve script loading performance
 * Fix issue with mystock import
 
 
-= 2.8.5 - 2019-07-26  = 
+= 2.8.5 - 2019-07-26  =
 
 * Update Elementor content forms widgets compatiblity with the latest version.
 * Various fixes for the gutenberg blocks module.
 
 
-= 2.8.4 - 2019-05-23  = 
+= 2.8.4 - 2019-05-23  =
 
 * minor adjustments to the dashboard UI
 * various updates to the Gutenberg blocks available
