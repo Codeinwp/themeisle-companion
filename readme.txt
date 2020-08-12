@@ -109,6 +109,13 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 == Changelog ==
 
+##### [Version 2.9.16](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.15...v2.9.16) (2020-08-12)
+
+fix: add permission_callback for analytics module
+
+
+
+
 ##### [Version 2.9.15](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.14...v2.9.15) (2020-08-12)
 
 fix: notice showing up in the editor on the new WordPress version for users with WP_DEBUG turned on
