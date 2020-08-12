@@ -96,8 +96,11 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				array(
 					'methods'  => WP_REST_Server::CREATABLE,
 					'callback' => array( $this, 'refresh_tracking_links' ),
+                    'permission_callback' => function () {
+                        return current_user_can( 'manage_options' );
+                    },
 				),
-			) 
+			)
 		);
 	}
 
@@ -147,7 +150,7 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			array(
 				'headers' => $req_headers,
 				'body'    => $req_body,
-			) 
+			)
 		);
 
 		return $request;
@@ -185,7 +188,7 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			array(
 				'url'   => $this->get_endpoint_url( '/obfx-analytics' ),
 				'nonce' => wp_create_nonce( 'wp_rest' ),
-			) 
+			)
 		);
 		wp_enqueue_script( $script_handle );
 	}
@@ -230,7 +233,7 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 					'site_url'    => home_url(),
 					'site_return' => admin_url( 'admin.php?page=obfx_companion#obfx-mod-google-analytics' ),
 				),
-				$url 
+				$url
 			);
 
 			return array(
@@ -318,7 +321,7 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			array(
 				'headers' => $req_headers,
 				'body'    => $req_body,
-			) 
+			)
 		);
 
 		if ( empty( $request['body'] ) ) {
