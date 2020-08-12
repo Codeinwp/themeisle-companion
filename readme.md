@@ -109,6 +109,13 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 ## Changelog ##
 
+##### [Version 2.9.15](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.14...v2.9.15) (2020-08-12)
+
+fix: notice showing up in the editor on the new WordPress version for users with WP_DEBUG turned on
+
+
+
+
 ##### [Version 2.9.14](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.13...v2.9.14) (2020-08-07)
 
 - Remove affiliate link
@@ -176,7 +183,7 @@ New Header/Footer Scripts module
 
 ##### [Version 2.9.6](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.5...v2.9.6) (2020-04-06)
 
-* Update compatibility with WordPress 5.4 
+* Update compatibility with WordPress 5.4
 * Sync dependencies
 * Fix selective refresh for Hestia enhacements features
 
@@ -209,7 +216,7 @@ New Header/Footer Scripts module
 
 ##### [Version 2.9.2](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.1...v2.9.2) (2020-02-13)
 
-* Fix issue with cookie notices closing behavior. 
+* Fix issue with cookie notices closing behavior.
 * Fix notice when Otter and Orbit Fox were both active.
 
 
@@ -224,7 +231,7 @@ New Header/Footer Scripts module
 
 #### [Version 2.9.0](https://github.com/Codeinwp/themeisle-companion/compare/v2.8.14...v2.9.0) (2020-02-03)
 
-* Update dependencies 
+* Update dependencies
 * Remove legacy modules
 
 
