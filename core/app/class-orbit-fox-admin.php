@@ -107,6 +107,22 @@ class Orbit_Fox_Admin {
 		}
 		if ( in_array( $screen->id, array( 'toplevel_page_obfx_companion' ), true ) ) {
 			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . '../assets/js/orbit-fox-admin.js', array( 'jquery' ), $this->version, false );
+			
+			wp_register_script( 'obfx-plugin-install', plugin_dir_url( __FILE__ ) . '../assets/js/plugin-install.js', array( 'jquery' ), $this->version, true );
+			
+			wp_localize_script(
+				'obfx-plugin-install',
+				'obfxPluginInstall',
+				array(
+					'activating' => esc_html__( 'Activating ', 'themeisle-companion' ),
+					'installing' => esc_html__( 'Installing ... ', 'themeisle-companion' ),
+				)
+			);
+			
+			wp_enqueue_script( 'plugin-install' );
+			wp_enqueue_script( 'updates' );
+			wp_enqueue_script( 'obfx-plugin-install' );
+			
 		}
 		do_action( 'obfx_admin_enqueue_scripts' );
 	}
@@ -259,97 +275,43 @@ class Orbit_Fox_Admin {
 			'wordpress-seo',
 		];
 		shuffle( $plugins );
-		add_thickbox();
 		echo sprintf( '<div class="obfx-recommended-title-wrapper"><span class="obfx-recommended-title"><span class="dashicons dashicons-megaphone"></span> &nbsp; %s</span><span class="obfx-recommended-disclosure"><i> <span class="dashicons dashicons-editor-help obfx-show-disclosure"></span>Some of these plugins are developed by us and from some others if you use them and upgrade to pro, we might earn a comission.</i></span><div class="clearfix"></div> </div>', 'Orbit Fox recommends' );
+		
+		$install_instance = new Orbit_Fox_Plugin_Install();
+		
 		foreach ( $plugins as $plugin ) {
-			$current_plugin = $this->call_plugin_api( $plugin );
+			$current_plugin = $install_instance->call_plugin_api( $plugin );
 			if ( ! isset( $current_plugin->name ) ) {
 				continue;
 			}
-			$image = $current_plugin->icons['1x'];
-			$name  = $current_plugin->name;
-			$desc  = $current_plugin->short_description;
-			$url   = add_query_arg(
-				array(
-					'tab'       => 'plugin-information',
-					'plugin'    => $plugin,
-					'TB_iframe' => true,
-					'width'     => 800,
-					'height'    => 800,
-				),
-				network_admin_url( 'plugin-install.php' )
-			);
-			echo sprintf(
-				'<div class="tile obfx-recommended ">
-					<div class="tile-icon">
-						<div class="obfx-icon-recommended">
-							<img  width="100" src="%s"/>
-						</div>
-					</div>
-					<div class="tile-content">
-						<p class="tile-title">%s</p>
-						<p class="tile-subtitle">%s</p>
-					</div>
-					<div class="tile-action">
-						<div class="form-group">
-							<label class="form-switch activated">
-								 <a class="button button-primary thickbox " href="%s"><span class="dashicons dashicons-download"></span>%s</a>
-							</label>
-						</div>
-					</div>
-				</div>',
-				esc_url( $image ),
-				esc_attr( $name ),
-				esc_attr( $desc ),
-				esc_url( $url ),
-				esc_attr__( 'Install', 'themeisle-companion' )
-			);
+			$image  = $install_instance->check_for_icon( $current_plugin->icons );
+			$name   = $current_plugin->name;
+			$desc   = $current_plugin->short_description;
+			$button = $install_instance->get_button_html( $plugin );
+			
+			echo '<div class="tile obfx-recommended ">';
+			echo '<div class="tile-icon">';
+			echo '<div class="obfx-icon-recommended">';
+			echo '<img  width="100" src="' . esc_url( $image ) . '"/>';
+			echo '</div>';
+			echo '</div>';
+			echo '<div class="tile-content">';
+			echo '<p class="tile-title">' . esc_html( $name ) . '</p>';
+			echo '<p class="tile-subtitle">' . esc_html( $desc ) . '</p>';
+			echo '</div>';
+			echo '<div class="tile-action">';
+			echo '<div class="form-group">';
+			echo '<label class="form-switch activated">';
+			echo wp_kses_post( $button );
+			echo '</label>';
+			echo '</div>';
+			echo '</div>';
+			echo '</div>';
 		}
 
 	}
 
-	/**
-	 * Get info from wporg api.
-	 *
-	 * @param string $slug Plugin slug.
-	 *
-	 * @return array|mixed|object|WP_Error
-	 */
-	public function call_plugin_api( $slug ) {
-		include_once ABSPATH . 'wp-admin/includes/plugin-install.php';
-
-		$call_api = get_transient( 'ti_plugin_info_' . $slug );
-
-		if ( false === $call_api ) {
-			$call_api = plugins_api(
-				'plugin_information',
-				array(
-					'slug'   => $slug,
-					'fields' => array(
-						'downloaded'        => false,
-						'rating'            => false,
-						'description'       => false,
-						'short_description' => true,
-						'donate_link'       => false,
-						'tags'              => false,
-						'sections'          => true,
-						'homepage'          => true,
-						'added'             => false,
-						'last_updated'      => false,
-						'compatibility'     => false,
-						'tested'            => false,
-						'requires'          => false,
-						'downloadlink'      => false,
-						'icons'             => true,
-						'banners'           => true,
-					),
-				)
-			);
-			set_transient( 'ti_plugin_info_' . $slug, $call_api, 1 * DAY_IN_SECONDS );
-		}
-
-		return $call_api;
-	}
+	
 
 	/**
 	 * This method is called via AJAX and processes the

@@ -3878,15 +3878,40 @@ ul.obfx-menu-tabs{
     line-height: 15px;
     box-shadow: none;
     text-shadow: none;
+    display: inline;
 }
 
-.obfx-recommended .button-primary:hover {
+.obfx-recommended .button-primary:hover,
+.obfx-recommended .button-primary:active,
+.obfx-recommended .button-primary:focus {
 	background: #fff;
 	border-color: #5764c6;
 	color: #5764c6;
 	font-weight: 500;
 	text-decoration: none;
 	transition: 0.3s;
+}
+
+.obfx-recommended .button-primary.updating-message:before {
+    color: #fff;
+    margin: 0;
+    vertical-align: middle;
+    margin-right: 5px;
+    padding: 0;
+}
+
+.obfx-recommended .button-primary span.dashicons {
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.obfx-recommended .button-primary:hover span.dashicons,
+.obfx-recommended .button-primary.updating-message:hover:before,
+.obfx-recommended .button-primary:active span.dashicons,
+.obfx-recommended .button-primary.updating-message:active:before,
+.obfx-recommended .button-primary:focus span.dashicons,
+.obfx-recommended .button-primary.updating-message:focus:before{
+    color: #5764c6;
 }
 
 .wp-core-ui .button-primary:hover {
