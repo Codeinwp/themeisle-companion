@@ -275,7 +275,7 @@ class Orbit_Fox_Admin {
 			'wordpress-seo',
 		];
 		shuffle( $plugins );
-		echo sprintf( '<div class="obfx-recommended-title-wrapper"><span class="obfx-recommended-title"><span class="dashicons dashicons-megaphone"></span> &nbsp; %s</span><span class="obfx-recommended-disclosure"><i> <span class="dashicons dashicons-editor-help obfx-show-disclosure"></span>Some of these plugins are developed by us and from some others if you use them and upgrade to pro, we might earn a comission.</i></span><div class="clearfix"></div> </div>', 'Orbit Fox recommends' );
+		echo sprintf( '<div class="obfx-recommended-title-wrapper"><span class="obfx-recommended-title"><span class="dashicons dashicons-megaphone"></span> &nbsp; %s</span><div class="clearfix"></div></div>', 'Orbit Fox recommends' );
 		
 		$install_instance = new Orbit_Fox_Plugin_Install();
 		
