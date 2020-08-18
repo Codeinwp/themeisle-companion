@@ -3057,8 +3057,8 @@ html {
     position: relative;
 	-webkit-align-content: space-between;
 	align-content: space-between;
-	-webkit-align-items: flex-start;
-	align-items: flex-start;
+	-webkit-align-items: center;
+	align-items: center;
 	-webkit-box-align: start;
 	-ms-flex-align: start;
 	-ms-flex-line-pack: justify;
