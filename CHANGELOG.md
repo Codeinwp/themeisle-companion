@@ -1,3 +1,8 @@
+##### [Version 2.9.17](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.16...v2.9.17) (2020-09-02)
+
+- [Fix] Compatibility with WP 5.5
+- [Fix] Installing recommended plugins not working
+
 ##### [Version 2.9.16](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.15...v2.9.16) (2020-08-12)
 
 fix: add permission_callback for analytics module
