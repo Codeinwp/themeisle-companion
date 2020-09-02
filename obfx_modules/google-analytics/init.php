@@ -94,11 +94,11 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			'/obfx-analytics',
 			array(
 				array(
-					'methods'  => WP_REST_Server::CREATABLE,
-					'callback' => array( $this, 'refresh_tracking_links' ),
-                    'permission_callback' => function () {
-                        return current_user_can( 'manage_options' );
-                    },
+					'methods'             => WP_REST_Server::CREATABLE,
+					'callback'            => array( $this, 'refresh_tracking_links' ),
+					'permission_callback' => function () {
+						return current_user_can( 'manage_options' );
+					},
 				),
 			)
 		);
