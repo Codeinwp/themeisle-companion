@@ -109,6 +109,13 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 ## Changelog ##
 
+##### [Version 2.9.18](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.17...v2.9.18) (2020-09-21)
+
+- [Fix] Missing FontAwesome icons when Otter Blocks plugin was active
+
+
+
+
 ##### [Version 2.9.17](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.16...v2.9.17) (2020-09-02)
 
 - [Fix] Compatibility with WP 5.5
