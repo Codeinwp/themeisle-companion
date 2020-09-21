@@ -64,12 +64,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/elementor-extra-widgets.git",
-                "reference": "88bcf00006a5d655b0d74359bbc5ed49bcb54754"
+                "reference": "048662932077466304c856332f2b883f946425fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/elementor-extra-widgets/zipball/88bcf00006a5d655b0d74359bbc5ed49bcb54754",
-                "reference": "88bcf00006a5d655b0d74359bbc5ed49bcb54754",
+                "url": "https://api.github.com/repos/Codeinwp/elementor-extra-widgets/zipball/048662932077466304c856332f2b883f946425fa",
+                "reference": "048662932077466304c856332f2b883f946425fa",
                 "shasum": ""
             },
             "type": "library",
@@ -90,7 +90,7 @@
                 }
             ],
             "homepage": "https://github.com/Codeinwp/elementor-extra-widgets",
-            "time": "2020-04-15T09:34:10+00:00"
+            "time": "2020-09-16T12:03:45+00:00"
         },
         {
             "name": "codeinwp/full-width-page-templates",
@@ -129,16 +129,16 @@
         },
         {
             "name": "codeinwp/gutenberg-blocks",
-            "version": "1.5.6",
+            "version": "1.5.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/gutenberg-blocks.git",
-                "reference": "ec7de44221a23f77c2e2b7448153976a73192955"
+                "reference": "4fe3a7c749ffa541fc6273d21e09c72ed2b3e6a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/gutenberg-blocks/zipball/ec7de44221a23f77c2e2b7448153976a73192955",
-                "reference": "ec7de44221a23f77c2e2b7448153976a73192955",
+                "url": "https://api.github.com/repos/Codeinwp/gutenberg-blocks/zipball/4fe3a7c749ffa541fc6273d21e09c72ed2b3e6a3",
+                "reference": "4fe3a7c749ffa541fc6273d21e09c72ed2b3e6a3",
                 "shasum": ""
             },
             "require": {
@@ -169,7 +169,7 @@
             ],
             "description": "A set of awesome Gutenberg Blocks!",
             "homepage": "https://github.com/Codeinwp/gutenberg-blocks",
-            "time": "2020-08-12T10:55:29+00:00"
+            "time": "2020-09-14T19:50:48+00:00"
         },
         {
             "name": "codeinwp/templates-directory",
@@ -531,16 +531,16 @@
         },
         {
             "name": "php-http/discovery",
-            "version": "1.9.1",
+            "version": "1.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/discovery.git",
-                "reference": "64a18cc891957e05d91910b3c717d6bd11fbede9"
+                "reference": "88ff14cad4a0db68b343260fa7ac3f1599703660"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/discovery/zipball/64a18cc891957e05d91910b3c717d6bd11fbede9",
-                "reference": "64a18cc891957e05d91910b3c717d6bd11fbede9",
+                "url": "https://api.github.com/repos/php-http/discovery/zipball/88ff14cad4a0db68b343260fa7ac3f1599703660",
+                "reference": "88ff14cad4a0db68b343260fa7ac3f1599703660",
                 "shasum": ""
             },
             "require": {
@@ -592,7 +592,7 @@
                 "message",
                 "psr7"
             ],
-            "time": "2020-07-13T15:44:45+00:00"
+            "time": "2020-09-04T08:41:23+00:00"
         },
         {
             "name": "php-http/httplug",
