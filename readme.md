@@ -2,7 +2,7 @@
 **Contributors:** [themeisle](https://profiles.wordpress.org/themeisle), [codeinwp](https://profiles.wordpress.org/codeinwp), [rodicaelena](https://profiles.wordpress.org/rodicaelena), [baicusandrei](https://profiles.wordpress.org/baicusandrei), [hardeepasrani](https://profiles.wordpress.org/hardeepasrani)  
 **Tags:** widget, admin, widgets, sharing, sections, themes, stock photos, custom icons, icons, menu icons, stock, templates  
 **Requires at least:** 4.7  
-**Tested up to:** 5.4  
+**Tested up to:** 5.5  
 **Requires PHP:** 5.6  
 **Stable tag:** trunk  
 **License:** GPLv2 or later  
@@ -109,6 +109,35 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 ## Changelog ##
 
+##### [Version 2.9.17](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.16...v2.9.17) (2020-09-02)
+
+- [Fix] Compatibility with WP 5.5
+- [Fix] Installing recommended plugins not working
+
+
+
+
+##### [Version 2.9.16](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.15...v2.9.16) (2020-08-12)
+
+fix: add permission_callback for analytics module
+
+
+
+
+##### [Version 2.9.15](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.14...v2.9.15) (2020-08-12)
+
+fix: notice showing up in the editor on the new WordPress version for users with WP_DEBUG turned on
+
+
+
+
+##### [Version 2.9.14](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.13...v2.9.14) (2020-08-07)
+
+- Remove affiliate link
+
+
+
+
 ##### [Version 2.9.13](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.12...v2.9.13) (2020-08-04)
 
 - Removed Starter Sites library and import process used for the Neve theme
@@ -169,7 +198,7 @@ New Header/Footer Scripts module
 
 ##### [Version 2.9.6](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.5...v2.9.6) (2020-04-06)
 
-* Update compatibility with WordPress 5.4 
+* Update compatibility with WordPress 5.4
 * Sync dependencies
 * Fix selective refresh for Hestia enhacements features
 
@@ -202,7 +231,7 @@ New Header/Footer Scripts module
 
 ##### [Version 2.9.2](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.1...v2.9.2) (2020-02-13)
 
-* Fix issue with cookie notices closing behavior. 
+* Fix issue with cookie notices closing behavior.
 * Fix notice when Otter and Orbit Fox were both active.
 
 
@@ -217,7 +246,7 @@ New Header/Footer Scripts module
 
 #### [Version 2.9.0](https://github.com/Codeinwp/themeisle-companion/compare/v2.8.14...v2.9.0) (2020-02-03)
 
-* Update dependencies 
+* Update dependencies
 * Remove legacy modules
 
 
