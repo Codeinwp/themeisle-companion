@@ -6,10 +6,13 @@
 /**
  * Class Custom_Fonts_Admin
  */
-class Custom_Fonts_Admin{
+class Custom_Fonts_Admin {
 	
 	/**
 	 * Create custom fonts taxonomy.
+	 *
+	 * @since 2.10
+	 * @return void
 	 */
 	public function create_taxonomy() {
 		$labels = array(
@@ -47,6 +50,9 @@ class Custom_Fonts_Admin{
 	
 	/**
 	 * Add custom fonts taxonomy to menu.
+	 *
+	 * @since 2.10
+	 * @return void
 	 */
 	public function add_to_menu() {
 		add_submenu_page(
@@ -63,6 +69,7 @@ class Custom_Fonts_Admin{
 	 * It hides the description and slug fields and it changes the description for the name field.
 	 *
 	 * @since 2.10
+	 * @return void
 	 */
 	public function edit_custom_font_form() {
 		global $parent_file, $submenu_file;
@@ -74,9 +81,9 @@ class Custom_Fonts_Admin{
 			return;
 		} ?>
 		<style>#addtag div.form-field.term-slug-wrap, #edittag tr.form-field.term-slug-wrap { display: none; }
-            #addtag div.form-field.term-description-wrap, #edittag tr.form-field.term-description-wrap { display: none; }</style><script>jQuery( document ).ready( function( $ ) {
+			#addtag div.form-field.term-description-wrap, #edittag tr.form-field.term-description-wrap { display: none; }</style><script>jQuery( document ).ready( function( $ ) {
 				var $wrapper = $( '#addtag, #edittag' );
-				$wrapper.find( 'tr.form-field.term-name-wrap p, div.form-field.term-name-wrap > p' ).text( '<?php esc_html_e( 'The name of the font as it appears in the customizer options.', 'custom-fonts' ); ?>' );
+				$wrapper.find( 'tr.form-field.term-name-wrap p, div.form-field.term-name-wrap > p' ).text( '<?php esc_html_e( 'The name of the font as it appears in the customizer options.', 'themeisle-companion' ); ?>' );
 			} );
 		</script>
 		<?php
@@ -85,11 +92,10 @@ class Custom_Fonts_Admin{
 	/**
 	 * Manage custom fonts taxonomy columns.
 	 *
-	 * @since 2.10
-	 *
 	 * @param array $columns Default columns.
 	 *
-	 * @return array.
+	 * @since 2.10
+	 * @return array
 	 */
 	public function manage_columns( $columns ) {
 		
@@ -111,19 +117,20 @@ class Custom_Fonts_Admin{
 	 * Add new Taxonomy data
 	 *
 	 * @since 2.10
+	 * @return void
 	 */
 	public function add_new_taxonomy_data() {
-		$this->font_file_new_field( 'font_woff_2', __( 'Font .woff2', 'custom-fonts' ), __( 'Upload the font\'s woff2 file or enter the URL.', 'custom-fonts' ) );
-		$this->font_file_new_field( 'font_woff', __( 'Font .woff', 'custom-fonts' ), __( 'Upload the font\'s woff file or enter the URL.', 'custom-fonts' ) );
-		$this->font_file_new_field( 'font_ttf', __( 'Font .ttf', 'custom-fonts' ), __( 'Upload the font\'s ttf file or enter the URL.', 'custom-fonts' ) );
-		$this->font_file_new_field( 'font_eot', __( 'Font .eot', 'custom-fonts' ), __( 'Upload the font\'s eot file or enter the URL.', 'custom-fonts' ) );
-		$this->font_file_new_field( 'font_svg', __( 'Font .svg', 'custom-fonts' ), __( 'Upload the font\'s svg file or enter the URL.', 'custom-fonts' ) );
-		$this->font_file_new_field( 'font_otf', __( 'Font .otf', 'custom-fonts' ), __( 'Upload the font\'s otf file or enter the URL.', 'custom-fonts' ) );
+		$this->font_file_new_field( 'font_woff_2', __( 'Font .woff2', 'themeisle-companion' ), __( 'Upload the font\'s woff2 file or enter the URL.', 'themeisle-companion' ) );
+		$this->font_file_new_field( 'font_woff', __( 'Font .woff', 'themeisle-companion' ), __( 'Upload the font\'s woff file or enter the URL.', 'themeisle-companion' ) );
+		$this->font_file_new_field( 'font_ttf', __( 'Font .ttf', 'themeisle-companion' ), __( 'Upload the font\'s ttf file or enter the URL.', 'themeisle-companion' ) );
+		$this->font_file_new_field( 'font_eot', __( 'Font .eot', 'themeisle-companion' ), __( 'Upload the font\'s eot file or enter the URL.', 'themeisle-companion' ) );
+		$this->font_file_new_field( 'font_svg', __( 'Font .svg', 'themeisle-companion' ), __( 'Upload the font\'s svg file or enter the URL.', 'themeisle-companion' ) );
+		$this->font_file_new_field( 'font_otf', __( 'Font .otf', 'themeisle-companion' ), __( 'Upload the font\'s otf file or enter the URL.', 'themeisle-companion' ) );
 		
 		$this->select_new_field(
 			'font-display',
-			__( 'Font Display', 'custom-fonts' ),
-			__( 'Select font-display property for this font', 'custom-fonts' ),
+			__( 'Font Display', 'themeisle-companion' ),
+			__( 'Select font-display property for this font', 'themeisle-companion' ),
 			array(
 				'auto'     => 'auto',
 				'block'    => 'block',
@@ -137,11 +144,13 @@ class Custom_Fonts_Admin{
 	/**
 	 * Add Taxonomy data field
 	 *
-	 * @since 1.0.0
 	 * @param int    $id current term id.
 	 * @param string $title font type title.
 	 * @param string $description title font type description.
 	 * @param string $value title font type meta values.
+	 *
+	 * @since 2.10
+	 * @return void
 	 */
 	protected function font_file_new_field( $id, $title, $description, $value = '' ) {
 		echo '<div class="obfx-custom-fonts-file-wrap form-field term-' . esc_attr( $id ) . '-wrap" >';
@@ -150,7 +159,7 @@ class Custom_Fonts_Admin{
 		echo '</label>';
 		echo '<input type="text" id="font-' . esc_attr( $id ) . '" class="obfx-custom-fonts-link ' . esc_attr( $id ) . '" name=" obfx_custom_fonts[' . esc_attr( $id ) . ']" value="' . esc_attr( $value ) . '" />';
 		echo '<a href="#" class="obfx-custom-fonts-upload button" data-upload-type="' . esc_attr( $id ) . '">';
-		esc_html_e( 'Upload', 'custom-fonts' );
+		esc_html_e( 'Upload', 'themeisle-companion' );
 		echo '</a>';
 		echo '<p>' . esc_html( $description ) . '</p>';
 		echo '</div>';
@@ -163,6 +172,8 @@ class Custom_Fonts_Admin{
 	 * @param string $title Field Title.
 	 * @param string $description Field Description.
 	 * @param array  $select_fields Select fields as Array.
+	 *
+	 * @since 2.10
 	 * @return void
 	 */
 	protected function select_new_field( $id, $title, $description, $select_fields ) {
@@ -179,23 +190,25 @@ class Custom_Fonts_Admin{
 	/**
 	 * Edit Taxonomy data
 	 *
-	 * @since 1.0.0
 	 * @param object $term taxonomy terms.
+	 *
+	 * @since 2.10
+	 * @return void
 	 */
 	public function edit_taxonomy_data( $term ) {
 		$data = self::get_font_links( $term->term_id );
-		$this->font_file_edit_field( 'font_woff_2', __( 'Font .woff2', 'custom-fonts' ), $data['font_woff_2'], __( 'Upload the font\'s woff2 file or enter the URL.', 'custom-fonts' ) );
-		$this->font_file_edit_field( 'font_woff', __( 'Font .woff', 'custom-fonts' ), $data['font_woff'], __( 'Upload the font\'s woff file or enter the URL.', 'custom-fonts' ) );
-		$this->font_file_edit_field( 'font_ttf', __( 'Font .ttf', 'custom-fonts' ), $data['font_ttf'], __( 'Upload the font\'s ttf file or enter the URL.', 'custom-fonts' ) );
-		$this->font_file_edit_field( 'font_eot', __( 'Font .eot', 'custom-fonts' ), $data['font_eot'], __( 'Upload the font\'s eot file or enter the URL.', 'custom-fonts' ) );
-		$this->font_file_edit_field( 'font_svg', __( 'Font .svg', 'custom-fonts' ), $data['font_svg'], __( 'Upload the font\'s svg file or enter the URL.', 'custom-fonts' ) );
-		$this->font_file_edit_field( 'font_otf', __( 'Font .otf', 'custom-fonts' ), $data['font_otf'], __( 'Upload the font\'s otf file or enter the URL.', 'custom-fonts' ) );
+		$this->font_file_edit_field( 'font_woff_2', __( 'Font .woff2', 'themeisle-companion' ), $data['font_woff_2'], __( 'Upload the font\'s woff2 file or enter the URL.', 'themeisle-companion' ) );
+		$this->font_file_edit_field( 'font_woff', __( 'Font .woff', 'themeisle-companion' ), $data['font_woff'], __( 'Upload the font\'s woff file or enter the URL.', 'themeisle-companion' ) );
+		$this->font_file_edit_field( 'font_ttf', __( 'Font .ttf', 'themeisle-companion' ), $data['font_ttf'], __( 'Upload the font\'s ttf file or enter the URL.', 'themeisle-companion' ) );
+		$this->font_file_edit_field( 'font_eot', __( 'Font .eot', 'themeisle-companion' ), $data['font_eot'], __( 'Upload the font\'s eot file or enter the URL.', 'themeisle-companion' ) );
+		$this->font_file_edit_field( 'font_svg', __( 'Font .svg', 'themeisle-companion' ), $data['font_svg'], __( 'Upload the font\'s svg file or enter the URL.', 'themeisle-companion' ) );
+		$this->font_file_edit_field( 'font_otf', __( 'Font .otf', 'themeisle-companion' ), $data['font_otf'], __( 'Upload the font\'s otf file or enter the URL.', 'themeisle-companion' ) );
 		
 		$this->select_edit_field(
 			'font-display',
-			__( 'Font Display', 'custom-fonts' ),
+			__( 'Font Display', 'themeisle-companion' ),
 			$data['font-display'],
-			__( 'Select font-display property for this font', 'custom-fonts' ),
+			__( 'Select font-display property for this font', 'themeisle-companion' ),
 			array(
 				'auto'     => 'Auto',
 				'block'    => 'Block',
@@ -209,11 +222,13 @@ class Custom_Fonts_Admin{
 	/**
 	 * Add Taxonomy data field
 	 *
-	 * @since 1.0.0
 	 * @param int    $id current term id.
 	 * @param string $title font type title.
 	 * @param string $value title font type meta values.
 	 * @param string $description title font type description.
+	 *
+	 * @since 2.10
+	 * @return void
 	 */
 	protected function font_file_edit_field( $id, $title, $value = '', $description ) {
 		echo '<tr class="obfx-custom-fonts-file-wrap form-field term-' . esc_attr( $id ) . '-wrap ">';
@@ -225,7 +240,7 @@ class Custom_Fonts_Admin{
 		echo '<td>';
 		echo '<input id="metadata-' . esc_attr( $id ) . '" type="text" class="obfx-custom-fonts-link' . esc_attr( $id ) . '" name="obfx_custom_fonts[' . esc_attr( $id ) . ']" value="' . esc_attr( $value ) . '" />';
 		echo '<a href="#" class="obfx-custom-fonts-upload button" data-upload-type="' . esc_attr( $id ) . '">';
-		esc_html_e( 'Upload', 'custom-fonts' );
+		esc_html_e( 'Upload', 'themeisle-companion' );
 		echo '</a>';
 		echo '<p>';
 		echo esc_html( $description );
@@ -237,11 +252,13 @@ class Custom_Fonts_Admin{
 	/**
 	 * Render select field for the edit font screen.
 	 *
-	 * @param String $id Field ID.
-	 * @param String $title Field Title.
-	 * @param String $saved_val Field Value.
-	 * @param String $description Field Description.
-	 * @param Array  $select_fields Select fields as Array.
+	 * @param string $id Field ID.
+	 * @param string $title Field Title.
+	 * @param string $saved_val Field Value.
+	 * @param string $description Field Description.
+	 * @param array  $select_fields Select fields as Array.
+	 *
+	 * @since 2.10
 	 * @return void
 	 */
 	private function select_edit_field( $id, $title, $saved_val = '', $description, $select_fields ) {
@@ -269,27 +286,40 @@ class Custom_Fonts_Admin{
 	/**
 	 * Save Taxonomy meta data value
 	 *
-	 * @since 1.0.0
 	 * @param int $term_id current term id.
+	 *
+	 * @since 2.10
+	 * @return bool
 	 */
 	public function save_metadata( $term_id ) {
 		
 		if ( ! current_user_can( 'manage_options' ) ) {
-			return;
+			return false;
 		}
 		
-		if ( isset( $_POST[ 'obfx_custom_fonts' ] ) ) {// phpcs:ignore WordPress.Security.NonceVerification.Missing
-			$value = array_map( 'esc_url', $_POST[ 'obfx_custom_fonts' ] ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
-			self::update_font_links( $value, $term_id );
+		if ( isset( $_POST['obfx_custom_fonts'] ) ) {// phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$return_val = array();
+			foreach ( $_POST['obfx_custom_fonts'] as $key => $value ) {
+				if ( $key === 'font-display' ) {
+					$return_val[ $key ] = esc_attr( $value );
+					continue;
+				}
+				$return_val[ $key ] = esc_url( $value );
+			}
+			self::update_font_links( $return_val, $term_id );
 		}
+		
+		return true;
 	}
 	
 	/**
 	 * Update font data from name
 	 *
-	 * @since 1.0.0
 	 * @param array $posted custom font data.
 	 * @param int   $term_id custom font term id.
+	 *
+	 * @since 2.10
+	 * @return void
 	 */
 	public static function update_font_links( $posted, $term_id ) {
 		
@@ -307,9 +337,10 @@ class Custom_Fonts_Admin{
 	/**
 	 * Get font links
 	 *
-	 * @since 1.0.0
 	 * @param int $term_id custom font term id.
-	 * @return array $links custom font data links.
+	 *
+	 * @since 2.10
+	 * @return array
 	 */
 	public static function get_font_links( $term_id ) {
 		$links = get_option( "taxonomy_obfx_custom_fonts_{$term_id}", array() );
@@ -319,8 +350,10 @@ class Custom_Fonts_Admin{
 	/**
 	 * Default fonts
 	 *
-	 * @since 1.0.0
 	 * @param array $fonts fonts array of fonts.
+	 *
+	 * @since 2.10
+	 * @return array
 	 */
 	protected static function default_args( $fonts ) {
 		return wp_parse_args(
@@ -340,9 +373,10 @@ class Custom_Fonts_Admin{
 	/**
 	 * Allowed mime types and file extensions
 	 *
-	 * @since 1.0.0
 	 * @param array $mimes Current array of mime types.
-	 * @return array $mimes Updated array of mime types.
+	 *
+	 * @since 2.10
+	 * @return array
 	 */
 	public function add_fonts_to_allowed_mimes( $mimes ) {
 		$mimes['woff']  = 'application/x-font-woff';
@@ -358,12 +392,12 @@ class Custom_Fonts_Admin{
 	/**
 	 * Correct the mome types and extension for the font types.
 	 *
-	 * @param array  $defaults File data array containing 'ext', 'type', and
-	 *                                          'proper_filename' keys.
+	 * @param array  $defaults File data array containing 'ext', 'type', and 'proper_filename' keys.
 	 * @param string $file                      Full path to the file.
 	 * @param string $filename                  The name of the file (may differ from $file due to
 	 *                                          $file being in a tmp directory).
-	 * @return Array File data array containing 'ext', 'type', and
+	 * @since 2.10
+	 * @return array
 	 */
 	public function update_mime_types( $defaults, $file, $filename ) {
 		if ( 'ttf' === pathinfo( $filename, PATHINFO_EXTENSION ) ) {
