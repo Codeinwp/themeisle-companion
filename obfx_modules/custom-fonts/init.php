@@ -100,6 +100,9 @@ class Custom_Fonts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		// Add custom fonts in Elementor
 		$this->loader->add_filter( 'elementor/fonts/groups', $public_instance, 'elementor_group' );
 		$this->loader->add_filter( 'elementor/fonts/additional_fonts', $public_instance, 'add_elementor_fonts' );
+		
+		// Filter that returns the custom fonts list ( can be used at init hook or a hook that is called after init )
+		$this->loader->add_filter( 'obfx_get_custom_fonts_list', $public_instance, 'get_fonts' );
 	}
 	
 	/**

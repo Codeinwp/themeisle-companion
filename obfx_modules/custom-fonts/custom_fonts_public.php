@@ -11,17 +11,18 @@ class Custom_Fonts_Public {
 	/**
 	 * Member Varible
 	 *
-	 * @var string $font_css
+	 * @since  2.10
+	 * @var string
 	 */
 	protected $font_css = '';
 	
 	/**
 	 * Fonts
 	 *
-	 * @since  1.0.0
-	 * @var (string) $fonts
+	 * @since  2.10
+	 * @var array
 	 */
-	public static $fonts = null;
+	private $fonts = array();
 	
 	/**
 	 * Filter NeveReactCustomize object to add custom fonts.
@@ -42,25 +43,28 @@ class Custom_Fonts_Public {
 	 * @since 2.10
 	 * @return array
 	 */
-	private function get_fonts() {
+	public function get_fonts() {
+		if ( ! empty( $this->fonts ) ) {
+			return $this->fonts;
+		}
 		
-		if ( is_null( self::$fonts ) ) {
-			self::$fonts = array();
-			
-			$terms = get_terms(
-				'obfx_custom_fonts',
-				array(
-					'hide_empty' => false,
-				)
-			);
-			
-			if ( ! empty( $terms ) ) {
-				foreach ( $terms as $term ) {
-					self::$fonts[] = $term->name;
+		$terms = get_terms(
+			'obfx_custom_fonts',
+			array(
+				'hide_empty' => false,
+			)
+		);
+		
+		if ( ! empty( $terms ) ) {
+			foreach ( $terms as $term ) {
+				if ( ! is_object( $term ) || ! property_exists( $term, 'name' ) ) {
+					return $this->fonts;
 				}
+				$this->fonts[] = $term->name;
 			}
 		}
-		return self::$fonts;
+		
+		return $this->fonts;
 	}
 	
 	/**
