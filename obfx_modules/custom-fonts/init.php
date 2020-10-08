@@ -37,7 +37,7 @@ class Custom_Fonts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			)
 		);
 		$this->description    = __( 'Upload custom fonts and use them anywhere on your site.', 'themeisle-companion' );
-		$this->active_default = true;
+		$this->active_default = false;
 	}
 	
 	/**
@@ -66,6 +66,9 @@ class Custom_Fonts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return void
 	 */
 	public function hooks() {
+		
+		$this->loader->add_action( 'admin_enqueue_scripts', $this, 'enqueue_media_scripts' );
+		
 		$admin_instance = new Custom_Fonts_Admin();
 		$this->loader->add_action( 'init', $admin_instance, 'create_taxonomy' );
 		$this->loader->add_action( 'admin_menu', $admin_instance, 'add_to_menu' );
@@ -128,6 +131,13 @@ class Custom_Fonts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			'css' => array( 'admin' => array() ),
 			'js'  => array( 'admin' => array( 'jquery' ) ),
 		);
+	}
+	
+	/**
+	 * Enqueue media script for the upload button.
+	 */
+	public function enqueue_media_scripts() {
+		wp_enqueue_media();
 	}
 	
 	/**
