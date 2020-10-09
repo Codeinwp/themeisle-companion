@@ -98,18 +98,9 @@ class Custom_Fonts_Admin {
 	 * @return array
 	 */
 	public function manage_columns( $columns ) {
-		
-		$screen = get_current_screen();
-		// If current screen is add new custom fonts screen.
-		if ( isset( $screen->base ) && 'edit-tags' == $screen->base ) {
-			
-			$old_columns = $columns;
-			$columns     = array(
-				'cb'   => $old_columns['cb'],
-				'name' => $old_columns['name'],
-			);
-			
-		}
+		unset($columns['slug']);
+		unset($columns['description']);
+		unset($columns['posts']);
 		return $columns;
 	}
 	
