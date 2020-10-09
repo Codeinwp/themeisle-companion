@@ -98,9 +98,9 @@ class Custom_Fonts_Admin {
 	 * @return array
 	 */
 	public function manage_columns( $columns ) {
-		unset( $columns['slug'] );
-		unset( $columns['description'] );
-		unset( $columns['posts'] );
+		unset( $columns[ 'slug' ] );
+		unset( $columns[ 'description' ] );
+		unset( $columns[ 'posts' ] );
 		return $columns;
 	}
 	
