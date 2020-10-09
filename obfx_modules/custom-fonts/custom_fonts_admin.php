@@ -238,7 +238,7 @@ class Custom_Fonts_Admin {
 		echo '</label>';
 		echo '</th>';
 		echo '<td>';
-		echo '<input id="metadata-' . esc_attr( $id ) . '" type="text" class="obfx-custom-fonts-link' . esc_attr( $id ) . '" name="obfx_custom_fonts[' . esc_attr( $id ) . ']" value="' . esc_attr( $value ) . '" />';
+		echo '<input id="metadata-' . esc_attr( $id ) . '" type="text" class="obfx-custom-fonts-link ' . esc_attr( $id ) . '" name="obfx_custom_fonts[' . esc_attr( $id ) . ']" value="' . esc_attr( $value ) . '" />';
 		echo '<a href="#" class="obfx-custom-fonts-upload button" data-upload-type="' . esc_attr( $id ) . '">';
 		esc_html_e( 'Upload', 'themeisle-companion' );
 		echo '</a>';
