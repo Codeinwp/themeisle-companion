@@ -46,6 +46,6 @@
     "webpack-cli": "^4.2.0"
   },
   "dependencies": {
-    "flickr-sdk": "^3.9.0"
+    "flickr-sdk": "^3.10.0"
   }
 }
