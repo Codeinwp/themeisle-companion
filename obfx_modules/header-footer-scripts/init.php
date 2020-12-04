@@ -322,6 +322,7 @@ class Header_Footer_Scripts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		
 		if ( class_exists( 'WooCommerce', false ) && is_shop() ) {
 			$shop_id = get_option( 'woocommerce_shop_page_id' );
+			// phpcs:ignore
 			echo get_post_meta( $shop_id, 'obfx-header-scripts', true );
 		}
 	}
@@ -354,6 +355,8 @@ class Header_Footer_Scripts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		
 		if ( class_exists( 'WooCommerce', false ) && is_shop() ) {
 			$shop_id = get_option( 'woocommerce_shop_page_id' );
+			
+			// phpcs:ignore
 			echo get_post_meta( $shop_id, 'obfx-footer-scripts', true );
 		}
 	}
