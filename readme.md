@@ -109,6 +109,13 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 ## Changelog ##
 
+#### [Version 2.10.0](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.19...v2.10.0) (2020-10-09)
+
+- New Custom Fonts module
+
+
+
+
 ##### [Version 2.9.19](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.18...v2.9.19) (2020-09-25)
 
 * Fix elementor post grid jQuery dependencies
