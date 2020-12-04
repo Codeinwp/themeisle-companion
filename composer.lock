@@ -139,16 +139,16 @@
         },
         {
             "name": "codeinwp/gutenberg-blocks",
-            "version": "1.5.9",
+            "version": "1.5.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/gutenberg-blocks.git",
-                "reference": "f1973d4b3256d7f438dc1e46e1bb627cc8b9be0b"
+                "reference": "df03e718e47b78468542eb0a1846cab97723b28e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/gutenberg-blocks/zipball/f1973d4b3256d7f438dc1e46e1bb627cc8b9be0b",
-                "reference": "f1973d4b3256d7f438dc1e46e1bb627cc8b9be0b",
+                "url": "https://api.github.com/repos/Codeinwp/gutenberg-blocks/zipball/df03e718e47b78468542eb0a1846cab97723b28e",
+                "reference": "df03e718e47b78468542eb0a1846cab97723b28e",
                 "shasum": ""
             },
             "require": {
@@ -179,7 +179,7 @@
             ],
             "description": "A set of awesome Gutenberg Blocks!",
             "homepage": "https://github.com/Codeinwp/gutenberg-blocks",
-            "time": "2020-11-22T20:11:20+00:00"
+            "time": "2020-11-25T22:15:36+00:00"
         },
         {
             "name": "codeinwp/templates-directory",
@@ -541,16 +541,16 @@
         },
         {
             "name": "php-http/discovery",
-            "version": "1.12.0",
+            "version": "1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/discovery.git",
-                "reference": "4366bf1bc39b663aa87459bd725501d2f1988b6c"
+                "reference": "788f72d64c43dc361e7fcc7464c3d947c64984a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/discovery/zipball/4366bf1bc39b663aa87459bd725501d2f1988b6c",
-                "reference": "4366bf1bc39b663aa87459bd725501d2f1988b6c",
+                "url": "https://api.github.com/repos/php-http/discovery/zipball/788f72d64c43dc361e7fcc7464c3d947c64984a7",
+                "reference": "788f72d64c43dc361e7fcc7464c3d947c64984a7",
                 "shasum": ""
             },
             "require": {
@@ -602,7 +602,7 @@
                 "message",
                 "psr7"
             ],
-            "time": "2020-09-22T13:31:04+00:00"
+            "time": "2020-11-27T14:49:42+00:00"
         },
         {
             "name": "php-http/httplug",
