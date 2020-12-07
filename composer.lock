@@ -56,16 +56,6 @@
                 "stream_filter_append",
                 "stream_filter_register"
             ],
-            "funding": [
-                {
-                    "url": "https://clue.engineering/support",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/clue",
-                    "type": "github"
-                }
-            ],
             "time": "2020-10-02T12:38:20+00:00"
         },
         {
@@ -74,12 +64,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/elementor-extra-widgets.git",
-                "reference": "1d750d5367555eb2f4a649ab8e935a9537e80881"
+                "reference": "a76b4de7df500baff306113b415b076f3120e00c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/elementor-extra-widgets/zipball/1d750d5367555eb2f4a649ab8e935a9537e80881",
-                "reference": "1d750d5367555eb2f4a649ab8e935a9537e80881",
+                "url": "https://api.github.com/repos/Codeinwp/elementor-extra-widgets/zipball/a76b4de7df500baff306113b415b076f3120e00c",
+                "reference": "a76b4de7df500baff306113b415b076f3120e00c",
                 "shasum": ""
             },
             "type": "library",
@@ -100,7 +90,7 @@
                 }
             ],
             "homepage": "https://github.com/Codeinwp/elementor-extra-widgets",
-            "time": "2020-09-25T15:42:46+00:00"
+            "time": "2020-11-04T14:08:22+00:00"
         },
         {
             "name": "codeinwp/full-width-page-templates",
@@ -139,16 +129,16 @@
         },
         {
             "name": "codeinwp/gutenberg-blocks",
-            "version": "1.5.7",
+            "version": "1.5.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/gutenberg-blocks.git",
-                "reference": "4fe3a7c749ffa541fc6273d21e09c72ed2b3e6a3"
+                "reference": "df03e718e47b78468542eb0a1846cab97723b28e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/gutenberg-blocks/zipball/4fe3a7c749ffa541fc6273d21e09c72ed2b3e6a3",
-                "reference": "4fe3a7c749ffa541fc6273d21e09c72ed2b3e6a3",
+                "url": "https://api.github.com/repos/Codeinwp/gutenberg-blocks/zipball/df03e718e47b78468542eb0a1846cab97723b28e",
+                "reference": "df03e718e47b78468542eb0a1846cab97723b28e",
                 "shasum": ""
             },
             "require": {
@@ -179,7 +169,7 @@
             ],
             "description": "A set of awesome Gutenberg Blocks!",
             "homepage": "https://github.com/Codeinwp/gutenberg-blocks",
-            "time": "2020-09-14T19:50:48+00:00"
+            "time": "2020-11-25T22:15:36+00:00"
         },
         {
             "name": "codeinwp/templates-directory",
@@ -263,22 +253,24 @@
         },
         {
             "name": "codeinwp/themeisle-sdk",
-            "version": "3.2.15",
+            "version": "3.2.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/themeisle-sdk.git",
-                "reference": "95b7447a5f4faba410c281c4bf278fbd740fed71"
+                "reference": "b116dffbe39ea9e37169fdd683bab54c545fe560"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/themeisle-sdk/zipball/95b7447a5f4faba410c281c4bf278fbd740fed71",
-                "reference": "95b7447a5f4faba410c281c4bf278fbd740fed71",
+                "url": "https://api.github.com/repos/Codeinwp/themeisle-sdk/zipball/b116dffbe39ea9e37169fdd683bab54c545fe560",
+                "reference": "b116dffbe39ea9e37169fdd683bab54c545fe560",
                 "shasum": ""
             },
             "require-dev": {
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4",
-                "squizlabs/php_codesniffer": "^3.1",
-                "wp-coding-standards/wpcs": "^1.0.0"
+                "automattic/vipwpcs": "^1.0.0",
+                "dealerdirect/phpcodesniffer-composer-installer": "0.7.0",
+                "phpcompatibility/php-compatibility": "^9",
+                "squizlabs/php_codesniffer": "^3.3",
+                "wp-coding-standards/wpcs": "^1"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -292,12 +284,12 @@
                     "homepage": "https://themeisle.com"
                 }
             ],
-            "description": "ThemeIsle SDK.",
+            "description": "ThemeIsle SDK",
             "homepage": "https://github.com/Codeinwp/themeisle-sdk",
             "keywords": [
                 "wordpress"
             ],
-            "time": "2020-07-23T15:02:10+00:00"
+            "time": "2020-11-17T08:35:16+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -539,16 +531,16 @@
         },
         {
             "name": "php-http/discovery",
-            "version": "1.12.0",
+            "version": "1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/discovery.git",
-                "reference": "4366bf1bc39b663aa87459bd725501d2f1988b6c"
+                "reference": "788f72d64c43dc361e7fcc7464c3d947c64984a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/discovery/zipball/4366bf1bc39b663aa87459bd725501d2f1988b6c",
-                "reference": "4366bf1bc39b663aa87459bd725501d2f1988b6c",
+                "url": "https://api.github.com/repos/php-http/discovery/zipball/788f72d64c43dc361e7fcc7464c3d947c64984a7",
+                "reference": "788f72d64c43dc361e7fcc7464c3d947c64984a7",
                 "shasum": ""
             },
             "require": {
@@ -600,7 +592,7 @@
                 "message",
                 "psr7"
             ],
-            "time": "2020-09-22T13:31:04+00:00"
+            "time": "2020-11-27T14:49:42+00:00"
         },
         {
             "name": "php-http/httplug",
@@ -660,21 +652,21 @@
         },
         {
             "name": "php-http/message",
-            "version": "1.9.0",
+            "version": "1.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/message.git",
-                "reference": "2c7256e3c1aba0bfca70f099810f1c7712e00945"
+                "reference": "39db36d5972e9e6d00ea852b650953f928d8f10d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/message/zipball/2c7256e3c1aba0bfca70f099810f1c7712e00945",
-                "reference": "2c7256e3c1aba0bfca70f099810f1c7712e00945",
+                "url": "https://api.github.com/repos/php-http/message/zipball/39db36d5972e9e6d00ea852b650953f928d8f10d",
+                "reference": "39db36d5972e9e6d00ea852b650953f928d8f10d",
                 "shasum": ""
             },
             "require": {
-                "clue/stream-filter": "^1.4.1",
-                "php": "^7.1",
+                "clue/stream-filter": "^1.5",
+                "php": "^7.1 || ^8.0",
                 "php-http/message-factory": "^1.0.2",
                 "psr/http-message": "^1.0"
             },
@@ -682,13 +674,10 @@
                 "php-http/message-factory-implementation": "1.0"
             },
             "require-dev": {
-                "akeneo/phpspec-skip-example-extension": "^1.0",
-                "coduo/phpspec-data-provider-extension": "^1.0",
-                "ergebnis/composer-normalize": "^2.1",
+                "ergebnis/composer-normalize": "^2.6",
                 "ext-zlib": "*",
                 "guzzlehttp/psr7": "^1.0",
-                "henrikbjorn/phpspec-code-coverage": "^1.0",
-                "phpspec/phpspec": "^2.4",
+                "phpspec/phpspec": "^5.1 || ^6.3",
                 "slim/slim": "^3.0",
                 "zendframework/zend-diactoros": "^1.0"
             },
@@ -701,7 +690,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.8-dev"
+                    "dev-master": "1.10-dev"
                 }
             },
             "autoload": {
@@ -729,7 +718,7 @@
                 "message",
                 "psr-7"
             ],
-            "time": "2020-08-17T06:33:14+00:00"
+            "time": "2020-11-11T10:19:56+00:00"
         },
         {
             "name": "php-http/message-factory",
@@ -1151,16 +1140,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.5.6",
+            "version": "3.5.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "e97627871a7eab2f70e59166072a6b767d5834e0"
+                "reference": "9d583721a7157ee997f235f327de038e7ea6dac4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/e97627871a7eab2f70e59166072a6b767d5834e0",
-                "reference": "e97627871a7eab2f70e59166072a6b767d5834e0",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/9d583721a7157ee997f235f327de038e7ea6dac4",
+                "reference": "9d583721a7157ee997f235f327de038e7ea6dac4",
                 "shasum": ""
             },
             "require": {
@@ -1198,7 +1187,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2020-08-10T04:50:15+00:00"
+            "time": "2020-10-23T02:01:07+00:00"
         },
         {
             "name": "wp-coding-standards/wpcs",
@@ -1250,6 +1239,5 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],
-    "platform-dev": [],
-    "plugin-api-version": "1.1.0"
+    "platform-dev": []
 }
