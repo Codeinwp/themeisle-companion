@@ -22,7 +22,7 @@
     "squizlabs/php_codesniffer": "^3.3",
     "wp-coding-standards/wpcs": "^1",
     "phpcompatibility/php-compatibility": "^9",
-    "dealerdirect/phpcodesniffer-composer-installer": "0.7.0",
+    "dealerdirect/phpcodesniffer-composer-installer": "0.7.1",
     "automattic/vipwpcs": "^1.0.0"
   },
   "scripts": {
@@ -45,7 +45,10 @@
   },
   "prefer-stable": true,
   "config": {
-    "optimize-autoloader": true
+    "optimize-autoloader": true,
+    "platform": {
+      "php": "5.6"
+    }
   },
   "extra": {
     "installer-disable": "true"
