@@ -109,6 +109,16 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 == Changelog ==
 
+##### [Version 2.10.1](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.0...v2.10.1) (2020-12-07)
+
+- [Feat] New ascending/descending order option for Post Type Grid Elementor widget
+- [Fix] Compatibility with WP 5.6
+- [Fix] Header and Footer scripts not working on the Shop page
+- [Fix] Remove Google Plus from the social-sharing module
+
+
+
+
 #### [Version 2.10.0](https://github.com/Codeinwp/themeisle-companion/compare/v2.9.19...v2.10.0) (2020-10-09)
 
 - New Custom Fonts module
