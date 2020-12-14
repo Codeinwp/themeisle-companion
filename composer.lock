@@ -56,10 +56,6 @@
                 "stream_filter_append",
                 "stream_filter_register"
             ],
-            "support": {
-                "issues": "https://github.com/clue/php-stream-filter/issues",
-                "source": "https://github.com/clue/php-stream-filter/tree/v1.5.0"
-            },
             "funding": [
                 {
                     "url": "https://clue.engineering/support",
@@ -86,7 +82,6 @@
                 "reference": "a76b4de7df500baff306113b415b076f3120e00c",
                 "shasum": ""
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "files": [
@@ -105,10 +100,6 @@
                 }
             ],
             "homepage": "https://github.com/Codeinwp/elementor-extra-widgets",
-            "support": {
-                "issues": "https://github.com/Codeinwp/elementor-extra-widgets/issues",
-                "source": "https://github.com/Codeinwp/elementor-extra-widgets/tree/master"
-            },
             "time": "2020-11-04T14:08:22+00:00"
         },
         {
@@ -125,7 +116,6 @@
                 "reference": "ac15bbb1295d39baf28978c7d9c04fed21ea3429",
                 "shasum": ""
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "files": [
@@ -145,24 +135,20 @@
             ],
             "description": "A WordPress library to create full width page templates.",
             "homepage": "https://github.com/Codeinwp/full-width-page-templates",
-            "support": {
-                "issues": "https://github.com/Codeinwp/full-width-page-templates/issues",
-                "source": "https://github.com/Codeinwp/full-width-page-templates/tree/master"
-            },
             "time": "2019-04-02T11:34:00+00:00"
         },
         {
             "name": "codeinwp/gutenberg-blocks",
-            "version": "1.5.10",
+            "version": "1.5.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/gutenberg-blocks.git",
-                "reference": "df03e718e47b78468542eb0a1846cab97723b28e"
+                "reference": "a7449863ee9c45bb201e25aedd51f0c86565c67d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/gutenberg-blocks/zipball/df03e718e47b78468542eb0a1846cab97723b28e",
-                "reference": "df03e718e47b78468542eb0a1846cab97723b28e",
+                "url": "https://api.github.com/repos/Codeinwp/gutenberg-blocks/zipball/a7449863ee9c45bb201e25aedd51f0c86565c67d",
+                "reference": "a7449863ee9c45bb201e25aedd51f0c86565c67d",
                 "shasum": ""
             },
             "require": {
@@ -193,11 +179,7 @@
             ],
             "description": "A set of awesome Gutenberg Blocks!",
             "homepage": "https://github.com/Codeinwp/gutenberg-blocks",
-            "support": {
-                "issues": "https://github.com/Codeinwp/gutenberg-blocks/issues",
-                "source": "https://github.com/Codeinwp/gutenberg-blocks/tree/v1.5.10"
-            },
-            "time": "2020-11-25T22:15:36+00:00"
+            "time": "2020-12-12T05:45:13+00:00"
         },
         {
             "name": "codeinwp/templates-directory",
@@ -216,7 +198,6 @@
             "require": {
                 "codeinwp/full-width-page-templates": "master"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "files": [
@@ -236,10 +217,6 @@
             ],
             "description": "A WordPress library to manage page templates.",
             "homepage": "https://github.com/Codeinwp/templates-directory",
-            "support": {
-                "issues": "https://github.com/Codeinwp/templates-directory/issues",
-                "source": "https://github.com/Codeinwp/templates-directory/tree/master"
-            },
             "time": "2018-12-12T21:50:20+00:00"
         },
         {
@@ -263,7 +240,6 @@
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
                 "wptrt/wpthemereview": "*"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "files": [
@@ -283,10 +259,6 @@
             ],
             "description": "ThemeIsle Content Forms.",
             "homepage": "https://github.com/Codeinwp/themeisle-content-forms",
-            "support": {
-                "issues": "https://github.com/Codeinwp/themeisle-content-forms/issues",
-                "source": "https://github.com/Codeinwp/themeisle-content-forms/tree/master"
-            },
             "time": "2020-09-02T08:24:53+00:00"
         },
         {
@@ -327,10 +299,6 @@
             "keywords": [
                 "wordpress"
             ],
-            "support": {
-                "issues": "https://github.com/Codeinwp/themeisle-sdk/issues",
-                "source": "https://github.com/Codeinwp/themeisle-sdk/tree/v3.2.16"
-            },
             "time": "2020-11-17T08:35:16+00:00"
         },
         {
@@ -402,10 +370,6 @@
                 "uri",
                 "url"
             ],
-            "support": {
-                "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/1.7.0"
-            },
             "time": "2020-09-30T07:37:11+00:00"
         },
         {
@@ -452,10 +416,6 @@
                 "marketing",
                 "sdk"
             ],
-            "support": {
-                "issues": "https://github.com/mailerlite/mailerlite-api-v2-php-sdk/issues",
-                "source": "https://github.com/mailerlite/mailerlite-api-v2-php-sdk/tree/master"
-            },
             "time": "2019-01-31T13:14:26+00:00"
         },
         {
@@ -521,10 +481,6 @@
                 "serializer",
                 "xml"
             ],
-            "support": {
-                "issues": "https://github.com/Masterminds/html5-php/issues",
-                "source": "https://github.com/Masterminds/html5-php/tree/2.7.4"
-            },
             "time": "2020-10-01T13:52:52+00:00"
         },
         {
@@ -581,10 +537,6 @@
                 "curl",
                 "http"
             ],
-            "support": {
-                "issues": "https://github.com/php-http/curl-client/issues",
-                "source": "https://github.com/php-http/curl-client/tree/v1.7.1"
-            },
             "time": "2018-03-26T19:21:48+00:00"
         },
         {
@@ -649,10 +601,6 @@
                 "message",
                 "psr7"
             ],
-            "support": {
-                "issues": "https://github.com/php-http/discovery/issues",
-                "source": "https://github.com/php-http/discovery/tree/master"
-            },
             "time": "2019-02-23T07:42:53+00:00"
         },
         {
@@ -709,10 +657,6 @@
                 "client",
                 "http"
             ],
-            "support": {
-                "issues": "https://github.com/php-http/httplug/issues",
-                "source": "https://github.com/php-http/httplug/tree/master"
-            },
             "time": "2016-08-31T08:30:17+00:00"
         },
         {
@@ -785,10 +729,6 @@
                 "message",
                 "psr-7"
             ],
-            "support": {
-                "issues": "https://github.com/php-http/message/issues",
-                "source": "https://github.com/php-http/message/tree/master"
-            },
             "time": "2018-11-01T09:32:41+00:00"
         },
         {
@@ -839,10 +779,6 @@
                 "stream",
                 "uri"
             ],
-            "support": {
-                "issues": "https://github.com/php-http/message-factory/issues",
-                "source": "https://github.com/php-http/message-factory/tree/master"
-            },
             "time": "2015-12-19T14:08:53+00:00"
         },
         {
@@ -893,10 +829,6 @@
             "keywords": [
                 "promise"
             ],
-            "support": {
-                "issues": "https://github.com/php-http/promise/issues",
-                "source": "https://github.com/php-http/promise/tree/master"
-            },
             "time": "2016-01-26T13:27:02+00:00"
         },
         {
@@ -947,9 +879,6 @@
                 "request",
                 "response"
             ],
-            "support": {
-                "source": "https://github.com/php-fig/http-message/tree/master"
-            },
             "time": "2016-08-06T14:39:51+00:00"
         },
         {
@@ -990,10 +919,6 @@
                 }
             ],
             "description": "A polyfill for getallheaders.",
-            "support": {
-                "issues": "https://github.com/ralouphie/getallheaders/issues",
-                "source": "https://github.com/ralouphie/getallheaders/tree/develop"
-            },
             "time": "2019-03-08T08:55:37+00:00"
         },
         {
@@ -1047,10 +972,6 @@
                 "minify",
                 "yui"
             ],
-            "support": {
-                "issues": "https://github.com/tubalmartin/YUI-CSS-compressor-PHP-port/issues",
-                "source": "https://github.com/tubalmartin/YUI-CSS-compressor-PHP-port"
-            },
             "time": "2018-01-15T15:26:51+00:00"
         }
     ],
@@ -1099,11 +1020,6 @@
                 "standards",
                 "wordpress"
             ],
-            "support": {
-                "issues": "https://github.com/Automattic/VIP-Coding-Standards/issues",
-                "source": "https://github.com/Automattic/VIP-Coding-Standards",
-                "wiki": "https://github.com/Automattic/VIP-Coding-Standards/wiki"
-            },
             "time": "2019-04-24T21:34:09+00:00"
         },
         {
@@ -1170,10 +1086,6 @@
                 "stylecheck",
                 "tests"
             ],
-            "support": {
-                "issues": "https://github.com/dealerdirect/phpcodesniffer-composer-installer/issues",
-                "source": "https://github.com/dealerdirect/phpcodesniffer-composer-installer"
-            },
             "time": "2020-12-07T18:04:37+00:00"
         },
         {
@@ -1232,10 +1144,6 @@
                 "phpcs",
                 "standards"
             ],
-            "support": {
-                "issues": "https://github.com/PHPCompatibility/PHPCompatibility/issues",
-                "source": "https://github.com/PHPCompatibility/PHPCompatibility"
-            },
             "time": "2019-12-27T09:44:58+00:00"
         },
         {
@@ -1287,11 +1195,6 @@
                 "phpcs",
                 "standards"
             ],
-            "support": {
-                "issues": "https://github.com/squizlabs/PHP_CodeSniffer/issues",
-                "source": "https://github.com/squizlabs/PHP_CodeSniffer",
-                "wiki": "https://github.com/squizlabs/PHP_CodeSniffer/wiki"
-            },
             "time": "2020-10-23T02:01:07+00:00"
         },
         {
@@ -1335,11 +1238,6 @@
                 "standards",
                 "wordpress"
             ],
-            "support": {
-                "issues": "https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/issues",
-                "source": "https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards",
-                "wiki": "https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/wiki"
-            },
             "time": "2018-12-18T09:43:51+00:00"
         }
     ],
@@ -1353,5 +1251,5 @@
     "platform-overrides": {
         "php": "5.6"
     },
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "1.1.0"
 }
