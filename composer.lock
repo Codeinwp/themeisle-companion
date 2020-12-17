@@ -153,16 +153,16 @@
         },
         {
             "name": "codeinwp/gutenberg-blocks",
-            "version": "1.5.10",
+            "version": "1.5.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/gutenberg-blocks.git",
-                "reference": "df03e718e47b78468542eb0a1846cab97723b28e"
+                "reference": "a7449863ee9c45bb201e25aedd51f0c86565c67d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/gutenberg-blocks/zipball/df03e718e47b78468542eb0a1846cab97723b28e",
-                "reference": "df03e718e47b78468542eb0a1846cab97723b28e",
+                "url": "https://api.github.com/repos/Codeinwp/gutenberg-blocks/zipball/a7449863ee9c45bb201e25aedd51f0c86565c67d",
+                "reference": "a7449863ee9c45bb201e25aedd51f0c86565c67d",
                 "shasum": ""
             },
             "require": {
@@ -195,9 +195,9 @@
             "homepage": "https://github.com/Codeinwp/gutenberg-blocks",
             "support": {
                 "issues": "https://github.com/Codeinwp/gutenberg-blocks/issues",
-                "source": "https://github.com/Codeinwp/gutenberg-blocks/tree/v1.5.10"
+                "source": "https://github.com/Codeinwp/gutenberg-blocks/tree/v1.5.11"
             },
-            "time": "2020-11-25T22:15:36+00:00"
+            "time": "2020-12-12T05:45:13+00:00"
         },
         {
             "name": "codeinwp/templates-directory",
@@ -248,12 +248,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/themeisle-content-forms.git",
-                "reference": "ded68c965396999459cce58139fd299a979700e1"
+                "reference": "82d5f1d3c8617a5200f0e3f909a112da9dbd9926"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/themeisle-content-forms/zipball/ded68c965396999459cce58139fd299a979700e1",
-                "reference": "ded68c965396999459cce58139fd299a979700e1",
+                "url": "https://api.github.com/repos/Codeinwp/themeisle-content-forms/zipball/82d5f1d3c8617a5200f0e3f909a112da9dbd9926",
+                "reference": "82d5f1d3c8617a5200f0e3f909a112da9dbd9926",
                 "shasum": ""
             },
             "require": {
@@ -287,7 +287,7 @@
                 "issues": "https://github.com/Codeinwp/themeisle-content-forms/issues",
                 "source": "https://github.com/Codeinwp/themeisle-content-forms/tree/master"
             },
-            "time": "2020-09-02T08:24:53+00:00"
+            "time": "2020-12-17T15:43:50+00:00"
         },
         {
             "name": "codeinwp/themeisle-sdk",
