@@ -1,3 +1,8 @@
+##### [Version 2.10.3](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.2...v2.10.3) (2020-12-17)
+
+[Fix] removes role selector from registration content form
+[Fix] ThemeIsle icons not appearing on WebKit browsers in Gutenberg blocks
+
 ##### [Version 2.10.2](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.1...v2.10.2) (2020-12-09)
 
 - [Fix] Fatal error on older versions of PHP
