@@ -261,6 +261,9 @@ class Header_Footer_Scripts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function save_meta( $post_id ) {
+		if ( ! current_user_can( 'unfiltered_html' ) ) {
+			return false;
+		}
 
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
 			return false;
@@ -312,14 +315,14 @@ class Header_Footer_Scripts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		// phpcs:ignore
 		echo get_theme_mod( 'obfx_header_scripts', $default );
-		
+
 		if ( is_singular() ) {
 			global $post;
-			
+
 			// phpcs:ignore
 			echo get_post_meta( $post->ID, 'obfx-header-scripts', true );
 		}
-		
+
 		if ( class_exists( 'WooCommerce', false ) && is_shop() ) {
 			$shop_id = get_option( 'woocommerce_shop_page_id' );
 			// phpcs:ignore
@@ -352,10 +355,10 @@ class Header_Footer_Scripts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			// phpcs:ignore
 			echo get_post_meta( $post->ID, 'obfx-footer-scripts', true );
 		}
-		
+
 		if ( class_exists( 'WooCommerce', false ) && is_shop() ) {
 			$shop_id = get_option( 'woocommerce_shop_page_id' );
-			
+
 			// phpcs:ignore
 			echo get_post_meta( $shop_id, 'obfx-footer-scripts', true );
 		}
