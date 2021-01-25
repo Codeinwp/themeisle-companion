@@ -10,13 +10,11 @@ const Mystock = () => {
 	return (
 		<Fragment>
 			<PluginSidebarMoreMenuItem
-				icon = "camera"
 				target ="mystock-sidebar"
 			>
 				{ __( 'MyStockPhotos', 'themeisle-companion' ) }
 			</PluginSidebarMoreMenuItem>
 			<PluginSidebar
-				icon="camera"
 				name="mystock-sidebar"
 				title={ __( 'MyStockPhotos', 'themeisle-companion' ) }
 			>

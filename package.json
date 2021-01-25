@@ -46,6 +46,13 @@
     "webpack-cli": "^4.4.0"
   },
   "dependencies": {
-    "flickr-sdk": "^3.10.0"
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
+    "buffer": "^6.0.3",
+    "flickr-sdk": "^3.10.0",
+    "querystring": "^0.2.0",
+    "stream": "0.0.2",
+    "timers": "^0.1.1"
   }
 }
