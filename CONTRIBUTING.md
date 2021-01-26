@@ -2,7 +2,7 @@
 
 Thank you for thinking about contributing to Orbit Fox! All sorts of contributions are welcomed.
 
-## License
+## License 
 
 Orbit Fox is [licensed under the GPLv2+](LICENSE.txt), and all contributions to Orbit Fox will be released under the GPLv2+ license. By contributing to this repository, you agree to release your contribution under the GPLv2+ license.
 

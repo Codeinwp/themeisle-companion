@@ -109,6 +109,21 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 ## Changelog ##
 
+##### [Version 2.10.3](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.2...v2.10.3) (2020-12-17)
+
+[Fix] removes role selector from registration content form
+[Fix] ThemeIsle icons not appearing on WebKit browsers in Gutenberg blocks
+
+
+
+
+##### [Version 2.10.2](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.1...v2.10.2) (2020-12-09)
+
+- [Fix] Fatal error on older versions of PHP
+
+
+
+
 ##### [Version 2.10.1](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.0...v2.10.1) (2020-12-07)
 
 - [Feat] New ascending/descending order option for Post Type Grid Elementor widget
