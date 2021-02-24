@@ -29,17 +29,17 @@ module.exports = function (grunt) {
 				},
 				src: [ 'core/includes/class-orbit-fox.php' ]
 			},
-			addtextdomain: {
-				options: {
-					textdomain: '<%= package.textdomain %>',
-					updateDomains: ['textdomain']
-				},
-				target: {
-					files: {
-						src: [
-							'vendor/codeinwp/**/*.php'
-						]
-					}
+		},
+		addtextdomain: {
+			options: {
+				textdomain: '<%= package.textdomain %>',
+				updateDomains: ['textdomain']
+			},
+			target: {
+				files: {
+					src: [
+						'vendor/codeinwp/**/*.php'
+					]
 				}
 			}
 		},
