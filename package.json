@@ -24,6 +24,8 @@
   "scripts": {
     "release": "npx semantic-release",
     "start": "webpack --watch --mode development",
+    "i18n": "grunt i18n",
+    "dist": "bash bin/dist.sh",
     "build": "webpack --mode production"
   },
   "devDependencies": {

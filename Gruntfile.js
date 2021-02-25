@@ -4,7 +4,7 @@
 module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-version');
 	grunt.loadNpmTasks('grunt-wp-readme-to-markdown');
-  grunt.loadNpmTasks( 'grunt-wp-i18n' );
+    grunt.loadNpmTasks( 'grunt-wp-i18n' );
 
 	grunt.initConfig({
 		package: grunt.file.readJSON('package.json'),
@@ -75,4 +75,5 @@ module.exports = function (grunt) {
 		},
 	});
 
+	grunt.registerTask('i18n', ['addtextdomain','makepot']);
 };
