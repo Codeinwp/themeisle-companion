@@ -13,6 +13,7 @@ jobs:
         run: |
           npm ci
           composer install --no-dev --prefer-dist --no-progress --no-suggest
+          npm run zip
       - name: WordPress Plugin Deploy
         uses: 10up/action-wordpress-plugin-deploy@master
         env:
@@ -29,4 +30,4 @@ jobs:
           mkdir $HOME/.ssh
           echo "$SSH_KEY" > "$HOME/.ssh/key"
           chmod 600 "$HOME/.ssh/key"
-          rsync -rc --exclude-from="$GITHUB_WORKSPACE/.distignore" -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no -p $SSH_PORT" "$GITHUB_WORKSPACE/" $SSH_USERNAME@$SSH_HOST:$SSH_PATH
+          rsync -rc -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no -p $SSH_PORT" "$GITHUB_WORKSPACE/dist/" $SSH_USERNAME@$SSH_HOST:$SSH_PATH
