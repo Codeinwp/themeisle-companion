@@ -23,4 +23,6 @@ plugins:
         - readme.md
         - package.json
   - - "@semantic-release/github"
+    - assets:
+        - dist/themeisle-companion.zip
 

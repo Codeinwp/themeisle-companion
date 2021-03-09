@@ -153,16 +153,16 @@
         },
         {
             "name": "codeinwp/gutenberg-blocks",
-            "version": "1.5.11",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/gutenberg-blocks.git",
-                "reference": "a7449863ee9c45bb201e25aedd51f0c86565c67d"
+                "reference": "86ce7144e5c10d713443d04a35c026104083a5d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/gutenberg-blocks/zipball/a7449863ee9c45bb201e25aedd51f0c86565c67d",
-                "reference": "a7449863ee9c45bb201e25aedd51f0c86565c67d",
+                "url": "https://api.github.com/repos/Codeinwp/gutenberg-blocks/zipball/86ce7144e5c10d713443d04a35c026104083a5d1",
+                "reference": "86ce7144e5c10d713443d04a35c026104083a5d1",
                 "shasum": ""
             },
             "require": {
@@ -171,8 +171,9 @@
             },
             "require-dev": {
                 "automattic/vipwpcs": "^0.3.0",
-                "dealerdirect/phpcodesniffer-composer-installer": "0.7.0",
+                "dealerdirect/phpcodesniffer-composer-installer": "0.7.1",
                 "phpcompatibility/php-compatibility": "^9",
+                "phpunit/phpunit": "^5",
                 "squizlabs/php_codesniffer": "^3.3",
                 "wp-coding-standards/wpcs": "^1"
             },
@@ -195,9 +196,9 @@
             "homepage": "https://github.com/Codeinwp/gutenberg-blocks",
             "support": {
                 "issues": "https://github.com/Codeinwp/gutenberg-blocks/issues",
-                "source": "https://github.com/Codeinwp/gutenberg-blocks/tree/v1.5.11"
+                "source": "https://github.com/Codeinwp/gutenberg-blocks/tree/v1.6.1"
             },
-            "time": "2020-12-12T05:45:13+00:00"
+            "time": "2021-03-02T18:21:40+00:00"
         },
         {
             "name": "codeinwp/templates-directory",
@@ -291,16 +292,16 @@
         },
         {
             "name": "codeinwp/themeisle-sdk",
-            "version": "3.2.16",
+            "version": "3.2.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/themeisle-sdk.git",
-                "reference": "b116dffbe39ea9e37169fdd683bab54c545fe560"
+                "reference": "8ea22767fb6b2c453b678b3626c38db3b7c79fe5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/themeisle-sdk/zipball/b116dffbe39ea9e37169fdd683bab54c545fe560",
-                "reference": "b116dffbe39ea9e37169fdd683bab54c545fe560",
+                "url": "https://api.github.com/repos/Codeinwp/themeisle-sdk/zipball/8ea22767fb6b2c453b678b3626c38db3b7c79fe5",
+                "reference": "8ea22767fb6b2c453b678b3626c38db3b7c79fe5",
                 "shasum": ""
             },
             "require-dev": {
@@ -329,9 +330,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Codeinwp/themeisle-sdk/issues",
-                "source": "https://github.com/Codeinwp/themeisle-sdk/tree/v3.2.16"
+                "source": "https://github.com/Codeinwp/themeisle-sdk/tree/v3.2.18"
             },
-            "time": "2020-11-17T08:35:16+00:00"
+            "time": "2021-03-04T14:13:50+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
