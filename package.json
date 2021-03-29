@@ -51,7 +51,7 @@
   "dependencies": {
     "@babel/core": "^7.13.10",
     "@babel/preset-env": "^7.13.12",
-    "@babel/preset-react": "^7.12.13",
+    "@babel/preset-react": "^7.13.13",
     "buffer": "^6.0.3",
     "flickr-sdk": "^3.10.0",
     "querystring": "^0.2.1",
