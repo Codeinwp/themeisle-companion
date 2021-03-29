@@ -153,16 +153,16 @@
         },
         {
             "name": "codeinwp/gutenberg-blocks",
-            "version": "1.6.1",
+            "version": "1.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/gutenberg-blocks.git",
-                "reference": "86ce7144e5c10d713443d04a35c026104083a5d1"
+                "reference": "b4a8e12b7b4a8b71d908111e05ca40cf2c86d624"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/gutenberg-blocks/zipball/86ce7144e5c10d713443d04a35c026104083a5d1",
-                "reference": "86ce7144e5c10d713443d04a35c026104083a5d1",
+                "url": "https://api.github.com/repos/Codeinwp/gutenberg-blocks/zipball/b4a8e12b7b4a8b71d908111e05ca40cf2c86d624",
+                "reference": "b4a8e12b7b4a8b71d908111e05ca40cf2c86d624",
                 "shasum": ""
             },
             "require": {
@@ -196,9 +196,9 @@
             "homepage": "https://github.com/Codeinwp/gutenberg-blocks",
             "support": {
                 "issues": "https://github.com/Codeinwp/gutenberg-blocks/issues",
-                "source": "https://github.com/Codeinwp/gutenberg-blocks/tree/v1.6.1"
+                "source": "https://github.com/Codeinwp/gutenberg-blocks/tree/v1.6.2"
             },
-            "time": "2021-03-02T18:21:40+00:00"
+            "time": "2021-03-26T18:25:50+00:00"
         },
         {
             "name": "codeinwp/templates-directory",
