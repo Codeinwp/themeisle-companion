@@ -7,7 +7,7 @@
  * Class Custom_Fonts_Admin
  */
 class Custom_Fonts_Admin {
-	
+
 	/**
 	 * Create custom fonts taxonomy.
 	 *
@@ -29,7 +29,7 @@ class Custom_Fonts_Admin {
 			'new_item_name'     => __( 'New Font Name', 'themeisle-companion' ),
 			'not_found'         => __( 'No fonts found', 'themeisle-companion' ),
 		);
-		
+
 		$args = array(
 			'hierarchical'      => false,
 			'labels'            => $labels,
@@ -40,14 +40,14 @@ class Custom_Fonts_Admin {
 			'query_var'         => false,
 			'rewrite'           => false,
 		);
-		
+
 		register_taxonomy(
 			'obfx_custom_fonts',
 			array(),
 			$args
 		);
 	}
-	
+
 	/**
 	 * Add custom fonts taxonomy to menu.
 	 *
@@ -63,7 +63,7 @@ class Custom_Fonts_Admin {
 			'edit-tags.php?taxonomy=obfx_custom_fonts'
 		);
 	}
-	
+
 	/**
 	 * Edit custom font form fields.
 	 * It hides the description and slug fields and it changes the description for the name field.
@@ -73,7 +73,7 @@ class Custom_Fonts_Admin {
 	 */
 	public function edit_custom_font_form() {
 		global $parent_file, $submenu_file;
-		
+
 		if ( 'edit-tags.php?taxonomy=obfx_custom_fonts' === $submenu_file ) {
 			$parent_file = 'themes.php'; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 		}
@@ -88,7 +88,7 @@ class Custom_Fonts_Admin {
 		</script>
 		<?php
 	}
-	
+
 	/**
 	 * Manage custom fonts taxonomy columns.
 	 *
@@ -103,7 +103,7 @@ class Custom_Fonts_Admin {
 		unset( $columns['posts'] );
 		return $columns;
 	}
-	
+
 	/**
 	 * Add new Taxonomy data
 	 *
@@ -117,7 +117,7 @@ class Custom_Fonts_Admin {
 		$this->font_file_new_field( 'font_eot', __( 'Font .eot', 'themeisle-companion' ), __( 'Upload the font\'s eot file or enter the URL.', 'themeisle-companion' ) );
 		$this->font_file_new_field( 'font_svg', __( 'Font .svg', 'themeisle-companion' ), __( 'Upload the font\'s svg file or enter the URL.', 'themeisle-companion' ) );
 		$this->font_file_new_field( 'font_otf', __( 'Font .otf', 'themeisle-companion' ), __( 'Upload the font\'s otf file or enter the URL.', 'themeisle-companion' ) );
-		
+
 		$this->select_new_field(
 			'font-display',
 			__( 'Font Display', 'themeisle-companion' ),
@@ -131,7 +131,7 @@ class Custom_Fonts_Admin {
 			)
 		);
 	}
-	
+
 	/**
 	 * Add Taxonomy data field
 	 *
@@ -155,7 +155,7 @@ class Custom_Fonts_Admin {
 		echo '<p>' . esc_html( $description ) . '</p>';
 		echo '</div>';
 	}
-	
+
 	/**
 	 * Render select field for the new font screen.
 	 *
@@ -177,7 +177,7 @@ class Custom_Fonts_Admin {
 		echo '</select>';
 		echo '</div>';
 	}
-	
+
 	/**
 	 * Edit Taxonomy data
 	 *
@@ -194,7 +194,7 @@ class Custom_Fonts_Admin {
 		$this->font_file_edit_field( 'font_eot', __( 'Font .eot', 'themeisle-companion' ), $data['font_eot'], __( 'Upload the font\'s eot file or enter the URL.', 'themeisle-companion' ) );
 		$this->font_file_edit_field( 'font_svg', __( 'Font .svg', 'themeisle-companion' ), $data['font_svg'], __( 'Upload the font\'s svg file or enter the URL.', 'themeisle-companion' ) );
 		$this->font_file_edit_field( 'font_otf', __( 'Font .otf', 'themeisle-companion' ), $data['font_otf'], __( 'Upload the font\'s otf file or enter the URL.', 'themeisle-companion' ) );
-		
+
 		$this->select_edit_field(
 			'font-display',
 			__( 'Font Display', 'themeisle-companion' ),
@@ -209,7 +209,7 @@ class Custom_Fonts_Admin {
 			)
 		);
 	}
-	
+
 	/**
 	 * Add Taxonomy data field
 	 *
@@ -221,7 +221,7 @@ class Custom_Fonts_Admin {
 	 * @since 2.10
 	 * @return void
 	 */
-	protected function font_file_edit_field( $id, $title, $value = '', $description ) {
+	protected function font_file_edit_field( $id, $title, $value, $description ) {
 		echo '<tr class="obfx-custom-fonts-file-wrap form-field term-' . esc_attr( $id ) . '-wrap ">';
 		echo '<th scope="row">';
 		echo '<label for="metadata-' . esc_attr( $id ) . '">';
@@ -239,7 +239,7 @@ class Custom_Fonts_Admin {
 		echo '</td>';
 		echo '</tr>';
 	}
-	
+
 	/**
 	 * Render select field for the edit font screen.
 	 *
@@ -252,7 +252,7 @@ class Custom_Fonts_Admin {
 	 * @since 2.10
 	 * @return void
 	 */
-	private function select_edit_field( $id, $title, $saved_val = '', $description, $select_fields ) {
+	private function select_edit_field( $id, $title, $saved_val, $description, $select_fields ) {
 		echo '<tr class="obfx-custom-fonts-file-wrap form-field term-' . esc_attr( $id ) . '-wrap">';
 		echo '<th scope="row">';
 		echo '<label for="metadata-' . esc_attr( $id ) . '">';
@@ -273,7 +273,7 @@ class Custom_Fonts_Admin {
 		echo '</td>';
 		echo '</tr>';
 	}
-	
+
 	/**
 	 * Save Taxonomy meta data value
 	 *
@@ -283,11 +283,11 @@ class Custom_Fonts_Admin {
 	 * @return bool
 	 */
 	public function save_metadata( $term_id ) {
-		
+
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return false;
 		}
-		
+
 		if ( isset( $_POST['obfx_custom_fonts'] ) ) {// phpcs:ignore WordPress.Security.NonceVerification.Missing
 			$return_val = array();
 			foreach ( $_POST['obfx_custom_fonts'] as $key => $value ) {
@@ -299,10 +299,10 @@ class Custom_Fonts_Admin {
 			}
 			self::update_font_links( $return_val, $term_id );
 		}
-		
+
 		return true;
 	}
-	
+
 	/**
 	 * Update font data from name
 	 *
@@ -313,7 +313,7 @@ class Custom_Fonts_Admin {
 	 * @return void
 	 */
 	public static function update_font_links( $posted, $term_id ) {
-		
+
 		$links = self::get_font_links( $term_id );
 		foreach ( array_keys( $links ) as $key ) {
 			if ( isset( $posted[ $key ] ) ) {
@@ -324,7 +324,7 @@ class Custom_Fonts_Admin {
 		}
 		update_option( "taxonomy_obfx_custom_fonts_{$term_id}", $links );
 	}
-	
+
 	/**
 	 * Get font links
 	 *
@@ -337,7 +337,7 @@ class Custom_Fonts_Admin {
 		$links = get_option( "taxonomy_obfx_custom_fonts_{$term_id}", array() );
 		return self::default_args( $links );
 	}
-	
+
 	/**
 	 * Default fonts
 	 *
@@ -360,7 +360,7 @@ class Custom_Fonts_Admin {
 			)
 		);
 	}
-	
+
 	/**
 	 * Allowed mime types and file extensions
 	 *
@@ -376,10 +376,10 @@ class Custom_Fonts_Admin {
 		$mimes['svg']   = 'image/svg+xml';
 		$mimes['eot']   = 'application/vnd.ms-fontobject';
 		$mimes['otf']   = 'font/otf';
-		
+
 		return $mimes;
 	}
-	
+
 	/**
 	 * Correct the mome types and extension for the font types.
 	 *
@@ -395,13 +395,13 @@ class Custom_Fonts_Admin {
 			$defaults['type'] = 'application/x-font-ttf';
 			$defaults['ext']  = 'ttf';
 		}
-		
+
 		if ( 'otf' === pathinfo( $filename, PATHINFO_EXTENSION ) ) {
 			$defaults['type'] = 'application/x-font-otf';
 			$defaults['ext']  = 'otf';
 		}
-		
+
 		return $defaults;
 	}
-	
+
 }
