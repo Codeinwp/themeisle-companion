@@ -363,7 +363,7 @@ class Orbit_Fox_Render_Helper {
 	 *
 	 * @return string
 	 */
-	private function generate_check_type( $type = 'radio', $field_value, $checked, $label, $option = array() ) {
+	private function generate_check_type( $type, $field_value, $checked, $label, $option = array() ) {
 		return '
 		<label class="form-' . $type . ' ' . $option['class'] . '">
 			<input type="' . $type . '" name="' . $option['name'] . '" value="' . $field_value . '" ' . $checked . ' />
