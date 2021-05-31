@@ -2,7 +2,7 @@
 **Contributors:** [themeisle](https://profiles.wordpress.org/themeisle), [codeinwp](https://profiles.wordpress.org/codeinwp), [rodicaelena](https://profiles.wordpress.org/rodicaelena), [baicusandrei](https://profiles.wordpress.org/baicusandrei), [hardeepasrani](https://profiles.wordpress.org/hardeepasrani)  
 **Tags:** widget, admin, widgets, sharing, sections, themes, stock photos, custom icons, icons, menu icons, stock, templates  
 **Requires at least:** 4.7  
-**Tested up to:** 5.5  
+**Tested up to:** 5.7  
 **Requires PHP:** 5.6  
 **Stable tag:** trunk  
 **License:** GPLv2 or later  
@@ -108,6 +108,13 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 ## Changelog ##
+
+##### [Version 2.10.6](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.5...v2.10.6) (2021-05-31)
+
+- [Fix] Replace Elementor deprecated functions
+
+
+
 
 ##### [Version 2.10.5](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.4...v2.10.5) (2021-05-31)
 
