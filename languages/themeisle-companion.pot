@@ -2,10 +2,10 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Orbit Fox Companion 2.10.3\n"
+"Project-Id-Version: Orbit Fox Companion 2.10.4\n"
 "Report-Msgid-Bugs-To: "
 "https://github.com/Codeinwp/themeisle-companion/issues\n"
-"POT-Creation-Date: 2021-02-25 16:13:41+00:00\n"
+"POT-Creation-Date: 2021-05-31 13:56:34+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -2395,14 +2395,14 @@ msgstr ""
 #: vendor/codeinwp/full-width-page-templates/builders/class-none-full-width-templates.php:91
 #: vendor/codeinwp/full-width-page-templates/class-full-width-templates.php:197
 #: vendor/codeinwp/full-width-page-templates/class-full-width-templates.php:209
-#: vendor/codeinwp/gutenberg-blocks/inc/class-base-css.php:353
-#: vendor/codeinwp/gutenberg-blocks/inc/class-base-css.php:365
-#: vendor/codeinwp/gutenberg-blocks/inc/class-main.php:721
-#: vendor/codeinwp/gutenberg-blocks/inc/class-main.php:733
+#: vendor/codeinwp/gutenberg-blocks/inc/class-base-css.php:354
+#: vendor/codeinwp/gutenberg-blocks/inc/class-base-css.php:366
+#: vendor/codeinwp/gutenberg-blocks/inc/class-main.php:801
+#: vendor/codeinwp/gutenberg-blocks/inc/class-main.php:813
 #: vendor/codeinwp/gutenberg-blocks/inc/css/class-block-frontend.php:472
 #: vendor/codeinwp/gutenberg-blocks/inc/css/class-block-frontend.php:484
-#: vendor/codeinwp/gutenberg-blocks/inc/css/class-css-handler.php:342
-#: vendor/codeinwp/gutenberg-blocks/inc/css/class-css-handler.php:354
+#: vendor/codeinwp/gutenberg-blocks/inc/css/class-css-handler.php:346
+#: vendor/codeinwp/gutenberg-blocks/inc/css/class-css-handler.php:358
 #: vendor/codeinwp/gutenberg-blocks/inc/plugins/class-options-settings.php:133
 #: vendor/codeinwp/gutenberg-blocks/inc/plugins/class-options-settings.php:145
 #: vendor/codeinwp/gutenberg-blocks/inc/server/class-plugin-card-server.php:243
@@ -3001,7 +3001,7 @@ msgstr ""
 msgid "Page Builder - Full Width"
 msgstr ""
 
-#: vendor/codeinwp/gutenberg-blocks/inc/class-main.php:86
+#: vendor/codeinwp/gutenberg-blocks/inc/class-main.php:93
 msgid "A set of awesome Gutenberg Blocks!"
 msgstr ""
 
@@ -3061,11 +3061,11 @@ msgstr ""
 msgid "Something went wrong"
 msgstr ""
 
-#: vendor/codeinwp/gutenberg-blocks/inc/render/class-posts-grid-block.php:201
+#: vendor/codeinwp/gutenberg-blocks/inc/render/class-posts-grid-block.php:218
 msgid "on"
 msgstr ""
 
-#: vendor/codeinwp/gutenberg-blocks/inc/render/class-posts-grid-block.php:210
+#: vendor/codeinwp/gutenberg-blocks/inc/render/class-posts-grid-block.php:227
 msgid "by"
 msgstr ""
 
