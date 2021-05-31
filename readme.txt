@@ -109,6 +109,14 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 == Changelog ==
 
+##### [Version 2.10.4](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.3...v2.10.4) (2021-03-09)
+
+- [Fix] Translations and text-domain issues
+- [Fix] Translation and text-domain issues.
+
+
+
+
 ##### [Version 2.10.3](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.2...v2.10.3) (2020-12-17)
 
 [Fix] removes role selector from registration content form
