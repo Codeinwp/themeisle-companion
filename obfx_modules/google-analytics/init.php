@@ -340,8 +340,7 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 *
 	 * @return string
 	 */
-	final private function get_site_hash() {
-		$hash_base = '';
+	private function get_site_hash() {
 		if ( defined( 'AUTH_KEY' ) && defined( 'SECURE_AUTH_KEY' ) && defined( 'LOGGED_IN_KEY' ) ) {
 			$hash_base = AUTH_KEY . SECURE_AUTH_KEY . LOGGED_IN_KEY;
 		} else {
