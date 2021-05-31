@@ -1,3 +1,8 @@
+##### [Version 2.10.5](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.4...v2.10.5) (2021-05-31)
+
+- [Fix] PHP 8 errors
+- [Fix] Elementor deprecated functions
+
 ##### [Version 2.10.4](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.3...v2.10.4) (2021-03-09)
 
 - [Fix] Translations and text-domain issues
