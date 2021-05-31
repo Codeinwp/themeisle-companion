@@ -11,12 +11,12 @@
             "version": "v1.5.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/clue/php-stream-filter.git",
+                "url": "https://github.com/clue/stream-filter.git",
                 "reference": "aeb7d8ea49c7963d3b581378955dbf5bc49aa320"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/clue/php-stream-filter/zipball/aeb7d8ea49c7963d3b581378955dbf5bc49aa320",
+                "url": "https://api.github.com/repos/clue/stream-filter/zipball/aeb7d8ea49c7963d3b581378955dbf5bc49aa320",
                 "reference": "aeb7d8ea49c7963d3b581378955dbf5bc49aa320",
                 "shasum": ""
             },
@@ -57,8 +57,8 @@
                 "stream_filter_register"
             ],
             "support": {
-                "issues": "https://github.com/clue/php-stream-filter/issues",
-                "source": "https://github.com/clue/php-stream-filter/tree/v1.5.0"
+                "issues": "https://github.com/clue/stream-filter/issues",
+                "source": "https://github.com/clue/stream-filter/tree/v1.5.0"
             },
             "funding": [
                 {
@@ -78,12 +78,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/elementor-extra-widgets.git",
-                "reference": "a76b4de7df500baff306113b415b076f3120e00c"
+                "reference": "3118143a39b0dcc5b09934508b7e555a44da1fe9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/elementor-extra-widgets/zipball/a76b4de7df500baff306113b415b076f3120e00c",
-                "reference": "a76b4de7df500baff306113b415b076f3120e00c",
+                "url": "https://api.github.com/repos/Codeinwp/elementor-extra-widgets/zipball/3118143a39b0dcc5b09934508b7e555a44da1fe9",
+                "reference": "3118143a39b0dcc5b09934508b7e555a44da1fe9",
                 "shasum": ""
             },
             "default-branch": true,
@@ -109,7 +109,7 @@
                 "issues": "https://github.com/Codeinwp/elementor-extra-widgets/issues",
                 "source": "https://github.com/Codeinwp/elementor-extra-widgets/tree/master"
             },
-            "time": "2020-11-04T14:08:22+00:00"
+            "time": "2021-05-31T13:36:02+00:00"
         },
         {
             "name": "codeinwp/full-width-page-templates",
@@ -153,16 +153,16 @@
         },
         {
             "name": "codeinwp/gutenberg-blocks",
-            "version": "1.6.4",
+            "version": "1.6.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/gutenberg-blocks.git",
-                "reference": "f3fb4b83b459bd759073d18f3ce32496879ef5e3"
+                "reference": "96b8d33c030ed7e907b14a488d107a333872d5ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/gutenberg-blocks/zipball/f3fb4b83b459bd759073d18f3ce32496879ef5e3",
-                "reference": "f3fb4b83b459bd759073d18f3ce32496879ef5e3",
+                "url": "https://api.github.com/repos/Codeinwp/gutenberg-blocks/zipball/96b8d33c030ed7e907b14a488d107a333872d5ea",
+                "reference": "96b8d33c030ed7e907b14a488d107a333872d5ea",
                 "shasum": ""
             },
             "require": {
@@ -196,9 +196,9 @@
             "homepage": "https://github.com/Codeinwp/gutenberg-blocks",
             "support": {
                 "issues": "https://github.com/Codeinwp/gutenberg-blocks/issues",
-                "source": "https://github.com/Codeinwp/gutenberg-blocks/tree/v1.6.4"
+                "source": "https://github.com/Codeinwp/gutenberg-blocks/tree/v1.6.7"
             },
-            "time": "2021-04-12T22:14:13+00:00"
+            "time": "2021-05-24T09:31:55+00:00"
         },
         {
             "name": "codeinwp/templates-directory",
@@ -249,12 +249,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/themeisle-content-forms.git",
-                "reference": "82d5f1d3c8617a5200f0e3f909a112da9dbd9926"
+                "reference": "87e971faf623591598581dc2ef14ff2c46af5009"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/themeisle-content-forms/zipball/82d5f1d3c8617a5200f0e3f909a112da9dbd9926",
-                "reference": "82d5f1d3c8617a5200f0e3f909a112da9dbd9926",
+                "url": "https://api.github.com/repos/Codeinwp/themeisle-content-forms/zipball/87e971faf623591598581dc2ef14ff2c46af5009",
+                "reference": "87e971faf623591598581dc2ef14ff2c46af5009",
                 "shasum": ""
             },
             "require": {
@@ -288,7 +288,7 @@
                 "issues": "https://github.com/Codeinwp/themeisle-content-forms/issues",
                 "source": "https://github.com/Codeinwp/themeisle-content-forms/tree/master"
             },
-            "time": "2020-12-17T15:43:50+00:00"
+            "time": "2021-05-31T14:54:15+00:00"
         },
         {
             "name": "codeinwp/themeisle-sdk",
@@ -332,16 +332,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.8.1",
+            "version": "1.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "35ea11d335fd638b5882ff1725228b3d35496ab1"
+                "reference": "dc960a912984efb74d0a90222870c72c87f10c91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/35ea11d335fd638b5882ff1725228b3d35496ab1",
-                "reference": "35ea11d335fd638b5882ff1725228b3d35496ab1",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/dc960a912984efb74d0a90222870c72c87f10c91",
+                "reference": "dc960a912984efb74d0a90222870c72c87f10c91",
                 "shasum": ""
             },
             "require": {
@@ -401,9 +401,9 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/1.8.1"
+                "source": "https://github.com/guzzle/psr7/tree/1.8.2"
             },
-            "time": "2021-03-21T16:25:00+00:00"
+            "time": "2021-04-26T09:17:50+00:00"
         },
         {
             "name": "mailerlite/mailerlite-api-v2-php-sdk",
