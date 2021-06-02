@@ -272,7 +272,7 @@ class Orbit_Fox_Admin {
 			'wpforms-lite',
 			'translatepress-multilingual',
 			'autoptimize',
-            'wp-cloudflare-page-cache',
+			'wp-cloudflare-page-cache',
 			'wordpress-seo',
 		];
 		shuffle( $plugins );
