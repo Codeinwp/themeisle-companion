@@ -34,7 +34,6 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 								 */
 								sprintf( __( 'This module will soon be removed form Orbit Fox. To keep the content you created with this module, please install %s', 'themeisle-companion' ), '<span class="dashicons dashicons-external"></span><a target="_blank" href="https://wordpress.org/plugins/otter-blocks/">Gutenberg Blocks and Template Library by Otter</a>.' )
 								. '</p>';
-		$this->active_default = true;
 	}
 
 	/**
@@ -50,6 +49,9 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		if ( is_plugin_active( 'otter-blocks/otter-blocks.php' ) ) {
 			return false;
 		}
+		if ( ! $this->is_module_active() ) {
+			return false;
+		}
 		if ( $this->check_new_user( 'obfx_remove_gtb_blocks' ) ) {
 			return false;
 		}
@@ -59,7 +61,6 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		if ( is_plugin_active( 'gutenberg/gutenberg.php' ) ) {
 			return true;
 		}
-
 
 		return false;
 	}
@@ -146,6 +147,15 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function add_otter_notice() {
 
 		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		$screen = get_current_screen();
+		if ( empty( $screen ) ) {
+			return;
+		}
+
+		if ( ! in_array( $screen->id, array( 'toplevel_page_obfx_companion' ), true ) ) {
 			return;
 		}
 

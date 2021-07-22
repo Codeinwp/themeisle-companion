@@ -306,6 +306,17 @@ abstract class Orbit_Fox_Module_Abstract {
 	}
 
 	/**
+	 * Function that retrieves the status of the module directly from the database.
+	 * When calling this method, the model does not need to be initialized as we need for the get_is_active method.
+	 *
+	 * @return bool
+	 */
+	protected function is_module_active() {
+		$data = get_option( 'obfx_data' );
+		return isset( $data['module_status'][ $this->slug ]['active'] ) ? $data['module_status'][ $this->slug ]['active'] : false;
+	}
+
+	/**
 	 * Method to update an option key value pair.
 	 *
 	 * @codeCoverageIgnore
