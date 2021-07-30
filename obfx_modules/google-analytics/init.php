@@ -40,6 +40,19 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return bool
 	 */
 	public function enable_module() {
+		if ( ! $this->is_module_active() ) {
+			return false;
+		}
+
+		$token = get_option( 'obfx_token', '' );
+		if ( empty( $token ) ) {
+			return false;
+		}
+
+		if ( empty( $this->get_module_setting( 'analytics_accounts_select' ) ) ) {
+			return false;
+		}
+
 		return true;
 	}
 
@@ -80,7 +93,6 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function hooks() {
 		$this->loader->add_action( 'rest_api_init', $this, 'register_endpoints' );
-		$this->loader->add_action( 'current_screen', $this, 'maybe_save_obfx_token' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $this, 'enqueue_analytics_scripts' );
 		$this->loader->add_action( 'wp_head', $this, 'output_analytics_code', 0 );
 	}
@@ -123,7 +135,8 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		if ( empty( $obfx_token ) ) {
 			return new WP_Error( '200', 'Your site is not registered.' );
 		}
-		$this->get_tracking_codes( $obfx_token, true );
+
+		return false;
 	}
 
 	/**
@@ -262,16 +275,6 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		}
 
 		return array(
-
-			array(
-				'id'         => 'analytics_accounts_refresh',
-				'name'       => 'analytics_accounts_refresh',
-				'type'       => 'link',
-				'link-class' => 'btn btn-primary btn-sm',
-				'link-id'    => 'refresh-analytics-accounts',
-				'text'       => '<i class="dashicons dashicons-update"></i> ' . __( 'Refresh Accounts', 'themeisle-companion' ),
-				'url'        => '',
-			),
 			array(
 				'id'      => 'analytics_accounts_select',
 				'name'    => 'analytics_accounts_select',
@@ -352,30 +355,6 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		}
 
 		return substr( $pre_hash, 0, 100 );
-	}
-
-	final public function maybe_save_obfx_token() {
-		$obfx_token = isset( $_GET['obfx_token'] ) ? sanitize_text_field( $_GET['obfx_token'] ) : '';
-		if ( empty( $obfx_token ) ) {
-			return '';
-		}
-		if ( ! is_admin() ) {
-			return '';
-		}
-		$current_screen = get_current_screen();
-		if ( ! isset( $current_screen->id ) ) {
-			return '';
-		}
-		if ( $current_screen->id !== 'toplevel_page_obfx_companion' ) {
-			return '';
-		}
-		if ( ! current_user_can( 'manage_options' ) ) {
-			return '';
-		}
-		update_option( 'obfx_token', $obfx_token );
-		$this->get_tracking_codes( $obfx_token );
-		wp_safe_redirect( admin_url( 'admin.php?page=obfx_companion' ) );
-		exit;
 	}
 
 	final public function output_analytics_code() {
