@@ -63,7 +63,6 @@ class Orbit_Fox_Global_Settings {
 				array(
 					'social-sharing',
 					'gutenberg-blocks',
-					'uptime-monitor',
 					'google-analytics',
 					'companion-legacy',
 					'elementor-widgets',
