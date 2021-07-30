@@ -3109,6 +3109,10 @@ html {
 	font-size: 14px;
 }
 
+.obfx-wrapper .tile .notice {
+	display: inline-block;
+}
+
 .obfx-wrapper .tile.tile-centered {
 	-webkit-align-items: center;
 	align-items: center;

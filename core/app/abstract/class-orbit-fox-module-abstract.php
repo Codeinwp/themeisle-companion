@@ -306,6 +306,17 @@ abstract class Orbit_Fox_Module_Abstract {
 	}
 
 	/**
+	 * Function that retrieves the status of the module directly from the database.
+	 * When calling this method, the model does not need to be initialized as we need for the get_is_active method.
+	 *
+	 * @return bool
+	 */
+	protected function is_module_active() {
+		$data = get_option( 'obfx_data' );
+		return isset( $data['module_status'][ $this->slug ]['active'] ) ? $data['module_status'][ $this->slug ]['active'] : $this->active_default;
+	}
+
+	/**
 	 * Method to update an option key value pair.
 	 *
 	 * @codeCoverageIgnore
@@ -735,5 +746,40 @@ abstract class Orbit_Fox_Module_Abstract {
 		update_option( 'obfx_beta_show_' . $this->get_slug(), $luck ? 'yes' : 'no' );
 
 		return $luck;
+	}
+
+	/**
+	 * Check if it's a new user for orbit fox.
+	 *
+	 * @param string $option_name Parameter to be able to check for new users in different period of time.
+	 *
+	 * @return bool
+	 */
+	protected function check_new_user( $option_name = 'obfx_new_user' ) {
+		$is_new_user = get_option( $option_name );
+		if ( $is_new_user === 'yes' ) {
+			return true;
+		}
+
+		$check_time_option = $option_name === 'obfx_new_user' ? 'module_check_time' : $option_name . '_check_time';
+		$install_time      = get_option( 'themeisle_companion_install' );
+		$current_time      = get_option( $check_time_option );
+
+		if ( empty( $current_time ) ) {
+			$current_time = time();
+			update_option( $check_time_option, $current_time );
+		}
+		if ( empty( $install_time ) || empty( $current_time ) ) {
+			update_option( $option_name, 'no' );
+			return false;
+		}
+
+		if ( ( $current_time - $install_time ) <= 60 ) {
+			update_option( $option_name, 'yes' );
+			return true;
+		}
+
+		update_option( $option_name, 'no' );
+		return false;
 	}
 }

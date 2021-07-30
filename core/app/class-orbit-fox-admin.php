@@ -321,6 +321,7 @@ class Orbit_Fox_Admin {
 			'translatepress-multilingual',
 			'autoptimize',
 			'wordpress-seo',
+			'otter-blocks',
 		];
 		shuffle( $plugins );
 		echo sprintf( '<div class="obfx-recommended-title-wrapper"><span class="obfx-recommended-title"><span class="dashicons dashicons-megaphone"></span> &nbsp; %s</span><div class="clearfix"></div></div>', 'Orbit Fox recommends' );
