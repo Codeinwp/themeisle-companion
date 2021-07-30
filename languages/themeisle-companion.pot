@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Orbit Fox Companion 2.10.6\n"
 "Report-Msgid-Bugs-To: "
 "https://github.com/Codeinwp/themeisle-companion/issues\n"
-"POT-Creation-Date: 2021-07-22 21:56:32+00:00\n"
+"POT-Creation-Date: 2021-07-30 10:15:39+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -3070,26 +3070,26 @@ msgid ""
 "created with this module, please install %s"
 msgstr ""
 
-#: dist/themeisle-companion/obfx_modules/gutenberg-blocks/init.php:141
-#: obfx_modules/gutenberg-blocks/init.php:141
+#: dist/themeisle-companion/obfx_modules/gutenberg-blocks/init.php:145
+#: obfx_modules/gutenberg-blocks/init.php:145
 msgid "Blocks by OrbitFox and Otter"
 msgstr ""
 
-#: dist/themeisle-companion/obfx_modules/gutenberg-blocks/init.php:163
-#: obfx_modules/gutenberg-blocks/init.php:172
+#: dist/themeisle-companion/obfx_modules/gutenberg-blocks/init.php:176
+#: obfx_modules/gutenberg-blocks/init.php:176
 msgid "It seems you are using the Gutenberg Blocks module from Orbit Fox."
 msgstr ""
 
-#: dist/themeisle-companion/obfx_modules/gutenberg-blocks/init.php:168
-#: obfx_modules/gutenberg-blocks/init.php:177
+#: dist/themeisle-companion/obfx_modules/gutenberg-blocks/init.php:181
+#: obfx_modules/gutenberg-blocks/init.php:181
 #. translators: %s Otter plugin link
 msgid ""
 "This module will soon be removed. In order to keep the content you created "
 "with this module, please install %s"
 msgstr ""
 
-#: dist/themeisle-companion/obfx_modules/gutenberg-blocks/init.php:171
-#: obfx_modules/gutenberg-blocks/init.php:180
+#: dist/themeisle-companion/obfx_modules/gutenberg-blocks/init.php:184
+#: obfx_modules/gutenberg-blocks/init.php:184
 msgid "Dismiss this notice."
 msgstr ""
 

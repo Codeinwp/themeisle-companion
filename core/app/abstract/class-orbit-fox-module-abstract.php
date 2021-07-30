@@ -313,7 +313,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	 */
 	protected function is_module_active() {
 		$data = get_option( 'obfx_data' );
-		return isset( $data['module_status'][ $this->slug ]['active'] ) ? $data['module_status'][ $this->slug ]['active'] : false;
+		return isset( $data['module_status'][ $this->slug ]['active'] ) ? $data['module_status'][ $this->slug ]['active'] : $this->active_default;
 	}
 
 	/**

@@ -34,6 +34,10 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 								 */
 								sprintf( __( 'This module will soon be removed form Orbit Fox. To keep the content you created with this module, please install %s', 'themeisle-companion' ), '<span class="dashicons dashicons-external"></span><a target="_blank" href="https://wordpress.org/plugins/otter-blocks/">Gutenberg Blocks and Template Library by Otter</a>.' )
 								. '</p>';
+
+		if ( $this->check_new_user( 'obfx_remove_gtb_blocks' ) === false ) {
+			$this->active_default = true;
+		}
 	}
 
 	/**
@@ -168,7 +172,7 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		}
 
 		echo '<div class="notice notice-warning" style="position: relative;">';
-		echo '<p>';
+		echo '<p style="max-width: 90%;">';
 		esc_html_e( 'It seems you are using the Gutenberg Blocks module from Orbit Fox.', 'themeisle-companion' );
 
 		/*
