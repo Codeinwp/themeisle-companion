@@ -313,7 +313,41 @@ abstract class Orbit_Fox_Module_Abstract {
 	 */
 	protected function is_module_active() {
 		$data = get_option( 'obfx_data' );
+		if ( ! is_array( $data ) ) {
+			return false;
+		}
+		if ( ! array_key_exists( 'module_status', $data ) ) {
+			return false;
+		}
+		if ( ! array_key_exists( $this->slug, $data['module_status'] ) ) {
+			return false;
+		}
 		return isset( $data['module_status'][ $this->slug ]['active'] ) ? $data['module_status'][ $this->slug ]['active'] : $this->active_default;
+	}
+
+	/**
+	 * Get module setting.
+	 *
+	 * @param string $parameter Setting to retrieve.
+	 *
+	 * @return false | mixed
+	 */
+	protected function get_module_setting( $parameter ) {
+		$data = get_option( 'obfx_data' );
+		if ( ! is_array( $data ) ) {
+			return false;
+		}
+		if ( ! array_key_exists( 'module_settings', $data ) ) {
+			return false;
+		}
+		if ( ! array_key_exists( $this->slug, $data['module_settings'] ) ) {
+			return false;
+		}
+		if ( ! array_key_exists( $parameter, $data['module_settings'][ $this->slug ] ) ) {
+			return false;
+		}
+
+		return $data['module_settings'][ $this->slug ][ $parameter ];
 	}
 
 	/**

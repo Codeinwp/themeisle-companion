@@ -181,6 +181,7 @@ class Orbit_Fox {
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'visit_dashboard_notice_dismiss' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'menu_pages' );
 		$this->loader->add_action( 'admin_notices', $plugin_admin, 'visit_dashboard_notice' );
+		$this->loader->add_action( 'admin_notices', $plugin_admin, 'uptime_removed_notice' );
 		$this->loader->add_action( 'obfx_recommended_plugins', $plugin_admin, 'load_recommended_plugins' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );

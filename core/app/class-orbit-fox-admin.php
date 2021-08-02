@@ -150,6 +150,54 @@ class Orbit_Fox_Admin {
 	}
 
 	/**
+	 * Show the uptime monitor notice.
+	 */
+	public function uptime_removed_notice() {
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		$screen = get_current_screen();
+		if ( empty( $screen ) ) {
+			return;
+		}
+
+		if ( ! in_array( $screen->id, array( 'toplevel_page_obfx_companion' ), true ) ) {
+			return;
+		}
+
+		global $current_user;
+		$user_id = $current_user->ID;
+
+		if ( get_user_meta( $user_id, 'obfx_dismiss_uptime_notice' ) ) {
+			return;
+		}
+
+
+		$external_link_data = '<span class="dashicons dashicons-external" style="text-decoration: none;"></span><span class="screen-reader-text">' . esc_html__( 'opens in a new tab', 'themeisle-companion' ) . '</span>';
+
+		echo '<div class="notice notice-info" style="position:relative;">';
+		echo '<p>';
+
+
+		echo sprintf(
+			/*
+			 * translators: %1$s first alternative url, %2$s second alternative url, %3$s third alternative url.
+			 */
+			esc_attr__( 'We have retired the free uptime monitoring module in OrbitFox since we haven\'t been able to dedicate more time into its development and direction. We recommend instead using services like %1$s, %2$s, or %3$s instead which provide more options/integrations and faster checks.', 'themeisle-companion' ),
+			'<a target="_blank" rel="external noreferrer noopener" href="https://uptimerobot.com/">uptimerobot.com' . wp_kses_post( $external_link_data ) . '</a>',
+			'<a target="_blank" rel="external noreferrer noopener" href="https://cronitor.io/">cronitor.io' . wp_kses_post( $external_link_data ) . '</a>',
+			'<a target="_blank" rel="external noreferrer noopener" href="https://updown.io/">updown.io' . wp_kses_post( $external_link_data ) . '</a>'
+		);
+
+		echo '</p>';
+		echo '</div>';
+
+		add_user_meta( $user_id, 'obfx_dismiss_uptime_notice', 'true', true );
+	}
+
+	/**
 	 * Add the initial dashboard notice to guide the user to the OrbitFox admin page.
 	 *
 	 * @since   2.3.4
