@@ -27,15 +27,7 @@ class Header_Footer_Scripts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function __construct() {
 		parent::__construct();
-		$this->name = sprintf(
-		/* translators: %s is New tag */
-			__( 'Header Footer Scripts %s', 'themeisle-companion' ),
-			sprintf(
-			/* translators: %s is New tag text */
-				'<sup class="obfx-title-new">%s</sup>',
-				__( 'NEW', 'themeisle-companion' )
-			)
-		);
+		$this->name = __( 'Header Footer Scripts', 'themeisle-companion' );
 
 		$this->description    = __( 'An easy way to add scripts, such as tracking and analytics scripts, to the header and footer of your website, as well as in the body of your posts and pages.', 'themeisle-companion' );
 		$this->active_default = true;

@@ -110,37 +110,6 @@ class Beaver_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		return true;
 	}
 
-
-	/**
-	 * Check if it's a new user for orbit fox.
-	 *
-	 * @return bool
-	 */
-	private function check_new_user() {
-		$is_new_user = get_option( 'obfx_new_user' );
-		if ( $is_new_user === 'yes' ) {
-			return true;
-		}
-
-		$install_time = get_option( 'themeisle_companion_install' );
-		$current_time = get_option( 'module_check_time' );
-		if ( empty( $current_time ) ) {
-			$current_time = time();
-			update_option( 'module_check_time', $current_time );
-		}
-		if ( empty( $install_time ) || empty( $current_time ) ) {
-			return false;
-		}
-
-		if ( ( $current_time - $install_time ) <= 60 ) {
-			update_option( 'obfx_new_user', 'yes' );
-			return true;
-		}
-
-		update_option( 'obfx_new_user', 'no' );
-		return false;
-	}
-
 	/**
 	 * Require Beaver Builder modules
 	 *
