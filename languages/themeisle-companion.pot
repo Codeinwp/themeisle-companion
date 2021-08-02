@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Orbit Fox Companion 2.10.6\n"
 "Report-Msgid-Bugs-To: "
 "https://github.com/Codeinwp/themeisle-companion/issues\n"
-"POT-Creation-Date: 2021-07-30 10:15:39+00:00\n"
+"POT-Creation-Date: 2021-08-02 12:43:08+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -95,94 +95,110 @@ msgstr ""
 msgid "General Settings"
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:171
-#: dist/themeisle-companion/core/app/class-orbit-fox-admin.php:171
+#: core/app/class-orbit-fox-admin.php:178
+#: dist/themeisle-companion/core/app/class-orbit-fox-admin.php:178
+msgid "opens in a new tab"
+msgstr ""
+
+#: core/app/class-orbit-fox-admin.php:188
+#: dist/themeisle-companion/core/app/class-orbit-fox-admin.php:188
+#. translators: %1$s first alternative url, %2$s second alternative url, %3$s
+#. third alternative url.
+msgid ""
+"We have retired the free uptime monitoring module in OrbitFox since we "
+"haven't been able to dedicate more time into its development and direction. "
+"We recommend instead using services like %1$s, %2$s, or %3$s instead which "
+"provide more options/integrations and faster checks."
+msgstr ""
+
+#: core/app/class-orbit-fox-admin.php:219
+#: dist/themeisle-companion/core/app/class-orbit-fox-admin.php:219
 #. translators: Go to url.
 msgid ""
 "You have activated Orbit Fox plugin! Go to the %s to get started with the "
 "extra features."
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:171
-#: dist/themeisle-companion/core/app/class-orbit-fox-admin.php:171
+#: core/app/class-orbit-fox-admin.php:219
+#: dist/themeisle-companion/core/app/class-orbit-fox-admin.php:219
 msgid "Dashboard Page"
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:223
-#: core/app/class-orbit-fox-admin.php:330
-#: dist/themeisle-companion/core/app/class-orbit-fox-admin.php:223
-#: dist/themeisle-companion/core/app/class-orbit-fox-admin.php:330
+#: core/app/class-orbit-fox-admin.php:271
+#: core/app/class-orbit-fox-admin.php:379
+#: dist/themeisle-companion/core/app/class-orbit-fox-admin.php:271
+#: dist/themeisle-companion/core/app/class-orbit-fox-admin.php:379
 msgid "Could not process the request!"
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:248
-#: dist/themeisle-companion/core/app/class-orbit-fox-admin.php:248
+#: core/app/class-orbit-fox-admin.php:296
+#: dist/themeisle-companion/core/app/class-orbit-fox-admin.php:296
 msgid "No module found! No data was updated."
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:254
-#: dist/themeisle-companion/core/app/class-orbit-fox-admin.php:254
+#: core/app/class-orbit-fox-admin.php:302
+#: dist/themeisle-companion/core/app/class-orbit-fox-admin.php:302
 msgid "Something went wrong, data might not be saved!"
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:258
-#: dist/themeisle-companion/core/app/class-orbit-fox-admin.php:258
+#: core/app/class-orbit-fox-admin.php:306
+#: dist/themeisle-companion/core/app/class-orbit-fox-admin.php:306
 msgid "Options updated, successfully!"
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:355
-#: dist/themeisle-companion/core/app/class-orbit-fox-admin.php:355
+#: core/app/class-orbit-fox-admin.php:404
+#: dist/themeisle-companion/core/app/class-orbit-fox-admin.php:404
 msgid "No module found!"
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:359
-#: dist/themeisle-companion/core/app/class-orbit-fox-admin.php:359
+#: core/app/class-orbit-fox-admin.php:408
+#: dist/themeisle-companion/core/app/class-orbit-fox-admin.php:408
 msgid "Something went wrong, can not change module status!"
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:364
-#: dist/themeisle-companion/core/app/class-orbit-fox-admin.php:364
+#: core/app/class-orbit-fox-admin.php:413
+#: dist/themeisle-companion/core/app/class-orbit-fox-admin.php:413
 msgid "Module status changed!"
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:482
-#: dist/themeisle-companion/core/app/class-orbit-fox-admin.php:482
+#: core/app/class-orbit-fox-admin.php:531
+#: dist/themeisle-companion/core/app/class-orbit-fox-admin.php:531
 msgid "No modules found."
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:483
-#: dist/themeisle-companion/core/app/class-orbit-fox-admin.php:483
+#: core/app/class-orbit-fox-admin.php:532
+#: dist/themeisle-companion/core/app/class-orbit-fox-admin.php:532
 msgid "Please contact support for more help."
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:490
-#: dist/themeisle-companion/core/app/class-orbit-fox-admin.php:490
+#: core/app/class-orbit-fox-admin.php:539
+#: dist/themeisle-companion/core/app/class-orbit-fox-admin.php:539
 msgid "No active modules."
 msgstr ""
 
-#: core/app/class-orbit-fox-admin.php:491
-#: dist/themeisle-companion/core/app/class-orbit-fox-admin.php:491
+#: core/app/class-orbit-fox-admin.php:540
+#: dist/themeisle-companion/core/app/class-orbit-fox-admin.php:540
 msgid "Activate a module using the toggles above."
 msgstr ""
 
-#: core/app/class-orbit-fox-plugin-install.php:161
-#: dist/themeisle-companion/core/app/class-orbit-fox-plugin-install.php:161
+#: core/app/class-orbit-fox-plugin-install.php:160
+#: dist/themeisle-companion/core/app/class-orbit-fox-plugin-install.php:160
 #: dist/themeisle-companion/vendor/codeinwp/templates-directory/class-page-templates-directory.php:457
 #: vendor/codeinwp/templates-directory/class-page-templates-directory.php:457
 msgid "Install and activate"
 msgstr ""
 
-#: core/app/class-orbit-fox-plugin-install.php:165
+#: core/app/class-orbit-fox-plugin-install.php:164
 #: core/app/views/partials/module-tile-tpl.php:67
-#: dist/themeisle-companion/core/app/class-orbit-fox-plugin-install.php:165
+#: dist/themeisle-companion/core/app/class-orbit-fox-plugin-install.php:164
 #: dist/themeisle-companion/core/app/views/partials/module-tile-tpl.php:67
 #: dist/themeisle-companion/vendor/codeinwp/templates-directory/class-page-templates-directory.php:468
 #: vendor/codeinwp/templates-directory/class-page-templates-directory.php:468
 msgid "Activate"
 msgstr ""
 
-#: core/app/class-orbit-fox-plugin-install.php:180
-#: dist/themeisle-companion/core/app/class-orbit-fox-plugin-install.php:180
+#: core/app/class-orbit-fox-plugin-install.php:179
+#: dist/themeisle-companion/core/app/class-orbit-fox-plugin-install.php:179
 msgid "Deactivate"
 msgstr ""
 
@@ -3031,23 +3047,18 @@ msgstr ""
 msgid "A module to integrate Google Analytics into your site easily."
 msgstr ""
 
-#: dist/themeisle-companion/obfx_modules/google-analytics/init.php:246
-#: obfx_modules/google-analytics/init.php:246
+#: dist/themeisle-companion/obfx_modules/google-analytics/init.php:259
+#: obfx_modules/google-analytics/init.php:259
 msgid "Authenticate with Google"
 msgstr ""
 
-#: dist/themeisle-companion/obfx_modules/google-analytics/init.php:251
-#: obfx_modules/google-analytics/init.php:251
+#: dist/themeisle-companion/obfx_modules/google-analytics/init.php:264
+#: obfx_modules/google-analytics/init.php:264
 msgid "Select a tracking code"
 msgstr ""
 
-#: dist/themeisle-companion/obfx_modules/google-analytics/init.php:272
-#: obfx_modules/google-analytics/init.php:272
-msgid "Refresh Accounts"
-msgstr ""
-
-#: dist/themeisle-companion/obfx_modules/google-analytics/init.php:288
-#: obfx_modules/google-analytics/init.php:288
+#: dist/themeisle-companion/obfx_modules/google-analytics/init.php:291
+#: obfx_modules/google-analytics/init.php:291
 msgid "Unregister Site"
 msgstr ""
 
@@ -3390,28 +3401,6 @@ msgstr ""
 #: obfx_modules/template-directory/init.php:101
 #: vendor/codeinwp/templates-directory/views/template-directory-page-tpl.php:20
 msgid "Orbit Fox Template Directory"
-msgstr ""
-
-#: dist/themeisle-companion/obfx_modules/uptime-monitor/init.php:31
-#: obfx_modules/uptime-monitor/init.php:31
-msgid "Uptime Monitor"
-msgstr ""
-
-#: dist/themeisle-companion/obfx_modules/uptime-monitor/init.php:32
-#: obfx_modules/uptime-monitor/init.php:32
-msgid "A module to notify when you website goes down."
-msgstr ""
-
-#: dist/themeisle-companion/obfx_modules/uptime-monitor/init.php:33
-#: obfx_modules/uptime-monitor/init.php:33
-msgid "One more step..."
-msgstr ""
-
-#: dist/themeisle-companion/obfx_modules/uptime-monitor/init.php:33
-#: obfx_modules/uptime-monitor/init.php:33
-msgid ""
-"In order to use the uptime service, we will need your e-mail address, where "
-"we will send downtime alerts."
 msgstr ""
 
 #: dist/themeisle-companion/vendor/codeinwp/elementor-extra-widgets/class-elementor-extra-widgets.php:57

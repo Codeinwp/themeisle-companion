@@ -185,7 +185,7 @@ class Orbit_Fox_Admin {
 			/*
 			 * translators: %1$s first alternative url, %2$s second alternative url, %3$s third alternative url.
 			 */
-			esc_attr__( 'We have retired the free uptime monitoring module in OrbitFox since we haven\'t been able to dedicate more time into its development and direction. We recommend instead using services like %1$s, %2$s, or %3$s instead which provide more options/integrations and faster checks.', 'themeisle-companion' ),
+			esc_attr__( 'We have retired the free uptime monitoring module in OrbitFox since we haven\'t been able to dedicate more time to its development and direction. Instead, we recommend using services like %1$s, %2$s, or %3$s, which provide more options/integrations and faster checks.', 'themeisle-companion' ),
 			'<a target="_blank" rel="external noreferrer noopener" href="https://uptimerobot.com/">uptimerobot.com' . wp_kses_post( $external_link_data ) . '</a>',
 			'<a target="_blank" rel="external noreferrer noopener" href="https://cronitor.io/">cronitor.io' . wp_kses_post( $external_link_data ) . '</a>',
 			'<a target="_blank" rel="external noreferrer noopener" href="https://updown.io/">updown.io' . wp_kses_post( $external_link_data ) . '</a>'
