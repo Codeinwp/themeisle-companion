@@ -78,12 +78,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/elementor-extra-widgets.git",
-                "reference": "0a07707899c315f6eb13ee6f3110e3167f2b3fde"
+                "reference": "2894a02bd940b42038f0e097754498a1169b15b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/elementor-extra-widgets/zipball/0a07707899c315f6eb13ee6f3110e3167f2b3fde",
-                "reference": "0a07707899c315f6eb13ee6f3110e3167f2b3fde",
+                "url": "https://api.github.com/repos/Codeinwp/elementor-extra-widgets/zipball/2894a02bd940b42038f0e097754498a1169b15b1",
+                "reference": "2894a02bd940b42038f0e097754498a1169b15b1",
                 "shasum": ""
             },
             "default-branch": true,
@@ -109,7 +109,7 @@
                 "issues": "https://github.com/Codeinwp/elementor-extra-widgets/issues",
                 "source": "https://github.com/Codeinwp/elementor-extra-widgets/tree/master"
             },
-            "time": "2021-07-15T09:45:31+00:00"
+            "time": "2021-08-02T12:23:30+00:00"
         },
         {
             "name": "codeinwp/full-width-page-templates",
@@ -249,12 +249,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/themeisle-content-forms.git",
-                "reference": "cc2ec785e86510217cf9a18d2a0542b337b42a80"
+                "reference": "73f9d5696603b0aa2e25b9c035e4abfaf5bd2d68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/themeisle-content-forms/zipball/cc2ec785e86510217cf9a18d2a0542b337b42a80",
-                "reference": "cc2ec785e86510217cf9a18d2a0542b337b42a80",
+                "url": "https://api.github.com/repos/Codeinwp/themeisle-content-forms/zipball/73f9d5696603b0aa2e25b9c035e4abfaf5bd2d68",
+                "reference": "73f9d5696603b0aa2e25b9c035e4abfaf5bd2d68",
                 "shasum": ""
             },
             "require": {
@@ -288,7 +288,7 @@
                 "issues": "https://github.com/Codeinwp/themeisle-content-forms/issues",
                 "source": "https://github.com/Codeinwp/themeisle-content-forms/tree/master"
             },
-            "time": "2021-07-15T09:44:09+00:00"
+            "time": "2021-08-02T12:22:21+00:00"
         },
         {
             "name": "codeinwp/themeisle-sdk",
