@@ -313,6 +313,9 @@ abstract class Orbit_Fox_Module_Abstract {
 	 */
 	protected function is_module_active() {
 		$data = get_option( 'obfx_data' );
+		if ( ! is_array( $data ) ) {
+			return false;
+		}
 		if ( ! array_key_exists( 'module_status', $data ) ) {
 			return false;
 		}
@@ -331,6 +334,9 @@ abstract class Orbit_Fox_Module_Abstract {
 	 */
 	protected function get_module_setting( $parameter ) {
 		$data = get_option( 'obfx_data' );
+		if ( ! is_array( $data ) ) {
+			return false;
+		}
 		if ( ! array_key_exists( 'module_settings', $data ) ) {
 			return false;
 		}
