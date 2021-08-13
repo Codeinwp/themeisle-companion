@@ -123,6 +123,11 @@ class Orbit_Fox_Admin {
 			wp_enqueue_script( 'updates' );
 			wp_enqueue_script( 'obfx-plugin-install' );
 
+			// react dashboard
+			wp_register_script( 'obfx-dashboard', plugin_dir_url( __FILE__ )  . '../../dashboard/build/dashboard.js', array( 'wp-element' ), $this->version, true );
+			wp_enqueue_script( 'obfx-dashboard' );
+			wp_localize_script( 'obfx-dashboard', 'data', [ 'modules' => $this->get_modules_data() ] );
+
 		}
 		do_action( 'obfx_admin_enqueue_scripts' );
 	}
@@ -438,6 +443,14 @@ class Orbit_Fox_Admin {
 	}
 
 	/**
+	 * Method to get all data for the modules to be passed to react
+	 */
+	public function get_modules_data() {
+		$global_settings = new Orbit_Fox_Global_Settings();
+		return $global_settings::$instance->module_objects;
+	}
+
+	/**
 	 * Method to display modules page.
 	 *
 	 * @codeCoverageIgnore
@@ -552,6 +565,9 @@ class Orbit_Fox_Admin {
 			'panels'        => $panels,
 		);
 		$output = $rdh->get_view( 'modules', $data );
+
+		echo '<div id="obfx-dash"></div>'; // entry point for the React dashboard
+
 		echo $output; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
