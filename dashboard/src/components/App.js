@@ -1,12 +1,23 @@
-/* global data */
+/* global obfxDash */
+import '../style.scss';
+import Header from './Header';
+import Content from './Content';
+import { useState } from '@wordpress/element';
+
+const { modules, data } = obfxDash;
 
 const App = () => {
-	const { modules } = data;
+	const [ activeTab, setActiveTab ] = useState( 'modules' );
+
+	// eslint-disable-next-line no-console
 	console.log( modules );
+	// eslint-disable-next-line no-console
+	console.log( data );
 
 	return (
 		<div>
-			<h1> Hi from React! </h1>
+			<Header activeTab={ activeTab } setActiveTab={ setActiveTab } />
+			<Content />
 		</div>
 	);
 };

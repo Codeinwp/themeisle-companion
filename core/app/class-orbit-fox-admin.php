@@ -126,8 +126,13 @@ class Orbit_Fox_Admin {
 			// react dashboard
 			wp_register_script( 'obfx-dashboard', plugin_dir_url( __FILE__ )  . '../../dashboard/build/dashboard.js', array( 'wp-element' ), $this->version, true );
 			wp_enqueue_script( 'obfx-dashboard' );
-			wp_localize_script( 'obfx-dashboard', 'data', [ 'modules' => $this->get_modules_data() ] );
-
+			wp_localize_script( 'obfx-dashboard', 'obfxDash',
+				array(
+						'path' => dirname( plugin_dir_url( __FILE__ ), 2 ) . '/dashboard/',
+						'modules' => $this->get_modules_data(),
+						'data' => get_option('obfx_data')
+				)
+			);
 		}
 		do_action( 'obfx_admin_enqueue_scripts' );
 	}
@@ -568,7 +573,7 @@ class Orbit_Fox_Admin {
 
 		echo '<div id="obfx-dash"></div>'; // entry point for the React dashboard
 
-		echo $output; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+//		echo $output; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 }
