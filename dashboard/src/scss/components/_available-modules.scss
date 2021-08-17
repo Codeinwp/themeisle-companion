@@ -1,0 +1,50 @@
+@import "../vars";
+
+.modules-container {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+
+  .module-card {
+    background-color: #FFF;
+    border: 1px solid #e1e1e1;
+
+    .module-card-header {
+      padding: 20px;
+      border-bottom: 1px solid #e1e1e1;
+      display: flex;
+
+      .title {
+        margin: 0;
+        font-size: 18px;
+        line-height: 1.5;
+        color: inherit;
+      }
+
+      .toggle-wrap {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+
+        .components-form-toggle.is-checked .components-form-toggle__track {
+          background-color: $obfx-purple;
+        }
+
+        .components-form-toggle .components-form-toggle__input:focus + .components-form-toggle__track {
+          box-shadow: 0 0 0 2px #fff,0 0 0 4px $obfx-purple;
+        }
+      }
+    }
+
+    .module-card-content {
+      padding: 20px;
+
+      .description {
+        margin: 0;
+        font-size: 15px;
+        color: #616161;
+      }
+    }
+  }
+}

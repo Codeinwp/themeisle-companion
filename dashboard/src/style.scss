@@ -1,9 +1,8 @@
 @import "scss/core-overrides";
-
-$obfx-purple: #5a65b0;
+@import "scss/vars";
 
 #obfx-dash {
   @import "scss/general";
   @import "scss/components/header";
-  @import "scss/components/content";
+  @import "scss/components/available-modules";
 }

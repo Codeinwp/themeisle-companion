@@ -124,7 +124,12 @@ class Orbit_Fox_Admin {
 			wp_enqueue_script( 'obfx-plugin-install' );
 
 			// react dashboard
-			wp_register_script( 'obfx-dashboard', plugin_dir_url( __FILE__ )  . '../../dashboard/build/dashboard.js', array( 'wp-element' ), $this->version, true );
+			$dependencies = ( include OBX_PATH  . '/dashboard/build/dashboard.asset.php' );
+
+			wp_register_style( 'obfx-dashboard-style', plugin_dir_url( __FILE__ )  . '../../dashboard/build/style-dashboard.css', [ 'wp-components' ], $dependencies['version'] );
+			wp_enqueue_style( 'obfx-dashboard-style' );
+
+			wp_register_script( 'obfx-dashboard', plugin_dir_url( __FILE__ )  . '../../dashboard/build/dashboard.js', $dependencies['dependencies'], $this->version, true );
 			wp_enqueue_script( 'obfx-dashboard' );
 			wp_localize_script( 'obfx-dashboard', 'obfxDash',
 				array(
