@@ -1,16 +1,13 @@
 /* global obfxDash */
-import ReactHtmlParser from 'react-html-parser';
-import { ToggleControl } from '@wordpress/components';
+import ModuleCard from './ModuleCard';
 
 const { modules, data } = obfxDash;
 
 const AvailableModules = () => {
-	// eslint-disable-next-line no-console
-	console.log( modules, data );
+	// eslint-disable-next-line camelcase
+	const { module_status } = data;
 
 	const renderModules = () => {
-		// eslint-disable-next-line camelcase
-		const { module_status } = data;
 		return Object.entries( modules )
 			.filter( ( [ slug ] ) => {
 				return (
@@ -20,22 +17,11 @@ const AvailableModules = () => {
 			} )
 			.map( ( [ slug, details ] ) => {
 				return (
-					<div className="module-card" key={ slug }>
-						<div className="module-card-header">
-							<h3 className="title">{ details.name }</h3>
-							<div className="toggle-wrap">
-								<ToggleControl
-									checked={ module_status[ slug ].active }
-									onChange={ () => {} }
-								/>
-							</div>
-						</div>
-						<div className="module-card-content">
-							<div className="description">
-								{ ReactHtmlParser( details.description ) }
-							</div>
-						</div>
-					</div>
+					<ModuleCard
+						slug={ slug }
+						details={ details }
+						key={ slug }
+					/>
 				);
 			} );
 	};

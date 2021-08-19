@@ -27,11 +27,16 @@
         display: flex;
         align-items: center;
 
+        div {
+          margin-bottom: 0;
+          margin-left: 5px;
+        }
+
         .components-form-toggle.is-checked .components-form-toggle__track {
           background-color: $obfx-purple;
         }
 
-        .components-form-toggle .components-form-toggle__input:focus + .components-form-toggle__track {
+        .components-form-toggle .components-form-toggle__input:focus + span {
           box-shadow: 0 0 0 2px #fff,0 0 0 4px $obfx-purple;
         }
       }
