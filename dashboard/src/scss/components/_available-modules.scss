@@ -33,12 +33,8 @@
           margin-left: 5px;
         }
 
-        .components-form-toggle.is-checked .components-form-toggle__track {
-          background-color: $obfx-purple;
-        }
-
-        .components-form-toggle .components-form-toggle__input:focus + span {
-          box-shadow: 0 0 0 2px #fff,0 0 0 4px $obfx-purple;
+        span {
+          margin-right: 0;
         }
       }
 
@@ -60,6 +56,46 @@
         margin: 0;
         font-size: 15px;
         color: #616161;
+      }
+    }
+
+    .module-settings {
+      border-top: 1px solid #e1e1e1;
+
+      &.open .accordion-header .accordion-title {
+        color: #3c434a;
+      }
+
+      .accordion-header {
+        padding: 15px 20px;
+        background-color: #fff;
+        outline: none;
+        border: none;
+        width: 100%;
+        display: flex;
+        cursor: pointer;
+
+        .accordion-title {
+          margin-right: auto;
+          font-size: 15px;
+          font-weight: 600;
+          color: $obfx-purple;
+          transition-duration: .25s;
+          transition-timing-function: ease-out;
+        }
+
+        .dashicon {
+          margin-left: auto;
+          color: #646D82;
+        }
+      }
+
+      .accordion-content {
+        padding: 15px 20px;
+
+        .loading {
+          opacity: .75;
+        }
       }
     }
   }

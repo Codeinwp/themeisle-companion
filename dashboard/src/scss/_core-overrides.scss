@@ -1,3 +1,11 @@
+@import "./vars";
+
+#obfx-dash {
+  --wp-admin-theme-color: #{ $obfx-purple };
+  --wp-admin-theme-color-darker-10: #{ darken( $obfx-purple, 10% ) };
+  --wp-admin-theme-color-darker-20: #{ darken( $obfx-purple, 20% ) };
+}
+
 #wpcontent {
   padding-left: 0 !important;
 }

@@ -62,7 +62,7 @@ class Orbit_Fox_Admin {
 			'/toggle-module-state',
 			array(
 				'methods'             => WP_REST_Server::CREATABLE,
-				'callback'            => [ $this, 'toggle_module_state_callback' ],
+				'callback'            => [ $this, 'update_module_callback' ],
 				'permission_callback' => function () {
 					return current_user_can( 'manage_options' );
 				},
@@ -73,7 +73,7 @@ class Orbit_Fox_Admin {
 			'/set-module-settings',
 			array(
 				'methods'             => WP_REST_Server::CREATABLE,
-				'callback'            => [ $this, 'set_module_settings_callback' ],
+				'callback'            => [ $this, 'update_module_callback' ],
 				'permission_callback' => function () {
 					return current_user_can( 'manage_options' );
 				},
@@ -81,50 +81,56 @@ class Orbit_Fox_Admin {
 		);
 	}
 
-	public function toggle_module_state_callback( WP_REST_Request $request ) {
-		$data     = json_decode( $request->get_body() );
-		$settings = ( new Orbit_Fox_Global_Settings() );
+	public function update_module_callback( WP_REST_Request $request ) {
+		$data     = json_decode( $request->get_body(), true);
+		$settings = new Orbit_Fox_Global_Settings();
 		$modules  = $settings::$instance->module_objects;
 
-		if ( ! property_exists( $data, 'slug' ) || ! property_exists( $data, 'value' ) ) {
-			return new WP_REST_Response( [ 'type' => 'error', 'message' => 'Bad request!' ] );
+		if ( ! isset( $data['slug'] ) || ! isset( $data['value'] ) ) {
+			return new WP_REST_Response(
+				[
+					'type'    => 'error',
+					'message' => 'Bad request!',
+				]
+			);
 		}
 
-		if ( ! isset( $modules[ $data->slug ] ) ) {
-			return new WP_REST_Response( [ 'type' => 'error', 'message' => 'Module ' . $data->slug . ' not found!' ] );
+		if ( ! isset( $modules[ $data['slug'] ] ) ) {
+			return new WP_REST_Response(
+				[
+					'type'    => 'error',
+					'message' => 'Module ' . $data['slug'] . ' not found!',
+				]
+			);
 		}
 
-		$response = $modules[ $data->slug ]->set_status( 'active', $data->value );
-		$this->trigger_activate_deactivate( $data->value, $modules[ $data->slug ] );
+		$response = false;
+
+		if ( $request->get_route() == '/obfx/toggle-module-state' ) {
+			$response = $modules[ $data['slug'] ]->set_status( 'active', $data['value'] );
+			$this->trigger_activate_deactivate( $data['value'], $modules[ $data['slug'] ] );
+		}
+
+		if ( $request->get_route() == '/obfx/set-module-settings' ) {
+			unset( $data->slug );
+			$response = $modules[ $data['slug'] ]->set_options( $data['value'] );
+		}
 
 		if ( ! $response ) {
-			return new WP_REST_Response( [ 'type' => 'warning', 'message' => 'Active status unchanged!' ] );
+			return new WP_REST_Response(
+				[
+					'type'    => 'warning',
+					'message' => 'Data unchanged!',
+				]
+			);
 		}
 
-		return new WP_REST_Response( [ 'type' => 'success', 'data' => $data ] );
-	}
-
-	public function set_module_settings_callback( WP_REST_Request $request ) {
-		$data     = json_decode( $request->get_body() );
-		$settings = ( new Orbit_Fox_Global_Settings() );
-		$modules  = $settings::$instance->module_objects;
-
-		if ( ! property_exists( $data, 'slug' ) || ! property_exists( $data, 'value' ) ) {
-			return new WP_REST_Response( [ 'type' => 'error', 'message' => 'Bad request!' ] );
-		}
-
-		if ( ! isset( $modules[ $data->slug ] ) ) {
-			return new WP_REST_Response( [ 'type' => 'error', 'message' => 'Module ' . $data->slug . ' not found!' ] );
-		}
-
-		$response = $modules[ $data->slug ]->set_options( $data );
-		$this->trigger_activate_deactivate( $data->value, $modules[ $data->slug ] );
-
-		if ( ! $response ) {
-			return new WP_REST_Response( [ 'type' => 'warning', 'message' => 'Active status unchanged!' ] );
-		}
-
-		return new WP_REST_Response( [ 'type' => 'success', 'data' => $data ] );
+		return new WP_REST_Response(
+			[
+				'type' => 'success',
+				'data' => $data,
+			]
+		);
 	}
 
 	/**
@@ -152,8 +158,8 @@ class Orbit_Fox_Admin {
 		if ( in_array( $screen->id, array( 'toplevel_page_obfx_companion' ), true ) ) {
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . '../assets/css/orbit-fox-admin.css', array(), $this->version, 'all' );
 
-			$dependencies = ( include OBX_PATH  . '/dashboard/build/dashboard.asset.php' );
-			wp_register_style( 'obfx-dashboard-style', plugin_dir_url( __FILE__ )  . '../../dashboard/build/style-dashboard.css', [ 'wp-components' ], $dependencies['version'] );
+			$dependencies = include OBX_PATH . '/dashboard/build/dashboard.asset.php';
+			wp_register_style( 'obfx-dashboard-style', plugin_dir_url( __FILE__ ) . '../../dashboard/build/style-dashboard.css', [ 'wp-components' ], $dependencies['version'] );
 			wp_enqueue_style( 'obfx-dashboard-style' );
 		}
 
@@ -202,7 +208,7 @@ class Orbit_Fox_Admin {
 			wp_enqueue_script( 'obfx-plugin-install' );
 
 			// react dashboard
-			$dependencies    = ( include OBX_PATH  . '/dashboard/build/dashboard.asset.php' );
+			$dependencies    = include OBX_PATH . '/dashboard/build/dashboard.asset.php';
 			$global_settings = new Orbit_Fox_Global_Settings();
 			$modules         = $global_settings::$instance->module_objects;
 			$modules_options = array_map(
@@ -212,16 +218,19 @@ class Orbit_Fox_Admin {
 				$modules
 			);
 
-			wp_register_script( 'obfx-dashboard', plugin_dir_url( __FILE__ )  . '../../dashboard/build/dashboard.js', $dependencies['dependencies'], $this->version, true );
+			wp_register_script( 'obfx-dashboard', OBFX_URL . '/dashboard/build/dashboard.js', $dependencies['dependencies'], $this->version, true );
 			wp_enqueue_script( 'obfx-dashboard' );
-			wp_localize_script( 'obfx-dashboard', 'obfxDash',
+			wp_localize_script(
+				'obfx-dashboard',
+				'obfxDash',
 				array(
-					'path'             => dirname( plugin_dir_url( __FILE__ ), 2 ) . '/dashboard/',
+					'path'             => OBFX_URL . '/dashboard/',
 					'root'             => esc_url_raw( get_rest_url() ) . 'obfx/',
 					'toggleStateRoute' => 'toggle-module-state',
+					'setSettingsRoute' => 'set-module-settings',
 					'nonce'            => wp_create_nonce( 'wp_rest' ),
 					'modules'          => $modules,
-					'data'             => get_option('obfx_data'),
+					'data'             => get_option( 'obfx_data' ),
 					'options'          => $modules_options,
 				)
 			);
@@ -657,7 +666,7 @@ class Orbit_Fox_Admin {
 
 		echo '<div id="obfx-dash"></div>'; // entry point for the React dashboard
 
-//		echo $output; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		// echo $output; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 }
