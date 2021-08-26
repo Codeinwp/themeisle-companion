@@ -1,18 +1,18 @@
 /* global obfxDash */
 import ModuleCard from './ModuleCard';
+import { ModulesContext } from './DashboardContext';
+import { useState } from '@wordpress/element';
 
 const { modules, data } = obfxDash;
 
 const AvailableModules = () => {
-	// eslint-disable-next-line camelcase
-	const { module_status } = data;
+	const [ modulesData, setModulesData ] = useState( data );
 
 	const renderModules = () => {
 		return Object.entries( modules )
 			.filter( ( [ slug ] ) => {
 				return (
-					module_status[ slug ] &&
-					module_status[ slug ].hasOwnProperty( 'active' )
+					data.module_status[ slug ] && modules[ slug ].auto === false
 				);
 			} )
 			.map( ( [ slug, details ] ) => {
@@ -26,7 +26,11 @@ const AvailableModules = () => {
 			} );
 	};
 
-	return <div className="modules-container">{ renderModules() }</div>;
+	return (
+		<ModulesContext.Provider value={ { modulesData, setModulesData } }>
+			<div className="modules-container">{ renderModules() }</div>
+		</ModulesContext.Provider>
+	);
 };
 
 export default AvailableModules;

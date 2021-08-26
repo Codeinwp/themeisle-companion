@@ -14,6 +14,7 @@
       padding: 20px;
       border-bottom: 1px solid #e1e1e1;
       display: flex;
+      position: relative;
 
       .title {
         margin: 0;
@@ -39,6 +40,16 @@
         .components-form-toggle .components-form-toggle__input:focus + span {
           box-shadow: 0 0 0 2px #fff,0 0 0 4px $obfx-purple;
         }
+      }
+
+      p {
+        position: absolute;
+        top: 40px;
+        right: 10px;
+        padding: 10px;
+        background-color: $obfx-purple;
+        color: #fff;
+        white-space: nowrap;
       }
     }
 
