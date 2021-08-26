@@ -82,7 +82,7 @@ class Orbit_Fox_Admin {
 	}
 
 	public function update_module_callback( WP_REST_Request $request ) {
-		$data     = json_decode( $request->get_body(), true);
+		$data     = json_decode( $request->get_body(), true );
 		$settings = new Orbit_Fox_Global_Settings();
 		$modules  = $settings::$instance->module_objects;
 
