@@ -92,9 +92,24 @@
 
       .accordion-content {
         padding: 15px 20px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 15px;
 
-        .loading {
+        &.loading {
           opacity: .75;
+        }
+
+        .buttons-container {
+          margin-left: auto;
+          display: flex;
+          column-gap: 10px;
+          justify-content: flex-end;
+
+          .obfx-button {
+            width: 60px;
+            justify-content: center;
+          }
         }
       }
     }

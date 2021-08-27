@@ -3,57 +3,66 @@ import { useContext, useState } from '@wordpress/element';
 import { ModulesContext } from './DashboardContext';
 import { requestData } from '../utils/rest';
 import {
+	Dashicon,
+	Button,
 	CheckboxControl,
 	RadioControl,
-	Dashicon,
 	ToggleControl,
 	SelectControl,
 	TextControl,
 } from '@wordpress/components';
-import ReactHtmlParser from 'react-html-parser';
 import classnames from 'classnames';
+import ReactHtmlParser from 'react-html-parser';
 
 const { options, root, setSettingsRoute } = obfxDash;
 
 const ModuleSettings = ( { slug } ) => {
 	const { modulesData, setModulesData } = useContext( ModulesContext );
 	const [ open, setOpen ] = useState( false );
-	const [ loadingOption, setLoadingOption ] = useState( null );
+	const [ loading, setLoading ] = useState( false );
 	// eslint-disable-next-line camelcase
 	const { module_settings } = modulesData;
 
+	const loadingIcon = (
+		<Dashicon size={ 18 } icon="update" className="is-loading" />
+	);
+
+	const [ tempData, setTempData ] = useState( module_settings[ slug ] );
+
 	const changeOption = ( name, newValue ) => {
-		setLoadingOption( name );
-		module_settings[ slug ][ name ] = newValue;
+		// const newTempData = tempData;
+		tempData[ name ] = newValue;
+		setTempData( tempData );
+	};
+
+	const sendData = () => {
 		const dataToSend = {
 			slug,
-			value: module_settings[ slug ],
+			value: tempData,
 		};
 
 		requestData( root + setSettingsRoute, dataToSend ).then( ( r ) => {
 			if ( r.type !== 'success' ) {
-				setLoadingOption( null );
+				setTempData( module_settings[ slug ] );
+				setLoading( false );
 				return;
 			}
 
-			module_settings[ slug ][ name ] = newValue;
+			module_settings[ slug ] = tempData;
 			setModulesData( modulesData );
-			setLoadingOption( null );
+			setLoading( false );
 		} );
 	};
 
 	const renderOption = ( index ) => {
 		const setting = options[ slug ][ index ];
-		const selected = module_settings[ slug ][ setting.id ];
-		const loadingClass = loadingOption === setting.id ? 'loading' : '';
 
 		switch ( setting.type ) {
 			case 'checkbox':
 				return (
 					<CheckboxControl
-						className={ loadingClass }
 						label={ setting.label }
-						checked={ selected === '1' }
+						checked={ tempData[ setting.id ] === '1' }
 						onChange={ ( newValue ) =>
 							changeOption( setting.id, newValue ? '1' : '0' )
 						}
@@ -62,12 +71,11 @@ const ModuleSettings = ( { slug } ) => {
 			case 'radio':
 				return (
 					<RadioControl
-						className={ loadingClass }
 						label={ setting.title }
 						options={ setting.options.map( ( label, value ) => {
 							return { label, value };
 						} ) }
-						selected={ parseInt( selected ) }
+						selected={ parseInt( tempData[ setting.id ] ) }
 						onChange={ ( newValue ) =>
 							changeOption( setting.id, newValue )
 						}
@@ -76,9 +84,8 @@ const ModuleSettings = ( { slug } ) => {
 			case 'toggle':
 				return (
 					<ToggleControl
-						className={ loadingClass }
 						label={ ReactHtmlParser( setting.label ) }
-						checked={ selected === '1' }
+						checked={ tempData[ setting.id ] === '1' }
 						onChange={ ( newValue ) =>
 							changeOption( setting.id, newValue ? '1' : '0' )
 						}
@@ -87,9 +94,8 @@ const ModuleSettings = ( { slug } ) => {
 			case 'select':
 				return (
 					<SelectControl
-						className={ loadingClass }
 						label={ setting.title }
-						value={ parseInt( selected ) }
+						value={ parseInt( tempData[ setting.id ] ) }
 						options={ Object.entries( setting.options ).map(
 							( [ value, label ] ) => {
 								return { value, label };
@@ -103,9 +109,8 @@ const ModuleSettings = ( { slug } ) => {
 			case 'text':
 				return (
 					<TextControl
-						className={ loadingClass }
 						label={ setting.title }
-						value={ selected }
+						value={ tempData[ setting.id ] }
 						onChange={ ( newValue ) =>
 							changeOption( setting.id, newValue )
 						}
@@ -116,12 +121,8 @@ const ModuleSettings = ( { slug } ) => {
 
 	const getContent = () => {
 		// TODO
-		return (
-			<div className="accordion-content">
-				{ Object.keys( options[ slug ] ).map( ( index ) =>
-					renderOption( index )
-				) }
-			</div>
+		return Object.keys( options[ slug ] ).map( ( index ) =>
+			renderOption( index )
 		);
 	};
 
@@ -140,7 +141,35 @@ const ModuleSettings = ( { slug } ) => {
 				<div className="accordion-title"> Settings </div>
 				<Dashicon icon={ open ? 'arrow-up-alt2' : 'arrow-down-alt2' } />
 			</button>
-			{ open && getContent() }
+			{ open && (
+				<div
+					className={ classnames( [
+						'accordion-content',
+						loading ? 'loading' : '',
+					] ) }
+				>
+					{ getContent() }
+					<div className="buttons-container">
+						<Button
+							isSecondary
+							className="obfx-button"
+							onClick={ () => setOpen( false ) }
+						>
+							Close
+						</Button>
+						<Button
+							isPrimary
+							className="obfx-button"
+							onClick={ () => {
+								setLoading( true );
+								sendData();
+							} }
+						>
+							{ loading ? loadingIcon : 'Save' }
+						</Button>
+					</div>
+				</div>
+			) }
 		</div>
 	);
 };
