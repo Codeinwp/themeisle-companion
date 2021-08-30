@@ -210,7 +210,12 @@ class Orbit_Fox_Admin {
 			// react dashboard
 			$dependencies    = include OBX_PATH . '/dashboard/build/dashboard.asset.php';
 			$global_settings = new Orbit_Fox_Global_Settings();
-			$modules         = $global_settings::$instance->module_objects;
+			$modules         = array_filter(
+				$global_settings::$instance->module_objects,
+				function( $module ) {
+					return $module->enable_module();
+				}
+			);
 			$modules_options = array_map(
 				function( $module ) {
 					return $module->options();

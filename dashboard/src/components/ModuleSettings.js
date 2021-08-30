@@ -22,17 +22,18 @@ const ModuleSettings = ( { slug } ) => {
 	const [ loading, setLoading ] = useState( false );
 	// eslint-disable-next-line camelcase
 	const { module_settings } = modulesData;
+	const [ tempData, setTempData ] = useState(
+		module_settings[ slug ] ? module_settings[ slug ] : {}
+	);
 
 	const loadingIcon = (
 		<Dashicon size={ 18 } icon="update" className="is-loading" />
 	);
 
-	const [ tempData, setTempData ] = useState( module_settings[ slug ] );
-
 	const changeOption = ( name, newValue ) => {
-		// const newTempData = tempData;
-		tempData[ name ] = newValue;
-		setTempData( tempData );
+		const newTemp = tempData;
+		newTemp[ name ] = newValue;
+		setTempData( newTemp );
 	};
 
 	const sendData = () => {
@@ -56,13 +57,16 @@ const ModuleSettings = ( { slug } ) => {
 
 	const renderOption = ( index ) => {
 		const setting = options[ slug ][ index ];
+		const selectedValue = tempData[ setting.id ]
+			? tempData[ setting.id ]
+			: setting.default;
 
 		switch ( setting.type ) {
 			case 'checkbox':
 				return (
 					<CheckboxControl
 						label={ setting.label }
-						checked={ tempData[ setting.id ] === '1' }
+						checked={ selectedValue === '1' }
 						onChange={ ( newValue ) =>
 							changeOption( setting.id, newValue ? '1' : '0' )
 						}
@@ -75,7 +79,7 @@ const ModuleSettings = ( { slug } ) => {
 						options={ setting.options.map( ( label, value ) => {
 							return { label, value };
 						} ) }
-						selected={ parseInt( tempData[ setting.id ] ) }
+						selected={ parseInt( selectedValue ) }
 						onChange={ ( newValue ) =>
 							changeOption( setting.id, newValue )
 						}
@@ -85,7 +89,7 @@ const ModuleSettings = ( { slug } ) => {
 				return (
 					<ToggleControl
 						label={ ReactHtmlParser( setting.label ) }
-						checked={ tempData[ setting.id ] === '1' }
+						checked={ selectedValue === '1' }
 						onChange={ ( newValue ) =>
 							changeOption( setting.id, newValue ? '1' : '0' )
 						}
@@ -95,7 +99,7 @@ const ModuleSettings = ( { slug } ) => {
 				return (
 					<SelectControl
 						label={ setting.title }
-						value={ parseInt( tempData[ setting.id ] ) }
+						value={ parseInt( selectedValue ) }
 						options={ Object.entries( setting.options ).map(
 							( [ value, label ] ) => {
 								return { value, label };
@@ -110,7 +114,7 @@ const ModuleSettings = ( { slug } ) => {
 				return (
 					<TextControl
 						label={ setting.title }
-						value={ tempData[ setting.id ] }
+						value={ selectedValue }
 						onChange={ ( newValue ) =>
 							changeOption( setting.id, newValue )
 						}
@@ -120,10 +124,44 @@ const ModuleSettings = ( { slug } ) => {
 	};
 
 	const getContent = () => {
-		// TODO
-		return Object.keys( options[ slug ] ).map( ( index ) =>
-			renderOption( index )
-		);
+		const result = [];
+
+		for ( let i = 0; i < options[ slug ].length; i++ ) {
+			const element = options[ slug ][ i ];
+			let row;
+
+			if (
+				element.title &&
+				element.label &&
+				element.title !== '' &&
+				element.label !== ''
+			) {
+				row = <p className="title"> { options[ slug ][ i ].title } </p>;
+				result.push( row );
+			}
+
+			if ( element.hasOwnProperty( 'before_wrap' ) ) {
+				row = [];
+				while ( true ) {
+					row.push( renderOption( i ) );
+					if (
+						options[ slug ][ i ].hasOwnProperty( 'after_wrap' ) ||
+						i < options[ slug ] - 1
+					) {
+						break;
+					}
+
+					i++;
+				}
+
+				result.push( <div className="settings-row"> { row } </div> );
+				continue;
+			}
+
+			result.push( renderOption( i ) );
+		}
+
+		return result;
 	};
 
 	return (

@@ -6,14 +6,14 @@ import { useContext, useState } from '@wordpress/element';
 import { ModulesContext } from './DashboardContext';
 import ModuleSettings from './ModuleSettings';
 
-const { root, toggleStateRoute } = obfxDash;
+const { root, toggleStateRoute, options } = obfxDash;
 
 const ModuleCard = ( { slug, details } ) => {
 	const [ loading, setLoading ] = useState( false );
 	const [ errorState, setErrorState ] = useState( false );
 	const { modulesData, setModulesData } = useContext( ModulesContext );
 	// eslint-disable-next-line camelcase
-	const { module_status, module_settings } = modulesData;
+	const { module_status } = modulesData;
 
 	const updateModuleStatus = ( value ) => {
 		const dataToSend = { slug, value };
@@ -37,7 +37,12 @@ const ModuleCard = ( { slug, details } ) => {
 						/>
 					) }
 					<ToggleControl
-						checked={ module_status[ slug ].active }
+						checked={
+							// eslint-disable-next-line camelcase
+							module_status && module_status[ slug ]
+								? module_status[ slug ].active
+								: false
+						}
 						onChange={ ( value ) => {
 							setLoading( true );
 							updateModuleStatus( value ).then( ( r ) => {
@@ -45,6 +50,11 @@ const ModuleCard = ( { slug, details } ) => {
 									setErrorState( true );
 									setLoading( false );
 									return;
+								}
+
+								// eslint-disable-next-line camelcase
+								if ( ! module_status[ slug ] ) {
+									module_status[ slug ] = {};
 								}
 
 								module_status[ slug ].active = value;
@@ -61,9 +71,9 @@ const ModuleCard = ( { slug, details } ) => {
 					{ ReactHtmlParser( details.description ) }
 				</div>
 			</div>
-			{ module_status[ slug ].active && module_settings[ slug ] && (
-				<ModuleSettings slug={ slug } />
-			) }
+			{ module_status[ slug ] &&
+				module_status[ slug ].active &&
+				options[ slug ].length > 0 && <ModuleSettings slug={ slug } /> }
 		</div>
 	);
 };
