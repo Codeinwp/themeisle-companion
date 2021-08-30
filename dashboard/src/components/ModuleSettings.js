@@ -144,10 +144,7 @@ const ModuleSettings = ( { slug } ) => {
 				row = [];
 				while ( true ) {
 					row.push( renderOption( i ) );
-					if (
-						options[ slug ][ i ].hasOwnProperty( 'after_wrap' ) ||
-						i < options[ slug ] - 1
-					) {
+					if ( options[ slug ][ i ].hasOwnProperty( 'after_wrap' ) ) {
 						break;
 					}
 
