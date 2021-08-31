@@ -1,6 +1,14 @@
 import { __ } from '@wordpress/i18n';
 import AvailableModules from '../components/AvailableModules';
 import RecommendedPlugins from '../components/RecommendedPlugins';
+import {
+	CheckboxControl,
+	RadioControl,
+	SelectControl,
+	TextControl,
+	ToggleControl,
+} from '@wordpress/components';
+import ReactHtmlParser from 'react-html-parser';
 
 export const tabs = {
 	modules: {
@@ -11,4 +19,71 @@ export const tabs = {
 		label: __( 'Recommended Plugins', 'themeisle-companion' ),
 		render: () => <RecommendedPlugins />,
 	},
+};
+
+export const renderOption = ( setting, tempData, changeOption ) => {
+	const selectedValue = tempData[ setting.id ]
+		? tempData[ setting.id ]
+		: setting.default;
+
+	switch ( setting.type ) {
+		case 'checkbox':
+			return (
+				<CheckboxControl
+					label={ setting.label }
+					checked={ selectedValue === '1' }
+					onChange={ ( newValue ) =>
+						changeOption( setting.id, newValue ? '1' : '0' )
+					}
+				/>
+			);
+		case 'radio':
+			return (
+				<RadioControl
+					label={ setting.title }
+					options={ setting.options.map( ( label, value ) => {
+						return { label, value };
+					} ) }
+					selected={ parseInt( selectedValue ) }
+					onChange={ ( newValue ) =>
+						changeOption( setting.id, newValue )
+					}
+				/>
+			);
+		case 'toggle':
+			return (
+				<ToggleControl
+					label={ ReactHtmlParser( setting.label ) }
+					checked={ selectedValue === '1' }
+					onChange={ ( newValue ) =>
+						changeOption( setting.id, newValue ? '1' : '0' )
+					}
+				/>
+			);
+		case 'select':
+			return (
+				<SelectControl
+					label={ setting.title }
+					value={ parseInt( selectedValue ) }
+					options={ Object.entries( setting.options ).map(
+						( [ value, label ] ) => {
+							return { value, label };
+						}
+					) }
+					onChange={ ( newValue ) =>
+						changeOption( setting.id, newValue )
+					}
+				/>
+			);
+		case 'text':
+			return (
+				<TextControl
+					label={ setting.title }
+					value={ selectedValue }
+					onChange={ ( newValue ) =>
+						changeOption( setting.id, newValue )
+					}
+				/>
+			);
+	}
 };

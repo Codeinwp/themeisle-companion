@@ -1,0 +1,53 @@
+.module-card {
+  background-color: #FFF;
+  border: 1px solid #e1e1e1;
+
+  .error {
+    position: absolute;
+    top: 40px;
+    right: 10px;
+    padding: 10px;
+    background-color: $obfx-purple;
+    color: #fff;
+    white-space: nowrap;
+  }
+
+  .module-card-header {
+    padding: 20px;
+    border-bottom: 1px solid #e1e1e1;
+    display: flex;
+    position: relative;
+
+    .title {
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.5;
+      color: inherit;
+    }
+
+    .toggle-wrap {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+
+      div {
+        margin-bottom: 0;
+        margin-left: 5px;
+      }
+
+      span {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .module-card-content {
+    padding: 20px;
+
+    .description {
+      margin: 0;
+      font-size: 15px;
+      color: #616161;
+    }
+  }
+}

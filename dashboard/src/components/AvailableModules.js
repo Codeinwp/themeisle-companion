@@ -7,12 +7,15 @@ const { modules, data } = obfxDash;
 
 const AvailableModules = () => {
 	const [ modulesData, setModulesData ] = useState(
-		data === '' ? { module_status: {}, module_settings: {} } : data
+		data === '' ? { module_status: {}, module_settings: {} } : { ...data }
 	);
 
-	if ( ! data.module_settings ) {
-		data.module_settings = {};
-		setModulesData( data );
+	if ( ! modulesData.module_settings ) {
+		setModulesData( { ...modulesData, module_settings: {} } );
+	}
+
+	if ( ! modulesData.module_status ) {
+		setModulesData( { ...modulesData, module_status: {} } );
 	}
 
 	const renderModules = () => {

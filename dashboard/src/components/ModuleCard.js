@@ -52,7 +52,6 @@ const ModuleCard = ( { slug, details } ) => {
 									return;
 								}
 
-								// eslint-disable-next-line camelcase
 								if ( ! module_status[ slug ] ) {
 									module_status[ slug ] = {};
 								}
@@ -63,7 +62,11 @@ const ModuleCard = ( { slug, details } ) => {
 							} );
 						} }
 					/>
-					{ errorState && <p> Something went wrong! Try again. </p> }
+					{ errorState && (
+						<p className="error">
+							Something went wrong! Try again.
+						</p>
+					) }
 				</div>
 			</div>
 			<div className="module-card-content">
