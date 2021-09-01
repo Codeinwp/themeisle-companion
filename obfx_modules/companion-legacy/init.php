@@ -193,7 +193,7 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 					if ( ! empty( $new_slider->image_url ) || ! empty( $new_slider->text ) || ! empty( $new_slider->subtext ) || ! empty( $new_slider->link ) ) {
 						$new_slider_encode = json_encode( array( $new_slider ) );
 						set_theme_mod( 'shop_isle_slider', $new_slider_encode );
-					}               
+					}
 				} else {
 
 					set_theme_mod( $shop_isle_mod_k, $shop_isle_mod_v );
@@ -244,7 +244,7 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 	/**
 	 * Wrapper method for themeisle_hestia_top_bar_default_alignment function call.
-	 * 
+	 *
 	 * @since   2.1.1
 	 * @access  public
 	 */
@@ -261,17 +261,6 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function hestia_require_customizer() {
 		themeisle_hestia_load_controls();
 	}
-
-	/**
-	 * Wrapper method for themeisle_hestia_set_frontpage function call.
-	 *
-	 * @since   1.0.0
-	 * @access  public
-	 */
-	public function hestia_set_front_page() {
-		themeisle_hestia_set_frontpage();
-	}
-
 
 	/**
 	 * The loading logic for the module.
@@ -294,8 +283,6 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			$this->loader->add_action( 'widgets_init', $this, 'zerif_register_widgets' );
 		}
 
-
-
 		if ( $this->is_hestia() ) {
 			$this->loader->add_action( 'after_setup_theme', $this, 'hestia_require' );
 			$this->loader->add_action( 'after_setup_theme', $this, 'hestia_fix_duplicate_widgets' );
@@ -303,7 +290,6 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			$this->loader->add_filter( 'hestia_clients_bar_default_content', $this, 'hestia_load_clients_default_content' );
 			$this->loader->add_filter( 'hestia_top_bar_alignment_default', $this, 'hestia_top_bar_default_alignment' );
 			$this->loader->add_action( 'customize_register', $this, 'hestia_require_customizer', 0 );
-			$this->loader->add_action( 'after_switch_theme', $this, 'hestia_set_front_page' );
 		}
 
 		if ( $this->is_hestia_pro() ) {
