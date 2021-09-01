@@ -263,6 +263,22 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	}
 
 	/**
+	 * Wrapper method for themeisle_hestia_set_frontpage function call.
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 */
+	public function hestia_set_front_page() {
+		$front_page = get_option( 'page_on_front' );
+		$blog_page  = get_option( 'page_for_posts' );
+		if ( ! empty(  $front_page ) || ! empty( $blog_page ) ) {
+			return;
+		}
+		themeisle_hestia_set_frontpage();
+	}
+
+
+	/**
 	 * The loading logic for the module.
 	 *
 	 * @since   1.0.0
@@ -290,6 +306,7 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			$this->loader->add_filter( 'hestia_clients_bar_default_content', $this, 'hestia_load_clients_default_content' );
 			$this->loader->add_filter( 'hestia_top_bar_alignment_default', $this, 'hestia_top_bar_default_alignment' );
 			$this->loader->add_action( 'customize_register', $this, 'hestia_require_customizer', 0 );
+			$this->loader->add_action( 'after_switch_theme', $this, 'hestia_set_front_page' );
 		}
 
 		if ( $this->is_hestia_pro() ) {
