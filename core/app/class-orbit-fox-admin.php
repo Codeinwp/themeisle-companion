@@ -438,7 +438,7 @@ class Orbit_Fox_Admin {
 				'description' => html_entity_decode( $current_plugin->short_description ),
 				'version'     => $current_plugin->version,
 				'author'      => html_entity_decode( wp_strip_all_tags( $current_plugin->author ) ),
-                'cta'         => $install_instance->check_plugin_state( $plugin ),
+				'cta'         => $install_instance->check_plugin_state( $plugin ),
 			);
 		}
 
