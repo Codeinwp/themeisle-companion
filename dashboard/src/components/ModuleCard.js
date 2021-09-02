@@ -1,82 +1,83 @@
 /* global obfxDash */
 import { Dashicon, ToggleControl } from '@wordpress/components';
-import ReactHtmlParser from 'react-html-parser';
 import { requestData } from '../utils/rest';
 import { useContext, useState } from '@wordpress/element';
 import { ModulesContext } from './DashboardContext';
 import ModuleSettings from './ModuleSettings';
+import { __ } from '@wordpress/i18n';
 
 const { root, toggleStateRoute, options } = obfxDash;
 
-const ModuleCard = ( { slug, details } ) => {
-	const [ loading, setLoading ] = useState( false );
-	const [ errorState, setErrorState ] = useState( false );
-	const { modulesData, setModulesData } = useContext( ModulesContext );
-	// eslint-disable-next-line camelcase
-	const { module_status } = modulesData;
+const ModuleCard = ({ slug, details }) => {
+	const [loading, setLoading] = useState(false);
+	const [errorState, setErrorState] = useState(false);
+	const { modulesData, setModulesData } = useContext(ModulesContext);
+	const moduleStatus = modulesData.module_status;
 
-	const updateModuleStatus = ( value ) => {
+	const updateModuleStatus = (value) => {
+		setLoading(true);
+
 		const dataToSend = { slug, value };
-		return requestData( root + toggleStateRoute, dataToSend );
+		requestData(root + toggleStateRoute, dataToSend).then((r) => {
+			if (r.type !== 'success') {
+				setErrorState(true);
+				setLoading(false);
+				return;
+			}
+
+			if (!moduleStatus[slug]) {
+				moduleStatus[slug] = {};
+			}
+
+			moduleStatus[slug].active = value;
+			setModulesData(modulesData);
+			setLoading(false);
+		});
 	};
 
-	if ( errorState ) {
-		setTimeout( () => setErrorState( false ), 2500 );
+	if (errorState) {
+		setTimeout(() => setErrorState(false), 2500);
 	}
 
 	return (
 		<div className="module-card">
 			<div className="module-card-header">
-				<h3 className="title">{ details.name }</h3>
+				<h3 className="title">{details.name}</h3>
 				<div className="toggle-wrap">
-					{ loading && (
+					{loading && (
 						<Dashicon
-							size={ 18 }
+							size={18}
 							icon="update"
 							className="is-loading"
 						/>
-					) }
+					)}
 					<ToggleControl
 						checked={
-							// eslint-disable-next-line camelcase
-							module_status && module_status[ slug ]
-								? module_status[ slug ].active
+							moduleStatus[slug]
+								? moduleStatus[slug].active
 								: false
 						}
-						onChange={ ( value ) => {
-							setLoading( true );
-							updateModuleStatus( value ).then( ( r ) => {
-								if ( r.type !== 'success' ) {
-									setErrorState( true );
-									setLoading( false );
-									return;
-								}
-
-								if ( ! module_status[ slug ] ) {
-									module_status[ slug ] = {};
-								}
-
-								module_status[ slug ].active = value;
-								setModulesData( modulesData );
-								setLoading( false );
-							} );
-						} }
+						onChange={updateModuleStatus}
 					/>
-					{ errorState && (
+					{errorState && (
 						<p className="error">
-							Something went wrong! Try again.
+							{__(
+								'Something went wrong! Try again.',
+								'themeisle-companion'
+							)}
 						</p>
-					) }
+					)}
 				</div>
 			</div>
 			<div className="module-card-content">
-				<div className="description">
-					{ ReactHtmlParser( details.description ) }
-				</div>
+				<div
+					className="description"
+					dangerouslySetInnerHTML={{ __html: details.description }}
+				/>
 			</div>
-			{ module_status[ slug ] &&
-				module_status[ slug ].active &&
-				options[ slug ].length > 0 && <ModuleSettings slug={ slug } /> }
+			{moduleStatus[slug] &&
+				moduleStatus[slug].active &&
+				options[slug].length > 0 && <ModuleSettings slug={slug} />}
 		</div>
 	);
 };

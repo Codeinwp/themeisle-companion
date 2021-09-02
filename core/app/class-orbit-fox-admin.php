@@ -90,7 +90,7 @@ class Orbit_Fox_Admin {
 			return new WP_REST_Response(
 				[
 					'type'    => 'error',
-					'message' => 'Bad request!',
+					'message' => __( 'Bad request!', 'themeisle-companion' ),
 				]
 			);
 		}
@@ -99,19 +99,19 @@ class Orbit_Fox_Admin {
 			return new WP_REST_Response(
 				[
 					'type'    => 'error',
-					'message' => 'Module ' . $data['slug'] . ' not found!',
+					'message' => __( 'Module not found!', 'themeisle-companion' ),
 				]
 			);
 		}
 
 		$response = false;
 
-		if ( $request->get_route() == '/obfx/toggle-module-state' ) {
+		if ( $request->get_route() === '/obfx/toggle-module-state' ) {
 			$response = $modules[ $data['slug'] ]->set_status( 'active', $data['value'] );
 			$this->trigger_activate_deactivate( $data['value'], $modules[ $data['slug'] ] );
 		}
 
-		if ( $request->get_route() == '/obfx/set-module-settings' ) {
+		if ( $request->get_route() === '/obfx/set-module-settings' ) {
 			unset( $data->slug );
 			$response = $modules[ $data['slug'] ]->set_options( $data['value'] );
 		}
@@ -120,7 +120,7 @@ class Orbit_Fox_Admin {
 			return new WP_REST_Response(
 				[
 					'type'    => 'warning',
-					'message' => 'Data unchanged!',
+					'message' => __( 'Data unchanged!', 'themeisle-companion' ),
 				]
 			);
 		}
@@ -156,11 +156,13 @@ class Orbit_Fox_Admin {
 			return;
 		}
 		if ( in_array( $screen->id, array( 'toplevel_page_obfx_companion' ), true ) ) {
-			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . '../assets/css/orbit-fox-admin.css', array(), $this->version, 'all' );
-
 			$dependencies = include OBX_PATH . '/dashboard/build/dashboard.asset.php';
-			wp_register_style( 'obfx-dashboard-style', plugin_dir_url( __FILE__ ) . '../../dashboard/build/style-dashboard.css', [ 'wp-components' ], $dependencies['version'] );
+			wp_register_style( 'obfx-dashboard-style', OBFX_URL . 'dashboard/build/style-dashboard.css', [ 'wp-components' ], $dependencies['version'] );
 			wp_enqueue_style( 'obfx-dashboard-style' );
+			wp_register_style( 'obfx-dashboard-colors', OBFX_URL . 'obfx_modules/social-sharing/css/admin.css');
+			wp_enqueue_style( 'obfx-dashboard-colors' );
+			wp_register_style( 'obfx-dashboard-social', OBFX_URL . 'obfx_modules/social-sharing/css/vendor/socicon/socicon.css');
+			wp_enqueue_style( 'obfx-dashboard-social' );
 		}
 
 		do_action( 'obfx_admin_enqueue_styles' );
@@ -562,116 +564,7 @@ class Orbit_Fox_Admin {
 	 * @access  public
 	 */
 	public function page_modules_render() {
-		$global_settings = new Orbit_Fox_Global_Settings();
-
-		$modules = $global_settings::$instance->module_objects;
-
-		$rdh           = new Orbit_Fox_Render_Helper();
-		$tiles         = '';
-		$panels        = '';
-		$toasts        = '';
-		$count_modules = 0;
-		foreach ( $modules as $slug => $module ) {
-			if ( $module->enable_module() ) {
-				$notices        = $module->get_notices();
-				$showed_notices = $module->get_status( 'showed_notices' );
-				if ( ! is_array( $showed_notices ) ) {
-					$showed_notices = array();
-				}
-				if ( isset( $showed_notices ) && is_array( $showed_notices ) ) {
-					foreach ( $notices as $notice ) {
-						$hash = md5( serialize( $notice ) );
-						$data = array(
-							'notice' => $notice,
-						);
-						// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
-						if ( $notice['display_always'] == false && ! in_array( $hash, $showed_notices, true ) ) {
-							$toasts .= $rdh->get_partial( 'module-toast', $data );
-							// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
-						} elseif ( $notice['display_always'] == true ) {
-							$toasts .= $rdh->get_partial( 'module-toast', $data );
-						}
-					}
-				}
-
-				$module->update_showed_notices();
-				if ( $module->auto === false ) {
-					$count_modules ++;
-					$checked = '';
-					if ( $module->get_is_active() ) {
-						$checked = 'checked';
-					}
-
-					$data   = array(
-						'slug'           => $slug,
-						'name'           => $module->name,
-						'description'    => $module->description,
-						'checked'        => $checked,
-						'beta'           => $module->beta,
-						'confirm_intent' => $module->confirm_intent,
-					);
-					$tiles .= $rdh->get_partial( 'module-tile', $data );
-					$tiles .= '<div class="divider"></div>';
-				}
-
-				$module_options = $module->get_options();
-				$options_fields = '';
-				if ( ! empty( $module_options ) ) {
-					foreach ( $module_options as $option ) {
-						$options_fields .= $rdh->render_option( $option, $module );
-					}
-
-					$panels .= $rdh->get_partial(
-						'module-panel',
-						array(
-							'slug'           => $slug,
-							'name'           => $module->name,
-							'active'         => $module->get_is_active(),
-							'description'    => $module->description,
-							'show'           => $module->show,
-							'no_save'        => $module->no_save,
-							'options_fields' => $options_fields,
-						)
-					);
-				}
-			}// End if().
-		}// End foreach().
-
-		$no_modules = false;
-		$empty_tpl  = '';
-		if ( $count_modules === 0 ) {
-			$no_modules = true;
-			$empty_tpl  = $rdh->get_partial(
-				'empty',
-				array(
-					'title'     => __( 'No modules found.', 'themeisle-companion' ),
-					'sub_title' => __( 'Please contact support for more help.', 'themeisle-companion' ),
-					'show_btn'  => true,
-				)
-			);
-			$panels     = $rdh->get_partial(
-				'empty',
-				array(
-					'title'     => __( 'No active modules.', 'themeisle-companion' ),
-					'sub_title' => __( 'Activate a module using the toggles above.', 'themeisle-companion' ),
-					'show_btn'  => false,
-				)
-			);
-		}
-
-		$data   = array(
-			'no_modules'    => $no_modules,
-			'empty_tpl'     => $empty_tpl,
-			'count_modules' => $count_modules,
-			'tiles'         => $tiles,
-			'toasts'        => $toasts,
-			'panels'        => $panels,
-		);
-		$output = $rdh->get_view( 'modules', $data );
-
 		echo '<div id="obfx-dash"></div>'; // entry point for the React dashboard
-
-		// echo $output; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 }

@@ -1,15 +1,16 @@
 import '../style.scss';
 import Header from './Header';
 import { useState } from '@wordpress/element';
-import { tabs } from '../utils/common';
+import { tabs, getTabHash } from '../utils/common';
 
 const App = () => {
-	const [ activeTab, setActiveTab ] = useState( 'modules' );
+	const hash = getTabHash();
+	const [activeTab, setActiveTab] = useState(hash ? hash : 'modules');
 
 	return (
 		<div>
-			<Header activeTab={ activeTab } setActiveTab={ setActiveTab } />
-			<div className="container">{ tabs[ activeTab ].render() }</div>
+			<Header activeTab={activeTab} setActiveTab={setActiveTab} />
+			<div className="container">{tabs[activeTab].render()}</div>
 		</div>
 	);
 };

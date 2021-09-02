@@ -1,15 +1,12 @@
 /* global obfxDash */
 import { tabs } from '../utils/common';
 
-const Header = ( { activeTab, setActiveTab } ) => {
+const Header = ({ activeTab, setActiveTab }) => {
 	const renderHead = () => {
 		return (
 			<div className="top">
-				<img
-					src={ obfxDash.path + 'assets/orbit-fox.png' }
-					alt="logo"
-				/>
-				<h1> Orbit Fox</h1>
+				<img src={obfxDash.path + 'assets/orbit-fox.png'} alt="logo" />
+				<h1>Orbit Fox</h1>
 			</div>
 		);
 	};
@@ -17,21 +14,21 @@ const Header = ( { activeTab, setActiveTab } ) => {
 	const renderNavbar = () => {
 		return (
 			<nav className="navigation">
-				{ Object.keys( tabs ).map( ( tab, index ) => {
+				{Object.keys(tabs).map((tab, index) => {
 					return (
 						<li
-							key={ 'tab' + index }
-							className={ tab === activeTab ? 'active' : '' }
+							key={'tab' + index}
+							className={tab === activeTab ? 'active' : ''}
 						>
 							<a
-								href={ '#' + tab }
-								onClick={ () => setActiveTab( tab ) }
+								href={'#' + tab}
+								onClick={() => setActiveTab(tab)}
 							>
-								{ tabs[ tab ].label }
+								{tabs[tab].label}
 							</a>
 						</li>
 					);
-				} ) }
+				})}
 			</nav>
 		);
 	};
@@ -39,8 +36,8 @@ const Header = ( { activeTab, setActiveTab } ) => {
 	return (
 		<header>
 			<div className="container">
-				{ renderHead() }
-				{ renderNavbar() }
+				{renderHead()}
+				{renderNavbar()}
 			</div>
 		</header>
 	);

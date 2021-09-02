@@ -43,12 +43,19 @@
       display: flex;
       column-gap: 70px;
 
+      > * {
+        transition-duration: .1s;
+        transition-timing-function: ease;
+      }
+
       > :not(:first-child) {
         opacity: 0;
+        pointer-events: none;
       }
 
       &.active > :not(:first-child) {
         opacity: 1;
+        pointer-events: auto;
       }
 
       > :first-child {

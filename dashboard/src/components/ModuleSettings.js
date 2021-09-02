@@ -10,138 +10,139 @@ import { renderOption } from '../utils/common';
 
 const { options, root, setSettingsRoute } = obfxDash;
 
-const ModuleSettings = ( { slug } ) => {
-	const { modulesData, setModulesData } = useContext( ModulesContext );
-	const [ open, setOpen ] = useState( false );
-	const [ loading, setLoading ] = useState( false );
-	const [ errorState, setErrorState ] = useState( false );
-	// eslint-disable-next-line camelcase
-	const moduleSettings = modulesData.module_settings[ slug ] || {};
-	const [ tempData, setTempData ] = useState( {
+const ModuleSettings = ({ slug }) => {
+	const { modulesData, setModulesData } = useContext(ModulesContext);
+	const [open, setOpen] = useState(false);
+	const [loading, setLoading] = useState(false);
+	const [errorState, setErrorState] = useState(false);
+	const moduleSettings = modulesData.module_settings[slug] || {};
+	const [tempData, setTempData] = useState({
 		...moduleSettings,
-	} );
+	});
 
 	const loadingIcon = (
-		<Dashicon size={ 18 } icon="update" className="is-loading" />
+		<Dashicon size={18} icon="update" className="is-loading" />
 	);
 
-	if ( errorState ) {
-		setTimeout( () => setErrorState( false ), 2500 );
+	if (errorState) {
+		setTimeout(() => setErrorState(false), 2500);
 	}
 
-	const changeOption = ( name, newValue ) => {
+	const changeOption = (name, newValue) => {
 		const newTemp = tempData;
-		newTemp[ name ] = newValue;
-		setTempData( { ...newTemp } );
+		newTemp[name] = newValue;
+		setTempData({ ...newTemp });
 	};
 
 	const sendData = () => {
+		setLoading(true);
+
 		const dataToSend = {
 			slug,
 			value: tempData,
 		};
 
-		requestData( root + setSettingsRoute, dataToSend ).then( ( r ) => {
-			if ( r.type !== 'success' ) {
-				setTempData( { ...moduleSettings } );
-				setLoading( false );
-				setErrorState( true );
+		requestData(root + setSettingsRoute, dataToSend).then((r) => {
+			if (r.type !== 'success') {
+				setTempData({ ...moduleSettings });
+				setLoading(false);
+				setErrorState(true);
 				return;
 			}
 
-			modulesData.module_settings[ slug ] = { ...tempData };
-			setModulesData( { ...modulesData } );
-			setLoading( false );
-		} );
+			modulesData.module_settings[slug] = { ...tempData };
+			setModulesData({ ...modulesData });
+			setLoading(false);
+		});
 	};
 
 	const getContent = () => {
-		const result = [];
+		const content = [];
 
-		for ( let i = 0; i < options[ slug ].length; i++ ) {
-			let element = options[ slug ][ i ];
-			if ( element.title && element.label ) {
-				result.push( <p className="title"> { element.title } </p> );
+		for (let i = 0; i < options[slug].length; i++) {
+			let element = options[slug][i];
+			if (element.title && element.label) {
+				content.push(<p className="title"> {element.title} </p>);
 			}
 
-			if ( element.hasOwnProperty( 'before_wrap' ) ) {
+			if (element.hasOwnProperty('before_wrap')) {
 				const row = [];
 				const active =
-					tempData[ element.id ] === '1' ||
-					( ! tempData[ element.id ] && element.default === '1' );
+					tempData[element.id] === '1' ||
+					(!tempData[element.id] && element.default === '1');
 
-				while ( true ) {
-					row.push( renderOption( element, tempData, changeOption ) );
-					if ( element.hasOwnProperty( 'after_wrap' ) ) break;
-					element = options[ slug ][ ++i ];
+				while (true) {
+					row.push(renderOption(element, tempData, changeOption));
+					if (element.hasOwnProperty('after_wrap')) break;
+					element = options[slug][++i];
 				}
 
-				const classes = classnames( [
+				const classes = classnames([
 					'settings-row',
 					active && 'active',
-				] );
-				result.push( <div className={ classes }> { row } </div> );
+				]);
+				content.push(<div className={classes}> {row} </div>);
 				continue;
 			}
 
-			result.push( renderOption( element, tempData, changeOption ) );
+			content.push(renderOption(element, tempData, changeOption));
 		}
 
-		return result;
+		return content;
 	};
 
 	return (
 		<div
-			className={ classnames( [
+			className={classnames([
 				'module-settings',
 				open ? 'open' : 'closed',
-			] ) }
+			])}
 		>
 			<button
-				aria-expanded={ open }
+				aria-expanded={open}
 				className="accordion-header"
-				onClick={ () => setOpen( ! open ) }
+				onClick={() => setOpen(!open)}
 			>
 				<div className="accordion-title"> Settings </div>
-				<Dashicon icon={ open ? 'arrow-up-alt2' : 'arrow-down-alt2' } />
+				<Dashicon icon={open ? 'arrow-up-alt2' : 'arrow-down-alt2'} />
 			</button>
-			{ open && (
+			{open && (
 				<div
-					className={ classnames( [
+					className={classnames([
 						'accordion-content',
 						loading ? 'loading' : '',
-					] ) }
+					])}
 				>
-					{ getContent() }
+					{getContent()}
 					<div className="buttons-container">
 						<Button
 							isSecondary
 							className="obfx-button"
-							onClick={ () => setOpen( false ) }
+							onClick={() => setOpen(false)}
 						>
-							{ __( 'Close', 'themeisle-companion' ) }
+							{__('Close', 'themeisle-companion')}
 						</Button>
 						<Button
 							isPrimary
-							disabled={ _.isEqual( tempData, moduleSettings ) }
+							disabled={_.isEqual(tempData, moduleSettings)}
 							className="obfx-button"
-							onClick={ () => {
-								setLoading( true );
-								sendData();
-							} }
+							onClick={sendData}
 						>
-							{ loading
+							{loading
 								? loadingIcon
-								: __( 'Save', 'themeisle-companion' ) }
+								: __('Save', 'themeisle-companion')}
 						</Button>
-						{ errorState && (
+						{errorState && (
 							<p className="error">
-								Something went wrong! Try again.
+								{__(
+									'Something went wrong! Try again.',
+									'themeisle-companion'
+								)}
 							</p>
-						) }
+						)}
 					</div>
 				</div>
-			) }
+			)}
 		</div>
 	);
 };
