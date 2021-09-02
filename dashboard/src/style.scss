@@ -1,5 +1,5 @@
-@import "scss/core-overrides";
 @import "scss/vars";
+@import "scss/core-overrides";
 
 #obfx-dash {
   @import "scss/general";
@@ -7,4 +7,6 @@
   @import "scss/components/available-modules";
   @import "scss/components/module-card";
   @import "scss/components/module-settings";
+  @import "scss/components/recommended-plugins";
+  @import "scss/components/plugin-card";
 }

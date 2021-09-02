@@ -1,5 +1,3 @@
-@import "./vars";
-
 #obfx-dash {
   --wp-admin-theme-color: #{ $obfx-purple };
   --wp-admin-theme-color-darker-10: #{ darken( $obfx-purple, 10% ) };

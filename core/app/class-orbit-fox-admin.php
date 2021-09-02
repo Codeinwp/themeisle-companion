@@ -239,6 +239,7 @@ class Orbit_Fox_Admin {
 					'modules'          => $modules,
 					'data'             => get_option( 'obfx_data' ),
 					'options'          => $modules_options,
+					'plugins'          => $this->get_recommended_plugins(),
 				)
 			);
 		}
@@ -374,27 +375,6 @@ class Orbit_Fox_Admin {
 	}
 
 	/**
-	 * This method is called via AJAX and processes the
-	 * request for updating module options.
-	 *
-	 * @codeCoverageIgnore
-	 *
-	 * @since   1.0.0
-	 * @access  public
-	 */
-	public function obfx_update_module_options() {
-		$json                = stripslashes( str_replace( '&quot;', '"', $_POST['data'] ) ); //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
-		$data                = json_decode( $json, true );
-		$response['type']    = 'error';
-		$response['message'] = __( 'Could not process the request!', 'themeisle-companion' );
-		if ( isset( $data['noance'] ) && wp_verify_nonce( $data['noance'], 'obfx_update_module_options_' . $data['module-slug'] ) ) {
-			$response = $this->try_module_save( $data );
-		}
-		echo json_encode( $response );
-		wp_die();
-	}
-
-	/**
 	 * A method used for saving module options data
 	 * and returning a well formatted response as an array.
 	 *
@@ -431,7 +411,7 @@ class Orbit_Fox_Admin {
 	/**
 	 * Define render function for recommended tab.
 	 */
-	public function load_recommended_plugins() {
+	public function get_recommended_plugins() {
 		$plugins = [
 			'optimole-wp',
 			'feedzy-rss-feeds',
@@ -443,63 +423,26 @@ class Orbit_Fox_Admin {
 			'otter-blocks',
 		];
 		shuffle( $plugins );
-		echo sprintf( '<div class="obfx-recommended-title-wrapper"><span class="obfx-recommended-title"><span class="dashicons dashicons-megaphone"></span> &nbsp; %s</span><div class="clearfix"></div></div>', 'Orbit Fox recommends' );
-
 		$install_instance = new Orbit_Fox_Plugin_Install();
 
+		$data = array();
 		foreach ( $plugins as $plugin ) {
 			$current_plugin = $install_instance->call_plugin_api( $plugin );
 			if ( ! isset( $current_plugin->name ) ) {
 				continue;
 			}
-			$image  = $install_instance->check_for_icon( $current_plugin->icons );
-			$name   = $current_plugin->name;
-			$desc   = $current_plugin->short_description;
-			$button = $install_instance->get_button_html( $plugin );
 
-			echo '<div class="tile obfx-recommended ">';
-			echo '<div class="tile-icon">';
-			echo '<div class="obfx-icon-recommended">';
-			echo '<img  width="100" src="' . esc_url( $image ) . '"/>';
-			echo '</div>';
-			echo '</div>';
-			echo '<div class="tile-content">';
-			echo '<p class="tile-title">' . esc_html( $name ) . '</p>';
-			echo '<p class="tile-subtitle">' . esc_html( $desc ) . '</p>';
-			echo '</div>';
-			echo '<div class="tile-action">';
-			echo '<div class="form-group">';
-			echo '<label class="form-switch activated">';
-			echo wp_kses_post( $button );
-			echo '</label>';
-			echo '</div>';
-			echo '</div>';
-			echo '</div>';
+			$data[ $plugin ] = array(
+				'banner'      => $current_plugin->banners['low'],
+				'name'        => html_entity_decode( $current_plugin->name ),
+				'description' => html_entity_decode( $current_plugin->short_description ),
+				'version'     => $current_plugin->version,
+				'author'      => html_entity_decode( wp_strip_all_tags( $current_plugin->author ) ),
+                'cta'         => $install_instance->check_plugin_state( $plugin ),
+			);
 		}
 
-	}
-
-
-
-	/**
-	 * This method is called via AJAX and processes the
-	 * request for updating module options.
-	 *
-	 * @codeCoverageIgnore
-	 *
-	 * @since   1.0.0
-	 * @access  public
-	 */
-	public function obfx_update_module_active_status() {
-		$json                = stripslashes( str_replace( '&quot;', '"', $_POST['data'] ) ); //phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotValidated
-		$data                = json_decode( $json, true );
-		$response['type']    = 'error';
-		$response['message'] = __( 'Could not process the request!', 'themeisle-companion' );
-		if ( isset( $data['noance'] ) && wp_verify_nonce( $data['noance'], 'obfx_activate_mod_' . $data['name'] ) ) {
-			$response = $this->try_module_activate( $data );
-		}
-		echo json_encode( $response );
-		wp_die();
+		return $data;
 	}
 
 	/**
