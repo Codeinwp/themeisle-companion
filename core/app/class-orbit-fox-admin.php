@@ -159,9 +159,9 @@ class Orbit_Fox_Admin {
 			$dependencies = include OBX_PATH . '/dashboard/build/dashboard.asset.php';
 			wp_register_style( 'obfx-dashboard-style', OBFX_URL . 'dashboard/build/style-dashboard.css', [ 'wp-components' ], $dependencies['version'] );
 			wp_enqueue_style( 'obfx-dashboard-style' );
-			wp_register_style( 'obfx-dashboard-colors', OBFX_URL . 'obfx_modules/social-sharing/css/admin.css');
+			wp_register_style( 'obfx-dashboard-colors', OBFX_URL . 'obfx_modules/social-sharing/css/admin.css', [ 'wp-components' ], $dependencies['version'] );
 			wp_enqueue_style( 'obfx-dashboard-colors' );
-			wp_register_style( 'obfx-dashboard-social', OBFX_URL . 'obfx_modules/social-sharing/css/vendor/socicon/socicon.css');
+			wp_register_style( 'obfx-dashboard-social', OBFX_URL . 'obfx_modules/social-sharing/css/vendor/socicon/socicon.css', [ 'wp-components' ], $dependencies['version'] );
 			wp_enqueue_style( 'obfx-dashboard-social' );
 		}
 
