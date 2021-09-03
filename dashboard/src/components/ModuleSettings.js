@@ -42,7 +42,7 @@ const ModuleSettings = ({ slug }) => {
 			value: tempData,
 		};
 
-		requestData(root + setSettingsRoute, dataToSend).then((r) => {
+		requestData(root + setSettingsRoute, false, dataToSend).then((r) => {
 			if (r.type !== 'success') {
 				setTempData({ ...moduleSettings });
 				setLoading(false);

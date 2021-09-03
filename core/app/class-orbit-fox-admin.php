@@ -192,8 +192,6 @@ class Orbit_Fox_Admin {
 			return;
 		}
 		if ( in_array( $screen->id, array( 'toplevel_page_obfx_companion' ), true ) ) {
-			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . '../assets/js/orbit-fox-admin.js', array( 'jquery' ), $this->version, false );
-
 			wp_register_script( 'obfx-plugin-install', plugin_dir_url( __FILE__ ) . '../assets/js/plugin-install.js', array( 'jquery' ), $this->version, true );
 
 			wp_localize_script(
@@ -209,7 +207,6 @@ class Orbit_Fox_Admin {
 			wp_enqueue_script( 'updates' );
 			wp_enqueue_script( 'obfx-plugin-install' );
 
-			// react dashboard
 			$dependencies    = include OBX_PATH . '/dashboard/build/dashboard.asset.php';
 			$global_settings = new Orbit_Fox_Global_Settings();
 			$modules         = array_filter(
@@ -438,7 +435,10 @@ class Orbit_Fox_Admin {
 				'description' => html_entity_decode( $current_plugin->short_description ),
 				'version'     => $current_plugin->version,
 				'author'      => html_entity_decode( wp_strip_all_tags( $current_plugin->author ) ),
-				'cta'         => $install_instance->check_plugin_state( $plugin ),
+				'action'      => $install_instance->check_plugin_state( $plugin ),
+				'path'        => $install_instance->get_plugin_path( $plugin ),
+				'activate'    => $install_instance->get_plugin_action_link( $plugin ),
+				'deactivate'  => $install_instance->get_plugin_action_link( $plugin, 'deactivate' ),
 			);
 		}
 

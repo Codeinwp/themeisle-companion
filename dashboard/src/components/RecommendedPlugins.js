@@ -3,8 +3,6 @@ import PluginCard from './PluginCard';
 
 const RecommendedPlugins = () => {
 	const { plugins } = obfxDash;
-	console.log( plugins );
-
 	if (!plugins) {
 		return null;
 	}

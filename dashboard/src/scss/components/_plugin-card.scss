@@ -28,6 +28,7 @@
     display: flex;
     align-items: center;
     margin-top: auto;
+    position: relative;
 
     .plugin-data {
       font-size: 14px;
@@ -51,12 +52,21 @@
 
   .plugin-action {
     margin-left: auto;
-    svg {
+    .dashicon {
       margin-right: 5px;
       animation-name: spin;
       animation-duration: 2000ms;
       animation-iteration-count: infinite;
       animation-timing-function: linear;
     }
+  }
+}
+
+@keyframes spin {
+  from {
+    transform:rotate(0deg);
+  }
+  to {
+    transform:rotate(360deg);
   }
 }

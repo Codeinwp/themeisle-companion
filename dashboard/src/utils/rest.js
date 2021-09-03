@@ -1,7 +1,12 @@
 /* global obfxDash */
 import fetch from 'node-fetch';
 
-export const requestData = async (route, data = {}, method = 'POST') => {
+export const requestData = async (
+	route,
+	simple = false,
+	data = {},
+	method = 'POST'
+) => {
 	const options = {
 		method,
 		headers: {
@@ -16,6 +21,10 @@ export const requestData = async (route, data = {}, method = 'POST') => {
 	}
 
 	return await fetch(route, options).then((response) => {
-		return response.json();
+		return simple ? response : response.json();
 	});
+};
+
+export const get = (route, simple) => {
+	return requestData(route, simple, {}, 'GET');
 };

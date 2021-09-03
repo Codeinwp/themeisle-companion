@@ -39,6 +39,11 @@
       margin: 0;
     }
 
+    .components-radio-control__input[type=radio]:checked:before {
+      width: 1px;
+      height: 1px;
+    }
+
     .settings-row {
       display: flex;
       column-gap: 70px;

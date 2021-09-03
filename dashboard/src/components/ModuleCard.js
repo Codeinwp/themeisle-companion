@@ -18,7 +18,7 @@ const ModuleCard = ({ slug, details }) => {
 		setLoading(true);
 
 		const dataToSend = { slug, value };
-		requestData(root + toggleStateRoute, dataToSend).then((r) => {
+		requestData(root + toggleStateRoute, false, dataToSend).then((r) => {
 			if (r.type !== 'success') {
 				setErrorState(true);
 				setLoading(false);

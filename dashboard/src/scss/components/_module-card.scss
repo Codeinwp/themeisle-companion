@@ -3,16 +3,6 @@
   border: 1px solid $border-grey;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
 
-  .error {
-    position: absolute;
-    top: 40px;
-    right: 10px;
-    padding: 10px;
-    background-color: $obfx-purple;
-    color: #fff;
-    white-space: nowrap;
-  }
-
   .module-card-header {
     padding: 20px;
     border-bottom: 1px solid $border-grey;
