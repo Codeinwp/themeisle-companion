@@ -56,6 +56,9 @@ class Orbit_Fox_Admin {
 
 	}
 
+	/**
+	 * Registers the REST routes used for updating the modules state and settings
+	 */
 	public function init_dashboard_routes() {
 		register_rest_route(
 			'obfx',
@@ -81,6 +84,14 @@ class Orbit_Fox_Admin {
 		);
 	}
 
+	/**
+	 * Callback function for the REST requests.
+	 * Updates the module data corresponding to the request and returns a response.
+	 *
+	 * @param WP_REST_Request $request The request
+	 *
+	 * @return WP_REST_Response The response to the request
+	 */
 	public function update_module_callback( WP_REST_Request $request ) {
 		$data     = json_decode( $request->get_body(), true );
 		$settings = new Orbit_Fox_Global_Settings();

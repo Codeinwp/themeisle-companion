@@ -44,6 +44,11 @@
       height: 1px;
     }
 
+    .checkboxes-row {
+      display: flex;
+      column-gap: 30px;
+    }
+
     .settings-row {
       display: flex;
       column-gap: 70px;
@@ -82,6 +87,13 @@
       .obfx-button {
         width: 60px;
         justify-content: center;
+
+        .dashicon {
+          animation-name: spin;
+          animation-duration: 2000ms;
+          animation-iteration-count: infinite;
+          animation-timing-function: linear;
+        }
       }
     }
   }

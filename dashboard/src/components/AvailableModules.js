@@ -10,6 +10,8 @@ const AvailableModules = () => {
 		data === '' ? { module_status: {}, module_settings: {} } : { ...data }
 	);
 
+	console.log(modules);
+
 	if (!modulesData.module_settings) {
 		setModulesData({ ...modulesData, module_settings: {} });
 	}

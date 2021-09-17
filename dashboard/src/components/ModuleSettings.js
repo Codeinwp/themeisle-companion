@@ -85,6 +85,16 @@ const ModuleSettings = ({ slug }) => {
 				continue;
 			}
 
+			if (element.type === 'checkbox') {
+				const row = [];
+				while (element.type === 'checkbox') {
+					row.push(renderOption(element, tempData, changeOption));
+					element = options[slug][++i];
+				}
+				content.push(<div className="checkboxes-row"> {row} </div>);
+				continue;
+			}
+
 			content.push(renderOption(element, tempData, changeOption));
 		}
 

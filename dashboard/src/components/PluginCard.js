@@ -45,8 +45,8 @@ const PluginCard = ({ slug, data }) => {
 					setErrorState(true);
 					return;
 				}
-				setInProgress(false);
 				setPluginState('activate');
+				setInProgress(false);
 			});
 			return;
 		}
