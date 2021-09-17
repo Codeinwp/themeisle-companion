@@ -1,19 +1,25 @@
-import classnames from 'classnames';
-
-import { __ } from '@wordpress/i18n';
-import { Button, Dashicon } from '@wordpress/components';
-import { useState } from '@wordpress/element';
+import { PluginsContext } from './DashboardContext';
 import { get } from '../utils/rest';
+import classnames from 'classnames';
+import { Button, Dashicon } from '@wordpress/components';
+import { useContext, useState } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
 
 const PluginCard = ({ slug, data }) => {
-	const { banner, name, description, version, author, action } = data;
+	const { banner, name, description, version, author } = data;
+	const { pluginsData, setPluginsData } = useContext(PluginsContext);
 	const [inProgress, setInProgress] = useState(false);
 	const [errorState, setErrorState] = useState(false);
-	const [pluginState, setPluginState] = useState(action);
+	const pluginState = pluginsData[slug].action;
 
 	if (errorState) {
 		setTimeout(() => setErrorState(false), 2500);
 	}
+
+	const setPluginState = (newStatus) => {
+		pluginsData[slug].action = newStatus;
+		setPluginsData(pluginsData);
+	};
 
 	const stringMap = {
 		install: {
