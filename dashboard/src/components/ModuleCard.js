@@ -9,6 +9,7 @@ import { __ } from '@wordpress/i18n';
 const { root, toggleStateRoute, options } = obfxDash;
 
 const ModuleCard = ({ slug, details }) => {
+	const refreshAfterEnabled = details.refresh_after_enabled;
 	const [loading, setLoading] = useState(false);
 	const [errorState, setErrorState] = useState(false);
 	const { modulesData, setModulesData } = useContext(ModulesContext);
@@ -19,21 +20,29 @@ const ModuleCard = ({ slug, details }) => {
 
 		const dataToSend = { slug, value };
 		requestData(root + toggleStateRoute, false, dataToSend).then((r) => {
-			if (r.type !== 'success') {
-				setErrorState(true);
-				setLoading(false);
-				return;
-			}
-
-			if (!moduleStatus[slug]) {
-				moduleStatus[slug] = {};
-			}
-
-			moduleStatus[slug].active = value;
-			setModulesData(modulesData);
-			setLoading(false);
+			toggleStatusCallback(r, value);
 		});
 	};
+
+	const toggleStatusCallback = (r, value) => {
+		if (r.type !== 'success') {
+			setErrorState(true);
+			setLoading(false);
+			return;
+		}
+
+		if (refreshAfterEnabled) {
+			window.location.reload(false);
+		}
+
+		if (!moduleStatus[slug]) {
+			moduleStatus[slug] = {};
+		}
+
+		moduleStatus[slug].active = value;
+		setModulesData(modulesData);
+		setLoading(false);
+	}
 
 	if (errorState) {
 		setTimeout(() => setErrorState(false), 2500);

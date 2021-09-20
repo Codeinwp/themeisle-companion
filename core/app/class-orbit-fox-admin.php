@@ -203,20 +203,8 @@ class Orbit_Fox_Admin {
 			return;
 		}
 		if ( in_array( $screen->id, array( 'toplevel_page_obfx_companion' ), true ) ) {
-			wp_register_script( 'obfx-plugin-install', plugin_dir_url( __FILE__ ) . '../assets/js/plugin-install.js', array( 'jquery' ), $this->version, true );
-
-			wp_localize_script(
-				'obfx-plugin-install',
-				'obfxPluginInstall',
-				array(
-					'activating' => esc_html__( 'Activating ', 'themeisle-companion' ),
-					'installing' => esc_html__( 'Installing ... ', 'themeisle-companion' ),
-				)
-			);
-
 			wp_enqueue_script( 'plugin-install' );
 			wp_enqueue_script( 'updates' );
-			wp_enqueue_script( 'obfx-plugin-install' );
 
 			$dependencies    = include OBX_PATH . '/dashboard/build/dashboard.asset.php';
 			$global_settings = new Orbit_Fox_Global_Settings();
@@ -454,39 +442,6 @@ class Orbit_Fox_Admin {
 		}
 
 		return $data;
-	}
-
-	/**
-	 * A method used for saving module status data
-	 * and returning a well formatted response as an array.
-	 *
-	 * @codeCoverageIgnore
-	 *
-	 * @param array $data The data to try and update status via the module model.
-	 *
-	 * @return array
-	 * @since   1.0.0
-	 * @access  public
-	 */
-	public function try_module_activate( $data ) {
-		$response            = array();
-		$global_settings     = new Orbit_Fox_Global_Settings();
-		$modules             = $global_settings::$instance->module_objects;
-		$response['type']    = 'error';
-		$response['message'] = __( 'No module found!', 'themeisle-companion' );
-		if ( isset( $modules[ $data['name'] ] ) ) {
-			$module              = $modules[ $data['name'] ];
-			$response['type']    = 'warning';
-			$response['message'] = __( 'Something went wrong, can not change module status!', 'themeisle-companion' );
-			$result              = $module->set_status( 'active', $data['checked'] );
-			$this->trigger_activate_deactivate( $data['checked'], $module );
-			if ( $result ) {
-				$response['type']    = 'success';
-				$response['message'] = __( 'Module status changed!', 'themeisle-companion' );
-			}
-		}
-
-		return $response;
 	}
 
 	/**

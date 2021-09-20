@@ -80,7 +80,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @access  protected
 	 * @var     boolean $refresh_after_enabled Flag for page refresh after activation
 	 */
-	protected $refresh_after_enabled = false;
+	public $refresh_after_enabled = false;
 
 	/**
 	 * Stores an array of notices
