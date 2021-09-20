@@ -39,11 +39,6 @@
       margin: 0;
     }
 
-    .components-radio-control__input[type=radio]:checked:before {
-      width: 1px;
-      height: 1px;
-    }
-
     .checkboxes-row {
       display: flex;
       column-gap: 30px;

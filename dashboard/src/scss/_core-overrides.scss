@@ -2,6 +2,15 @@
   --wp-admin-theme-color: #{ $obfx-purple };
   --wp-admin-theme-color-darker-10: #{ darken( $obfx-purple, 10% ) };
   --wp-admin-theme-color-darker-20: #{ darken( $obfx-purple, 20% ) };
+
+  .module-settings .accordion-content .components-radio-control__input[type=radio]:checked:before {
+    width: 1px;
+    height: 1px;
+  }
+
+  .css-bmkl3j-Container {
+    width: unset;
+  }
 }
 
 #wpcontent {
