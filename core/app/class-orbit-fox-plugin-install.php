@@ -52,27 +52,6 @@ class Orbit_Fox_Plugin_Install {
 	}
 
 	/**
-	 * Get plugin icon.
-	 *
-	 * @param array $arr Icon sizes.
-	 *
-	 * @return string
-	 */
-	public function check_for_icon( $arr ) {
-		if ( ! empty( $arr['svg'] ) ) {
-			$plugin_icon_url = $arr['svg'];
-		} elseif ( ! empty( $arr['2x'] ) ) {
-			$plugin_icon_url = $arr['2x'];
-		} elseif ( ! empty( $arr['1x'] ) ) {
-			$plugin_icon_url = $arr['1x'];
-		} else {
-			$plugin_icon_url = $arr['default'];
-		}
-
-		return $plugin_icon_url;
-	}
-
-	/**
 	 * Check plugin state.
 	 *
 	 * @param string $slug plugin slug.
@@ -117,73 +96,26 @@ class Orbit_Fox_Plugin_Install {
 	}
 
 	/**
-	 * Generate action button html.
+	 * Get Plugin Action link.
 	 *
-	 * @param string $slug     plugin slug.
-	 * @param array  $settings button settings.
-	 *
+	 * @param string $slug plugin slug.
+	 * @param string $action action [activate, deactivate].
 	 * @return string
 	 */
-	public function get_button_html( $slug, $settings = array() ) {
-		$button   = '';
-		$redirect = '';
-		if ( ! empty( $settings ) && array_key_exists( 'redirect', $settings ) ) {
-			$redirect = $settings['redirect'];
-		}
-		$state = $this->check_plugin_state( $slug );
-		if ( empty( $slug ) ) {
+	public function get_plugin_action_link( $slug, $action = 'activate' ) {
+		if ( ! in_array( $action, [ 'activate', 'deactivate' ] ) ) {
 			return '';
 		}
 
-		$additional = '';
-
-		if ( $state === 'deactivate' ) {
-			$additional = ' action_button active';
-		}
-
-		$button .= '<div class=" plugin-card-' . esc_attr( $slug ) . esc_attr( $additional ) . '" style="padding: 8px 0 5px;">';
-
-		$plugin_link_suffix = self::get_plugin_path( $slug );
-
-		$nonce = add_query_arg(
+		return add_query_arg(
 			array(
-				'action'        => 'activate',
-				'plugin'        => rawurlencode( $plugin_link_suffix ),
+				'action'        => $action,
+				'plugin'        => rawurlencode( $this->get_plugin_path( $slug ) ),
 				'plugin_status' => 'all',
 				'paged'         => '1',
-				'_wpnonce'      => wp_create_nonce( 'activate-plugin_' . $plugin_link_suffix ),
+				'_wpnonce'      => wp_create_nonce( $action . '-plugin_' . $this->get_plugin_path( $slug ) ),
 			),
 			esc_url( network_admin_url( 'plugins.php' ) )
 		);
-		switch ( $state ) {
-			case 'install':
-				$button .= '<a data-redirect="' . esc_url( $redirect ) . '" data-slug="' . esc_attr( $slug ) . '" class="install-now obfx-install-plugin button button-primary" href="' . esc_url( $nonce ) . '" data-name="' . esc_attr( $slug ) . '" aria-label="Install ' . esc_attr( $slug ) . '"><span class="dashicons dashicons-download"></span>' . __( 'Install and activate', 'themeisle-companion' ) . '</a>';
-				break;
-
-			case 'activate':
-				$button .= '<a  data-redirect="' . esc_url( $redirect ) . '" data-slug="' . esc_attr( $slug ) . '" class="activate-now button button-primary" href="' . esc_url( $nonce ) . '" aria-label="Activate ' . esc_attr( $slug ) . '">' . esc_html__( 'Activate', 'themeisle-companion' ) . '</a>';
-				break;
-
-			case 'deactivate':
-				$nonce = add_query_arg(
-					array(
-						'action'        => 'deactivate',
-						'plugin'        => rawurlencode( $plugin_link_suffix ),
-						'plugin_status' => 'all',
-						'paged'         => '1',
-						'_wpnonce'      => wp_create_nonce( 'deactivate-plugin_' . $plugin_link_suffix ),
-					),
-					esc_url( network_admin_url( 'plugins.php' ) )
-				);
-
-				$button .= '<a  data-redirect="' . esc_url( $redirect ) . '" data-slug="' . esc_attr( $slug ) . '" class="deactivate-now button button-primary" href="' . esc_url( $nonce ) . '" data-name="' . esc_attr( $slug ) . '" aria-label="Deactivate ' . esc_attr( $slug ) . '">' . esc_html__( 'Deactivate', 'themeisle-companion' ) . '</a>';
-				break;
-
-			default:
-				break;
-		}// End switch().
-		$button .= '</div>';
-
-		return $button;
 	}
 }

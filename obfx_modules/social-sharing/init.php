@@ -282,24 +282,7 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return array
 	 */
 	public function admin_enqueue() {
-
-		$current_screen = get_current_screen();
-		if ( ! isset( $current_screen->id ) ) {
-			return array();
-		}
-		if ( $current_screen->id != 'toplevel_page_obfx_companion' ) {
-			return array();
-		}
-
-		return array(
-			'css' => array(
-				'admin'                  => false,
-				'vendor/socicon/socicon' => false,
-			),
-			'js'  => array(
-				'admin' => array( 'jquery' ),
-			),
-		);
+		return array();
 	}
 
 	/**
