@@ -193,7 +193,7 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 					if ( ! empty( $new_slider->image_url ) || ! empty( $new_slider->text ) || ! empty( $new_slider->subtext ) || ! empty( $new_slider->link ) ) {
 						$new_slider_encode = json_encode( array( $new_slider ) );
 						set_theme_mod( 'shop_isle_slider', $new_slider_encode );
-					}               
+					}
 				} else {
 
 					set_theme_mod( $shop_isle_mod_k, $shop_isle_mod_v );
@@ -244,7 +244,7 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 	/**
 	 * Wrapper method for themeisle_hestia_top_bar_default_alignment function call.
-	 * 
+	 *
 	 * @since   2.1.1
 	 * @access  public
 	 */
@@ -269,6 +269,11 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function hestia_set_front_page() {
+		$front_page = get_option( 'page_on_front' );
+		$blog_page  = get_option( 'page_for_posts' );
+		if ( ! empty(  $front_page ) || ! empty( $blog_page ) ) {
+			return;
+		}
 		themeisle_hestia_set_frontpage();
 	}
 
@@ -293,8 +298,6 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		if ( $this->is_zerif() ) {
 			$this->loader->add_action( 'widgets_init', $this, 'zerif_register_widgets' );
 		}
-
-
 
 		if ( $this->is_hestia() ) {
 			$this->loader->add_action( 'after_setup_theme', $this, 'hestia_require' );
