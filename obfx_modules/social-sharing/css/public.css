@@ -178,6 +178,11 @@
 	background-color: #58a9de;
 }
 
+.obfx-sharing-inline a.btn-telegram,
+.obfx-sharing a.telegram {
+	background-color: #36aff3;
+}
+
 @media ( max-width: 768px ) {
 	.obfx-sharing-side {
 		position: fixed;
