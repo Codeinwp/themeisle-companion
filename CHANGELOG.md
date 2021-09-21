@@ -1,3 +1,12 @@
+##### [Version 2.10.7](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.6...v2.10.7) (2021-08-02)
+
+[Fix] Widgets with repeater fields are generating errors
+[Fix] Gutenberg Blocks compatibility with WP 5.8
+[Fix] Fix Elementor deprecated functions
+- Retire the Uptime Monitor module.
+- Announce the retirement of the Gutenberg Blocks module and remove it if the module is not used.
+- Retire the Analytics module if the user is not using it.
+
 ##### [Version 2.10.6](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.5...v2.10.6) (2021-05-31)
 
 - [Fix] Replace Elementor deprecated functions

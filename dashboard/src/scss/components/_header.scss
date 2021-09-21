@@ -1,0 +1,46 @@
+@import "../vars";
+
+header {
+  background-color: #fff;
+  border-bottom: 1px solid #e1e1e1;
+
+  .top {
+    padding: 65px 0 50px 0;
+    display: flex;
+
+    img {
+      max-height: 100%;
+    }
+
+    h1 {
+      font-size: 45px;
+      margin-left: 10px;
+      color: inherit;
+    }
+  }
+
+  .navigation {
+    display: flex;
+    list-style: none;
+    text-decoration: none;
+    font-weight: 600;
+    line-height: 1.5;
+    padding-bottom: 20px;
+    flex-wrap: nowrap;
+    font-size: 19px;
+
+    li {
+      margin-right: 50px;
+
+      a {
+        color: inherit;
+        text-decoration: none;
+        box-shadow: none;
+      }
+
+      &.active {
+        color: $obfx-purple !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+.plugins-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  column-gap: 30px;
+  row-gap: 20px;
+}
