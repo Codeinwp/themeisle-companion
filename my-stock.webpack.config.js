@@ -1,14 +1,16 @@
-var path = require('path');
+const path = require('path');
 
 module.exports = {
 	entry: {
-		'obfx_modules/mystock-import/js/script' : path.resolve(__dirname, 'obfx_modules/mystock-import/js/src/registerPlugin.js'),
+		'obfx_modules/mystock-import/js/script': path.resolve(
+			__dirname,
+			'obfx_modules/mystock-import/js/src/registerPlugin.js'
+		),
 	},
 	output: {
 		path: path.resolve(__dirname),
-		filename: '[name].js'
+		filename: '[name].js',
 	},
-	watch: true,
 	module: {
 		rules: [
 			{
@@ -16,9 +18,9 @@ module.exports = {
 				loader: 'babel-loader',
 				exclude: /node_modules/,
 				options: {
-					presets: ['@babel/preset-env', '@babel/preset-react']
-				}
+					presets: ['@babel/preset-env', '@babel/preset-react'],
+				},
 			},
-		]
+		],
 	},
 };
