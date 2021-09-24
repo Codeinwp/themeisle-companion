@@ -1,6 +1,8 @@
 import { PluginsContext } from './DashboardContext';
+
 import { get } from '../utils/rest';
 import classnames from 'classnames';
+
 import { Button, Dashicon } from '@wordpress/components';
 import { useContext, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';

@@ -1,12 +1,14 @@
 /* global obfxDash */
-import { useContext, useState } from '@wordpress/element';
 import { ModulesContext } from './DashboardContext';
+import { renderOption } from '../utils/common';
 import { requestData } from '../utils/rest';
-import { Dashicon, Button } from '@wordpress/components';
+
 import classnames from 'classnames';
 import _ from 'lodash';
+
+import { Dashicon, Button } from '@wordpress/components';
+import { useContext, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { renderOption } from '../utils/common';
 
 const { options, root, setSettingsRoute } = obfxDash;
 

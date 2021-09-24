@@ -1,15 +1,17 @@
 /* global obfxDash */
-import { Dashicon, ToggleControl } from '@wordpress/components';
-import { requestData } from '../utils/rest';
-import { useContext, useState } from '@wordpress/element';
 import { ModulesContext } from './DashboardContext';
 import ModuleSettings from './ModuleSettings';
+import { requestData } from '../utils/rest';
+
+import { Dashicon, ToggleControl } from '@wordpress/components';
+import { useContext, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 const { root, toggleStateRoute, options } = obfxDash;
 
 const ModuleCard = ({ slug, details }) => {
 	const refreshAfterEnabled = details.refresh_after_enabled;
+	const activeDefault = details.active_default;
 	const [loading, setLoading] = useState(false);
 	const [errorState, setErrorState] = useState(false);
 	const { modulesData, setModulesData } = useContext(ModulesContext);
@@ -64,7 +66,7 @@ const ModuleCard = ({ slug, details }) => {
 						checked={
 							moduleStatus[slug]
 								? moduleStatus[slug].active
-								: false
+								: activeDefault
 						}
 						onChange={updateModuleStatus}
 					/>
