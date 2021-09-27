@@ -64,7 +64,7 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			$theme_name = 'Shop Isle';
 		}
 
-		$this->name        = sprintf( __( '%s enhancements ', 'themeisle-companion' ), $theme_name );
+		$this->name        = sprintf( __( '%s enhancements', 'themeisle-companion' ), $theme_name );
 		$this->description = sprintf( __( 'Module containing frontpage improvements for %s theme.', 'themeisle-companion' ), $theme_name );
 	}
 

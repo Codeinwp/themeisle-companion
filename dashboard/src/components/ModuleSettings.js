@@ -1,5 +1,5 @@
 /* global obfxDash */
-import { ModulesContext } from './DashboardContext';
+import { DashboardContext, ModulesContext } from './DashboardContext';
 import { renderOption } from '../utils/common';
 import { requestData } from '../utils/rest';
 
@@ -14,9 +14,9 @@ const { options, root, setSettingsRoute } = obfxDash;
 
 const ModuleSettings = ({ slug }) => {
 	const { modulesData, setModulesData } = useContext(ModulesContext);
+	const { setToast } = useContext(DashboardContext);
 	const [open, setOpen] = useState(false);
 	const [loading, setLoading] = useState(false);
-	const [errorState, setErrorState] = useState(false);
 	const moduleSettings = modulesData.module_settings[slug] || {};
 	const [tempData, setTempData] = useState({
 		...moduleSettings,
@@ -25,10 +25,6 @@ const ModuleSettings = ({ slug }) => {
 	const loadingIcon = (
 		<Dashicon size={18} icon="update" className="is-loading" />
 	);
-
-	if (errorState) {
-		setTimeout(() => setErrorState(false), 2500);
-	}
 
 	const changeOption = (name, newValue) => {
 		const newTemp = tempData;
@@ -48,13 +44,21 @@ const ModuleSettings = ({ slug }) => {
 			if (r.type !== 'success') {
 				setTempData({ ...moduleSettings });
 				setLoading(false);
-				setErrorState(true);
+				setToast(
+					__(
+						'Could not update options. Please try again.',
+						'themeisle-companion'
+					)
+				);
 				return;
 			}
 
 			modulesData.module_settings[slug] = { ...tempData };
 			setModulesData({ ...modulesData });
 			setLoading(false);
+			setToast(
+				__('Options updated successfully.', 'themeisle-companion')
+			);
 		});
 	};
 
@@ -144,14 +148,6 @@ const ModuleSettings = ({ slug }) => {
 								? loadingIcon
 								: __('Save', 'themeisle-companion')}
 						</Button>
-						{errorState && (
-							<p className="error">
-								{__(
-									'Something went wrong! Try again.',
-									'themeisle-companion'
-								)}
-							</p>
-						)}
 					</div>
 				</div>
 			)}

@@ -1,5 +1,5 @@
 /* global obfxDash */
-import { ModulesContext } from './DashboardContext';
+import { DashboardContext, ModulesContext } from './DashboardContext';
 import ModuleSettings from './ModuleSettings';
 import { requestData } from '../utils/rest';
 
@@ -13,8 +13,8 @@ const ModuleCard = ({ slug, details }) => {
 	const refreshAfterEnabled = details.refresh_after_enabled;
 	const activeDefault = details.active_default;
 	const [loading, setLoading] = useState(false);
-	const [errorState, setErrorState] = useState(false);
 	const { modulesData, setModulesData } = useContext(ModulesContext);
+	const { setToast } = useContext(DashboardContext);
 	const moduleStatus = modulesData.module_status;
 
 	const updateModuleStatus = (value) => {
@@ -28,8 +28,13 @@ const ModuleCard = ({ slug, details }) => {
 
 	const toggleStatusCallback = (r, value) => {
 		if (r.type !== 'success') {
-			setErrorState(true);
 			setLoading(false);
+			setToast(
+				__(
+					'Could not activate module. Please try again.',
+					'themeisle-companion'
+				)
+			);
 			return;
 		}
 
@@ -44,11 +49,13 @@ const ModuleCard = ({ slug, details }) => {
 		moduleStatus[slug].active = value;
 		setModulesData(modulesData);
 		setLoading(false);
+		setToast(
+			(value
+				? __('Module activated', 'themeisle-companion')
+				: __('Module deactivated', 'themeisle-companion')) +
+				` (${details.name})`
+		);
 	};
-
-	if (errorState) {
-		setTimeout(() => setErrorState(false), 2500);
-	}
 
 	const handleDescription = (description) => {
 		const start = description.indexOf('<a');
@@ -93,14 +100,6 @@ const ModuleCard = ({ slug, details }) => {
 						}
 						onChange={updateModuleStatus}
 					/>
-					{errorState && (
-						<p className="error">
-							{__(
-								'Something went wrong! Try again.',
-								'themeisle-companion'
-							)}
-						</p>
-					)}
 				</div>
 			</div>
 			<div className="module-card-content">

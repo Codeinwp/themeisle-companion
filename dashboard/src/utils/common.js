@@ -1,6 +1,6 @@
-import { __ } from '@wordpress/i18n';
 import AvailableModules from '../components/AvailableModules';
 import RecommendedPlugins from '../components/RecommendedPlugins';
+
 import {
 	CheckboxControl,
 	RadioControl,
@@ -8,6 +8,7 @@ import {
 	TextControl,
 	ToggleControl,
 } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 
 export const tabs = {
 	modules: {
@@ -94,16 +95,20 @@ export const renderOption = (setting, tempData, changeOption) => {
 			);
 		case 'select':
 			return (
-				<SelectControl
-					label={setting.title}
-					value={parseInt(selectedValue)}
-					options={Object.entries(setting.options).map(
-						([value, label]) => {
-							return { value, label };
+				<div className="select-wrap">
+					<SelectControl
+						label={setting.title}
+						value={parseInt(selectedValue)}
+						options={Object.entries(setting.options).map(
+							([value, label]) => {
+								return { value, label };
+							}
+						)}
+						onChange={(newValue) =>
+							changeOption(setting.id, newValue)
 						}
-					)}
-					onChange={(newValue) => changeOption(setting.id, newValue)}
-				/>
+					/>
+				</div>
 			);
 		case 'text':
 			return (
