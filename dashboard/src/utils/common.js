@@ -49,9 +49,10 @@ const decodeHtml = (html) => {
 };
 
 export const renderOption = (setting, tempData, changeOption) => {
-	const selectedValue = tempData[setting.id]
-		? tempData[setting.id]
-		: setting.default;
+	const selectedValue =
+		tempData[setting.id] !== undefined
+			? tempData[setting.id]
+			: setting.default;
 
 	switch (setting.type) {
 		case 'checkbox':
