@@ -36,6 +36,18 @@ export const getTabHash = () => {
 	return hash;
 };
 
+/**
+ * Decodes a html encoded string while preserving tags
+ *
+ * @param {string} html encoded string
+ * @return {string} decoded string
+ */
+const decodeHtml = (html) => {
+	const txt = document.createElement('textarea');
+	txt.innerHTML = html;
+	return txt.value;
+};
+
 export const renderOption = (setting, tempData, changeOption) => {
 	const selectedValue = tempData[setting.id]
 		? tempData[setting.id]
@@ -96,7 +108,7 @@ export const renderOption = (setting, tempData, changeOption) => {
 			return (
 				<TextControl
 					label={setting.title}
-					value={selectedValue}
+					value={decodeHtml(selectedValue)}
 					onChange={(newValue) => changeOption(setting.id, newValue)}
 				/>
 			);

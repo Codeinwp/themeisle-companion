@@ -44,7 +44,7 @@ const ModuleCard = ({ slug, details }) => {
 		moduleStatus[slug].active = value;
 		setModulesData(modulesData);
 		setLoading(false);
-	}
+	};
 
 	if (errorState) {
 		setTimeout(() => setErrorState(false), 2500);
