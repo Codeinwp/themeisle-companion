@@ -94,7 +94,7 @@ const ModuleCard = ({ slug, details }) => {
 					)}
 					<ToggleControl
 						checked={
-							moduleStatus[slug] && moduleStatus[slug].active
+							moduleStatus[slug] && moduleStatus[slug]
 								? moduleStatus[slug].active
 								: activeDefault
 						}
@@ -107,7 +107,7 @@ const ModuleCard = ({ slug, details }) => {
 			</div>
 			{moduleStatus[slug] &&
 				moduleStatus[slug].active &&
-				options[slug] && <ModuleSettings slug={slug} />}
+				options[slug].length > 0 && <ModuleSettings slug={slug} />}
 		</div>
 	);
 };
