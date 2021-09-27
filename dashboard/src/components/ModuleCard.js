@@ -3,7 +3,7 @@ import { ModulesContext } from './DashboardContext';
 import ModuleSettings from './ModuleSettings';
 import { requestData } from '../utils/rest';
 
-import { Dashicon, ToggleControl } from '@wordpress/components';
+import { Dashicon, ExternalLink, ToggleControl } from '@wordpress/components';
 import { useContext, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
@@ -50,6 +50,29 @@ const ModuleCard = ({ slug, details }) => {
 		setTimeout(() => setErrorState(false), 2500);
 	}
 
+	const handleDescription = (description) => {
+		const start = description.indexOf('<a');
+		const end = description.indexOf('</a>');
+
+		if (start === -1) {
+			return <div className="description">{description}</div>;
+		}
+
+		const hrefStart = description.indexOf('href="') + 'href="'.length;
+		const hrefEnd = description.indexOf('"', hrefStart);
+		const href = description.slice(hrefStart, hrefEnd);
+
+		const anchorText = description.slice(description.indexOf('>') + 1, end);
+
+		return (
+			<div className="description">
+				{description.slice(0, start)}
+				<ExternalLink href={href}>{anchorText}</ExternalLink>
+				{description.slice(end + '</a>'.length)}
+			</div>
+		);
+	};
+
 	return (
 		<div className="module-card">
 			<div className="module-card-header">
@@ -81,10 +104,7 @@ const ModuleCard = ({ slug, details }) => {
 				</div>
 			</div>
 			<div className="module-card-content">
-				<div
-					className="description"
-					dangerouslySetInnerHTML={{ __html: details.description }}
-				/>
+				{handleDescription(details.description)}
 			</div>
 			{moduleStatus[slug] &&
 				moduleStatus[slug].active &&
