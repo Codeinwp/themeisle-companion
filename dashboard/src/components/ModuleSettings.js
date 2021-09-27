@@ -78,7 +78,9 @@ const ModuleSettings = ({ slug }) => {
 					(!tempData[element.id] && element.default === '1');
 
 				while (true) {
-					row.push(renderOption(element, tempData, changeOption));
+					row.push(
+						renderOption(element, tempData, changeOption, setToast)
+					);
 					if (element.hasOwnProperty('after_wrap')) break;
 					element = options[slug][++i];
 				}
@@ -94,14 +96,18 @@ const ModuleSettings = ({ slug }) => {
 			if (element.type === 'checkbox') {
 				const row = [];
 				while (element.type === 'checkbox') {
-					row.push(renderOption(element, tempData, changeOption));
+					row.push(
+						renderOption(element, tempData, changeOption, setToast)
+					);
 					element = options[slug][++i];
 				}
 				content.push(<div className="checkboxes-row"> {row} </div>);
 				continue;
 			}
 
-			content.push(renderOption(element, tempData, changeOption));
+			content.push(
+				renderOption(element, tempData, changeOption, setToast)
+			);
 		}
 
 		return content;

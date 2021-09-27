@@ -1,7 +1,9 @@
 import AvailableModules from '../components/AvailableModules';
 import RecommendedPlugins from '../components/RecommendedPlugins';
+import { post } from './rest';
 
 import {
+	Button,
 	CheckboxControl,
 	RadioControl,
 	SelectControl,
@@ -37,6 +39,21 @@ export const getTabHash = () => {
 	return hash;
 };
 
+const unregister = (url, setToast) => {
+	post(url, 'deactivate=unregister').then((r) => {
+		if (r === false) {
+			setToast(
+				__(
+					'Could not unregister the site. Please try again.',
+					'themeisle-companion'
+				)
+			);
+			return;
+		}
+		window.location.reload();
+	});
+};
+
 /**
  * Decodes a html encoded string while preserving tags
  *
@@ -49,7 +66,7 @@ const decodeHtml = (html) => {
 	return txt.value;
 };
 
-export const renderOption = (setting, tempData, changeOption) => {
+export const renderOption = (setting, tempData, changeOption, setToast) => {
 	const selectedValue =
 		tempData[setting.id] !== undefined
 			? tempData[setting.id]
@@ -98,7 +115,7 @@ export const renderOption = (setting, tempData, changeOption) => {
 				<div className="select-wrap">
 					<SelectControl
 						label={setting.title}
-						value={parseInt(selectedValue)}
+						value={selectedValue}
 						options={Object.entries(setting.options).map(
 							([value, label]) => {
 								return { value, label };
@@ -117,6 +134,27 @@ export const renderOption = (setting, tempData, changeOption) => {
 					value={decodeHtml(selectedValue)}
 					onChange={(newValue) => changeOption(setting.id, newValue)}
 				/>
+			);
+		case 'link':
+			const isUnregister = setting.id === 'analytics_accounts_unregister';
+			return (
+				<div className="select-wrap">
+					<Button
+						isPrimary={!isUnregister}
+						isDestructive={isUnregister}
+						href={setting.url ? setting.url : null}
+						onClick={
+							isUnregister &&
+							(() => {
+								unregister(setting.unregisterURL, setToast);
+							})
+						}
+					>
+						<div
+							dangerouslySetInnerHTML={{ __html: setting.text }}
+						/>
+					</Button>
+				</div>
 			);
 	}
 };
