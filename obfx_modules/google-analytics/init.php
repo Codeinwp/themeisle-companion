@@ -255,7 +255,7 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'type'    => 'select',
 				'options' => $options,
 				'default' => '-',
-				'title'   => 'Tracking code'
+				'title'   => 'Tracking code',
 			),
 			array(
 				'id'            => 'analytics_accounts_unregister',
