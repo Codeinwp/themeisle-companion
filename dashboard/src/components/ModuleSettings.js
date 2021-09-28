@@ -4,7 +4,7 @@ import { renderOption } from '../utils/common';
 import { requestData } from '../utils/rest';
 
 import classnames from 'classnames';
-import _ from 'lodash';
+import { isEqual } from 'lodash';
 
 import { Dashicon, Button } from '@wordpress/components';
 import { useContext, useState } from '@wordpress/element';
@@ -146,7 +146,7 @@ const ModuleSettings = ({ slug }) => {
 						</Button>
 						<Button
 							isPrimary
-							disabled={_.isEqual(tempData, moduleSettings)}
+							disabled={isEqual(tempData, moduleSettings)}
 							className="obfx-button"
 							onClick={sendData}
 						>

@@ -4,7 +4,7 @@ import ModuleSettings from './ModuleSettings';
 import { requestData } from '../utils/rest';
 
 import { Dashicon, ExternalLink, ToggleControl } from '@wordpress/components';
-import { useContext, useState } from '@wordpress/element';
+import { renderToString, useContext, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 const { root, toggleStateRoute, options } = obfxDash;
@@ -57,26 +57,38 @@ const ModuleCard = ({ slug, details }) => {
 		);
 	};
 
-	const handleDescription = (description) => {
-		const start = description.indexOf('<a');
-		const end = description.indexOf('</a>');
+	const renderDescription = (description) => {
+		const elements = [];
+		while (description.indexOf('<a') >= 0) {
+			const start = description.indexOf('<a');
+			const end = description.indexOf('</a>');
 
-		if (start === -1) {
-			return <div className="description">{description}</div>;
+			elements.push(description.slice(0, start));
+
+			const hrefStart = description.indexOf('href="') + 'href="'.length;
+			const hrefEnd = description.indexOf('"', hrefStart);
+			const href = description.slice(hrefStart, hrefEnd);
+
+			const anchorText = description.slice(
+				description.indexOf('>', start) + 1,
+				end
+			);
+
+			elements.push(
+				renderToString(
+					<ExternalLink href={href}>{anchorText}</ExternalLink>
+				)
+			);
+
+			description = description.slice(end + '</a>'.length);
 		}
 
-		const hrefStart = description.indexOf('href="') + 'href="'.length;
-		const hrefEnd = description.indexOf('"', hrefStart);
-		const href = description.slice(hrefStart, hrefEnd);
-
-		const anchorText = description.slice(description.indexOf('>') + 1, end);
-
+		elements.push(description);
 		return (
-			<div className="description">
-				{description.slice(0, start)}
-				<ExternalLink href={href}>{anchorText}</ExternalLink>
-				{description.slice(end + '</a>'.length)}
-			</div>
+			<p
+				className="description"
+				dangerouslySetInnerHTML={{ __html: elements.join(' ') }}
+			/>
 		);
 	};
 
@@ -104,7 +116,7 @@ const ModuleCard = ({ slug, details }) => {
 				</div>
 			</div>
 			<div className="module-card-content">
-				{handleDescription(details.description)}
+				{renderDescription(details.description)}
 			</div>
 			{moduleStatus[slug] &&
 				moduleStatus[slug].active &&
