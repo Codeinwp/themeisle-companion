@@ -94,7 +94,7 @@ const ModuleCard = ({ slug, details }) => {
 					)}
 					<ToggleControl
 						checked={
-							moduleStatus[slug] && moduleStatus[slug]
+							moduleStatus[slug]
 								? moduleStatus[slug].active
 								: activeDefault
 						}
