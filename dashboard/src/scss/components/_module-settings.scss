@@ -1,0 +1,104 @@
+.module-settings {
+  border-top: 1px solid #e1e1e1;
+
+  &.open .accordion-header .accordion-title {
+    color: #3c434a;
+  }
+
+  .accordion-header {
+    padding: 15px 20px;
+    background-color: #fff;
+    outline: none;
+    border: none;
+    width: 100%;
+    display: flex;
+    cursor: pointer;
+
+    .accordion-title {
+      margin-right: auto;
+      font-size: 15px;
+      font-weight: 600;
+      color: $obfx-purple;
+      transition-duration: .25s;
+      transition-timing-function: ease-out;
+    }
+
+    .dashicon {
+      margin-left: auto;
+      color: #646D82;
+    }
+  }
+
+  .accordion-content {
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+
+    .title {
+      margin: 0;
+    }
+
+    .checkboxes-row {
+      display: flex;
+      column-gap: 30px;
+    }
+
+    .select-wrap {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .obfx-google {
+      margin-right: 10px;
+    }
+
+    .settings-row {
+      display: flex;
+      column-gap: 70px;
+
+      > * {
+        transition-duration: .1s;
+        transition-timing-function: ease;
+      }
+
+      > :not(:first-child) {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      &.active > :not(:first-child) {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      > :first-child {
+        width: 150px;
+      }
+    }
+
+    &.loading {
+      opacity: .75;
+    }
+
+    .buttons-container {
+      margin-left: auto;
+      display: flex;
+      column-gap: 10px;
+      justify-content: flex-end;
+      position: relative;
+
+      .obfx-button {
+        width: 60px;
+        justify-content: center;
+
+        .dashicon {
+          animation-name: spin;
+          animation-duration: 2000ms;
+          animation-iteration-count: infinite;
+          animation-timing-function: linear;
+        }
+      }
+    }
+  }
+}

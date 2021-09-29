@@ -27,9 +27,10 @@ class Custom_Fonts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function __construct() {
 		parent::__construct();
-		$this->name           = __( 'Custom fonts', 'themeisle-companion' );
-		$this->description    = __( 'Upload custom fonts and use them anywhere on your site.', 'themeisle-companion' );
-		$this->active_default = false;
+		$this->name                  = __( 'Custom fonts', 'themeisle-companion' );
+		$this->description           = __( 'Upload custom fonts and use them anywhere on your site.', 'themeisle-companion' );
+		$this->active_default        = false;
+		$this->refresh_after_enabled = true;
 	}
 
 	/**

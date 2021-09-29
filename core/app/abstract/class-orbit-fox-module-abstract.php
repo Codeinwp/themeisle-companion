@@ -73,7 +73,15 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @access  protected
 	 * @var     boolean $active_default The default active state of the module.
 	 */
-	protected $active_default = false;
+	public $active_default = false;
+	/**
+	 * True if the page should refresh after the module is enabled
+	 *
+	 * @access  protected
+	 * @var     boolean $refresh_after_enabled Flag for page refresh after activation
+	 */
+	public $refresh_after_enabled = false;
+
 	/**
 	 * Stores an array of notices
 	 *

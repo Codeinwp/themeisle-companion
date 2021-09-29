@@ -12,6 +12,7 @@ jobs:
       - name: Build
         run: |
           npm ci
+          npm run build
           composer install --no-dev --prefer-dist --no-progress --no-suggest
           npm run dist
       - name: WordPress Plugin Deploy
