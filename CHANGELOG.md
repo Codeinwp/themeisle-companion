@@ -1,3 +1,9 @@
+##### [Version 2.10.8](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.7...v2.10.8) (2021-09-29)
+
+- [Feat] Refactor the dashboard.
+- [Feat] Add Telegram social sharing icon.
+- [Fix] HomePage reverts to FrontPage if you have Orbit Fox Hestia Enhancements active and switch theme
+
 ##### [Version 2.10.7](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.6...v2.10.7) (2021-08-02)
 
 [Fix] Widgets with repeater fields are generating errors

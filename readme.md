@@ -1,6 +1,6 @@
 # Orbit Fox by ThemeIsle #
 **Contributors:** [themeisle](https://profiles.wordpress.org/themeisle), [codeinwp](https://profiles.wordpress.org/codeinwp), [rodicaelena](https://profiles.wordpress.org/rodicaelena), [baicusandrei](https://profiles.wordpress.org/baicusandrei), [hardeepasrani](https://profiles.wordpress.org/hardeepasrani)  
-**Tags:** widget, admin, widgets, sharing, sections, themes, stock photos, custom icons, icons, menu icons, stock, templates, header, footer, scripts, fonts  
+**Tags:** widget, admin, widgets, sharing, sections, themes, stock photos, custom icons, icons, menu icons, stock, templates, header, footer, scripts, custom fonts   
 **Requires at least:** 4.7  
 **Tested up to:** 5.8  
 **Requires PHP:** 5.6  
@@ -106,6 +106,15 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 ## Changelog ##
+
+##### [Version 2.10.8](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.7...v2.10.8) (2021-09-29)
+
+- [Feat] Refactor the dashboard.
+- [Feat] Add Telegram social sharing icon.
+- [Fix] HomePage reverts to FrontPage if you have Orbit Fox Hestia Enhancements active and switch theme
+
+
+
 
 ##### [Version 2.10.7](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.6...v2.10.7) (2021-08-02)
 
