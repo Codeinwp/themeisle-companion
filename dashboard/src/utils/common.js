@@ -1,13 +1,16 @@
-import { __ } from '@wordpress/i18n';
 import AvailableModules from '../components/AvailableModules';
 import RecommendedPlugins from '../components/RecommendedPlugins';
+import { post } from './rest';
+
 import {
+	Button,
 	CheckboxControl,
 	RadioControl,
 	SelectControl,
 	TextControl,
 	ToggleControl,
 } from '@wordpress/components';
+import { __ } from '@wordpress/i18n';
 
 export const tabs = {
 	modules: {
@@ -36,10 +39,38 @@ export const getTabHash = () => {
 	return hash;
 };
 
-export const renderOption = (setting, tempData, changeOption) => {
-	const selectedValue = tempData[setting.id]
-		? tempData[setting.id]
-		: setting.default;
+const unregister = (url, setToast) => {
+	post(url, 'deactivate=unregister').then((r) => {
+		if (r === false) {
+			setToast(
+				__(
+					'Could not unregister the site. Please try again.',
+					'themeisle-companion'
+				)
+			);
+			return;
+		}
+		window.location.reload();
+	});
+};
+
+/**
+ * Decodes a html encoded string while preserving tags
+ *
+ * @param {string} html encoded string
+ * @return {string} decoded string
+ */
+const decodeHtml = (html) => {
+	const txt = document.createElement('textarea');
+	txt.innerHTML = html;
+	return txt.value;
+};
+
+export const renderOption = (setting, tempData, changeOption, setToast) => {
+	const selectedValue =
+		tempData[setting.id] !== undefined
+			? tempData[setting.id]
+			: setting.default;
 
 	switch (setting.type) {
 		case 'checkbox':
@@ -81,24 +112,49 @@ export const renderOption = (setting, tempData, changeOption) => {
 			);
 		case 'select':
 			return (
-				<SelectControl
-					label={setting.title}
-					value={parseInt(selectedValue)}
-					options={Object.entries(setting.options).map(
-						([value, label]) => {
-							return { value, label };
+				<div className="select-wrap">
+					<SelectControl
+						label={setting.title}
+						value={selectedValue}
+						options={Object.entries(setting.options).map(
+							([value, label]) => {
+								return { value, label };
+							}
+						)}
+						onChange={(newValue) =>
+							changeOption(setting.id, newValue)
 						}
-					)}
-					onChange={(newValue) => changeOption(setting.id, newValue)}
-				/>
+					/>
+				</div>
 			);
 		case 'text':
 			return (
 				<TextControl
 					label={setting.title}
-					value={selectedValue}
+					value={decodeHtml(selectedValue)}
 					onChange={(newValue) => changeOption(setting.id, newValue)}
 				/>
+			);
+		case 'link':
+			const isUnregister = setting.id === 'analytics_accounts_unregister';
+			return (
+				<div className="select-wrap">
+					<Button
+						isPrimary={!isUnregister}
+						isDestructive={isUnregister}
+						href={setting.url ? setting.url : null}
+						onClick={
+							isUnregister &&
+							(() => {
+								unregister(setting.unregisterURL, setToast);
+							})
+						}
+					>
+						<div
+							dangerouslySetInnerHTML={{ __html: setting.text }}
+						/>
+					</Button>
+				</div>
 			);
 	}
 };

@@ -1,6 +1,6 @@
 /* global obfxDash */
-import PluginCard from './PluginCard';
 import { PluginsContext } from './DashboardContext';
+import PluginCard from './PluginCard';
 import { useState } from '@wordpress/element';
 
 const RecommendedPlugins = () => {

@@ -1,20 +1,22 @@
 /* global obfxDash */
-import { useContext, useState } from '@wordpress/element';
-import { ModulesContext } from './DashboardContext';
-import { requestData } from '../utils/rest';
-import { Dashicon, Button } from '@wordpress/components';
-import classnames from 'classnames';
-import _ from 'lodash';
-import { __ } from '@wordpress/i18n';
+import { DashboardContext, ModulesContext } from './DashboardContext';
 import { renderOption } from '../utils/common';
+import { requestData } from '../utils/rest';
+
+import classnames from 'classnames';
+import { isEqual } from 'lodash';
+
+import { Dashicon, Button } from '@wordpress/components';
+import { useContext, useState } from '@wordpress/element';
+import { __ } from '@wordpress/i18n';
 
 const { options, root, setSettingsRoute } = obfxDash;
 
 const ModuleSettings = ({ slug }) => {
 	const { modulesData, setModulesData } = useContext(ModulesContext);
+	const { setToast } = useContext(DashboardContext);
 	const [open, setOpen] = useState(false);
 	const [loading, setLoading] = useState(false);
-	const [errorState, setErrorState] = useState(false);
 	const moduleSettings = modulesData.module_settings[slug] || {};
 	const [tempData, setTempData] = useState({
 		...moduleSettings,
@@ -23,10 +25,6 @@ const ModuleSettings = ({ slug }) => {
 	const loadingIcon = (
 		<Dashicon size={18} icon="update" className="is-loading" />
 	);
-
-	if (errorState) {
-		setTimeout(() => setErrorState(false), 2500);
-	}
 
 	const changeOption = (name, newValue) => {
 		const newTemp = tempData;
@@ -46,13 +44,21 @@ const ModuleSettings = ({ slug }) => {
 			if (r.type !== 'success') {
 				setTempData({ ...moduleSettings });
 				setLoading(false);
-				setErrorState(true);
+				setToast(
+					__(
+						'Could not update options. Please try again.',
+						'themeisle-companion'
+					)
+				);
 				return;
 			}
 
 			modulesData.module_settings[slug] = { ...tempData };
 			setModulesData({ ...modulesData });
 			setLoading(false);
+			setToast(
+				__('Options updated successfully.', 'themeisle-companion')
+			);
 		});
 	};
 
@@ -72,7 +78,9 @@ const ModuleSettings = ({ slug }) => {
 					(!tempData[element.id] && element.default === '1');
 
 				while (true) {
-					row.push(renderOption(element, tempData, changeOption));
+					row.push(
+						renderOption(element, tempData, changeOption, setToast)
+					);
 					if (element.hasOwnProperty('after_wrap')) break;
 					element = options[slug][++i];
 				}
@@ -88,14 +96,18 @@ const ModuleSettings = ({ slug }) => {
 			if (element.type === 'checkbox') {
 				const row = [];
 				while (element.type === 'checkbox') {
-					row.push(renderOption(element, tempData, changeOption));
+					row.push(
+						renderOption(element, tempData, changeOption, setToast)
+					);
 					element = options[slug][++i];
 				}
 				content.push(<div className="checkboxes-row"> {row} </div>);
 				continue;
 			}
 
-			content.push(renderOption(element, tempData, changeOption));
+			content.push(
+				renderOption(element, tempData, changeOption, setToast)
+			);
 		}
 
 		return content;
@@ -134,7 +146,7 @@ const ModuleSettings = ({ slug }) => {
 						</Button>
 						<Button
 							isPrimary
-							disabled={_.isEqual(tempData, moduleSettings)}
+							disabled={isEqual(tempData, moduleSettings)}
 							className="obfx-button"
 							onClick={sendData}
 						>
@@ -142,14 +154,6 @@ const ModuleSettings = ({ slug }) => {
 								? loadingIcon
 								: __('Save', 'themeisle-companion')}
 						</Button>
-						{errorState && (
-							<p className="error">
-								{__(
-									'Something went wrong! Try again.',
-									'themeisle-companion'
-								)}
-							</p>
-						)}
 					</div>
 				</div>
 			)}

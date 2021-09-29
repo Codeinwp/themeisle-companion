@@ -1,6 +1,7 @@
-import { PluginsContext } from './DashboardContext';
+import { DashboardContext, PluginsContext } from './DashboardContext';
 import { get } from '../utils/rest';
 import classnames from 'classnames';
+
 import { Button, Dashicon } from '@wordpress/components';
 import { useContext, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
@@ -8,18 +9,19 @@ import { __ } from '@wordpress/i18n';
 const PluginCard = ({ slug, data }) => {
 	const { banner, name, description, version, author } = data;
 	const { pluginsData, setPluginsData } = useContext(PluginsContext);
+	const { setToast } = useContext(DashboardContext);
 	const [inProgress, setInProgress] = useState(false);
-	const [errorState, setErrorState] = useState(false);
 	const pluginState = pluginsData[slug].action;
-
-	if (errorState) {
-		setTimeout(() => setErrorState(false), 2500);
-	}
 
 	const setPluginState = (newStatus) => {
 		pluginsData[slug].action = newStatus;
 		setPluginsData(pluginsData);
 	};
+
+	const errorMessage = __(
+		'Something went wrong. Please try again.',
+		'themeisle-companion'
+	);
 
 	const stringMap = {
 		install: {
@@ -42,7 +44,7 @@ const PluginCard = ({ slug, data }) => {
 			installPlugin(slug).then((r) => {
 				if (!r.success) {
 					setInProgress(false);
-					setErrorState(true);
+					setToast(errorMessage);
 					return;
 				}
 				setPluginState('activate');
@@ -54,7 +56,7 @@ const PluginCard = ({ slug, data }) => {
 		get(data[pluginState], true).then((r) => {
 			if (!r.ok) {
 				setInProgress(false);
-				setErrorState(true);
+				setToast(errorMessage);
 				return;
 			}
 
@@ -97,14 +99,6 @@ const PluginCard = ({ slug, data }) => {
 						</span>
 					)}
 				</Button>
-				{errorState && (
-					<p className="error">
-						{__(
-							'Something went wrong! Try again.',
-							'themeisle-companion'
-						)}
-					</p>
-				)}
 			</div>
 		</div>
 	);

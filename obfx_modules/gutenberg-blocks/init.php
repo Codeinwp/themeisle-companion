@@ -27,12 +27,12 @@ class Gutenberg_Blocks_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		/*
 		 * translators: %1$s Start anchor tag, %2$s End anchor tag
 		 */
-		$this->description  = sprintf( __( 'A set of awesome Gutenberg Blocks provided by %1$sOtter\'s%2$s plugin!', 'themeisle-companion' ), '<span class="dashicons dashicons-external"></span><a target="_blank" href="https://wordpress.org/plugins/otter-blocks/">', '</a>' );
+		$this->description  = sprintf( __( 'A set of awesome Gutenberg Blocks provided by %1$sOtter\'s%2$s plugin!', 'themeisle-companion' ), '<a target="_blank" href="https://wordpress.org/plugins/otter-blocks/">', '</a>' );
 		$this->description .= '<p class="notice notice-warning">' .
 								/*
 								 * translators: %s Otter plugin link
 								 */
-								sprintf( __( 'This module will soon be removed form Orbit Fox. To keep the content you created with this module, please install %s', 'themeisle-companion' ), '<span class="dashicons dashicons-external"></span><a target="_blank" href="https://wordpress.org/plugins/otter-blocks/">Gutenberg Blocks and Template Library by Otter</a>.' )
+								sprintf( __( 'This module will soon be removed form Orbit Fox. To keep the content you created with this module, please install %s', 'themeisle-companion' ), '<a target="_blank" href="https://wordpress.org/plugins/otter-blocks/">Gutenberg Blocks and Template Library by Otter</a>.' )
 								. '</p>';
 
 		if ( $this->check_new_user( 'obfx_remove_gtb_blocks' ) === false ) {
