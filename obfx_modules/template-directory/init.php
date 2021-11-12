@@ -62,10 +62,34 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function hooks() {
 		// Get the full-width pages feature
-		$this->loader->add_action( 'init', $this, 'load_template_directory_library' );
-		$this->loader->add_action( 'init', $this, 'load_full_width_page_templates' );
-		$this->loader->add_filter( 'obfx_template_dir_products', $this, 'add_page', 90 );
+//		$this->loader->add_action( 'init', $this, 'load_template_directory_library' );
+//		$this->loader->add_action( 'init', $this, 'load_full_width_page_templates' );
+//		$this->loader->add_filter( 'obfx_template_dir_products', $this, 'add_page', 90 );
+		add_action('admin_menu', [ $this, 'add_template_directory_submenu' ], 11 );
 	}
+
+	/**
+	 *
+	 */
+	public function add_template_directory_submenu() {
+		add_submenu_page(
+			'obfx_companion',
+			esc_html__( 'Orbit Fox Template Directory', 'themeisle-companion' ),
+			esc_html__( 'Template Directory', 'textdomain' ),
+			'manage_options',
+			'obfx_template_dir',
+			[ $this, 'render_template_directory' ]
+		);
+	}
+
+	/**
+	 *
+	 */
+	public function render_template_directory() {
+		echo '<div id="obfx-template-directory"></div>';
+	}
+
+
 
 	/**
 	 * Enqueue the scripts for the dashboard page of the
@@ -83,7 +107,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				array(
 					'url'   => $this->get_endpoint_url( '/import_elementor' ),
 					'nonce' => wp_create_nonce( 'wp_rest' ),
-				) 
+				)
 			);
 			wp_enqueue_script( $script_handle );
 		}
@@ -139,7 +163,82 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return array|boolean
 	 */
 	public function admin_enqueue() {
-		return array();
+		$dependencies_file = include OBX_PATH . '/obfx_modules/template-directory/js/template-directory.asset.php';
+
+		$this->localized = array(
+			'template-directory' => array(
+				'slug'           => $this->slug,
+				'assets'         => OBFX_URL . 'obfx_modules/template-directory/assets',
+				'tpcIsInstalled' => $this->check_plugin_installed( 'templates-       tterns-collection/templates-patterns-collection.php' ),
+				'tpcIsActice'    => $this->check_plugin_active( 'templates-       tterns-collection/templates-patterns-collection.php' ),
+				'neveIsInstalled'=> $this->check_theme_installed( 'neve' ),
+				'neveIsActive'   => $this->check_theme_active( 'Neve' ),
+				'tpcPath'        => defined( 'TIOB_PATH' ) ? TIOB_PATH . 'template-patterns-collection.php' : 'template-patterns-collection/template-patterns-collection.php',
+				'tpcAdminURL'    => admin_url( 'themes.php?page=tiob-starter-sites' ),
+				'strings'        => [
+					'themeNotInstalled' => esc_html__( 'In order to be able to import starter sites you need to have the Neve theme installed.', 'neve' ),
+					'themeNotActive'    => esc_html__( 'In order to be able to import starter sites you need to activate the Neve theme.', 'neve' ),
+					'tpcNotInstalled'   => esc_html__( 'In order to be able to import starter sites you need to have the Cloud Templates & Patterns Collection plugin installed.', 'neve' ),
+					'tpcNotActive'      => esc_html__( 'In order to be able to import starter sites you need to activate the Cloud Templates & Patterns Collection plugin.', 'neve' ),
+					'buttonInstall'     => esc_html__( 'Install', 'themeisle-companion' ),
+					'buttonActivate'    => esc_html__( 'Activate', 'themeisle-companion' ),
+				],
+			),
+		);
+
+		return array(
+			'js' => [
+				'template-directory' => $dependencies_file['dependencies'],
+			],
+			'css' => [
+				'admin' => [],
+			]
+		);
+	}
+
+	/**
+	 *
+	 */
+	private function check_theme_installed( $theme_slug ) {
+		$installed_themes = wp_get_themes();
+		return array_key_exists( $theme_slug, $installed_themes );
+	}
+
+	/**
+	 * @param $theme_name
+	 *
+	 * @return bool
+	 */
+	private function check_theme_active( $theme_name ) {
+		$theme = wp_get_theme();
+		return $theme_name === $theme->name || $theme_name === $theme->parent_theme;
+	}
+
+	/**
+	 * Check if plugin is installed by getting all plugins from the plugins dir.
+	 *
+	 * @param $plugin_slug
+	 *
+	 * @return bool
+	 */
+	private function check_plugin_installed( $plugin_slug ): bool {
+		$installed_plugins = get_plugins();
+		return array_key_exists( $plugin_slug, $installed_plugins ) || in_array( $plugin_slug, $installed_plugins, true );
+	}
+
+	/**
+	 * Check if plugin is active.
+	 *
+	 * @param string $plugin_slug
+	 *
+	 * @return bool
+	 */
+	private function check_plugin_active( $plugin_slug ): bool {
+		if ( is_plugin_active( $plugin_slug ) ) {
+			return true;
+		}
+
+		return false;
 	}
 
 

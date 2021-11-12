@@ -32,7 +32,6 @@
   "require": {
     "codeinwp/full-width-page-templates": "master",
     "codeinwp/elementor-extra-widgets": "master",
-    "codeinwp/templates-directory": "master",
     "codeinwp/themeisle-content-forms": "master",
     "codeinwp/themeisle-sdk": "^3.1",
     "codeinwp/gutenberg-blocks": "^1.3"
