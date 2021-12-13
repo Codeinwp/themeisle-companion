@@ -39,6 +39,44 @@
     }
   }
 
+  &.active .neve-pro-notice {
+    background-color: $obfx-purple;
+    color: #fff;
+    padding: 15px 22px;
+    margin-top: 10px;
+    border-radius: 6px;
+
+    display: flex;
+    justify-content: space-between;
+
+    a {
+      background-color: inherit;
+      color: inherit;
+      border: 2px solid #fff;
+      border-radius: 2px;
+      padding: 0 20px;
+      text-decoration: none;
+
+      display: flex;
+      align-items: center;
+    }
+
+    p {
+      font-size: 15px;
+      margin: 0.75em 0;
+    }
+  }
+
+  .neve-pro-notice {
+    display: none;
+    animation: .5s notice-appear;
+
+    a {
+      opacity: 0;
+      animation: .2s .3s forwards content-appear;
+    }
+  }
+
   .module-card-content {
     padding: 20px;
 
@@ -48,4 +86,14 @@
       color: #616161;
     }
   }
+}
+
+@keyframes notice-appear {
+  from { height: 0; }
+  to { height: 45px; }
+}
+
+@keyframes content-appear {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
