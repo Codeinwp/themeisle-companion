@@ -55,6 +55,15 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function load() {}
 
 	/**
+	 * Decide if placeholders are needed.
+	 *
+	 * @return bool
+	 */
+	static function should_add_placeholders() {
+		return wp_get_theme()->get( 'Name' ) === 'Neve' && ! is_plugin_active( 'neve-pro-addon/neve-pro-addon.php' );
+	}
+
+	/**
 	 * Method to define hooks needed.
 	 *
 	 * @since   1.0.0
@@ -64,6 +73,127 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function hooks() {
 		$this->loader->add_action( 'init', $this, 'load_content_forms' );
 		$this->loader->add_action( 'plugins_loaded', $this, 'load_elementor_extra_widgets' );
+		$this->loader->add_filter( 'elementor/editor/localize_settings', $this, 'localization_filter', PHP_INT_MAX );
+		$this->loader->add_action( 'elementor/editor/before_enqueue_scripts', $this, 'load_fa_styles' );
+		if ( self::should_add_placeholders() ) {
+			$this->loader->add_action( 'elementor/editor/after_enqueue_scripts', $this, 'enqueue_editor_scripts' );
+			$this->loader->add_action( 'elementor/editor/after_enqueue_styles', $this, 'enqueue_editor_styles' );
+		}
+	}
+
+	/**
+	 * Filter the localization settings.
+	 *
+	 * @param array $config Config array.
+	 *
+	 * @return array
+	 */
+	public function localization_filter( $config ) {
+		if ( ! array_key_exists( 'initial_document', $config ) ) {
+			return $config;
+		}
+		if ( ! array_key_exists( 'panel', $config['initial_document'] ) ) {
+			return $config;
+		}
+		if ( ! array_key_exists( 'elements_categories', $config['initial_document']['panel'] ) ) {
+			return $config;
+		}
+		if ( ! array_key_exists( 'pro-elements', $config['initial_document']['panel']['elements_categories'] ) ) {
+			return $config;
+		}
+		if ( ! array_key_exists( 'obfx-elementor-widgets', $config['initial_document']['panel']['elements_categories'] ) ) {
+			return $config;
+		}
+
+		$elements_categories = $config['initial_document']['panel']['elements_categories'];
+		$obfx_cat            = [ 'obfx-elementor-widgets' => $elements_categories['obfx-elementor-widgets'] ];
+
+		unset( $elements_categories['obfx-elementor-widgets'] );
+
+		$config['initial_document']['panel']['elements_categories'] = $this->insert_before_element( $elements_categories, 'pro-elements', $obfx_cat );
+
+		$elements_categories = $config['initial_document']['panel']['elements_categories'];
+		if ( self::should_add_placeholders() && array_key_exists( 'obfx-elementor-widgets-pro', $elements_categories ) ) {
+			$placeholders_cat = [ 'obfx-elementor-widgets-pro' => $elements_categories['obfx-elementor-widgets-pro'] ];
+			unset( $elements_categories['obfx-elementor-widgets-pro'] );
+			$config['initial_document']['panel']['elements_categories'] = $this->insert_before_element( $elements_categories, 'pro-elements', $placeholders_cat );
+		}
+		return $config;
+	}
+
+	/**
+	 * Insert element after specific key.
+	 *
+	 * @param array  $array Destination array.
+	 * @param string $key   Where to insert.
+	 * @param array  $el    What to insert.
+	 * @return array
+	 */
+	private function insert_before_element( $array, $key, $el ) {
+		$keys  = array_keys( $array );
+		$index = array_search( $key, $keys );
+		$pos   = false === $index ? count( $array ) : $index;
+
+		return array_merge( array_slice( $array, 0, $pos ), $el, array_slice( $array, $pos ) );
+	}
+
+	/**
+	 * Load font awesome scripts in admin.
+	 */
+	public function load_fa_styles() {
+		wp_enqueue_style( 'font-awesome-5-all', ELEMENTOR_ASSETS_URL . '/lib/font-awesome/css/all.min.css', array(), '2.10.9' );
+	}
+
+	/**
+	 * Load required scripts in admin.
+	 */
+	public function enqueue_editor_scripts() {
+		wp_add_inline_script(
+			'elementor-editor',
+			'
+            elementor.on(\'preview:loaded\', function() {
+                setTimeout(
+                  function() 
+                  {
+                     jQuery( \'#elementor-panel-category-obfx-elementor-widgets-pro .elementor-element-wrapper\' ).on( \'click mousedown drop\', function(e) {
+                        e.preventDefault();
+                     } );
+                     
+                      jQuery( \'#elementor-panel-category-obfx-elementor-widgets-pro .elementor-element-wrapper\' ).on( \'click\', function(e) {
+                        window.open( \'https://themeisle.com/themes/neve/upgrade/?utm_medium=elementoreditor&utm_source=elementorwidget&utm_campaign=orbitfox\',\'_blank\');
+                      })
+                  }, 1000
+                );
+            });
+        ' 
+		);
+	}
+
+	/**
+	 * Load required styles in admin.
+	 */
+	public function enqueue_editor_styles() {
+		wp_add_inline_style(
+			'elementor-editor', 
+			'
+            #elementor-panel-category-obfx-elementor-widgets-pro .elementor-element-wrapper {
+                position:relative;
+            }
+            
+            #elementor-panel-category-obfx-elementor-widgets-pro .elementor-element {
+                cursor: pointer;
+            }
+            #elementor-panel-category-obfx-elementor-widgets-pro .elementor-element-wrapper:before{
+                content: \'\e96f\';
+                position: absolute;
+                top: 5px;
+                right: 5px;
+                color: #64666A;
+                font-family: eicons;
+                z-index: 1;
+            }
+        ' 
+		);
 	}
 
 	/**
