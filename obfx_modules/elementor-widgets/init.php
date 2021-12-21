@@ -55,13 +55,35 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function load() {}
 
 	/**
-	 * Decide if placeholders are needed.
-	 *
 	 * @return bool
 	 */
-	private function should_add_placeholders() {
-		return wp_get_theme()->get( 'Name' ) === 'Neve' && ! is_plugin_active( 'neve-pro-addon/neve-pro-addon.php' );
+	public static function has_valid_addons() {
+		if ( ! defined( 'NEVE_PRO_BASEFILE' ) ) {
+			return false;
+		}
+
+		$option_name = basename( dirname( NEVE_PRO_BASEFILE ) );
+		$option_name = str_replace( '-', '_', strtolower( trim( $option_name ) ) );
+		$status      = get_option( $option_name . '_license_data' );
+
+		if ( ! $status ) {
+			return false;
+		}
+
+		if ( ! isset( $status->license ) ) {
+			return false;
+		}
+
+		if ( $status->license === 'not_active' || $status->license === 'invalid' ) {
+			return false;
+		}
+
+		return true;
 	}
+
+    private function should_add_placeholders() {
+        return wp_get_theme()->get( 'Name' ) === 'Neve' && ! self::has_valid_addons();
+    }
 
 	/**
 	 * Method to define hooks needed.
@@ -113,7 +135,7 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$config['initial_document']['panel']['elements_categories'] = $this->insert_before_element( $elements_categories, 'pro-elements', $obfx_cat );
 
 		$elements_categories = $config['initial_document']['panel']['elements_categories'];
-		if ( self::should_add_placeholders() && array_key_exists( 'obfx-elementor-widgets-pro', $elements_categories ) ) {
+		if ( $this->should_add_placeholders() && array_key_exists( 'obfx-elementor-widgets-pro', $elements_categories ) ) {
 			$placeholders_cat = [ 'obfx-elementor-widgets-pro' => $elements_categories['obfx-elementor-widgets-pro'] ];
 			unset( $elements_categories['obfx-elementor-widgets-pro'] );
 			$config['initial_document']['panel']['elements_categories'] = $this->insert_before_element( $elements_categories, 'pro-elements', $placeholders_cat );
