@@ -37,7 +37,7 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'<div class="neve-pro-notice">
 					<p>' .
 						sprintf( /* translators: %1$s is the features, %2$s is the plugin name  */
-							__( 'You can get access to %1$s, including Instagram integration, display conditions and more in %2$s.', 'themeisle-companion' ) .
+							__( 'You can get access to %1$s, including Instagram integration, display conditions and more in %2$s.', 'themeisle-companion' ),
 							sprintf(
 								'<b>%1$s</b>',
 								__( '10+ more Elementor and Gutenberg widgets', 'themeisle-companion' )
@@ -45,7 +45,7 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 							'<b>Neve PRO</b>'
 						) .
 					'</p>
-					<a class="notice-cta" target="_blank" href="https://themeisle.com/themes/neve/upgrade/?utm_medium=dashboard&utm_source=pagebuildermodule&utm_campaign=orbitfox">
+					<a class="notice-cta" target="_blank" href="https://themeisle.com/themes/neve/upgrade/?utm_medium=orbitfoxdashboard&utm_source=pagebuildermodule&utm_campaign=orbitfox">
 						<b>' . __( 'Learn more', 'themeisle-companion' ) . '</b>
 					</a>
 				</div>';
