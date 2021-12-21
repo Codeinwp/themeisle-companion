@@ -59,7 +59,7 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 *
 	 * @return bool
 	 */
-	static function should_add_placeholders() {
+	private function should_add_placeholders() {
 		return wp_get_theme()->get( 'Name' ) === 'Neve' && ! is_plugin_active( 'neve-pro-addon/neve-pro-addon.php' );
 	}
 
@@ -75,7 +75,7 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$this->loader->add_action( 'plugins_loaded', $this, 'load_elementor_extra_widgets' );
 		$this->loader->add_filter( 'elementor/editor/localize_settings', $this, 'localization_filter', PHP_INT_MAX );
 		$this->loader->add_action( 'elementor/editor/before_enqueue_scripts', $this, 'load_fa_styles' );
-		if ( self::should_add_placeholders() ) {
+		if ( $this->should_add_placeholders() ) {
 			$this->loader->add_action( 'elementor/editor/after_enqueue_scripts', $this, 'enqueue_editor_scripts' );
 			$this->loader->add_action( 'elementor/editor/after_enqueue_styles', $this, 'enqueue_editor_styles' );
 		}
@@ -150,19 +150,18 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function enqueue_editor_scripts() {
 		wp_add_inline_script(
 			'elementor-editor',
-			'
-            elementor.on(\'preview:loaded\', function() {
+			'           
+            $e.routes.on(\'run\', function(){
                 setTimeout(
-                  function() 
-                  {
-                     jQuery( \'#elementor-panel-category-obfx-elementor-widgets-pro .elementor-element-wrapper\' ).on( \'click mousedown drop\', function(e) {
-                        e.preventDefault();
-                     } );
-                     
-                      jQuery( \'#elementor-panel-category-obfx-elementor-widgets-pro .elementor-element-wrapper\' ).on( \'click\', function(e) {
-                        window.open( \'https://themeisle.com/themes/neve/upgrade/?utm_medium=elementoreditor&utm_source=elementorwidget&utm_campaign=orbitfox\',\'_blank\');
-                      })
-                  }, 1000
+                    function() {
+                        jQuery( \'#elementor-panel-category-obfx-elementor-widgets-pro .elementor-element-wrapper\' ).on( \'click mousedown drop\', function(e) {
+                            e.preventDefault();
+                        });
+                        
+                        jQuery( \'#elementor-panel-category-obfx-elementor-widgets-pro .elementor-element-wrapper\' ).on( \'click drop\', function(e) {
+                            window.open( \'https://themeisle.com/themes/neve/upgrade/?utm_medium=elementoreditor&utm_source=elementorwidget&utm_campaign=orbitfox\',\'_blank\');
+                        });
+                    }, 1000
                 );
             });
         ' 
