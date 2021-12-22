@@ -81,9 +81,9 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		return true;
 	}
 
-    private function should_add_placeholders() {
-        return wp_get_theme()->get( 'Name' ) === 'Neve' && ! self::has_valid_addons();
-    }
+	private function should_add_placeholders() {
+		return wp_get_theme()->get( 'Name' ) === 'Neve' && ! self::has_valid_addons();
+	}
 
 	/**
 	 * Method to define hooks needed.
