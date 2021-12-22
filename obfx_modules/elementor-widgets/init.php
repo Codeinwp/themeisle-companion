@@ -32,7 +32,7 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$this->name        = __( 'Page builder widgets', 'themeisle-companion' );
 		$this->description = __( 'Adds widgets to the most popular builders: Elementor or Beaver. More to come!', 'themeisle-companion' );
 
-		if ( wp_get_theme()->get( 'Name' ) === 'Neve' && ! is_plugin_active( 'neve-pro-addon/neve-pro-addon.php' ) ) {
+		if ( self::should_add_placeholders() ) {
 			$this->description .=
 				'<div class="neve-pro-notice">
 					<p>' .
