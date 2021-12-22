@@ -79,7 +79,7 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 *
 	 * @return bool
 	 */
-	public static function has_valid_addons() {
+	private static function has_valid_addons() {
 		if ( ! defined( 'NEVE_PRO_BASEFILE' ) ) {
 			return false;
 		}
@@ -108,7 +108,7 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 *
 	 * @return bool
 	 */
-	private function should_add_placeholders() {
+	public static function should_add_placeholders() {
 		return wp_get_theme()->get( 'Name' ) === 'Neve' && ! self::has_valid_addons();
 	}
 
@@ -124,7 +124,7 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$this->loader->add_action( 'plugins_loaded', $this, 'load_elementor_extra_widgets' );
 		$this->loader->add_filter( 'elementor/editor/localize_settings', $this, 'localization_filter', PHP_INT_MAX );
 		$this->loader->add_action( 'elementor/editor/before_enqueue_scripts', $this, 'load_fa_styles' );
-		if ( $this->should_add_placeholders() ) {
+		if ( self::should_add_placeholders() ) {
 			$this->loader->add_action( 'elementor/editor/after_enqueue_scripts', $this, 'enqueue_editor_scripts' );
 			$this->loader->add_action( 'elementor/editor/after_enqueue_styles', $this, 'enqueue_editor_styles' );
 		}
