@@ -98,9 +98,7 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return array
 	 */
 	public function options() {
-		$options = array();
-
-		return $options;
+		return array();
 	}
 
 	/**
