@@ -24,13 +24,8 @@ class Beaver_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function __construct() {
 		parent::__construct();
-		$this->name        = __( 'Page builder widgets', 'themeisle-companion' );
-		$this->description = __( 'Adds widgets to the most popular builders: Elementor or Beaver. More to come!', 'themeisle-companion' );
-
-		if ( wp_get_theme()->get( 'Name' ) === 'Neve' && ! is_plugin_active( 'neve-pro-addon/neve-pro-addon.php' ) ) {
-			$this->description .= '<div class="neve-pro-notice"><p>You can get access to <b>10+ more Elementor and Gutenberg widgets</b>, including Instagram integration, display conditions and more in <b>Neve PRO</b>.</p><a class="notice-cta" target="_blank" href="https://themeisle.com/themes/neve/upgrade/?utm_medium=dashboard&utm_source=pagebuildermodule&utm_campaign=orbitfox"><b>Learn more</b></a></div>';
-		}
-
+		$this->name           = __( 'Page builder widgets', 'themeisle-companion' );
+		$this->description    = __( 'Adds widgets to the most popular builders: Elementor or Beaver. More to come!', 'themeisle-companion' );
 		$this->active_default = true;
 	}
 

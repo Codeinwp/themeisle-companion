@@ -29,8 +29,28 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function __construct() {
 		parent::__construct();
-		$this->name           = __( 'Page builder widgets', 'themeisle-companion' );
-		$this->description    = __( 'Adds widgets to the most popular builders: Elementor or Beaver. More to come!', 'themeisle-companion' );
+		$this->name        = __( 'Page builder widgets', 'themeisle-companion' );
+		$this->description = __( 'Adds widgets to the most popular builders: Elementor or Beaver. More to come!', 'themeisle-companion' );
+
+		if ( wp_get_theme()->get( 'Name' ) === 'Neve' && ! is_plugin_active( 'neve-pro-addon/neve-pro-addon.php' ) ) {
+			$this->description .=
+				'<div class="neve-pro-notice">
+					<p>' .
+						sprintf( /* translators: %1$s is the features, %2$s is the plugin name  */
+							__( 'You can get access to %1$s, including Instagram integration, display conditions and more in %2$s.', 'themeisle-companion' ),
+							sprintf(
+								'<b>%1$s</b>',
+								__( '10+ more Elementor and Gutenberg widgets', 'themeisle-companion' )
+							),
+							'<b>Neve PRO</b>'
+						) .
+					'</p>
+					<a class="notice-cta" target="_blank" href="https://themeisle.com/themes/neve/upgrade/?utm_medium=orbitfoxdashboard&utm_source=pagebuildermodule&utm_campaign=orbitfox">
+						<b>' . __( 'Learn more', 'themeisle-companion' ) . '</b>
+					</a>
+				</div>';
+		}
+
 		$this->active_default = true;
 	}
 
