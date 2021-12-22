@@ -55,6 +55,8 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function load() {}
 
 	/**
+	 * Check for current license.
+	 *
 	 * @return bool
 	 */
 	public static function has_valid_addons() {
@@ -81,6 +83,11 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		return true;
 	}
 
+	/**
+	 * Decide if placeholders are needed.
+	 *
+	 * @return bool
+	 */
 	private function should_add_placeholders() {
 		return wp_get_theme()->get( 'Name' ) === 'Neve' && ! self::has_valid_addons();
 	}
