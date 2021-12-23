@@ -1,3 +1,7 @@
+##### [Version 2.10.10](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.9...v2.10.10) (2021-12-23)
+
+- Fix error with gutenberg-blocks
+
 ##### [Version 2.10.9](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.8...v2.10.9) (2021-12-23)
 
 - Improve cookie policy loading
