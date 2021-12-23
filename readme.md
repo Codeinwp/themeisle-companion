@@ -107,6 +107,14 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 ## Changelog ##
 
+##### [Version 2.10.9](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.8...v2.10.9) (2021-12-23)
+
+- Improve cookie policy loading
+- Improve upsells when the plugin is used with Neve theme to better inform the possibilities from pro
+
+
+
+
 ##### [Version 2.10.8](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.7...v2.10.8) (2021-09-29)
 
 - [Feat] Refactor the dashboard.
