@@ -127,7 +127,7 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'icon'     => 'weibo',
 			),
 			'telegram'  => array(
-				'link'  => 'https://t.me/share/url?url=' . $post_link . '&text=' . $post_title,
+				'link'     => 'https://t.me/share/url?url=' . $post_link . '&text=' . $post_title,
 				'nicename' => 'Telegram',
 				'icon'     => 'telegram',
 			),
