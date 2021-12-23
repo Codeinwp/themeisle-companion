@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "299285ef4cd75aae5749ca4cd4151e6c",
+    "content-hash": "d8a2b66a12c0c50140bc08b0987070f8",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -153,16 +153,16 @@
         },
         {
             "name": "codeinwp/gutenberg-blocks",
-            "version": "1.7.0",
+            "version": "1.6.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/gutenberg-blocks.git",
-                "reference": "0f71c8754ae6585171a3013dea7131b2fbfec0c7"
+                "reference": "c58fc700fe616d8b4f6029c109a869257d6daeed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/gutenberg-blocks/zipball/0f71c8754ae6585171a3013dea7131b2fbfec0c7",
-                "reference": "0f71c8754ae6585171a3013dea7131b2fbfec0c7",
+                "url": "https://api.github.com/repos/Codeinwp/gutenberg-blocks/zipball/c58fc700fe616d8b4f6029c109a869257d6daeed",
+                "reference": "c58fc700fe616d8b4f6029c109a869257d6daeed",
                 "shasum": ""
             },
             "require": {
@@ -196,10 +196,10 @@
             "homepage": "https://github.com/Codeinwp/gutenberg-blocks",
             "support": {
                 "issues": "https://github.com/Codeinwp/gutenberg-blocks/issues",
-                "source": "https://github.com/Codeinwp/gutenberg-blocks/tree/v1.7.0"
+                "source": "https://github.com/Codeinwp/gutenberg-blocks/tree/v1.6.9"
             },
             "abandoned": true,
-            "time": "2021-10-10T20:03:48+00:00"
+            "time": "2021-07-02T20:24:47+00:00"
         },
         {
             "name": "codeinwp/templates-directory",
