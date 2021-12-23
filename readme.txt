@@ -1,6 +1,6 @@
 === Orbit Fox by ThemeIsle ===
 Contributors: themeisle, codeinwp, rodicaelena, baicusandrei, hardeepasrani
-Tags: widget, admin, widgets, sharing, sections, themes, stock photos, custom icons, icons, menu icons, stock, templates
+Tags: widget, admin, widgets, sharing, sections, themes, stock photos, custom icons, icons, menu icons, stock, templates, header, footer, scripts, custom fonts 
 Requires at least: 4.7
 Tested up to: 5.8
 Requires PHP: 5.6
@@ -8,25 +8,24 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-This swiss-knife plugin comes with a quality template library, menu/sharing icons, Gutenberg blocks and newly added Elementor/BeaverBuilder page builder widgets.
+This swiss-knife plugin comes with a quality template library, menu/sharing icons, Elementor/BeaverBuilder page builder widgets and many more.
 
-== Description ==
+## Description ##
 
-Extend your theme functionality with <a href="https://orbitfox.com/" rel="nofollow">Orbit Fox</a> with various modules like Social Media Share Buttons & Icons, Uptime Monitoring, Google Analytics, custom menu-icons, one click import page templates, page builder addons and free stock featured images.
+Extend your theme functionality with <a href="https://orbitfox.com/" rel="nofollow">Orbit Fox</a> with various modules like Social Media Share Buttons & Icons, Custom Menu Icons, Header and Footer Scripts, one click import page templates, page builder addons and free stock featured images.
 
 https://www.youtube.com/watch?v=YHhK_twfYB8
 
 **Features:**
 - Privacy policy notice ( GDPR friendly )
-- Uptime Monitor
-- Google Analytics Integration
 - Template Directory
-- Gutenberg Blocks
 - Elementor Addons and Widgets
 - Beaver Builder Widgets
 - Sharing module
 - Menu icons module
 - Free stock photos module
+- Custom fonts module
+- Header and footer scripts module
 - More widgets and sections for Hestia Theme
 - More widgets and sections for Zerif Theme
 
@@ -36,32 +35,29 @@ OrbitFox is a user-centred plugin with an easy-to-use admin panel. One of the mo
 
 We've also built some fantastic <a href="http://themeisle.com/wordpress-themes/free/" rel="nofollow" target="_blank">free themes</a> that work well with Orbit Fox, check them out.
 
-== Frequently Asked Questions ==
+## Frequently Asked Questions ##
 
-= How I can get support for this plugin ? =
+### How I can get support for this plugin ? ###
 
 You can learn more about Orbit Fox and ask for help by <a href="https://themeisle.com/contact/"  >visiting ThemeIsle website</a>.
 
-= What can I do with this plugin =
+### What can I do with this plugin ###
 This plugin extends the features of your sites by adding numerous features.
 
 **Why use our custom icons module:**
 - Choose from a large variety of custom icons.
 - No coding needed, you can leverage the power of our dropdown icons selector and choose the right icon for your menu.
 
-**Why use our uptime monitor module:**
-- Really easy to use, just put in your email and you will receive a message when / if your site goes down.
-
-**Why use our Google Analytics integration module:**
-- It's a one-click configuration.
-- Just sign in with your google accounts
-
 **Why use our sharing module:**
 - It's easy to use
 - Enable sharing networks right from your admin dashboard and choose on what kind of devices you would like to show them.
 - It’s fully customizable: You can easily optimise button location for according to the device your visitors will use.
 - Choose from more than 20+ social networks to share with full control for every device that your visitors use.
-- The sharing options can be positioned for the maximum effect according to whether the visitor is using a mobile device or desktop. Best of all they can be switched on/off from your WordPress instance.
+- The sharing options can be positioned for the maximum effect according to whether the visitor is using a mobile device or desktop. Best of all they can be switched on/off from your WordPress instance.  
+  
+**Why use our header and footer scripts module:**
+- It allows you to add global scripts in header or footer.
+- You can add a script individually to run on a single page or post.
 
 **Why use our custom Elementor addons module:**
 - We offer new widgets to add more value to the content you can create within Elementor page builder.
@@ -85,10 +81,12 @@ This plugin extends the features of your sites by adding numerous features.
 - Services Widget to easily create pricing layouts.
 - Post Grid Widget to easily list your Posts in a grid.
 
-**Why should I use this with Zerif/Hestia themes:**
- - By using it along with our themes you gain access to a lot of useful widgets like **Testimonials**, **Our Focus**, **About Us** and more other.
+**Why use our custom fonts module:**
+- The free fonts from Google may not be enough to achieve the perfect design.
+- It allows you to upload any font you'd like and use it on your site.
+- It's fully integrated with Neve theme, all the fonst you'll add will be availabel in customizer.
 
-== Installation ==
+## Installation ##
 
 Activating the Orbit Fox plugin is just like any other plugin. If you've uploaded the plugin package to your server already, skip to step 5 below:
 
@@ -99,7 +97,7 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Now, you're able to use Orbit fox and setup the modules you need. These can be found on the **Orbit Fox** dashboard page
 6. Make the changes desired, then click the **Save changes** button at the bottom
 
-== Screenshots ==
+## Screenshots ##
 
 1. The OrbitFox Dashboard Page
 2. The Template Directory Page
@@ -108,6 +106,15 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 == Changelog ==
+
+##### [Version 2.10.8](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.7...v2.10.8) (2021-09-29)
+
+- [Feat] Refactor the dashboard.
+- [Feat] Add Telegram social sharing icon.
+- [Fix] HomePage reverts to FrontPage if you have Orbit Fox Hestia Enhancements active and switch theme
+
+
+
 
 ##### [Version 2.10.7](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.6...v2.10.7) (2021-08-02)
 
