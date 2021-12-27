@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "299285ef4cd75aae5749ca4cd4151e6c",
+    "content-hash": "d8a2b66a12c0c50140bc08b0987070f8",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -78,12 +78,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/elementor-extra-widgets.git",
-                "reference": "2894a02bd940b42038f0e097754498a1169b15b1"
+                "reference": "c6121466d107952821d35bec364983a88fbddab5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/elementor-extra-widgets/zipball/2894a02bd940b42038f0e097754498a1169b15b1",
-                "reference": "2894a02bd940b42038f0e097754498a1169b15b1",
+                "url": "https://api.github.com/repos/Codeinwp/elementor-extra-widgets/zipball/c6121466d107952821d35bec364983a88fbddab5",
+                "reference": "c6121466d107952821d35bec364983a88fbddab5",
                 "shasum": ""
             },
             "default-branch": true,
@@ -109,7 +109,7 @@
                 "issues": "https://github.com/Codeinwp/elementor-extra-widgets/issues",
                 "source": "https://github.com/Codeinwp/elementor-extra-widgets/tree/master"
             },
-            "time": "2021-08-02T12:23:30+00:00"
+            "time": "2021-12-22T11:09:33+00:00"
         },
         {
             "name": "codeinwp/full-width-page-templates",
@@ -198,6 +198,7 @@
                 "issues": "https://github.com/Codeinwp/gutenberg-blocks/issues",
                 "source": "https://github.com/Codeinwp/gutenberg-blocks/tree/v1.6.9"
             },
+            "abandoned": true,
             "time": "2021-07-02T20:24:47+00:00"
         },
         {
@@ -292,16 +293,16 @@
         },
         {
             "name": "codeinwp/themeisle-sdk",
-            "version": "3.2.21",
+            "version": "3.2.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/themeisle-sdk.git",
-                "reference": "cafd016b61ec0928c0234e312046782a77c14318"
+                "reference": "394d0f27e17dab350efa7e91bffff31f4b451fec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/themeisle-sdk/zipball/cafd016b61ec0928c0234e312046782a77c14318",
-                "reference": "cafd016b61ec0928c0234e312046782a77c14318",
+                "url": "https://api.github.com/repos/Codeinwp/themeisle-sdk/zipball/394d0f27e17dab350efa7e91bffff31f4b451fec",
+                "reference": "394d0f27e17dab350efa7e91bffff31f4b451fec",
                 "shasum": ""
             },
             "require-dev": {
@@ -326,22 +327,22 @@
             ],
             "support": {
                 "issues": "https://github.com/Codeinwp/themeisle-sdk/issues",
-                "source": "https://github.com/Codeinwp/themeisle-sdk/tree/v3.2.21"
+                "source": "https://github.com/Codeinwp/themeisle-sdk/tree/v3.2.22"
             },
-            "time": "2021-06-30T10:55:18+00:00"
+            "time": "2021-10-27T10:27:45+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.8.2",
+            "version": "1.8.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "dc960a912984efb74d0a90222870c72c87f10c91"
+                "reference": "1afdd860a2566ed3c2b0b4a3de6e23434a79ec85"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/dc960a912984efb74d0a90222870c72c87f10c91",
-                "reference": "dc960a912984efb74d0a90222870c72c87f10c91",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/1afdd860a2566ed3c2b0b4a3de6e23434a79ec85",
+                "reference": "1afdd860a2566ed3c2b0b4a3de6e23434a79ec85",
                 "shasum": ""
             },
             "require": {
@@ -379,12 +380,33 @@
             ],
             "authors": [
                 {
+                    "name": "Graham Campbell",
+                    "email": "hello@gjcampbell.co.uk",
+                    "homepage": "https://github.com/GrahamCampbell"
+                },
+                {
                     "name": "Michael Dowling",
                     "email": "mtdowling@gmail.com",
                     "homepage": "https://github.com/mtdowling"
                 },
                 {
+                    "name": "George Mponos",
+                    "email": "gmponos@gmail.com",
+                    "homepage": "https://github.com/gmponos"
+                },
+                {
+                    "name": "Tobias Nyholm",
+                    "email": "tobias.nyholm@gmail.com",
+                    "homepage": "https://github.com/Nyholm"
+                },
+                {
+                    "name": "Márk Sági-Kazár",
+                    "email": "mark.sagikazar@gmail.com",
+                    "homepage": "https://github.com/sagikazarmark"
+                },
+                {
                     "name": "Tobias Schultze",
+                    "email": "webmaster@tubo-world.de",
                     "homepage": "https://github.com/Tobion"
                 }
             ],
@@ -401,9 +423,23 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/1.8.2"
+                "source": "https://github.com/guzzle/psr7/tree/1.8.3"
             },
-            "time": "2021-04-26T09:17:50+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/GrahamCampbell",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/Nyholm",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/guzzlehttp/psr7",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-10-05T13:56:00+00:00"
         },
         {
             "name": "mailerlite/mailerlite-api-v2-php-sdk",
@@ -1237,16 +1273,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.6.0",
+            "version": "3.6.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "ffced0d2c8fa8e6cdc4d695a743271fab6c38625"
+                "reference": "5e4e71592f69da17871dba6e80dd51bce74a351a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/ffced0d2c8fa8e6cdc4d695a743271fab6c38625",
-                "reference": "ffced0d2c8fa8e6cdc4d695a743271fab6c38625",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/5e4e71592f69da17871dba6e80dd51bce74a351a",
+                "reference": "5e4e71592f69da17871dba6e80dd51bce74a351a",
                 "shasum": ""
             },
             "require": {
@@ -1289,7 +1325,7 @@
                 "source": "https://github.com/squizlabs/PHP_CodeSniffer",
                 "wiki": "https://github.com/squizlabs/PHP_CodeSniffer/wiki"
             },
-            "time": "2021-04-09T00:54:41+00:00"
+            "time": "2021-12-12T21:44:58+00:00"
         },
         {
             "name": "wp-coding-standards/wpcs",
@@ -1350,5 +1386,5 @@
     "platform-overrides": {
         "php": "5.6"
     },
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }

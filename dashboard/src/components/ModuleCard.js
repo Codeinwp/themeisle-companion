@@ -6,6 +6,7 @@ import { requestData } from '../utils/rest';
 import { Dashicon, ExternalLink, ToggleControl } from '@wordpress/components';
 import { renderToString, useContext, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import classnames from 'classnames';
 
 const { root, toggleStateRoute, options } = obfxDash;
 
@@ -59,6 +60,15 @@ const ModuleCard = ({ slug, details }) => {
 
 	const renderDescription = (description) => {
 		const elements = [];
+		if (description.indexOf('neve-pro-notice') >= 0) {
+			return (
+				<p
+					className="description"
+					dangerouslySetInnerHTML={{ __html: description }}
+				/>
+			);
+		}
+
 		while (description.indexOf('<a') >= 0) {
 			const start = description.indexOf('<a');
 			const end = description.indexOf('</a>');
@@ -92,8 +102,13 @@ const ModuleCard = ({ slug, details }) => {
 		);
 	};
 
+	const isActive = moduleStatus[slug] && moduleStatus[slug].active !== undefined
+		? moduleStatus[slug].active
+		: activeDefault;
+	const classes = classnames('module-card', {'active': isActive});
+
 	return (
-		<div className="module-card">
+		<div className={classes}>
 			<div className="module-card-header">
 				<h3 className="title">{details.name}</h3>
 				<div className="toggle-wrap">
@@ -105,12 +120,7 @@ const ModuleCard = ({ slug, details }) => {
 						/>
 					)}
 					<ToggleControl
-						checked={
-							moduleStatus[slug] &&
-							moduleStatus[slug].active !== undefined
-								? moduleStatus[slug].active
-								: activeDefault
-						}
+						checked={isActive}
 						onChange={updateModuleStatus}
 					/>
 				</div>
@@ -118,9 +128,7 @@ const ModuleCard = ({ slug, details }) => {
 			<div className="module-card-content">
 				{renderDescription(details.description)}
 			</div>
-			{moduleStatus[slug] &&
-				moduleStatus[slug].active &&
-				options[slug].length > 0 && <ModuleSettings slug={slug} />}
+			{isActive && options[slug].length > 0 && <ModuleSettings slug={slug} />}
 		</div>
 	);
 };
