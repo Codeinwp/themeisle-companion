@@ -62,10 +62,10 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function hooks() {
 		// Get the full-width pages feature
-//		$this->loader->add_action( 'init', $this, 'load_template_directory_library' );
-//		$this->loader->add_action( 'init', $this, 'load_full_width_page_templates' );
-//		$this->loader->add_filter( 'obfx_template_dir_products', $this, 'add_page', 90 );
-		add_action('admin_menu', [ $this, 'add_template_directory_submenu' ], 11 );
+		//      $this->loader->add_action( 'init', $this, 'load_template_directory_library' );
+		//      $this->loader->add_action( 'init', $this, 'load_full_width_page_templates' );
+		//      $this->loader->add_filter( 'obfx_template_dir_products', $this, 'add_page', 90 );
+		add_action( 'admin_menu', [ $this, 'add_template_directory_submenu' ], 11 );
 	}
 
 	/**
@@ -75,7 +75,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		add_submenu_page(
 			'obfx_companion',
 			esc_html__( 'Orbit Fox Template Directory', 'themeisle-companion' ),
-			esc_html__( 'Template Directory', 'textdomain' ),
+			esc_html__( 'Template Directory', 'themeisle-companion' ),
 			'manage_options',
 			'obfx_template_dir',
 			[ $this, 'render_template_directory' ]
@@ -100,7 +100,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			$script_handle = $this->slug . '-script';
 			wp_enqueue_script( 'plugin-install' );
 			wp_enqueue_script( 'updates' );
-			wp_register_script( $script_handle, plugin_dir_url( $this->get_dir() ) . $this->slug . '/js/script.js', array( 'jquery' ), $this->version );
+			wp_register_script( $script_handle, plugin_dir_url( $this->get_dir() ) . $this->slug . '/js/script.js', array( 'jquery' ), $this->version, false );
 			wp_localize_script(
 				$script_handle,
 				'importer_endpoint',
@@ -154,6 +154,30 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		return array();
 	}
 
+	public function get_tcp_activation_link() {
+		return add_query_arg(
+			array(
+				'action'        => 'activate',
+				'plugin'        => rawurlencode( 'templates-patterns-collection/templates-patterns-collection.php' ),
+				'plugin_status' => 'all',
+				'paged'         => '1',
+				'_wpnonce'      => wp_create_nonce( 'activate-plugin_templates-patterns-collection/templates-patterns-collection.php' ),
+			),
+			esc_url( network_admin_url( 'plugins.php' ) )
+		);
+	}
+
+	public function get_neve_activation_link() {
+		return add_query_arg(
+			array(
+				'action'     => 'activate',
+				'stylesheet' => 'neve',
+				'_wpnonce'   => wp_create_nonce( 'switch-theme_neve' ),
+			),
+			esc_url( network_admin_url( 'themes.php' ) )
+		);
+	}
+
 	/**
 	 * Method that returns an array of scripts and styles to be loaded
 	 * for the admin part.
@@ -167,33 +191,62 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		$this->localized = array(
 			'template-directory' => array(
-				'slug'           => $this->slug,
-				'assets'         => OBFX_URL . 'obfx_modules/template-directory/assets',
-				'tpcIsInstalled' => $this->check_plugin_installed( 'templates-       tterns-collection/templates-patterns-collection.php' ),
-				'tpcIsActice'    => $this->check_plugin_active( 'templates-       tterns-collection/templates-patterns-collection.php' ),
-				'neveIsInstalled'=> $this->check_theme_installed( 'neve' ),
-				'neveIsActive'   => $this->check_theme_active( 'Neve' ),
-				'tpcPath'        => defined( 'TIOB_PATH' ) ? TIOB_PATH . 'template-patterns-collection.php' : 'template-patterns-collection/template-patterns-collection.php',
-				'tpcAdminURL'    => admin_url( 'themes.php?page=tiob-starter-sites' ),
-				'strings'        => [
-					'themeNotInstalled' => esc_html__( 'In order to be able to import starter sites you need to have the Neve theme installed.', 'neve' ),
-					'themeNotActive'    => esc_html__( 'In order to be able to import starter sites you need to activate the Neve theme.', 'neve' ),
-					'tpcNotInstalled'   => esc_html__( 'In order to be able to import starter sites you need to have the Cloud Templates & Patterns Collection plugin installed.', 'neve' ),
-					'tpcNotActive'      => esc_html__( 'In order to be able to import starter sites you need to activate the Cloud Templates & Patterns Collection plugin.', 'neve' ),
-					'buttonInstall'     => esc_html__( 'Install', 'themeisle-companion' ),
-					'buttonActivate'    => esc_html__( 'Activate', 'themeisle-companion' ),
+				'slug'        => $this->slug,
+				'assets'      => OBFX_URL . 'obfx_modules/template-directory/assets',
+				'neveData'    => [
+					'cta'      => $this->get_state( 'neve' ),
+					'activate' => $this->get_neve_activation_link(),
+				],
+				'tpcData'     => [
+					'cta'      => $this->get_state( 'tpc' ),
+					'activate' => $this->get_tcp_activation_link(),
+				],
+				'tpcPath'     => defined( 'TIOB_PATH' ) ? TIOB_PATH . 'template-patterns-collection.php' : 'template-patterns-collection/template-patterns-collection.php',
+				'tpcAdminURL' => admin_url( 'themes.php?page=tiob-starter-sites' ),
+				'nonce'       => wp_create_nonce( 'wp_rest' ),
+				'strings'     => [
+					'themeNotInstalled' => __( 'In order to be able to import starter sites you need to have the Neve theme installed.', 'neve' ),
+					'themeNotActive'    => __( 'In order to be able to import starter sites you need to activate the Neve theme.', 'neve' ),
+					'tpcNotInstalled'   => __( 'In order to be able to import starter sites you need to have the Cloud Templates & Patterns Collection plugin installed.', 'neve' ),
+					'tpcNotActive'      => __( 'In order to be able to import starter sites you need to activate the Cloud Templates & Patterns Collection plugin.', 'neve' ),
+					'buttonInstall'     => __( 'Install', 'themeisle-companion' ),
+					'buttonActivate'    => __( 'Activate', 'themeisle-companion' ),
 				],
 			),
 		);
 
 		return array(
-			'js' => [
-				'template-directory' => $dependencies_file['dependencies'],
+			'js'  => [
+				'template-directory' => array_merge( $dependencies_file['dependencies'], [ 'updates' ] ),
 			],
 			'css' => [
-				'admin' => [],
-			]
+				'admin' => [ 'wp-components' ],
+			],
 		);
+	}
+
+	private function get_state( $slug ) {
+		$state = 'install';
+		switch ( $slug ) {
+			case 'neve':
+				if ( $this->check_theme_active( 'Neve' ) ) {
+					$state = 'deactivate';
+				} elseif ( $this->check_theme_installed( 'neve' ) ) {
+					$state = 'activate';
+				}
+				break;
+			case 'tpc':
+				if ( $this->check_plugin_active( 'templates-patterns-collection/templates-patterns-collection.php' ) ) {
+					$state = 'deactivate';
+				} elseif ( $this->check_plugin_installed( 'templates-patterns-collection/templates-patterns-collection.php' ) ) {
+					$state = 'activate';
+				}
+				break;
+			default:
+				break;
+		}
+
+		return $state;
 	}
 
 	/**

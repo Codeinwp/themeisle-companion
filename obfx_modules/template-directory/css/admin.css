@@ -2,7 +2,7 @@
     padding-top: 50px;
 }
 #obfx-template-directory .unavailable-starter-sites {
-    width: 100%;
+    margin-right: 20px;
     background-color: #fff;
     border: 1px solid #ccc;
     padding: 50px 30px;
@@ -29,4 +29,9 @@
 
 #obfx-template-directory .unavailable-starter-sites h1 {
     line-height: 1.6;
+}
+
+#obfx-template-directory .unavailable-starter-sites.empty {
+    padding: 0;
+    border: 0;
 }
