@@ -61,10 +61,6 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function hooks() {
-		// Get the full-width pages feature
-		//      $this->loader->add_action( 'init', $this, 'load_template_directory_library' );
-		//      $this->loader->add_action( 'init', $this, 'load_full_width_page_templates' );
-		//      $this->loader->add_filter( 'obfx_template_dir_products', $this, 'add_page', 90 );
 		add_action( 'admin_menu', [ $this, 'add_template_directory_submenu' ], 11 );
 	}
 
