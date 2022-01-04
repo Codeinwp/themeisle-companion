@@ -65,7 +65,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	}
 
 	/**
-	 *
+	 * Add the Template Directory submenu
 	 */
 	public function add_template_directory_submenu() {
 		add_submenu_page(
@@ -79,13 +79,11 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	}
 
 	/**
-	 *
+	 * Renders the root element for the Template Directory page
 	 */
 	public function render_template_directory() {
 		echo '<div id="obfx-template-directory"></div>';
 	}
-
-
 
 	/**
 	 * Enqueue the scripts for the dashboard page of the
@@ -150,6 +148,11 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		return array();
 	}
 
+	/**
+	 * Returns the link to activate the Templates Patterns Collection plugin.
+	 *
+	 * @return string
+	 */
 	public function get_tcp_activation_link() {
 		return add_query_arg(
 			array(
@@ -163,6 +166,11 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		);
 	}
 
+	/**
+	 * Returns the link to activate the Neve theme.
+	 *
+	 * @return string
+	 */
 	public function get_neve_activation_link() {
 		return add_query_arg(
 			array(
@@ -201,10 +209,10 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'tpcAdminURL' => admin_url( 'themes.php?page=tiob-starter-sites' ),
 				'nonce'       => wp_create_nonce( 'wp_rest' ),
 				'strings'     => [
-					'themeNotInstalled' => __( 'In order to be able to import starter sites you need to have the Neve theme installed and activated.', 'neve' ),
-					'themeNotActive'    => __( 'In order to be able to import starter sites you need to activate the Neve theme.', 'neve' ),
-					'tpcNotInstalled'   => __( 'In order to be able to import starter sites you need to have the Cloud Templates & Patterns Collection plugin installed and activated.', 'neve' ),
-					'tpcNotActive'      => __( 'In order to be able to import starter sites you need to activate the Cloud Templates & Patterns Collection plugin.', 'neve' ),
+					'themeNotInstalled' => __( 'In order to be able to import starter sites you need to have the Neve theme installed and activated.', 'themeisle-companion' ),
+					'themeNotActive'    => __( 'In order to be able to import starter sites you need to activate the Neve theme.', 'themeisle-companion' ),
+					'tpcNotInstalled'   => __( 'In order to be able to import starter sites you need to have the Cloud Templates & Patterns Collection plugin installed and activated.', 'themeisle-companion' ),
+					'tpcNotActive'      => __( 'In order to be able to import starter sites you need to activate the Cloud Templates & Patterns Collection plugin.', 'themeisle-companion' ),
 					'buttonInstall'     => __( 'Install', 'themeisle-companion' ),
 					'buttonActivate'    => __( 'Activate', 'themeisle-companion' ),
 				],
@@ -221,6 +229,15 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		);
 	}
 
+	/**
+	 * Gets the state (the next action) of a plugin or theme. Can return
+	 * 'install' if it's not installed, 'activate' if it's installed and not activates,
+	 * and 'deactivate' if it's activated.
+	 *
+	 * @param $slug string The slug of the plugin or theme.
+	 *
+	 * @return string
+	 */
 	private function get_state( $slug ) {
 		$state = 'install';
 		switch ( $slug ) {
@@ -246,7 +263,11 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	}
 
 	/**
+	 * Return true if the theme is installed
 	 *
+	 * @param $theme_slug string The theme slug
+	 *
+	 * @return bool
 	 */
 	private function check_theme_installed( $theme_slug ) {
 		$installed_themes = wp_get_themes();
@@ -254,7 +275,9 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	}
 
 	/**
-	 * @param $theme_name
+	 * Returns true if the theme is active
+	 *
+	 * @param $theme_name string The theme slug
 	 *
 	 * @return bool
 	 */
@@ -270,7 +293,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 *
 	 * @return bool
 	 */
-	private function check_plugin_installed( $plugin_slug ): bool {
+	private function check_plugin_installed( $plugin_slug ) {
 		$installed_plugins = get_plugins();
 		return array_key_exists( $plugin_slug, $installed_plugins ) || in_array( $plugin_slug, $installed_plugins, true );
 	}
@@ -282,7 +305,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 *
 	 * @return bool
 	 */
-	private function check_plugin_active( $plugin_slug ): bool {
+	private function check_plugin_active( $plugin_slug ) {
 		if ( is_plugin_active( $plugin_slug ) ) {
 			return true;
 		}
@@ -298,38 +321,5 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function options() {
 		return array();
-	}
-
-
-	/**
-	 * If the composer library is present let's try to init.
-	 */
-	public function load_full_width_page_templates() {
-		if ( class_exists( '\ThemeIsle\FullWidthTemplates' ) ) {
-			\ThemeIsle\FullWidthTemplates::instance();
-		}
-	}
-
-	/**
-	 * Call the Templates Directory library
-	 */
-	public function load_template_directory_library() {
-		if ( class_exists( '\ThemeIsle\PageTemplatesDirectory' ) ) {
-			\ThemeIsle\PageTemplatesDirectory::instance();
-		}
-	}
-
-	/**
-	 * By default the composer library "Full Width Page Templates" comes with two page templates: a blank one and a full
-	 * width one with the header and footer inherited from the active theme.
-	 * OBFX Template directory doesn't need the blonk one, so we are going to ditch it.
-	 *
-	 * @param array $list
-	 *
-	 * @return array
-	 */
-	public function filter_fwpt_templates_list( $list ) {
-		unset( $list['templates/builder-fullwidth.php'] );
-		return $list;
 	}
 }
