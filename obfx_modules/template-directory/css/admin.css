@@ -31,7 +31,24 @@
     line-height: 1.6;
 }
 
+#obfx-template-directory .unavailable-starter-sites button .dashicon {
+    margin-right: 5px;
+    animation-name: spin;
+    animation-duration: 2000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
 #obfx-template-directory .unavailable-starter-sites.empty {
     padding: 0;
     border: 0;
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
 }

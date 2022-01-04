@@ -205,9 +205,9 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'tpcAdminURL' => admin_url( 'themes.php?page=tiob-starter-sites' ),
 				'nonce'       => wp_create_nonce( 'wp_rest' ),
 				'strings'     => [
-					'themeNotInstalled' => __( 'In order to be able to import starter sites you need to have the Neve theme installed.', 'neve' ),
+					'themeNotInstalled' => __( 'In order to be able to import starter sites you need to have the Neve theme installed and activated.', 'neve' ),
 					'themeNotActive'    => __( 'In order to be able to import starter sites you need to activate the Neve theme.', 'neve' ),
-					'tpcNotInstalled'   => __( 'In order to be able to import starter sites you need to have the Cloud Templates & Patterns Collection plugin installed.', 'neve' ),
+					'tpcNotInstalled'   => __( 'In order to be able to import starter sites you need to have the Cloud Templates & Patterns Collection plugin installed and activated.', 'neve' ),
 					'tpcNotActive'      => __( 'In order to be able to import starter sites you need to activate the Cloud Templates & Patterns Collection plugin.', 'neve' ),
 					'buttonInstall'     => __( 'Install', 'themeisle-companion' ),
 					'buttonActivate'    => __( 'Activate', 'themeisle-companion' ),
