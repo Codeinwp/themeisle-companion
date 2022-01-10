@@ -1,14 +1,39 @@
 #obfx-template-directory {
-    padding-top: 50px;
+    padding-top: 200px;
 }
+
 #obfx-template-directory .unavailable-starter-sites {
-    margin-right: 20px;
+    width: 700px;
+    margin: auto;
     background-color: #fff;
     border: 1px solid #ccc;
-    padding: 50px 30px;
     text-align: center;
-    align-items: center;
-    justify-content: center;
+    overflow: hidden;
+}
+
+#obfx-template-directory .slider {
+    width: 200%;
+    display: flex;
+    transition: 0.4s ease-in-out;
+    -webkit-transition: 0.4s ease-in-out;
+}
+
+#obfx-template-directory .slider.single {
+    width: 100%;
+}
+
+#obfx-template-directory .slider.single .content-wrap {
+    width: 100%;
+}
+
+#obfx-template-directory .content-wrap {
+    width: 50%;
+    margin: 35px 35px 25px;
+}
+
+#obfx-template-directory .slider.move-right {
+    transform: translateX(-150%);
+    -webkit-transform:translateX(-50%);
 }
 
 #obfx-template-directory .ss-background {
@@ -27,8 +52,21 @@
     flex-grow: 1;
 }
 
+#obfx-template-directory .unavailable-starter-sites p {
+    font-size: 15px;
+    line-height: 24px;
+}
+
 #obfx-template-directory .unavailable-starter-sites h1 {
     line-height: 1.6;
+}
+
+#obfx-template-directory .unavailable-starter-sites img {
+    width: 50px;
+}
+
+#obfx-template-directory .unavailable-starter-sites button {
+    margin-top: 10px;
 }
 
 #obfx-template-directory .unavailable-starter-sites button .dashicon {
@@ -39,9 +77,25 @@
     animation-timing-function: linear;
 }
 
-#obfx-template-directory .unavailable-starter-sites.empty {
+#obfx-template-directory .stepper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 35px;
+    column-gap: 8px;
+}
+
+#obfx-template-directory .stepper .dot {
+    width: 0;
+    border: 4px solid #d9d9d9;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 0;
     padding: 0;
-    border: 0;
+}
+
+#obfx-template-directory .stepper .dot.current {
+    border: 4px solid var(--wp-admin-theme-color);
 }
 
 @keyframes spin {

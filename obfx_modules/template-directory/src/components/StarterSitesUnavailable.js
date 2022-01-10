@@ -30,12 +30,24 @@ const StarterSitesUnavailable = () => {
 	};
 
 	const [error, setError] = useState(false);
+	const [slide, setSlide] = useState(false);
 
 	let themeError = themeNotInstalled;
 	if ('activate' === neveData.cta) themeError = themeNotActive;
 
 	let pluginError = tpcNotInstalled;
 	if ('activate' === tpcData.cta) pluginError = tpcNotActive;
+
+	const stringMap = {
+		install: {
+			static: __('Install and Activate', 'neve'),
+			progress: __('Installing', 'neve'),
+		},
+		activate: {
+			static: __('Activate', 'neve'),
+			progress: __('Activating', 'neve'),
+		},
+	};
 
 	const renderNoticeContent = (
 		installing,
@@ -57,8 +69,8 @@ const StarterSitesUnavailable = () => {
 					onClick={() => install(setters, type, slug, activationURL)}
 				>
 					{installing
-						? __('Installing') + '...'
-						: __('Install and Activate')}
+						? stringMap.install.progress + '...'
+						: stringMap.install.static}
 				</Button>
 			),
 			activate: (
@@ -70,7 +82,18 @@ const StarterSitesUnavailable = () => {
 					icon={activating && 'update'}
 					onClick={() => activate(setters, activationURL)}
 				>
-					{activating ? __('Activating') + '...' : __('Activate')}
+					{activating
+						? stringMap.activate.progress + '...'
+						: stringMap.activate.static}
+				</Button>
+			),
+			deactivate: (
+				<Button
+					disabled
+					isSecondary
+					className="is-loading"
+				>
+					{__('Activated')}
 				</Button>
 			),
 		};
@@ -121,57 +144,91 @@ const StarterSitesUnavailable = () => {
 			} else {
 				setters.activating(false);
 				setters.currentState('deactivate');
+				setSlide(true);
 			}
 		});
 	};
 
-	const shouldRedirect =
-		'deactivate' === currentStateTpc && 'deactivate' === currentStateNeve;
-	if (shouldRedirect) {
+	const shouldDisplayTpc = 'deactivate' !== tpcData.cta;
+	const shouldDisplayNeve = 'deactivate' !== neveData.cta;
+
+	if ('deactivate' === currentStateTpc && 'deactivate' === currentStateNeve) {
 		window.location.href = tpcAdminURL;
 	}
 
+	const isSingle = !shouldDisplayTpc || !shouldDisplayNeve;
+
 	return (
-		<div
-			className={classnames([
-				'unavailable-starter-sites',
-				{ empty: shouldRedirect },
-			])}
-		>
+		<>
 			<div
 				className="ss-background"
 				style={{ backgroundImage: `url(${assets}/img/starter.jpg)` }}
 			/>
-			{'deactivate' !== currentStateNeve && (
-				<div className="content-wrap">
-					<h1 className="error">{themeError}</h1>
-					{renderNoticeContent(
-						installingNeve,
-						activatingNeve,
-						currentStateNeve,
-						settersNeve,
-						'theme',
-						'neve',
-						neveData.activate
+			<div className="unavailable-starter-sites">
+				<div
+					className={classnames([
+						'slider',
+						{ 'move-right': slide && !isSingle },
+						{ single: isSingle },
+					])}
+				>
+					{shouldDisplayTpc && (
+						<div className="content-wrap">
+							<img
+								src={assets + '/img/tpc.svg'}
+								alt={__('Templates Cloud Logo', 'themeisle-companion')}
+							/>
+							<h1>
+								{stringMap[tpcData.cta].static +
+								' Templates Cloud'}
+							</h1>
+							<p className="error">{pluginError}</p>
+							{renderNoticeContent(
+								installingTpc,
+								activatingTpc,
+								currentStateTpc,
+								settersTpc,
+								'plugin',
+								'templates-patterns-collection',
+								tpcData.activate
+							)}
+						</div>
+					)}
+					{shouldDisplayNeve && (
+						<div className="content-wrap">
+							<img
+								src={assets + '/img/neve.svg'}
+								alt={__('Neve Theme Logo', 'themeisle-companion')}
+							/>
+							<h1>{stringMap[neveData.cta].static + ' Neve'}</h1>
+							<p className="error">{themeError}</p>
+							{renderNoticeContent(
+								installingNeve,
+								activatingNeve,
+								currentStateNeve,
+								settersNeve,
+								'theme',
+								'neve',
+								neveData.activate
+							)}
+						</div>
 					)}
 				</div>
-			)}
-			{'deactivate' !== currentStateTpc && (
-				<div className="content-wrap">
-					<h1 className="error">{pluginError}</h1>
-					{renderNoticeContent(
-						installingTpc,
-						activatingTpc,
-						currentStateTpc,
-						settersTpc,
-						'plugin',
-						'templates-patterns-collection',
-						tpcData.activate
-					)}
-				</div>
-			)}
-			{error && <div className="error"> {error} </div>}
-		</div>
+				{neveData.cta !== 'deactivate' && tpcData.cta !== 'deactivate' && (
+					<div className="stepper">
+						<button
+							className={classnames(['dot', { current: !slide }])}
+							onClick={() => setSlide(!slide)}
+						/>
+						<button
+							className={classnames(['dot', { current: slide }])}
+							onClick={() => setSlide(!slide)}
+						/>
+					</div>
+				)}
+				{error && <div className="error"> {error} </div>}
+			</div>
+		</>
 	);
 };
 
