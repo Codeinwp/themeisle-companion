@@ -32,7 +32,7 @@
 }
 
 #obfx-template-directory .slider.move-right {
-    transform: translateX(-150%);
+    transform: translateX(-50%);
     -webkit-transform:translateX(-50%);
 }
 
