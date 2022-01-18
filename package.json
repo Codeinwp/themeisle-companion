@@ -26,10 +26,12 @@
     "start": "npm-run-all --parallel start:*",
     "start:stock": "webpack --watch --mode development --config my-stock.webpack.config.js",
     "start:dash": "wp-scripts start dashboard/src/dashboard.js --output-path=dashboard/build --config dash.webpack.config.js",
+    "start:template": "wp-scripts start obfx_modules/template-directory/src/template-directory.js --output-path=obfx_modules/template-directory/js --config dash.webpack.config.js",
     "i18n": "grunt i18n",
     "dist": "bash bin/dist.sh",
     "build": "npm-run-all build:*",
     "build:dash": "wp-scripts build dashboard/src/dashboard.js --output-path=dashboard/build --config dash.webpack.config.js",
+    "build:template": "wp-scripts build obfx_modules/template-directory/src/template-directory.js --output-path=obfx_modules/template-directory/js --config dash.webpack.config.js",
     "build:stock": "webpack --mode production --config my-stock.webpack.config.js"
   },
   "devDependencies": {
