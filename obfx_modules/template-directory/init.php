@@ -191,6 +191,11 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return array|boolean
 	 */
 	public function admin_enqueue() {
+		$current_screen = get_current_screen();
+		if ( ! isset( $current_screen->id ) || $current_screen->id !== 'orbit-fox_page_obfx_template_dir' ) {
+			return array();
+		}
+
 		$dependencies_file = include OBX_PATH . '/obfx_modules/template-directory/js/template-directory.asset.php';
 
 		$this->localized = array(
