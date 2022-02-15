@@ -6,11 +6,22 @@
   border: 1px solid $border-grey;
 
   .card-header {
+    position: relative;
     img {
       width: 100%;
       max-width: 100%;
       border-bottom: 1px solid $border-grey;
     }
+  }
+
+  .premium-label{
+    position: absolute;
+    right: 0;
+    padding: 10px 20px;
+    background: var(--wp-admin-theme-color);
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
   }
 
   .card-body {
@@ -35,6 +46,10 @@
       color: #616161;
       display: flex;
       align-items: center;
+    }
+
+    .components-external-link{
+      margin-left: auto;
     }
   }
 
