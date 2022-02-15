@@ -425,7 +425,7 @@ class Orbit_Fox_Admin {
                 'description' => __( 'Turn WordPress into a landing page powerhouse with Landing Kit. Map domains to pages or any other published resource.', 'themeisle-companion' ),
                 'author'      => 'ThemeIsle',
                 'action'      => 'external',
-                'url'         => 'https://wplandingkit.com/pricing/?utm_medium=orbitfoxdashboard&utm_source=recommendedplugins&utm_campaign=orbitfox',
+                'url'         => 'https://wplandingkit.com/?utm_medium=orbitfoxdashboard&utm_source=recommendedplugins&utm_campaign=orbitfox',
                 'premium'     => true,
             ]
         ];
