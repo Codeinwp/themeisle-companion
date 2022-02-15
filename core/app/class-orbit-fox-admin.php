@@ -414,21 +414,21 @@ class Orbit_Fox_Admin {
 			'translatepress-multilingual',
 			'wp-cloudflare-page-cache',
 			'otter-blocks',
-            'wp-maintenance-mode',
-            'multiple-pages-generator-by-porthas',
+			'wp-maintenance-mode',
+			'multiple-pages-generator-by-porthas',
 		];
 
-        $th_plugins = [
-            'wp-landing-kit' => [
-                'banner'      => esc_url(OBFX_URL) . '/dashboard/assets/wp-landing.jpg',
-                'name'        => 'WP Landing Kit',
-                'description' => __( 'Turn WordPress into a landing page powerhouse with Landing Kit. Map domains to pages or any other published resource.', 'themeisle-companion' ),
-                'author'      => 'ThemeIsle',
-                'action'      => 'external',
-                'url'         => 'https://wplandingkit.com/?utm_medium=orbitfoxdashboard&utm_source=recommendedplugins&utm_campaign=orbitfox',
-                'premium'     => true,
-            ]
-        ];
+		$th_plugins = [
+			'wp-landing-kit' => [
+				'banner'      => esc_url(OBFX_URL) . '/dashboard/assets/wp-landing.jpg',
+				'name'        => 'WP Landing Kit',
+				'description' => __( 'Turn WordPress into a landing page powerhouse with Landing Kit. Map domains to pages or any other published resource.', 'themeisle-companion' ),
+				'author'      => 'ThemeIsle',
+				'action'      => 'external',
+				'url'         => 'https://wplandingkit.com/?utm_medium=orbitfoxdashboard&utm_source=recommendedplugins&utm_campaign=orbitfox',
+				'premium'     => true,
+			]
+		];
 		$install_instance = new Orbit_Fox_Plugin_Install();
 
 		$data = array();
@@ -451,12 +451,12 @@ class Orbit_Fox_Admin {
 			);
 		}
 
-        foreach ( $th_plugins as $plugin_slug => $plugin_data ) {
-            $data[ $plugin_slug ] = $plugin_data;
-        }
-        shuffle( $data );
+		foreach ( $th_plugins as $plugin_slug => $plugin_data ) {
+			$data[ $plugin_slug ] = $plugin_data;
+		}
+		shuffle( $data );
 
-        return $data;
+		return $data;
 	}
 
 	/**

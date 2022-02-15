@@ -86,8 +86,8 @@ class Orbit_Fox_Plugin_Install {
 				return $slug . '/feedzy-rss-feed.php';
 			case 'wp-cloudflare-page-cache':
 				return $slug . '/wp-cloudflare-super-page-cache.php';
-            case 'multiple-pages-generator-by-porthas':
-                return $slug . '/porthas-multi-pages-generator.php';
+			case 'multiple-pages-generator-by-porthas':
+				return $slug . '/porthas-multi-pages-generator.php';
 			default:
 				return $slug . '/' . $slug . '.php';
 		}
