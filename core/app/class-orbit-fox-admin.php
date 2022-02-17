@@ -441,7 +441,7 @@ class Orbit_Fox_Admin {
 			$data[ $plugin ] = array(
 				'banner'      => $current_plugin->banners['low'],
 				'name'        => html_entity_decode( $current_plugin->name ),
-				'description' => html_entity_decode( $current_plugin->short_description ),
+				'description' => html_entity_decode( $current_plugin->short_description, ENT_QUOTES ),
 				'version'     => $current_plugin->version,
 				'author'      => html_entity_decode( wp_strip_all_tags( $current_plugin->author ) ),
 				'action'      => $install_instance->check_plugin_state( $plugin ),
