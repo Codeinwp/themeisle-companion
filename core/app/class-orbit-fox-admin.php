@@ -455,11 +455,11 @@ class Orbit_Fox_Admin {
 			$data[ $plugin_slug ] = $plugin_data;
 		}
 		uksort(
-				$data,
-				function() {
-					return rand() > rand();
-				}
-				);
+			$data,
+			function() {
+				return rand() > rand();
+			}
+		);
 
 		return $data;
 	}
