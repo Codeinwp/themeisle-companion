@@ -423,7 +423,7 @@ class Orbit_Fox_Admin {
 				'banner'      => esc_url( OBFX_URL ) . '/dashboard/assets/wp-landing.jpg',
 				'name'        => 'WP Landing Kit',
 				'description' => __( 'Turn WordPress into a landing page powerhouse with Landing Kit. Map domains to pages or any other published resource.', 'themeisle-companion' ),
-				'author'      => 'ThemeIsle',
+				'author'      => 'Themeisle',
 				'action'      => 'external',
 				'url'         => 'https://wplandingkit.com/?utm_medium=orbitfoxdashboard&utm_source=recommendedplugins&utm_campaign=orbitfox',
 				'premium'     => true,
@@ -454,7 +454,7 @@ class Orbit_Fox_Admin {
 		foreach ( $th_plugins as $plugin_slug => $plugin_data ) {
 			$data[ $plugin_slug ] = $plugin_data;
 		}
-		shuffle( $data );
+        uksort($data, function() { return rand() > rand(); });
 
 		return $data;
 	}

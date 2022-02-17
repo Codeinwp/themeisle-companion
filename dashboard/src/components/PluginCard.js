@@ -40,9 +40,6 @@ const PluginCard = ({ slug, data }) => {
 	};
 
 	const handleActionButton = () => {
-		if (pluginState === 'external') {
-			return;
-		}
 		setInProgress(true);
 		if ('install' === pluginState) {
 			installPlugin(slug).then((r) => {
