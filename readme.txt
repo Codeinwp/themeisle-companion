@@ -26,7 +26,6 @@ https://www.youtube.com/watch?v=YHhK_twfYB8
 - Free stock photos module
 - Custom fonts module
 - Header and footer scripts module
-- MyStock cc0 images module
 - More widgets and sections for Hestia Theme
 - More widgets and sections for Zerif Theme
 
