@@ -1,0 +1,108 @@
+#obfx-template-directory {
+    padding-top: 200px;
+}
+
+#obfx-template-directory .unavailable-starter-sites {
+    width: 700px;
+    margin: auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    text-align: center;
+    overflow: hidden;
+}
+
+#obfx-template-directory .slider {
+    width: 200%;
+    display: flex;
+    transition: 0.4s ease-in-out;
+    -webkit-transition: 0.4s ease-in-out;
+}
+
+#obfx-template-directory .slider.single {
+    width: 100%;
+}
+
+#obfx-template-directory .slider.single .content-wrap {
+    width: 100%;
+}
+
+#obfx-template-directory .content-wrap {
+    width: 50%;
+    margin: 35px 35px 25px;
+}
+
+#obfx-template-directory .slider.move-right {
+    transform: translateX(-50%);
+    -webkit-transform:translateX(-50%);
+}
+
+#obfx-template-directory .ss-background {
+    opacity: .25;
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    display: block;
+    background-size: cover;
+    background-position: center center;
+    left: 0;
+    right: 0;
+    height: calc(100vh - 100px);
+    flex-grow: 1;
+}
+
+#obfx-template-directory .unavailable-starter-sites p {
+    font-size: 15px;
+    line-height: 24px;
+}
+
+#obfx-template-directory .unavailable-starter-sites h1 {
+    line-height: 1.6;
+}
+
+#obfx-template-directory .unavailable-starter-sites img {
+    width: 50px;
+}
+
+#obfx-template-directory .unavailable-starter-sites button {
+    margin-top: 10px;
+}
+
+#obfx-template-directory .unavailable-starter-sites button .dashicon {
+    margin-right: 5px;
+    animation-name: spin;
+    animation-duration: 2000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+#obfx-template-directory .stepper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 35px;
+    column-gap: 8px;
+}
+
+#obfx-template-directory .stepper .dot {
+    width: 0;
+    border: 4px solid #d9d9d9;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+
+#obfx-template-directory .stepper .dot.current {
+    border: 4px solid var(--wp-admin-theme-color);
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}

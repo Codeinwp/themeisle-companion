@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d8a2b66a12c0c50140bc08b0987070f8",
+    "content-hash": "c6bd67dc685dd7a7a2e58cd466106d47",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -28,12 +28,12 @@
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "Clue\\StreamFilter\\": "src/"
-                },
                 "files": [
                     "src/functions_include.php"
-                ]
+                ],
+                "psr-4": {
+                    "Clue\\StreamFilter\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -202,49 +202,6 @@
             "time": "2021-07-02T20:24:47+00:00"
         },
         {
-            "name": "codeinwp/templates-directory",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Codeinwp/templates-directory.git",
-                "reference": "18e8b64784457e3851bc79203e1306b6057d4d69"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/templates-directory/zipball/18e8b64784457e3851bc79203e1306b6057d4d69",
-                "reference": "18e8b64784457e3851bc79203e1306b6057d4d69",
-                "shasum": ""
-            },
-            "require": {
-                "codeinwp/full-width-page-templates": "master"
-            },
-            "default-branch": true,
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "load.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "ThemeIsle team",
-                    "email": "friends@themeisle.com",
-                    "homepage": "https://themeisle.com"
-                }
-            ],
-            "description": "A WordPress library to manage page templates.",
-            "homepage": "https://github.com/Codeinwp/templates-directory",
-            "support": {
-                "issues": "https://github.com/Codeinwp/templates-directory/issues",
-                "source": "https://github.com/Codeinwp/templates-directory/tree/master"
-            },
-            "time": "2018-12-12T21:50:20+00:00"
-        },
-        {
             "name": "codeinwp/themeisle-content-forms",
             "version": "dev-master",
             "source": {
@@ -293,16 +250,16 @@
         },
         {
             "name": "codeinwp/themeisle-sdk",
-            "version": "3.2.22",
+            "version": "3.2.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/themeisle-sdk.git",
-                "reference": "394d0f27e17dab350efa7e91bffff31f4b451fec"
+                "reference": "e5c171e33120fdf8ce6dd3a7bddad984583023f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/themeisle-sdk/zipball/394d0f27e17dab350efa7e91bffff31f4b451fec",
-                "reference": "394d0f27e17dab350efa7e91bffff31f4b451fec",
+                "url": "https://api.github.com/repos/Codeinwp/themeisle-sdk/zipball/e5c171e33120fdf8ce6dd3a7bddad984583023f0",
+                "reference": "e5c171e33120fdf8ce6dd3a7bddad984583023f0",
                 "shasum": ""
             },
             "require-dev": {
@@ -327,9 +284,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Codeinwp/themeisle-sdk/issues",
-                "source": "https://github.com/Codeinwp/themeisle-sdk/tree/v3.2.22"
+                "source": "https://github.com/Codeinwp/themeisle-sdk/tree/v3.2.24"
             },
-            "time": "2021-10-27T10:27:45+00:00"
+            "time": "2022-02-09T21:11:37+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -367,12 +324,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "GuzzleHttp\\Psr7\\": "src/"
-                },
                 "files": [
                     "src/functions_include.php"
-                ]
+                ],
+                "psr-4": {
+                    "GuzzleHttp\\Psr7\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -794,12 +751,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Http\\Message\\": "src/"
-                },
                 "files": [
                     "src/filters.php"
-                ]
+                ],
+                "psr-4": {
+                    "Http\\Message\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [

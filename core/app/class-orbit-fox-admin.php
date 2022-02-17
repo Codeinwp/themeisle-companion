@@ -411,14 +411,24 @@ class Orbit_Fox_Admin {
 		$plugins = [
 			'optimole-wp',
 			'feedzy-rss-feeds',
-			'wpforms-lite',
 			'translatepress-multilingual',
-			'autoptimize',
 			'wp-cloudflare-page-cache',
-			'wordpress-seo',
 			'otter-blocks',
+			'wp-maintenance-mode',
+			'multiple-pages-generator-by-porthas',
 		];
-		shuffle( $plugins );
+
+		$th_plugins = [
+			'wp-landing-kit' => [
+				'banner'      => esc_url( OBFX_URL ) . '/dashboard/assets/wp-landing.jpg',
+				'name'        => 'WP Landing Kit',
+				'description' => __( 'Turn WordPress into a landing page powerhouse with Landing Kit. Map domains to pages or any other published resource.', 'themeisle-companion' ),
+				'author'      => 'Themeisle',
+				'action'      => 'external',
+				'url'         => 'https://wplandingkit.com/?utm_medium=orbitfoxdashboard&utm_source=recommendedplugins&utm_campaign=orbitfox',
+				'premium'     => true,
+			],
+		];
 		$install_instance = new Orbit_Fox_Plugin_Install();
 
 		$data = array();
@@ -431,7 +441,7 @@ class Orbit_Fox_Admin {
 			$data[ $plugin ] = array(
 				'banner'      => $current_plugin->banners['low'],
 				'name'        => html_entity_decode( $current_plugin->name ),
-				'description' => html_entity_decode( $current_plugin->short_description ),
+				'description' => html_entity_decode( $current_plugin->short_description, ENT_QUOTES ),
 				'version'     => $current_plugin->version,
 				'author'      => html_entity_decode( wp_strip_all_tags( $current_plugin->author ) ),
 				'action'      => $install_instance->check_plugin_state( $plugin ),
@@ -440,6 +450,16 @@ class Orbit_Fox_Admin {
 				'deactivate'  => $install_instance->get_plugin_action_link( $plugin, 'deactivate' ),
 			);
 		}
+
+		foreach ( $th_plugins as $plugin_slug => $plugin_data ) {
+			$data[ $plugin_slug ] = $plugin_data;
+		}
+		uksort(
+			$data,
+			function() {
+				return rand() > rand();
+			}
+		);
 
 		return $data;
 	}

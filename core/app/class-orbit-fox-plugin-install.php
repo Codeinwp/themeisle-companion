@@ -80,16 +80,14 @@ class Orbit_Fox_Plugin_Install {
 	public static function get_plugin_path( $slug ) {
 
 		switch ( $slug ) {
-			case 'wpforms-lite':
-				return $slug . '/wpforms.php';
 			case 'translatepress-multilingual':
 				return $slug . '/index.php';
 			case 'feedzy-rss-feeds':
 				return $slug . '/feedzy-rss-feed.php';
-			case 'wordpress-seo':
-				return $slug . '/wp-seo.php';
 			case 'wp-cloudflare-page-cache':
 				return $slug . '/wp-cloudflare-super-page-cache.php';
+			case 'multiple-pages-generator-by-porthas':
+				return $slug . '/porthas-multi-pages-generator.php';
 			default:
 				return $slug . '/' . $slug . '.php';
 		}
