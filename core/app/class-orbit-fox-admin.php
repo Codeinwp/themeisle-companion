@@ -454,7 +454,9 @@ class Orbit_Fox_Admin {
 		foreach ( $th_plugins as $plugin_slug => $plugin_data ) {
 			$data[ $plugin_slug ] = $plugin_data;
 		}
-        uksort($data, function() { return rand() > rand(); });
+		uksort( $data, function() {
+			return rand() > rand();
+		} );
 
 		return $data;
 	}
