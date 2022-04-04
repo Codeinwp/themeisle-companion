@@ -457,7 +457,7 @@ class Orbit_Fox_Admin {
 		uksort(
 			$data,
 			function() {
-				return rand() > rand();
+				return rand() <=> rand();
 			}
 		);
 
