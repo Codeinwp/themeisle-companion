@@ -418,7 +418,7 @@ class Orbit_Fox_Admin {
 			'multiple-pages-generator-by-porthas',
 		];
 
-		$th_plugins = [
+		$th_plugins       = [
 			'wp-landing-kit' => [
 				'banner'      => esc_url( OBFX_URL ) . '/dashboard/assets/wp-landing.jpg',
 				'name'        => 'WP Landing Kit',

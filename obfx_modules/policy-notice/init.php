@@ -267,7 +267,7 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				position: fixed;
 				z-index: 9999;
 				text-align: center;
-                display:none;
+				display:none;
 				bottom: 0;
 				left: 0;
 				right: 0;
