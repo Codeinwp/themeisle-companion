@@ -1,3 +1,9 @@
+##### [Version 2.10.11](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.10...v2.10.11) (2022-02-17)
+
+- Replace the templates module with the one based on Neve and Cloud Templates & Patterns collection
+- Fix warnings with PHP 8
+- Update recommended plugins
+
 ##### [Version 2.10.10](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.9...v2.10.10) (2021-12-23)
 
 - Fix error with gutenberg-blocks
