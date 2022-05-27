@@ -256,6 +256,7 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		<style>
 			.obfx-cookie-bar-container {
 				height: 0;
+				display: none;
 			}
 
 			.obfx-checkbox-cb {
@@ -267,10 +268,10 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				position: fixed;
 				z-index: 9999;
 				text-align: center;
+				display:block;
 				bottom: 0;
 				left: 0;
 				right: 0;
-				display: block;
 				min-height: 40px;
 				background: #fff;
 				border: 1px solid #333;
