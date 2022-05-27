@@ -1,3 +1,9 @@
+##### [Version 2.10.12](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.11...v2.10.12) (2022-05-27)
+
+- [Fix] Accessibility issue on social links.
+- [Fix] PHP 8 deprecation warning from uksort function.
+- [Fix] The policy notice can't be dismissed on cached website.
+
 ##### [Version 2.10.11](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.10...v2.10.11) (2022-02-17)
 
 - Replace the templates module with the one based on Neve and Cloud Templates & Patterns collection
