@@ -172,9 +172,11 @@ function hestia_team_content( $hestia_team_content, $is_callback = false ) {
 			 * If that field is empty, uses the Title of the Testimonial box as alt text
 			 */
 			$alt_image = $title;
+            $srcset    = '';
 			$image_id  = function_exists( 'attachment_url_to_postid' ) ? attachment_url_to_postid( preg_replace( '/-\d{1,4}x\d{1,4}/i', '', $image ) ) : '';
 			if ( ! empty( $image_id ) && $image_id !== 0 ) {
 				$alt_image = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
+                $srcset    = wp_get_attachment_image_srcset( $image_id, 'full' );
 			}
 			
 			echo $link_markup_open;
@@ -183,6 +185,9 @@ function hestia_team_content( $hestia_team_content, $is_callback = false ) {
 			if ( ! empty( $alt_image ) ) {
 				echo ' alt="' . esc_attr( $alt_image ) . '" ';
 			}
+            if ( ! empty( $srcset ) ) {
+                echo ' srcset="' . esc_attr( $srcset ) . '" ';
+            }
 			if ( ! empty( $title ) ) {
 				echo ' title="' . esc_attr( $title ) . '" ';
 			}

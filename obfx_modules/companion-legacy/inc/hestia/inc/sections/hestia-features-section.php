@@ -142,14 +142,39 @@ function hestia_features_content( $hestia_features_content, $is_callback = false
 
 						switch ( $choice ) {
 							case 'customizer_repeater_image':
-								if ( ! empty( $image ) ) {
-									?>
-									<div class="card card-plain">
-										<img src="<?php echo esc_url( $image ); ?>"/>
-										</div>
-										<?php
-								}
-								break;
+                                if ( ! empty( $image ) ) {
+                                    /**
+                                     * Alternative text for the Features box image
+                                     * It first checks for the Alt Text option of the attachment
+                                     * If that field is empty, uses the Title of the Testimonial box as alt text
+                                     */
+                                    $alt_image = '';
+                                    $srcset = '';
+                                    $image_id  = function_exists( 'attachment_url_to_postid' ) ? attachment_url_to_postid( preg_replace( '/-\d{1,4}x\d{1,4}/i', '', $image ) ) : '';
+                                    if ( ! empty( $image_id ) && $image_id !== 0 ) {
+                                        $alt_image = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
+                                        $srcset    = wp_get_attachment_image_srcset( $image_id, 'full' );
+                                    }
+                                    if ( empty( $alt_image ) ) {
+                                        if ( ! empty( $title ) ) {
+                                            $alt_image = $title;
+                                        }
+                                    }
+                                    echo '<div class="card card-plain">';
+                                    echo '<img src="' . esc_url( $image ) . '" ';
+                                    if ( ! empty( $alt_image ) ) {
+                                        echo ' alt="' . esc_attr( $alt_image ) . '" ';
+                                    }
+                                    if ( ! empty( $srcset ) ) {
+                                        echo ' srcset="' . esc_attr( $srcset ) . '" ';
+                                    }
+                                    if ( ! empty( $title ) ) {
+                                        echo ' title="' . esc_attr( $title ) . '" ';
+                                    }
+                                    echo '/>';
+                                    echo '</div>';
+                                }
+                                break;
 							case 'customizer_repeater_icon':
 								if ( ! empty( $icon ) ) { ?>
 									<div class="icon" <?php echo ( ! empty( $color ) ? 'style="color:' . $color . '"' : '' ); ?>>
