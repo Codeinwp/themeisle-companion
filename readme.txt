@@ -107,6 +107,14 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 == Changelog ==
 
+##### [Version 2.10.13](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.12...v2.10.13) (2022-07-01)
+
+- [Fix] Add the srcset property for Hestia's free sections
+- [Fix] Missing desktop position option from the social sharing module
+
+
+
+
 ##### [Version 2.10.12](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.11...v2.10.12) (2022-05-27)
 
 - [Fix] Accessibility issue on social links.
