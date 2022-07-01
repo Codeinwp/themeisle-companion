@@ -64,7 +64,6 @@ const ModuleSettings = ({ slug }) => {
 
 	const getContent = () => {
 		const content = [];
-
 		for (let i = 0; i < options[slug].length; i++) {
 			let element = options[slug][i];
 			if (element.title && element.label) {
@@ -102,6 +101,7 @@ const ModuleSettings = ({ slug }) => {
 					element = options[slug][++i];
 				}
 				content.push(<div className="checkboxes-row"> {row} </div>);
+				i--;
 				continue;
 			}
 
