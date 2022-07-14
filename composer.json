@@ -32,7 +32,7 @@
   "require": {
     "codeinwp/full-width-page-templates": "master",
     "codeinwp/elementor-extra-widgets": "master",
-    "codeinwp/themeisle-content-forms": "dev-master#a5ee174",
+    "codeinwp/themeisle-content-forms": "master",
     "codeinwp/themeisle-sdk": "^3.1",
     "codeinwp/gutenberg-blocks": "1.6.9"
   },
@@ -46,7 +46,7 @@
   "config": {
     "optimize-autoloader": true,
     "platform": {
-      "php": "7.1"
+      "php": "5.6"
     },
     "allow-plugins": {
       "dealerdirect/phpcodesniffer-composer-installer": true
