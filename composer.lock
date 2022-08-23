@@ -250,16 +250,16 @@
         },
         {
             "name": "codeinwp/themeisle-sdk",
-            "version": "3.2.26",
+            "version": "3.2.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/themeisle-sdk.git",
-                "reference": "a4451041bb97a325c7bb8e86a5584adf4636650e"
+                "reference": "bab0314e1f6e2f811116a2da7736b94cbe6af90f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/themeisle-sdk/zipball/a4451041bb97a325c7bb8e86a5584adf4636650e",
-                "reference": "a4451041bb97a325c7bb8e86a5584adf4636650e",
+                "url": "https://api.github.com/repos/Codeinwp/themeisle-sdk/zipball/bab0314e1f6e2f811116a2da7736b94cbe6af90f",
+                "reference": "bab0314e1f6e2f811116a2da7736b94cbe6af90f",
                 "shasum": ""
             },
             "require-dev": {
@@ -284,9 +284,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Codeinwp/themeisle-sdk/issues",
-                "source": "https://github.com/Codeinwp/themeisle-sdk/tree/v3.2.26"
+                "source": "https://github.com/Codeinwp/themeisle-sdk/tree/v3.2.27"
             },
-            "time": "2022-05-12T11:55:06+00:00"
+            "time": "2022-08-23T13:09:40+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -1343,5 +1343,5 @@
     "platform-overrides": {
         "php": "5.6"
     },
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.3.0"
 }

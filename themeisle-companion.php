@@ -84,6 +84,12 @@ function run_orbit_fox() {
 			return 'Orbit Fox';
 		}
 	);
+	add_filter(
+		'themeisle_companion_load_promotions',
+		function() {
+			return array( 'otter' );
+		}
+	);
 }
 
 require 'class-autoloader.php';
