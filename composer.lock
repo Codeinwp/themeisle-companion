@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c6bd67dc685dd7a7a2e58cd466106d47",
+    "content-hash": "d6383cfef56b949ef76058df0ae8029f",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -56,10 +56,6 @@
                 "stream_filter_append",
                 "stream_filter_register"
             ],
-            "support": {
-                "issues": "https://github.com/clue/stream-filter/issues",
-                "source": "https://github.com/clue/stream-filter/tree/v1.6.0"
-            },
             "funding": [
                 {
                     "url": "https://clue.engineering/support",
@@ -78,15 +74,14 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/elementor-extra-widgets.git",
-                "reference": "c6121466d107952821d35bec364983a88fbddab5"
+                "reference": "d86a080a608aeee4e5efb7ec88cb5caeda7c3249"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/elementor-extra-widgets/zipball/c6121466d107952821d35bec364983a88fbddab5",
-                "reference": "c6121466d107952821d35bec364983a88fbddab5",
+                "url": "https://api.github.com/repos/Codeinwp/elementor-extra-widgets/zipball/d86a080a608aeee4e5efb7ec88cb5caeda7c3249",
+                "reference": "d86a080a608aeee4e5efb7ec88cb5caeda7c3249",
                 "shasum": ""
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "files": [
@@ -105,11 +100,7 @@
                 }
             ],
             "homepage": "https://github.com/Codeinwp/elementor-extra-widgets",
-            "support": {
-                "issues": "https://github.com/Codeinwp/elementor-extra-widgets/issues",
-                "source": "https://github.com/Codeinwp/elementor-extra-widgets/tree/master"
-            },
-            "time": "2021-12-22T11:09:33+00:00"
+            "time": "2022-08-22T09:52:46+00:00"
         },
         {
             "name": "codeinwp/full-width-page-templates",
@@ -125,7 +116,6 @@
                 "reference": "ac15bbb1295d39baf28978c7d9c04fed21ea3429",
                 "shasum": ""
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "files": [
@@ -145,10 +135,6 @@
             ],
             "description": "A WordPress library to create full width page templates.",
             "homepage": "https://github.com/Codeinwp/full-width-page-templates",
-            "support": {
-                "issues": "https://github.com/Codeinwp/full-width-page-templates/issues",
-                "source": "https://github.com/Codeinwp/full-width-page-templates/tree/master"
-            },
             "time": "2019-04-02T11:34:00+00:00"
         },
         {
@@ -222,7 +208,6 @@
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
                 "wptrt/wpthemereview": "*"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "files": [
@@ -250,16 +235,16 @@
         },
         {
             "name": "codeinwp/themeisle-sdk",
-            "version": "3.2.26",
+            "version": "3.2.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/themeisle-sdk.git",
-                "reference": "a4451041bb97a325c7bb8e86a5584adf4636650e"
+                "reference": "bab0314e1f6e2f811116a2da7736b94cbe6af90f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/themeisle-sdk/zipball/a4451041bb97a325c7bb8e86a5584adf4636650e",
-                "reference": "a4451041bb97a325c7bb8e86a5584adf4636650e",
+                "url": "https://api.github.com/repos/Codeinwp/themeisle-sdk/zipball/bab0314e1f6e2f811116a2da7736b94cbe6af90f",
+                "reference": "bab0314e1f6e2f811116a2da7736b94cbe6af90f",
                 "shasum": ""
             },
             "require-dev": {
@@ -284,9 +269,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Codeinwp/themeisle-sdk/issues",
-                "source": "https://github.com/Codeinwp/themeisle-sdk/tree/v3.2.26"
+                "source": "https://github.com/Codeinwp/themeisle-sdk/tree/v3.2.27"
             },
-            "time": "2022-05-12T11:55:06+00:00"
+            "time": "2022-08-23T13:09:40+00:00"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -378,10 +363,6 @@
                 "uri",
                 "url"
             ],
-            "support": {
-                "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/1.9.0"
-            },
             "funding": [
                 {
                     "url": "https://github.com/GrahamCampbell",
@@ -442,10 +423,6 @@
                 "marketing",
                 "sdk"
             ],
-            "support": {
-                "issues": "https://github.com/mailerlite/mailerlite-api-v2-php-sdk/issues",
-                "source": "https://github.com/mailerlite/mailerlite-api-v2-php-sdk/tree/master"
-            },
             "time": "2019-01-31T13:14:26+00:00"
         },
         {
@@ -571,10 +548,6 @@
                 "curl",
                 "http"
             ],
-            "support": {
-                "issues": "https://github.com/php-http/curl-client/issues",
-                "source": "https://github.com/php-http/curl-client/tree/v1.7.1"
-            },
             "time": "2018-03-26T19:21:48+00:00"
         },
         {
@@ -639,10 +612,6 @@
                 "message",
                 "psr7"
             ],
-            "support": {
-                "issues": "https://github.com/php-http/discovery/issues",
-                "source": "https://github.com/php-http/discovery/tree/master"
-            },
             "time": "2019-02-23T07:42:53+00:00"
         },
         {
@@ -699,10 +668,6 @@
                 "client",
                 "http"
             ],
-            "support": {
-                "issues": "https://github.com/php-http/httplug/issues",
-                "source": "https://github.com/php-http/httplug/tree/master"
-            },
             "time": "2016-08-31T08:30:17+00:00"
         },
         {
@@ -775,10 +740,6 @@
                 "message",
                 "psr-7"
             ],
-            "support": {
-                "issues": "https://github.com/php-http/message/issues",
-                "source": "https://github.com/php-http/message/tree/master"
-            },
             "time": "2018-11-01T09:32:41+00:00"
         },
         {
@@ -829,10 +790,6 @@
                 "stream",
                 "uri"
             ],
-            "support": {
-                "issues": "https://github.com/php-http/message-factory/issues",
-                "source": "https://github.com/php-http/message-factory/tree/master"
-            },
             "time": "2015-12-19T14:08:53+00:00"
         },
         {
@@ -883,10 +840,6 @@
             "keywords": [
                 "promise"
             ],
-            "support": {
-                "issues": "https://github.com/php-http/promise/issues",
-                "source": "https://github.com/php-http/promise/tree/master"
-            },
             "time": "2016-01-26T13:27:02+00:00"
         },
         {
@@ -937,9 +890,6 @@
                 "request",
                 "response"
             ],
-            "support": {
-                "source": "https://github.com/php-fig/http-message/tree/master"
-            },
             "time": "2016-08-06T14:39:51+00:00"
         },
         {
@@ -980,10 +930,6 @@
                 }
             ],
             "description": "A polyfill for getallheaders.",
-            "support": {
-                "issues": "https://github.com/ralouphie/getallheaders/issues",
-                "source": "https://github.com/ralouphie/getallheaders/tree/develop"
-            },
             "time": "2019-03-08T08:55:37+00:00"
         },
         {
@@ -1335,7 +1281,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "codeinwp/elementor-extra-widgets": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],
@@ -1343,5 +1291,5 @@
     "platform-overrides": {
         "php": "5.6"
     },
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.3.0"
 }
