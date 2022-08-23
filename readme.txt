@@ -107,6 +107,14 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 == Changelog ==
 
+##### [Version 2.10.14](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.13...v2.10.14) (2022-08-23)
+
+* Update dependencies
+* Fix Elementor's Post Grid widget responsiveness on mobile by stacking the images.
+
+
+
+
 ##### [Version 2.10.13](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.12...v2.10.13) (2022-07-01)
 
 - [Fix] Add the srcset property for Hestia's free sections
