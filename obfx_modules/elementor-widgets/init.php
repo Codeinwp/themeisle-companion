@@ -45,7 +45,16 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 							'<b>Neve PRO</b>'
 						) .
 					'</p>
-					<a class="notice-cta" target="_blank" href="' . tsdk_utmify( 'https://themeisle.com/themes/neve/upgrade/', 'elementorwidgets', 'orbitfox' ) . '">
+					<a class="notice-cta" target="_blank" href="' . esc_url_raw(
+						add_query_arg(
+							array(
+								'utm_source'   => 'wpadmin',
+								'utm_medium'   => 'orbitfox',
+								'utm_campaign' => 'elementorwidgets',
+							),
+							'https://themeisle.com/themes/neve/pricing/'
+						)
+					) . '">
 						<b>' . __( 'Learn more', 'themeisle-companion' ) . '</b>
 					</a>
 				</div>';
