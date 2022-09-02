@@ -33,7 +33,7 @@ You can check out the demo <a href="https://orbitfox.com/#blog" rel="nofollow" t
 
 OrbitFox is a user-centred plugin with an easy-to-use admin panel. One of the most important features is that modules will only be loaded if they meet two conditions. If they are needed and if they are compatible with your existing themes and plugins. This will cut down on the unnecessary bloating of your website.
 
-We've also built some fantastic <a href="http://themeisle.com/wordpress-themes/free/" rel="nofollow" target="_blank">free themes</a> that work well with Orbit Fox, check them out.
+We've also built some fantastic <a href="http://themeisle.com/wordpress-themes/free/?utm_source=plugin-readme&utm_medium=orbitfox&utm_campaign=freethemes" rel="nofollow" target="_blank">free themes</a> that work well with Orbit Fox, check them out.
 
 ## Frequently Asked Questions ##
 
