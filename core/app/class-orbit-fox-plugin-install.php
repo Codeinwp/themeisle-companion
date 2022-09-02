@@ -101,7 +101,7 @@ class Orbit_Fox_Plugin_Install {
 	 * @return string
 	 */
 	public function get_plugin_action_link( $slug, $action = 'activate' ) {
-		if ( ! in_array( $action, [ 'activate', 'deactivate' ] ) ) {
+		if ( ! in_array( $action, array( 'activate', 'deactivate' ) ) ) {
 			return '';
 		}
 
