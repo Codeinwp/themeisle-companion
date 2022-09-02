@@ -66,10 +66,8 @@ if ( ! function_exists( 'hestia_clients_bar' ) ) :
 
 							$image_id = function_exists( 'attachment_url_to_postid' ) ? attachment_url_to_postid( preg_replace( '/-\d{1,4}x\d{1,4}/i', '', $image ) ) : '';
 							$alt_text = '';
-                            $srcset   = '';
 							if ( ! empty( $image_id ) ) {
 								$alt_text = 'alt="' . get_post_meta( $image_id, '_wp_attachment_image_alt', true ) . '"';
-                                $srcset = 'srcset="' . wp_get_attachment_image_srcset( $image_id, 'full' ) . '"';
 							}
 
 							if ( ! empty( $image ) ) {
@@ -82,7 +80,7 @@ if ( ! function_exists( 'hestia_clients_bar' ) ) :
 									$link_html .= '>';
 									echo wp_kses_post( $link_html );
 								}
-                                echo '<img src="' . esc_url( $image ) . '" ' . wp_kses_post( $alt_text ) . ' ' . wp_kses_post( $srcset ) . '>';
+                                echo '<img src="' . esc_url( $image ) . '" ' . wp_kses_post( $alt_text ) . '>';
 								if ( ! empty( $link ) ) {
 									echo '</a>';
 								}
