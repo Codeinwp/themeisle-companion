@@ -1,3 +1,7 @@
+##### [Version 2.10.16](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.15...v2.10.16) (2022-09-02)
+
+* Fix fatal error due to late function registering.
+
 ##### [Version 2.10.15](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.14...v2.10.15) (2022-09-02)
 
 * Update dependencies
