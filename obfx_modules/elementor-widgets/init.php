@@ -45,7 +45,7 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 							'<b>Neve PRO</b>'
 						) .
 					'</p>
-					<a class="notice-cta" target="_blank" href="https://themeisle.com/themes/neve/upgrade/?utm_medium=orbitfoxdashboard&utm_source=pagebuildermodule&utm_campaign=orbitfox">
+					<a class="notice-cta" target="_blank" href="' . tsdk_utmify( 'https://themeisle.com/themes/neve/upgrade/', 'elementorwidgets', 'orbitfox' ) . '">
 						<b>' . __( 'Learn more', 'themeisle-companion' ) . '</b>
 					</a>
 				</div>';
@@ -155,7 +155,7 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		}
 
 		$elements_categories = $config['initial_document']['panel']['elements_categories'];
-		$obfx_cat            = [ 'obfx-elementor-widgets' => $elements_categories['obfx-elementor-widgets'] ];
+		$obfx_cat            = array( 'obfx-elementor-widgets' => $elements_categories['obfx-elementor-widgets'] );
 
 		unset( $elements_categories['obfx-elementor-widgets'] );
 
@@ -163,7 +163,7 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		$elements_categories = $config['initial_document']['panel']['elements_categories'];
 		if ( $this->should_add_placeholders() && array_key_exists( 'obfx-elementor-widgets-pro', $elements_categories ) ) {
-			$placeholders_cat = [ 'obfx-elementor-widgets-pro' => $elements_categories['obfx-elementor-widgets-pro'] ];
+			$placeholders_cat = array( 'obfx-elementor-widgets-pro' => $elements_categories['obfx-elementor-widgets-pro'] );
 			unset( $elements_categories['obfx-elementor-widgets-pro'] );
 			$config['initial_document']['panel']['elements_categories'] = $this->insert_before_element( $elements_categories, 'pro-elements', $placeholders_cat );
 		}
@@ -208,7 +208,7 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
                         });
                         
                         jQuery( \'#elementor-panel-category-obfx-elementor-widgets-pro .elementor-element-wrapper\' ).on( \'click drop\', function(e) {
-                            window.open( \'https://themeisle.com/themes/neve/upgrade/?utm_medium=elementoreditor&utm_source=elementorwidget&utm_campaign=orbitfox\',\'_blank\');
+                            window.open( \'' . tsdk_utmify( 'https://themeisle.com/themes/neve/upgrade/', 'elementorwidgetsdrag', 'orbitfox' ) . '\',\'_blank\');
                         });
                     }, 1000
                 );

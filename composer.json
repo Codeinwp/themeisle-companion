@@ -20,10 +20,10 @@
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.3",
-    "wp-coding-standards/wpcs": "^1",
+    "wp-coding-standards/wpcs": "^2.3",
     "phpcompatibility/php-compatibility": "^9",
     "dealerdirect/phpcodesniffer-composer-installer": "0.7.1",
-    "automattic/vipwpcs": "^1.0.0"
+    "automattic/vipwpcs": "^2.3"
   },
   "scripts": {
     "lint": "phpcs -n",
@@ -32,7 +32,7 @@
   "require": {
     "codeinwp/full-width-page-templates": "master",
     "codeinwp/themeisle-content-forms": "master",
-    "codeinwp/themeisle-sdk": "^3.1",
+    "codeinwp/themeisle-sdk": "^3.2",
     "codeinwp/gutenberg-blocks": "1.6.9",
     "codeinwp/elementor-extra-widgets": "dev-master"
   },

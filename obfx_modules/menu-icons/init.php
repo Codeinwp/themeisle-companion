@@ -301,7 +301,7 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				$path = explode( DIRECTORY_SEPARATOR, isset( $path[1] ) ? $path[1] : '' );
 				$path = array_values( array_filter( $path ) );
 				if ( isset( $path[0] ) ) {
-					$name = '&nbsp; <b>' . esc_attr( $path[0] ) . '</b>';
+					$name = '&nbsp; <b>' . esc_html( $path[0] ) . '</b>';
 				}
 				$type = __( 'plugin', 'themeisle-companion' );
 			}

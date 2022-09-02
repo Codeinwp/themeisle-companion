@@ -35,7 +35,7 @@ if ( ! empty( $social_links_array ) ) { ?>
 				}
 				?>
 					<li class="<?php echo esc_attr( $class ); ?>">
-						<a rel="tooltip" aria-label="<?php echo esc_html( $network_data['nicename'] ); ?>" data-original-title="<?php echo esc_attr( __( 'Share on ', 'themeisle-companion' ) . $network_data['nicename'] ); ?>" class = "btn btn-just-icon btn-round btn-<?php echo esc_attr( $network_data['icon'] ); ?>"
+						<a rel="tooltip" aria-label="<?php echo esc_attr( $network_data['nicename'] ); ?>" data-original-title="<?php echo esc_attr( __( 'Share on ', 'themeisle-companion' ) . $network_data['nicename'] ); ?>" class = "btn btn-just-icon btn-round btn-<?php echo esc_attr( $network_data['icon'] ); ?>"
 																		 <?php
 						// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
 																			echo ( isset( $network_data['target'] ) && $network_data['target'] != '0' ) ? 'target="_blank"' : '';

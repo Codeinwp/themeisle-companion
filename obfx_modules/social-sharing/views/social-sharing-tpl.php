@@ -37,7 +37,7 @@ if ( ! empty( $social_links_array ) ) { ?>
 			?>
 			<li class="<?php echo esc_attr( $class ); ?>">
 				<a class = "<?php echo esc_attr( $network_data['icon'] ); ?>"
-					aria-label="<?php echo esc_html( $network_data['nicename'] ); ?>"
+					aria-label="<?php echo esc_attr( $network_data['nicename'] ); ?>"
 					<?php
 					// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
 					echo ( isset( $network_data['target'] ) && $network_data['target'] != '0' ) ? 'target="_blank"' : '';

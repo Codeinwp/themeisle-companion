@@ -61,7 +61,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function hooks() {
-		add_action( 'admin_menu', [ $this, 'add_template_directory_submenu' ], 11 );
+		add_action( 'admin_menu', array( $this, 'add_template_directory_submenu' ), 11 );
 	}
 
 	/**
@@ -74,7 +74,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			esc_html__( 'Template Directory', 'themeisle-companion' ),
 			'manage_options',
 			'obfx_template_dir',
-			[ $this, 'render_template_directory' ]
+			array( $this, 'render_template_directory' )
 		);
 	}
 
@@ -202,32 +202,32 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			'template-directory' => array(
 				'slug'        => $this->slug,
 				'assets'      => OBFX_URL . 'obfx_modules/template-directory/assets',
-				'neveData'    => [
+				'neveData'    => array(
 					'cta'      => $this->get_state( 'neve' ),
 					'activate' => $this->get_neve_activation_link(),
-				],
-				'tpcData'     => [
+				),
+				'tpcData'     => array(
 					'cta'      => $this->get_state( 'tpc' ),
 					'activate' => $this->get_tcp_activation_link(),
-				],
+				),
 				'tpcAdminURL' => admin_url( 'themes.php?page=tiob-starter-sites' ),
 				'nonce'       => wp_create_nonce( 'wp_rest' ),
-				'strings'     => [
+				'strings'     => array(
 					'themeNotInstalled' => __( 'In order to import any starter sites, Neve theme & Templates Cloud plugin need to be installed and activated. Click the button below to install and activate Neve.', 'themeisle-companion' ),
 					'themeNotActive'    => __( 'In order to import any starter sites, Neve theme & Templates Cloud plugin need to be installed and activated. Click the button below to activate Neve.', 'themeisle-companion' ),
 					'tpcNotInstalled'   => __( 'In order to import any starter sites, Neve theme & Templates Cloud plugin need to be installed and activated. Click the button below to install and activate Templates Cloud.', 'themeisle-companion' ),
 					'tpcNotActive'      => __( 'In order to import any starter sites, Neve theme & Templates Cloud plugin need to be installed and activated. Click the button below to activate Templates Cloud.', 'themeisle-companion' ),
-				],
+				),
 			),
 		);
 
 		return array(
-			'js'  => [
-				'template-directory' => array_merge( $dependencies_file['dependencies'], [ 'updates' ] ),
-			],
-			'css' => [
-				'admin' => [ 'wp-components' ],
-			],
+			'js'  => array(
+				'template-directory' => array_merge( $dependencies_file['dependencies'], array( 'updates' ) ),
+			),
+			'css' => array(
+				'admin' => array( 'wp-components' ),
+			),
 		);
 	}
 

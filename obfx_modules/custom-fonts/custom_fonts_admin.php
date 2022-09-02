@@ -290,7 +290,7 @@ class Custom_Fonts_Admin {
 
 		if ( isset( $_POST['obfx_custom_fonts'] ) ) {// phpcs:ignore WordPress.Security.NonceVerification.Missing
 			$return_val = array();
-			foreach ( $_POST['obfx_custom_fonts'] as $key => $value ) {
+			foreach ( $_POST['obfx_custom_fonts'] as $key => $value ) {// phpcs:ignore WordPress.Security.NonceVerification.Missing
 				if ( $key === 'font-display' ) {
 					$return_val[ $key ] = esc_attr( $value );
 					continue;
