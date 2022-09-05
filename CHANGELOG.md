@@ -1,3 +1,7 @@
+##### [Version 2.10.17](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.16...v2.10.17) (2022-09-05)
+
+* Remove deprecated Gutenberg blocks module
+
 ##### [Version 2.10.16](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.15...v2.10.16) (2022-09-02)
 
 * Fix fatal error due to late function registering.
