@@ -62,7 +62,6 @@ class Orbit_Fox_Global_Settings {
 				'obfx_modules',
 				array(
 					'social-sharing',
-					'gutenberg-blocks',
 					'google-analytics',
 					'companion-legacy',
 					'elementor-widgets',
