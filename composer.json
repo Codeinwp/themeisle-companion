@@ -31,10 +31,9 @@
   },
   "require": {
     "codeinwp/full-width-page-templates": "master",
-    "codeinwp/themeisle-content-forms": "master",
     "codeinwp/themeisle-sdk": "^3.2",
-    "codeinwp/gutenberg-blocks": "1.6.9",
-    "codeinwp/elementor-extra-widgets": "dev-master"
+    "codeinwp/elementor-extra-widgets": "dev-master",
+    "codeinwp/themeisle-content-forms": "dev-master"
   },
   "autoload": {
     "files": [
