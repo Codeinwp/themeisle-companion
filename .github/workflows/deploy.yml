@@ -13,7 +13,7 @@ jobs:
         run: |
           npm ci
           npm run build
-          composer install --no-dev --prefer-dist --no-progress --no-suggest
+          composer install --no-dev --prefer-dist --no-progress --no-suggest --ignore-platform-reqs
           npm run dist
       - name: WordPress Plugin Deploy
         uses: 10up/action-wordpress-plugin-deploy@master

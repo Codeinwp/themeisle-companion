@@ -36,7 +36,7 @@ jobs:
           npm ci
           npm run build
       - name: Install composer deps
-        run: composer install --no-dev --prefer-dist --no-progress --no-suggest
+        run: composer install --no-dev --prefer-dist --no-progress --no-suggest --ignore-platform-reqs
       - name: Create zip
         run: npm run dist
       - name: Retrieve branch name

@@ -23,7 +23,7 @@ jobs:
         id: release
         run: |
           npm ci
-          composer install --ignore-platform-reqs --no-dev --prefer-dist --no-progress --no-suggest
+          composer install --ignore-platform-reqs --no-dev --prefer-dist --no-progress --no-suggest --ignore-platform-reqs
           npm run dist
           npm run release
         env:
