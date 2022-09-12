@@ -50,6 +50,7 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 							array(
 								'utm_source'   => 'wpadmin',
 								'utm_medium'   => 'orbitfox',
+								'utm_content'  => 'neve',
 								'utm_campaign' => 'elementorwidgets',
 							),
 							'https://themeisle.com/themes/neve/pricing/'
