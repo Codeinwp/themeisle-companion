@@ -29,7 +29,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-composer-
       - name: Install composer
-        run: composer install --prefer-dist --no-progress --no-suggest
+        run: composer install --ignore-platform-reqs --prefer-dist --no-progress --no-suggest
       - name: Run PHPCS
         run: composer run lint
   phpunit:
@@ -67,6 +67,6 @@ jobs:
             restore-keys: |
               ${{ runner.os }}-composer-
         - name: Install composer
-          run: composer install --prefer-dist --no-progress --no-suggest --no-dev
+          run: composer install --ignore-platform-reqs --prefer-dist --no-progress --no-suggest --no-dev
         - name: Run phpunit
           run: phpunit

@@ -5,3 +5,5 @@ logs
 dist
 artifact
 vendor
+/obfx_modules/template-directory/js/template-directory.asset.php
+/obfx_modules/template-directory/js/template-directory.js
