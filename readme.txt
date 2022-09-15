@@ -107,6 +107,13 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 == Changelog ==
 
+##### [Version 2.10.19](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.18...v2.10.19) (2022-09-15)
+
+* Fix for Bedrock installs.
+
+
+
+
 ##### [Version 2.10.18](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.17...v2.10.18) (2022-09-13)
 
 * Update depencies
