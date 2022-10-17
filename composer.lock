@@ -91,12 +91,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/themeisle-content-forms.git",
-                "reference": "854940d3caab64f0889888d4af877caaccb1208b"
+                "reference": "0c9b18cc7e5e8cf48fc030a1f3bead8a5152015d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/themeisle-content-forms/zipball/854940d3caab64f0889888d4af877caaccb1208b",
-                "reference": "854940d3caab64f0889888d4af877caaccb1208b",
+                "url": "https://api.github.com/repos/Codeinwp/themeisle-content-forms/zipball/0c9b18cc7e5e8cf48fc030a1f3bead8a5152015d",
+                "reference": "0c9b18cc7e5e8cf48fc030a1f3bead8a5152015d",
                 "shasum": ""
             },
             "require-dev": {
@@ -127,7 +127,7 @@
                 "issues": "https://github.com/Codeinwp/themeisle-content-forms/issues",
                 "source": "https://github.com/Codeinwp/themeisle-content-forms/tree/master"
             },
-            "time": "2022-10-17T10:01:09+00:00"
+            "time": "2022-10-17T11:55:51+00:00"
         },
         {
             "name": "codeinwp/themeisle-sdk",
