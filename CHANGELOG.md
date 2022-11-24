@@ -1,3 +1,7 @@
+##### [Version 2.10.21](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.20...v2.10.21) (2022-11-24)
+
+* Fix - update dependencies
+
 ##### [Version 2.10.20](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.19...v2.10.20) (2022-10-17)
 
 * Fix fatal errors on PHP 5.6 on newsletter widget.
