@@ -215,7 +215,6 @@ function hestia_team_content( $hestia_team_content, $is_callback = false ) {
 		}
 		echo $link_markup_close;
 		
-		
 		if ( ! empty( $team_item->social_repeater ) ) {
 			$icons         = html_entity_decode( $team_item->social_repeater );
 			$icons_decoded = json_decode( $icons, true );
@@ -224,13 +223,19 @@ function hestia_team_content( $hestia_team_content, $is_callback = false ) {
 				foreach ( $icons_decoded as $value ) {
 					$social_icon = ! empty( $value['icon'] ) ? apply_filters( 'hestia_translate_single_string', $value['icon'], 'Team section' ) : '';
 					$social_link = ! empty( $value['link'] ) ? apply_filters( 'hestia_translate_single_string', $value['link'], 'Team section' ) : '';
-					
 					if ( ! empty( $social_icon ) ) {
+						$aria_label = '';
+						$path       = wp_parse_url( $social_link, PHP_URL_PATH );
+						if ( $path ) {
+							$path       = strstr( $path, '.', true );
+							$aria_label = sprintf( 'View the %s profile of %s', $path, $title );
+							$aria_label = apply_filters( 'hestia_team_social_media_aria_text', $aria_label, $team_item );
+						}
 						$link = '<a href="' . esc_url( $social_link ) . '"';
 						if ( function_exists( 'hestia_is_external_url' ) ) {
 							$link .= hestia_is_external_url( $social_link );
 						}
-						$link .= ' class="btn btn-just-icon btn-simple"><i class="' . esc_attr( hestia_display_fa_icon( $social_icon ) ) . '"></i></a>';
+						$link .= ' class="btn btn-just-icon btn-simple" aria-label="' . esc_attr( $aria_label ) . '"><i class="' . esc_attr( hestia_display_fa_icon( $social_icon ) ) . '"></i></a>';
 						echo $link;
 					}
 				}
