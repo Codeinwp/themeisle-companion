@@ -404,6 +404,8 @@ class Orbit_Fox_Admin {
 		}
 		$install_instance = new Orbit_Fox_Plugin_Install();
 
+		shuffle( $plugins );
+
 		$data = array();
 		foreach ( $plugins as $plugin ) {
 			$current_plugin = $install_instance->call_plugin_api( $plugin );
@@ -427,8 +429,6 @@ class Orbit_Fox_Admin {
 		foreach ( $th_plugins as $plugin_slug => $plugin_data ) {
 			$data[ $plugin_slug ] = $plugin_data;
 		}
-
-		shuffle( $data );
 
 		return $data;
 	}
