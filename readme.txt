@@ -92,7 +92,7 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 1. In your WordPress admin, go to **Plugins &gt; Add New**
 2. In the Search field type "Orbit Fox"
-3. Under "Orbit Fox" click the **Install Now** link
+3. Under "OrbitFox" click the **Install Now** link
 4. Once the process is complete, click the **Activate Plugin** link
 5. Now, you're able to use Orbit fox and setup the modules you need. These can be found on the **Orbit Fox** dashboard page
 6. Make the changes desired, then click the **Save changes** button at the bottom
