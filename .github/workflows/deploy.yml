@@ -1,8 +1,8 @@
 name: Deploy
 on:
   push:
-    tags:
-      - "*"
+    branches:
+      - master
 jobs:
   tag:
     name: New version
@@ -24,3 +24,4 @@ jobs:
         env:
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          VERSION: "2.10.23"
