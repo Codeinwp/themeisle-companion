@@ -107,6 +107,16 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 == Changelog ==
 
+##### [Version 2.10.23](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.22...v2.10.23) (2023-03-31)
+
+- [Fix] Added social media icons aria label text
+- [Fix] Recommended plugins install error
+- Update the social sharing module document link
+- Update banners for WordPress.org
+
+
+
+
 ##### [Version 2.10.22](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.21...v2.10.22) (2022-11-30)
 
 - [Fix] Customizer not opening when Neve is installed
