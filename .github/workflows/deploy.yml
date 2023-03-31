@@ -8,7 +8,12 @@ jobs:
     name: New version
     runs-on: ubuntu-latest
     steps:
+      - name: Check out source files
       - uses: actions/checkout@master
+      - name: Setup node 14
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
       - name: Build
         run: |
           npm ci
@@ -18,5 +23,5 @@ jobs:
       - name: WordPress Plugin Deploy
         uses: 10up/action-wordpress-plugin-deploy@master
         env:
-          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
-          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_THEMEISLE_PASSWORD }}
+          SVN_USERNAME: ${{ secrets.SVN_THEMEISLE_USERNAME }}
