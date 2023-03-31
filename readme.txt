@@ -1,8 +1,8 @@
 === Orbit Fox by ThemeIsle ===
 Contributors: themeisle, codeinwp, rodicaelena, baicusandrei, hardeepasrani
-Tags: widget, admin, widgets, sharing, sections, themes, stock photos, custom icons, icons, menu icons, stock, templates, header, footer, scripts, custom fonts 
+Tags: widget, admin, widgets, sharing, sections, themes, stock photos, custom icons, icons, menu icons, stock, templates, header, footer, scripts, custom fonts
 Requires at least: 4.7
-Tested up to: 6.1
+Tested up to: 6.2
 Requires PHP: 5.6
 Stable tag: trunk
 License: GPLv2 or later
@@ -53,8 +53,8 @@ This plugin extends the features of your sites by adding numerous features.
 - Enable sharing networks right from your admin dashboard and choose on what kind of devices you would like to show them.
 - It’s fully customizable: You can easily optimise button location for according to the device your visitors will use.
 - Choose from more than 20+ social networks to share with full control for every device that your visitors use.
-- The sharing options can be positioned for the maximum effect according to whether the visitor is using a mobile device or desktop. Best of all they can be switched on/off from your WordPress instance.  
-  
+- The sharing options can be positioned for the maximum effect according to whether the visitor is using a mobile device or desktop. Best of all they can be switched on/off from your WordPress instance.
+
 **Why use our header and footer scripts module:**
 - It allows you to add global scripts in header or footer.
 - You can add a script individually to run on a single page or post.
