@@ -31,7 +31,7 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		/*
 		 * translators: %s Document anchor link.
 		 */
-		$this->description = sprintf( __( 'Add basic social sharing to your posts and pages. Check out the %s to learn more!', 'themeisle-companion' ), sprintf( '<a href="https://demo.themeisle.com/orbit-fox/2018/01/15/social-sharing-modules/" rel="nofollow" target="_blank">%s</a>', __( 'demo', 'themeisle-companion' ) ) );
+		$this->description = sprintf( __( 'Add basic social sharing to your posts and pages. Check out the %s to learn more!', 'themeisle-companion' ), sprintf( '<a href="https://docs.themeisle.com/article/1270-social-sharing-icons-orbit-fox-module/" rel="nofollow" target="_blank">%s</a>', __( 'documentation', 'themeisle-companion' ) ) );
 	}
 
 	/**
