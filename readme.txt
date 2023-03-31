@@ -41,7 +41,7 @@ We've also built some fantastic <a href="http://themeisle.com/wordpress-themes/f
 
 You can learn more about Orbit Fox and ask for help by <a href="https://themeisle.com/contact/"  >visiting ThemeIsle website</a>.
 
-### What can I do with this plugin ###
+### What can I do with this plugin ? ###
 This plugin extends the features of your sites by adding numerous features.
 
 **Why use our custom icons module:**
