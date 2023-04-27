@@ -1,8 +1,8 @@
 # Orbit Fox by ThemeIsle #
 **Contributors:** [themeisle](https://profiles.wordpress.org/themeisle), [codeinwp](https://profiles.wordpress.org/codeinwp), [rodicaelena](https://profiles.wordpress.org/rodicaelena), [baicusandrei](https://profiles.wordpress.org/baicusandrei), [hardeepasrani](https://profiles.wordpress.org/hardeepasrani)  
-**Tags:** widget, admin, widgets, sharing, sections, themes, stock photos, custom icons, icons, menu icons, stock, templates, header, footer, scripts, custom fonts   
+**Tags:** widget, admin, widgets, sharing, sections, themes, stock photos, custom icons, icons, menu icons, stock, templates, header, footer, scripts, custom fonts  
 **Requires at least:** 4.7  
-**Tested up to:** 6.1  
+**Tested up to:** 6.2  
 **Requires PHP:** 5.6  
 **Stable tag:** trunk  
 **License:** GPLv2 or later  
@@ -41,7 +41,7 @@ We've also built some fantastic <a href="http://themeisle.com/wordpress-themes/f
 
 You can learn more about Orbit Fox and ask for help by <a href="https://themeisle.com/contact/"  >visiting ThemeIsle website</a>.
 
-### What can I do with this plugin ###
+### What can I do with this plugin ? ###
 This plugin extends the features of your sites by adding numerous features.
 
 **Why use our custom icons module:**
@@ -53,8 +53,8 @@ This plugin extends the features of your sites by adding numerous features.
 - Enable sharing networks right from your admin dashboard and choose on what kind of devices you would like to show them.
 - It’s fully customizable: You can easily optimise button location for according to the device your visitors will use.
 - Choose from more than 20+ social networks to share with full control for every device that your visitors use.
-- The sharing options can be positioned for the maximum effect according to whether the visitor is using a mobile device or desktop. Best of all they can be switched on/off from your WordPress instance.  
-  
+- The sharing options can be positioned for the maximum effect according to whether the visitor is using a mobile device or desktop. Best of all they can be switched on/off from your WordPress instance.
+
 **Why use our header and footer scripts module:**
 - It allows you to add global scripts in header or footer.
 - You can add a script individually to run on a single page or post.
@@ -92,7 +92,7 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 1. In your WordPress admin, go to **Plugins &gt; Add New**
 2. In the Search field type "Orbit Fox"
-3. Under "Orbit Fox" click the **Install Now** link
+3. Under "OrbitFox" click the **Install Now** link
 4. Once the process is complete, click the **Activate Plugin** link
 5. Now, you're able to use Orbit fox and setup the modules you need. These can be found on the **Orbit Fox** dashboard page
 6. Make the changes desired, then click the **Save changes** button at the bottom
@@ -106,6 +106,13 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 ## Changelog ##
+
+##### [Version 2.10.24](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.23...v2.10.24) (2023-04-27)
+
+- [Fix] Improve security for the MyStock Import module
+
+
+
 
 ##### [Version 2.10.23](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.22...v2.10.23) (2023-03-31)
 
