@@ -148,37 +148,31 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		}
 
 		// Send request to `wp_remote_get`
-		$url      = esc_url_raw( $_POST['url'] );
-		$response = wp_remote_get( $url );
-		if ( is_wp_error( $response ) ) {
+		$url = esc_url_raw( wp_unslash( $_POST['url'] ) );
+
+		require_once ABSPATH . 'wp-admin/includes/image.php';
+		require_once ABSPATH . 'wp-admin/includes/file.php';
+		require_once ABSPATH . 'wp-admin/includes/media.php';
+
+		$file_array = array();
+		$local_file = download_url( $url );
+		if ( is_wp_error( $local_file ) ) {
 			$response['msg'] = __( 'Image download failed, please try again.', 'themeisle-companion' );
 			wp_send_json_error( $response );
 		}
 
 		// Get Headers
-		$type = wp_remote_retrieve_header( $response, 'content-type' );
-		if ( ! $type ) {
+		$type = mime_content_type( $local_file );
+		if ( ! in_array( $type, array_values( get_allowed_mime_types() ), true ) ) {
 			$response['msg'] = __( 'Image type could not be determined', 'themeisle-companion' );
 			wp_send_json_error( $response );
 		}
 
 		// Upload remote file
-		$name   = basename( $url );
-		$mirror = wp_upload_bits( $name, null, wp_remote_retrieve_body( $response ) );
+		$file_array['name']     = basename( $url );
+		$file_array['tmp_name'] = $local_file;
 
-		// Build Attachment Data Array
-		$attachment = array(
-			'post_content'   => '',
-			'post_status'    => 'inherit',
-			'post_mime_type' => $type,
-		);
-
-		// Insert as attachment
-		$image_id = wp_insert_attachment( $attachment, $mirror['file'], 0 );
-
-		// Generate Metadata
-		$attach_data = wp_generate_attachment_metadata( $image_id, $mirror['file'] );
-		wp_update_attachment_metadata( $image_id, $attach_data );
+		$image_id = media_handle_sideload( $file_array );
 
 		$response['success']    = true;
 		$response['msg']        = __( 'Image successfully uploaded to the media library!', 'themeisle-companion' );
