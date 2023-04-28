@@ -42,7 +42,7 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 *
 	 * @var string
 	 */
-	private $strings = [];
+	private $strings = array();
 
 
 	/**
