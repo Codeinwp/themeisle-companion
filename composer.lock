@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b964c54dacb240e9bddc4b37a3593078",
+    "content-hash": "adf43cc9f9f449a8900b854e75d17576",
     "packages": [
         {
             "name": "codeinwp/elementor-extra-widgets",
@@ -20,7 +20,6 @@
                 "reference": "d86a080a608aeee4e5efb7ec88cb5caeda7c3249",
                 "shasum": ""
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "files": [
@@ -59,7 +58,6 @@
                 "reference": "ac15bbb1295d39baf28978c7d9c04fed21ea3429",
                 "shasum": ""
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "files": [
@@ -103,7 +101,6 @@
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
                 "wptrt/wpthemereview": "*"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "files": [
@@ -163,10 +160,6 @@
             "keywords": [
                 "wordpress"
             ],
-            "support": {
-                "issues": "https://github.com/Codeinwp/themeisle-sdk/issues",
-                "source": "https://github.com/Codeinwp/themeisle-sdk/tree/v3.3.0"
-            },
             "time": "2023-05-30T08:55:06+00:00"
         }
     ],
@@ -540,5 +533,5 @@
     "platform-overrides": {
         "php": "5.6"
     },
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "1.1.0"
 }

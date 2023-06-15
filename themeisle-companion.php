@@ -90,6 +90,15 @@ function run_orbit_fox() {
 			return array( 'otter' );
 		}
 	);
+	add_filter(
+		'themeisle_companion_about_us_metadata',
+		function() {
+			return array(
+				'logo'     => esc_url( OBFX_URL . 'images/orbit-fox.png' ),
+				'location' => 'obfx_companion',
+			);
+		}
+	);
 }
 
 require 'class-autoloader.php';

@@ -74,7 +74,8 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			esc_html__( 'Template Directory', 'themeisle-companion' ),
 			'manage_options',
 			'obfx_template_dir',
-			array( $this, 'render_template_directory' )
+			array( $this, 'render_template_directory' ),
+			1
 		);
 	}
 
