@@ -1,3 +1,8 @@
+##### [Version 2.10.25](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.24...v2.10.25) (2023-06-15)
+
+- Fix PHP compatibility issues
+- Codebase updates
+
 ##### [Version 2.10.24](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.23...v2.10.24) (2023-04-27)
 
 - [Fix] Improve security for the MyStock Import module
