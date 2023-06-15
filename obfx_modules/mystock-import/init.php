@@ -37,6 +37,13 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	const CACHE_DAYS = 7;
 
+	/**
+	 * Media strings ( used when the gutenberg editor is disabled ).
+	 *
+	 * @var string
+	 */
+	private $strings = array();
+
 
 	/**
 	 * Mystock_Import_OBFX_Module constructor.
