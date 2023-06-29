@@ -12,14 +12,15 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/elementor-extra-widgets.git",
-                "reference": "d86a080a608aeee4e5efb7ec88cb5caeda7c3249"
+                "reference": "58ac60adaf54f482cf56a494cdd03ca62b55603c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/elementor-extra-widgets/zipball/d86a080a608aeee4e5efb7ec88cb5caeda7c3249",
-                "reference": "d86a080a608aeee4e5efb7ec88cb5caeda7c3249",
+                "url": "https://api.github.com/repos/Codeinwp/elementor-extra-widgets/zipball/58ac60adaf54f482cf56a494cdd03ca62b55603c",
+                "reference": "58ac60adaf54f482cf56a494cdd03ca62b55603c",
                 "shasum": ""
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "files": [
@@ -42,7 +43,7 @@
                 "issues": "https://github.com/Codeinwp/elementor-extra-widgets/issues",
                 "source": "https://github.com/Codeinwp/elementor-extra-widgets/tree/master"
             },
-            "time": "2022-08-22T09:52:46+00:00"
+            "time": "2023-05-22T21:26:12+00:00"
         },
         {
             "name": "codeinwp/full-width-page-templates",
@@ -77,10 +78,6 @@
             ],
             "description": "A WordPress library to create full width page templates.",
             "homepage": "https://github.com/Codeinwp/full-width-page-templates",
-            "support": {
-                "issues": "https://github.com/Codeinwp/full-width-page-templates/issues",
-                "source": "https://github.com/Codeinwp/full-width-page-templates/tree/master"
-            },
             "time": "2019-04-02T11:34:00+00:00"
         },
         {
@@ -120,24 +117,20 @@
             ],
             "description": "ThemeIsle Content Forms.",
             "homepage": "https://github.com/Codeinwp/themeisle-content-forms",
-            "support": {
-                "issues": "https://github.com/Codeinwp/themeisle-content-forms/issues",
-                "source": "https://github.com/Codeinwp/themeisle-content-forms/tree/master"
-            },
             "time": "2022-10-17T11:55:51+00:00"
         },
         {
             "name": "codeinwp/themeisle-sdk",
-            "version": "3.3.0",
+            "version": "3.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/themeisle-sdk.git",
-                "reference": "68dc5d11c1d7a20a13f3ae730183f61ff309d574"
+                "reference": "efb66935e69935b21ad99b0e55484e611ce4549d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/themeisle-sdk/zipball/68dc5d11c1d7a20a13f3ae730183f61ff309d574",
-                "reference": "68dc5d11c1d7a20a13f3ae730183f61ff309d574",
+                "url": "https://api.github.com/repos/Codeinwp/themeisle-sdk/zipball/efb66935e69935b21ad99b0e55484e611ce4549d",
+                "reference": "efb66935e69935b21ad99b0e55484e611ce4549d",
                 "shasum": ""
             },
             "require-dev": {
@@ -160,7 +153,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2023-05-30T08:55:06+00:00"
+            "time": "2023-06-21T06:55:46+00:00"
         }
     ],
     "packages-dev": [
@@ -209,11 +202,6 @@
                 "standards",
                 "wordpress"
             ],
-            "support": {
-                "issues": "https://github.com/Automattic/VIP-Coding-Standards/issues",
-                "source": "https://github.com/Automattic/VIP-Coding-Standards",
-                "wiki": "https://github.com/Automattic/VIP-Coding-Standards/wiki"
-            },
             "time": "2021-09-29T16:20:23+00:00"
         },
         {
@@ -285,10 +273,6 @@
                 "stylecheck",
                 "tests"
             ],
-            "support": {
-                "issues": "https://github.com/dealerdirect/phpcodesniffer-composer-installer/issues",
-                "source": "https://github.com/dealerdirect/phpcodesniffer-composer-installer"
-            },
             "time": "2022-02-04T12:51:07+00:00"
         },
         {
@@ -347,10 +331,6 @@
                 "phpcs",
                 "standards"
             ],
-            "support": {
-                "issues": "https://github.com/PHPCompatibility/PHPCompatibility/issues",
-                "source": "https://github.com/PHPCompatibility/PHPCompatibility"
-            },
             "time": "2019-12-27T09:44:58+00:00"
         },
         {
@@ -404,11 +384,6 @@
                 "phpcs",
                 "static analysis"
             ],
-            "support": {
-                "issues": "https://github.com/sirbrillig/phpcs-variable-analysis/issues",
-                "source": "https://github.com/sirbrillig/phpcs-variable-analysis",
-                "wiki": "https://github.com/sirbrillig/phpcs-variable-analysis/wiki"
-            },
             "time": "2022-10-05T23:31:46+00:00"
         },
         {
@@ -461,11 +436,6 @@
                 "standards",
                 "static analysis"
             ],
-            "support": {
-                "issues": "https://github.com/squizlabs/PHP_CodeSniffer/issues",
-                "source": "https://github.com/squizlabs/PHP_CodeSniffer",
-                "wiki": "https://github.com/squizlabs/PHP_CodeSniffer/wiki"
-            },
             "time": "2023-02-22T23:07:41+00:00"
         },
         {
@@ -512,11 +482,6 @@
                 "standards",
                 "wordpress"
             ],
-            "support": {
-                "issues": "https://github.com/WordPress/WordPress-Coding-Standards/issues",
-                "source": "https://github.com/WordPress/WordPress-Coding-Standards",
-                "wiki": "https://github.com/WordPress/WordPress-Coding-Standards/wiki"
-            },
             "time": "2020-05-13T23:57:56+00:00"
         }
     ],
@@ -533,5 +498,5 @@
     "platform-overrides": {
         "php": "5.6"
     },
-    "plugin-api-version": "1.1.0"
+    "plugin-api-version": "2.3.0"
 }
