@@ -86,6 +86,56 @@ class Header_Footer_Scripts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		$this->loader->add_action( 'wp_head', $this, 'do_header_scripts' );
 		$this->loader->add_action( 'wp_footer', $this, 'do_footer_scripts' );
+
+		/**
+		 * Since we allow for the script meta to be unfiltered, we need to make sure that
+		 * the current user is allowed to add unfiltered html. If not we prevent the meta from being saved or listed.
+		 */
+		$this->loader->add_filter( 'add_post_metadata', $this, 'check_post_metadata', 10, 5 );
+		$this->loader->add_filter( 'update_post_metadata', $this, 'check_post_metadata', 10, 5 );
+		$this->loader->add_filter( 'is_protected_meta', $this, 'is_meta_protected', 10, 3 );
+	}
+
+	/**
+	 * Check if meta is protected.
+	 *
+	 * @param bool $protected Whether the key is considered protected.
+	 * @param string $meta_key Metadata key.
+	 * @param string $meta_type Type of object metadata is for. Accepts 'post', 'comment', 'term', 'user', or any other object type with an associated meta table.
+	 *
+	 * @return bool
+	 */
+	final public function is_meta_protected( $protected, $meta_key, $meta_type ) {
+		if ( ! in_array( $meta_key, array( 'obfx-header-scripts', 'obfx-footer-scripts' ), true ) ) {
+			return $protected;
+		}
+
+		if ( current_user_can( 'unfiltered_html' ) ) {
+			return $protected;
+		}
+
+		return true;
+	}
+
+	/**
+	 * @param null | bool $check Whether the meta key is allowed for update or add actions.
+	 * @param int $object_id Object ID.
+	 * @param string $meta_key Metadata key.
+	 * @param mixed $meta_value Metadata value.
+	 * @param mixed $prev_value Previous value of metadata.
+	 *
+	 * @return null | bool
+	 */
+	final public function check_post_metadata( $check, $object_id, $meta_key, $meta_value, $prev_value ) {
+		if ( ! in_array( $meta_key, array( 'obfx-header-scripts', 'obfx-footer-scripts' ), true ) ) {
+			return $check;
+		}
+
+		if ( current_user_can( 'unfiltered_html' ) ) {
+			return $check;
+		}
+
+		return false;
 	}
 
 	/**
