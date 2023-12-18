@@ -124,7 +124,7 @@ class Header_Footer_Scripts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @param mixed $meta_value Metadata value.
 	 * @param mixed $prev_value Previous value of metadata.
 	 *
-	 * @return false
+	 * @return null | bool
 	 */
 	final public function check_post_metadata( $check, $object_id, $meta_key, $meta_value, $prev_value ) {
 		if ( ! in_array( $meta_key, array( 'obfx-header-scripts', 'obfx-footer-scripts' ), true ) ) {
