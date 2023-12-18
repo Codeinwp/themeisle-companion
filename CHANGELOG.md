@@ -1,3 +1,12 @@
+##### [Version 2.10.27](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.26...v2.10.27) (2023-12-18)
+
+### Improvements
+- **SDK Updates**
+
+### Bug Fixes
+- **Enhanced security**
+- **Fixed the broken starter site link**
+
 ##### [Version 2.10.26](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.25...v2.10.26) (2023-06-29)
 
 - Fix Service Widget icon
