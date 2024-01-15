@@ -107,6 +107,17 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 ## Changelog ##
 
+##### [Version 2.10.28](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.27...v2.10.28) (2024-01-15)
+
+### Bug Fixes
+- **Pricing Table widget** sanitisation on URL.
+
+### Improvements
+- **Updated dependencies**
+
+
+
+
 ##### [Version 2.10.27](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.26...v2.10.27) (2023-12-18)
 
 ### Improvements
