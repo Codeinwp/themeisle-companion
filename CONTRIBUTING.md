@@ -86,6 +86,11 @@ grunt local
 
 It will take some time to finish all the tasks. If there are any issues found in PHP or JavaScript, it gives you a detailed log inside `/logs/` folder of the plugin. Fix those issues and run `grunt local` again until it finishes without an error.
 
+### PHP_CodeSniffer
+
+To run PHP_CodeSniffer, run `composer lint`. This will run the WordPress Coding Standards checks.
+To fix automatically fixable issues, run `composer format`.
+
 ### PHP Unit Testing
 
 Tests for PHP use PHPUnit as the testing framework, which is run with:
@@ -93,6 +98,128 @@ Tests for PHP use PHPUnit as the testing framework, which is run with:
 ```
 phpunit
 ```
+
+## Coding Standards
+
+Code must follow [WordPress Coding standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/), which is checked
+when running tests (more on this below).
+
+## Security and Sanitization
+
+When [outputting data](https://developer.wordpress.org/plugins/security/securing-output/), escape it using WordPress' escaping functions such as `esc_html()`, `esc_attr__()`, `wp_kses()`, `wp_kses_post()`.
+
+When reading [user input](https://developer.wordpress.org/plugins/security/securing-input/), sanitize it using WordPress' sanitization functions such as `sanitize_text_field()`, `sanitize_textarea_field()`.
+
+When writing to the database, prepare database queries using ``$wpdb->prepare()``
+
+Never trust user input. Sanitize it.
+
+Make use of [WordPress nonces](https://codex.wordpress.org/WordPress_Nonces) for saving form submitted data.
+
+Coding standards will catch any sanitization, escaping or database queries that aren't prepared.
+
+## Types of Test
+
+There are different types of tests that can be written:
+- Acceptance Tests: Test as a non-technical user in the web browser.
+- Functional Tests: Test the framework (WordPress).
+- Integration Tests: Test code modules in the context of a WordPress website.
+- Unit Tests: Test single PHP classes or functions in isolation.
+- WordPress Unit Tests: Test single PHP classes or functions in isolation, with WordPress functions and classes loaded.
+
+There is no definitive / hard guide, as a test can typically overlap into different types (such as Acceptance and Functional).
+
+The most important thing is that you have a test for *something*.  If in doubt, an Acceptance Test will suffice.
+
+### Writing an Acceptance Test
+
+An acceptance test is a test that simulates a user interacting with the Plugin or Theme in a web browser.
+Refer to Writing an End-to-End Test below.
+
+### Writing an End-to-End Test
+
+To write an End-to-End test, create a new file under `e2e-tests/specs` with the name of the spec or functionality you are testing, and add `.spec.test` to the file name.
+
+E.g. for `e2e-tests/specs/checkout.spec.test.js`, the test file should be `checkout.spec.test.js`.
+
+For more information on writing End-to-End tests, refer to the [Playwright documentation](https://playwright.dev/docs/test-intro).
+
+You can check End-to-End [README](./e2e-tests/README.md) for more details.
+
+## Writing a WordPress Unit Test
+
+WordPress Unit tests provide testing of Plugin/Theme specific functions and/or classes, typically to assert that they perform as expected
+by a developer.  This is primarily useful for testing our API class, and confirming that any Plugin registered filters return
+the correct data.
+
+To create a new WordPress Unit Test, create a new file under `tests/php/unit` with the name of the class you are testing, and the suffix `Test`.
+The filename should be in `lower-case-with-dash`, and the class name should be in `CamelCase`.
+
+E.g. for `tests/php/unit/class-api-test.php`, the test class should be `class APITest extends \PHPUnit\Framework\TestCase`.
+
+```php
+<?php
+class APITest extends \PHPUnit\Framework\TestCase
+{
+    /**
+     * @var \WpunitTester
+     */
+    protected $tester;
+    
+    public function setUp(): void
+    {
+        // Before...
+        parent::setUp();
+        // Your set up methods here.
+    }
+    public function tearDown(): void
+    {
+        // Your tear down methods here.
+        // Then...
+        parent::tearDown();
+    }
+    // Tests
+    public function test_it_works()
+    {
+        $post = static::factory()->post->create_and_get();
+        
+        $this->assertInstanceOf(\WP_Post::class, $post);
+    }
+}
+```
+
+## Run PHPUnit Tests
+
+Once you have written your code and test(s), run the tests to make sure there are no errors.
+
+```bash
+./vendor/bin/phpunit tests/php/unit/class-api-test.php
+```
+
+Any errors should be corrected by making applicable code or test changes.
+
+## Run PHP CodeSniffer
+
+In the Plugin's or Theme's directory, run the following command to run PHP_CodeSniffer, which will check the code meets Coding Standards
+as defined in the `phpcs.tests.xml` configuration:
+
+```bash
+composer run lint 
+```
+
+`--standard=phpcs.tests.xml` tells PHP CodeSniffer to use the Coding Standards rules / configuration defined in `phpcs.tests.xml`.
+These differ slightly from WordPress' Coding Standards, to ensure that writing tests isn't a laborious task, whilst maintain consistency
+in test coding style.
+`-v` produces verbose output
+`-s` specifies the precise rule that failed
+
+Any errors should be corrected by either:
+- making applicable code changes
+- running `composer run format` to automatically fix coding standards
+
+Need to change the PHP or WordPress coding standard rules applied?  Either:
+- ignore a rule in the affected code, by adding `phpcs:ignore {rule}`, where {rule} is the given rule that failed in the above output.
+- edit the [phpcs.tests.xml](phpcs.tests.xml) file.
 
 ## Sending a Pull Request
 
