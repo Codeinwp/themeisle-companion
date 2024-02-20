@@ -89,7 +89,7 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 *
 	 * @return bool
 	 */
-	private static function has_valid_addons() {
+	public static function has_valid_addons() {
 		if ( ! defined( 'NEVE_PRO_BASEFILE' ) ) {
 			return false;
 		}
@@ -223,7 +223,7 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
                     }, 1000
                 );
             });
-        ' 
+        '
 		);
 	}
 
@@ -232,7 +232,7 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function enqueue_editor_styles() {
 		wp_add_inline_style(
-			'elementor-editor', 
+			'elementor-editor',
 			'
             #elementor-panel-category-obfx-elementor-widgets-pro .elementor-element-wrapper {
                 position:relative;
@@ -250,7 +250,7 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
                 font-family: eicons;
                 z-index: 1;
             }
-        ' 
+        '
 		);
 	}
 

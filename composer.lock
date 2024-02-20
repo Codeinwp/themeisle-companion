@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/elementor-extra-widgets.git",
-                "reference": "bf962882386c08ddc103611cb3cf78779ee85cc2"
+                "reference": "8676e0d65f84a5c5e0d246abdfd340de35b047a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/elementor-extra-widgets/zipball/bf962882386c08ddc103611cb3cf78779ee85cc2",
-                "reference": "bf962882386c08ddc103611cb3cf78779ee85cc2",
+                "url": "https://api.github.com/repos/Codeinwp/elementor-extra-widgets/zipball/8676e0d65f84a5c5e0d246abdfd340de35b047a5",
+                "reference": "8676e0d65f84a5c5e0d246abdfd340de35b047a5",
                 "shasum": ""
             },
             "default-branch": true,
@@ -43,7 +43,7 @@
                 "issues": "https://github.com/Codeinwp/elementor-extra-widgets/issues",
                 "source": "https://github.com/Codeinwp/elementor-extra-widgets/tree/master"
             },
-            "time": "2024-01-15T14:56:51+00:00"
+            "time": "2024-02-20T11:25:21+00:00"
         },
         {
             "name": "codeinwp/full-width-page-templates",
@@ -86,18 +86,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/themeisle-content-forms.git",
-                "reference": "0c9b18cc7e5e8cf48fc030a1f3bead8a5152015d"
+                "reference": "676d02dfc42cb64f9945cc56ace03a9a44c4d70b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/themeisle-content-forms/zipball/0c9b18cc7e5e8cf48fc030a1f3bead8a5152015d",
-                "reference": "0c9b18cc7e5e8cf48fc030a1f3bead8a5152015d",
+                "url": "https://api.github.com/repos/Codeinwp/themeisle-content-forms/zipball/676d02dfc42cb64f9945cc56ace03a9a44c4d70b",
+                "reference": "676d02dfc42cb64f9945cc56ace03a9a44c4d70b",
                 "shasum": ""
             },
             "require-dev": {
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.5.0",
                 "wptrt/wpthemereview": "*"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "files": [
@@ -117,7 +118,11 @@
             ],
             "description": "ThemeIsle Content Forms.",
             "homepage": "https://github.com/Codeinwp/themeisle-content-forms",
-            "time": "2022-10-17T11:55:51+00:00"
+            "support": {
+                "issues": "https://github.com/Codeinwp/themeisle-content-forms/issues",
+                "source": "https://github.com/Codeinwp/themeisle-content-forms/tree/master"
+            },
+            "time": "2024-02-20T11:25:43+00:00"
         },
         {
             "name": "codeinwp/themeisle-sdk",
