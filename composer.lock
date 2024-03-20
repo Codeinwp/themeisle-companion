@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeinwp/elementor-extra-widgets.git",
-                "reference": "4f405d5818288ae960a847859876643665727e61"
+                "reference": "12a1cf19ec5dbb5fa775837c31566564fd1321fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/elementor-extra-widgets/zipball/4f405d5818288ae960a847859876643665727e61",
-                "reference": "4f405d5818288ae960a847859876643665727e61",
+                "url": "https://api.github.com/repos/Codeinwp/elementor-extra-widgets/zipball/12a1cf19ec5dbb5fa775837c31566564fd1321fe",
+                "reference": "12a1cf19ec5dbb5fa775837c31566564fd1321fe",
                 "shasum": ""
             },
             "default-branch": true,
@@ -43,7 +43,7 @@
                 "issues": "https://github.com/Codeinwp/elementor-extra-widgets/issues",
                 "source": "https://github.com/Codeinwp/elementor-extra-widgets/tree/master"
             },
-            "time": "2024-02-23T08:34:42+00:00"
+            "time": "2024-03-20T08:32:56+00:00"
         },
         {
             "name": "codeinwp/full-width-page-templates",
