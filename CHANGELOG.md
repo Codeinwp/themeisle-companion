@@ -1,3 +1,8 @@
+##### [Version 2.10.34](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.33...v2.10.34) (2024-03-21)
+
+### Bug Fixes
+- Updated internal dependencies
+
 ##### [Version 2.10.33](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.32...v2.10.33) (2024-03-06)
 
 ### Bug Fixes
