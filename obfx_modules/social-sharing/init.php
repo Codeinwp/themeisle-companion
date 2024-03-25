@@ -50,7 +50,7 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			),
 			'twitter'   => array(
 				'link'     => 'https://twitter.com/intent/tweet?url=' . $post_link . '&text=' . $post_title . '&hashtags=' . $post_categories,
-				'nicename' => 'Twitter',
+				'nicename' => 'X',
 				'icon'     => 'twitter',
 			),
 			'pinterest' => array(
