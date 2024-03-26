@@ -51,6 +51,12 @@
 	text-align: center;
 }
 
+.obfx-sharing .socicon-twitter:before {
+	min-width: 20px;
+	min-height: 20px;
+	transform: translateY(4px);
+}
+
 .obfx-sharing span {
 	display: none;
 	position: absolute;
@@ -105,7 +111,7 @@
 
 .obfx-sharing-inline a.btn-twitter,
 .obfx-sharing a.twitter {
-	background-color: #1da1f2;
+	background-color: #fff;
 }
 
 .obfx-sharing-inline a.btn-pinterest,
