@@ -1,3 +1,9 @@
+##### [Version 2.10.35](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.34...v2.10.35) (2024-03-26)
+
+### Improvements
+- Update dependencies
+- Updated icon for X (former Twitter)
+
 ##### [Version 2.10.34](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.33...v2.10.34) (2024-03-21)
 
 ### Bug Fixes
