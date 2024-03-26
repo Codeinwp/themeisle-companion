@@ -1,7 +1,6 @@
 @font-face {
 	font-family: "Socicon";
-	src: url("fonts/Socicon.eot?xvgs9q");
-	src: url("fonts/Socicon.eot?xvgs9q#iefix") format("embedded-opentype"), url("fonts/Socicon.woff2?xvgs9q") format("woff2"), url("fonts/Socicon.ttf?xvgs9q") format("truetype"), url("fonts/Socicon.woff?xvgs9q") format("woff"), url("fonts/Socicon.svg?xvgs9q#Socicon") format("svg");
+  	src:  url('fonts/Socicon.woff2?2y44c5') format('woff2'), url('fonts/Socicon.woff?2y44c5') format('woff'), url('fonts/Socicon.ttf?2y44c5') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -643,7 +642,11 @@
 }
 
 .socicon-twitter:before {
-	content: "\e08d";
+	content: "";
+	background-image: url(twitter-x.svg);
+	min-width: 13px;
+	min-height: 13px;
+	display: inline-block;
 }
 
 .socicon-uber:before {
