@@ -1,3 +1,8 @@
+##### [Version 2.10.36](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.35...v2.10.36) (2024-04-17)
+
+### Improvements
+​- **Updated internal dependencies:​​** Enhanced performance, security and compatibility with Elementor.
+
 ##### [Version 2.10.35](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.34...v2.10.35) (2024-03-26)
 
 ### Improvements
