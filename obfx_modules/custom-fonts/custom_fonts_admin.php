@@ -404,4 +404,39 @@ class Custom_Fonts_Admin {
 		return $defaults;
 	}
 
+	/**
+	 * Filter data for the current file to upload.
+	 *
+	 * @param array $file SVG file.
+	 *
+	 * @return array
+	 */
+	public function sanitize_svg_upload( $file ) {
+		if ( ! function_exists( 'WP_Filesystem' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/file.php';
+		}
+		WP_Filesystem();
+		global $wp_filesystem;
+
+		// Return the default file if the file name does not exist.
+		if ( ! isset( $file['name'] ) ) {
+			return $file;
+		}
+		// Get file type.
+		$filetype = wp_check_filetype( $file['name'], null );
+		// Check is svg image.
+		if ( 'image/svg+xml' === $filetype['type'] ) {
+			$contents = $wp_filesystem->get_contents( $file['tmp_name'] );
+			// Remove potentially harmful code from SVG content.
+			$contents = preg_replace( '/<script\b[^>]*>(.*?)<\/script>/is', '', $contents );
+			$contents = preg_replace( '/<!ENTITY(.*?)>/is', '', $contents );
+			$contents = preg_replace( '/<!DOCTYPE(.*?)>/is', '', $contents );
+
+			// Save the sanitized content back to the file.
+			$wp_filesystem->put_contents( $file['tmp_name'], $contents );
+		}
+
+		return $file;
+	}
+
 }
