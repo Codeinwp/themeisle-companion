@@ -428,9 +428,15 @@ class Custom_Fonts_Admin {
 		if ( 'image/svg+xml' === $filetype['type'] ) {
 			$contents = $wp_filesystem->get_contents( $file['tmp_name'] );
 			// Remove potentially harmful code from SVG content.
-			$contents = preg_replace( '/<script\b[^>]*>(.*?)<\/script>/is', '', $contents );
-			$contents = preg_replace( '/<!ENTITY(.*?)>/is', '', $contents );
-			$contents = preg_replace( '/<!DOCTYPE(.*?)>/is', '', $contents );
+			$contents = preg_replace(
+				array(
+					'/<script\b[^>]*>(.*?)<\/script>/is',
+					'/<!ENTITY(.*?)>/is',
+					'/<!DOCTYPE(.*?)>/is',
+				),
+				'',
+				$contents
+			);
 
 			// Save the sanitized content back to the file.
 			$wp_filesystem->put_contents( $file['tmp_name'], $contents );
