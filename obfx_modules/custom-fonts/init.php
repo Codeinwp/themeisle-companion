@@ -73,6 +73,7 @@ class Custom_Fonts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$this->loader->add_action( 'create_obfx_custom_fonts', $admin_instance, 'save_metadata' );
 		$this->loader->add_filter( 'upload_mimes', $admin_instance, 'add_fonts_to_allowed_mimes' );
 		$this->loader->add_filter( 'wp_check_filetype_and_ext', $admin_instance, 'update_mime_types', 10, 3 );
+		$this->loader->add_filter( 'wp_handle_upload_prefilter', $admin_instance, 'check_svg_and_sanitize' );
 
 		$public_instance = new Custom_Fonts_Public();
 

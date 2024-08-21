@@ -404,4 +404,102 @@ class Custom_Fonts_Admin {
 		return $defaults;
 	}
 
+	/**
+	 * Check if the file is an SVG, if so handle appropriately
+	 *
+	 * @param array $file An array of data for a single file.
+	 *
+	 * @return mixed
+	 */
+	public function check_svg_and_sanitize( $file ) {
+		// Ensure we have a proper file path before processing.
+		if ( ! isset( $file['tmp_name'] ) ) {
+			return $file;
+		}
+
+		$file_name   = isset( $file['name'] ) ? $file['name'] : '';
+		$wp_filetype = wp_check_filetype_and_ext( $file['tmp_name'], $file_name );
+		$type        = ! empty( $wp_filetype['type'] ) ? $wp_filetype['type'] : '';
+
+		if ( 'image/svg+xml' === $type ) {
+			if ( ! current_user_can( 'upload_files' ) ) {
+				$file['error'] = 'Invalid';
+				return $file;
+			}
+
+			if ( ! $this->sanitize_svg( $file['tmp_name'] ) ) {
+				$file['error'] = 'Invalid';
+			}
+		}
+
+		return $file;
+	}
+
+	/**
+	 * Sanitize the SVG
+	 *
+	 * @param string $file Temp file path.
+	 *
+	 * @return bool|int
+	 */
+	protected function sanitize_svg( $file ) {
+		if ( ! function_exists( 'WP_Filesystem' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/file.php';
+		}
+		WP_Filesystem();
+		global $wp_filesystem;
+
+		$dirty = $wp_filesystem->get_contents( $file );
+
+		// Is the SVG gzipped? If so we try and decode the string.
+		$is_zipped = $this->is_gzipped( $dirty );
+		if ( $is_zipped && ( ! function_exists( 'gzdecode' ) || ! function_exists( 'gzencode' ) ) ) {
+			return false;
+		}
+
+		if ( $is_zipped ) {
+			$dirty = gzdecode( $dirty );
+
+			// If decoding fails, bail as we're not secure.
+			if ( false === $dirty ) {
+				return false;
+			}
+		}
+
+		$sanitizer = new enshrined\svgSanitize\Sanitizer();
+		$clean     = $sanitizer->sanitize( $dirty );
+
+		if ( false === $clean ) {
+			return false;
+		}
+
+		// If we were gzipped, we need to re-zip.
+		if ( $is_zipped ) {
+			$clean = gzencode( $clean );
+		}
+
+		$wp_filesystem->put_contents( $file, $clean );
+
+		return true;
+	}
+
+	/**
+	 * Check if the contents are gzipped
+	 *
+	 * @see http://www.gzip.org/zlib/rfc-gzip.html#member-format
+	 *
+	 * @param string $contents Content to check.
+	 *
+	 * @return bool
+	 */
+	protected function is_gzipped( $contents ) {
+		// phpcs:disable Generic.Strings.UnnecessaryStringConcat.Found
+		if ( function_exists( 'mb_strpos' ) ) {
+			return 0 === mb_strpos( $contents, "\x1f" . "\x8b" . "\x08" );
+		} else {
+			return 0 === strpos( $contents, "\x1f" . "\x8b" . "\x08" );
+		}
+		// phpcs:enable
+	}
+
 }
