@@ -29,7 +29,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		parent::__construct();
 		$this->name                  = __( 'Template Directory Module', 'themeisle-companion' );
 		$this->description           = __( 'The awesome template directory is aiming to provide a wide range of templates that you can import straight into your website.', 'themeisle-companion' );
-		$this->active_default        = true;
+		$this->active_default        = false;
 		$this->refresh_after_enabled = true;
 	}
 
