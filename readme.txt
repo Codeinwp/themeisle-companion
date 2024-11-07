@@ -107,6 +107,13 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 == Changelog ==
 
+##### [Version 2.10.39](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.38...v2.10.39) (2024-11-07)
+
+- Updated dependencies
+
+
+
+
 ##### [Version 2.10.38](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.37...v2.10.38) (2024-10-10)
 
 - disable template diectory module by default
