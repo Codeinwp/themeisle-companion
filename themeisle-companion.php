@@ -116,4 +116,4 @@ spl_autoload_register( array( 'Autoloader', 'loader' ) );
  *
  * @since   1.0.0
  */
-run_orbit_fox();
+add_action( 'init', 'run_orbit_fox' );
