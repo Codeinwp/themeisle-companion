@@ -107,6 +107,13 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 == Changelog ==
 
+##### [Version 2.10.40](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.39...v2.10.40) (2024-11-21)
+
+- Fixed compatibility issue with WordPress 6.7 that was throwing warnings on translations
+
+
+
+
 ##### [Version 2.10.39](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.38...v2.10.39) (2024-11-07)
 
 - Updated dependencies
