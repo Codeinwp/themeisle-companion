@@ -300,8 +300,8 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		}
 
 		if ( $this->is_hestia() ) {
-			$this->loader->add_action( 'after_setup_theme', $this, 'hestia_require' );
-			$this->loader->add_action( 'after_setup_theme', $this, 'hestia_fix_duplicate_widgets' );
+			$this->hestia_require();
+			$this->hestia_fix_duplicate_widgets();
 			$this->loader->add_action( 'wp_enqueue_scripts', $this, 'hestia_enqueue_clients_style' );
 			$this->loader->add_filter( 'hestia_clients_bar_default_content', $this, 'hestia_load_clients_default_content' );
 			$this->loader->add_filter( 'hestia_top_bar_alignment_default', $this, 'hestia_top_bar_default_alignment' );
@@ -310,7 +310,7 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		}
 
 		if ( $this->is_hestia_pro() ) {
-			$this->loader->add_action( 'after_setup_theme', $this, 'hestia_fix_duplicate_widgets' );
+			$this->hestia_fix_duplicate_widgets();
 			$this->loader->add_filter( 'hestia_clients_bar_default_content', $this, 'hestia_load_clients_default_content' );
 			$this->loader->add_filter( 'hestia_top_bar_alignment_default', $this, 'hestia_top_bar_default_alignment' );
 		}
