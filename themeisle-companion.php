@@ -111,9 +111,4 @@ Autoloader::define_namespaces( array( 'Orbit_Fox', 'OBFX', 'OBFX_Module' ) );
  */
 spl_autoload_register( array( 'Autoloader', 'loader' ) );
 
-/**
- * The start of the app.
- *
- * @since   1.0.0
- */
-add_action( 'init', 'run_orbit_fox' );
+run_orbit_fox();
