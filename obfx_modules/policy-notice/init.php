@@ -17,14 +17,11 @@
 class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 	/**
-	 * Test_OBFX_Module constructor.
+	 * Setup module strings
 	 *
-	 * @since   1.0.0
 	 * @access  public
 	 */
-	public function __construct() {
-		parent::__construct();
-
+	public function set_module_strings() {
 		$this->name        = __( 'Policy Notice', 'themeisle-companion' );
 		$this->description = __( 'A simple notice bar which will help you inform users about your website policy.', 'themeisle-companion' );
 	}

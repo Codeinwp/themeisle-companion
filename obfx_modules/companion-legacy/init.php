@@ -29,7 +29,14 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		parent::__construct();
 
 		$this->active_default = true;
+	}
 
+	/**
+	 * Setup module strings
+	 *
+	 * @access  public
+	 */
+	public function set_module_strings() {
 		$this->inc_dir = $this->get_dir() . DIRECTORY_SEPARATOR . 'inc' . DIRECTORY_SEPARATOR;
 		if ( ! defined( 'THEMEISLE_COMPANION_PATH' ) ) {
 			define( 'THEMEISLE_COMPANION_PATH', $this->inc_dir );
@@ -46,7 +53,6 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			require_once $this->inc_dir . 'zerif-lite' . DIRECTORY_SEPARATOR . 'widgets' . DIRECTORY_SEPARATOR . 'widget-team.php';
 			require_once $this->inc_dir . 'zerif-lite' . DIRECTORY_SEPARATOR . 'functions.php';
 		}
-
 
 		if ( $this->is_hestia() ) {
 			require_once $this->inc_dir . 'hestia' . DIRECTORY_SEPARATOR . 'functions.php';
