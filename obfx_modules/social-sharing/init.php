@@ -20,13 +20,11 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	private $social_share_links = array();
 
 	/**
-	 * Social_Sharing_OBFX_Module  constructor.
+	 * Setup module strings
 	 *
-	 * @since   1.0.0
 	 * @access  public
 	 */
-	public function __construct() {
-		parent::__construct();
+	public function set_module_strings() {
 		$this->name = __( 'Social Sharing Module', 'themeisle-companion' );
 		/*
 		 * translators: %s Document anchor link.
