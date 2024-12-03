@@ -1,3 +1,7 @@
+##### [Version 2.10.42](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.41...v2.10.42) (2024-12-03)
+
+- Fixed compatibility issues with WordPress 6.7 and Elementor widgets
+
 ##### [Version 2.10.41](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.40...v2.10.41) (2024-11-22)
 
 - Fixed issues with the latest release causing errors in the customizer
