@@ -167,6 +167,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	 */
 	public function register_loader( Orbit_Fox_Loader $loader ) {
 		$this->loader = $loader;
+		$this->loader->add_action( 'init', $this, 'set_module_strings' );
 		$this->loader->add_action( $this->get_slug() . '_activate', $this, 'activate' );
 		$this->loader->add_action( $this->get_slug() . '_deactivate', $this, 'deactivate' );
 	}
@@ -823,5 +824,13 @@ abstract class Orbit_Fox_Module_Abstract {
 
 		update_option( $option_name, 'no' );
 		return false;
+	}
+
+	/**
+	 * Setup module strings
+	 *
+	 * @access  public
+	 */
+	public function set_module_strings() {
 	}
 }

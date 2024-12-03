@@ -27,10 +27,19 @@ class Custom_Fonts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function __construct() {
 		parent::__construct();
-		$this->name                  = __( 'Custom fonts', 'themeisle-companion' );
-		$this->description           = __( 'Upload custom fonts and use them anywhere on your site.', 'themeisle-companion' );
+
 		$this->active_default        = false;
 		$this->refresh_after_enabled = true;
+	}
+
+	/**
+	 * Setup module strings
+	 *
+	 * @access  public
+	 */
+	public function set_module_strings() {
+		$this->name                  = __( 'Custom fonts', 'themeisle-companion' );
+		$this->description           = __( 'Upload custom fonts and use them anywhere on your site.', 'themeisle-companion' );
 	}
 
 	/**
@@ -63,7 +72,7 @@ class Custom_Fonts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		$this->loader->add_action( 'admin_enqueue_scripts', $this, 'enqueue_media_scripts' );
 
 		$admin_instance = new Custom_Fonts_Admin();
-		$admin_instance->create_taxonomy();
+		$this->loader->add_action( 'init', $admin_instance, 'create_taxonomy' );
 		$this->loader->add_action( 'admin_menu', $admin_instance, 'add_to_menu' );
 		$this->loader->add_action( 'admin_head', $admin_instance, 'edit_custom_font_form' );
 		$this->loader->add_filter( 'manage_edit-obfx_custom_fonts_columns', $admin_instance, 'manage_columns' );

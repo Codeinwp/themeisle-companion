@@ -21,13 +21,11 @@ class Google_Analytics_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	private $api_url = 'https://analytics.orbitfox.com/api/pirate-bridge/v1';
 
 	/**
-	 * Test_OBFX_Module constructor.
+	 * Setup module strings
 	 *
-	 * @since   4.0.3
 	 * @access  public
 	 */
-	public function __construct() {
-		parent::__construct();
+	public function set_module_strings() {
 		$this->name        = __( 'Analytics Integration', 'themeisle-companion' );
 		$this->description = __( 'A module to integrate Google Analytics into your site easily.', 'themeisle-companion' );
 	}
