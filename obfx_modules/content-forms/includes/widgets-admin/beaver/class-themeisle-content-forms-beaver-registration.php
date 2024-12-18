@@ -15,7 +15,7 @@ class Registration_Admin extends Beaver_Widget_Base {
 	 * @return string
 	 */
 	function get_widget_name() {
-		return esc_html__( 'Registration Form', 'textdomain' );
+		return esc_html__( 'Registration Form', 'themeisle-companion' );
 	}
 
 	/**
@@ -36,8 +36,8 @@ class Registration_Admin extends Beaver_Widget_Base {
 			'fields'       => array(
 				array(
 					'key'         => 'username',
-					'label'       => esc_html__( 'User Name', 'textdomain' ),
-					'placeholder' => esc_html__( 'User Name', 'textdomain' ),
+					'label'       => esc_html__( 'User Name', 'themeisle-companion' ),
+					'placeholder' => esc_html__( 'User Name', 'themeisle-companion' ),
 					'type'        => 'text',
 					'required'    => 'required',
 					'field_map'   => 'user_login',
@@ -45,8 +45,8 @@ class Registration_Admin extends Beaver_Widget_Base {
 				),
 				array(
 					'key'         => 'email',
-					'label'       => esc_html__( 'Email', 'textdomain' ),
-					'placeholder' => esc_html__( 'Email', 'textdomain' ),
+					'label'       => esc_html__( 'Email', 'themeisle-companion' ),
+					'placeholder' => esc_html__( 'Email', 'themeisle-companion' ),
 					'type'        => 'email',
 					'required'    => 'required',
 					'field_map'   => 'user_email',
@@ -54,15 +54,15 @@ class Registration_Admin extends Beaver_Widget_Base {
 				),
 				array(
 					'key'         => 'password',
-					'label'       => esc_html__( 'Password', 'textdomain' ),
-					'placeholder' => esc_html__( 'Password', 'textdomain' ),
+					'label'       => esc_html__( 'Password', 'themeisle-companion' ),
+					'placeholder' => esc_html__( 'Password', 'themeisle-companion' ),
 					'type'        => 'password',
 					'required'    => 'required',
 					'field_map'   => 'user_pass',
 					'field_width' => '100',
 				),
 			),
-			'submit_label' => esc_html__( 'Register', 'textdomain' ),
+			'submit_label' => esc_html__( 'Register', 'themeisle-companion' ),
 		);
 	}
 
@@ -72,9 +72,9 @@ class Registration_Admin extends Beaver_Widget_Base {
 	public function __construct() {
 		parent::__construct(
 			array(
-				'name'        => esc_html__( 'Registration', 'textdomain' ),
-				'description' => esc_html__( 'A sign up form.', 'textdomain' ),
-				'category'    => esc_html__( 'Orbit Fox Modules', 'textdomain' ),
+				'name'        => esc_html__( 'Registration', 'themeisle-companion' ),
+				'description' => esc_html__( 'A sign up form.', 'themeisle-companion' ),
+				'category'    => esc_html__( 'Orbit Fox Modules', 'themeisle-companion' ),
 				'dir'         => dirname( __FILE__ ),
 				'url'         => plugin_dir_url( __FILE__ ),
 			)
@@ -90,16 +90,16 @@ class Registration_Admin extends Beaver_Widget_Base {
 	 */
 	function add_widget_repeater_fields( $fields ) {
 		$field_types = array(
-			'first_name'   => __( 'First Name', 'textdomain' ),
-			'last_name'    => __( 'Last Name', 'textdomain' ),
-			'user_pass'    => __( 'Password', 'textdomain' ),
-			'user_login'   => __( 'Username', 'textdomain' ),
-			'user_email'   => __( 'Email', 'textdomain' ),
-			'display_name' => __( 'Display Name', 'textdomain' ),
+			'first_name'   => __( 'First Name', 'themeisle-companion' ),
+			'last_name'    => __( 'Last Name', 'themeisle-companion' ),
+			'user_pass'    => __( 'Password', 'themeisle-companion' ),
+			'user_login'   => __( 'Username', 'themeisle-companion' ),
+			'user_email'   => __( 'Email', 'themeisle-companion' ),
+			'display_name' => __( 'Display Name', 'themeisle-companion' ),
 		);
 
 		$fields['field_map'] = array(
-			'label'   => __( 'Map field to', 'textdomain' ),
+			'label'   => __( 'Map field to', 'themeisle-companion' ),
 			'type'    => 'select',
 			'options' => $field_types,
 		);

@@ -33,32 +33,32 @@ class Server extends \WP_Rest_Controller {
 					'form_type'    => array(
 						'type'        => 'string',
 						'required'    => true,
-						'description' => __( 'What type of form is submitted.', 'textdomain' ),
+						'description' => __( 'What type of form is submitted.', 'themeisle-companion' ),
 					),
 					'nonce'        => array(
 						'type'        => 'string',
 						'required'    => true,
-						'description' => __( 'The security key', 'textdomain' ),
+						'description' => __( 'The security key', 'themeisle-companion' ),
 					),
 					'data'         => array(
 						'type'        => 'json',
 						'required'    => true,
-						'description' => __( 'The form must have data', 'textdomain' ),
+						'description' => __( 'The form must have data', 'themeisle-companion' ),
 					),
 					'form_id'      => array(
 						'type'        => 'string',
 						'required'    => true,
-						'description' => __( 'The form identifier.', 'textdomain' ),
+						'description' => __( 'The form identifier.', 'themeisle-companion' ),
 					),
 					'post_id'      => array(
 						'type'        => 'string',
 						'required'    => true,
-						'description' => __( 'The form identifier.', 'textdomain' ),
+						'description' => __( 'The form identifier.', 'themeisle-companion' ),
 					),
 					'form_builder' => array(
 						'type'        => 'string',
 						'required'    => true,
-						'description' => __( 'Form builder.', 'textdomain' ),
+						'description' => __( 'Form builder.', 'themeisle-companion' ),
 					),
 				),
 				'permission_callback' => '__return_true',
@@ -79,7 +79,7 @@ class Server extends \WP_Rest_Controller {
 			return new \WP_REST_Response(
 				array(
 					'success' => false,
-					'message' => esc_html__( 'Invalid nonce', 'textdomain' ),
+					'message' => esc_html__( 'Invalid nonce', 'themeisle-companion' ),
 				),
 				400
 			);
@@ -91,7 +91,7 @@ class Server extends \WP_Rest_Controller {
 			return new \WP_REST_Response(
 				array(
 					'success' => false,
-					'message' => esc_html__( 'Invalid Data ', 'textdomain' ) . $form_id,
+					'message' => esc_html__( 'Invalid Data ', 'themeisle-companion' ) . $form_id,
 				),
 				400
 			);
@@ -103,7 +103,7 @@ class Server extends \WP_Rest_Controller {
 		$form_builder = $request->get_param( 'form_builder' );
 		$return       = array(
 			'success' => false,
-			'message' => esc_html__( 'Something went wrong', 'textdomain' ),
+			'message' => esc_html__( 'Something went wrong', 'themeisle-companion' ),
 		);
 
 		/**

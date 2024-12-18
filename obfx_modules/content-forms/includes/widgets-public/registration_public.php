@@ -33,7 +33,7 @@ class Registration_Public extends Widget_Actions_Base {
 	 */
 	public function rest_submit_form( $return, $data, $widget_id, $post_id, $builder ) {
 		if ( empty( $data['USER_EMAIL'] ) || ! is_email( $data['USER_EMAIL'] ) ) {
-			$return['message'] = esc_html__( 'Invalid email.', 'textdomain' );
+			$return['message'] = esc_html__( 'Invalid email.', 'themeisle-companion' );
 
 			return $return;
 		}
@@ -98,7 +98,7 @@ class Registration_Public extends Widget_Actions_Base {
 			}
 
 			$return['success'] = true;
-			$return['message'] = esc_html__( 'Welcome, ', 'textdomain' ) . $settings['user_login'] . '!';
+			$return['message'] = esc_html__( 'Welcome, ', 'themeisle-companion' ) . $settings['user_login'] . '!';
 		}
 
 		return $return;

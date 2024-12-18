@@ -42,12 +42,12 @@ class Newsletter_Public extends Widget_Actions_Base {
 		 * Email address is required for this type of form
 		 */
 		if ( empty( $data['EMAIL'] ) ) {
-			$return['message'] = esc_html__( 'The email field cannot be empty.', 'textdomain' );
+			$return['message'] = esc_html__( 'The email field cannot be empty.', 'themeisle-companion' );
 			return $return;
 		}
 
 		if ( ! is_email( $data['EMAIL'] ) ) {
-			$return['message'] = esc_html__( 'Invalid email.', 'textdomain' );
+			$return['message'] = esc_html__( 'Invalid email.', 'themeisle-companion' );
 			return $return;
 		}
 
@@ -56,7 +56,7 @@ class Newsletter_Public extends Widget_Actions_Base {
 		 */
 		$settings = $this->get_widget_settings( $widget_id, $post_id, $builder );
 		if ( empty( $settings['access_key'] ) || empty( $settings['list_id'] ) ) {
-			$return['message'] = esc_html__( 'Wrong email configuration! Please contact administration!', 'textdomain' );
+			$return['message'] = esc_html__( 'Wrong email configuration! Please contact administration!', 'themeisle-companion' );
 
 			return $return;
 		}
@@ -74,8 +74,8 @@ class Newsletter_Public extends Widget_Actions_Base {
 			),
 			'data'              => $form_fields,
 			'strings'           => array(
-				'error_message'   => array_key_exists( 'error_message', $settings ) && ! empty( $settings['error_message'] ) ? $settings['error_message'] : esc_html__( 'Action failed!', 'textdomain' ),
-				'success_message' => array_key_exists( 'success_message', $settings ) && ! empty( $settings['success_message'] ) ? $settings['success_message'] : esc_html__( 'Welcome to our newsletter!', 'textdomain' ),
+				'error_message'   => array_key_exists( 'error_message', $settings ) && ! empty( $settings['error_message'] ) ? $settings['error_message'] : esc_html__( 'Action failed!', 'themeisle-companion' ),
+				'success_message' => array_key_exists( 'success_message', $settings ) && ! empty( $settings['success_message'] ) ? $settings['success_message'] : esc_html__( 'Welcome to our newsletter!', 'themeisle-companion' ),
 			),
 		);
 

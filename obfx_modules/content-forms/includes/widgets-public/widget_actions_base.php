@@ -163,7 +163,7 @@ abstract class Widget_Actions_Base {
 			$hidden_value = str_replace( '{user_type}', implode( ', ', $user_info->roles ), $hidden_value );
 			$hidden_value = str_replace( '{user_email}', $user_info->user_email, $hidden_value );
 		} else {
-			$replacement  = __( 'Could not retrieve the info because the user is not logged in.', 'textdomain' );
+			$replacement  = __( 'Could not retrieve the info because the user is not logged in.', 'themeisle-companion' );
 			$hidden_value = str_replace( '{username}', $replacement, $hidden_value );
 			$hidden_value = str_replace( '{user_nice_name}', $replacement, $hidden_value );
 			$hidden_value = str_replace( '{user_type}', $replacement, $hidden_value );

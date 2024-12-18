@@ -10,11 +10,11 @@ class EAW_Recent_Posts_Plus extends WP_Widget {
 	public function __construct() {
 		$widget_ops = array(
 			'classname'                   => 'widget_recent_posts_plus',
-			'description'                 => __( 'Recent posts with featured image - ideal for use with Elementor Page Builder plugin', 'textdomain' ),
+			'description'                 => __( 'Recent posts with featured image - ideal for use with Elementor Page Builder plugin', 'themeisle-companion' ),
 			'customize_selective_refresh' => true,
 		);
 
-		parent::__construct( 'eaw-recent-posts-plus', __( 'EAW: Elementor Posts By Category', 'textdomain' ), $widget_ops );
+		parent::__construct( 'eaw-recent-posts-plus', __( 'EAW: Elementor Posts By Category', 'themeisle-companion' ), $widget_ops );
 		$this->alt_option_name = 'widget_recent_entries_plus';
 
 		add_action( 'save_post', array( $this, 'flush_widget_cache' ) );
@@ -158,19 +158,19 @@ class EAW_Recent_Posts_Plus extends WP_Widget {
 		$category     = isset( $instance['category'] ) ? $instance['category'] : '';
 		?>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'textdomain' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'themeisle-companion' ); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>"
 				   name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>"/>
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of posts to show:', 'textdomain' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of posts to show:', 'themeisle-companion' ); ?></label>
 			<input id="<?php echo $this->get_field_id( 'number' ); ?>"
 				   name="<?php echo $this->get_field_name( 'number' ); ?>" type="text" value="<?php echo $number; ?>"
 				   size="3"/></p>
 
 		<p>
-			<label for="rpjc_widget_cat_recent_posts_category"><?php _e( 'Category', 'textdomain' ); ?>:</label>
+			<label for="rpjc_widget_cat_recent_posts_category"><?php _e( 'Category', 'themeisle-companion' ); ?>:</label>
 			<?php
 			wp_dropdown_categories(
 				array(
@@ -189,11 +189,11 @@ class EAW_Recent_Posts_Plus extends WP_Widget {
 		<p><input class="checkbox" type="checkbox" <?php checked( $show_excerpt ); ?>
 				  id="<?php echo $this->get_field_id( 'show_excerpt' ); ?>"
 				  name="<?php echo $this->get_field_name( 'show_excerpt' ); ?>"/>
-			<label for="<?php echo $this->get_field_id( 'show_dexcerpt' ); ?>"><?php _e( 'Display post excerpt?', 'textdomain' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'show_dexcerpt' ); ?>"><?php _e( 'Display post excerpt?', 'themeisle-companion' ); ?></label>
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'excerptcount' ); ?>"><?php _e( 'Excerpt length to show:', 'textdomain' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'excerptcount' ); ?>"><?php _e( 'Excerpt length to show:', 'themeisle-companion' ); ?></label>
 			<input id="<?php echo $this->get_field_id( 'excerptcount' ); ?>"
 				   name="<?php echo $this->get_field_name( 'excerptcount' ); ?>" type="text"
 				   value="<?php echo $excerptcount; ?>" size="3"/></p>

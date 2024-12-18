@@ -10,11 +10,11 @@ class Woo_Product_Categories extends EAW_WP_Widget {
 	public function __construct() {
 		$widget_ops = array(
 			'classname'                   => 'woo_product_categories',
-			'description'                 => __( 'Woo Product Categories - designed for use with the Elementor Page Builder plugin', 'textdomain' ),
+			'description'                 => __( 'Woo Product Categories - designed for use with the Elementor Page Builder plugin', 'themeisle-companion' ),
 			'customize_selective_refresh' => true,
 		);
 
-		parent::__construct( 'woo-product-categories', __( 'Woo Product Categories', 'textdomain' ), $widget_ops );
+		parent::__construct( 'woo-product-categories', __( 'Woo Product Categories', 'themeisle-companion' ), $widget_ops );
 		$this->alt_option_name = 'woo_product_categories';
 
 		add_action( 'save_post', array( $this, 'flush_widget_cache' ) );
@@ -52,7 +52,7 @@ class Woo_Product_Categories extends EAW_WP_Widget {
 		$title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
 
 		if ( '' == $title ) {
-			$title = __( 'Shop By Categories', 'textdomain' );
+			$title = __( 'Shop By Categories', 'themeisle-companion' );
 		}
 
 		$limit = ( ! empty( $instance['limit'] ) ) ? absint( $instance['limit'] ) : 3;
@@ -149,19 +149,19 @@ class Woo_Product_Categories extends EAW_WP_Widget {
 		$limit   = isset( $instance['limit'] ) ? absint( $instance['limit'] ) : 3;
 		$columns = isset( $instance['columns '] ) ? absint( $instance['columns '] ) : 3; ?>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'textdomain' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'themeisle-companion' ); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>"
 				   name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>"/>
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'limit' ); ?>"><?php _e( 'Number of categories to show:', 'textdomain' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'limit' ); ?>"><?php _e( 'Number of categories to show:', 'themeisle-companion' ); ?></label>
 			<input id="<?php echo $this->get_field_id( 'limit' ); ?>"
 				   name="<?php echo $this->get_field_name( 'limit' ); ?>" type="text" value="<?php echo $limit; ?>"
 				   size="3"/></p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'columns' ); ?>"><?php _e( 'Number of Columns:', 'textdomain' ); ?></label>
+			<label for="<?php echo $this->get_field_id( 'columns' ); ?>"><?php _e( 'Number of Columns:', 'themeisle-companion' ); ?></label>
 			<input id="<?php echo $this->get_field_id( 'columns' ); ?>"
 				   name="<?php echo $this->get_field_name( 'columns' ); ?>" type="text" value="<?php echo $columns; ?>"
 				   size="3"/></p>

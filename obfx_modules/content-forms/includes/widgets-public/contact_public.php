@@ -41,8 +41,8 @@ class Contact_Public extends Widget_Actions_Base {
 	 */
 	public function rest_submit_form( $return, $data, $widget_id, $post_id, $builder ) {
 		$settings        = $this->get_widget_settings( $widget_id, $post_id, $builder );
-		$success_message = array_key_exists( 'success_message', $settings ) && ! empty( $settings['success_message'] ) ? $settings['success_message'] : esc_html__( 'Your message has been sent!', 'textdomain' );
-		$error_message   = array_key_exists( 'error_message', $settings ) && ! empty( $settings['error_message'] ) ? $settings['error_message'] : esc_html__( 'We failed to send your message!', 'textdomain' );
+		$success_message = array_key_exists( 'success_message', $settings ) && ! empty( $settings['success_message'] ) ? $settings['success_message'] : esc_html__( 'Your message has been sent!', 'themeisle-companion' );
+		$error_message   = array_key_exists( 'error_message', $settings ) && ! empty( $settings['error_message'] ) ? $settings['error_message'] : esc_html__( 'We failed to send your message!', 'themeisle-companion' );
 		if ( empty( $settings ) ) {
 			return $return;
 		}
@@ -51,7 +51,7 @@ class Contact_Public extends Widget_Actions_Base {
 		 * Bail if there is nowhere to send the email.
 		 */
 		if ( ! isset( $settings['to_send_email'] ) || ! is_email( $settings['to_send_email'] ) ) {
-			$return['message'] = esc_html__( 'Wrong email configuration! Please contact administration!', 'textdomain' );
+			$return['message'] = esc_html__( 'Wrong email configuration! Please contact administration!', 'themeisle-companion' );
 			return $return;
 		}
 
@@ -66,12 +66,12 @@ class Contact_Public extends Widget_Actions_Base {
 			$required_field = array_key_exists( 'requirement', $field ) ? $field['requirement'] : ( array_key_exists( 'required', $field ) ? $field['required'] : '' );
 
 			if ( 'required' === $required_field && empty( $data[ $key ] ) && 'hidden' !== $field['type'] ) {
-				$return['message'] = sprintf( esc_html__( 'Missing %s', 'textdomain' ), $key );
+				$return['message'] = sprintf( esc_html__( 'Missing %s', 'themeisle-companion' ), $key );
 				return $return;
 			}
 
 			if ( 'email' === $field['type'] && ! is_email( $data[ $key ] ) ) {
-				$return['message'] = esc_html__( 'Invalid email.', 'textdomain' );
+				$return['message'] = esc_html__( 'Invalid email.', 'themeisle-companion' );
 				return $return;
 			}
 
@@ -148,7 +148,7 @@ class Contact_Public extends Widget_Actions_Base {
 			<!-- view port meta tag -->
 			<meta name="viewport" content="width=device-width, initial-scale=1">
 			<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-			<title><?php echo esc_html__( 'Mail From: ', 'textdomain' ) . isset( $data['name'] ) ? esc_html( $data['name'] ) : 'N/A'; ?></title>
+			<title><?php echo esc_html__( 'Mail From: ', 'themeisle-companion' ) . isset( $data['name'] ) ? esc_html( $data['name'] ) : 'N/A'; ?></title>
 		</head>
 		<body>
 		<table>
@@ -156,7 +156,7 @@ class Contact_Public extends Widget_Actions_Base {
 			<tr>
 				<th>
 					<h3>
-						<?php esc_html_e( 'Content Form submission from ', 'textdomain' ); ?>
+						<?php esc_html_e( 'Content Form submission from ', 'themeisle-companion' ); ?>
 						<a href="<?php echo esc_url( get_site_url() ); ?>"><?php bloginfo( 'name' ); ?></a>
 					</h3>
 					<hr/>
@@ -179,7 +179,7 @@ class Contact_Public extends Widget_Actions_Base {
 			<tr>
 				<td>
 					<hr/>
-					<?php esc_html_e( 'You received this email because your email address is set in the content form settings on ', 'textdomain' ); ?>
+					<?php esc_html_e( 'You received this email because your email address is set in the content form settings on ', 'themeisle-companion' ); ?>
 					<a href="<?php echo esc_url( get_site_url() ); ?>"><?php bloginfo( 'name' ); ?></a>
 				</td>
 			</tr>

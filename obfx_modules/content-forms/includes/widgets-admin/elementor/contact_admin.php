@@ -39,7 +39,7 @@ class Contact_Admin extends Elementor_Widget_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Contact Form', 'textdomain' );
+		return esc_html__( 'Contact Form', 'themeisle-companion' );
 	}
 
 	/**
@@ -52,33 +52,33 @@ class Contact_Admin extends Elementor_Widget_Base {
 			array(
 				'key'         => 'name',
 				'type'        => 'text',
-				'label'       => esc_html__( 'Name', 'textdomain' ),
+				'label'       => esc_html__( 'Name', 'themeisle-companion' ),
 				'requirement' => 'required',
-				'placeholder' => esc_html__( 'Name', 'textdomain' ),
+				'placeholder' => esc_html__( 'Name', 'themeisle-companion' ),
 				'field_width' => '100',
 			),
 			array(
 				'key'         => 'email',
 				'type'        => 'email',
-				'label'       => esc_html__( 'Email', 'textdomain' ),
+				'label'       => esc_html__( 'Email', 'themeisle-companion' ),
 				'requirement' => 'required',
-				'placeholder' => esc_html__( 'Email', 'textdomain' ),
+				'placeholder' => esc_html__( 'Email', 'themeisle-companion' ),
 				'field_width' => '100',
 			),
 			array(
 				'key'         => 'phone',
 				'type'        => 'number',
-				'label'       => esc_html__( 'Phone', 'textdomain' ),
+				'label'       => esc_html__( 'Phone', 'themeisle-companion' ),
 				'requirement' => 'optional',
-				'placeholder' => esc_html__( 'Phone', 'textdomain' ),
+				'placeholder' => esc_html__( 'Phone', 'themeisle-companion' ),
 				'field_width' => '100',
 			),
 			array(
 				'key'         => 'message',
 				'type'        => 'textarea',
-				'label'       => esc_html__( 'Message', 'textdomain' ),
+				'label'       => esc_html__( 'Message', 'themeisle-companion' ),
 				'requirement' => 'required',
-				'placeholder' => esc_html__( 'Message', 'textdomain' ),
+				'placeholder' => esc_html__( 'Message', 'themeisle-companion' ),
 				'field_width' => '100',
 			),
 		);
@@ -102,8 +102,8 @@ class Contact_Admin extends Elementor_Widget_Base {
 			'success_message',
 			array(
 				'type'    => 'text',
-				'label'   => esc_html__( 'Success message', 'textdomain' ),
-				'default' => esc_html__( 'Your message has been sent!', 'textdomain' ),
+				'label'   => esc_html__( 'Success message', 'themeisle-companion' ),
+				'default' => esc_html__( 'Your message has been sent!', 'themeisle-companion' ),
 			)
 		);
 
@@ -111,8 +111,8 @@ class Contact_Admin extends Elementor_Widget_Base {
 			'error_message',
 			array(
 				'type'    => 'text',
-				'label'   => esc_html__( 'Error message', 'textdomain' ),
-				'default' => esc_html__( 'Oops! I cannot send this email!', 'textdomain' ),
+				'label'   => esc_html__( 'Error message', 'themeisle-companion' ),
+				'default' => esc_html__( 'Oops! I cannot send this email!', 'themeisle-companion' ),
 			)
 		);
 
@@ -120,9 +120,9 @@ class Contact_Admin extends Elementor_Widget_Base {
 			'to_send_email',
 			array(
 				'type'        => 'text',
-				'label'       => esc_html__( 'Send to', 'textdomain' ),
+				'label'       => esc_html__( 'Send to', 'themeisle-companion' ),
 				'default'     => get_bloginfo( 'admin_email' ),
-				'description' => esc_html__( 'Where should we send the email?', 'textdomain' ),
+				'description' => esc_html__( 'Where should we send the email?', 'themeisle-companion' ),
 			)
 		);
 
@@ -130,29 +130,29 @@ class Contact_Admin extends Elementor_Widget_Base {
 			'submit_label',
 			array(
 				'type'    => 'text',
-				'label'   => esc_html__( 'Submit', 'textdomain' ),
-				'default' => esc_html__( 'Submit', 'textdomain' ),
+				'label'   => esc_html__( 'Submit', 'themeisle-companion' ),
+				'default' => esc_html__( 'Submit', 'themeisle-companion' ),
 			)
 		);
 
 		$this->add_responsive_control(
 			'align_submit',
 			array(
-				'label'     => __( 'Alignment', 'textdomain' ),
+				'label'     => __( 'Alignment', 'themeisle-companion' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'toggle'    => false,
 				'default'   => 'left',
 				'options'   => array(
 					'left'   => array(
-						'title' => __( 'Left', 'textdomain' ),
+						'title' => __( 'Left', 'themeisle-companion' ),
 						'icon'  => 'fa fa-align-left',
 					),
 					'center' => array(
-						'title' => __( 'Center', 'textdomain' ),
+						'title' => __( 'Center', 'themeisle-companion' ),
 						'icon'  => 'fa fa-align-center',
 					),
 					'right'  => array(
-						'title' => __( 'Right', 'textdomain' ),
+						'title' => __( 'Right', 'themeisle-companion' ),
 						'icon'  => 'fa fa-align-right',
 					),
 				),
@@ -180,8 +180,8 @@ class Contact_Admin extends Elementor_Widget_Base {
 		$repeater->add_control(
 			'hidden_value',
 			array(
-				'label'       => __( 'Value', 'textdomain' ),
-				'description' => __( 'You can use the following magic tags to get additional information: {current_url}, {username}, {user_nice_name}, {user_type}, {user_email}', 'textdomain' ),
+				'label'       => __( 'Value', 'themeisle-companion' ),
+				'description' => __( 'You can use the following magic tags to get additional information: {current_url}, {username}, {user_nice_name}, {user_type}, {user_email}', 'themeisle-companion' ),
 				'type'        => Controls_Manager::TEXTAREA,
 				'default'     => '',
 				'condition'   => array(
@@ -198,8 +198,8 @@ class Contact_Admin extends Elementor_Widget_Base {
 	 */
 	function get_specific_field_types() {
 		$field_types             = $this->field_types;
-		$field_types['checkbox'] = esc_html__( 'Checkbox', 'textdomain' );
-		$field_types['hidden']   = esc_html__( 'Hidden', 'textdomain' );
+		$field_types['checkbox'] = esc_html__( 'Checkbox', 'themeisle-companion' );
+		$field_types['hidden']   = esc_html__( 'Hidden', 'themeisle-companion' );
 		return $field_types;
 	}
 }

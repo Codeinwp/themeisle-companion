@@ -124,7 +124,7 @@ class Elementor_Widget_Manager {
 		$elements_manager->add_category(
 			'obfx-elementor-widgets',
 			array(
-				'title' => __( 'Orbit Fox Addons', 'textdomain' ),
+				'title' => __( 'Orbit Fox Addons', 'themeisle-companion' ),
 				'icon'  => 'fa fa-plug',
 			)
 		);

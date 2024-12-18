@@ -49,7 +49,7 @@ class Registration_Admin extends Elementor_Widget_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Registration Form', 'textdomain' );
+		return esc_html__( 'Registration Form', 'themeisle-companion' );
 	}
 
 	/**
@@ -62,27 +62,27 @@ class Registration_Admin extends Elementor_Widget_Base {
 			array(
 				'key'         => 'username',
 				'type'        => 'text',
-				'label'       => esc_html__( 'User Name', 'textdomain' ),
+				'label'       => esc_html__( 'User Name', 'themeisle-companion' ),
 				'require'     => 'required',
-				'placeholder' => esc_html__( 'User Name', 'textdomain' ),
+				'placeholder' => esc_html__( 'User Name', 'themeisle-companion' ),
 				'field_width' => '100',
 				'field_map'   => 'user_login',
 			),
 			array(
 				'key'         => 'email',
 				'type'        => 'email',
-				'label'       => esc_html__( 'Email', 'textdomain' ),
+				'label'       => esc_html__( 'Email', 'themeisle-companion' ),
 				'require'     => 'required',
-				'placeholder' => esc_html__( 'Email', 'textdomain' ),
+				'placeholder' => esc_html__( 'Email', 'themeisle-companion' ),
 				'field_width' => '100',
 				'field_map'   => 'user_email',
 			),
 			array(
 				'key'         => 'password',
 				'type'        => 'password',
-				'label'       => esc_html__( 'Password', 'textdomain' ),
+				'label'       => esc_html__( 'Password', 'themeisle-companion' ),
 				'require'     => 'required',
-				'placeholder' => esc_html__( 'Password', 'textdomain' ),
+				'placeholder' => esc_html__( 'Password', 'themeisle-companion' ),
 				'field_width' => '100',
 				'field_map'   => 'user_pass',
 			),
@@ -104,29 +104,29 @@ class Registration_Admin extends Elementor_Widget_Base {
 			'submit_label',
 			array(
 				'type'    => 'text',
-				'label'   => esc_html__( 'Submit', 'textdomain' ),
-				'default' => esc_html__( 'Register', 'textdomain' ),
+				'label'   => esc_html__( 'Submit', 'themeisle-companion' ),
+				'default' => esc_html__( 'Register', 'themeisle-companion' ),
 			)
 		);
 
 		$this->add_responsive_control(
 			'align_submit',
 			array(
-				'label'     => __( 'Alignment', 'textdomain' ),
+				'label'     => __( 'Alignment', 'themeisle-companion' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'toggle'    => false,
 				'default'   => 'left',
 				'options'   => array(
 					'left'   => array(
-						'title' => __( 'Left', 'textdomain' ),
+						'title' => __( 'Left', 'themeisle-companion' ),
 						'icon'  => 'fa fa-align-left',
 					),
 					'center' => array(
-						'title' => __( 'Center', 'textdomain' ),
+						'title' => __( 'Center', 'themeisle-companion' ),
 						'icon'  => 'fa fa-align-center',
 					),
 					'right'  => array(
-						'title' => __( 'Right', 'textdomain' ),
+						'title' => __( 'Right', 'themeisle-companion' ),
 						'icon'  => 'fa fa-align-right',
 					),
 				),
@@ -151,17 +151,17 @@ class Registration_Admin extends Elementor_Widget_Base {
 	 */
 	function add_repeater_specific_fields( $repeater ) {
 		$field_types = array(
-			'first_name'   => __( 'First Name', 'textdomain' ),
-			'last_name'    => __( 'Last Name', 'textdomain' ),
-			'user_pass'    => __( 'Password', 'textdomain' ),
-			'user_login'   => __( 'Username', 'textdomain' ),
-			'user_email'   => __( 'Email', 'textdomain' ),
-			'display_name' => __( 'Display Name', 'textdomain' ),
+			'first_name'   => __( 'First Name', 'themeisle-companion' ),
+			'last_name'    => __( 'Last Name', 'themeisle-companion' ),
+			'user_pass'    => __( 'Password', 'themeisle-companion' ),
+			'user_login'   => __( 'Username', 'themeisle-companion' ),
+			'user_email'   => __( 'Email', 'themeisle-companion' ),
+			'display_name' => __( 'Display Name', 'themeisle-companion' ),
 		);
 		$repeater->add_control(
 			'field_map',
 			array(
-				'label'   => __( 'Map field to', 'textdomain' ),
+				'label'   => __( 'Map field to', 'themeisle-companion' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => $field_types,
 				'default' => 'text',
