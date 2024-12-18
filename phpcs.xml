@@ -43,6 +43,7 @@
     <exclude-pattern>artifact/*</exclude-pattern>
     <exclude-pattern>assets/*</exclude-pattern>
     <exclude-pattern>obfx_modules/elementor-extra-widgets/</exclude-pattern>
+    <exclude-pattern>obfx_modules/content-forms/</exclude-pattern>
 
     <arg name="parallel" value="20"/>
 </ruleset>
