@@ -4,47 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "98526a13b8c1cb51fd026cef17ddbaae",
+    "content-hash": "546aea6b36d85bb230e554ad6bbf9576",
     "packages": [
-        {
-            "name": "codeinwp/elementor-extra-widgets",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Codeinwp/elementor-extra-widgets.git",
-                "reference": "3dbe12d2ba79edda78402b8f27c4b7b60e87b70e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Codeinwp/elementor-extra-widgets/zipball/3dbe12d2ba79edda78402b8f27c4b7b60e87b70e",
-                "reference": "3dbe12d2ba79edda78402b8f27c4b7b60e87b70e",
-                "shasum": ""
-            },
-            "default-branch": true,
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "load.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-3.0-or-later"
-            ],
-            "authors": [
-                {
-                    "name": "ThemeIsle team",
-                    "email": "friends@themeisle.com",
-                    "homepage": "https://themeisle.com"
-                }
-            ],
-            "homepage": "https://github.com/Codeinwp/elementor-extra-widgets",
-            "support": {
-                "issues": "https://github.com/Codeinwp/elementor-extra-widgets/issues",
-                "source": "https://github.com/Codeinwp/elementor-extra-widgets/tree/master"
-            },
-            "time": "2024-04-16T14:25:20+00:00"
-        },
         {
             "name": "codeinwp/full-width-page-templates",
             "version": "dev-master",
@@ -594,7 +555,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "codeinwp/elementor-extra-widgets": 20,
         "codeinwp/themeisle-content-forms": 20
     },
     "prefer-stable": true,
@@ -604,5 +564,5 @@
     "platform-overrides": {
         "php": "5.6"
     },
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }
