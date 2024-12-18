@@ -38,7 +38,8 @@
   "autoload": {
     "files": [
       "vendor/codeinwp/themeisle-sdk/load.php",
-      "vendor/codeinwp/themeisle-content-forms/load.php"
+      "vendor/codeinwp/themeisle-content-forms/load.php",
+      "obfx_modules/elementor-extra-widgets/load.php"
     ]
   },
   "prefer-stable": true,

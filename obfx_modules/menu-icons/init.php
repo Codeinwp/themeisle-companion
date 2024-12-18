@@ -42,8 +42,8 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function set_module_strings() {
-		$this->name           = __( 'Menu Icons', 'themeisle-companion' );
-		$this->description    = __( 'Module to define menu icons for navigation.', 'themeisle-companion' );
+		$this->name        = __( 'Menu Icons', 'themeisle-companion' );
+		$this->description = __( 'Module to define menu icons for navigation.', 'themeisle-companion' );
 	}
 
 
