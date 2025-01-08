@@ -1039,23 +1039,25 @@ class Pricing_Table extends Widget_Base {
 			$output .= '<div class="obfx-title-wrapper">';
 			if ( ! empty( $settings['title'] ) ) {
 				// Start of title tag.
-				$output .= '<' . esc_html( $settings['title_tag'] ) . ' ' . $this->get_render_attribute_string( 'title' ) . '>';
+				$title_tag = in_array( $settings['title_tag'], array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p' ), true ) ? $settings['title_tag'] : 'h1';
+				$output   .= '<' . esc_html( $title_tag ) . ' ' . $this->get_render_attribute_string( 'title' ) . '>';
 
 				// Title string.
 				$output .= esc_html( $settings['title'] );
 
 				// End of title tag.
-				$output .= '</' . esc_html( $settings['title_tag'] ) . '>';
+				$output .= '</' . esc_html( $title_tag ) . '>';
 			}
 			if ( ! empty( $settings['subtitle'] ) ) {
 				// Start of subtitle tag.
-				$output .= '<' . esc_html( $settings['subtitle_tag'] ) . ' ' . $this->get_render_attribute_string( 'subtitle' ) . '>';
+				$subtitle_tag = in_array( $settings['subtitle_tag'], array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p' ), true ) ? $settings['subtitle_tag'] : 'h1';
+				$output      .= '<' . esc_html( $subtitle_tag ) . ' ' . $this->get_render_attribute_string( 'subtitle' ) . '>';
 
 				// Subtitle string.
 				$output .= esc_html( $settings['subtitle'] );
 
 				// End of subtitle tag.
-				$output .= '</' . esc_html( $settings['subtitle_tag'] ) . '>';
+				$output .= '</' . esc_html( $subtitle_tag ) . '>';
 
 			}
 
