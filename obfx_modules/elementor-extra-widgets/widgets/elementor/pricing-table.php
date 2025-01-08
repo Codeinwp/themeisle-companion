@@ -1021,7 +1021,7 @@ class Pricing_Table extends Widget_Base {
 		//      $this->add_render_attribute( 'button_icon', 'class', $settings['button_icon'] );
 		$this->add_render_attribute( 'button_icon_align', 'class', 'obfx-button-icon-align-' . $settings['button_icon_align'] );
 		if ( ! empty( $settings['button_link']['url'] ) ) {
-			$this->add_render_attribute( 'button', 'href', $settings['button_link']['url'] );
+			$this->add_render_attribute( 'button', 'href', esc_url( $settings['button_link']['url'] ) );
 
 			if ( ! empty( $settings['button_link']['is_external'] ) ) {
 				$this->add_render_attribute( 'button', 'target', '_blank' );
