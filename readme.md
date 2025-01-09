@@ -107,6 +107,13 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 ## Changelog ##
 
+##### [Version 2.10.44](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.43...v2.10.44) (2025-01-09)
+
+- Enhanced security
+
+
+
+
 ##### [Version 2.10.43](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.42...v2.10.43) (2024-12-19)
 
 - Fixed compatibility issue with Elementor v3.26
