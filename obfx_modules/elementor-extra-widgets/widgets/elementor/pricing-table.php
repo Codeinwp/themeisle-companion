@@ -1039,23 +1039,25 @@ class Pricing_Table extends Widget_Base {
 			$output .= '<div class="obfx-title-wrapper">';
 			if ( ! empty( $settings['title'] ) ) {
 				// Start of title tag.
-				$output .= '<' . esc_html( $settings['title_tag'] ) . ' ' . $this->get_render_attribute_string( 'title' ) . '>';
+				$title_tag = $this->sanitize_tag( $settings['title_tag'] );
+				$output   .= '<' . esc_html( $title_tag ) . ' ' . $this->get_render_attribute_string( 'title' ) . '>';
 
 				// Title string.
 				$output .= esc_html( $settings['title'] );
 
 				// End of title tag.
-				$output .= '</' . esc_html( $settings['title_tag'] ) . '>';
+				$output .= '</' . esc_html( $title_tag ) . '>';
 			}
 			if ( ! empty( $settings['subtitle'] ) ) {
 				// Start of subtitle tag.
-				$output .= '<' . esc_html( $settings['subtitle_tag'] ) . ' ' . $this->get_render_attribute_string( 'subtitle' ) . '>';
+				$subtitle_tag = $this->sanitize_tag( $settings['subtitle_tag'] );
+				$output      .= '<' . esc_html( $subtitle_tag ) . ' ' . $this->get_render_attribute_string( 'subtitle' ) . '>';
 
 				// Subtitle string.
 				$output .= esc_html( $settings['subtitle'] );
 
 				// End of subtitle tag.
-				$output .= '</' . esc_html( $settings['subtitle_tag'] ) . '>';
+				$output .= '</' . esc_html( $subtitle_tag ) . '>';
 
 			}
 
@@ -1156,6 +1158,17 @@ class Pricing_Table extends Widget_Base {
 			$output .= '</span>';
 		}
 		return $output;
+	}
+
+	/**
+	 * Sanitize html tags.
+	 *
+	 * @param string $tag HTML tagname.
+	 *
+	 * @return string
+	 */
+	private function sanitize_tag( $tag ) {
+		return in_array( $tag, array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p' ), true ) ? $tag : 'h1';
 	}
 }
 
