@@ -1638,8 +1638,9 @@ class Posts_Grid extends Widget_Base {
 		$settings = $this->get_settings();
 
 		if ( $settings['grid_title_hide'] !== 'yes' ) {
+			$tag = in_array( $settings['grid_title_tag'], array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p' ), true ) ? $settings['grid_title_tag'] : 'h1';
 			?>
-			<<?php echo $settings['grid_title_tag']; ?> class="entry-title obfx-grid-title">
+			<<?php echo $tag; ?> class="entry-title obfx-grid-title">
 			<?php if ( $settings['grid_title_link'] == 'yes' ) { ?>
 				<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
 					<?php the_title(); ?>
@@ -1649,7 +1650,7 @@ class Posts_Grid extends Widget_Base {
 				the_title();
 			}
 			?>
-			</<?php echo $settings['grid_title_tag']; ?>>
+			</<?php echo $tag; ?>>
 			<?php
 		}
 	}
