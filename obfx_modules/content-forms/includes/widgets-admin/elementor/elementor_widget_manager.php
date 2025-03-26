@@ -109,7 +109,7 @@ class Elementor_Widget_Manager {
 	 */
 	public function before_settings_save( $data, $document ) {
 		if ( ! isset( $data['elements'] ) ) {
-			return;
+			return $data;
 		}
 		$this->search_and_modify_widget_settings( $data['elements'] );
 		return $data;
