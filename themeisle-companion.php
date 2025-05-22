@@ -64,6 +64,8 @@ register_deactivation_hook( __FILE__, 'deactivate_orbit_fox' );
 function run_orbit_fox() {
 	define( 'OBFX_URL', plugins_url( '/', __FILE__ ) );
 	define( 'OBX_PATH', dirname( __FILE__ ) );
+	define( 'OBX_PRODUCT_SLUG', basename( OBX_PATH ) );
+
 	$plugin = new Orbit_Fox();
 	$plugin->run();
 	$vendor_file = OBX_PATH . '/vendor/autoload.php';
