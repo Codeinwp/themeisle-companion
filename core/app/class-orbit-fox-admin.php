@@ -238,6 +238,10 @@ class Orbit_Fox_Admin {
 					'plugins'          => $this->get_recommended_plugins(),
 				)
 			);
+
+			wp_set_script_translations( 'obfx-dashboard', 'obfx_companion' );
+
+			do_action( 'themeisle_internal_page', OBX_PRODUCT_SLUG, 'dashboard' );
 		}
 		do_action( 'obfx_admin_enqueue_scripts' );
 	}
@@ -465,4 +469,29 @@ class Orbit_Fox_Admin {
 		echo '<div id="obfx-dash"></div>'; // entry point for the React dashboard
 	}
 
+	/**
+	 * Add Black Friday data.
+	 *
+	 * @param array $configs The configuration array for the loaded products.
+	 *
+	 * @return array
+	 */
+	public function add_black_friday_data( $configs ) {
+		$config = $configs['default'];
+
+		// translators: %1$s - plugin name, %2$s - HTML tag, %3$s - discount, %4$s - HTML tag, %5$s - company name.
+		$message_template = __( 'Brought to you by the team behind %1$s— our biggest sale of the year is here: %2$sup to %3$s OFF%4$s on premium products from %5$s! Limited-time only.', 'themeisle-companion' );
+
+		$config['message']  = sprintf( $message_template, 'Orbit Fox Companion', '<strong>', '70%', '</strong>', '<strong>Themeisle</strong>' );
+		$config['sale_url'] = add_query_arg(
+			array(
+				'utm_term' => 'free',
+			),
+			tsdk_translate_link( tsdk_utmify( 'https://themeisle.link/all-bf', 'bfcm', 'themeisle-companion' ) )
+		);
+
+		$configs[ OBX_PRODUCT_SLUG ] = $config;
+
+		return $configs;
+	}
 }
