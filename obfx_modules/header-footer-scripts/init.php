@@ -37,8 +37,14 @@ class Header_Footer_Scripts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function set_module_strings() {
-		$this->name          = __( 'Header Footer Scripts', 'themeisle-companion' );
-		$this->description   = __( 'An easy way to add scripts, such as tracking and analytics scripts, to the header and footer of your website, as well as in the body of your posts and pages.', 'themeisle-companion' );
+		$this->name               = __( 'Header Footer Scripts', 'themeisle-companion' );
+		$this->description        = __( 'An easy way to add scripts, such as tracking and analytics scripts, to the header and footer of your website, as well as in the body of your posts and pages.', 'themeisle-companion' );
+		$this->documentation_url  = 'https://docs.themeisle.com/article/951-orbit-fox-documentation#header-footer-scripts';
+		$this->module_main_action = array(
+			'url'  => admin_url( 'customize.php?autofocus[section]=obfx_header_footer_scripts' ),
+			'text' => __( 'Add Global Scripts', 'themeisle-companion' ),
+		);
+
 		$this->meta_controls = array(
 			'obfx-header-scripts' => array(
 				'type'        => 'textarea',

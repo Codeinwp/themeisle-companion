@@ -236,6 +236,8 @@ class Orbit_Fox_Admin {
 					'data'             => get_option( 'obfx_data' ),
 					'options'          => $modules_options,
 					'plugins'          => $this->get_recommended_plugins(),
+					'version'          => $this->version,
+					'menusSupport'     => current_theme_supports( 'menus' ),
 				)
 			);
 

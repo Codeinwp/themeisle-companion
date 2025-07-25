@@ -52,6 +52,8 @@
     "semantic-release-slack-bot": "^4.0.2"
   },
   "dependencies": {
+    "@chakra-ui/react": "^3.22.0",
+    "@emotion/react": "^11.14.0",
     "buffer": "^6.0.3",
     "classnames": "^2.3.1",
     "flickr-sdk": "^3.10.0",

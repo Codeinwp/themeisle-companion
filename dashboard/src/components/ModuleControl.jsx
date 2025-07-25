@@ -1,0 +1,176 @@
+import {
+  Checkbox,
+  Field,
+  Fieldset,
+  HStack,
+  Input,
+  Portal,
+  RadioGroup,
+  Select,
+  Switch,
+  createListCollection
+} from "@chakra-ui/react";
+
+import { decodeHtml } from "../utils/common";
+
+const ModuleControl = ({
+  setting,
+  tempData,
+  changeOption,
+}) => {
+  const selectedValue =
+  tempData[setting.id] !== undefined ? tempData[setting.id] : setting.default;
+
+switch (setting.type) {
+  case "checkbox":
+    return (
+      <Checkbox.Root
+        size="sm"
+        colorPalette="purple"
+        checked={selectedValue === "1"}
+        onCheckedChange={({ checked }) => {
+          changeOption(setting.id, checked ? "1" : "0");
+        }}
+      >
+        <Checkbox.HiddenInput />
+        <Checkbox.Control
+          _focus={{
+            outlineOffset: "2px",
+            outline: "2px solid",
+            outlineColor: "purple.500",
+          }}
+        />
+        <Checkbox.Label fontWeight="normal" color="fg.muted">
+          {setting.label}
+        </Checkbox.Label>
+      </Checkbox.Root>
+    );
+  case "radio":
+    return (
+      <Fieldset.Root size="sm">
+        <Fieldset.Legend>{setting.title}</Fieldset.Legend>
+        <RadioGroup.Root
+          colorPalette="purple"
+          value={parseInt(selectedValue)}
+          onValueChange={({ value }) => changeOption(setting.id, value)}
+          label={setting.title}
+        >
+          <HStack gap="4" alignItems="start">
+            {setting.options.map((label, value) => (
+              <RadioGroup.Item key={value} value={value}>
+                <RadioGroup.ItemHiddenInput />
+                <RadioGroup.ItemIndicator />
+                <RadioGroup.ItemText fontWeight="normal" color="fg.muted">
+                  {label}
+                </RadioGroup.ItemText>
+              </RadioGroup.Item>
+            ))}
+          </HStack>
+        </RadioGroup.Root>
+      </Fieldset.Root>
+    );
+    return (
+      <RadioControl
+        label={setting.title}
+        options={setting.options.map((label, value) => {
+          return { label, value: value.toString() };
+        })}
+        selected={parseInt(selectedValue)}
+        onChange={(newValue) => changeOption(setting.id, newValue)}
+      />
+    );
+  case "toggle":
+    return (
+      <Switch.Root
+        colorPalette="purple"
+        size="sm"
+        checked={selectedValue === "1"}
+        onCheckedChange={({ checked }) => {
+          changeOption(setting.id, checked ? "1" : "0");
+        }}
+      >
+        <Switch.HiddenInput />
+        <Switch.Control />
+        <Switch.Label
+          dangerouslySetInnerHTML={{ __html: setting.label }}
+          fontWeight="normal"
+          color="fg.muted"
+        />
+      </Switch.Root>
+    );
+  case "select":
+    const selectValues = createListCollection({
+      items: Object.entries(setting.options).map(([value, label]) => {
+        return { label, value };
+      }),
+    });
+
+    return (
+      <Select.Root
+        colorPalette="purple"
+        size="sm"
+        fontSize="sm"
+        collection={selectValues}
+        value={[selectedValue.toString()]}
+        onValueChange={(event) => {
+          changeOption(setting.id, parseInt(event.value[0]));
+        }}
+      >
+        <Select.HiddenSelect />
+        <Select.Label>{setting.title}</Select.Label>
+        <Select.Control>
+          <Select.Trigger>
+            <Select.ValueText placeholder={setting.title} />
+          </Select.Trigger>
+          <Select.IndicatorGroup>
+            <Select.Indicator />
+          </Select.IndicatorGroup>
+        </Select.Control>
+        <Portal>
+          <Select.Positioner>
+            <Select.Content>
+              {selectValues.items.map((selectOption) => (
+                <Select.Item item={selectOption} key={selectOption.value}>
+                  {selectOption.label}
+                  <Select.ItemIndicator />
+                </Select.Item>
+              ))}
+            </Select.Content>
+          </Select.Positioner>
+        </Portal>
+      </Select.Root>
+    );
+  case "text":
+    return (
+      <Field.Root colorPalette="purple">
+        <Field.Label>{setting.title}</Field.Label>
+        <Input
+          size="sm"
+          value={decodeHtml(selectedValue)}
+          onChange={(newValue) => changeOption(setting.id, newValue.target.value)}
+        />
+      </Field.Root>
+    );
+  case "link":
+    const isUnregister = setting.id === "analytics_accounts_unregister";
+    return (
+      <div className="select-wrap">
+        <Button
+          isPrimary={!isUnregister}
+          isDestructive={isUnregister}
+          href={setting.url ? setting.url : null}
+          onClick={
+            isUnregister &&
+            (() => {
+              unregister(setting.unregisterURL, setToast);
+            })
+          }
+        >
+          <div dangerouslySetInnerHTML={{ __html: setting.text }} />
+        </Button>
+      </div>
+    );
+  }
+};
+
+export default ModuleControl;
