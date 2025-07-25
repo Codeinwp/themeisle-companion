@@ -57,6 +57,7 @@
     "buffer": "^6.0.3",
     "classnames": "^2.3.1",
     "flickr-sdk": "^3.10.0",
+    "lucide-react": "^0.525.0",
     "querystring": "^0.2.1",
     "stream": "0.0.2",
     "timers": "^0.1.1"
