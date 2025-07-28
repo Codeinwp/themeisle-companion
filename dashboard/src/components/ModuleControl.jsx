@@ -1,5 +1,7 @@
 import {
+  Button,
   Checkbox,
+  createListCollection,
   Field,
   Fieldset,
   HStack,
@@ -8,20 +10,17 @@ import {
   RadioGroup,
   Select,
   Switch,
-  createListCollection
 } from "@chakra-ui/react";
 
-import { decodeHtml } from "../utils/common";
+import { __ } from "@wordpress/i18n";
+import { decodeHtml, unregister } from "../utils/common";
+import { toaster } from "./ui/toaster";
 
-const ModuleControl = ({
-  setting,
-  tempData,
-  changeOption,
-}) => {
+const ModuleControl = ({ setting, tempData, changeOption }) => {
   const selectedValue =
-  tempData[setting.id] !== undefined ? tempData[setting.id] : setting.default;
+    tempData[setting.id] !== undefined ? tempData[setting.id] : setting.default;
 
-switch (setting.type) {
+  switch (setting.type) {
   case "checkbox":
     return (
       <Checkbox.Root
@@ -68,16 +67,6 @@ switch (setting.type) {
           </HStack>
         </RadioGroup.Root>
       </Fieldset.Root>
-    );
-    return (
-      <RadioControl
-        label={setting.title}
-        options={setting.options.map((label, value) => {
-          return { label, value: value.toString() };
-        })}
-        selected={parseInt(selectedValue)}
-        onChange={(newValue) => changeOption(setting.id, newValue)}
-      />
     );
   case "toggle":
     return (
@@ -147,7 +136,9 @@ switch (setting.type) {
         <Input
           size="sm"
           value={decodeHtml(selectedValue)}
-          onChange={(newValue) => changeOption(setting.id, newValue.target.value)}
+          onChange={(newValue) =>
+            changeOption(setting.id, newValue.target.value)
+          }
         />
       </Field.Root>
     );
@@ -156,14 +147,22 @@ switch (setting.type) {
     return (
       <div className="select-wrap">
         <Button
-          isPrimary={!isUnregister}
-          isDestructive={isUnregister}
+          colorPalette="purple"
+          size="sm"
           href={setting.url ? setting.url : null}
           onClick={
-            isUnregister &&
-            (() => {
-              unregister(setting.unregisterURL, setToast);
-            })
+            isUnregister
+              ? () => {
+                unregister(setting.unregisterURL);
+              }
+              : () => {
+                toaster.error({
+                  title: __(
+                    "The analytics module is not available anymore.",
+                    "themeisle-companion"
+                  ),
+                });
+              }
           }
         >
           <div dangerouslySetInnerHTML={{ __html: setting.text }} />

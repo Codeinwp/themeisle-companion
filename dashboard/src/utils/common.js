@@ -24,15 +24,9 @@ export const getTabHash = () => {
   return hash;
 };
 
-const unregister = (url, setToast) => {
+export const unregister = (url) => {
   post(url, "deactivate=unregister").then((r) => {
     if (r === false) {
-      setToast(
-        __(
-          "Could not unregister the site. Please try again.",
-          "themeisle-companion"
-        )
-      );
       return;
     }
     window.location.reload();
