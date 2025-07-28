@@ -1,8 +1,8 @@
 /* global obfxDash */
 import ModuleCard from "./ModuleCard";
 import { ModulesContext } from "./DashboardContext";
-import { useState } from "@wordpress/element";
-import { Container, SimpleGrid, VStack } from "@chakra-ui/react";
+import { useMemo, useState } from "@wordpress/element";
+import { Container, For, SimpleGrid, VStack } from "@chakra-ui/react";
 
 const { modules, data } = obfxDash;
 
@@ -23,25 +23,42 @@ const AvailableModules = () => {
     return;
   };
 
+  const leftColumn = useMemo(
+    () => Object.entries(modules).filter((_, idx) => idx % 2 === 0),
+    []
+  );
+  const rightColumn = useMemo(
+    () => Object.entries(modules).filter((_, idx) => idx % 2 === 1),
+    []
+  );
+
   return (
     <ModulesContext.Provider value={{ modulesData, setModulesData }}>
       <Container>
         <SimpleGrid columns={{ base: 1, lg: 2 }} gap="5">
-          <VStack columns={{ base: 1, lg: 2 }} gap="5" w="full" alignItems="stretch">
-            {Object.entries(modules).map(([slug, details], idx) => {
-              if (idx % 2 === 0) {
+          <VStack
+            columns={{ base: 1, lg: 2 }}
+            gap="5"
+            w="full"
+            alignItems="stretch"
+          >
+            <For each={leftColumn}>
+              {([slug, details]) => {
                 return <ModuleCard slug={slug} details={details} key={slug} />;
-              }
-              return null;
-            })}
+              }}
+            </For>
           </VStack>
-          <VStack columns={{ base: 1, lg: 2 }} gap="5" w="full" alignItems="stretch">
-            {Object.entries(modules).map(([slug, details], idx) => {
-              if (idx % 2 === 0) {
-                return null;
-              }
-              return <ModuleCard slug={slug} details={details} key={slug} />;
-            })}
+          <VStack
+            columns={{ base: 1, lg: 2 }}
+            gap="5"
+            w="full"
+            alignItems="stretch"
+          >
+            <For each={rightColumn}>
+              {([slug, details]) => {
+                return <ModuleCard slug={slug} details={details} key={slug} />;
+              }}
+            </For>
           </VStack>
         </SimpleGrid>
       </Container>
