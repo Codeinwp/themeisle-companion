@@ -203,50 +203,49 @@ class Orbit_Fox_Admin {
 			return;
 		}
 
-		if ( $screen->id !== 'toplevel_page_obfx_companion' ) {
-			return;
+		if ( $screen->id === 'toplevel_page_obfx_companion' ) {
+			wp_enqueue_script( 'plugin-install' );
+			wp_enqueue_script( 'updates' );
+
+			$dependencies    = include OBX_PATH . '/dashboard/build/dashboard.asset.php';
+			$global_settings = new Orbit_Fox_Global_Settings();
+			$modules         = array_filter(
+				$global_settings::$instance->module_objects,
+				function ( $module ) {
+					return $module->enable_module();
+				}
+			);
+			$modules_options = array_map(
+				function ( $module ) {
+					return $module->options();
+				},
+				$modules
+			);
+
+			wp_register_script( 'obfx-dashboard', OBFX_URL . '/dashboard/build/dashboard.js', $dependencies['dependencies'], $this->version, true );
+			wp_localize_script(
+				'obfx-dashboard',
+				'obfxDash',
+				array(
+					'path'             => OBFX_URL . '/dashboard/',
+					'root'             => esc_url_raw( get_rest_url() ) . 'obfx/',
+					'toggleStateRoute' => 'toggle-module-state',
+					'setSettingsRoute' => 'set-module-settings',
+					'nonce'            => wp_create_nonce( 'wp_rest' ),
+					'modules'          => $modules,
+					'data'             => get_option( 'obfx_data' ),
+					'options'          => $modules_options,
+					'plugins'          => $this->get_recommended_plugins(),
+					'version'          => $this->version,
+					'menusSupport'     => current_theme_supports( 'menus' ),
+				)
+			);
+
+			wp_set_script_translations( 'obfx-dashboard', 'obfx_companion' );
+			wp_enqueue_script( 'obfx-dashboard' );
+
+			do_action( 'themeisle_internal_page', OBX_PRODUCT_SLUG, 'dashboard' );
 		}
-		wp_enqueue_script( 'plugin-install' );
-		wp_enqueue_script( 'updates' );
-
-		$dependencies    = include OBX_PATH . '/dashboard/build/dashboard.asset.php';
-		$global_settings = new Orbit_Fox_Global_Settings();
-		$modules         = array_filter(
-			$global_settings::$instance->module_objects,
-			function ( $module ) {
-				return $module->enable_module();
-			}
-		);
-		$modules_options = array_map(
-			function ( $module ) {
-				return $module->options();
-			},
-			$modules
-		);
-
-		wp_register_script( 'obfx-dashboard', OBFX_URL . '/dashboard/build/dashboard.js', $dependencies['dependencies'], $this->version, true );
-		wp_localize_script(
-			'obfx-dashboard',
-			'obfxDash',
-			array(
-				'path'             => OBFX_URL . '/dashboard/',
-				'root'             => esc_url_raw( get_rest_url() ) . 'obfx/',
-				'toggleStateRoute' => 'toggle-module-state',
-				'setSettingsRoute' => 'set-module-settings',
-				'nonce'            => wp_create_nonce( 'wp_rest' ),
-				'modules'          => $modules,
-				'data'             => get_option( 'obfx_data' ),
-				'options'          => $modules_options,
-				'plugins'          => $this->get_recommended_plugins(),
-				'version'          => $this->version,
-				'menusSupport'     => current_theme_supports( 'menus' ),
-			)
-		);
-
-		wp_set_script_translations( 'obfx-dashboard', 'obfx_companion' );
-		wp_enqueue_script( 'obfx-dashboard' );
-
-		do_action( 'themeisle_internal_page', OBX_PRODUCT_SLUG, 'dashboard' );
 		do_action( 'obfx_admin_enqueue_scripts' );
 	}
 
