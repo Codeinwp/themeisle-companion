@@ -88,10 +88,7 @@ const ModuleSettings = ({ slug }) => {
 
       if (element.hasOwnProperty("before_wrap")) {
         const row = [];
-        const active =
-          tempData[element.id] === "1" ||
-          (!tempData[element.id] && element.default === "1");
-
+				
         while (true) {
           row.push(
             <ModuleControl
