@@ -41,8 +41,10 @@ body, #wpbody-content {
   }
 }
 
-// TSDK banner.
-.themeisle-sale.notice.notice-info {
-  margin: 0;
-  border-radius: 5px;
+// TSDK banner & other notices we might want to reposition.
+.obfx-banner {
+  .notice {
+    margin: 0 !important;
+    border-radius: 5px !important;
+  }
 }

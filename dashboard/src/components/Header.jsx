@@ -10,6 +10,7 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { tabs } from "../utils/common";
+import { useEffect, useState } from "@wordpress/element";
 
 const Title = () => {
   return null;
@@ -51,6 +52,23 @@ const Navigation = ({ activeTab, setActiveTab }) => {
 };
 
 const Header = ({ activeTab, setActiveTab }) => {
+  const [neveNotice, setNeveNotice] = useState(null);
+
+  const repositionNeveNotice = () => {
+    const neveNotice = document.querySelector(".neve-notice-upsell");
+    if (!neveNotice) {
+      return;
+    }
+
+    const html = neveNotice.outerHTML;
+    setNeveNotice(html);
+    neveNotice.remove();
+  };
+
+  useEffect(() => {
+    repositionNeveNotice();
+  }, []);
+
   return (
     <Flex direction="column" gap="8">
       <Box as="header" bg="bg">
@@ -81,8 +99,18 @@ const Header = ({ activeTab, setActiveTab }) => {
           </Container>
         </Box>
       </Box>
- 
-      {window.tsdk_reposition_notice && <Container id="tsdk_banner"/>}
+
+      {window.tsdk_reposition_notice && (
+        <Container id="tsdk_banner" className="obfx-banner" />
+      )}
+
+      {!window.tsdk_reposition_notice && neveNotice && (
+        <Container
+          className="obfx-banner"
+          id="neve-notice-upsell"
+          dangerouslySetInnerHTML={{ __html: neveNotice }}
+        />
+      )}
     </Flex>
   );
 };
