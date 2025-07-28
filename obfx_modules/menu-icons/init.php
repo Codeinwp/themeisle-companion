@@ -33,7 +33,6 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		$this->active_default = true;
 
-
 		add_action( 'admin_init', array( $this, 'check_conflict' ), 99 );
 	}
 

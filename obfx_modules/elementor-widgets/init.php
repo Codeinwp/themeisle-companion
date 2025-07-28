@@ -65,8 +65,8 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 							),
 							'https://themeisle.com/themes/neve/pricing/'
 						)
-			) . '">'
-				. __('Learn more', 'themeisle-companion') .
+					) . '">'
+				. __( 'Learn more', 'themeisle-companion' ) .
 				'</a>
 				</div>';
 		}
