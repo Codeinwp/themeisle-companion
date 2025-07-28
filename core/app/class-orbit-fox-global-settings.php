@@ -64,14 +64,14 @@ class Orbit_Fox_Global_Settings {
 					'social-sharing',
 					'google-analytics',
 					'companion-legacy',
-					'elementor-widgets',
 					'template-directory',
 					'menu-icons',
 					'mystock-import',
 					'policy-notice',
-					'beaver-widgets',
 					'header-footer-scripts',
+					'elementor-widgets',
 					'custom-fonts',
+					'beaver-widgets',
 				)
 			);
 		}// End if().
