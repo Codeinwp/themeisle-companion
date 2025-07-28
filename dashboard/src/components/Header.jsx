@@ -77,7 +77,7 @@ const Header = ({ activeTab, setActiveTab }) => {
             <Flex alignItems="center" justifyContent="space-between">
               <Flex alignItems="center" gap="5" py="3">
                 <Image
-                  src={obfxDash.path + "assets/orbit-fox.png"}
+                  src={obfxDash.path + "assets/orbit-fox.svg"}
                   alt="logo"
                   w="14"
                 />
