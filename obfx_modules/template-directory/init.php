@@ -105,21 +105,36 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function enqueue_template_dir_scripts() {
 		$current_screen = get_current_screen();
-		if ( $current_screen->id == 'orbit-fox_page_obfx_template_dir' ) {
-			$script_handle = $this->slug . '-script';
-			wp_enqueue_script( 'plugin-install' );
-			wp_enqueue_script( 'updates' );
-			wp_register_script( $script_handle, plugin_dir_url( $this->get_dir() ) . $this->slug . '/js/script.js', array( 'jquery' ), $this->version, false );
-			wp_localize_script(
-				$script_handle,
-				'importer_endpoint',
-				array(
-					'url'   => $this->get_endpoint_url( '/import_elementor' ),
-					'nonce' => wp_create_nonce( 'wp_rest' ),
-				)
-			);
-			wp_enqueue_script( $script_handle );
+		if ( $current_screen->id !== 'orbit-fox_page_obfx_template_dir' ) {
+			return;
 		}
+
+		$asset_path = OBX_PATH . '/obfx_modules/template-directory/js/template-directory.asset.php';
+
+		if ( ! is_file( $asset_path ) ) {
+			return;
+		}
+
+		$dependencies = include $asset_path;
+
+		if ( ! is_array( $dependencies ) ) {
+			return;
+		}
+
+		$script_handle = $this->slug . '-script';
+
+		wp_enqueue_script( 'plugin-install' );
+		wp_enqueue_script( 'updates' );
+		wp_register_script( $script_handle, OBX_PATH . '/obfx_modules/template-directory/js/template-directory.js', $dependencies['dependencies'], $this->version, false );
+		wp_localize_script(
+			$script_handle,
+			'importer_endpoint',
+			array(
+				'url'   => $this->get_endpoint_url( '/import_elementor' ),
+				'nonce' => wp_create_nonce( 'wp_rest' ),
+			)
+		);
+		wp_enqueue_script( $script_handle );
 	}
 
 	/**
