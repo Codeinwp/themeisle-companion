@@ -1,8 +1,10 @@
 import App from './components/App';
-import { createRoot } from "@wordpress/element";
+import { render } from "@wordpress/element";
+import maybeAddPolyFills from "./wp-element-polyfill";
 
 const dashboard = document.getElementById("obfx-dash");
 
 if (dashboard) {
-  createRoot(dashboard).render(<App />);
+  maybeAddPolyFills();
+  render(<App />, dashboard);
 }
