@@ -76,17 +76,6 @@ const ModuleCard = ({ slug, details }) => {
 
   const renderDescription = (description) => {
     const elements = [];
-    if (description.indexOf("neve-pro-notice") >= 0) {
-      return (
-        <Text
-          fontSize="sm"
-          lineHeight="1.6"
-          m="0"
-          color="fg.muted"
-          dangerouslySetInnerHTML={{ __html: description }}
-        />
-      );
-    }
 
     while (description.indexOf("<a") >= 0) {
       const start = description.indexOf("<a");
@@ -103,9 +92,40 @@ const ModuleCard = ({ slug, details }) => {
         end
       );
 
-      elements.push(
-        renderToString(<ExternalLink href={href}>{anchorText}</ExternalLink>)
-      );
+      if (description.includes("neve-pro-notice")) {
+        elements.push(
+          renderToString(
+            <Button
+              asChild
+              variant="outline"
+              colorPalette="purple"
+              size="xs"
+              color="purple.500"
+              _hover={{
+                color: "white",
+                bg: "purple.500",
+              }}
+              _focus={{
+                outline: "2px solid",
+                outlineColor: "purple.500",
+                outlineOffset: "2px",
+                shadow: "none",
+                bg: "purple.500",
+                color: "white",
+              }}
+            >
+              <a href={href}>
+                {anchorText} <ExternalLinkIcon />{" "}
+              </a>
+            </Button>
+          )
+        );
+      } else {
+        elements.push(
+          renderToString(<ExternalLink href={href}>{anchorText}</ExternalLink>)
+        );
+      }
+
 
       description = description.slice(end + "</a>".length);
     }
