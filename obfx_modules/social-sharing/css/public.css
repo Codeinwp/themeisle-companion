@@ -117,8 +117,10 @@
 }
 
 .obfx-sharing-inline a.btn-twitter,
-.obfx-sharing a.twitter {
-	background-color: #000;
+.obfx-sharing a.twitter,
+.obfx-sharing-inline a.btn-threads,
+.obfx-sharing a.threads {
+  background-color: #000;
 }
 
 .obfx-sharing-inline a.btn-pinterest,
@@ -196,8 +198,15 @@
   background-color: #26A5E4;
 }
 
+.obfx-sharing-inline a.btn-mastodon,
+.obfx-sharing a.mastodon {
+  background-color: #6364ff;
+}
 
-
+.obfx-sharing-inline a.btn-bluesky,
+.obfx-sharing a.bluesky {
+  background-color: #0285ff;
+}
 
 @media (max-width: 768px) {
   .obfx-sharing-side {

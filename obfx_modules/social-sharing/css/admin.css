@@ -71,3 +71,15 @@
 #obfx-dash .obfx-toggle-icon.telegram {
 	color: #26A5E4;
 }
+
+#obfx-dash .obfx-toggle-icon.mastodon {
+	color: #6364FF;
+}
+
+#obfx-dash .obfx-toggle-icon.bluesky {
+	color: #0285FF;
+}
+
+#obfx-dash .obfx-toggle-icon.threads {
+	color: #000000;
+}
