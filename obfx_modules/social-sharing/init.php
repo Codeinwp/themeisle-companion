@@ -87,7 +87,7 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			'sms'       => array(
 				'link'     => 'sms://?&body=' . $post_title . ' - ' . $post_link,
 				'nicename' => 'SMS',
-				'icon'     => 'viber',
+				'icon'     => 'sms',
 				'target'   => '0',
 			),
 			'vk'        => array(
@@ -190,21 +190,26 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				$class_desktop = 'obfx-sharing-inline ';
 		}
 
-			$class_mobile = '';
+		$class_mobile = '';
 		if ( $this->get_option( 'mobile_position' ) == '0' ) {
 			$class_mobile = 'obfx-sharing-bottom';
 		}
-			$data = array(
-				'desktop_class'      => $class_desktop,
-				'mobile_class'       => $class_mobile,
-				'show_name'          => $this->get_option( 'network_name' ),
-				'social_links_array' => $this->social_links_array(),
-			);
 
-			if ( $this->get_option( 'socials_position' ) == 2 ) {
-				return $this->render_view( 'hestia-social-sharing', $data );
-			}
-			echo $this->render_view( 'social-sharing', $data ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		$data = array(
+			'desktop_class'      => $class_desktop,
+			'mobile_class'       => $class_mobile,
+			'show_name'          => $this->get_option( 'network_name' ),
+			'social_links_array' => $this->social_links_array(),
+		);
+
+		if ( ! class_exists( 'OBFX_Social_Icons' ) ) {
+			require_once OBX_PATH . '/obfx_modules/social-sharing/social-icons.php';
+		}
+
+		if ( $this->get_option( 'socials_position' ) == 2 ) {
+			return $this->render_view( 'hestia-social-sharing', $data );
+		}
+		echo $this->render_view( 'social-sharing', $data ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**
@@ -254,8 +259,7 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		return array(
 			'css' => array(
-				'public'                 => false,
-				'vendor/socicon/socicon' => false,
+				'public' => false,
 			),
 			'js'  => array(
 				'public' => array( 'jquery' ),
@@ -322,20 +326,26 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 		$this->define_networks();
 
+		if ( ! class_exists( 'OBFX_Social_Icons' ) ) {
+			require_once OBX_PATH . '/obfx_modules/social-sharing/social-icons.php';
+		}
+
+		$icons = new OBFX_Social_Icons();
+
 		foreach ( $this->social_share_links as $network => $data_array ) {
 			$options[] = array(
 				'before_wrap' => '<div class="obfx-row">',
 				'title'       => ( $network == 'facebook' ) ? 'Networks' : '',
 				'id'          => $network,
 				'name'        => $network,
-				'label'       => '<i class="socicon-' . $data_array['icon'] . '"></i>  - ' . $data_array['nicename'],
+				'label'       => $data_array['nicename'],
+				'icon'        => '<i class="obfx-toggle-icon ' . esc_attr( $data_array['icon'] ) . '">' . $icons->get_icon( $data_array['icon'] ) . '</i>',
 				'type'        => 'toggle',
 				'default'     => ( $network == 'facebook' ) ? '1' : '',
 				'class'       => 'inline-setting network-toggle',
 			);
 
 			$options[] = array(
-				'title'   => ( $network == 'facebook' ) ? 'Show on' : '',
 				'id'      => $network . '-desktop-show',
 				'name'    => $network . '-desktop-show',
 				'label'   => 'desktop',
