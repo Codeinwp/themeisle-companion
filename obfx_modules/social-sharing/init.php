@@ -136,12 +136,12 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'icon'     => 'mastodon',
 			),
 			'bluesky'   => array(
-				'link'     => 'https://bsky.app/intent/compose?text=' . urlencode($post_title . ' ' . $post_link),
+				'link'     => 'https://bsky.app/intent/compose?text=' . urlencode( $post_title . ' ' . $post_link ),
 				'nicename' => 'Bluesky',
 				'icon'     => 'bluesky',
 			),
 			'threads'   => array(
-				'link'     => 'https://threads.net/intent/post?text=' . urlencode($post_title . ' ' . $post_link),
+				'link'     => 'https://threads.net/intent/post?text=' . urlencode( $post_title . ' ' . $post_link ),
 				'nicename' => 'Threads',
 				'icon'     => 'threads',
 			),
