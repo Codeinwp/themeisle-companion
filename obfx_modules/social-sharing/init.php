@@ -262,7 +262,7 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'public' => false,
 			),
 			'js'  => array(
-				'public' => array( 'jquery' ),
+				'public' => false,
 			),
 		);
 	}
