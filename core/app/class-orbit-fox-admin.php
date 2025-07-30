@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -53,7 +54,6 @@ class Orbit_Fox_Admin {
 		$this->version     = $version;
 
 		add_action( 'rest_api_init', array( $this, 'init_dashboard_routes' ) );
-
 	}
 
 	/**
@@ -202,7 +202,8 @@ class Orbit_Fox_Admin {
 		if ( empty( $screen ) ) {
 			return;
 		}
-		if ( in_array( $screen->id, array( 'toplevel_page_obfx_companion' ), true ) ) {
+
+		if ( $screen->id === 'toplevel_page_obfx_companion' ) {
 			wp_enqueue_script( 'plugin-install' );
 			wp_enqueue_script( 'updates' );
 
@@ -222,7 +223,6 @@ class Orbit_Fox_Admin {
 			);
 
 			wp_register_script( 'obfx-dashboard', OBFX_URL . '/dashboard/build/dashboard.js', $dependencies['dependencies'], $this->version, true );
-			wp_enqueue_script( 'obfx-dashboard' );
 			wp_localize_script(
 				'obfx-dashboard',
 				'obfxDash',
@@ -236,10 +236,13 @@ class Orbit_Fox_Admin {
 					'data'             => get_option( 'obfx_data' ),
 					'options'          => $modules_options,
 					'plugins'          => $this->get_recommended_plugins(),
+					'version'          => $this->version,
+					'menusSupport'     => current_theme_supports( 'menus' ),
 				)
 			);
 
 			wp_set_script_translations( 'obfx-dashboard', 'obfx_companion' );
+			wp_enqueue_script( 'obfx-dashboard' );
 
 			do_action( 'themeisle_internal_page', OBX_PRODUCT_SLUG, 'dashboard' );
 		}
@@ -300,7 +303,7 @@ class Orbit_Fox_Admin {
 					?>
 				</p>
 				<a href="<?php echo esc_url( add_query_arg( 'obfx_ignore_visit_dashboard_notice', '0', admin_url( 'admin.php?page=obfx_companion' ) ) ); ?>"
-				   class="notice-dismiss" style="text-decoration: none;">
+					class="notice-dismiss" style="text-decoration: none;">
 					<span class="screen-reader-text">Dismiss this notice.</span>
 				</a>
 			</div>

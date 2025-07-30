@@ -38,8 +38,13 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function set_module_strings() {
-		$this->name        = __( 'Template Directory Module', 'themeisle-companion' );
-		$this->description = __( 'The awesome template directory is aiming to provide a wide range of templates that you can import straight into your website.', 'themeisle-companion' );
+		$this->name               = __( 'Template Directory Module', 'themeisle-companion' );
+		$this->description        = __( 'The awesome template directory is aiming to provide a wide range of templates that you can import straight into your website.', 'themeisle-companion' );
+		$this->documentation_url  = 'https://docs.themeisle.com/article/951-orbit-fox-documentation#template-directory';
+		$this->module_main_action = array(
+			'url'  => admin_url( 'admin.php?page=obfx_template_dir' ),
+			'text' => __( 'Open Template Directory', 'themeisle-companion' ),
+		);
 	}
 
 	/**

@@ -29,7 +29,8 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		/*
 		 * translators: %s Document anchor link.
 		 */
-		$this->description = sprintf( __( 'Add basic social sharing to your posts and pages. Check out the %s to learn more!', 'themeisle-companion' ), sprintf( '<a href="https://docs.themeisle.com/article/1270-social-sharing-icons-orbit-fox-module/" rel="nofollow" target="_blank">%s</a>', __( 'documentation', 'themeisle-companion' ) ) );
+		$this->description       = __( 'Add basic social sharing to your posts and pages.', 'themeisle-companion' );
+		$this->documentation_url = 'https://docs.themeisle.com/article/951-orbit-fox-documentation#social-sharing';
 	}
 
 	/**

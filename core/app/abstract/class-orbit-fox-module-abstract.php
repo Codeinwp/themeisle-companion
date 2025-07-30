@@ -144,6 +144,24 @@ abstract class Orbit_Fox_Module_Abstract {
 	protected $localized = array();
 
 	/**
+	 * Documentation URL.
+	 *
+	 * @since   3.0.0
+	 * @access  public
+	 * @var     string $documentation_url The documentation URL.
+	 */
+	public $documentation_url = '';
+
+	/**
+	 * Module main action.
+	 *
+	 * @since   3.0.0
+	 * @access  public
+	 * @var     array $module_main_action The module main action.
+	 */
+	public $module_main_action = null;
+
+	/**
 	 * Orbit_Fox_Module_Abstract constructor.
 	 *
 	 * @since   1.0.0
