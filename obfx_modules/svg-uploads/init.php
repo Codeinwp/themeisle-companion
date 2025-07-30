@@ -9,6 +9,8 @@
  * @package    Svg_Uploads_OBFX_Module
  */
 
+use \enshrined\svgSanitize\Sanitizer;
+
 /**
  * The class defines a new module to be used by Orbit Fox plugin.
  *
@@ -20,7 +22,7 @@ class Svg_Uploads_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	/**
 	 * The sanitizer instance.
 	 *
-	 * @var \enshrined\svgSanitize\Sanitizer
+	 * @var Sanitizer
 	 */
 	protected $sanitizer = null;
 
@@ -87,25 +89,7 @@ class Svg_Uploads_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return void
 	 */
 	private function load_sanitizer() {
-		$files = array(
-			'Sanitizer'                 => 'Sanitizer.php',
-			'data\AttributeInterface'   => 'data/AttributeInterface.php',
-			'data\AllowedAttributes'    => 'data/AllowedAttributes.php',
-			'data\TagInterface'         => 'data/TagInterface.php',
-			'data\AllowedTags'          => 'data/AllowedTags.php',
-			'ElementReference\Resolver' => 'ElementReference/Resolver.php',
-			'ElementReference\Subject'  => 'ElementReference/Subject.php',
-			'ElementReference\Usage'    => 'ElementReference/Usage.php',
-		);
-
-		foreach ( $files as $class => $file ) {
-			if ( class_exists( $class, false ) ) {
-				continue;
-			}
-			require_once OBX_PATH . '/vendor/enshrined/svg-sanitize/src/' . $file;
-		}
-
-		$this->sanitizer = new \enshrined\svgSanitize\Sanitizer();
+		$this->sanitizer = new Sanitizer();
 		$this->sanitizer->removeXMLTag( true );
 		$this->sanitizer->minify( true );
 	}
