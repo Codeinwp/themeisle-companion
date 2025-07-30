@@ -72,6 +72,7 @@ class Orbit_Fox_Global_Settings {
 					'beaver-widgets',
 					'header-footer-scripts',
 					'custom-fonts',
+					'svg-uploads',
 				)
 			);
 		}// End if().
