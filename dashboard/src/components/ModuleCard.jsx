@@ -1,27 +1,24 @@
 /* global obfxDash */
 import {
   Alert,
-  Badge,
   Button,
   Card,
   Flex,
   HStack,
-  Icon,
-  Link,
   Spinner,
   Switch,
-  Text,
+  Text
 } from "@chakra-ui/react";
 import { requestData } from "../utils/rest";
 import { ModulesContext } from "./DashboardContext";
 import ModuleSettings from "./ModuleSettings";
 
-import ExternalLink from "./ExternalLink";
 import { renderToString, useContext, useState } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
-import { ExternalLinkIcon, MoveUpRight } from "lucide-react";
-import { toaster } from "./ui/toaster";
+import { ExternalLinkIcon } from "lucide-react";
+import ExternalLink from "./ExternalLink";
 import ObfxBadge from "./ObfxBadge";
+import { toaster } from "./ui/toaster";
 
 const { root, toggleStateRoute, options, menusSupport } = obfxDash;
 
@@ -147,23 +144,7 @@ const ModuleCard = ({ slug, details }) => {
       ? moduleStatus[slug].active
       : activeDefault;
 
-  let showActions = true;
-  let notices = [];
-
-  if (slug === "menu-icons" && !menusSupport) {
-    showActions = false;
-    notices.push({
-      type: "warning",
-      message: __(
-        "Your current theme uses Full Site Editing (FSE) and does not support traditional nav menus, so this module won't work as expected.",
-        "themeisle-companion"
-      ),
-    });
-  }
-
-  if (!details.module_main_action) {
-    showActions = false;
-  }
+  let notices = details.notices || [];
 
   return (
     <Card.Root size="sm" overflow="hidden" variant="outline">
@@ -206,7 +187,7 @@ const ModuleCard = ({ slug, details }) => {
       <Card.Body>
         {renderDescription(details.description)}
 
-        {isActive && showActions && (
+        {isActive && details.module_main_action && (
           <Flex mt="3">
             <Button
               asChild
@@ -241,13 +222,13 @@ const ModuleCard = ({ slug, details }) => {
                 <Alert.Root
                   size="sm"
                   key={idx}
-                  status={notice.type === "warning" ? "warning" : "info"}
+                  status={notice.type}
                   variant="surface"
                   display="flex"
                   alignItems="center"
                   p="2"
                 >
-                  <Alert.Indicator />
+                  <Alert.Indicator/>
                   <Alert.Content>
                     <Alert.Description>{notice.message}</Alert.Description>
                   </Alert.Content>
