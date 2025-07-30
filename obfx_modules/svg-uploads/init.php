@@ -106,7 +106,8 @@ class Svg_Uploads_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			return $file;
 		}
 
-		$file_type  = mime_content_type( $file['tmp_name'] );
+		$file_info  = wp_check_filetype( $file['name'] );
+		$file_type  = $file_info['type'];
 		$mime_types = array( 'image/svg+xml', 'image/svg' );
 
 		if ( ! in_array( $file_type, $mime_types, true ) ) {
