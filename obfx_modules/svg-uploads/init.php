@@ -118,6 +118,10 @@ class Svg_Uploads_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return array The sanitized file array.
 	 */
 	public function sanitize_uploaded_file( $file ) {
+		if ( ! is_file( $file['tmp_name'] ) ) {
+			return $file;
+		}
+
 		$file_type  = mime_content_type( $file['tmp_name'] );
 		$mime_types = array( 'image/svg+xml', 'image/svg' );
 
@@ -145,7 +149,11 @@ class Svg_Uploads_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * 
 	 * @return bool True if the SVG file is sanitized, false otherwise.
 	 */
-	public function sanitize( $file ) {
+	private function sanitize( $file ) {
+		if ( ! is_file( $file ) ) {
+			return false;
+		}
+
 		$svg_code      = file_get_contents( $file );
 		$is_compressed = $this->is_gzipped( $svg_code );
 
@@ -213,14 +221,14 @@ class Svg_Uploads_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return array The modified file type and extension data.
 	 */
 	public function adjust_filetype_extension( $filetype_ext_data, $file, $filename, $mimes ) {
-		if ( substr( $filename, -4 ) == '.svg' ) {
+		if ( substr( $filename, -4 ) === '.svg' ) {
 			$filetype_ext_data['ext']  = 'svg';
 			$filetype_ext_data['type'] = 'image/svg+xml';
 
 			return $filetype_ext_data;
 		}
 
-		if ( substr( $filename, -5 ) == '.svgz' ) {
+		if ( substr( $filename, -5 ) === '.svgz' ) {
 			$filetype_ext_data['ext']  = 'svgz';
 			$filetype_ext_data['type'] = 'image/svg+xml';
 
@@ -246,7 +254,7 @@ class Svg_Uploads_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		}
 
 		$svg_path           = get_attached_file( $attachment_id );
-		$dimensions         = $this->svg_dimensions( $svg_path );
+		$dimensions         = $this->get_svg_dimensions( $svg_path );
 		$metadata['width']  = $dimensions['width'];
 		$metadata['height'] = $dimensions['height'];
 
@@ -275,7 +283,7 @@ class Svg_Uploads_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		if ( ! file_exists( $svg_path ) ) {
 			$svg_path = $response['url'];
 		}
-		$dimensions        = $this->svg_dimensions( $svg_path );
+		$dimensions        = $this->get_svg_dimensions( $svg_path );
 		$response['sizes'] = array(
 			'full' => array(
 				'url'         => $response['url'],
@@ -300,13 +308,19 @@ class Svg_Uploads_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 *  'height' => int,
 	 * }
 	 */
-	private function svg_dimensions( $svg ) {
+	private function get_svg_dimensions( $svg ) {
+		$defaults = array(
+			'width'  => 0,
+			'height' => 0,
+		);
+
+		if ( ! is_file( $svg ) ) {
+			return $defaults;
+		}
+
 		$svg = simplexml_load_file( $svg );
 		if ( ! $svg ) {
-			return array(
-				'width'  => 0,
-				'height' => 0,
-			);
+			return $defaults;
 		}
 		$width  = 0;
 		$height = 0;
