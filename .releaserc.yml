@@ -6,6 +6,14 @@ plugins:
       releaseRules: conventional-changelog-simple-preset/release-rules
   - - "@semantic-release/changelog"
     - changelogFile: CHANGELOG.md
+  - - "semantic-release-slack-bot"
+    - notifyOnSuccess: false
+      notifyOnFail: false
+      markdownReleaseNotes: true
+      branchesConfig:
+        - pattern: master
+          notifyOnSuccess: true
+          notifyOnFail: false
   - - "@semantic-release/release-notes-generator"
     - preset: simple-preset
   - - "@semantic-release/exec"

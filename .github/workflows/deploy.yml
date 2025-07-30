@@ -9,16 +9,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Setup node 14
-        uses: actions/setup-node@v1
+      - uses: actions/setup-node@v4
         with:
-          node-version: 14.x
+          node-version: 20
+          cache: "yarn"
       - name: Build
         run: |
-          npm ci
-          npm run build
+          yarn install --frozen-lockfile
+          yarn build
           composer install --no-dev --prefer-dist --no-progress --no-suggest --ignore-platform-reqs
-          npm run dist
+          yarn run dist
       - name: WordPress Plugin Deploy
         uses: 10up/action-wordpress-plugin-deploy@master
         env:

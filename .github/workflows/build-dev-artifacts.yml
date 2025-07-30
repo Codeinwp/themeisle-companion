@@ -19,30 +19,19 @@ jobs:
       git-sha-8: ${{ steps.retrieve-git-sha-8.outputs.sha8 }}
     steps:
       - name: Check out source files
-        uses: actions/checkout@v2
-      - name: Setup node 14
-        uses: actions/setup-node@v1
+        uses: actions/checkout@master
+      - uses: actions/setup-node@v4
         with:
-          node-version: 14.x
-      - name: Get Composer Cache Directory
-        id: composer-cache
+          node-version: 20
+          cache: "yarn"
+      - name: Install yarn deps & build
         run: |
-          echo "::set-output name=dir::$(composer config cache-files-dir)"
-      - name: Configure Composer cache
-        uses: actions/cache@v4
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-composer-
-      - name: Install npm deps
-        run: |
-          npm ci
-          npm run build
+          yarn install --frozen-lockfile
+          yarn build
       - name: Install composer deps
         run: composer install --no-dev --prefer-dist --no-progress --no-suggest --ignore-platform-reqs
       - name: Create zip
-        run: npm run dist
+        run: yarn run dist
       - name: Retrieve branch name
         id: retrieve-branch-name
         run: echo "::set-output name=branch_name::$(REF=${GITHUB_HEAD_REF:-$GITHUB_REF} && echo ${REF#refs/heads/} | sed 's/\//-/g')"
