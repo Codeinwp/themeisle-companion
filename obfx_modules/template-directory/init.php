@@ -203,7 +203,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 					'cta'      => $this->get_state( 'tpc' ),
 					'activate' => $this->get_tcp_activation_link(),
 				),
-				'tpcAdminURL' => admin_url( 'admin.php?page=tiob-starter-sites' ),
+				'tpcAdminURL' => admin_url( 'admin.php?page=neve-onboarding' ),
 				'nonce'       => wp_create_nonce( 'wp_rest' ),
 				'strings'     => array(
 					'themeNotInstalled' => __( 'In order to import any starter sites, Neve theme & Templates Cloud plugin need to be installed and activated. Click the button below to install and activate Neve.', 'themeisle-companion' ),
