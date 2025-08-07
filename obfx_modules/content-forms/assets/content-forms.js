@@ -175,7 +175,7 @@ and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
         });
     });
 
-    /**
+    /** 
      * Handle Form notices
      * @param notice
      * @param type
@@ -188,15 +188,23 @@ and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
             noticeStatus = 'content-form-error';
         }
         var noticeData = typeof notice.responseText !== 'undefined' ? jQuery.parseJSON(notice.responseText) :  notice;
-		var noticeText = noticeData.message;
-		var style = typeof formStyle !== 'undefined' && formStyle.formStyle !== '' ? formStyle.formStyle : '';
+        var noticeText = noticeData.message;
+        var style = typeof formStyle !== 'undefined' && formStyle.formStyle !== '' ? formStyle.formStyle : '';
 
         var noticeEl = '<div class="content-form-notice-wrapper"><h3 ' + style +' class="content-form-notice ' + noticeStatus + '" >' + noticeText + '</h3></div>';
 
+        var $noticeEl;
         if ($currentNotice.length > 0) {
-            $currentNotice.replaceWith(noticeEl)
+            $noticeEl = $(noticeEl);
+            $currentNotice.replaceWith($noticeEl);
         } else {
-            $form.prepend(noticeEl);
+            $noticeEl = $(noticeEl);
+            $form.prepend($noticeEl);
+        }
+
+        // Scroll the notice into view
+        if ($noticeEl && $noticeEl.length > 0) {
+            $noticeEl[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
     }
 })(jQuery);
