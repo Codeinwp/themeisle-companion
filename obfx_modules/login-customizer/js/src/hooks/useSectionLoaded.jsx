@@ -14,14 +14,13 @@ export const useSectionLoaded = (section) => {
 
   const handleSectionLoaded = (sectionData) => {
     if( sectionData === false ) {
-      wp.customize.previewer.previewUrl.set('/');
       setIsLoaded(false);
       
       return;
     }
 
     const loaded = sectionData.id === section; 
-    if( loaded) {
+    if(loaded) {
       wp.customize.previewer.previewUrl.set(loaded ? loginUrl : '/');  
     } 
 

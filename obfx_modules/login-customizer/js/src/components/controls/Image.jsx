@@ -19,7 +19,7 @@ const ImageControl = ({label, id}) => {
   
   const handleRemove = () => {
     setOption(id, '');
-    wp.customize.previewer.refresh();
+    window.wp.customize.previewer.refresh();
   };
 
   return (
