@@ -1,257 +1,283 @@
 .obfx-sharing {
-	position: fixed;
-	z-index: 10000;
-	top: 50%;
-	margin: 0;
-	padding: 0;
-	list-style: none;
-	-webkit-transform: translateY(-50%);
-	-ms-transform: translateY(-50%);
-	transform: translateY(-50%);
+  position: fixed;
+  z-index: 10000;
+  top: 50%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .obfx-sharing-left {
-	left: 0;
+  left: 0;
 }
 
 .obfx-sharing-right {
-	right: 0;
+  right: 0;
 }
 
 .obfx-sharing li {
-	display: block;
-	position: relative;
+  display: block;
+  position: relative;
 }
 
 .obfx-sharing a {
-	display: block;
-	position: relative;
-	z-index: 10000;
-	padding: 5px 10px;
-	color: #fff;
-	font-size: 20px;
-	line-height: 30px;
-	text-decoration: none;
-	letter-spacing: normal;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 6px 10px;
+  color: #fff;
+}
+
+.obfx-sharing svg {
+  fill: currentColor;
+	width: 18px;
+	height: 18px;
 }
 
 .obfx-sharing a:hover,
 .obfx-sharing a:focus,
 .obfx-sharing a:visited {
-	color: #fff;
-	text-decoration: none;
-}
-
-.obfx-sharing i {
-	width: 20px;
-	height: 20px;
-	padding-top: 5px;
-	font-size: 18px;
-	line-height: 20px;
-	text-align: center;
-}
-
-.obfx-sharing .socicon-twitter:before {
-	min-width: 20px;
-	min-height: 20px;
-	transform: translateY(4px);
+  color: #fff;
+  text-decoration: none;
 }
 
 .obfx-sharing span {
-	display: none;
-	position: absolute;
-	z-index: -10;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: -200%;
-	padding: 5px 10px;
-	background: rgba(0, 0, 0, 0.375);
-	font-size: 13px;
-	line-height: 30px;
-	-webkit-transition: 0.3s ease all;
-	transition: 0.3s ease all;
+  display: none;
+  position: absolute;
+  z-index: -10;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: -200%;
+  padding: 5px 10px;
+  background: rgba(0, 0, 0, 0.375);
+  font-size: 13px;
+  line-height: 30px;
+  -webkit-transition: 0.3s ease all;
+  transition: 0.3s ease all;
+	align-items: center;
+	justify-content: center;
 }
 
 .obfx-sharing-right a:hover > span {
-	right: 105%;
-	left: -250%;
+  right: 105%;
+  left: -250%;
 }
 
 .obfx-sharing-left a:hover > span {
-	right: -250%;
-	left: 105%;
+  right: -250%;
+  left: 105%;
 }
 
 .obfx-sharing a:hover > span {
-	display: inline-block;
+  display: inline-flex;
 }
 
 .obfx-sharing-inline {
-	list-style: none;
+  list-style: none;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content: end;
 }
 
 .obfx-sharing-inline li {
-	display: inline;
+  display: inline;
 }
 
-.obfx-sharing-inline a.btn{
-    width: 44px;
-    height: 44px;
-    line-height: 44px;
-    border-radius: 50%;
-    padding: 0;
+.obfx-sharing-inline a.btn {
+  width: 44px;
+  height: 44px;
+  line-height: 44px;
+  border-radius: 50%;
+  padding: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+}
+
+.obfx-sharing-inline svg {
+	fill: currentColor;
+	width: 18px;
+	height: 18px;
+	max-width: 18px;
+	max-height: 18px;
 }
 
 /* Social icons color */
 .obfx-sharing-inline a.btn-facebook,
 .obfx-sharing a.facebook {
-	background-color: #3b5998;
+  background-color: #0866FF;
 }
 
 .obfx-sharing-inline a.btn-twitter,
-.obfx-sharing a.twitter {
-	background-color: #fff;
+.obfx-sharing a.twitter,
+.obfx-sharing-inline a.btn-threads,
+.obfx-sharing a.threads {
+  background-color: #000;
 }
 
 .obfx-sharing-inline a.btn-pinterest,
 .obfx-sharing a.pinterest {
-	background-color: #bd081c;
+  background-color: #bd081c;
 }
 
 .obfx-sharing-inline a.btn-linkedin,
 .obfx-sharing a.linkedin {
-	background-color: #0077b5;
+  background-color: #0077b5;
 }
 
 .obfx-sharing-inline a.btn-tumblr,
 .obfx-sharing a.tumblr {
-	background-color: #35465c;
+  background-color: #36465D;
 }
 
 .obfx-sharing-inline a.btn-reddit,
 .obfx-sharing a.reddit {
-	background-color: #ff4500;
+  background-color: #ff4500;
 }
 
 .obfx-sharing-inline a.btn-vkontakte,
 .obfx-sharing a.vkontakte {
-	background-color: #45668e;
+  background-color: #0077FF;
 }
 
 .obfx-sharing-inline a.btn-odnoklassniki,
 .obfx-sharing a.odnoklassniki {
-	background-color: #f48420;
+  background-color: #f48420;
 }
 
 .obfx-sharing-inline a.btn-douban,
 .obfx-sharing a.douban {
-	background-color: #228a31;
+  background-color: #2D963D;
 }
 
 .obfx-sharing-inline a.btn-baidu,
 .obfx-sharing a.baidu {
-	background-color: #de0f17;
+  background-color: #2932E1;
 }
 
 .obfx-sharing-inline a.btn-xing,
 .obfx-sharing a.xing {
-	background-color: #026466;
+  background-color: #006567;
 }
 
 .obfx-sharing-inline a.btn-renren,
 .obfx-sharing a.renren {
-	background-color: #227ec7;
+  background-color: #217DC6;
 }
 
 .obfx-sharing-inline a.btn-weibo,
 .obfx-sharing a.weibo {
-	background-color: #e6162d;
+  background-color: #e6162d;
 }
 
-.obfx-sharing-inline a.btn-viber,
-.obfx-sharing a.viber {
-	background-color: #00b901;
+.obfx-sharing-inline a.btn-sms,
+.obfx-sharing a.sms {
+  background-color: #00b901;
 }
 
 .obfx-sharing-inline a.btn-whatsapp,
 .obfx-sharing a.whatsapp {
-	background-color: #20b038;
+  background-color: #20b038;
 }
 
 .obfx-sharing-inline a.btn-mail,
 .obfx-sharing a.mail {
-	background-color: #58a9de;
+  background-color: #58a9de;
 }
 
 .obfx-sharing-inline a.btn-telegram,
 .obfx-sharing a.telegram {
-	background-color: #36aff3;
+  background-color: #26A5E4;
 }
 
-@media ( max-width: 768px ) {
-	.obfx-sharing-side {
-		position: fixed;
-		z-index: 10000;
-		top: 50%;
-		margin: 0;
-		padding: 0;
-		list-style: none;
-		-webkit-transform: translateY(-50%);
-		-ms-transform: translateY(-50%);
-		transform: translateY(-50%);
-	}
-
-	.obfx-sharing-bottom {
-		display: table;
-		position: fixed;
-		z-index: 10000;
-		top: auto;
-		bottom: 0;
-		width: 100%;
-		margin: 0 !important;
-		padding: 0;
-		-webkit-transform: translateY(0);
-		-ms-transform: translateY(0);
-		transform: translateY(0);
-	}
-
-	.obfx-hestia-social-wrapper {
-		position: static;
-		margin: 0 -10px;
-	}
-
-	.obfx-sharing-bottom li {
-		display: table-cell;
-		margin: 0;
-		padding: 0;
-		text-align: center;
-	}
-
-	.obfx-sharing-bottom a,
-	.obfx-sharing-bottom a.btn.btn-just-icon {
-		width: 100%;
-		height: auto;
-		margin: 0;
-		padding: 0;
-		padding: 0;
-		border-radius: 0;
-		opacity: 1;
-		box-shadow: none;
-		line-height: 40px;
-	}
-
-	.obfx-sharing-bottom span,
-	.obfx-sharing a:hover > span,
-	li.obfx-hide-mobile-socials,
-	.obfx-sharing-inline li.obfx-hide-mobile-socials {
-		display: none;
-	}
+.obfx-sharing-inline a.btn-mastodon,
+.obfx-sharing a.mastodon {
+  background-color: #6364ff;
 }
 
-@media ( min-width: 769px ) {
-	.obfx-sharing-inline li.obfx-hide-desktop-socials,
-	li.obfx-hide-desktop-socials {
-		display: none;
+.obfx-sharing-inline a.btn-bluesky,
+.obfx-sharing a.bluesky {
+  background-color: #0285ff;
+}
+
+@media (max-width: 768px) {
+  .obfx-sharing-side {
+    position: fixed;
+    z-index: 10000;
+    top: 50%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
+
+  .obfx-sharing-bottom {
+    display: flex;
+    position: fixed;
+    z-index: 10000;
+    top: auto;
+    bottom: 0;
+		left: 0;
+		right: 0;
+    margin: 0 !important;
+    padding: 0;
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  .obfx-hestia-social-wrapper {
+    position: static;
+    margin: 0 -10px;
+  }
+
+  .obfx-sharing-bottom li {
+		flex-grow: 1;
+    display: flex;
+		align-items: center;
+		justify-content: center;
+  }
+
+  .obfx-sharing-bottom a,
+  .obfx-sharing-bottom a.btn.btn-just-icon {
+    margin: 0;
+    padding: 5px 3px;
+    border-radius: 0;
+    opacity: 1;
+    box-shadow: none;
+		display: flex;
+		width: 100%;
+		height: 100%;
+  }
+
+  .obfx-sharing-bottom svg {
+		height: 18px;
+		width: 18px;
+		max-width: 18px;
+		max-height: 18px;
 	}
+
+  .obfx-sharing-bottom span,
+  .obfx-sharing a:hover > span,
+  li.obfx-hide-mobile-socials,
+  .obfx-sharing-inline li.obfx-hide-mobile-socials {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .obfx-sharing-inline li.obfx-hide-desktop-socials,
+  li.obfx-hide-desktop-socials {
+    display: none;
+  }
 }

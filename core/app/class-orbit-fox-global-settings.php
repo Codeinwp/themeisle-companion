@@ -73,6 +73,7 @@ class Orbit_Fox_Global_Settings {
 					'header-footer-scripts',
 					'custom-fonts',
 					'login-customizer',
+					'post-duplicator',
 				)
 			);
 		}// End if().
