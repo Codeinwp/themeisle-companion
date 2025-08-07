@@ -174,6 +174,7 @@ class Login_Customizer_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		}
 
 		add_filter( 'shake_error_codes', '__return_empty_array' );
+		add_filter( 'enable_login_autofocus', '__return_false' );
 
 		foreach ( self::ALLOWED_FORM_ACTIONS as $action ) {
 			add_filter(
