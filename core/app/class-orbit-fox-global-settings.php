@@ -73,6 +73,7 @@ class Orbit_Fox_Global_Settings {
 					'custom-fonts',
 					'post-duplicator',
 					'beaver-widgets',
+					'svg-uploads',
 				)
 			);
 		}// End if().

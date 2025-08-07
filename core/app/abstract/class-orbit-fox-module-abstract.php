@@ -89,7 +89,7 @@ abstract class Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 * @var     array $notices Stores an array of notices to be displayed on the admin panel.
 	 */
-	protected $notices = array();
+	public $notices = array();
 	/**
 	 * Has an instance of the Orbit_Fox_Loader class used for adding actions and filters.
 	 *
@@ -224,30 +224,6 @@ abstract class Orbit_Fox_Module_Abstract {
 	 */
 	public function get_notices() {
 		return $this->notices;
-	}
-
-	/**
-	 * Utility method to updated showed notices array.
-	 *
-	 * @since   1.0.0
-	 * @access  public
-	 */
-	public function update_showed_notices() {
-		$showed_notices = $this->get_status( 'showed_notices' );
-		// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
-		if ( $showed_notices == false ) {
-			$showed_notices = array();
-		}
-		foreach ( $this->notices as $notice ) {
-			// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
-			if ( $notice['display_always'] == false ) {
-				$hash = md5( serialize( $notice ) );
-				if ( ! in_array( $hash, $showed_notices, true ) ) {
-					$showed_notices[] = $hash;
-				}
-			}
-		}
-		$this->set_status( 'showed_notices', $showed_notices );
 	}
 
 	/**

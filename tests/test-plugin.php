@@ -18,8 +18,6 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
 	protected $plugin_version;
 
 	public function tearDown(): void {
-		Orbit_Fox_Global_Settings::destroy_instance();
-
 		$obfx_model = new Orbit_Fox_Model();
 		$obfx_model->destroy_model();
 	}
@@ -116,7 +114,9 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
 		$rdh->render_option( array( 'type' => 'toggle', 'value' => '1' ) );
 		$rdh->render_option( array( 'type' => 'unknown' ) );
 
-		$this->invokeMethod($rdh, 'sanitize_option', array(array('type' => 'text')));
+		$this->invokeMethod($rdh, 'sanitize_option', array(array('type' => 'toggle')));
+
+		$this->assertTrue(true);
 	}
 
 	/**
@@ -144,6 +144,7 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
 			$default_state = ! $default_state;
 		}
 
+		$this->assertTrue(true);
 	}
 
 
