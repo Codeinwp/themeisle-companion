@@ -71,6 +71,7 @@ class Orbit_Fox_Global_Settings {
 					'policy-notice',
 					'beaver-widgets',
 					'header-footer-scripts',
+					'disable-comments',
 					'custom-fonts',
 					'post-duplicator',
 				)
