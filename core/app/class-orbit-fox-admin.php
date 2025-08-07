@@ -172,8 +172,6 @@ class Orbit_Fox_Admin {
 			wp_enqueue_style( 'obfx-dashboard-style' );
 			wp_register_style( 'obfx-dashboard-colors', OBFX_URL . 'obfx_modules/social-sharing/css/admin.css', array( 'wp-components' ), $dependencies['version'] );
 			wp_enqueue_style( 'obfx-dashboard-colors' );
-			wp_register_style( 'obfx-dashboard-social', OBFX_URL . 'obfx_modules/social-sharing/css/vendor/socicon/socicon.css', array( 'wp-components' ), $dependencies['version'] );
-			wp_enqueue_style( 'obfx-dashboard-social' );
 		}
 
 		do_action( 'obfx_admin_enqueue_styles' );
