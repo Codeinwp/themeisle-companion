@@ -7,22 +7,41 @@
  * @author	ThemeIsle
  */
 
-var obfx_sharing_module = function( $ ) {
-	'use strict';
+(function () {
+  "use strict";
 
-	$(
-		function() {
-				$( '.obfx-sharing a, .obfx-sharing-inline a' ).not( '.whatsapp, .mail, .viber' ).on(
-					'click', function(e) {
-						e.preventDefault();
-						var link = $( this ).attr( 'href' );
+  document.addEventListener("DOMContentLoaded", function () {
+    const sharingLinks = document.querySelectorAll(
+      ".obfx-sharing a, .obfx-sharing-inline a"
+    );
 
-						window.open( link, 'obfxShareWindow', 'height=450, width=550, top=' + ( $( window ).height() / 2 - 275 ) + ', left=' + ( $( window ).width() / 2 - 225 ) + ', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0' );
-						return true;
-					}
-				);
-		}
-	);
-};
+    sharingLinks.forEach(function (link) {
+      // Skip whatsapp, mail, and viber links
+      if (
+        link.classList.contains("whatsapp") ||
+        link.classList.contains("mail") ||
+        link.classList.contains("sms")
+      ) {
+        return;
+      }
 
-obfx_sharing_module( jQuery );
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+        const linkHref = this.getAttribute("href");
+        const windowHeight = window.innerHeight;
+        const windowWidth = window.innerWidth;
+
+        window.open(
+          linkHref,
+          "obfxShareWindow",
+          "height=450, width=550, top=" +
+            (windowHeight / 2 - 275) +
+            ", left=" +
+            (windowWidth / 2 - 225) +
+            ", toolbar=0, location=0, menubar=0, directories=0, scrollbars=0"
+        );
+        return true;
+      });
+    });
+  });
+})();

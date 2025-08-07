@@ -1,67 +1,85 @@
-#obfx-dash .socicon-facebook {
-	color: #3b5998;
+#obfx-dash .obfx-toggle-icon svg {
+	width: 16px;
+	height: 16px;
+	fill: currentColor;
 }
 
-#obfx-dash .socicon-twitter {
-	color: #fff;
+#obfx-dash .obfx-toggle-icon.facebook {
+	color: #0866FF;
 }
 
-#obfx-dash .socicon-pinterest {
+#obfx-dash .obfx-toggle-icon.twitter {
+	color: #000;
+}
+
+#obfx-dash .obfx-toggle-icon.pinterest {
 	color: #bd081c;
 }
 
-#obfx-dash .socicon-linkedin {
+#obfx-dash .obfx-toggle-icon.linkedin {
 	color: #0077b5;
 }
 
-#obfx-dash .socicon-tumblr {
-	color: #35465c;
+#obfx-dash .obfx-toggle-icon.tumblr {
+	color: #36465D;
 }
 
-#obfx-dash .socicon-reddit {
+#obfx-dash .obfx-toggle-icon.reddit {
 	color: #ff4500;
 }
 
-#obfx-dash .socicon-vk {
-	color: #45668e;
+#obfx-dash .obfx-toggle-icon.vkontakte {
+	color: #0077FF;
 }
 
-#obfx-dash .socicon-odnoklassniki {
+#obfx-dash .obfx-toggle-icon.odnoklassniki {
 	color: #ee8208;
 }
 
-#obfx-dash .socicon-douban {
-	color: #228a31;
+#obfx-dash .obfx-toggle-icon.douban {
+	color: #2D963D;
 }
 
-#obfx-dash .socicon-baidu {
-	color: #de0f17;
+#obfx-dash .obfx-toggle-icon.baidu {
+	color: #2932E1;
 }
 
-#obfx-dash .socicon-xing {
-	color: #026466;
+#obfx-dash .obfx-toggle-icon.xing {
+	color: #006567;
 }
 
-#obfx-dash .socicon-renren {
-	color: #227ec7;
+#obfx-dash .obfx-toggle-icon.renren {
+	color: #217DC6;
 }
 
-#obfx-dash .socicon-weibo {
+#obfx-dash .obfx-toggle-icon.weibo {
 	color: #e6162d;
 }
 
-#obfx-dash .socicon-viber {
+#obfx-dash .obfx-toggle-icon.sms {
 	color: #00b901;
 }
 
-#obfx-dash  .socicon-whatsapp {
+#obfx-dash .obfx-toggle-icon.whatsapp {
 	color: #20b038;
 }
 
-#obfx-dash .socicon-mail {
+#obfx-dash .obfx-toggle-icon.mail {
 	color: #58a9de;
 }
 
-#obfx-dash .socicon-telegram {
-	color: #36aff3;
+#obfx-dash .obfx-toggle-icon.telegram {
+	color: #26A5E4;
+}
+
+#obfx-dash .obfx-toggle-icon.mastodon {
+	color: #6364FF;
+}
+
+#obfx-dash .obfx-toggle-icon.bluesky {
+	color: #0285FF;
+}
+
+#obfx-dash .obfx-toggle-icon.threads {
+	color: #000000;
 }

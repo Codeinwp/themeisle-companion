@@ -71,6 +71,7 @@ class Orbit_Fox_Global_Settings {
 					'header-footer-scripts',
 					'elementor-widgets',
 					'custom-fonts',
+					'post-duplicator',
 					'beaver-widgets',
 				)
 			);
