@@ -17,7 +17,7 @@ const PREVIEW_OPTIONS = {
     show: window.OBFXData.registrationEnabled === '1',
   },
   'lost-password': {
-    label: __('Reset', 'themeisle-companion'),
+    label: __('Forgot', 'themeisle-companion'),
     url: window.OBFXData.lostPasswordUrl,
     icon: Key,
     show: true
