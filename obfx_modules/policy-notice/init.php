@@ -36,7 +36,7 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function set_module_strings() {
-		$this->name              = __( 'Policy Notice', 'themeisle-companion' );
+		$this->name              = __( 'Cookie Notice', 'themeisle-companion' );
 		$this->description       = __( 'A simple notice bar which will help you inform users about your website policy.', 'themeisle-companion' );
 		$this->documentation_url = 'https://docs.themeisle.com/article/951-orbit-fox-documentation#policy-notice';
 		$this->set_options_strings();
