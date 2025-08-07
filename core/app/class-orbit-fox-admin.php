@@ -241,7 +241,7 @@ class Orbit_Fox_Admin {
 				)
 			);
 
-			wp_set_script_translations( 'obfx-dashboard', 'obfx_companion' );
+			wp_set_script_translations( 'obfx-dashboard', 'themeisle-companion' );
 			wp_enqueue_script( 'obfx-dashboard' );
 
 			do_action( 'themeisle_internal_page', OBX_PRODUCT_SLUG, 'dashboard' );

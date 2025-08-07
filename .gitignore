@@ -7,3 +7,4 @@ artifact
 vendor
 /obfx_modules/template-directory/js
 /obfx_modules/mystock-import/js/build
+/obfx_modules/login-customizer/js/build

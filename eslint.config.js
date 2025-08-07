@@ -5,7 +5,7 @@ const importPlugin = require("eslint-plugin-import");
 
 module.exports = [
   {
-    files: ["**/*.{js,jsx}"],
+    files: ["dashboard/**/*.{js,jsx}", "obfx_modules/**/*.{js,jsx}"],
     languageOptions: {
       ecmaVersion: 2020,
       sourceType: "module",
@@ -45,6 +45,14 @@ module.exports = [
     },
   },
   {
-    ignores: ["node_modules/", "build/", "*.json", "wp-scripts.config.js", "webpack.config.js", "*.config.js", "vendor/"],
+    ignores: [
+      "node_modules/",
+      "build/",
+      "*.json",
+      "wp-scripts.config.js",
+      "webpack.config.js",
+      "*.config.js",
+      "vendor/",
+    ],
   },
 ];

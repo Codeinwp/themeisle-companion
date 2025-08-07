@@ -1,0 +1,208 @@
+html, body {
+  height: auto;
+}
+
+body.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  position: relative;
+  background-color: var(--obfx-login-bg-color);
+  background-image: var(--obfx-login-bg-image, none);
+  background-size: var(--obfx-login-bg-size, cover);
+  background-position: var(--obfx-login-bg-position, center);
+  background-repeat: var(--obfx-login-bg-repeat, no-repeat);
+}
+
+body.login > * {
+  z-index: 2;
+}
+
+body.login::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: var(--obfx-login-bg-color);
+  backdrop-filter: blur(var(--obfx-login-bg-overlay-blur, 0px));
+}
+
+#login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0;
+  max-width: 100%;
+  width: var(--obfx-login-form-width, 320px);
+}
+
+.login h1 a, .login .wp-login-logo a {
+  background-size: contain;
+  height: var(--obfx-login-logo-height, 84px);
+  width: var(--obfx-login-logo-width, 84px);
+  margin-bottom: var(--obfx-login-logo-margin-bottom, 24px);
+
+}
+
+.login #login > form {
+  background-color: var(--obfx-login-form-bg-color, #ffffff);
+  border-radius: var(--obfx-login-form-border-radius, 0px);
+  color: var(--obfx-login-form-text-color, #3c434a);
+  margin-top: 0;
+  border: var(--obfx-login-form-border, 1px solid #c3c4c7);
+  padding: var(--obfx-login-form-padding, 26px 24px);
+}
+
+.login form .input, .login input[type="text"], .user-pass-wrap {
+  margin-bottom: var(--obfx-login-form-field-margin-bottom, 0px);
+}
+.login form .input, .login input[type="text"], .login input[type="password"] {
+  background-color: var(--obfx-login-form-field-bg-color, #ffffff);
+  color: var(--obfx-login-form-field-text-color, #2c3338);
+  border: var(--obfx-login-form-field-border, 1px solid #8c8f94);
+  border-radius: var(--obfx-login-form-field-border-radius, 4px);
+  padding: var(--obfx-login-form-field-padding, 12px 12px);
+  font-size: var(--obfx-login-form-field-font-size, 24px);
+}
+
+.login form input#user_pass {
+  margin-bottom: 0;
+}
+
+.login .button.wp-hide-pw,
+.login .button.wp-hide-pw:active {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.login form .input:focus, .login input[type="text"]:focus, .login input[type="password"]:focus {
+  border-color: var(--obfx-login-form-field-text-color, #2c3338);
+  box-shadow: none;
+}
+
+.login form input[type="checkbox"]  {
+  background-color: var(--obfx-login-form-field-bg-color, #ffffff);
+  border: var(--obfx-login-form-field-border, 1px solid #8c8f94);  
+}
+
+.login #login > form .dashicons {
+  border: none;
+  color: var(--obfx-login-form-field-text-color, #2271b1);
+}
+
+.login #login > form label {
+  font-size: var(--obfx-login-form-label-font-size, 14px);
+}
+
+.login #login > form label:not([for="rememberme"]) {
+  margin-bottom: var(--obfx-login-form-label-margin-bottom, 0px);
+}
+
+.forgetmenot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.forgetmenot label {
+  margin-bottom: 0;
+}
+
+.forgetmenot input[type="checkbox"] {
+  width: calc(var(--obfx-login-form-label-font-size) * 1.2);
+  height: calc(var(--obfx-login-form-label-font-size) * 1.2);
+  color: var(--obfx-login-form-field-text-color, #2271b1);
+  border-color: var(--obfx-login-form-field-text-color, #2271b1);
+  background-color: var(--obfx-login-form-field-bg-color, #ffffff);
+  position: relative;
+  margin: 0;
+}
+.forgetmenot input[type="checkbox"]:checked {
+  border-color: var(--obfx-login-form-field-text-color, #2271b1);
+}
+
+input[type="checkbox"]:checked:before {
+  content: var(--obfx-login-form-checkbox-content);
+  width: var(--obfx-login-form-label-font-size);
+  height: var(--obfx-login-form-label-font-size);
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#login form p.submit {
+  display:flex;
+  justify-content: var(--obfx-login-button-alignment, end);
+  margin-top: var(--obfx-login-button-margin-top, 0);
+}
+
+.wp-core-ui .button.button-large#wp-submit,
+.wp-core-ui .button.button-large#resetpass {
+  width: var(--obfx-login-button-width, 'auto');
+  padding: var(--obfx-login-button-padding, 12px 12px);
+  font-size: var(--obfx-login-button-font-size, 13px);
+  border-radius: var(--obfx-login-button-border-radius, 4px);
+  border: var(--obfx-login-button-border, 1px solid #2271b1);
+  background: var(--obfx-login-button-background, #2271b1);
+  color: var(--obfx-login-button-text-color, #ffffff);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 1;
+  height: auto;
+  min-height: unset;
+}
+
+.wp-core-ui .button.button-large#wp-submit:hover,
+.wp-core-ui .button.button-large#resetpass:hover {
+  background: var(--obfx-login-button-hover-background, #135e96);
+  border-color: var(--obfx-login-button-hover-border-color, #135e96);
+  color: var(--obfx-login-button-hover-text-color, #ffffff);
+}
+
+
+.login #language-switcher {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.login #nav {
+  margin-top: 0;
+  color: var(--obfx-login-nav-color, #50575e);
+  font-size: var(--obfx-login-nav-font-size, 13px);  
+}
+
+.login #nav a {
+  color: var(--obfx-login-nav-color, #50575e);
+  font-size: var(--obfx-login-nav-font-size, 13px);
+}
+
+.login #nav a:hover {
+  color: var(--obfx-login-nav-hover-color, #50575e);
+}
+
+.login #backtoblog a {
+  color: var(--obfx-login-homepage-link-color, #50575e);
+  font-size: var(--obfx-login-homepage-link-font-size, 13px);
+}
+
+.login #backtoblog a:hover {
+  color: var(--obfx-login-homepage-link-hover-color, #50575e);
+}
+
+.login a.privacy-policy-link {
+  color: var(--obfx-login-privacy-policy-link-color, #2271b1);
+  font-size: var(--obfx-login-privacy-policy-link-font-size, 13px);
+}
+
+.login a.privacy-policy-link:hover {
+  color: var(--obfx-login-privacy-policy-link-hover-color, #135e96);
+}
