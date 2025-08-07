@@ -148,6 +148,10 @@ class Login_Customizer_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			$_REQUEST['action'] = $_GET['obfx-login'];
 		}
 
+		// Used by wp-login.php - do not remove.
+		$user_login = 'user@example.com';
+		$error      = '';
+
 		require_once 'wp-login.php';
 
 		wp_footer();
