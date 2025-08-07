@@ -18,8 +18,6 @@ class Test_Orbit_Fox extends WP_UnitTestCase {
 	protected $plugin_version;
 
 	public function tearDown(): void {
-		Orbit_Fox_Global_Settings::destroy_instance();
-
 		$obfx_model = new Orbit_Fox_Model();
 		$obfx_model->destroy_model();
 	}

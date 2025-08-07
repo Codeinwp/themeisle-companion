@@ -5,6 +5,7 @@ import {
   Collapsible,
   HStack,
   Icon,
+  SimpleGrid,
   Text,
   VStack,
 } from "@chakra-ui/react";
@@ -19,8 +20,8 @@ import { isEqual } from "lodash";
 import { Dashicon } from "@wordpress/components";
 import { useContext, useState } from "@wordpress/element";
 import { __ } from "@wordpress/i18n";
-import { toaster } from "./ui/toaster";
 import ModuleControl from "./ModuleControl";
+import { toaster } from "./ui/toaster";
 
 const { options, root, setSettingsRoute } = obfxDash;
 
@@ -80,7 +81,12 @@ const ModuleSettings = ({ slug }) => {
 
       if (element.title && element.label) {
         content.push(
-          <Text key={`${element.id}-title`} m="0" fontWeight="medium" fontSize="sm">
+          <Text
+            key={`${element.id}-title`}
+            m="0"
+            fontWeight="medium"
+            fontSize="sm"
+          >
             {element.title}
           </Text>
         );
@@ -88,7 +94,7 @@ const ModuleSettings = ({ slug }) => {
 
       if (element.hasOwnProperty("before_wrap")) {
         const row = [];
-				
+
         while (true) {
           row.push(
             <ModuleControl
@@ -132,9 +138,15 @@ const ModuleSettings = ({ slug }) => {
           element = options[slug][++i];
         }
         content.push(
-          <HStack key={`${element.id}-hstack`} alignItems="start" gap="5">
+          <SimpleGrid
+            w="full"
+            columns={{ base: 3, md: 4, lg: 2, "2xl": 4 }}
+            key={`${element.id}-hstack`}
+            alignItems="start"
+            gap="5"
+          >
             {row}
-          </HStack>
+          </SimpleGrid>
         );
         i--;
         continue;

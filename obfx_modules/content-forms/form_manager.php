@@ -113,13 +113,15 @@ class Form_Manager {
 	 * Load Elementor, Beaver or other widgets manager class.
 	 */
 	private function make() {
-		if ( defined( 'ELEMENTOR_PATH' ) && class_exists( 'Elementor\Widget_Base' ) ) {
+		$model = new \Orbit_Fox_Model();
+
+		if (defined('ELEMENTOR_PATH') && class_exists('Elementor\Widget_Base') && $model->get_is_module_active('elementor-widgets', true)) {
 			require_once 'includes/widgets-admin/elementor/elementor_widget_manager.php';
 			$elementor_manager = new Elementor_Widget_Manager();
 			$elementor_manager->init();
 		}
 
-		if ( class_exists( '\FLBuilderModel' ) ) {
+		if (class_exists('\FLBuilderModel') && $model->get_is_module_active('beaver-widgets', true)) {
 			require_once 'includes/widgets-admin/beaver/beaver_widget_manager.php';
 			$beaver_manager = new Beaver_Widget_Manager();
 			$beaver_manager->register_beaver_module();

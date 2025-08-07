@@ -10,6 +10,7 @@ import {
   RadioGroup,
   Select,
   Switch,
+  Span,
 } from "@chakra-ui/react";
 
 import { __ } from "@wordpress/i18n";
@@ -80,11 +81,15 @@ const ModuleControl = ({ setting, tempData, changeOption }) => {
       >
         <Switch.HiddenInput />
         <Switch.Control />
-        <Switch.Label
-          dangerouslySetInnerHTML={{ __html: setting.label }}
-          fontWeight="normal"
-          color="fg.muted"
-        />
+        <Switch.Label fontWeight="normal" color="fg.muted">
+          {setting.icon && (
+            <HStack gap="2">
+              <Span fontSize="sm" dangerouslySetInnerHTML={{ __html: setting.icon }} />
+              {setting.label}
+            </HStack>
+          )}
+          {!setting.icon && setting.label}
+        </Switch.Label>
       </Switch.Root>
     );
   case "select":
