@@ -286,7 +286,9 @@ class Login_Customizer_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return array
 	 */
 	public function get_localization_data() {
-		$languages = get_available_languages();
+		$languages      = get_available_languages();
+		$policy_page_id = (int) get_option( 'wp_page_for_privacy_policy' );
+
 
 		return array(
 			'sectionID'           => self::SECTION_ID,
@@ -297,6 +299,7 @@ class Login_Customizer_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			'defaultValues'       => OBFX_Login_Values::get_defaults(),
 			'hasLanguageSwitcher' => ! empty( $languages ),
 			'registrationEnabled' => get_option( 'users_can_register' ),
+			'hasPrivacyPolicy'    => get_post_status( $policy_page_id ) === 'publish',
 		);
 	}
 

@@ -26,12 +26,14 @@ const FormFooter = () => {
         <Range label={__('Font Size', 'themeisle-companion')} id="homepage_link_font_size" max={50} min={10}/>
       </Show>
 
-      <Heading label={__('Privacy Policy Link', 'themeisle-companion')} />
-      <Toggle label={__('Enabled', 'themeisle-companion')} id="show_privacy_policy" />
-      <Show when={getOption('show_privacy_policy')}>
-        <Color label={__('Color', 'themeisle-companion')} id="privacy_policy_link_color" />
-        <Color label={__('Hover Color', 'themeisle-companion')} id="privacy_policy_link_hover_color" />
-        <Range label={__('Font Size', 'themeisle-companion')} id="privacy_policy_link_font_size" max={50} min={10}/>
+      <Show when={window.OBFXData.hasPrivacyPolicy}>
+        <Heading label={__('Privacy Policy Link', 'themeisle-companion')} />
+        <Toggle label={__('Enabled', 'themeisle-companion')} id="show_privacy_policy" />
+        <Show when={getOption('show_privacy_policy')}>
+          <Color label={__('Color', 'themeisle-companion')} id="privacy_policy_link_color" />
+          <Color label={__('Hover Color', 'themeisle-companion')} id="privacy_policy_link_hover_color" />
+          <Range label={__('Font Size', 'themeisle-companion')} id="privacy_policy_link_font_size" max={50} min={10}/>
+        </Show>
       </Show>
     </VStack>
   );
