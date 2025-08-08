@@ -39,8 +39,9 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function set_module_strings() {
-		$this->name        = __( 'Page builder widgets', 'themeisle-companion' );
-		$this->description = __( 'Adds widgets to the most popular builders: Elementor or Beaver. More to come!', 'themeisle-companion' );
+		$this->name              = __( 'Elementor widgets', 'themeisle-companion' );
+		$this->description       = __( 'Adds widgets to the Elementor page builder.', 'themeisle-companion' );
+		$this->documentation_url = 'https://docs.themeisle.com/article/951-orbit-fox-documentation#page-builder-widgets';
 
 		if ( self::should_add_placeholders() ) {
 			$this->description .=
@@ -65,9 +66,9 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 							),
 							'https://themeisle.com/themes/neve/pricing/'
 						)
-					) . '">
-						<b>' . __( 'Learn more', 'themeisle-companion' ) . '</b>
-					</a>
+					) . '">'
+				. __( 'Learn more', 'themeisle-companion' ) .
+				'</a>
 				</div>';
 		}
 	}

@@ -63,8 +63,9 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function set_module_strings() {
-		$this->name        = __( 'Mystock Import', 'themeisle-companion' );
-		$this->description = __( 'Module to import images directly from', 'themeisle-companion' ) . sprintf( ' <a href="%s" target="_blank">mystock.photos</a>', 'https://mystock.photos' );
+		$this->name              = __( 'Mystock Import', 'themeisle-companion' );
+		$this->description       = __( 'Module to import images directly from', 'themeisle-companion' ) . sprintf( ' <a href="%s" target="_blank">mystock.photos</a>', 'https://mystock.photos' );
+		$this->documentation_url = 'https://docs.themeisle.com/article/951-orbit-fox-documentation#mystock-photos';
 	}
 
 
@@ -256,7 +257,7 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		if ( method_exists( $current_screen, 'is_block_editor' ) && $current_screen->is_block_editor() ) {
 
 			$this->localized = array(
-				'script' => array(
+				'build/registerPlugin' => array(
 					'ajaxurl'  => admin_url( 'admin-ajax.php' ),
 					'nonce'    => wp_create_nonce( $this->slug . filter_input( INPUT_SERVER, 'REMOTE_ADDR', FILTER_VALIDATE_IP ) ),
 					'slug'     => $this->slug,
@@ -271,7 +272,7 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 					'editor-style' => array(),
 				),
 				'js'  => array(
-					'script' => array( 'wp-plugins', 'wp-edit-post', 'wp-element', 'wp-api-fetch', 'wp-blocks' ),
+					'build/registerPlugin' => array( 'wp-plugins', 'wp-edit-post', 'wp-element', 'wp-api-fetch', 'wp-blocks' ),
 				),
 			);
 		}

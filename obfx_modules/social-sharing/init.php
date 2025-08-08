@@ -29,7 +29,8 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		/*
 		 * translators: %s Document anchor link.
 		 */
-		$this->description = sprintf( __( 'Add basic social sharing to your posts and pages. Check out the %s to learn more!', 'themeisle-companion' ), sprintf( '<a href="https://docs.themeisle.com/article/1270-social-sharing-icons-orbit-fox-module/" rel="nofollow" target="_blank">%s</a>', __( 'documentation', 'themeisle-companion' ) ) );
+		$this->description       = __( 'Add basic social sharing to your posts and pages.', 'themeisle-companion' );
+		$this->documentation_url = 'https://docs.themeisle.com/article/951-orbit-fox-documentation#social-sharing';
 	}
 
 	/**
@@ -86,7 +87,7 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			'sms'       => array(
 				'link'     => 'sms://?&body=' . $post_title . ' - ' . $post_link,
 				'nicename' => 'SMS',
-				'icon'     => 'viber',
+				'icon'     => 'sms',
 				'target'   => '0',
 			),
 			'vk'        => array(
@@ -128,6 +129,21 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'link'     => 'https://t.me/share/url?url=' . $post_link . '&text=' . $post_title,
 				'nicename' => 'Telegram',
 				'icon'     => 'telegram',
+			),
+			'mastodon'  => array(
+				'link'     => 'https://mastodonshare.com/?text=' . $post_title . '&url=' . $post_link,
+				'nicename' => 'Mastodon',
+				'icon'     => 'mastodon',
+			),
+			'bluesky'   => array(
+				'link'     => 'https://bsky.app/intent/compose?text=' . urlencode( $post_title . ' ' . $post_link ),
+				'nicename' => 'Bluesky',
+				'icon'     => 'bluesky',
+			),
+			'threads'   => array(
+				'link'     => 'https://threads.net/intent/post?text=' . urlencode( $post_title . ' ' . $post_link ),
+				'nicename' => 'Threads',
+				'icon'     => 'threads',
 			),
 		);
 	}
@@ -176,36 +192,39 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function social_sharing_function() {
-		if ( class_exists( 'WooCommerce' ) && ( is_cart() || is_checkout() ) ) {
-			return false;
+		if ( ! $this->should_display_social_sharing() ) {
+			return;
 		}
 
-		if ( ( $this->get_option( 'display_on_posts' ) && is_single() ) || ( $this->get_option( 'display_on_pages' ) && is_page() ) ) {
-			$class_desktop = 'obfx-sharing-left ';
-			switch ( $this->get_option( 'socials_position' ) ) {
-				case '1':
-					$class_desktop = 'obfx-sharing-right ';
-					break;
-				case '2':
-					$class_desktop = 'obfx-sharing-inline ';
-			}
-
-			$class_mobile = '';
-			if ( $this->get_option( 'mobile_position' ) == '0' ) {
-				$class_mobile = 'obfx-sharing-bottom';
-			}
-			$data = array(
-				'desktop_class'      => $class_desktop,
-				'mobile_class'       => $class_mobile,
-				'show_name'          => $this->get_option( 'network_name' ),
-				'social_links_array' => $this->social_links_array(),
-			);
-
-			if ( $this->get_option( 'socials_position' ) == 2 ) {
-				return $this->render_view( 'hestia-social-sharing', $data );
-			}
-			echo $this->render_view( 'social-sharing', $data ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		$class_desktop = 'obfx-sharing-left ';
+		switch ( $this->get_option( 'socials_position' ) ) {
+			case '1':
+				$class_desktop = 'obfx-sharing-right ';
+				break;
+			case '2':
+				$class_desktop = 'obfx-sharing-inline ';
 		}
+
+		$class_mobile = '';
+		if ( $this->get_option( 'mobile_position' ) == '0' ) {
+			$class_mobile = 'obfx-sharing-bottom';
+		}
+
+		$data = array(
+			'desktop_class'      => $class_desktop,
+			'mobile_class'       => $class_mobile,
+			'show_name'          => $this->get_option( 'network_name' ),
+			'social_links_array' => $this->social_links_array(),
+		);
+
+		if ( ! class_exists( 'OBFX_Social_Icons' ) ) {
+			require_once OBX_PATH . '/obfx_modules/social-sharing/social-icons.php';
+		}
+
+		if ( $this->get_option( 'socials_position' ) == 2 ) {
+			return $this->render_view( 'hestia-social-sharing', $data );
+		}
+		echo $this->render_view( 'social-sharing', $data ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 
 	/**
@@ -249,29 +268,16 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return array
 	 */
 	public function public_enqueue() {
-		$data             = get_option( 'obfx_data' );
-		$display_on_posts = true;
-		$display_on_pages = false;
-		if ( isset( $data['module_settings'] ) && isset( $data['module_settings']['social-sharing'] ) ) {
-			if ( isset( $data['module_settings']['social-sharing']['display_on_posts'] ) ) {
-				$display_on_posts = (bool) $data['module_settings']['social-sharing']['display_on_posts'];
-			}
-			if ( isset( $data['module_settings']['social-sharing']['display_on_pages'] ) ) {
-				$display_on_pages = (bool) $data['module_settings']['social-sharing']['display_on_pages'];
-			}
-		}
-
-		if ( ( $display_on_posts === false || ! is_single() ) && ( $display_on_pages === false || ! is_page() ) ) {
+		if ( ! $this->should_display_social_sharing() ) {
 			return array();
 		}
 
 		return array(
 			'css' => array(
-				'public'                 => false,
-				'vendor/socicon/socicon' => false,
+				'public' => false,
 			),
 			'js'  => array(
-				'public' => array( 'jquery' ),
+				'public' => false,
 			),
 		);
 	}
@@ -296,25 +302,9 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @return array
 	 */
 	public function options() {
-		$options = array(
-			array(
-				'id'      => 'display_on_posts',
-				'title'   => 'Display On',
-				'name'    => 'display_on_posts',
-				'type'    => 'checkbox',
-				'label'   => 'Posts',
-				'class'   => 'inline-setting',
-				'default' => '1',
-			),
-			array(
-				'id'      => 'display_on_pages',
-				'title'   => '',
-				'name'    => 'display_on_pages',
-				'type'    => 'checkbox',
-				'label'   => 'Pages',
-				'class'   => 'inline-setting',
-				'default' => '0',
-			),
+		$post_type_display_options = $this->get_post_types_display_options();
+
+		$extra_options = array(
 			array(
 				'id'      => 'socials_position',
 				'title'   => 'Desktop Position',
@@ -347,7 +337,15 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			),
 		);
 
+		$options = array_merge( $post_type_display_options, $extra_options );
+
 		$this->define_networks();
+
+		if ( ! class_exists( 'OBFX_Social_Icons' ) ) {
+			require_once OBX_PATH . '/obfx_modules/social-sharing/social-icons.php';
+		}
+
+		$icons = new OBFX_Social_Icons();
 
 		foreach ( $this->social_share_links as $network => $data_array ) {
 			$options[] = array(
@@ -355,14 +353,14 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'title'       => ( $network == 'facebook' ) ? 'Networks' : '',
 				'id'          => $network,
 				'name'        => $network,
-				'label'       => '<i class="socicon-' . $data_array['icon'] . '"></i>  - ' . $data_array['nicename'],
+				'label'       => $data_array['nicename'],
+				'icon'        => '<i class="obfx-toggle-icon ' . esc_attr( $data_array['icon'] ) . '">' . $icons->get_icon( $data_array['icon'] ) . '</i>',
 				'type'        => 'toggle',
 				'default'     => ( $network == 'facebook' ) ? '1' : '',
 				'class'       => 'inline-setting network-toggle',
 			);
 
 			$options[] = array(
-				'title'   => ( $network == 'facebook' ) ? 'Show on' : '',
 				'id'      => $network . '-desktop-show',
 				'name'    => $network . '-desktop-show',
 				'label'   => 'desktop',
@@ -383,6 +381,71 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		}
 
 		$options = $this->add_hestia_options( $options );
+
+		return $options;
+	}
+
+	/**
+	 * Get the post types display options.
+	 *
+	 * @return array<array{
+	 *  id: string,
+	 *  title: string,
+	 *  name: string,
+	 *  type: string,
+	 *  label: string,
+	 *  class: string,
+	 * }>
+	 */
+	private function get_post_types_display_options() {
+		$options = array(
+			array(
+				'id'      => 'display_on_posts',
+				'title'   => 'Display On',
+				'name'    => 'display_on_posts',
+				'type'    => 'checkbox',
+				'label'   => 'Posts',
+				'class'   => 'inline-setting',
+				'default' => '1',
+			),
+			array(
+				'id'      => 'display_on_pages',
+				'title'   => '',
+				'name'    => 'display_on_pages',
+				'type'    => 'checkbox',
+				'label'   => 'Pages',
+				'class'   => 'inline-setting',
+				'default' => '0',
+			),
+		);
+
+
+		$post_types = get_post_types( array( 'public' => true ), 'objects' );
+
+		foreach ( $post_types as $post_type ) {
+			if ( ! $post_type instanceof WP_Post_Type ) {
+				continue;
+			}
+
+			if ( in_array( $post_type->name, array( 'post', 'page' ) ) ) {
+				continue;
+			}
+
+			if ( $post_type->name === 'neve_custom_layouts' ) {
+				continue;
+			}
+
+
+			$options[] = array(
+				'id'      => 'display_on_' . $post_type->name,
+				'title'   => '',
+				'name'    => 'display_on_' . $post_type->name,
+				'type'    => 'checkbox',
+				'label'   => $post_type->labels->name,
+				'class'   => 'inline-setting',
+				'default' => '1',
+			);
+		}
 
 		return $options;
 	}
@@ -414,4 +477,67 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		return null;
 	}
 
+	/**
+	 * Check if social sharing should be displayed.
+	 * 
+	 * @since 3.0.0
+	 * @access private
+	 * 
+	 * @return bool
+	 */
+	private function should_display_social_sharing() {
+		if ( ! is_singular() ) {
+			return false;
+		}
+
+		if ( class_exists( 'WooCommerce' ) && ( is_cart() || is_checkout() ) ) {
+			return false;
+		}
+
+		$data = get_option( 'obfx_data' );
+
+		$post_display = array(
+			'post' => true,
+			'page' => false,
+		);
+
+		if ( isset( $data['module_settings'], $data['module_settings']['social-sharing'] ) ) {
+			$used_settings = array_filter(
+				$data['module_settings']['social-sharing'],
+				function ( $value, $key ) {
+					return ( strpos( $key, 'display_on_' ) === 0 );
+				},
+				ARRAY_FILTER_USE_BOTH
+			);
+
+			if ( ! empty( $used_settings ) ) {
+				foreach ( $used_settings as $key => $value ) {
+					if ( $key === 'display_on_posts' ) {
+						$post_display['post'] = (bool) $value;
+
+						continue;
+					}
+
+					if ( $key === 'display_on_pages' ) {
+						$post_display['page'] = (bool) $value;
+
+						continue;
+					}
+
+					$setting_key = str_replace( 'display_on_', '', $key );
+
+					$post_display[ $setting_key ] = (bool) $value;
+				}
+			}
+		}
+
+		$current_post_type = get_post_type();
+
+		// We default to post as previously everything inherited from posts.
+		if ( ! isset( $post_display[ $current_post_type ] ) ) {
+			return $post_display['post'];
+		}
+
+		return $post_display[ $current_post_type ];
+	}
 }

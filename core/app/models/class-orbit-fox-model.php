@@ -77,16 +77,14 @@ class Orbit_Fox_Model {
 		$module_settings = array();
 		if ( ! empty( $modules ) ) {
 			foreach ( $modules as $slug => $module ) {
-				$is_enabled     = $module->enable_module();
-				$is_auto        = $module->auto;
-				$active         = false;
-				$showed_notices = array();
+				$is_enabled = $module->enable_module();
+				$is_auto    = $module->auto;
+				$active     = false;
 
 				$module_status[ $slug ] = array(
-					'enabled'        => $is_enabled,
-					'autoload'       => $is_auto,
-					'showed_notices' => $showed_notices,
-					'active'         => $active,
+					'enabled'  => $is_enabled,
+					'autoload' => $is_auto,
+					'active'   => $active,
 				);
 
 				$module_settings[ $slug ] = $module->get_options_defaults();

@@ -1,7 +1,7 @@
 === Orbit Fox by ThemeIsle ===
 Contributors: themeisle, codeinwp, rodicaelena, baicusandrei, hardeepasrani
 Tags: widget, admin, widgets, sharing, sections, themes, stock photos, custom icons, icons, menu icons, stock, templates, header, footer, scripts, custom fonts
-Requires at least: 4.7
+Requires at least: 5.3
 Tested up to: 6.8
 Requires PHP: 5.6
 Stable tag: trunk
@@ -106,6 +106,13 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 5. Social Sharing Module
 
 == Changelog ==
+
+##### [Version 2.10.47](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.46...v2.10.47) (2025-05-27)
+
+- Updated dependencies
+
+
+
 
 ##### [Version 2.10.46](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.45...v2.10.46) (2025-03-26)
 
