@@ -302,7 +302,7 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				'name'    => 'policy_notice_text',
 				'title'   => esc_html__( 'Policy description', 'themeisle-companion' ),
 				'type'    => 'text',
-				'default' => esc_html__( 'This website uses cookies to improve your experience. We\\\'ll assume you accept this policy as long as you are using this website', 'themeisle-companion' ),
+				'default' => esc_html__( 'This website uses cookies to improve your experience. We\'ll assume you accept this policy as long as you are using this website', 'themeisle-companion' ),
 			),
 			array(
 				'id'      => 'policy_page',
