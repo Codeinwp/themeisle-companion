@@ -69,6 +69,7 @@ class Orbit_Fox_Global_Settings {
 					'mystock-import',
 					'policy-notice',
 					'header-footer-scripts',
+					'disable-comments',
 					'elementor-widgets',
 					'custom-fonts',
 					'post-duplicator',
