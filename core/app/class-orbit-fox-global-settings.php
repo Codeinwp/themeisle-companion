@@ -73,6 +73,7 @@ class Orbit_Fox_Global_Settings {
 					'disable-comments',
 					'elementor-widgets',
 					'custom-fonts',
+					'login-customizer',
 					'post-duplicator',
 					'beaver-widgets',
 					'svg-uploads',

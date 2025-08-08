@@ -3,13 +3,14 @@ import * as React from 'react'
 
 export const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   const {
-    showArrow = true,
+    showArrow = false,
     children,
     disabled,
     portalled = false,
     content,
     contentProps,
     portalRef,
+    openDelay = 0,
     ...rest
   } = props;
 
