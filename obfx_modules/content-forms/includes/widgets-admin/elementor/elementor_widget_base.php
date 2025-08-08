@@ -44,6 +44,15 @@ abstract class Elementor_Widget_Base extends Widget_Base {
 		return 'eicon-text-align-left';
 	}
 
+		/**
+	 * Is dynamic content.
+	 *
+	 * @return bool
+	 */
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
 	/**
 	 * Retrieve the list of styles the content forms widgets depended on.
 	 *
