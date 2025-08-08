@@ -87,7 +87,7 @@ const Footer = () => {
               }}
             >
               { currentPreview === '' && <option value="">{__('Select Form to Preview', 'themeisle-companion')}</option> }
-              {Object.entries(PREVIEW_OPTIONS).map(([key, option]) => (
+              {Object.entries(PREVIEW_OPTIONS).filter(([key, option]) => option.show).map(([key, option]) => (
                 <option key={key} value={key}>{option.label}</option>
               ))}
             </NativeSelect.Field>
