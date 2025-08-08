@@ -4,17 +4,21 @@ import {
   createListCollection,
   Field,
   Fieldset,
+  Flex,
   HStack,
   Input,
+  NumberInput,
   Portal,
   RadioGroup,
   Select,
-  Switch,
   Span,
+  Switch,
+  Text,
 } from "@chakra-ui/react";
 
 import { __ } from "@wordpress/i18n";
 import { decodeHtml, unregister } from "../utils/common";
+import Picker from "./ui/picker";
 import { toaster } from "./ui/toaster";
 
 const ModuleControl = ({ setting, tempData, changeOption }) => {
@@ -173,6 +177,43 @@ const ModuleControl = ({ setting, tempData, changeOption }) => {
           <div dangerouslySetInnerHTML={{ __html: setting.text }} />
         </Button>
       </div>
+    );
+  case "color":
+    return (
+      <Fieldset.Root size="sm" justifyContent="start" alignItems="start">
+        <Fieldset.Legend>{setting.label}</Fieldset.Legend>
+        <Picker 
+          value={selectedValue}
+          handleChange={
+            ({valueAsString}) => { 
+              changeOption(setting.id, valueAsString)
+            }
+          }
+        />
+      </Fieldset.Root>
+    );
+
+  case "number":
+    return (
+      <Fieldset.Root size="sm">
+        <Fieldset.Legend>{setting.label}</Fieldset.Legend>
+        <NumberInput.Root
+          size="xs"
+          value={selectedValue}
+          onValueChange={({value}) => changeOption(setting.id, value)}
+          max={setting.max || 800}
+          min={setting.min || 0}
+          w="100px"
+        >
+          <NumberInput.Control />
+          <NumberInput.Input 
+            _focus={{
+              shadow: '!none',
+              borderColor: '!purple.500',
+            }}
+            rounded="md"/>
+        </NumberInput.Root>
+      </Fieldset.Root>
     );
   }
 };
