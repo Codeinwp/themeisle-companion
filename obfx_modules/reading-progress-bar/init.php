@@ -16,9 +16,6 @@
  * @author     Themeisle <friends@themeisle.com>
  */
 class Reading_Progress_Bar_OBFX_Module extends Orbit_Fox_Module_Abstract {
-
-	private $social_share_links = array();
-
 	/**
 	 * Setup module strings
 	 *
@@ -61,6 +58,7 @@ class Reading_Progress_Bar_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	}
 
 	public function render_progress_bar() {
+
 		if ( ! $this->should_display_reading_progress_bar() ) {
 			return;
 		}
@@ -126,9 +124,11 @@ class Reading_Progress_Bar_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		);
 		?>
 
-	<style><?php echo wp_kses_post( $css ); ?></style>
-	
-		<?php 
+	<style>
+		<?php echo wp_kses_post( $css ); ?>
+	</style>
+
+		<?php
 	}
 
 	/**
@@ -142,7 +142,9 @@ class Reading_Progress_Bar_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	<script>
 	  document.addEventListener('DOMContentLoaded', function() {
 		const rpb = document.querySelector('.obfx-rpb');
-		if (!rpb) { return; }
+		if (!rpb) {
+		  return;
+		}
 
 		const updateProgress = function() {
 		  const scrollPosition = window.scrollY;
@@ -150,11 +152,13 @@ class Reading_Progress_Bar_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		  const windowHeight = window.innerHeight;
 		  const totalScrollable = documentHeight - windowHeight;
 		  const progress = totalScrollable > 0 ? (scrollPosition / totalScrollable) * 100 : 0;
-			rpb.style.setProperty('--obfx-rpb-progress', `${progress.toFixed(2)}%`);
+		  rpb.style.setProperty('--obfx-rpb-progress', `${progress.toFixed(2)}%`);
 		};
 
 		updateProgress();
-		document.addEventListener('scroll', updateProgress, { passive: true });
+		document.addEventListener('scroll', updateProgress, {
+		  passive: true
+		});
 		window.addEventListener('resize', updateProgress);
 	  });
 	</script>
@@ -260,9 +264,7 @@ class Reading_Progress_Bar_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * }>
 	 */
 	private function get_post_types_display_options() {
-		$options = array();
-
-
+		$options    = array();
 		$post_types = get_post_types( array( 'public' => true ), 'objects' );
 
 		foreach ( $post_types as $post_type ) {
@@ -273,7 +275,6 @@ class Reading_Progress_Bar_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			if ( $post_type->name === 'neve_custom_layouts' ) {
 				continue;
 			}
-
 
 			$options[] = array(
 				'id'      => 'display_on_' . $post_type->name,
@@ -306,32 +307,33 @@ class Reading_Progress_Bar_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			return false;
 		}
 
-		$data = get_option( 'obfx_data' );
 
-		if ( isset( $data['module_settings'], $data['module_settings']['reading-progress-bar'] ) ) {
-			$used_settings = array_filter(
-				$data['module_settings']['reading-progress-bar'],
-				function ( $value, $key ) {
-					return ( strpos( $key, 'display_on_' ) === 0 );
-				},
-				ARRAY_FILTER_USE_BOTH
-			);
+		$option_slugs = array_map(
+			function ( $option ) {
+				return $option['id'];
+			},
+			$this->options()
+		);
 
-			if ( ! empty( $used_settings ) ) {
-				foreach ( $used_settings as $key => $value ) {
-					$setting_key = str_replace( 'display_on_', '', $key );
+		$used_settings = array_filter(
+			$option_slugs,
+			function ( $key ) {
+				return ( strpos( $key, 'display_on_' ) === 0 );
+			}
+		);
 
-					$post_display[ $setting_key ] = (bool) $value;
-				}
+		if ( ! empty( $used_settings ) ) {
+			foreach ( $used_settings as $key ) {
+				$the_value = (int) $this->get_option( $key );
+
+				$setting_key = str_replace( 'display_on_', '', $key );
+
+				$post_display[ $setting_key ] = (bool) $the_value;
 			}
 		}
 
 		$current_post_type = get_post_type();
 
-		if ( ! isset( $post_display[ $current_post_type ] ) ) {
-			return false;
-		}
-
-		return $post_display[ $current_post_type ];
+		return isset( $post_display[ $current_post_type ] ) ? $post_display[ $current_post_type ] : false;
 	}
 }
