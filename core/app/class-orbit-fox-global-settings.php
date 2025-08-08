@@ -65,6 +65,7 @@ class Orbit_Fox_Global_Settings {
 					'google-analytics',
 					'companion-legacy',
 					'template-directory',
+					'reading-progress-bar',
 					'menu-icons',
 					'mystock-import',
 					'policy-notice',
