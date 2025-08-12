@@ -26,6 +26,7 @@ class Post_Duplicator_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function set_module_strings() {
 		$this->name        = __( 'Post Duplicator', 'themeisle-companion' );
 		$this->description = __( 'Adds "Clone" option to posts and pages in the WordPress admin list. Creates new drafts copying all content and settings - a huge time-saver for managing content with complex layouts.', 'themeisle-companion' );
+		$this->documentation_url = 'https://docs.themeisle.com/article/951-orbit-fox-documentation#post-duplicator';
 	}
 
 	/**
