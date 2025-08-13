@@ -135,11 +135,13 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 ## Screenshots ##
 
-1. The OrbitFox Dashboard Page
-2. The Template Directory Page
-3. Menu Icons Module
-4. Page Builder Widgets and Addons
+1. Orbit Fox Dashboard
+2. Login Customizer
+3. Website Templates
+4. Reading Progress Bar
 5. Social Sharing Module
+6. Cookie Notice
+7. Custom Fonts
 
 == Changelog ==
 
