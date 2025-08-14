@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The Front End View for Social Sharing Module of Orbit Fox.
  *
@@ -21,10 +22,19 @@ if ( ! empty( $social_links_array ) ) { ?>
 		echo esc_attr( $mobile_class );
 	}
 
+	$icons = new OBFX_Social_Icons();
+
+
 	?>
 	">
 		<?php
-		foreach ( $social_links_array as $network_data ) {
+		foreach ( $social_links_array as $slug => $network_data ) {
+			$icon = $icons->get_icon( $network_data['icon'] );
+
+			if ( empty( $icon ) ) {
+				continue;
+			}
+
 			$class = '';
 			// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
 			if ( $network_data['show_desktop'] == '0' ) {
@@ -36,15 +46,19 @@ if ( ! empty( $social_links_array ) ) { ?>
 			}
 			?>
 			<li class="<?php echo esc_attr( $class ); ?>">
-				<a class = "<?php echo esc_attr( $network_data['icon'] ); ?>"
+				<a class="<?php echo esc_attr( $network_data['icon'] ); ?>"
 					aria-label="<?php echo esc_attr( $network_data['nicename'] ); ?>"
 					<?php
 					// phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
 					echo ( isset( $network_data['target'] ) && $network_data['target'] != '0' ) ? 'target="_blank"' : '';
 					?>
-					 href="<?php echo esc_url( $network_data['link'] ); ?>">
-					<i class="socicon-<?php echo esc_attr( $network_data['icon'] ); ?>"></i>
+					href="<?php echo esc_url( $network_data['link'] ); ?>">
+
 					<?php
+
+					// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					echo OBFX_Social_Icons::sanitize_icon_svg( $icon );
+
 					if ( $show_name ) {
 						echo '<span>' . esc_html( $network_data['nicename'] ) . '</span>';
 					}

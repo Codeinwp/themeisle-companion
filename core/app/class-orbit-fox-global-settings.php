@@ -64,14 +64,19 @@ class Orbit_Fox_Global_Settings {
 					'social-sharing',
 					'google-analytics',
 					'companion-legacy',
-					'elementor-widgets',
 					'template-directory',
+					'reading-progress-bar',
 					'menu-icons',
 					'mystock-import',
 					'policy-notice',
-					'beaver-widgets',
 					'header-footer-scripts',
+					'disable-comments',
+					'elementor-widgets',
 					'custom-fonts',
+					'login-customizer',
+					'post-duplicator',
+					'beaver-widgets',
+					'svg-uploads',
 				)
 			);
 		}// End if().

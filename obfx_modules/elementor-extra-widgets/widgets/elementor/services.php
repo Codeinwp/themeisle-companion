@@ -53,6 +53,15 @@ class Services extends Widget_Base {
 	}
 
 	/**
+	 * Is dynamic content.
+	 *
+	 * @return bool
+	 */
+	protected function is_dynamic_content(): bool {
+		return false;
+	}
+
+	/**
 	 * Retrieve the list of styles the services widget depended on.
 	 *
 	 * @return array Widget scripts dependencies.

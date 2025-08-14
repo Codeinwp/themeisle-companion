@@ -29,3 +29,5 @@ docker-compose.yml
 init.sh
 *webpack.config.js
 obfx_modules/mystock-import/js/src
+obfx_modules/login-customizer/js/src
+dev-toolkit.php

@@ -17,13 +17,29 @@
 class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 
 	/**
+	 * Module optios strings.
+	 *
+	 * @var array
+	 */
+	private $option_strings = array();
+
+	/**
+	 * Module options.
+	 *
+	 * @var array
+	 */
+	private $option = array();
+
+	/**
 	 * Setup module strings
 	 *
 	 * @access  public
 	 */
 	public function set_module_strings() {
-		$this->name        = __( 'Policy Notice', 'themeisle-companion' );
-		$this->description = __( 'A simple notice bar which will help you inform users about your website policy.', 'themeisle-companion' );
+		$this->name              = __( 'Cookie Notice', 'themeisle-companion' );
+		$this->description       = __( 'A simple notice bar which will help you inform users about your website policy.', 'themeisle-companion' );
+		$this->documentation_url = 'https://docs.themeisle.com/article/951-orbit-fox-documentation#policy-notice';
+		$this->set_options_strings();
 	}
 
 	/**
@@ -82,46 +98,40 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function options() {
 
-		return array(
+		$this->option = array(
 			array(
 				'id'      => 'enable_policy_notice',
 				'name'    => 'enable_policy_notice',
 				'title'   => '',
 				'type'    => 'toggle',
-				'label'   => esc_html__( 'Allow OrbitFox to display a bottom bar with info about the website Private Policy.', 'themeisle-companion' ),
 				'default' => '0',
 			),
 
 			array(
-				'id'      => 'policy_notice_text',
-				'name'    => 'policy_notice_text',
-				'title'   => esc_html__( 'Policy description', 'themeisle-companion' ),
-				'type'    => 'text',
-				'default' => esc_html__( 'This website uses cookies to improve your experience. We\'ll assume you accept this policy as long as you are using this website', 'themeisle-companion' ),
+				'id'   => 'policy_notice_text',
+				'name' => 'policy_notice_text',
+				'type' => 'text',
 			),
 			array(
 				'id'      => 'policy_page',
 				'name'    => 'policy_page',
-				'title'   => esc_html__( 'Policy Page', 'themeisle-companion' ),
 				'type'    => 'select',
 				'default' => 0,
-				'options' => $this->get_policy_pages_array(),
 			),
 			array(
-				'id'      => 'notice_link_label',
-				'name'    => 'notice_link_label',
-				'title'   => esc_html__( 'Policy Button Label', 'themeisle-companion' ),
-				'type'    => 'text',
-				'default' => esc_html__( 'View Policy', 'themeisle-companion' ),
+				'id'   => 'notice_link_label',
+				'name' => 'notice_link_label',
+				'type' => 'text',
 			),
 			array(
-				'id'      => 'notice_accept_label',
-				'name'    => 'notice_accept_label',
-				'title'   => esc_html__( 'Accept Cookie Button Label', 'themeisle-companion' ),
-				'type'    => 'text',
-				'default' => esc_html__( 'Accept', 'themeisle-companion' ),
+				'id'   => 'notice_accept_label',
+				'name' => 'notice_accept_label',
+				'type' => 'text',
 			),
 		);
+		$this->get_updated_options();
+
+		return $this->option;
 	}
 
 	/**
@@ -381,5 +391,43 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		}
 
 		return $options;
+	}
+
+	/**
+	 * Set the options strings for the module.
+	 */
+	private function set_options_strings() {
+		$this->option_strings = array(
+			'enable_policy_notice' => array(
+				'label' => esc_html__( 'Allow OrbitFox to display a bottom bar with info about the website Private Policy.', 'themeisle-companion' ),
+			),
+			'policy_notice_text'   => array(
+				'title'   => esc_html__( 'Policy description', 'themeisle-companion' ),
+				'default' => esc_html__( 'This website uses cookies to improve your experience. We\'ll assume you accept this policy as long as you are using this website', 'themeisle-companion' ),
+			),
+			'policy_page'          => array(
+				'title'   => esc_html__( 'Policy Page', 'themeisle-companion' ),
+				'options' => $this->get_policy_pages_array(),
+			),
+			'notice_link_label'    => array(
+				'title'   => esc_html__( 'Policy Button Label', 'themeisle-companion' ),
+				'default' => esc_html__( 'View Policy', 'themeisle-companion' ),
+			),
+			'notice_accept_label'  => array(
+				'title'   => esc_html__( 'Accept Cookie Button Label', 'themeisle-companion' ),
+				'default' => esc_html__( 'Accept', 'themeisle-companion' ),
+			),
+		);
+	}
+
+	/**
+	 * Update the options with the strings defined in the set_options_strings method.
+	 */
+	private function get_updated_options() {
+		foreach ( $this->option as $key => $opt ) {
+			if ( isset( $this->option_strings[ $opt['id'] ] ) ) {
+				$this->option[ $key ] = array_merge( $opt, $this->option_strings[ $opt['id'] ] );
+			}
+		}
 	}
 }

@@ -66,12 +66,14 @@ function run_orbit_fox() {
 	define( 'OBX_PATH', dirname( __FILE__ ) );
 	define( 'OBX_PRODUCT_SLUG', basename( OBX_PATH ) );
 
-	$plugin = new Orbit_Fox();
-	$plugin->run();
+	// Load Composer autoloader before plugin initialization
 	$vendor_file = OBX_PATH . '/vendor/autoload.php';
 	if ( is_readable( $vendor_file ) ) {
 		require_once $vendor_file;
 	}
+
+	$plugin = new Orbit_Fox();
+	$plugin->run();
 	add_filter(
 		'themeisle_sdk_products',
 		function ( $products ) {

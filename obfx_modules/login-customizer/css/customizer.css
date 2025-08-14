@@ -1,0 +1,22 @@
+#customize-control-obfx_login_customizer_options {
+  width: calc(100% + 24px) !important;
+  margin: 0 -12px !important;
+}
+
+#sub-accordion-section-obfx_login_customizer .customize-section-description-container{
+  margin-bottom: 0 !important;
+}
+
+#sub-accordion-section-obfx_login_customizer {
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  position: relative;
+}
+
+#customize-control-obfx_login_customizer_options {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}

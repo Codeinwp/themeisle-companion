@@ -38,8 +38,13 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function set_module_strings() {
-		$this->name        = __( 'Template Directory Module', 'themeisle-companion' );
-		$this->description = __( 'The awesome template directory is aiming to provide a wide range of templates that you can import straight into your website.', 'themeisle-companion' );
+		$this->name               = __( 'Template Directory Module', 'themeisle-companion' );
+		$this->description        = __( 'The awesome template directory is aiming to provide a wide range of templates that you can import straight into your website.', 'themeisle-companion' );
+		$this->documentation_url  = 'https://docs.themeisle.com/article/951-orbit-fox-documentation#template-directory';
+		$this->module_main_action = array(
+			'url'  => admin_url( 'admin.php?page=obfx_template_dir' ),
+			'text' => __( 'Open Template Directory', 'themeisle-companion' ),
+		);
 	}
 
 	/**
@@ -93,28 +98,6 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 */
 	public function render_template_directory() {
 		echo '<div id="obfx-template-directory"></div>';
-	}
-
-	/**
-	 * Enqueue the scripts for the dashboard page of the
-	 */
-	public function enqueue_template_dir_scripts() {
-		$current_screen = get_current_screen();
-		if ( $current_screen->id == 'orbit-fox_page_obfx_template_dir' ) {
-			$script_handle = $this->slug . '-script';
-			wp_enqueue_script( 'plugin-install' );
-			wp_enqueue_script( 'updates' );
-			wp_register_script( $script_handle, plugin_dir_url( $this->get_dir() ) . $this->slug . '/js/script.js', array( 'jquery' ), $this->version, false );
-			wp_localize_script(
-				$script_handle,
-				'importer_endpoint',
-				array(
-					'url'   => $this->get_endpoint_url( '/import_elementor' ),
-					'nonce' => wp_create_nonce( 'wp_rest' ),
-				)
-			);
-			wp_enqueue_script( $script_handle );
-		}
 	}
 
 	/**
@@ -220,7 +203,7 @@ class Template_Directory_OBFX_Module extends Orbit_Fox_Module_Abstract {
 					'cta'      => $this->get_state( 'tpc' ),
 					'activate' => $this->get_tcp_activation_link(),
 				),
-				'tpcAdminURL' => admin_url( 'admin.php?page=tiob-starter-sites' ),
+				'tpcAdminURL' => admin_url( 'admin.php?page=neve-onboarding' ),
 				'nonce'       => wp_create_nonce( 'wp_rest' ),
 				'strings'     => array(
 					'themeNotInstalled' => __( 'In order to import any starter sites, Neve theme & Templates Cloud plugin need to be installed and activated. Click the button below to install and activate Neve.', 'themeisle-companion' ),

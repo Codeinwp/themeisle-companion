@@ -42,8 +42,26 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function set_module_strings() {
-		$this->name        = __( 'Menu Icons', 'themeisle-companion' );
-		$this->description = __( 'Module to define menu icons for navigation.', 'themeisle-companion' );
+		$this->name              = __( 'Menu Icons', 'themeisle-companion' );
+		$this->description       = __( 'Module to define menu icons for navigation.', 'themeisle-companion' );
+		$this->documentation_url = 'https://docs.themeisle.com/article/951-orbit-fox-documentation#menu-icons';
+
+		if ( ! current_theme_supports( 'menus' ) ) {
+			$this->notices = array(
+				array(
+					'type'    => 'warning',
+					'message' => __(
+						"Your current theme uses Full Site Editing (FSE) and does not support traditional nav menus, so this module won't work as expected.",
+						'themeisle-companion'
+					),
+				),
+			);
+		} else {
+			$this->module_main_action = array(
+				'url'  => admin_url( 'nav-menus.php' ),
+				'text' => __( 'Configure Menu Icons', 'themeisle-companion' ),
+			);
+		}
 	}
 
 

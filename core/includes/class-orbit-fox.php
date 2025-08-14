@@ -195,6 +195,7 @@ class Orbit_Fox {
 		$this->loader->add_action( 'init', Orbit_Fox_Neve_Dropin::instance(), 'init' );
 
 		$this->loader->add_filter( 'themeisle_sdk_blackfriday_data', $plugin_admin, 'add_black_friday_data' );
+		$this->loader->add_filter( 'themeisle-sdk/survey/' . OBX_PRODUCT_SLUG, $plugin_admin, 'get_survey_metadata', 10, 2 );
 
 		// Fix update checks on themeisle.com for non-premium themes
 		add_filter( 'neve_enable_licenser', '__return_false' );
