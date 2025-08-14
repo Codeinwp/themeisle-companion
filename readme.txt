@@ -145,6 +145,27 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 == Changelog ==
 
+#### [Version 3.0.0](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.47...v3.0.0) (2025-08-14)
+
+### New Features
+- Login Customizer Module to customize your WordPress login, password reset and register pages with an easy, live-preview interface
+- Post Duplicator Module which adds a Clone button to posts and pages in the WordPress admin list. It creates a new draft that copies the original’s content and settings
+- SVG Uploads Module which safely enables SVG file uploads and media library support with proper sanitization.
+- Disable Comments Module - a one‑click global kill switch for comments across your site.
+- Reading Progress Bar Module to display a progress indicator as readers scroll your content - great for long posts and guides.
+- Social sharing module improvements with new networks, design updates and support for all custom post types
+- Enabled static content caching for Elementor widgets to improve performance
+- Redesigned Dashboard for better user experience
+
+### Fixes
+- Fixed issue with Template Directory redirection
+- Fixed Builder widgets module being duplicated
+- Fixed scroll to view for Contact form notifications
+- Fixed loading textdomain issue with WP 6.7
+
+
+
+
 ##### [Version 2.10.47](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.46...v2.10.47) (2025-05-27)
 
 - Updated dependencies

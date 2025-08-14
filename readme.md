@@ -1,90 +1,126 @@
-# Orbit Fox by ThemeIsle #
-**Contributors:** [themeisle](https://profiles.wordpress.org/themeisle), [codeinwp](https://profiles.wordpress.org/codeinwp), [rodicaelena](https://profiles.wordpress.org/rodicaelena), [baicusandrei](https://profiles.wordpress.org/baicusandrei), [hardeepasrani](https://profiles.wordpress.org/hardeepasrani)  
+# Orbit Fox Extra Modules: Duplicate Page, Menu Icons, SVG Support, Cookie Notice & More #
+**Contributors:** [themeisle](https://profiles.wordpress.org/themeisle/), [codeinwp](https://profiles.wordpress.org/codeinwp/), [rodicaelena](https://profiles.wordpress.org/rodicaelena/), [baicusandrei](https://profiles.wordpress.org/baicusandrei/), [hardeepasrani](https://profiles.wordpress.org/hardeepasrani/)  
 **Tags:** widget, admin, widgets, sharing, sections, themes, stock photos, custom icons, icons, menu icons, stock, templates, header, footer, scripts, custom fonts  
 **Requires at least:** 5.3  
 **Tested up to:** 6.8  
-**Requires PHP:** 5.6  
+**Requires PHP:** 7.4  
 **Stable tag:** trunk  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
-This swiss-knife plugin comes with a quality template library, menu/sharing icons, Elementor/BeaverBuilder page builder widgets and many more.
+Add modules like share buttons, header & footer scripts, disable comments, reading progress bar, custom fonts, custom login page & more in one plugin.
 
 ## Description ##
 
-Extend your theme functionality with <a href="https://orbitfox.com/" rel="nofollow">Orbit Fox</a> with various modules like Social Media Share Buttons & Icons, Custom Menu Icons, Header and Footer Scripts, one click import page templates, page builder addons and free stock featured images.
+## Why Choose Orbit Fox?
 
-https://www.youtube.com/watch?v=YHhK_twfYB8
+**All Essential Website Features in One Place**
 
-**Features:**
-- Privacy policy notice ( GDPR friendly )
-- Template Directory
-- Elementor Addons and Widgets
-- Beaver Builder Widgets
-- Sharing module
-- Menu icons module
-- Free stock photos module
-- Custom fonts module
-- Header and footer scripts module
-- More widgets and sections for Hestia Theme
-- More widgets and sections for Zerif Theme
+Orbit Fox includes all the popular functionality most site owners need: SVG support, social sharing, website templates, custom fonts, stock photos, page builder widgets, menu icons, and site customization tools.
 
-You can check out the demo <a href="https://orbitfox.com/#blog" rel="nofollow" target="_blank">here</a> for a more detailed overview of the features.
+**Eliminate Plugin Bloat**
 
-OrbitFox is a user-centred plugin with an easy-to-use admin panel. One of the most important features is that modules will only be loaded if they meet two conditions. If they are needed and if they are compatible with your existing themes and plugins. This will cut down on the unnecessary bloating of your website.
+Replace over a dozen individual utility plugins with just one solution. Reduce plugin management complexity, minimize potential conflicts, and keep your WordPress dashboard organized.
 
-We've also built some fantastic <a href="http://themeisle.com/wordpress-themes/free/?utm_source=plugin-readme&utm_medium=orbitfox&utm_campaign=freethemes" rel="nofollow" target="_blank">free themes</a> that work well with Orbit Fox, check them out.
+**Smart Performance Optimization**
+
+Modules only load when enabled and are compatible with your existing theme and plugins, ensuring optimal site performance and preventing conflicts.
+
+**Save Time on Setup and Maintenance**
+
+Skip installing a dozen separate plugins when building new sites. Get fully functional websites in minutes, not hours. Plus, maintain just one plugin instead of managing multiple updates, settings, and compatibility issues.
+
+## Orbit Fox Modules
+
+**Content & Design:**
+
+- Website Templates - 45+ professional starter website templates to choose from
+- Custom Fonts - Upload and use any custom font on your website
+- Reading Progress Bar - Increase engagement with a visual reading progress indicator
+- SVG Support - Enable safe SVG file uploads
+- Free Stock Photos - 1,300+ free images to use for personal and commercial purposes
+
+**Page Building & Widgets:**
+
+- Elementor Widgets - Add 6 popular widgets to Elementor
+- Beaver Builder Modules - Add 6 popular modules to Beaver Builder
+- Customize Login Page - Change the design of your site’s login page and customize your login form
+- Duplicate Page or Post - Duplicate any post or page on your website with one click
+
+**User Experience:**
+
+- Social Share Buttons - Add social sharing buttons to your website with mobile/desktop optimization
+- Menu Icons - Add icons to any menu
+- GDPR/CCPA Cookie Notice - Show GDPR/CCPA-compliant cookie notifications
+
+**Site Management:**
+
+- Header and Footer Scripts - Add tracking codes and custom CSS/JS
+- Disable Comments - Site-wide comment control
+
+## Works With Any Theme
+
+Orbit Fox is designed to work seamlessly with all WordPress themes. For the best experience, pair it with our professional themes like [**Neve**](https://themeisle.com/themes/neve/) and [**Hestia**](https://themeisle.com/themes/hestia/) - built by the same team for perfect integration.
+
+## Who Should Use Orbit Fox
+
+- **WordPress Beginners** - Get professional features without the learning curve
+- **Freelancers & Agencies** - Build efficient, streamlined client websites
+- **Website Owners** - Access essential functionality through one organized solution
+- **Anyone** who wants commonly needed features without multiple plugin installations
+
+## Support
+
+We’re here to help. Feel free to open a new thread on the [Support Forum](https://wordpress.org/support/plugin/themeisle-companion/).
+
+## Documentation
+
+Need help getting started? Check out our [complete documentation](https://docs.themeisle.com/article/951-orbit-fox-documentation) for step-by-step guides on every feature.
+
+## Useful Resources
+
+- If you like Orbit Fox, you’re sure to love [our other plugins](https://themeisle.com/wordpress-plugins/) as well.
+- Learn more about WordPress on our [blog](https://themeisle.com/blog/).
+- Get the most out of your WordPress website with our helpful [YouTube Tutorials](https://youtube.com/playlist?list=PLmRasCVwuvpSep2MOsIoE0ncO9JE3FcKP).
 
 ## Frequently Asked Questions ##
 
-### How I can get support for this plugin ? ###
+### Is Orbit Fox free? ###
 
-You can learn more about Orbit Fox and ask for help by <a href="https://themeisle.com/contact/"  >visiting ThemeIsle website</a>.
+Yes, Orbit Fox is completely free with no premium upsells or feature limitations.
 
-### What can I do with this plugin ? ###
-This plugin extends the features of your sites by adding numerous features.
+### Will Orbit Fox slow down my website? ###
 
-**Why use our custom icons module:**
-- Choose from a large variety of custom icons.
-- No coding needed, you can leverage the power of our dropdown icons selector and choose the right icon for your menu.
+No. Orbit Fox only loads the modules you've enabled, and only when they're compatible with your setup. This smart loading actually improves performance compared to installing multiple separate plugins.
 
-**Why use our sharing module:**
-- It's easy to use
-- Enable sharing networks right from your admin dashboard and choose on what kind of devices you would like to show them.
-- It’s fully customizable: You can easily optimise button location for according to the device your visitors will use.
-- Choose from more than 20+ social networks to share with full control for every device that your visitors use.
-- The sharing options can be positioned for the maximum effect according to whether the visitor is using a mobile device or desktop. Best of all they can be switched on/off from your WordPress instance.
+### Can I use Orbit Fox with any WordPress theme?
+Yes, Orbit Fox works with all WordPress themes. 
 
-**Why use our header and footer scripts module:**
-- It allows you to add global scripts in header or footer.
-- You can add a script individually to run on a single page or post.
+### What happens to my existing plugins when I install Orbit Fox?
+Orbit Fox doesn't interfere with your existing plugins. You can gradually replace individual utility plugins as you enable Orbit Fox modules, or run them alongside each other during transition.
 
-**Why use our custom Elementor addons module:**
-- We offer new widgets to add more value to the content you can create within Elementor page builder.
-- Pricing Table Widget to easily create pricing layouts.
-- Services Widget to easily create pricing layouts.
-- Post Grid Widget to easily list your Posts / Products / any other post types in a grid.
+### Which page builders does Orbit Fox support?
+Orbit Fox includes dedicated widgets for Elementor and Beaver Builder, plus it works with any page builder since most features are theme-independent.
 
-**Why use our custom Beaver Builder addons module:**
-- We offer new widgets to add more value to the content you can create within the Beaver Builder page builder.
-- Pricing Table Widget to easily create pricing layouts.
-- Services Widget to easily create pricing layouts.
-- Post Grid Widget to easily list your Posts / Products / any other post types in a grid.
+### How many modules can I enable at once?
+You can enable as many or as few as you need. Each module is independently optimized for performance.
 
-**Why use our Template Directory:**
-- One-click import for awesome page templates.
-- Elementor templates will be added frequently for you to use creatively.
+### Can I customize the imported templates?
+Absolutely. Templates are fully customizable - they're starting points that you can freely modify.
 
-**Why use our Gutenberg Blocks:**
-- We offer new widgets to add more value to the content you can create within the Gutenberg editor.
-- Pricing Table Widget to easily create pricing layouts.
-- Services Widget to easily create pricing layouts.
-- Post Grid Widget to easily list your Posts in a grid.
+### Do I need an account to use the free stock photos?
+No external accounts required. All images are CC0 licensed and ready to use directly from your WordPress dashboard.
 
-**Why use our custom fonts module:**
-- The free fonts from Google may not be enough to achieve the perfect design.
-- It allows you to upload any font you'd like and use it on your site.
-- It's fully integrated with Neve theme, all the fonst you'll add will be availabel in customizer.
+### What font formats does the Custom Fonts module support?
+Supports all major formats: TTF, OTF, WOFF, and WOFF2. Upload any font family and use it throughout your site.
+
+### Can I add Google Analytics with the Header/Footer Scripts module?
+
+Yes, easily add any tracking codes, Google Analytics, custom CSS, or JavaScript without editing theme files.
+
+### Is it safe to upload SVG files?
+
+Yes, our SVG module includes security sanitization to prevent malicious code while allowing safe SVG uploads.
 
 ## Installation ##
 
@@ -92,20 +128,43 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 1. In your WordPress admin, go to **Plugins &gt; Add New**
 2. In the Search field type "Orbit Fox"
-3. Under "OrbitFox" click the **Install Now** link
+3. Under "Orbit Fox" click the **Install Now** link
 4. Once the process is complete, click the **Activate Plugin** link
 5. Now, you're able to use Orbit fox and setup the modules you need. These can be found on the **Orbit Fox** dashboard page
 6. Make the changes desired, then click the **Save changes** button at the bottom
 
 ## Screenshots ##
 
-1. The OrbitFox Dashboard Page
-2. The Template Directory Page
-3. Menu Icons Module
-4. Page Builder Widgets and Addons
+1. Orbit Fox Dashboard
+2. Login Customizer
+3. Website Templates
+4. Reading Progress Bar
 5. Social Sharing Module
+6. Cookie Notice
+7. Custom Fonts
 
 ## Changelog ##
+
+#### [Version 3.0.0](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.47...v3.0.0) (2025-08-14)
+
+### New Features
+- Login Customizer Module to customize your WordPress login, password reset and register pages with an easy, live-preview interface
+- Post Duplicator Module which adds a Clone button to posts and pages in the WordPress admin list. It creates a new draft that copies the original’s content and settings
+- SVG Uploads Module which safely enables SVG file uploads and media library support with proper sanitization.
+- Disable Comments Module - a one‑click global kill switch for comments across your site.
+- Reading Progress Bar Module to display a progress indicator as readers scroll your content - great for long posts and guides.
+- Social sharing module improvements with new networks, design updates and support for all custom post types
+- Enabled static content caching for Elementor widgets to improve performance
+- Redesigned Dashboard for better user experience
+
+### Fixes
+- Fixed issue with Template Directory redirection
+- Fixed Builder widgets module being duplicated
+- Fixed scroll to view for Contact form notifications
+- Fixed loading textdomain issue with WP 6.7
+
+
+
 
 ##### [Version 2.10.47](https://github.com/Codeinwp/themeisle-companion/compare/v2.10.46...v2.10.47) (2025-05-27)
 
