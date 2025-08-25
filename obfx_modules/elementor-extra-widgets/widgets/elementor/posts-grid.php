@@ -1468,10 +1468,15 @@ class Posts_Grid extends Widget_Base {
 	protected function render() {
 		// Get settings.
 		$settings = $this->get_settings();
+		
+		$classes  = ! empty( $settings['grid_style'] ) && $settings['grid_style'] == 'list' ? ' obfx-grid-style-' . $settings['grid_style'] : '';
+		$classes .= ! empty( $settings['grid_columns_mobile'] ) ? ' obfx-grid-mobile-' . $settings['grid_columns_mobile'] : '';
+		$classes .= ! empty( $settings['grid_columns_tablet'] ) ? ' obfx-grid-tablet-' . $settings['grid_columns_tablet'] : '';
+		$classes .= ! empty( $settings['grid_columns'] ) ? ' obfx-grid-desktop-' . $settings['grid_columns'] : '';
 
 		// Output.
 		echo '<div class="obfx-grid">';
-		echo '<div class="obfx-grid-container' . ( ! empty( $settings['grid_style'] ) && $settings['grid_style'] == 'list' ? ' obfx-grid-style-' . $settings['grid_style'] : '' ) . ( ! empty( $settings['grid_columns_mobile'] ) ? ' obfx-grid-mobile-' . $settings['grid_columns_mobile'] : '' ) . ( ! empty( $settings['grid_columns_tablet'] ) ? ' obfx-grid-tablet-' . $settings['grid_columns_tablet'] : '' ) . ( ! empty( $settings['grid_columns'] ) ? ' obfx-grid-desktop-' . $settings['grid_columns'] : '' ) . '">';
+		echo '<div class="obfx-grid-container' . esc_attr( $classes ) . '">';
 
 		// Arguments for query.
 		$args = array();
