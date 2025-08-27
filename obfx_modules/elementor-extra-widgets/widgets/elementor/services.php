@@ -648,7 +648,11 @@ class Services extends Widget_Base {
 	protected function render() {
 		$settings = $this->get_settings();
 
-		echo '<div class="obfx-grid"><div class="obfx-grid-container' . ( ! empty( $settings['grid_columns_mobile'] ) ? ' obfx-grid-mobile-' . $settings['grid_columns_mobile'] : '' ) . ( ! empty( $settings['grid_columns_tablet'] ) ? ' obfx-grid-tablet-' . $settings['grid_columns_tablet'] : '' ) . ( ! empty( $settings['grid_columns'] ) ? ' obfx-grid-desktop-' . $settings['grid_columns'] : '' ) . '">';
+		$classes  = ! empty( $settings['grid_columns_mobile'] ) ? ' obfx-grid-mobile-' . $settings['grid_columns_mobile'] : '';
+		$classes .= ! empty( $settings['grid_columns_tablet'] ) ? ' obfx-grid-tablet-' . $settings['grid_columns_tablet'] : '';
+		$classes .= ! empty( $settings['grid_columns'] ) ? ' obfx-grid-desktop-' . $settings['grid_columns'] : '';
+
+		echo '<div class="obfx-grid"><div class="obfx-grid-container' . esc_attr( $classes ) . '">';
 		foreach ( $settings['services_list'] as $service ) {
 			if ( ! empty( $service['link']['url'] ) ) {
 				$this->add_render_attribute( 'link', 'href', $service['link']['url'] );
