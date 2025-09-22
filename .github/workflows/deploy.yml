@@ -2,8 +2,8 @@ name: Deploy
 
 on:
   push:
-    branches:
-      - master
+    tags:
+      - "*"
 jobs:
   tag:
     name: New version
@@ -24,5 +24,4 @@ jobs:
         uses: 10up/action-wordpress-plugin-deploy@master
         env:
           SVN_PASSWORD: ${{ secrets.SVN_THEMEISLE_PASSWORD }}
-          SVN_USERNAME: ${{ secrets.SVN_THEMEISLE_USERNAME }}
-          VERSION: "3.0.1"
+          SVN_USERNAME: ${{ secrets.SVN_THEMEISLE_USERNAME }} 
