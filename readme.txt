@@ -12,6 +12,8 @@ Add modules like share buttons, header & footer scripts, disable comments, readi
 
 ## Description ##
 
+https://www.youtube.com/watch?v=foS_QbuY-Lg
+
 ## Why Choose Orbit Fox?
 
 **All Essential Website Features in One Place**
