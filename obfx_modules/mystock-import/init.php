@@ -165,7 +165,20 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		}
 
 		// Send request to `wp_remote_get`
-		$url = esc_url_raw( wp_unslash( $_POST['url'] ) );
+		$url  = esc_url_raw( wp_unslash( $_POST['url'] ) );
+		$host = wp_parse_url( $url, PHP_URL_HOST );
+		$host = strtolower( $host );
+
+		if ( ! $host ) {
+			$response['msg'] = __( 'URL is not valid!', 'themeisle-companion' );
+			wp_send_json_error( $response );
+		}
+
+		// Accept hosts that end with "staticflickr.com" and optionally accept old static.flickr.com.
+		if ( ! preg_match( '/(^|\.)static\.?flickr\.com$/i', $host ) ) {
+			$response['msg'] = __( 'The URL is not valid.', 'themeisle-companion' );
+			wp_send_json_error( $response );
+		}
 
 		require_once ABSPATH . 'wp-admin/includes/image.php';
 		require_once ABSPATH . 'wp-admin/includes/file.php';
