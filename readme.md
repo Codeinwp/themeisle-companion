@@ -12,6 +12,8 @@ Add modules like share buttons, header & footer scripts, disable comments, readi
 
 ## Description ##
 
+https://www.youtube.com/watch?v=foS_QbuY-Lg
+
 ## Why Choose Orbit Fox?
 
 **All Essential Website Features in One Place**
@@ -144,6 +146,14 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 7. Custom Fonts
 
 ## Changelog ##
+
+##### [Version 3.0.2](https://github.com/Codeinwp/themeisle-companion/compare/v3.0.1...v3.0.2) (2025-10-01)
+
+- Enhanced security
+- Updated dependencies
+
+
+
 
 ##### [Version 3.0.1](https://github.com/Codeinwp/themeisle-companion/compare/v3.0.0...v3.0.1) (2025-08-27)
 
