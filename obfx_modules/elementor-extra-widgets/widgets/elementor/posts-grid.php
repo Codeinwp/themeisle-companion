@@ -1874,7 +1874,7 @@ class Posts_Grid extends Widget_Base {
 					}
 					?>
 					<span class="obfx-grid-categories-item">
-						<a href="<?php echo get_category_link( $category->term_id ); ?>"
+						<a href="<?php echo esc_url( get_category_link( $category->term_id ) ); ?>"
 						   title="<?php echo esc_attr( $category->name ); ?>">
 							<?php echo esc_html( $category->name ); ?>
 						</a>
@@ -1909,7 +1909,7 @@ class Posts_Grid extends Widget_Base {
 					}
 					?>
 					<span class="obfx-grid-tags-item">
-						<a href="<?php echo get_tag_link( $tag->term_id ); ?>" title="<?php echo esc_attr( $tag->name ); ?>">
+						<a href="<?php echo esc_url( get_tag_link( $tag->term_id ) ); ?>" title="<?php echo esc_attr( $tag->name ); ?>">
 							<?php echo esc_html( $tag->name ); ?>
 						</a>
 					</span>
