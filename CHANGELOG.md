@@ -1,3 +1,7 @@
+##### [Version 3.0.3](https://github.com/Codeinwp/themeisle-companion/compare/v3.0.2...v3.0.3) (2025-11-03)
+
+- Enhanced security
+
 ##### [Version 3.0.2](https://github.com/Codeinwp/themeisle-companion/compare/v3.0.1...v3.0.2) (2025-10-01)
 
 - Enhanced security
