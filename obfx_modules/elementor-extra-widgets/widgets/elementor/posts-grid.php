@@ -57,15 +57,6 @@ class Posts_Grid extends Widget_Base {
 	}
 
 	/**
-	 * Is dynamic content.
-	 *
-	 * @return bool
-	 */
-	protected function is_dynamic_content(): bool {
-		return false;
-	}
-
-	/**
 	 * Register dependent script.
 	 *
 	 * @return array
