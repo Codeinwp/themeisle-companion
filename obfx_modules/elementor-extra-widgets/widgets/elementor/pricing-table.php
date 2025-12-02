@@ -58,7 +58,7 @@ class Pricing_Table extends Widget_Base {
 	 *
 	 * @return bool
 	 */
-	protected function is_dynamic_content(): bool {
+	protected function is_dynamic_content() {
 		return false;
 	}
 
@@ -1146,7 +1146,7 @@ class Pricing_Table extends Widget_Base {
 		}
 		$output .= '</div> <!-- /.obfx-pricing-table-wrapper -->';
 
-		echo $output;
+		echo wp_kses_post( $output );
 	}
 
 	private function display_button_icon( $settings ) {

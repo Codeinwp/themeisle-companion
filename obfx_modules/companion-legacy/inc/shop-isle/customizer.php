@@ -636,7 +636,7 @@ if ( ! function_exists( 'shop_isle_about_page_display_team_members' ) ) :
 					echo '<div class="team-image">';
 					if ( ! empty( $image_url ) ) {
 						if ( ! empty( $text ) ) {
-							echo '<img src="' . esc_url( $image_url ) . '" alt="' . esc_html( $text ) . '">';
+							echo '<img src="' . esc_url( $image_url ) . '" alt="' . esc_attr( $text ) . '">';
 						} else {
 							echo '<img src="' . esc_url( $image_url ) . '" alt="">';
 						}

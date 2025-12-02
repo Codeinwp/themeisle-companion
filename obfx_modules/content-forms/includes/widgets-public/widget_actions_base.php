@@ -39,13 +39,13 @@ abstract class Widget_Actions_Base {
 	 *
 	 * @return array
 	 */
-	abstract function rest_submit_form( $return, $data, $widget_id, $post_id, $builder );
+	abstract public function rest_submit_form( $return, $data, $widget_id, $post_id, $builder );
 
 	/**
 	 * Get form type.
 	 * @return string
 	 */
-	abstract function get_form_type();
+	abstract public function get_form_type();
 
 	/**
 	 * Extract widget settings based on a widget id and a page id
@@ -56,7 +56,7 @@ abstract class Widget_Actions_Base {
 	 *
 	 * @return array|bool
 	 */
-	static function get_widget_settings( $widget_id, $post_id, $builder ) {
+	public static function get_widget_settings( $widget_id, $post_id, $builder ) {
 
 		if ( $builder === 'elementor' ) {
 			return self::get_elementor_module_settings_by_id( $widget_id, $post_id );

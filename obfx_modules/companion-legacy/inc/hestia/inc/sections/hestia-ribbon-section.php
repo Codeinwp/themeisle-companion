@@ -58,7 +58,7 @@ if ( ! function_exists( 'hestia_ribbon' ) ) :
 		$class_to_add  = $is_shortcode === true ? 'is-shortcode ' : '';
 		$class_to_add .= ! empty( $hestia_ribbon_background ) ? 'section-image' : '';
 
-		if ( function_exists( 'maybe_trigger_fa_loading' ) ){
+		if ( function_exists( 'maybe_trigger_fa_loading' ) ) {
 			maybe_trigger_fa_loading( $hestia_ribbon_text );
 		}
 
@@ -76,18 +76,21 @@ if ( ! function_exists( 'hestia_ribbon' ) ) :
 						hestia_display_customizer_shortcut( 'hestia_ribbon_text' );
 					}
 					?>
-					<div class="col-md-8 hestia-ribbon-content-left" <?php echo hestia_add_animationation( 'fade-right' ); ?>>
+					<div class="col-md-8 hestia-ribbon-content-left" <?php echo wp_kses_post( hestia_add_animationation( 'fade-right' ) ); ?>>
 						<?php
 						if ( ! empty( $hestia_ribbon_text ) || is_customize_preview() ) {
 							?>
 							<h2 class="hestia-title" style="margin:0;">
-								<?php echo hestia_sanitize_string( $hestia_ribbon_text ); ?>
-							</h2>
+							<?php
+							// Already escaping the string in hestia_sanitize_string function.
+							echo hestia_sanitize_string( $hestia_ribbon_text ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+							?>
+					</h2>
 							<?php
 						}
 						?>
 					</div>
-					<div class="col-md-4 text-center hestia-ribbon-content-right" <?php echo hestia_add_animationation( 'fade-left' ); ?>>
+					<div class="col-md-4 text-center hestia-ribbon-content-right" <?php echo wp_kses_post( hestia_add_animationation( 'fade-left' ) ); ?>>
 						<?php
 
 						if ( ( ! empty( $hestia_ribbon_button_text ) && ! empty( $hestia_ribbon_button_url ) ) || is_customize_preview() ) {

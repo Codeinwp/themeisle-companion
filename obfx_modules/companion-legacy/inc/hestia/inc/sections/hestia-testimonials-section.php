@@ -138,8 +138,8 @@ function hestia_testimonials_content( $hestia_testimonials_content, $is_callback
 					maybe_trigger_fa_loading( $text );
 				}
 				?>
-				<div class="col-xs-12 col-ms-6 col-sm-6 <?php echo apply_filters( 'hestia_testimonials_per_row_class', 'col-md-4' ); ?>">
-					<div class="card card-testimonial card-plain" <?php echo hestia_add_animationation( 'fade-right' ); ?>>
+				<div class="col-xs-12 col-ms-6 col-sm-6 <?php echo esc_attr( apply_filters( 'hestia_testimonials_per_row_class', 'col-md-4' ) ); ?>">
+					<div class="card card-testimonial card-plain" <?php echo wp_kses_post( hestia_add_animationation( 'fade-right' ) ); ?>>
 						<?php
 						if ( ! empty( $image ) ) :
 							/**
@@ -148,11 +148,11 @@ function hestia_testimonials_content( $hestia_testimonials_content, $is_callback
 							 * If that field is empty, uses the Title of the Testimonial box as alt text
 							 */
 							$alt_image = '';
-                            $srcset    = '';
+							$srcset    = '';
 							$image_id  = function_exists( 'attachment_url_to_postid' ) ? attachment_url_to_postid( preg_replace( '/-\d{1,4}x\d{1,4}/i', '', $image ) ) : '';
 							if ( ! empty( $image_id ) && $image_id !== 0 ) {
 								$alt_image = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
-                                $srcset    = wp_get_attachment_image_srcset( $image_id, 'full' );
+								$srcset    = wp_get_attachment_image_srcset( $image_id, 'full' );
 							}
 							if ( empty( $alt_image ) ) {
 								if ( ! empty( $title ) ) {
@@ -175,9 +175,9 @@ function hestia_testimonials_content( $hestia_testimonials_content, $is_callback
 								if ( ! empty( $alt_image ) ) {
 									echo ' alt="' . esc_attr( $alt_image ) . '" ';
 								}
-                                if ( ! empty( $srcset ) ) {
-                                    echo ' srcset="' . esc_attr( $srcset ) . '" ';
-                                }
+								if ( ! empty( $srcset ) ) {
+									echo ' srcset="' . esc_attr( $srcset ) . '" ';
+								}
 								if ( ! empty( $title ) ) {
 									echo ' title="' . esc_attr( $title ) . '" ';
 								}

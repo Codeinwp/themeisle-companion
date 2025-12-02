@@ -41,7 +41,7 @@ class EAW_Recent_Posts_Plus extends WP_Widget {
 		}
 
 		if ( isset( $cache[ $args['widget_id'] ] ) ) {
-			echo $cache[ $args['widget_id'] ];
+			echo wp_kses_post( $cache[ $args['widget_id'] ] );
 
 			return;
 		}
@@ -80,9 +80,9 @@ class EAW_Recent_Posts_Plus extends WP_Widget {
 
 		if ( $eawp->have_posts() ) {
 
-			echo $args['before_widget'];
+			echo wp_kses_post( $args['before_widget'] );
 			if ( $title ) {
-				echo $args['before_title'] . $title . $args['after_title'];
+				echo wp_kses_post( $args['before_title'] . $title . $args['after_title'] );
 			}
 			while ( $eawp->have_posts() ) :
 				$eawp->the_post(); ?>
@@ -98,7 +98,7 @@ class EAW_Recent_Posts_Plus extends WP_Widget {
 						<p>
 							<?php
 							if ( $show_excerpt ) {
-								echo wp_trim_words( get_the_excerpt(), $excerptcount, ' &hellip;' );
+								echo esc_html( wp_trim_words( get_the_excerpt(), $excerptcount, ' &hellip;' ) );
 							}
 							?>
 						</p>
@@ -108,7 +108,7 @@ class EAW_Recent_Posts_Plus extends WP_Widget {
 			endwhile;
 
 			if ( isset( $args['after_widget'] ) ) {
-				echo $args['after_widget'];
+				echo wp_kses_post( $args['after_widget'] );
 			}
 
 			wp_reset_postdata();
@@ -158,15 +158,15 @@ class EAW_Recent_Posts_Plus extends WP_Widget {
 		$category     = isset( $instance['category'] ) ? $instance['category'] : '';
 		?>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'themeisle-companion' ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>"
-				   name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>"/>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Title:', 'themeisle-companion' ); ?></label>
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"
+				   name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>"/>
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'number' ); ?>"><?php _e( 'Number of posts to show:', 'themeisle-companion' ); ?></label>
-			<input id="<?php echo $this->get_field_id( 'number' ); ?>"
-				   name="<?php echo $this->get_field_name( 'number' ); ?>" type="text" value="<?php echo $number; ?>"
+			<label for="<?php echo esc_attr( $this->get_field_id( 'number' ) ); ?>"><?php _e( 'Number of posts to show:', 'themeisle-companion' ); ?></label>
+			<input id="<?php echo esc_attr( $this->get_field_id( 'number' ) ); ?>"
+				   name="<?php echo esc_attr( $this->get_field_name( 'number' ) ); ?>" type="text" value="<?php echo esc_attr( $number ); ?>"
 				   size="3"/></p>
 
 		<p>
@@ -187,16 +187,16 @@ class EAW_Recent_Posts_Plus extends WP_Widget {
 		</p>
 
 		<p><input class="checkbox" type="checkbox" <?php checked( $show_excerpt ); ?>
-				  id="<?php echo $this->get_field_id( 'show_excerpt' ); ?>"
-				  name="<?php echo $this->get_field_name( 'show_excerpt' ); ?>"/>
-			<label for="<?php echo $this->get_field_id( 'show_dexcerpt' ); ?>"><?php _e( 'Display post excerpt?', 'themeisle-companion' ); ?></label>
+				  id="<?php echo esc_attr( $this->get_field_id( 'show_excerpt' ) ); ?>"
+				  name="<?php echo esc_attr( $this->get_field_name( 'show_excerpt' ) ); ?>"/>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'show_dexcerpt' ) ); ?>"><?php _e( 'Display post excerpt?', 'themeisle-companion' ); ?></label>
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'excerptcount' ); ?>"><?php _e( 'Excerpt length to show:', 'themeisle-companion' ); ?></label>
-			<input id="<?php echo $this->get_field_id( 'excerptcount' ); ?>"
-				   name="<?php echo $this->get_field_name( 'excerptcount' ); ?>" type="text"
-				   value="<?php echo $excerptcount; ?>" size="3"/></p>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'excerptcount' ) ); ?>"><?php _e( 'Excerpt length to show:', 'themeisle-companion' ); ?></label>
+			<input id="<?php echo esc_attr( $this->get_field_id( 'excerptcount' ) ); ?>"
+				   name="<?php echo esc_attr( $this->get_field_name( 'excerptcount' ) ); ?>" type="text"
+				   value="<?php echo esc_attr( $excerptcount ); ?>" size="3"/></p>
 		<?php
 	}
 }

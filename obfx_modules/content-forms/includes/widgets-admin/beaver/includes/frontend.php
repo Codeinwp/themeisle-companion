@@ -12,9 +12,9 @@ foreach ( $fields as $key => $field ) {
 
 $btn_label    = ! empty( $settings->submit_label ) ? $settings->submit_label : esc_html__( 'Submit', 'themeisle-companion' );
 $submit_class = property_exists( $settings, 'submit_display' ) && $settings->submit_display === 'block' ? 'class="submit-field submit-form ' . esc_attr( $module->get_type() ) . '"' : 'class="submit-field"';
-echo '<fieldset ' . $submit_class . '>';
+echo '<fieldset ' . esc_attr( $submit_class ) . '>';
 echo '<button type="submit" name="submit" value="submit-' . esc_attr( $module->get_type() ) . '-' . esc_attr( $module->node ) . '">';
-echo $btn_label;
+echo esc_html( $btn_label );
 echo '</button>';
 echo '</fieldset>';
 

@@ -24,7 +24,7 @@ class Contact_Public extends Widget_Actions_Base {
 	 *
 	 * @return string
 	 */
-	function get_form_type() {
+	public function get_form_type() {
 		return 'contact';
 	}
 
@@ -66,7 +66,11 @@ class Contact_Public extends Widget_Actions_Base {
 			$required_field = array_key_exists( 'requirement', $field ) ? $field['requirement'] : ( array_key_exists( 'required', $field ) ? $field['required'] : '' );
 
 			if ( 'required' === $required_field && empty( $data[ $key ] ) && 'hidden' !== $field['type'] ) {
-				$return['message'] = sprintf( esc_html__( 'Missing %s', 'themeisle-companion' ), $key );
+				$return['message'] = sprintf(
+					// translators: %s is key name.
+					esc_html__( 'Missing %s', 'themeisle-companion' ),
+					$key
+				);
 				return $return;
 			}
 

@@ -57,7 +57,7 @@ if ( ! function_exists( 'hestia_clients_bar' ) ) :
 					hestia_clients_bar_section_content_trigger();
 				}
 				?>
-				<ul class="clients-bar-wrapper" <?php echo hestia_add_animationation( 'fade-up' ); ?>>
+				<ul class="clients-bar-wrapper" <?php echo wp_kses_post( hestia_add_animationation( 'fade-up' ) ); ?>>
 					<?php
 					if ( ! empty( $hestia_clients_bar_content_decoded ) ) {
 						foreach ( $hestia_clients_bar_content_decoded as $client ) {
@@ -80,7 +80,7 @@ if ( ! function_exists( 'hestia_clients_bar' ) ) :
 									$link_html .= '>';
 									echo wp_kses_post( $link_html );
 								}
-                                echo '<img src="' . esc_url( $image ) . '" ' . wp_kses_post( $alt_text ) . '>';
+								echo '<img src="' . esc_url( $image ) . '" ' . wp_kses_post( $alt_text ) . '>';
 								if ( ! empty( $link ) ) {
 									echo '</a>';
 								}

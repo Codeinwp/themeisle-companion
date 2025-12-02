@@ -124,5 +124,5 @@ function themeisle_hestia_create_page( $slug, $page_title ) {
  * not the theme.
  */
 function themeisle_hestia_enqueue_clients_style() {
-	wp_enqueue_style( 'hestia-clients-bar', trailingslashit( THEMEISLE_COMPANION_URL ) . 'assets/css/hestia/clients-bar.css' );
+	wp_enqueue_style( 'hestia-clients-bar', trailingslashit( THEMEISLE_COMPANION_URL ) . 'assets/css/hestia/clients-bar.css', array(), '3.0.3' );
 }

@@ -89,14 +89,14 @@ class Contact_Admin extends Elementor_Widget_Base {
 	 *
 	 * @return bool
 	 */
-	function add_specific_form_fields() {
+	public function add_specific_form_fields() {
 		return false;
 	}
 
 	/**
 	 * Add specific settings for Contact Widget.
 	 */
-	function add_specific_settings_controls() {
+	public function add_specific_settings_controls() {
 
 		$this->add_control(
 			'success_message',
@@ -166,7 +166,7 @@ class Contact_Admin extends Elementor_Widget_Base {
 	/**
 	 * Add specific widget settings.
 	 */
-	function add_widget_specific_settings() {
+	public function add_widget_specific_settings() {
 		return false;
 	}
 
@@ -176,7 +176,7 @@ class Contact_Admin extends Elementor_Widget_Base {
 	 * @param Object $repeater Repeater instance.
 	 * @return bool
 	 */
-	function add_repeater_specific_fields( $repeater ) {
+	public function add_repeater_specific_fields( $repeater ) {
 		$repeater->add_control(
 			'hidden_value',
 			array(
@@ -196,7 +196,7 @@ class Contact_Admin extends Elementor_Widget_Base {
 	 *
 	 * @return array
 	 */
-	function get_specific_field_types() {
+	public function get_specific_field_types() {
 		$field_types             = $this->field_types;
 		$field_types['checkbox'] = esc_html__( 'Checkbox', 'themeisle-companion' );
 		$field_types['hidden']   = esc_html__( 'Hidden', 'themeisle-companion' );

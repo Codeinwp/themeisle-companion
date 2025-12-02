@@ -57,7 +57,7 @@ class Registration_Admin extends Elementor_Widget_Base {
 	 *
 	 * @return array
 	 */
-	function get_default_config() {
+	public function get_default_config() {
 		return array(
 			array(
 				'key'         => 'username',
@@ -92,14 +92,14 @@ class Registration_Admin extends Elementor_Widget_Base {
 	/**
 	 * Add specific form fields for Registration Widget.
 	 */
-	function add_specific_form_fields() {
+	public function add_specific_form_fields() {
 		return false;
 	}
 
 	/**
 	 * Add specific settings for Newsletter widget.
 	 */
-	function add_specific_settings_controls() {
+	public function add_specific_settings_controls() {
 		$this->add_control(
 			'submit_label',
 			array(
@@ -140,7 +140,7 @@ class Registration_Admin extends Elementor_Widget_Base {
 	/**
 	 * Add specific widget settings.
 	 */
-	function add_widget_specific_settings() {
+	public function add_widget_specific_settings() {
 		return false;
 	}
 
@@ -149,7 +149,7 @@ class Registration_Admin extends Elementor_Widget_Base {
 	 *
 	 * @param Object $repeater Repeater instance.
 	 */
-	function add_repeater_specific_fields( $repeater ) {
+	public function add_repeater_specific_fields( $repeater ) {
 		$field_types = array(
 			'first_name'   => __( 'First Name', 'themeisle-companion' ),
 			'last_name'    => __( 'Last Name', 'themeisle-companion' ),
@@ -174,7 +174,7 @@ class Registration_Admin extends Elementor_Widget_Base {
 	 *
 	 * @return array
 	 */
-	function get_specific_field_types() {
+	public function get_specific_field_types() {
 		return $this->field_types;
 	}
 }
