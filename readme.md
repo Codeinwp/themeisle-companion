@@ -147,6 +147,13 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 ## Changelog ##
 
+##### [Version 3.0.4](https://github.com/Codeinwp/themeisle-companion/compare/v3.0.3...v3.0.4) (2025-12-04)
+
+- Fixed pagination of Grid Post Type
+
+
+
+
 ##### [Version 3.0.3](https://github.com/Codeinwp/themeisle-companion/compare/v3.0.2...v3.0.3) (2025-11-03)
 
 - Enhanced security
