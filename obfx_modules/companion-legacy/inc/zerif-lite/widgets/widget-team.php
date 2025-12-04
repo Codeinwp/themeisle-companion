@@ -9,14 +9,14 @@
 
 
 /**
- * Class zerif_team_widget
+ * Class Zerif_Team_Widget
  */
-if ( ! class_exists( 'zerif_team_widget' ) ) {
+if ( ! class_exists( 'Zerif_Team_Widget' ) ) {
 
-	class zerif_team_widget extends WP_Widget {
+	class Zerif_Team_Widget extends WP_Widget {
 
 		/**
-		 * zerif_team_widget constructor.
+		 * Zerif_Team_Widget constructor.
 		 */
 		public function __construct() {
 			parent::__construct(
@@ -34,7 +34,7 @@ if ( ! class_exists( 'zerif_team_widget' ) ) {
 		 *
 		 * @param $hook
 		 */
-		function widget_scripts() {
+		public function widget_scripts() {
 			wp_enqueue_media();
 			wp_enqueue_script( 'zerif_widget_media_script', THEMEISLE_COMPANION_URL . 'assets/js/widget-media.js', false, '1.1', true );
 		}
@@ -45,11 +45,11 @@ if ( ! class_exists( 'zerif_team_widget' ) ) {
 		 * @param $args
 		 * @param $instance
 		 */
-		function widget( $args, $instance ) {
+		public function widget( $args, $instance ) {
 
 			extract( $args );
 
-			echo $before_widget;
+			echo wp_kses_post( $before_widget );
 
 			?>
 
@@ -77,7 +77,7 @@ if ( ! class_exists( 'zerif_team_widget' ) ) {
 		<figure class="profile-pic">
 
 			<img src="<?php echo esc_url( $zerif_team_custom_media_id[0] ); ?>"
-				 alt="<?php echo $alt; ?>"/>
+				 alt="<?php echo esc_attr( $alt ); ?>"/>
 
 							</figure>
 
@@ -90,14 +90,14 @@ if ( ! class_exists( 'zerif_team_widget' ) ) {
 
 						<?php if ( ! empty( $instance['name'] ) ) : ?>
 
-							<h3 class="dark-text red-border-bottom"><?php echo apply_filters( 'widget_title', $instance['name'] ); ?></h3>
+							<h3 class="dark-text red-border-bottom"><?php echo wp_kses_post( apply_filters( 'widget_title', $instance['name'] ) ); ?></h3>
 
 						<?php endif; ?>
 
 						<?php if ( ! empty( $instance['position'] ) ) : ?>
 
 							<div
-								class="position"><?php echo htmlspecialchars_decode( apply_filters( 'widget_title', $instance['position'] ) ); ?></div>
+								class="position"><?php echo wp_kses_post( htmlspecialchars_decode( apply_filters( 'widget_title', $instance['position'] ) ) ); ?></div>
 
 						<?php endif; ?>
 
@@ -117,14 +117,14 @@ if ( ! class_exists( 'zerif_team_widget' ) ) {
 							if ( ! empty( $instance['fb_link'] ) ) :  
 								?>
 								<li>
-									<a href="<?php echo apply_filters( 'widget_title', $instance['fb_link'] ); ?>"
-									   target="<?php echo $zerif_team_target; ?>">
+									<a href="<?php echo esc_url( apply_filters( 'widget_title', $instance['fb_link'] ) ); ?>"
+									   target="<?php echo esc_attr( $zerif_team_target ); ?>">
 										<?php
 										if ( ! empty( $instance['name'] ) ) { 
 											?>
 											<span class="sr-only">
 											<?php _e( 'Facebook account of', 'themeisle-companion' ); ?>
-											<?php echo apply_filters( 'widget_title', $instance['name'] ); ?>
+											<?php echo wp_kses_post( apply_filters( 'widget_title', $instance['name'] ) ); ?>
 										</span>
 											<?php
 										} 
@@ -138,14 +138,14 @@ if ( ! class_exists( 'zerif_team_widget' ) ) {
 							if ( ! empty( $instance['tw_link'] ) ) :  
 								?>
 								<li>
-									<a href="<?php echo apply_filters( 'widget_title', $instance['tw_link'] ); ?>"
-									   target="<?php echo $zerif_team_target; ?>">
+									<a href="<?php echo esc_url( apply_filters( 'widget_title', $instance['tw_link'] ) ); ?>"
+									   target="<?php echo esc_attr( $zerif_team_target ); ?>">
 										<?php
 										if ( ! empty( $instance['name'] ) ) { 
 											?>
 											<span class="sr-only">
 											<?php _e( 'Twitter account of', 'themeisle-companion' ); ?>
-											<?php echo apply_filters( 'widget_title', $instance['name'] ); ?>
+											<?php echo wp_kses_post( apply_filters( 'widget_title', $instance['name'] ) ); ?>
 										</span>
 											<?php
 										} 
@@ -159,14 +159,14 @@ if ( ! class_exists( 'zerif_team_widget' ) ) {
 							if ( ! empty( $instance['bh_link'] ) ) :  
 								?>
 								<li>
-									<a href="<?php echo apply_filters( 'widget_title', $instance['bh_link'] ); ?>"
-									   target="<?php echo $zerif_team_target; ?>">
+									<a href="<?php echo esc_url( apply_filters( 'widget_title', $instance['bh_link'] ) ); ?>"
+									   target="<?php echo esc_attr( $zerif_team_target ); ?>">
 										<?php
 										if ( ! empty( $instance['name'] ) ) { 
 											?>
 											<span class="sr-only">
 											<?php _e( 'Behance account of', 'themeisle-companion' ); ?>
-											<?php echo apply_filters( 'widget_title', $instance['name'] ); ?>
+											<?php echo wp_kses_post( apply_filters( 'widget_title', $instance['name'] ) ); ?>
 										</span>
 											<?php
 										} 
@@ -180,14 +180,14 @@ if ( ! class_exists( 'zerif_team_widget' ) ) {
 							if ( ! empty( $instance['db_link'] ) ) :  
 								?>
 								<li>
-									<a href="<?php echo apply_filters( 'widget_title', $instance['db_link'] ); ?>"
-									   target="<?php echo $zerif_team_target; ?>">
+									<a href="<?php echo esc_url( apply_filters( 'widget_title', $instance['db_link'] ) ); ?>"
+									   target="<?php echo esc_attr( $zerif_team_target ); ?>">
 										<?php
 										if ( ! empty( $instance['name'] ) ) { 
 											?>
 											<span class="sr-only">
 											<?php _e( 'Dribble account of', 'themeisle-companion' ); ?>
-											<?php echo apply_filters( 'widget_title', $instance['name'] ); ?>
+											<?php echo wp_kses_post( apply_filters( 'widget_title', $instance['name'] ) ); ?>
 										</span>
 											<?php
 										} 
@@ -201,14 +201,14 @@ if ( ! class_exists( 'zerif_team_widget' ) ) {
 							if ( ! empty( $instance['ln_link'] ) ) :  
 								?>
 								<li>
-									<a href="<?php echo apply_filters( 'widget_title', $instance['ln_link'] ); ?>"
-									   target="<?php echo $zerif_team_target; ?>">
+									<a href="<?php echo esc_url( apply_filters( 'widget_title', $instance['ln_link'] ) ); ?>"
+									   target="<?php echo esc_attr( $zerif_team_target ); ?>">
 										<?php
 										if ( ! empty( $instance['name'] ) ) { 
 											?>
 											<span class="sr-only">
 											<?php _e( 'Linkedin account of', 'themeisle-companion' ); ?>
-											<?php echo apply_filters( 'widget_title', $instance['name'] ); ?>
+											<?php echo wp_kses_post( apply_filters( 'widget_title', $instance['name'] ) ); ?>
 										</span>
 											<?php
 										} 
@@ -227,7 +227,7 @@ if ( ! class_exists( 'zerif_team_widget' ) ) {
 					<?php if ( ! empty( $instance['description'] ) ) : ?>
 						<div class="details">
 
-							<?php echo htmlspecialchars_decode( apply_filters( 'widget_title', $instance['description'] ) ); ?>
+							<?php echo wp_kses_post( htmlspecialchars_decode( apply_filters( 'widget_title', $instance['description'] ) ) ); ?>
 
 						</div>
 					<?php endif; ?>
@@ -238,7 +238,7 @@ if ( ! class_exists( 'zerif_team_widget' ) ) {
 
 			<?php
 
-			echo $after_widget;
+			echo wp_kses_post( $after_widget );
 
 		}
 
@@ -250,7 +250,7 @@ if ( ! class_exists( 'zerif_team_widget' ) ) {
 		 *
 		 * @return mixed
 		 */
-		function update( $new_instance, $old_instance ) {
+		public function update( $new_instance, $old_instance ) {
 
 			$instance = $old_instance;
 
@@ -276,19 +276,19 @@ if ( ! class_exists( 'zerif_team_widget' ) ) {
 		 *
 		 * @param $instance
 		 */
-		function form( $instance ) {
+		public function form( $instance ) {
 
 			?>
 
 			<p>
 				<label
-					for="<?php echo $this->get_field_id( 'name' ); ?>"><?php _e( 'Name', 'themeisle-companion' ); ?></label><br/>
-				<input type="text" name="<?php echo $this->get_field_name( 'name' ); ?>"
-					   id="<?php echo $this->get_field_id( 'name' ); ?>"
+					for="<?php echo esc_attr( $this->get_field_id( 'name' ) ); ?>"><?php _e( 'Name', 'themeisle-companion' ); ?></label><br/>
+				<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'name' ) ); ?>"
+					   id="<?php echo esc_attr( $this->get_field_id( 'name' ) ); ?>"
 					   value="
 					   <?php 
 						if ( ! empty( $instance['name'] ) ) :
-							echo $instance['name'];
+							echo esc_attr( $instance['name'] );
 endif; 
 						?>
 						"
@@ -296,38 +296,38 @@ endif;
 			</p>
 			<p>
 				<label
-					for="<?php echo $this->get_field_id( 'position' ); ?>"><?php _e( 'Position', 'themeisle-companion' ); ?></label><br/>
-				<textarea class="widefat" rows="8" cols="20" name="<?php echo $this->get_field_name( 'position' ); ?>"
-						  id="<?php echo $this->get_field_id( 'position' ); ?>">
+					for="<?php echo esc_attr( $this->get_field_id( 'position' ) ); ?>"><?php _e( 'Position', 'themeisle-companion' ); ?></label><br/>
+				<textarea class="widefat" rows="8" cols="20" name="<?php echo esc_attr( $this->get_field_name( 'position' ) ); ?>"
+						  id="<?php echo esc_attr( $this->get_field_id( 'position' ) ); ?>">
 										 <?php 
 											if ( ! empty( $instance['position'] ) ) :
-												echo htmlspecialchars_decode( $instance['position'] );
+												echo esc_html( htmlspecialchars_decode( $instance['position'] ) );
 endif; 
 											?>
 							</textarea>
 			</p>
 			<p>
 				<label
-					for="<?php echo $this->get_field_id( 'description' ); ?>"><?php _e( 'Description', 'themeisle-companion' ); ?></label><br/>
+					for="<?php echo esc_attr( $this->get_field_id( 'description' ) ); ?>"><?php _e( 'Description', 'themeisle-companion' ); ?></label><br/>
 				<textarea class="widefat" rows="8" cols="20"
-						  name="<?php echo $this->get_field_name( 'description' ); ?>"
-						  id="<?php echo $this->get_field_id( 'description' ); ?>">
+						  name="<?php echo esc_attr( $this->get_field_name( 'description' ) ); ?>"
+						  id="<?php echo esc_attr( $this->get_field_id( 'description' ) ); ?>">
 										 <?php
 											if ( ! empty( $instance['description'] ) ) :
-												echo htmlspecialchars_decode( $instance['description'] );
+												echo esc_html( htmlspecialchars_decode( $instance['description'] ) );
 endif;
 											?>
 					</textarea>
 			</p>
 			<p>
 				<label
-					for="<?php echo $this->get_field_id( 'fb_link' ); ?>"><?php _e( 'Facebook link', 'themeisle-companion' ); ?></label><br/>
-				<input type="text" name="<?php echo $this->get_field_name( 'fb_link' ); ?>"
-					   id="<?php echo $this->get_field_id( 'fb_link' ); ?>"
+					for="<?php echo esc_attr( $this->get_field_id( 'fb_link' ) ); ?>"><?php _e( 'Facebook link', 'themeisle-companion' ); ?></label><br/>
+				<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'fb_link' ) ); ?>"
+					   id="<?php echo esc_attr( $this->get_field_id( 'fb_link' ) ); ?>"
 					   value="
 					   <?php 
 						if ( ! empty( $instance['fb_link'] ) ) :
-							echo $instance['fb_link'];
+							echo esc_attr( $instance['fb_link'] );
 endif; 
 						?>
 						"
@@ -336,13 +336,13 @@ endif;
 			</p>
 			<p>
 				<label
-					for="<?php echo $this->get_field_id( 'tw_link' ); ?>"><?php _e( 'Twitter link', 'themeisle-companion' ); ?></label><br/>
-				<input type="text" name="<?php echo $this->get_field_name( 'tw_link' ); ?>"
-					   id="<?php echo $this->get_field_id( 'tw_link' ); ?>"
+					for="<?php echo esc_attr( $this->get_field_id( 'tw_link' ) ); ?>"><?php _e( 'Twitter link', 'themeisle-companion' ); ?></label><br/>
+				<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'tw_link' ) ); ?>"
+					   id="<?php echo esc_attr( $this->get_field_id( 'tw_link' ) ); ?>"
 					   value="
 					   <?php 
 						if ( ! empty( $instance['tw_link'] ) ) :
-							echo $instance['tw_link'];
+							echo esc_attr( $instance['tw_link'] );
 endif; 
 						?>
 						"
@@ -350,13 +350,13 @@ endif;
 			</p>
 			<p>
 				<label
-					for="<?php echo $this->get_field_id( 'bh_link' ); ?>"><?php _e( 'Behance link', 'themeisle-companion' ); ?></label><br/>
-				<input type="text" name="<?php echo $this->get_field_name( 'bh_link' ); ?>"
-					   id="<?php echo $this->get_field_id( 'bh_link' ); ?>"
+					for="<?php echo esc_attr( $this->get_field_id( 'bh_link' ) ); ?>"><?php _e( 'Behance link', 'themeisle-companion' ); ?></label><br/>
+				<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'bh_link' ) ); ?>"
+					   id="<?php echo esc_attr( $this->get_field_id( 'bh_link' ) ); ?>"
 					   value="
 					   <?php 
 						if ( ! empty( $instance['bh_link'] ) ) :
-							echo $instance['bh_link'];
+							echo esc_attr( $instance['bh_link'] );
 endif; 
 						?>
 						"
@@ -365,13 +365,13 @@ endif;
 			</p>
 			<p>
 				<label
-					for="<?php echo $this->get_field_id( 'db_link' ); ?>"><?php _e( 'Dribble link', 'themeisle-companion' ); ?></label><br/>
-				<input type="text" name="<?php echo $this->get_field_name( 'db_link' ); ?>"
-					   id="<?php echo $this->get_field_id( 'db_link' ); ?>"
+					for="<?php echo esc_attr( $this->get_field_id( 'db_link' ) ); ?>"><?php _e( 'Dribble link', 'themeisle-companion' ); ?></label><br/>
+				<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'db_link' ) ); ?>"
+					   id="<?php echo esc_attr( $this->get_field_id( 'db_link' ) ); ?>"
 					   value="
 					   <?php 
 						if ( ! empty( $instance['db_link'] ) ) :
-							echo $instance['db_link'];
+							echo esc_attr( $instance['db_link'] );
 endif; 
 						?>
 						"
@@ -379,21 +379,21 @@ endif;
 			</p>
 			<p>
 				<label
-					for="<?php echo $this->get_field_id( 'ln_link' ); ?>"><?php _e( 'Linkedin link', 'themeisle-companion' ); ?></label><br/>
-				<input type="text" name="<?php echo $this->get_field_name( 'ln_link' ); ?>"
-					   id="<?php echo $this->get_field_id( 'ln_link' ); ?>"
+					for="<?php echo esc_attr( $this->get_field_id( 'ln_link' ) ); ?>"><?php _e( 'Linkedin link', 'themeisle-companion' ); ?></label><br/>
+				<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'ln_link' ) ); ?>"
+					   id="<?php echo esc_attr( $this->get_field_id( 'ln_link' ) ); ?>"
 					   value="
 					   <?php 
 						if ( ! empty( $instance['ln_link'] ) ) :
-							echo $instance['ln_link'];
+							echo esc_url( $instance['ln_link'] );
 endif; 
 						?>
 						"
 					   class="widefat">
 			</p>
 			<p>
-				<input type="checkbox" name="<?php echo $this->get_field_name( 'open_new_window' ); ?>"
-					   id="<?php echo $this->get_field_id( 'open_new_window' ); ?>" 
+				<input type="checkbox" name="<?php echo esc_attr( $this->get_field_name( 'open_new_window' ) ); ?>"
+					   id="<?php echo esc_attr( $this->get_field_id( 'open_new_window' ) ); ?>" 
 									  <?php 
 										if ( ! empty( $instance['open_new_window'] ) ) :
 											checked( (bool) $instance['open_new_window'], true );
@@ -404,17 +404,17 @@ endif;
 			</p>
 			<p>
 				<label
-					for="<?php echo $this->get_field_id( 'image_uri' ); ?>"><?php _e( 'Image', 'themeisle-companion' ); ?></label><br/>
+					for="<?php echo esc_attr( $this->get_field_id( 'image_uri' ) ); ?>"><?php _e( 'Image', 'themeisle-companion' ); ?></label><br/>
 
 				<?php
 				$image_in_customizer = '';
 				$display             = 'none';
 				if ( ! empty( $instance['image_in_customizer'] ) && ! empty( $instance['image_uri'] ) ) {
-					$image_in_customizer = esc_url( $instance['image_in_customizer'] );
+					$image_in_customizer = $instance['image_in_customizer'];
 					$display             = 'inline-block';
 				} else {
 					if ( ! empty( $instance['image_uri'] ) ) {
-						$image_in_customizer = esc_url( $instance['image_uri'] );
+						$image_in_customizer = $instance['image_uri'];
 						$display             = 'inline-block';
 					}
 				}
@@ -424,44 +424,44 @@ endif;
 					   name="
 					   <?php 
 						if ( ! empty( $zerif_image_in_customizer ) ) {
-							echo $zerif_image_in_customizer;
+							echo esc_attr( $zerif_image_in_customizer );
 						} 
 						?>
 						"
 					   value="
 					   <?php 
 						if ( ! empty( $instance['image_in_customizer'] ) ) :
-							echo $instance['image_in_customizer'];
+							echo esc_attr( $instance['image_in_customizer'] );
 endif; 
 						?>
 						">
-				<img class="custom_media_image" src="<?php echo $image_in_customizer; ?>"
-					 style="margin:0;padding:0;max-width:100px;float:left;display:<?php echo $display; ?>"
-					 alt="<?php echo __( 'Uploaded image', 'themeisle-companion' ); ?>"/><br/>
+				<img class="custom_media_image" src="<?php echo esc_url( $image_in_customizer ); ?>"
+					 style="margin:0;padding:0;max-width:100px;float:left;display:<?php echo esc_attr( $display ); ?>"
+					 alt="<?php echo esc_attr__( 'Uploaded image', 'themeisle-companion' ); ?>"/><br/>
 
 				<input type="text" class="widefat custom_media_url"
-					   name="<?php echo $this->get_field_name( 'image_uri' ); ?>"
-					   id="<?php echo $this->get_field_id( 'image_uri' ); ?>"
+					   name="<?php echo esc_attr( $this->get_field_name( 'image_uri' ) ); ?>"
+					   id="<?php echo esc_attr( $this->get_field_id( 'image_uri' ) ); ?>"
 					   value="
 					   <?php 
 						if ( ! empty( $instance['image_uri'] ) ) :
-							echo $instance['image_uri'];
+							echo esc_attr( $instance['image_uri'] );
 endif; 
 						?>
 						"
 					   style="margin-top:5px;">
 
 				<input type="button" class="button button-primary custom_media_button" id="custom_media_button"
-					   name="<?php echo $this->get_field_name( 'image_uri' ); ?>"
+					   name="<?php echo esc_attr( $this->get_field_name( 'image_uri' ) ); ?>"
 					   value="<?php _e( 'Upload Image', 'themeisle-companion' ); ?>" style="margin-top:5px;">
 			</p>
 
-			<input class="custom_media_id" id="<?php echo $this->get_field_id( 'custom_media_id' ); ?>"
-				   name="<?php echo $this->get_field_name( 'custom_media_id' ); ?>" type="hidden"
+			<input class="custom_media_id" id="<?php echo esc_attr( $this->get_field_id( 'custom_media_id' ) ); ?>"
+				   name="<?php echo esc_attr( $this->get_field_name( 'custom_media_id' ) ); ?>" type="hidden"
 				   value="
 				   <?php 
 					if ( ! empty( $instance['custom_media_id'] ) ) :
-						echo $instance['custom_media_id'];
+						echo esc_attr( $instance['custom_media_id'] );
 endif; 
 					?>
 					"/>

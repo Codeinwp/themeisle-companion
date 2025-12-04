@@ -21,7 +21,7 @@ class Newsletter_Admin extends Beaver_Widget_Base {
 	 *
 	 * @return string
 	 */
-	function get_widget_name() {
+	public function get_widget_name() {
 		return esc_html__( 'Newsletter Form', 'themeisle-companion' );
 	}
 
@@ -134,7 +134,7 @@ class Newsletter_Admin extends Beaver_Widget_Base {
 	 *
 	 * @return array
 	 */
-	function get_specific_field_types() {
+	public function get_specific_field_types() {
 		return $this->field_types;
 	}
 }

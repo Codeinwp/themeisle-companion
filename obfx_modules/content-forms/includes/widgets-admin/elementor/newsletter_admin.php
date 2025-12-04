@@ -46,7 +46,7 @@ class Newsletter_Admin extends Elementor_Widget_Base {
 	 *
 	 * @return array
 	 */
-	function get_default_config() {
+	public function get_default_config() {
 		return array(
 			array(
 				'key'         => 'email',
@@ -72,14 +72,14 @@ class Newsletter_Admin extends Elementor_Widget_Base {
 	/**
 	 * Add specific form fields for Newsletter widget.
 	 */
-	function add_specific_form_fields() {
+	public function add_specific_form_fields() {
 		return false;
 	}
 
 	/**
 	 * Add specific settings for Newsletter widget.
 	 */
-	function add_specific_settings_controls() {
+	public function add_specific_settings_controls() {
 		$providers = array(
 			'mailchimp'  => esc_html__( 'MailChimp', 'themeisle-companion' ),
 			'sendinblue' => esc_html__( 'Sendinblue ', 'themeisle-companion' ),
@@ -207,7 +207,7 @@ class Newsletter_Admin extends Elementor_Widget_Base {
 	 *
 	 * @return mixed|void
 	 */
-	function add_widget_specific_settings() {
+	public function add_widget_specific_settings() {
 
 		$this->start_controls_section(
 			'provider_settings',
@@ -239,7 +239,7 @@ class Newsletter_Admin extends Elementor_Widget_Base {
 	 * Add repeater specific fields for newsletter widget.
 	 * @param Object $repeater
 	 */
-	function add_repeater_specific_fields( $repeater ) {
+	public function add_repeater_specific_fields( $repeater ) {
 		$repeater->add_control(
 			'field_map',
 			array(
@@ -367,7 +367,7 @@ class Newsletter_Admin extends Elementor_Widget_Base {
 	 *
 	 * @return array
 	 */
-	function get_specific_field_types() {
+	public function get_specific_field_types() {
 		return $this->field_types;
 	}
 }

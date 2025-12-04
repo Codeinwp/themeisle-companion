@@ -23,8 +23,8 @@ class Disable_Comments_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function set_module_strings() {
-		$this->name        = __( 'Disable Comments', 'themeisle-companion' );
-		$this->description = __( 'A global kill switch for comments. Instantly closes comments on all existing posts and pages, removes the Comments section from admin menu, completely hides comment forms from your website frontend, and removes comment blocks from the editor.', 'themeisle-companion' );
+		$this->name              = __( 'Disable Comments', 'themeisle-companion' );
+		$this->description       = __( 'A global kill switch for comments. Instantly closes comments on all existing posts and pages, removes the Comments section from admin menu, completely hides comment forms from your website frontend, and removes comment blocks from the editor.', 'themeisle-companion' );
 		$this->documentation_url = 'https://docs.themeisle.com/article/951-orbit-fox-documentation#disable-comments';
 	}
 

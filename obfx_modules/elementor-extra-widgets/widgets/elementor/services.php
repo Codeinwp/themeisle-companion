@@ -57,7 +57,7 @@ class Services extends Widget_Base {
 	 *
 	 * @return bool
 	 */
-	protected function is_dynamic_content(): bool {
+	protected function is_dynamic_content() {
 		return false;
 	}
 
@@ -675,7 +675,7 @@ class Services extends Widget_Base {
 					if ( $service['link']['nofollow'] === 'on' ) {
 						$link_props .= ' rel="nofollow" ';
 					}
-					echo '<a' . $link_props . '>';
+					echo wp_kses_post( '<a' . $link_props . '>' );
 				}
 				?>
 				<div class="obfx-service-box obfx-grid-col">
@@ -699,12 +699,12 @@ class Services extends Widget_Base {
 						?>
 						<div class="obfx-service-box-content">
 							<?php if ( ! empty( $service['title'] ) ) { ?>
-								<h4 class="obfx-service-title"><?php echo esc_attr( $service['title'] ); ?></h4>
+								<h4 class="obfx-service-title"><?php echo esc_html( $service['title'] ); ?></h4>
 								<?php
 							}
 							if ( ! empty( $service['text'] ) ) {
 								?>
-								<p class="obfx-service-text"><?php echo esc_attr( $service['text'] ); ?></p>
+								<p class="obfx-service-text"><?php echo esc_html( $service['text'] ); ?></p>
 							<?php } ?>
 						</div>
 					<?php } ?>

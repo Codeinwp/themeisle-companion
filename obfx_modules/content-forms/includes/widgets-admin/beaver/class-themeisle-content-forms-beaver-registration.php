@@ -14,7 +14,7 @@ class Registration_Admin extends Beaver_Widget_Base {
 	 *
 	 * @return string
 	 */
-	function get_widget_name() {
+	public function get_widget_name() {
 		return esc_html__( 'Registration Form', 'themeisle-companion' );
 	}
 
@@ -88,7 +88,7 @@ class Registration_Admin extends Beaver_Widget_Base {
 	 *
 	 * @return array
 	 */
-	function add_widget_repeater_fields( $fields ) {
+	public function add_widget_repeater_fields( $fields ) {
 		$field_types = array(
 			'first_name'   => __( 'First Name', 'themeisle-companion' ),
 			'last_name'    => __( 'Last Name', 'themeisle-companion' ),
@@ -113,7 +113,7 @@ class Registration_Admin extends Beaver_Widget_Base {
 	 *
 	 * @return array
 	 */
-	function add_widget_specific_controls( $fields ) {
+	public function add_widget_specific_controls( $fields ) {
 		return $fields;
 	}
 
@@ -122,7 +122,7 @@ class Registration_Admin extends Beaver_Widget_Base {
 	 *
 	 * @return array
 	 */
-	function get_specific_field_types() {
+	public function get_specific_field_types() {
 		return $this->field_types;
 	}
 }

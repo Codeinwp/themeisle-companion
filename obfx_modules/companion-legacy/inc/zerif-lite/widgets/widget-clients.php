@@ -9,14 +9,14 @@
 
 
 /**
- * Class zerif_clients_widget
+ * Class Zerif_Clients_Widget
  */
-if ( ! class_exists( 'zerif_clients_widget' ) ) {
+if ( ! class_exists( 'Zerif_Clients_Widget' ) ) {
 
-	class zerif_clients_widget extends WP_Widget {
+	class Zerif_Clients_Widget extends WP_Widget {
 
 		/**
-		 * zerif_clients_widget constructor.
+		 * Zerif_Clients_Widget constructor.
 		 */
 		public function __construct() {
 			parent::__construct(
@@ -34,7 +34,7 @@ if ( ! class_exists( 'zerif_clients_widget' ) ) {
 		 *
 		 * @param $hook
 		 */
-		function widget_scripts() {
+		public function widget_scripts() {
 			wp_enqueue_media();
 			wp_enqueue_script( 'zerif_widget_media_script', THEMEISLE_COMPANION_URL . 'assets/js/widget-media.js', false, '1.1', true );
 		}
@@ -45,32 +45,32 @@ if ( ! class_exists( 'zerif_clients_widget' ) ) {
 		 * @param $args
 		 * @param $instance
 		 */
-		function widget( $args, $instance ) {
+		public function widget( $args, $instance ) {
 
 			extract( $args );
 
-			echo $before_widget;
+			echo wp_kses_post( $before_widget );
 
 			?>
 
 			<a href="
 			<?php 
 			if ( ! empty( $instance['link'] ) ) :
-				echo apply_filters( 'widget_title', $instance['link'] );
+				echo esc_url( apply_filters( 'widget_title', $instance['link'] ) );
 endif; 
 			?>
 			">
 				<?php
 				if ( ! empty( $instance['image_uri'] ) && ( preg_match( '/(\.jpg|\.png|\.jpeg|\.gif|\.bmp)$/', $instance['image_uri'] ) ) ) {
 
-					echo '<img src="' . esc_url( $instance['image_uri'] ) . '" alt="' . __( 'Client', 'themeisle-companion' ) . '">';
+					echo '<img src="' . esc_url( $instance['image_uri'] ) . '" alt="' . esc_attr__( 'Client', 'themeisle-companion' ) . '">';
 
 				} elseif ( ! empty( $instance['custom_media_id'] ) ) {
 
 					$zerif_clients_custom_media_id = wp_get_attachment_image_src( $instance['custom_media_id'] );
 					if ( ! empty( $zerif_clients_custom_media_id ) && ! empty( $zerif_clients_custom_media_id[0] ) ) {
 
-						echo '<img src="' . esc_url( $zerif_clients_custom_media_id[0] ) . '" alt="' . __( 'Client', 'themeisle-companion' ) . '">';
+						echo '<img src="' . esc_url( $zerif_clients_custom_media_id[0] ) . '" alt="' . esc_attr__( 'Client', 'themeisle-companion' ) . '">';
 
 					}
 				}
@@ -79,7 +79,7 @@ endif;
 
 			<?php
 
-			echo $after_widget;
+			echo wp_kses_post( $after_widget );
 
 		}
 
@@ -91,7 +91,7 @@ endif;
 		 *
 		 * @return mixed
 		 */
-		function update( $new_instance, $old_instance ) {
+		public function update( $new_instance, $old_instance ) {
 
 			$instance = $old_instance;
 
@@ -112,18 +112,18 @@ endif;
 		 *
 		 * @param $instance
 		 */
-		function form( $instance ) {
+		public function form( $instance ) {
 			?>
 
 			<p>
 				<label
-					for="<?php echo $this->get_field_id( 'link' ); ?>"><?php _e( 'Link', 'themeisle-companion' ); ?></label><br/>
-				<input type="text" name="<?php echo $this->get_field_name( 'link' ); ?>"
-					   id="<?php echo $this->get_field_id( 'link' ); ?>"
+					for="<?php echo esc_attr( $this->get_field_id( 'link' ) ); ?>"><?php _e( 'Link', 'themeisle-companion' ); ?></label><br/>
+				<input type="text" name="<?php echo esc_attr( $this->get_field_name( 'link' ) ); ?>"
+					   id="<?php echo esc_attr( $this->get_field_id( 'link' ) ); ?>"
 					   value="
 					   <?php 
 						if ( ! empty( $instance['link'] ) ) :
-							echo $instance['link'];
+							echo esc_url( $instance['link'] );
 endif; 
 						?>
 						"
@@ -131,7 +131,7 @@ endif;
 			</p>
 			<p>
 				<label
-					for="<?php echo $this->get_field_id( 'image_uri' ); ?>"><?php _e( 'Image', 'themeisle-companion' ); ?></label><br/>
+					for="<?php echo esc_attr( $this->get_field_id( 'image_uri' ) ); ?>"><?php _e( 'Image', 'themeisle-companion' ); ?></label><br/>
 
 				<?php
 				$image_in_customizer = '';
@@ -151,44 +151,44 @@ endif;
 					   name="
 					   <?php 
 						if ( ! empty( $zerif_image_in_customizer ) ) {
-							echo $zerif_image_in_customizer;
+							echo esc_attr( $zerif_image_in_customizer );
 						} 
 						?>
 						"
 					   value="
 					   <?php 
 						if ( ! empty( $instance['image_in_customizer'] ) ) :
-							echo $instance['image_in_customizer'];
+							echo esc_attr( $instance['image_in_customizer'] );
 endif; 
 						?>
 						">
-				<img class="custom_media_image" src="<?php echo $image_in_customizer; ?>"
-					 style="margin:0;padding:0;max-width:100px;float:left;display:<?php echo $display; ?>"
-					 alt="<?php echo __( 'Uploaded image', 'themeisle-companion' ); ?>"/><br/>
+				<img class="custom_media_image" src="<?php echo esc_url( $image_in_customizer ); ?>"
+					 style="margin:0;padding:0;max-width:100px;float:left;display:<?php echo esc_attr( $display ); ?>"
+					 alt="<?php echo esc_attr__( 'Uploaded image', 'themeisle-companion' ); ?>"/><br/>
 
 				<input type="text" class="widefat custom_media_url"
-					   name="<?php echo $this->get_field_name( 'image_uri' ); ?>"
-					   id="<?php echo $this->get_field_id( 'image_uri' ); ?>"
+					   name="<?php echo esc_attr( $this->get_field_name( 'image_uri' ) ); ?>"
+					   id="<?php echo esc_attr( $this->get_field_id( 'image_uri' ) ); ?>"
 					   value="
 					   <?php 
 						if ( ! empty( $instance['image_uri'] ) ) :
-							echo $instance['image_uri'];
+							echo esc_attr( $instance['image_uri'] );
 endif; 
 						?>
 						"
 					   style="margin-top:5px;">
 
 				<input type="button" class="button button-primary custom_media_button" id="custom_media_button"
-					   name="<?php echo $this->get_field_name( 'image_uri' ); ?>"
+					   name="<?php echo esc_attr( $this->get_field_name( 'image_uri' ) ); ?>"
 					   value="<?php _e( 'Upload Image', 'themeisle-companion' ); ?>" style="margin-top:5px;">
 			</p>
 
-			<input class="custom_media_id" id="<?php echo $this->get_field_id( 'custom_media_id' ); ?>"
-				   name="<?php echo $this->get_field_name( 'custom_media_id' ); ?>" type="hidden"
+			<input class="custom_media_id" id="<?php echo esc_attr( $this->get_field_id( 'custom_media_id' ) ); ?>"
+				   name="<?php echo esc_attr( $this->get_field_name( 'custom_media_id' ) ); ?>" type="hidden"
 				   value="
 				   <?php 
 					if ( ! empty( $instance['custom_media_id'] ) ) :
-						echo $instance['custom_media_id'];
+						echo esc_attr( $instance['custom_media_id'] );
 endif; 
 					?>
 					"/>

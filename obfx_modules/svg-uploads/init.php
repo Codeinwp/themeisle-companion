@@ -32,10 +32,10 @@ class Svg_Uploads_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function set_module_strings() {
-		$this->name        = __( 'SVG Support', 'themeisle-companion' );
-		$this->description = __( 'Enable SVG file uploads and media library support. By default, WordPress doesn\'t allow uploading SVG files for security reasons. This module safely enables SVG support with proper sanitization.', 'themeisle-companion' );
+		$this->name              = __( 'SVG Support', 'themeisle-companion' );
+		$this->description       = __( 'Enable SVG file uploads and media library support. By default, WordPress doesn\'t allow uploading SVG files for security reasons. This module safely enables SVG support with proper sanitization.', 'themeisle-companion' );
 		$this->documentation_url = 'https://docs.themeisle.com/article/951-orbit-fox-documentation#svg-support';
-		$this->notices     = array(
+		$this->notices           = array(
 			array(
 				'message' => __( 'Only enable this if you trust all users who can upload files to your site. SVG files can contain malicious code if not properly sanitized.', 'themeisle-companion' ),
 				'type'    => 'warning',

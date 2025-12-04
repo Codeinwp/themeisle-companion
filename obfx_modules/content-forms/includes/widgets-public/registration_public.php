@@ -16,7 +16,7 @@ class Registration_Public extends Widget_Actions_Base {
 	 *
 	 * @return string
 	 */
-	function get_form_type() {
+	public function get_form_type() {
 		return 'registration';
 	}
 
@@ -38,16 +38,18 @@ class Registration_Public extends Widget_Actions_Base {
 			return $return;
 		}
 
-		$settings['user_email']             = sanitize_email( $data['USER_EMAIL'] );
-		$settings['user_login']             = ! empty( $data['USER_LOGIN'] ) ? $data['USER_LOGIN'] : $data['email'];
-		$settings['user_pass']              = ! empty( $data['USER_PASS'] ) ? $data['USER_PASS'] : wp_generate_password(
-			$length                         = 12,
-			$include_standard_special_chars = false
+		$settings['user_email']         = sanitize_email( $data['USER_EMAIL'] );
+		$settings['user_login']         = ! empty( $data['USER_LOGIN'] ) ? $data['USER_LOGIN'] : $data['email'];
+		$length                         = 12;
+		$include_standard_special_chars = false;
+		$settings['user_pass']          = ! empty( $data['USER_PASS'] ) ? $data['USER_PASS'] : wp_generate_password(
+			$length,
+			$include_standard_special_chars
 		);
-		$settings['display_name'] = ! empty( $data['DISPLAY_NAME'] ) ? $data['DISPLAY_NAME'] : '';
-		$settings['first_name']   = ! empty( $data['FIRST_NAME'] ) ? $data['FIRST_NAME'] : '';
-		$settings['last_name']    = ! empty( $data['LAST_NAME'] ) ? $data['LAST_NAME'] : '';
-		$settings['role']         = apply_filters( 'ti_content_forms_registration_form', 'subscriber', $widget_id, $post_id );
+		$settings['display_name']       = ! empty( $data['DISPLAY_NAME'] ) ? $data['DISPLAY_NAME'] : '';
+		$settings['first_name']         = ! empty( $data['FIRST_NAME'] ) ? $data['FIRST_NAME'] : '';
+		$settings['last_name']          = ! empty( $data['LAST_NAME'] ) ? $data['LAST_NAME'] : '';
+		$settings['role']               = apply_filters( 'ti_content_forms_registration_form', 'subscriber', $widget_id, $post_id );
 
 		$return = $this->_register_user( $return, $settings );
 

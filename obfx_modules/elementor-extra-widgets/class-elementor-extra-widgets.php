@@ -213,7 +213,8 @@ if ( ! class_exists( '\ThemeIsle\ElementorExtraWidgets' ) ) {
 
 			$absolute_path = untrailingslashit( $absolute_path );
 			$files         = array();
-			if ( ! $dir = @opendir( $absolute_path ) ) {
+			$dir           = @opendir( $absolute_path );
+			if ( ! $dir ) {
 				return $files;
 			}
 

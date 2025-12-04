@@ -38,8 +38,8 @@ if ( ! function_exists( 'hestia_team' ) ) :
 		$hestia_team_content  = get_theme_mod( 'hestia_team_content', $default_content );
 		$section_is_empty     = empty( $hestia_team_title ) && empty( $hestia_team_subtitle ) && empty( $hestia_team_content );
 
-		$hide_section = get_theme_mod( 'hestia_team_hide', false );
-		$section_style        = '';
+		$hide_section  = get_theme_mod( 'hestia_team_hide', false );
+		$section_style = '';
 		/**
 		 * Don't show section if Disable section is checked or it doesn't have any content.
 		 * Show it if it's called as a shortcode.
@@ -55,7 +55,7 @@ if ( ! function_exists( 'hestia_team' ) ) :
 		$wrapper_class   = $is_shortcode === true ? 'is-shortcode' : '';
 		$container_class = $is_shortcode === true ? '' : 'container';
 
-		if( function_exists( 'maybe_trigger_fa_loading' ) ){
+		if ( function_exists( 'maybe_trigger_fa_loading' ) ) {
 			$html_allowed_strings = array(
 				$hestia_team_title,
 				$hestia_team_subtitle,
@@ -172,28 +172,28 @@ function hestia_team_content( $hestia_team_content, $is_callback = false ) {
 			 * If that field is empty, uses the Title of the Testimonial box as alt text
 			 */
 			$alt_image = $title;
-            $srcset    = '';
+			$srcset    = '';
 			$image_id  = function_exists( 'attachment_url_to_postid' ) ? attachment_url_to_postid( preg_replace( '/-\d{1,4}x\d{1,4}/i', '', $image ) ) : '';
 			if ( ! empty( $image_id ) && $image_id !== 0 ) {
 				$alt_image = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
-                $srcset    = wp_get_attachment_image_srcset( $image_id, 'full' );
+				$srcset    = wp_get_attachment_image_srcset( $image_id, 'full' );
 			}
 			
-			echo $link_markup_open;
+			echo wp_kses_post( $link_markup_open );
 			
 			echo '<img class="img" src="' . esc_url( $image ) . '" ';
 			if ( ! empty( $alt_image ) ) {
 				echo ' alt="' . esc_attr( $alt_image ) . '" ';
 			}
-            if ( ! empty( $srcset ) ) {
-                echo ' srcset="' . esc_attr( $srcset ) . '" ';
-            }
+			if ( ! empty( $srcset ) ) {
+				echo ' srcset="' . esc_attr( $srcset ) . '" ';
+			}
 			if ( ! empty( $title ) ) {
 				echo ' title="' . esc_attr( $title ) . '" ';
 			}
 			echo '/>';
 			
-			echo $link_markup_close;
+			echo wp_kses_post( $link_markup_close );
 		}
 		echo '</div>';
 		echo '</div>';
@@ -201,7 +201,7 @@ function hestia_team_content( $hestia_team_content, $is_callback = false ) {
 		echo '<div class="col-md-7">';
 		echo '<div class="content">';
 		
-		echo $link_markup_open;
+		echo wp_kses_post( $link_markup_open );
 		if ( ! empty( $title ) ) {
 			echo '<h4 class="card-title">' . esc_html( $title ) . '</h4>';
 		}
@@ -213,7 +213,7 @@ function hestia_team_content( $hestia_team_content, $is_callback = false ) {
 		if ( ! empty( $text ) ) {
 			echo '<p class="card-description">' . wp_kses_post( html_entity_decode( $text ) ) . '</p>';
 		}
-		echo $link_markup_close;
+		echo wp_kses_post( $link_markup_close );
 		
 		if ( ! empty( $team_item->social_repeater ) ) {
 			$icons         = html_entity_decode( $team_item->social_repeater );
@@ -236,7 +236,7 @@ function hestia_team_content( $hestia_team_content, $is_callback = false ) {
 							$link .= hestia_is_external_url( $social_link );
 						}
 						$link .= ' class="btn btn-just-icon btn-simple" aria-label="' . esc_attr( $aria_label ) . '"><i class="' . esc_attr( hestia_display_fa_icon( $social_icon ) ) . '"></i></a>';
-						echo $link;
+						echo wp_kses_post( $link );
 					}
 				}
 				echo '</div>';
