@@ -19,7 +19,7 @@ class EAW_WP_Widget extends WP_Widget {
 	 *
 	 * @return string|bool False on failure, the result of the shortcode on success.
 	 */
-	function do_shortcode( $tag, array $atts = array(), $content = null ) {
+	public function do_shortcode( $tag, array $atts = array(), $content = null ) {
 		global $shortcode_tags;
 		if ( ! isset( $shortcode_tags[ $tag ] ) ) {
 			return false;

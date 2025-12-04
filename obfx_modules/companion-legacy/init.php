@@ -80,7 +80,9 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			$theme_name = 'Shop Isle';
 		}
 
-		$this->name        = sprintf( __( '%s enhancements', 'themeisle-companion' ), $theme_name );
+		// translators: %s is theme name.
+		$this->name = sprintf( __( '%s enhancements', 'themeisle-companion' ), $theme_name );
+		// translators: %s is theme name.
 		$this->description = sprintf( __( 'Module containing frontpage improvements for %s theme.', 'themeisle-companion' ), $theme_name );
 	}
 
@@ -138,10 +140,10 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	}
 
 	public function zerif_register_widgets() {
-		register_widget( 'zerif_ourfocus' );
-		register_widget( 'zerif_testimonial_widget' );
-		register_widget( 'zerif_clients_widget' );
-		register_widget( 'zerif_team_widget' );
+		register_widget( 'Zerif_ourfocus' );
+		register_widget( 'Zerif_Testimonial_Widget' );
+		register_widget( 'Zerif_Clients_Widget' );
+		register_widget( 'Zerif_Team_Widget' );
 
 		$themeisle_companion_flag = get_option( 'themeisle_companion_flag' );
 		if ( empty( $themeisle_companion_flag ) && function_exists( 'themeisle_populate_with_default_widgets' ) ) {
@@ -287,7 +289,7 @@ class Companion_Legacy_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function hestia_set_front_page() {
 		$front_page = get_option( 'page_on_front' );
 		$blog_page  = get_option( 'page_for_posts' );
-		if ( ! empty(  $front_page ) || ! empty( $blog_page ) ) {
+		if ( ! empty( $front_page ) || ! empty( $blog_page ) ) {
 			return;
 		}
 		themeisle_hestia_set_frontpage();

@@ -41,7 +41,7 @@ class Woo_Featured_Products extends EAW_WP_Widget {
 		}
 
 		if ( isset( $cache[ $args['widget_id'] ] ) ) {
-			echo $cache[ $args['widget_id'] ];
+			echo wp_kses_post( $cache[ $args['widget_id'] ] );
 
 			return;
 		}
@@ -80,7 +80,7 @@ class Woo_Featured_Products extends EAW_WP_Widget {
 		);
 
 		if ( isset( $args['before_widget'] ) ) {
-			echo $args['before_widget'];
+			echo wp_kses_post( $args['before_widget'] );
 		}
 
 		echo '<section class="eaw-product-section woo-featured-products">';
@@ -91,13 +91,15 @@ class Woo_Featured_Products extends EAW_WP_Widget {
 
 		do_action( 'storepage_homepage_after_featured_products_title' );
 
-		echo $this->do_shortcode(
-			'featured_products',
-			array(
-				'per_page' => intval( $args['limit'] ),
-				'columns'  => intval( $args['columns'] ),
-				'orderby'  => esc_attr( $args['orderby'] ),
-				'order'    => esc_attr( $args['order'] ),
+		echo wp_kses_post(
+			$this->do_shortcode(
+				'featured_products',
+				array(
+					'per_page' => intval( $args['limit'] ),
+					'columns'  => intval( $args['columns'] ),
+					'orderby'  => esc_attr( $args['orderby'] ),
+					'order'    => esc_attr( $args['order'] ),
+				)
 			)
 		);
 
@@ -106,7 +108,7 @@ class Woo_Featured_Products extends EAW_WP_Widget {
 		echo '</section>';
 
 		if ( isset( $args['after_widget'] ) ) {
-			echo $args['after_widget'];
+			echo wp_kses_post( $args['after_widget'] );
 		}
 
 		if ( ! $this->is_preview() ) {
@@ -147,21 +149,21 @@ class Woo_Featured_Products extends EAW_WP_Widget {
 		$limit   = isset( $instance['limit'] ) ? absint( $instance['limit'] ) : 4;
 		$columns = isset( $instance['columns '] ) ? absint( $instance['columns '] ) : 4; ?>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'themeisle-companion' ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>"
-				   name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo $title; ?>"/>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php _e( 'Title:', 'themeisle-companion' ); ?></label>
+			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"
+				   name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>"/>
 		</p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'limit' ); ?>"><?php _e( 'Number of products to show:', 'themeisle-companion' ); ?></label>
-			<input id="<?php echo $this->get_field_id( 'limit' ); ?>"
-				   name="<?php echo $this->get_field_name( 'limit' ); ?>" type="text" value="<?php echo $limit; ?>"
+			<label for="<?php echo esc_attr( $this->get_field_id( 'limit' ) ); ?>"><?php _e( 'Number of products to show:', 'themeisle-companion' ); ?></label>
+			<input id="<?php echo esc_attr( $this->get_field_id( 'limit' ) ); ?>"
+				   name="<?php echo esc_attr( $this->get_field_name( 'limit' ) ); ?>" type="text" value="<?php echo esc_attr( $limit ); ?>"
 				   size="3"/></p>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'columns' ); ?>"><?php _e( 'Number of Columns:', 'themeisle-companion' ); ?></label>
-			<input id="<?php echo $this->get_field_id( 'columns' ); ?>"
-				   name="<?php echo $this->get_field_name( 'columns' ); ?>" type="text" value="<?php echo $columns; ?>"
+			<label for="<?php echo esc_attr( $this->get_field_id( 'columns' ) ); ?>"><?php _e( 'Number of Columns:', 'themeisle-companion' ); ?></label>
+			<input id="<?php echo esc_attr( $this->get_field_id( 'columns' ) ); ?>"
+				   name="<?php echo esc_attr( $this->get_field_name( 'columns' ) ); ?>" type="text" value="<?php echo esc_attr( $columns ); ?>"
 				   size="3"/></p>
 		<?php
 	}

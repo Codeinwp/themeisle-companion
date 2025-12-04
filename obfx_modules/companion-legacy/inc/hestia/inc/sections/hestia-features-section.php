@@ -37,13 +37,13 @@ if ( ! function_exists( 'hestia_features' ) ) :
 		/* Don't show section if Disable section is checked or it doesn't have any content. Show it if it's called as a shortcode */
 		if ( $is_shortcode === false && ( $section_is_empty || (bool) $hide_section === true ) ) {
 			if ( is_customize_preview() ) {
-				$section_style = 'style="display: none"';
+				$section_style = 'style=display:none';
 			} else {
 				return;
 			}
 		}
 
-		if( function_exists( 'maybe_trigger_fa_loading' ) ) {
+		if ( function_exists( 'maybe_trigger_fa_loading' ) ) {
 			$html_allowed_strings = array(
 				$hestia_features_title,
 				$hestia_features_subtitle,
@@ -56,7 +56,7 @@ if ( ! function_exists( 'hestia_features' ) ) :
 
 		hestia_before_features_section_trigger();
 		?>
-		<section class="hestia-features <?php echo esc_attr( $wrapper_class ); ?>" id="features" data-sorder="hestia_features" <?php echo $section_style; ?>>
+		<section class="hestia-features <?php echo esc_attr( $wrapper_class ); ?>" id="features" data-sorder="hestia_features" <?php echo esc_attr( $section_style ); ?>>
 			<?php
 			hestia_before_features_section_content_trigger();
 			if ( $is_shortcode === false && function_exists( 'hestia_display_customizer_shortcut' ) ) {
@@ -128,7 +128,7 @@ function hestia_features_content( $hestia_features_content, $is_callback = false
 					maybe_trigger_fa_loading( $text );
 				}
 				?>
-				<div class="col-xs-12 <?php echo apply_filters( 'hestia_features_per_row_class', 'col-md-4' ); ?> feature-box">
+				<div class="col-xs-12 <?php echo esc_attr( apply_filters( 'hestia_features_per_row_class', 'col-md-4' ) ); ?> feature-box">
 					<div class="hestia-info">
 						<?php
 						if ( ! empty( $link ) ) {
@@ -142,42 +142,43 @@ function hestia_features_content( $hestia_features_content, $is_callback = false
 
 						switch ( $choice ) {
 							case 'customizer_repeater_image':
-                                if ( ! empty( $image ) ) {
-                                    /**
-                                     * Alternative text for the Features box image
-                                     * It first checks for the Alt Text option of the attachment
-                                     * If that field is empty, uses the Title of the Testimonial box as alt text
-                                     */
-                                    $alt_image = '';
-                                    $srcset = '';
-                                    $image_id  = function_exists( 'attachment_url_to_postid' ) ? attachment_url_to_postid( preg_replace( '/-\d{1,4}x\d{1,4}/i', '', $image ) ) : '';
-                                    if ( ! empty( $image_id ) && $image_id !== 0 ) {
-                                        $alt_image = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
-                                        $srcset    = wp_get_attachment_image_srcset( $image_id, 'full' );
-                                    }
-                                    if ( empty( $alt_image ) ) {
-                                        if ( ! empty( $title ) ) {
-                                            $alt_image = $title;
-                                        }
-                                    }
-                                    echo '<div class="card card-plain">';
-                                    echo '<img src="' . esc_url( $image ) . '" ';
-                                    if ( ! empty( $alt_image ) ) {
-                                        echo ' alt="' . esc_attr( $alt_image ) . '" ';
-                                    }
-                                    if ( ! empty( $srcset ) ) {
-                                        echo ' srcset="' . esc_attr( $srcset ) . '" ';
-                                    }
-                                    if ( ! empty( $title ) ) {
-                                        echo ' title="' . esc_attr( $title ) . '" ';
-                                    }
-                                    echo '/>';
-                                    echo '</div>';
-                                }
-                                break;
+								if ( ! empty( $image ) ) {
+									/**
+									 * Alternative text for the Features box image
+									 * It first checks for the Alt Text option of the attachment
+									 * If that field is empty, uses the Title of the Testimonial box as alt text
+									 */
+									$alt_image = '';
+									$srcset    = '';
+									$image_id  = function_exists( 'attachment_url_to_postid' ) ? attachment_url_to_postid( preg_replace( '/-\d{1,4}x\d{1,4}/i', '', $image ) ) : '';
+									if ( ! empty( $image_id ) && $image_id !== 0 ) {
+										$alt_image = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
+										$srcset    = wp_get_attachment_image_srcset( $image_id, 'full' );
+									}
+									if ( empty( $alt_image ) ) {
+										if ( ! empty( $title ) ) {
+											$alt_image = $title;
+										}
+									}
+									echo '<div class="card card-plain">';
+									echo '<img src="' . esc_url( $image ) . '" ';
+									if ( ! empty( $alt_image ) ) {
+										echo ' alt="' . esc_attr( $alt_image ) . '" ';
+									}
+									if ( ! empty( $srcset ) ) {
+										echo ' srcset="' . esc_attr( $srcset ) . '" ';
+									}
+									if ( ! empty( $title ) ) {
+										echo ' title="' . esc_attr( $title ) . '" ';
+									}
+									echo '/>';
+									echo '</div>';
+								}
+								break;
 							case 'customizer_repeater_icon':
-								if ( ! empty( $icon ) ) { ?>
-									<div class="icon" <?php echo ( ! empty( $color ) ? 'style="color:' . $color . '"' : '' ); ?>>
+								if ( ! empty( $icon ) ) {
+									?>
+									<div class="icon" <?php echo ( ! empty( $color ) ? 'style="color:' . esc_attr( $color ) . '"' : '' ); ?>>
 										<i class="<?php echo esc_attr( hestia_display_fa_icon( $icon ) ); ?>"></i>
 									</div>
 									<?php

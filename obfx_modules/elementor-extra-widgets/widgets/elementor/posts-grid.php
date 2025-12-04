@@ -57,15 +57,6 @@ class Posts_Grid extends Widget_Base {
 	}
 
 	/**
-	 * Is dynamic content.
-	 *
-	 * @return bool
-	 */
-	protected function is_dynamic_content(): bool {
-		return false;
-	}
-
-	/**
 	 * Register dependent script.
 	 *
 	 * @return array
@@ -1595,7 +1586,7 @@ class Posts_Grid extends Widget_Base {
 					$pagination = paginate_links( $paginate_args );
 					?>
 					<nav class="pagination">
-						<?php echo $pagination; ?>
+						<?php echo wp_kses_post( $pagination ); ?>
 					</nav>
 				</div>
 				<?php
@@ -1625,13 +1616,12 @@ class Posts_Grid extends Widget_Base {
 			return false;
 		}
 		$image_alignment = $settings['grid_image_alignment'];
-		$alignment       = $image_alignment === 'middle' ? 'style="align-self:center"' : ( $image_alignment === 'bottom' ? 'style="align-self:flex-end"' : '' );
-		$a_tag_open      = $settings['grid_image_link'] == 'yes' ? '<a href="' . get_permalink() . '" title="' . the_title( '', '', false ) . '">' : '';
-		$a_tag_close     = '</a>';
+		$alignment       = $image_alignment === 'middle' ? 'align-self:center' : ( $image_alignment === 'bottom' ? 'align-self:flex-end' : '' );
+		$is_image_link   = 'yes' === $settings['grid_image_link'];
 
 		$image_size = ! empty( $settings['grid_image_size'] ) ? $settings['grid_image_size'] : 'full';
-		echo '<div class="obfx-grid-col-image" ' . $alignment . '>';
-		echo $a_tag_open;
+		echo '<div class="obfx-grid-col-image" style="' . esc_attr( $alignment ) . '">';
+		echo $is_image_link ? '<a href="' . esc_url( get_permalink() ) . '" title="' . esc_attr( get_the_title() ) . '">' : '';
 		the_post_thumbnail(
 			$image_size,
 			array(
@@ -1639,7 +1629,7 @@ class Posts_Grid extends Widget_Base {
 				'alt'   => get_the_title( get_post_thumbnail_id() ),
 			)
 		);
-		echo $a_tag_close;
+		echo $is_image_link ? '</a>' : '';
 		echo '</div>';
 
 		return true;
@@ -1654,7 +1644,7 @@ class Posts_Grid extends Widget_Base {
 		if ( $settings['grid_title_hide'] !== 'yes' ) {
 			$tag = in_array( $settings['grid_title_tag'], array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p' ), true ) ? $settings['grid_title_tag'] : 'h1';
 			?>
-			<<?php echo $tag; ?> class="entry-title obfx-grid-title">
+			<<?php echo esc_attr( $tag ); ?> class="entry-title obfx-grid-title">
 			<?php if ( $settings['grid_title_link'] == 'yes' ) { ?>
 				<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
 					<?php the_title(); ?>
@@ -1664,7 +1654,7 @@ class Posts_Grid extends Widget_Base {
 				the_title();
 			}
 			?>
-			</<?php echo $tag; ?>>
+			</<?php echo esc_attr( $tag ); ?>>
 			<?php
 		}
 	}
@@ -1725,9 +1715,9 @@ class Posts_Grid extends Widget_Base {
 									echo ( $settings['grid_meta_remove_icons'] == '' ) ? '<i class="fas fa-comment"></i>' : '';
 
 									if ( $settings['grid_post_type'] == 'product' ) {
-										echo comments_number( __( 'No reviews', 'themeisle-companion' ), __( '1 review', 'themeisle-companion' ), __( '% reviews', 'themeisle-companion' ) );
+										comments_number( __( 'No reviews', 'themeisle-companion' ), __( '1 review', 'themeisle-companion' ), __( '% reviews', 'themeisle-companion' ) );
 									} else {
-										echo comments_number( __( 'No comments', 'themeisle-companion' ), __( '1 comment', 'themeisle-companion' ), __( '% comments', 'themeisle-companion' ) );
+										comments_number( __( 'No comments', 'themeisle-companion' ), __( '1 comment', 'themeisle-companion' ), __( '% comments', 'themeisle-companion' ) );
 									}
 									?>
 								</span>
@@ -1788,15 +1778,17 @@ class Posts_Grid extends Widget_Base {
 
 		$product = wc_get_product( get_the_ID() );
 
-		echo apply_filters(
-			'woocommerce_loop_add_to_cart_link',
-			sprintf(
-				'<a href="%s" title="%s" rel="nofollow">%s</a>',
-				esc_url( $product->add_to_cart_url() ),
-				esc_attr( $product->add_to_cart_text() ),
-				esc_html( $product->add_to_cart_text() )
-			),
-			$product
+		echo wp_kses_post(
+			apply_filters(
+				'woocommerce_loop_add_to_cart_link',
+				sprintf(
+					'<a href="%s" title="%s" rel="nofollow">%s</a>',
+					esc_url( $product->add_to_cart_url() ),
+					esc_attr( $product->add_to_cart_text() ),
+					esc_html( $product->add_to_cart_text() )
+				),
+				$product
+			)
 		);
 	}
 
@@ -1815,7 +1807,7 @@ class Posts_Grid extends Widget_Base {
 					if ( empty( $settings['grid_content_length'] ) ) {
 						the_excerpt();
 					} else {
-						echo wp_trim_words( get_the_excerpt(), $settings['grid_content_length'] );
+						echo wp_kses_post( wp_trim_words( get_the_excerpt(), $settings['grid_content_length'] ) );
 					}
 				}
 				?>
@@ -1843,8 +1835,8 @@ class Posts_Grid extends Widget_Base {
 				return false;
 			}
 			echo '<div class="obfx-grid-footer">';
-			echo '<a href="' . get_the_permalink() . '" title="' . esc_attr( $settings['grid_content_default_btn_text'] ) . '">';
-			echo $settings['grid_content_default_btn_text'];
+			echo '<a href="' . esc_url( get_the_permalink() ) . '" title="' . esc_attr( $settings['grid_content_default_btn_text'] ) . '">';
+			echo esc_html( $settings['grid_content_default_btn_text'] );
 			echo '</a>';
 			echo '</div>';
 			return true;
@@ -1859,7 +1851,7 @@ class Posts_Grid extends Widget_Base {
 	protected function renderMetaGridCategories() {
 		$settings           = $this->get_settings();
 		$post_type_category = get_the_category();
-		$maxCategories      = $settings['grid_meta_categories_max'] ? $settings['grid_meta_categories_max'] : '-1';
+		$max_categories     = $settings['grid_meta_categories_max'] ? $settings['grid_meta_categories_max'] : '-1';
 		$i                  = 0; // counter
 
 		if ( $post_type_category ) {
@@ -1869,7 +1861,7 @@ class Posts_Grid extends Widget_Base {
 				echo ( $settings['grid_meta_remove_icons'] == '' ) ? '<i class="fas fa-bookmark"></i>' : '';
 
 				foreach ( $post_type_category as $category ) {
-					if ( $i == $maxCategories ) {
+					if ( $i == $max_categories ) {
 						break;
 					}
 					?>
@@ -1894,7 +1886,7 @@ class Posts_Grid extends Widget_Base {
 	protected function renderMetaGridTags() {
 		$settings       = $this->get_settings();
 		$post_type_tags = get_the_tags();
-		$maxTags        = $settings['grid_meta_tags_max'] ? $settings['grid_meta_tags_max'] : '-1';
+		$max_tags       = $settings['grid_meta_tags_max'] ? $settings['grid_meta_tags_max'] : '-1';
 		$i              = 0; // counter
 
 		if ( $post_type_tags ) {
@@ -1904,7 +1896,7 @@ class Posts_Grid extends Widget_Base {
 				echo ( $settings['grid_meta_remove_icons'] == '' ) ? '<i class="fas fa-tags"></i>' : '';
 
 				foreach ( $post_type_tags as $tag ) {
-					if ( $i == $maxTags ) {
+					if ( $i == $max_tags ) {
 						break;
 					}
 					?>

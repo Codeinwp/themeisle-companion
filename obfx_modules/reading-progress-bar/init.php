@@ -22,8 +22,8 @@ class Reading_Progress_Bar_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * @access  public
 	 */
 	public function set_module_strings() {
-		$this->name        = __( 'Reading Progress Bar', 'themeisle-companion' );
-		$this->description = __( 'Display a progress bar that shows readers how far they\'ve scrolled through your posts and pages. Perfect for long-form content and improving user engagement.', 'themeisle-companion' );
+		$this->name              = __( 'Reading Progress Bar', 'themeisle-companion' );
+		$this->description       = __( 'Display a progress bar that shows readers how far they\'ve scrolled through your posts and pages. Perfect for long-form content and improving user engagement.', 'themeisle-companion' );
 		$this->documentation_url = 'https://docs.themeisle.com/article/951-orbit-fox-documentation#progress-bar';
 	}
 

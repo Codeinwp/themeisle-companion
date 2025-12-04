@@ -9,13 +9,13 @@
 
 
 /**
- * Class zerif_ourfocus
+ * Class Zerif_ourfocus
  */
-if ( ! class_exists( 'zerif_ourfocus' ) ) {
+if ( ! class_exists( 'Zerif_ourfocus' ) ) {
 	//phpcs:ignore PEAR.NamingConventions.ValidClassName
-	class zerif_ourfocus extends WP_Widget {
+	class Zerif_ourfocus extends WP_Widget {
 		/**
-		 * zerif_ourfocus constructor.
+		 * Zerif_ourfocus constructor.
 		 */
 		public function __construct() {
 			parent::__construct(
@@ -178,7 +178,7 @@ endif;
 			?>
 
 			<p>
-				<label for="<?php echo wp_kses_post( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Title', 'themeisle-companion' ); ?></label><br/>
+				<label for="<?php echo wp_kses_post( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title', 'themeisle-companion' ); ?></label><br/>
 				<input type="text" name="<?php echo wp_kses_post( $this->get_field_name( 'title' ) ); ?>"
 					   id="<?php echo wp_kses_post( $this->get_field_id( 'title' ) ); ?>"
 					   value="
@@ -192,7 +192,7 @@ endif;
 			</p>
 			<p>
 				<label
-					for="<?php echo wp_kses_post( $this->get_field_id( 'text' ) ); ?>"><?php esc_attr_e( 'Text', 'themeisle-companion' ); ?></label><br/>
+					for="<?php echo wp_kses_post( $this->get_field_id( 'text' ) ); ?>"><?php esc_html_e( 'Text', 'themeisle-companion' ); ?></label><br/>
 				<textarea class="widefat" rows="8" cols="20" name="<?php echo wp_kses_post( $this->get_field_name( 'text' ) ); ?>"
 						  id="<?php echo wp_kses_post( $this->get_field_id( 'text' ) ); ?>">
 										 <?php 
@@ -204,7 +204,7 @@ endif;
 			</p>
 			<p>
 				<label
-					for="<?php echo wp_kses_post( $this->get_field_id( 'link' ) ); ?>"><?php esc_attr_e( 'Link', 'themeisle-companion' ); ?></label><br/>
+					for="<?php echo wp_kses_post( $this->get_field_id( 'link' ) ); ?>"><?php esc_html_e( 'Link', 'themeisle-companion' ); ?></label><br/>
 				<input type="text" name="<?php echo wp_kses_post( $this->get_field_name( 'link' ) ); ?>"
 					   id="<?php echo wp_kses_post( $this->get_field_id( 'link' ) ); ?>"
 					   value="
@@ -218,7 +218,7 @@ endif;
 			</p>
 			<p>
 				<label
-					for="<?php echo wp_kses_post( $this->get_field_id( 'image_uri' ) ); ?>"><?php esc_attr_e( 'Image', 'themeisle-companion' ); ?></label><br/>
+					for="<?php echo wp_kses_post( $this->get_field_id( 'image_uri' ) ); ?>"><?php esc_html_e( 'Image', 'themeisle-companion' ); ?></label><br/>
 
 				<?php
 				$image_in_customizer = '';

@@ -20,7 +20,7 @@ class Contact_Admin extends Beaver_Widget_Base {
 	 *
 	 * @return string
 	 */
-	function get_widget_name() {
+	public function get_widget_name() {
 		return esc_html__( 'Contact Form', 'themeisle-companion' );
 	}
 
@@ -142,7 +142,7 @@ class Contact_Admin extends Beaver_Widget_Base {
 	 *
 	 * @return array
 	 */
-	function get_specific_field_types() {
+	public function get_specific_field_types() {
 		$field_types             = $this->field_types;
 		$field_types['checkbox'] = esc_html__( 'Checkbox', 'themeisle-companion' );
 		$field_types['hidden']   = esc_html__( 'Hidden', 'themeisle-companion' );

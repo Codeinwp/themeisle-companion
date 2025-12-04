@@ -46,7 +46,7 @@ class Login_Customizer_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function set_module_strings() {
 		$this->name               = __( 'Login Page Customizer', 'themeisle-companion' );
 		$this->description        = __( 'Customize your WordPress login page with a dedicated customizer interface. Change logos, colors, backgrounds, and branding to match your website design without needing separate plugins.', 'themeisle-companion' );
-		$this->documentation_url = 'https://docs.themeisle.com/article/951-orbit-fox-documentation#login-page-customizer';
+		$this->documentation_url  = 'https://docs.themeisle.com/article/951-orbit-fox-documentation#login-page-customizer';
 		$this->module_main_action = array(
 			'url'  => add_query_arg(
 				array(

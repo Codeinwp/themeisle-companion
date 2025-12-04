@@ -22,7 +22,7 @@ class Newsletter_Public extends Widget_Actions_Base {
 	 *
 	 * @return string
 	 */
-	function get_form_type() {
+	public function get_form_type() {
 		return 'newsletter';
 	}
 
