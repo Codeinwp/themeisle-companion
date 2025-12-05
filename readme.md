@@ -147,6 +147,13 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 ## Changelog ##
 
+##### [Version 3.0.5](https://github.com/Codeinwp/themeisle-companion/compare/v3.0.4...v3.0.5) (2025-12-05)
+
+- Fixed issue related to Elementor widgets module causing error in Hestia theme
+
+
+
+
 ##### [Version 3.0.4](https://github.com/Codeinwp/themeisle-companion/compare/v3.0.3...v3.0.4) (2025-12-04)
 
 - Fixed pagination of Grid Post Type
