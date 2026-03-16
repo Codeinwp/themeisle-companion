@@ -124,6 +124,12 @@ Yes, easily add any tracking codes, Google Analytics, custom CSS, or JavaScript 
 
 Yes, our SVG module includes security sanitization to prevent malicious code while allowing safe SVG uploads.
 
+### How to report a security issue?
+ 
+Plugin security is a core priority for us. If you identify a potential vulnerability, we ask that you disclose it responsibly.
+
+Please follow the reporting protocols outlined on our [Security Page](https://themeisle.com/security/).
+
 ## Installation ##
 
 Activating the Orbit Fox plugin is just like any other plugin. If you've uploaded the plugin package to your server already, skip to step 5 below:
