@@ -519,15 +519,13 @@ class Orbit_Fox_Admin {
 	public function add_black_friday_data( $configs ) {
 		$config = $configs['default'];
 
-		// translators: %1$s - plugin name, %2$s - HTML tag, %3$s - discount, %4$s - HTML tag, %5$s - company name.
-		$message_template = __( 'Brought to you by the team behind %1$s— our biggest sale of the year is here: %2$sup to %3$s OFF%4$s on premium products from %5$s! Limited-time only.', 'themeisle-companion' );
-
-		$config['message']  = sprintf( $message_template, 'Orbit Fox Companion', '<strong>', '70%', '</strong>', '<strong>Themeisle</strong>' );
+		$config['message']  =  __( 'You use Orbit Fox for extra widgets and features. Otter Pro takes it further: advanced blocks, custom CSS, WooCommerce integration. Built by the same team.', 'themeisle-companion' );
+		$config['cta_label'] = __( 'Get Otter Pro free', 'themeisle-companion' );
 		$config['sale_url'] = add_query_arg(
 			array(
 				'utm_term' => 'free',
 			),
-			tsdk_translate_link( tsdk_utmify( 'https://themeisle.link/all-bf', 'bfcm', 'themeisle-companion' ) )
+			tsdk_translate_link( tsdk_utmify( 'https://themeisle.link/otter-bf', 'bfcm', 'orbit-fox' ) )
 		);
 
 		$configs[ OBX_PRODUCT_SLUG ] = $config;
