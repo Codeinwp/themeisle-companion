@@ -521,6 +521,7 @@ class Orbit_Fox_Admin {
 
 		$config['message']  =  __( 'You use Orbit Fox for extra widgets and features. Otter Pro takes it further: advanced blocks, custom CSS, WooCommerce integration. Built by the same team.', 'themeisle-companion' );
 		$config['cta_label'] = __( 'Get Otter Pro free', 'themeisle-companion' );
+		$config['plugin_meta_message'] = __( 'Black Friday Sale - Get Otter Pro free', 'themeisle-companion' );
 		$config['sale_url'] = add_query_arg(
 			array(
 				'utm_term' => 'free',
