@@ -519,6 +519,10 @@ class Orbit_Fox_Admin {
 	public function add_black_friday_data( $configs ) {
 		$config = $configs['default'];
 
+		if ( defined( 'OTTER_BLOCKS_VERSION' ) ) {
+			return $configs;
+		}
+
 		$config['message']  =  __( 'You use Orbit Fox for extra widgets and features. Otter Pro takes it further: advanced blocks, custom CSS, WooCommerce integration. Built by the same team.', 'themeisle-companion' );
 		$config['cta_label'] = __( 'Get Otter Pro free', 'themeisle-companion' );
 		$config['plugin_meta_message'] = __( 'Black Friday Sale - Get Otter Pro free', 'themeisle-companion' );
