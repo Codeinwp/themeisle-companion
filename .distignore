@@ -31,3 +31,4 @@ init.sh
 obfx_modules/mystock-import/js/src
 obfx_modules/login-customizer/js/src
 dev-toolkit.php
+AGENTS.md
