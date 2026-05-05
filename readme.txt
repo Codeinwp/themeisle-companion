@@ -8,7 +8,7 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Add modules like share buttons, header & footer scripts, disable comments, reading progress bar, custom fonts, custom login page & more in one plugin.
+Add modules: share buttons, header/footer scripts, disable comments, reading progress, custom fonts, custom login & more in one plugin.
 
 ## Description ##
 
