@@ -2,7 +2,7 @@
 Contributors: themeisle, codeinwp, rodicaelena, baicusandrei, hardeepasrani
 Tags: duplicate page, cookie notice, share buttons, login customizer, svg support
 Requires at least: 5.3
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 7.4
 Stable tag: trunk
 License: GPLv2 or later
