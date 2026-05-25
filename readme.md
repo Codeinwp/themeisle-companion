@@ -2,13 +2,13 @@
 **Contributors:** [themeisle](https://profiles.wordpress.org/themeisle/), [codeinwp](https://profiles.wordpress.org/codeinwp/), [rodicaelena](https://profiles.wordpress.org/rodicaelena/), [baicusandrei](https://profiles.wordpress.org/baicusandrei/), [hardeepasrani](https://profiles.wordpress.org/hardeepasrani/)  
 **Tags:** duplicate page, cookie notice, share buttons, login customizer, svg support  
 **Requires at least:** 5.3  
-**Tested up to:** 6.8  
+**Tested up to:** 7.0  
 **Requires PHP:** 7.4  
 **Stable tag:** trunk  
 **License:** GPLv2 or later  
 **License URI:** http://www.gnu.org/licenses/gpl-2.0.html  
 
-Add modules like share buttons, header & footer scripts, disable comments, reading progress bar, custom fonts, custom login page & more in one plugin.
+**Add modules:** share buttons, header/footer scripts, disable comments, reading progress, custom fonts, custom login & more in one plugin.  
 
 ## Description ##
 
@@ -124,6 +124,12 @@ Yes, easily add any tracking codes, Google Analytics, custom CSS, or JavaScript 
 
 Yes, our SVG module includes security sanitization to prevent malicious code while allowing safe SVG uploads.
 
+### How to report a security issue?
+ 
+Plugin security is a core priority for us. If you identify a potential vulnerability, we ask that you disclose it responsibly.
+
+Please follow the reporting protocols outlined on our [Security Page](https://themeisle.com/security/).
+
 ## Installation ##
 
 Activating the Orbit Fox plugin is just like any other plugin. If you've uploaded the plugin package to your server already, skip to step 5 below:
@@ -146,6 +152,13 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 7. Custom Fonts
 
 ## Changelog ##
+
+##### [Version 3.0.6](https://github.com/Codeinwp/themeisle-companion/compare/v3.0.5...v3.0.6) (2026-05-25)
+
+- Updated dependencies
+
+
+
 
 ##### [Version 3.0.5](https://github.com/Codeinwp/themeisle-companion/compare/v3.0.4...v3.0.5) (2025-12-05)
 
