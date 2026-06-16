@@ -115,7 +115,7 @@ class Menu_Icons_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				$array       = explode( '-', $icon );
 				$prefix      = reset( $array );
 				$prefix      = apply_filters( 'obfx_menu_icons_icon_class', $prefix, $icon );
-				$menu->title = sprintf( '<i class="obfx-menu-icon %s %s"></i>%s', $prefix, $icon, $menu->title );
+				$menu->title = sprintf( '<i class="obfx-menu-icon %s %s"></i>%s', esc_attr( $prefix ), esc_attr( $icon ), $menu->title );
 			}
 		}
 		return $menu;
