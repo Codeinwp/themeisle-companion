@@ -158,6 +158,8 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 - Updated dependencies
 - Improved Security
 
+Thanks to Shivamani Vastrala for responsibly reporting the issues.
+
 
 
 
