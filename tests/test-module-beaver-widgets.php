@@ -112,4 +112,21 @@ class Test_Module_Beaver_Widgets extends WP_UnitTestCase {
 		$this->assertStringContainsString( '<h3 class="obfx-plan-title text-center">Plan title</h3>', $output );
 		$this->assertStringContainsString( '<h4 class="obfx-plan-subtitle text-center">Plan subtitle</h4>', $output );
 	}
+
+	/**
+ 	 * The pricing table should reject unsafe heading tags.
+	 */
+	public function test_pricing_table_sanitizes_unsupported_tags() {
+		$output = $this->render_pricing_table(
+			array(
+				'plan_title_tag'    => 'h3 onmouseover=alert(1)',
+ 				'plan_subtitle_tag' => 'script',
+			)
+		);
+
+		$this->assertStringContainsString( '<h1 class="obfx-plan-title text-center">Plan title</h1>', $output );
+ 		$this->assertStringContainsString( '<h1 class="obfx-plan-subtitle text-center">Plan subtitle</h1>', $output );
+ 		$this->assertStringNotContainsString( 'onmouseover', $output );
+ 		$this->assertStringNotContainsString( '<script', $output );
+	}
 }

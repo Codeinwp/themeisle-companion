@@ -14,7 +14,7 @@ require_once $module_directory . '/custom-fields/number-field/number_field.php';
 /**
  * Sanitize html tags.
  *
- * @param string $tag HTML tagname.
+ * @param string $tag HTML tag name.
  *
  * @return string
  */
