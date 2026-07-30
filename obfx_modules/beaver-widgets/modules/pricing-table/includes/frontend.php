@@ -9,8 +9,8 @@
 
 $class_to_add = $settings->card_layout === 'yes' ? 'obfx-card' : '';
 
-$plan_title_tag    = themeisle_sanitize_tag( $settings->plan_title_tag );
-$plan_subtitle_tag = themeisle_sanitize_tag( $settings->plan_subtitle_tag );
+$plan_title_tag    = ! empty( $settings->plan_title_tag ) ? apply_filters( 'obfx_sanitize_html_tag', $settings->plan_title_tag ) : 'h2';
+$plan_subtitle_tag = ! empty( $settings->plan_subtitle_tag ) ? apply_filters( 'obfx_sanitize_html_tag', $settings->plan_subtitle_tag, array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p' ), 'p' ) : 'p';
 
 echo '<div class="obfx-pricing-plan ' . esc_attr( $class_to_add ) . '">';
 	echo '<div class="obfx-pricing-header">';

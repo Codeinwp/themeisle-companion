@@ -18,19 +18,6 @@ class Test_Module_Beaver_Widgets extends WP_UnitTestCase {
 	public function setUp(): void {
 		parent::setUp();
 
-		// The common functions file resolves its own path through the module instance,
-		// so it has to be loaded with the module as $this. Beaver Builder is not needed
-		// for the helpers themselves.
-		$module      = new Beaver_Widgets_OBFX_Module();
-		$load_common = Closure::bind(
-			function () {
-				require_once $this->get_dir() . '/inc/common-functions.php';
-			},
-			$module,
-			'Beaver_Widgets_OBFX_Module'
-		);
-		$load_common();
-
 		$this->pricing_table_template = dirname( dirname( __FILE__ ) ) . '/obfx_modules/beaver-widgets/modules/pricing-table/includes/frontend.php';
 	}
 
@@ -69,20 +56,20 @@ class Test_Module_Beaver_Widgets extends WP_UnitTestCase {
 	/**
 	 * Supported tags should be returned unchanged.
 	 *
-	 * @covers ::themeisle_sanitize_tag
+	 * @covers Orbit_Fox::sanitize_html_tag
 	 */
-	public function test_sanitize_tag_keeps_supported_tags() {
+	public function test_sanitize_html_tag_keeps_supported_tags() {
 		foreach ( array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p' ) as $tag ) {
-			$this->assertEquals( $tag, themeisle_sanitize_tag( $tag ) );
+			$this->assertEquals( $tag, apply_filters( 'obfx_sanitize_html_tag', $tag ) );
 		}
 	}
 
 	/**
 	 * Anything that is not a supported tag should fall back to a safe default.
 	 *
-	 * @covers ::themeisle_sanitize_tag
+	 * @covers Orbit_Fox::sanitize_html_tag
 	 */
-	public function test_sanitize_tag_falls_back_for_unsupported_tags() {
+	public function test_sanitize_html_tag_falls_back_for_unsupported_tags() {
 		$unsupported = array(
 			'h1 onmouseover=alert(document.cookie)',
 			'p onclick=alert(1)',
@@ -94,8 +81,21 @@ class Test_Module_Beaver_Widgets extends WP_UnitTestCase {
 		);
 
 		foreach ( $unsupported as $tag ) {
-			$this->assertEquals( 'h1', themeisle_sanitize_tag( $tag ), 'Unsupported tag: ' . $tag );
+			$this->assertEquals( 'h2', apply_filters( 'obfx_sanitize_html_tag', $tag ), 'Unsupported tag: ' . $tag );
 		}
+	}
+
+	/**
+	 * Callers can narrow the allowed tags and pick their own fallback.
+	 *
+	 * @covers Orbit_Fox::sanitize_html_tag
+	 */
+	public function test_sanitize_html_tag_honours_custom_allowed_list_and_default() {
+		$allowed = array( 'h3', 'h4' );
+
+		$this->assertEquals( 'h3', apply_filters( 'obfx_sanitize_html_tag', 'h3', $allowed, 'p' ) );
+		$this->assertEquals( 'p', apply_filters( 'obfx_sanitize_html_tag', 'h1', $allowed, 'p' ) );
+		$this->assertEquals( 'p', apply_filters( 'obfx_sanitize_html_tag', 'script', $allowed, 'p' ) );
 	}
 
 	/**
@@ -114,19 +114,19 @@ class Test_Module_Beaver_Widgets extends WP_UnitTestCase {
 	}
 
 	/**
- 	 * The pricing table should reject unsafe heading tags.
+	 * The pricing table should reject unsafe heading tags and fall back to its defaults.
 	 */
 	public function test_pricing_table_sanitizes_unsupported_tags() {
 		$output = $this->render_pricing_table(
 			array(
 				'plan_title_tag'    => 'h3 onmouseover=alert(1)',
- 				'plan_subtitle_tag' => 'script',
+				'plan_subtitle_tag' => 'script',
 			)
 		);
 
-		$this->assertStringContainsString( '<h1 class="obfx-plan-title text-center">Plan title</h1>', $output );
- 		$this->assertStringContainsString( '<h1 class="obfx-plan-subtitle text-center">Plan subtitle</h1>', $output );
- 		$this->assertStringNotContainsString( 'onmouseover', $output );
- 		$this->assertStringNotContainsString( '<script', $output );
+		$this->assertStringContainsString( '<h2 class="obfx-plan-title text-center">Plan title</h2>', $output );
+		$this->assertStringContainsString( '<p class="obfx-plan-subtitle text-center">Plan subtitle</p>', $output );
+		$this->assertStringNotContainsString( 'onmouseover', $output );
+		$this->assertStringNotContainsString( '<script', $output );
 	}
 }

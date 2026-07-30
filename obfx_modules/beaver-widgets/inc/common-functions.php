@@ -12,17 +12,6 @@ $module_directory = $this->get_dir();
 require_once $module_directory . '/custom-fields/number-field/number_field.php';
 
 /**
- * Sanitize html tags.
- *
- * @param string $tag HTML tag name.
- *
- * @return string
- */
-function themeisle_sanitize_tag( $tag ) {
-	return in_array( $tag, array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p' ), true ) ? $tag : 'h1';
-}
-
-/**
  * Function to return padding controls.
  *
  * @param array $settings Fields settings.
