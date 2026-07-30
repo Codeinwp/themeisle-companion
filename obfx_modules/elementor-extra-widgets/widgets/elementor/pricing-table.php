@@ -1168,16 +1168,5 @@ class Pricing_Table extends Widget_Base {
 		}
 		return $output;
 	}
-
-	/**
-	 * Sanitize html tags.
-	 *
-	 * @param string $tag HTML tagname.
-	 *
-	 * @return string
-	 */
-	private function sanitize_tag( $tag ) {
-		return in_array( $tag, array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p' ), true ) ? $tag : 'h1';
-	}
 }
 
