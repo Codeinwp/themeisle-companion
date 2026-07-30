@@ -9,10 +9,13 @@
 
 $class_to_add = $settings->card_layout === 'yes' ? 'obfx-card' : '';
 
+$plan_title_tag    = ! empty( $settings->plan_title_tag ) ? apply_filters( 'obfx_sanitize_html_tag', $settings->plan_title_tag ) : 'h2';
+$plan_subtitle_tag = ! empty( $settings->plan_subtitle_tag ) ? apply_filters( 'obfx_sanitize_html_tag', $settings->plan_subtitle_tag, array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p' ), 'p' ) : 'p';
+
 echo '<div class="obfx-pricing-plan ' . esc_attr( $class_to_add ) . '">';
 	echo '<div class="obfx-pricing-header">';
-		echo '<' . esc_attr( $settings->plan_title_tag ) . ' class="obfx-plan-title text-center">' . wp_kses_post( $settings->plan_title ) . '</' . esc_attr( $settings->plan_title_tag ) . '>';
-		echo '<' . esc_attr( $settings->plan_subtitle_tag ) . ' class="obfx-plan-subtitle text-center">' . wp_kses_post( $settings->plan_subtitle ) . '</' . esc_attr( $settings->plan_subtitle_tag ) . '>';
+		echo '<' . esc_html( $plan_title_tag ) . ' class="obfx-plan-title text-center">' . wp_kses_post( $settings->plan_title ) . '</' . esc_html( $plan_title_tag ) . '>';
+		echo '<' . esc_html( $plan_subtitle_tag ) . ' class="obfx-plan-subtitle text-center">' . wp_kses_post( $settings->plan_subtitle ) . '</' . esc_html( $plan_subtitle_tag ) . '>';
 	echo '</div>';
 	echo '<div class="obfx-pricing-price text-center">';
 switch ( $settings->currency_position ) {

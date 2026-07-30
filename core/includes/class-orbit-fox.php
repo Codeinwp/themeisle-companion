@@ -175,6 +175,8 @@ class Orbit_Fox {
 	 */
 	private function define_hooks() {
 
+		$this->loader->add_action( 'obfx_sanitize_html_tag', $this, 'sanitize_html_tag', 10, 3 );
+
 		$plugin_admin = new Orbit_Fox_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'load_modules' );
@@ -230,6 +232,19 @@ class Orbit_Fox {
 	 */
 	public function run() {
 		$this->loader->run();
+	}
+
+	/**
+	 * Sanitize html tags.
+	 *
+	 * @param string $tag HTML tag name.
+	 * @param array  $allowed Allowed HTML tags.
+	 * @param string $default Default HTML tag.
+	 *
+	 * @return string
+	 */
+	public function sanitize_html_tag( $tag, $allowed = array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p' ), $default = 'h2' ) {
+		return in_array( $tag, $allowed, true ) ? $tag : $default;
 	}
 
 }
