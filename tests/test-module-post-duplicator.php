@@ -40,6 +40,9 @@ class Test_Module_Post_Duplicator extends WP_UnitTestCase {
   public function setUp(): void {
     parent::setUp();
 
+    // WP_UnitTestCase resets the current user on tear down, so the capability
+    // checks need an administrator again for every test.
+    wp_set_current_user( 1 );
 
     // Create a mock loader
     $this->loader = $this->createMock('Orbit_Fox_Loader');

@@ -1048,7 +1048,7 @@ class Pricing_Table extends Widget_Base {
 			$output .= '<div class="obfx-title-wrapper">';
 			if ( ! empty( $settings['title'] ) ) {
 				// Start of title tag.
-				$title_tag = $this->sanitize_tag( $settings['title_tag'] );
+				$title_tag = apply_filters( 'obfx_sanitize_html_tag', $settings['title_tag'], array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p' ), 'h3' );
 				$output   .= '<' . esc_html( $title_tag ) . ' ' . $this->get_render_attribute_string( 'title' ) . '>';
 
 				// Title string.
@@ -1059,7 +1059,7 @@ class Pricing_Table extends Widget_Base {
 			}
 			if ( ! empty( $settings['subtitle'] ) ) {
 				// Start of subtitle tag.
-				$subtitle_tag = $this->sanitize_tag( $settings['subtitle_tag'] );
+				$subtitle_tag = apply_filters( 'obfx_sanitize_html_tag', $settings['subtitle_tag'], array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p' ), 'p' );
 				$output      .= '<' . esc_html( $subtitle_tag ) . ' ' . $this->get_render_attribute_string( 'subtitle' ) . '>';
 
 				// Subtitle string.
@@ -1167,17 +1167,6 @@ class Pricing_Table extends Widget_Base {
 			$output .= '</span>';
 		}
 		return $output;
-	}
-
-	/**
-	 * Sanitize html tags.
-	 *
-	 * @param string $tag HTML tagname.
-	 *
-	 * @return string
-	 */
-	private function sanitize_tag( $tag ) {
-		return in_array( $tag, array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p' ), true ) ? $tag : 'h1';
 	}
 }
 

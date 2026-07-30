@@ -60,7 +60,7 @@ if ( ! function_exists( 'obfx_show_post_grid_title' ) ) {
 		if ( ! empty( $settings->show_title_link ) && $settings->show_title_link === 'yes' ) {
 			echo '<a href="' . esc_url( get_permalink() ) . '">';
 		}
-		$tag = ! empty( $settings->title_tag ) ? $settings->title_tag : 'h4';
+		$tag = ! empty( $settings->title_tag ) ? apply_filters( 'obfx_sanitize_html_tag', $settings->title_tag, array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'span', 'div' ), 'h5' ) : 'h5';
 		the_title( '<' . $tag . ' class="obfx-post-grid-title">', '</' . $tag . '>' );
 		if ( ! empty( $settings->show_title_link ) && $settings->show_title_link === 'yes' ) {
 			echo '</a>';
