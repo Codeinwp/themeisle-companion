@@ -28,7 +28,7 @@ class Beaver_Widget_Manager {
 		}
 
 		foreach ( self::$forms as $form ) {
-			require_once 'class-themeisle-content-forms-beaver-' . $form . '.php';
+			require_once __DIR__ . '/class-themeisle-content-forms-beaver-' . $form . '.php';
 			$classname = '\ThemeIsle\ContentForms\Includes\Widgets_Admin\Beaver\\' . ucwords( $form ) . '_Admin';
 			\FLBuilder::register_module( $classname, array() );
 		}
