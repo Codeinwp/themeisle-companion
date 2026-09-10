@@ -10,6 +10,8 @@
 use ThemeIsle\ContentForms\Includes\Admin\Widget_Actions_Base;
 use ThemeIsle\ContentForms\Includes\Widgets_Public\Contact_Public;
 
+require_once __DIR__ . '/stubs/elementor.php';
+
 /**
  * Class Test_Content_Forms_Submission
  */
@@ -31,6 +33,18 @@ class Test_Content_Forms_Submission extends WP_UnitTestCase {
 			'success' => false,
 			'message' => 'Something went wrong',
 		);
+
+		Orbit_Fox_Elementor_Documents_Double::$document = false;
+	}
+
+	/**
+	 * The Elementor cases drive a stand-in for \Elementor\Plugin, so they are meaningless
+	 * on an environment where the real plugin defined the class first.
+	 */
+	protected function require_elementor_double() {
+		if ( ! ORBIT_FOX_ELEMENTOR_DOUBLE_ACTIVE ) {
+			$this->markTestSkipped( 'The real Elementor plugin is loaded; the test double is not in use.' );
+		}
 	}
 
 	/**
@@ -85,6 +99,84 @@ class Test_Content_Forms_Submission extends WP_UnitTestCase {
 		$this->assertSame( $this->return, $result );
 
 		remove_filter( 'content_forms_submit_contact', array( $contact, 'rest_submit_form' ), 10 );
+	}
+
+	/**
+	 * Elementor cannot always open the post the form was submitted from; the lookup
+	 * used to call get_elements_data() on that false document.
+	 */
+	public function test_contact_submission_survives_a_missing_elementor_document() {
+		$this->require_elementor_double();
+
+		Orbit_Fox_Elementor_Documents_Double::$document = false;
+
+		$this->assertFalse( Widget_Actions_Base::get_widget_settings( 'abc123', 1, 'elementor' ) );
+
+		$contact = new Contact_Public();
+		$result  = $contact->rest_submit_form( $this->return, array( 'NAME' => 'Jane' ), 'abc123', 1, 'elementor' );
+
+		$this->assertIsArray( $result );
+		$this->assertSame( $this->return, $result );
+	}
+
+	/**
+	 * A widget id that is no longer in a non-empty layout makes the recursive lookup
+	 * return false, which used to reach array_key_exists() unguarded.
+	 */
+	public function test_contact_submission_survives_a_widget_missing_from_the_layout() {
+		$this->require_elementor_double();
+
+		Orbit_Fox_Elementor_Documents_Double::$document = new Orbit_Fox_Elementor_Document_Double(
+			array(
+				array(
+					'elType'   => 'section',
+					'id'       => 'sect1',
+					'elements' => array(
+						array(
+							'elType'   => 'widget',
+							'id'       => 'someoneelse',
+							'settings' => array( 'to_send_email' => 'someone@example.com' ),
+							'elements' => array(),
+						),
+					),
+				),
+			)
+		);
+
+		$contact = new Contact_Public();
+		$result  = $contact->rest_submit_form( $this->return, array( 'NAME' => 'Jane' ), 'abc123', 1, 'elementor' );
+
+		$this->assertIsArray( $result, 'A widget that is no longer on the page must not throw.' );
+		$this->assertFalse( $result['success'] );
+	}
+
+	/**
+	 * The happy path the guards must not disturb: the widget is found and its settings are returned.
+	 */
+	public function test_elementor_lookup_still_returns_the_widget_settings() {
+		$this->require_elementor_double();
+
+		Orbit_Fox_Elementor_Documents_Double::$document = new Orbit_Fox_Elementor_Document_Double(
+			array(
+				array(
+					'elType'   => 'section',
+					'id'       => 'sect1',
+					'elements' => array(
+						array(
+							'elType'   => 'widget',
+							'id'       => 'abc123',
+							'settings' => array( 'to_send_email' => 'someone@example.com' ),
+							'elements' => array(),
+						),
+					),
+				),
+			)
+		);
+
+		$this->assertSame(
+			array( 'to_send_email' => 'someone@example.com' ),
+			Widget_Actions_Base::get_widget_settings( 'abc123', 1, 'elementor' )
+		);
 	}
 
 	/**
