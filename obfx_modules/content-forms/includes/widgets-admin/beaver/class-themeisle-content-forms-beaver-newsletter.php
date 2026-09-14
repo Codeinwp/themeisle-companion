@@ -7,7 +7,7 @@
 
 namespace ThemeIsle\ContentForms\Includes\Widgets_Admin\Beaver;
 
-require_once 'beaver_widget_base.php';
+require_once __DIR__ . '/beaver_widget_base.php';
 
 /**
  * Class Newsletter_Admin

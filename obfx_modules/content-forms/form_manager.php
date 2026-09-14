@@ -55,7 +55,7 @@ class Form_Manager {
 		// Register the actions that forms do
 		add_action( 'rest_api_init', array( $this, 'register_widgets_actions' ) );
 
-		require_once 'includes/rest/server.php';
+		require_once __DIR__ . '/includes/rest/server.php';
 		$rest_server = new Server();
 		$rest_server->register_hooks();
 	}
@@ -116,13 +116,13 @@ class Form_Manager {
 		$model = new \Orbit_Fox_Model();
 
 		if ( defined( 'ELEMENTOR_PATH' ) && class_exists( 'Elementor\Widget_Base' ) && $model->get_is_module_active( 'elementor-widgets', true ) ) {
-			require_once 'includes/widgets-admin/elementor/elementor_widget_manager.php';
+			require_once __DIR__ . '/includes/widgets-admin/elementor/elementor_widget_manager.php';
 			$elementor_manager = new Elementor_Widget_Manager();
 			$elementor_manager->init();
 		}
 
 		if ( class_exists( '\FLBuilderModel' ) && $model->get_is_module_active( 'beaver-widgets', true ) ) {
-			require_once 'includes/widgets-admin/beaver/beaver_widget_manager.php';
+			require_once __DIR__ . '/includes/widgets-admin/beaver/beaver_widget_manager.php';
 			$beaver_manager = new Beaver_Widget_Manager();
 			$beaver_manager->register_beaver_module();
 		}
