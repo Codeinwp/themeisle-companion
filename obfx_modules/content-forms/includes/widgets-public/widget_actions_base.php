@@ -78,14 +78,18 @@ abstract class Widget_Actions_Base {
 	 * @return array|bool
 	 */
 	private static function get_elementor_module_settings_by_id( $widget_id, $post_id ) {
-		$document      = Plugin::$instance->documents->get( $post_id );
+		$document = Plugin::$instance->documents->get( $post_id );
+		if ( ! $document ) {
+			return false;
+		}
+
 		$elements_data = $document->get_elements_data();
 
 		//Filters the builder content in the frontend.
 		$elements_data = apply_filters( 'elementor/frontend/builder_content_data', $elements_data, $post_id );
 		if ( ! empty( $elements_data ) ) {
 			$data = self::get_widget_data_by_id( $widget_id, $elements_data );
-			if ( array_key_exists( 'settings', $data ) ) {
+			if ( is_array( $data ) && array_key_exists( 'settings', $data ) ) {
 				return $data['settings'];
 			}
 		}
