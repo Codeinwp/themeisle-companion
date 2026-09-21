@@ -114,9 +114,9 @@ function run_orbit_fox() {
 					__( 'clean up modules you do not use', 'themeisle-companion' ),
 				),
 				'prompts'        => array(
-					__( 'Turn on the Orbit Fox social sharing module and show the share buttons on posts only, not on pages.', 'themeisle-companion' ),
-					__( 'Go through every module, deactivate the ones I am not using and tell me what you changed.', 'themeisle-companion' ),
-					__( 'List my modules, tell me which ones are active and what each active one is set to.', 'themeisle-companion' ),
+					__( 'Turn on Orbit Fox social sharing and show the buttons on posts only.', 'themeisle-companion' ),
+					__( 'Deactivate every module I am not using.', 'themeisle-companion' ),
+					__( 'Show share buttons for Facebook, X and LinkedIn only, on the left side.', 'themeisle-companion' ),
 				),
 				'ability_prefix' => 'orbit-fox',
 			);
