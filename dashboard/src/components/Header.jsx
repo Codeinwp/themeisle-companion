@@ -100,9 +100,8 @@ const Header = ({ activeTab, setActiveTab }) => {
         </Box>
       </Box>
 
-      {window.tsdk_reposition_notice && (
-        <Container id="tsdk_banner" className="obfx-banner" />
-      )}
+      {/* Slot for the Themeisle SDK notices (sale, AI Connect); the SDK moves them here once the app has rendered. */}
+      <Container id="tsdk_banner" className="obfx-banner" />
 
       {!window.tsdk_reposition_notice && neveNotice && (
         <Container
