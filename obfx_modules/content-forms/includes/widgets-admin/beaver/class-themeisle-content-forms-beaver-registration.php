@@ -4,7 +4,7 @@ namespace ThemeIsle\ContentForms\Includes\Widgets_Admin\Beaver;
 
 use ThemeIsle\ContentForms\Form_Manager;
 
-require_once 'beaver_widget_base.php';
+require_once __DIR__ . '/beaver_widget_base.php';
 
 
 class Registration_Admin extends Beaver_Widget_Base {

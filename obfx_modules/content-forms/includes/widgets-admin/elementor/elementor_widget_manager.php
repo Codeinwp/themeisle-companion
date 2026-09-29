@@ -135,7 +135,7 @@ class Elementor_Widget_Manager {
 	 */
 	public function register_elementor_widget() {
 		foreach ( self::$forms as $form ) {
-			require_once $form . '_admin.php';
+			require_once __DIR__ . '/' . $form . '_admin.php';
 			$widget = '\ThemeIsle\ContentForms\Includes\Widgets_Admin\Elementor\\' . ucwords( $form ) . '_Admin';
 			Plugin::instance()->widgets_manager->register_widget_type( new $widget() );
 		}

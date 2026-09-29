@@ -40,12 +40,14 @@ class Contact_Public extends Widget_Actions_Base {
 	 * @return array
 	 */
 	public function rest_submit_form( $return, $data, $widget_id, $post_id, $builder ) {
-		$settings        = $this->get_widget_settings( $widget_id, $post_id, $builder );
-		$success_message = array_key_exists( 'success_message', $settings ) && ! empty( $settings['success_message'] ) ? $settings['success_message'] : esc_html__( 'Your message has been sent!', 'themeisle-companion' );
-		$error_message   = array_key_exists( 'error_message', $settings ) && ! empty( $settings['error_message'] ) ? $settings['error_message'] : esc_html__( 'We failed to send your message!', 'themeisle-companion' );
-		if ( empty( $settings ) ) {
+		$settings = $this->get_widget_settings( $widget_id, $post_id, $builder );
+
+		if ( ! is_array( $settings ) || empty( $settings ) ) {
 			return $return;
 		}
+
+		$success_message = array_key_exists( 'success_message', $settings ) && ! empty( $settings['success_message'] ) ? $settings['success_message'] : esc_html__( 'Your message has been sent!', 'themeisle-companion' );
+		$error_message   = array_key_exists( 'error_message', $settings ) && ! empty( $settings['error_message'] ) ? $settings['error_message'] : esc_html__( 'We failed to send your message!', 'themeisle-companion' );
 
 		/**
 		 * Bail if there is nowhere to send the email.

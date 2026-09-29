@@ -103,6 +103,25 @@ function run_orbit_fox() {
 			);
 		}
 	);
+	add_filter(
+		'themeisle_companion_ai_connect_metadata',
+		function() {
+			return array(
+				'name'           => 'Orbit Fox',
+				'notice_cases'   => array(
+					__( 'switch modules on or off', 'themeisle-companion' ),
+					__( 'adjust your social sharing buttons', 'themeisle-companion' ),
+					__( 'clean up modules you do not use', 'themeisle-companion' ),
+				),
+				'prompts'        => array(
+					__( 'Turn on Orbit Fox social sharing and show the buttons on posts only.', 'themeisle-companion' ),
+					__( 'Deactivate every module I am not using.', 'themeisle-companion' ),
+					__( 'Show share buttons for Facebook, X and LinkedIn only, on the left side.', 'themeisle-companion' ),
+				),
+				'ability_prefix' => 'orbit-fox',
+			);
+		}
+	);
 }
 
 require 'class-autoloader.php';
