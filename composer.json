@@ -31,7 +31,7 @@
   },
   "require": {
     "codeinwp/full-width-page-templates": "master",
-    "codeinwp/themeisle-sdk": "^3.3",
+    "codeinwp/themeisle-sdk": "^3.3.64",
     "enshrined/svg-sanitize": "^0.19.0",
     "mailerlite/mailerlite-api-v2-php-sdk": "^0.2.3"
   },
