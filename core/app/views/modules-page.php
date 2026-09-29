@@ -50,6 +50,8 @@ if ( isset( $_GET['show_plugins'] ) && $_GET['show_plugins'] === 'yes' ) {
 	<?php
 	echo wp_kses_post( $toasts );
 	?>
+	<?php // Slot for the Themeisle SDK notices (sale, AI Connect); admin notices are cleared on this page. ?>
+	<div id="tsdk_banner" class="obfx-wrapper"></div>
 </div>
 <div class="obfx-full-page-container">
 	<div class="obfx-wrapper" id="obfx-modules-wrapper">
