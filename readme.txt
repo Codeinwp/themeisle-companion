@@ -153,6 +153,17 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 == Changelog ==
 
+##### [Version 3.0.10](https://github.com/Codeinwp/themeisle-companion/compare/v3.0.9...v3.0.10) (2026-09-29)
+
+- Fixed Content Forms widgets failing during Elementor CSS generation.
+- Fixed contact forms failing when their saved settings are unavailable.
+- Fixed Content Forms widgets failing to load in Elementor.
+- Added AI agent support: let AI assistants read and change your Orbit Fox settings.
+- Updated dependencies
+
+
+
+
 ##### [Version 3.0.9](https://github.com/Codeinwp/themeisle-companion/compare/v3.0.8...v3.0.9) (2026-07-30)
 
 - Improved Security by sanitizing tags to prevent XSS
