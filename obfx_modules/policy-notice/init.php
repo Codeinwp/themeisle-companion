@@ -166,13 +166,15 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	 * Here we display the cookie bar template based on the given options.
 	 */
 	public function display_cookie_notice() {
-		$policy_link = get_option( 'wp_page_for_privacy_policy' ) ? get_permalink( (int) get_option( 'wp_page_for_privacy_policy' ) ) : '#';
+		$policy_page = (int) $this->get_option( 'policy_page' );
 
-		$policy_page = $this->get_option( 'policy_page' );
-
-		if ( ! empty( $policy_page ) ) {
-			$policy_link = get_permalink( (int) get_option( 'wp_page_for_privacy_policy' ) );
+		if ( 0 === $policy_page ) {
+			$policy_page = (int) get_option( 'wp_page_for_privacy_policy' );
 		}
+
+		// get_permalink( 0 ) falls back to the current post.
+		$policy_link = $policy_page ? get_permalink( $policy_page ) : false;
+		$policy_link = $policy_link ? $policy_link : '#';
 
 		$policy_text   = $this->get_option( 'policy_notice_text' );
 		$policy_button = $this->get_option( 'notice_link_label' );
