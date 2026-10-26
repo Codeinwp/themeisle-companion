@@ -216,8 +216,9 @@ class Test_Content_Forms_Markup extends WP_UnitTestCase {
 		$html = $this->capture( $this->elementor_form( array( 'notification_alignment' => 'right' ) ), 'maybe_render_form_notification' );
 
 		foreach ( array( 'success', 'error' ) as $status ) {
-			$this->assertMatchesRegularExpression(
-				'/<h3 style="margin-right:\s*0;\s*margin-left:\s*auto;\s*text-align:\s*right" class="content-form-notice content-form-' . $status . '">/',
+			$this->assertSame(
+				1,
+				preg_match( '/<h3 style="margin-right:\s*0;\s*margin-left:\s*auto;\s*text-align:\s*right" class="content-form-notice content-form-' . $status . '">/', $html ),
 				$html
 			);
 		}
