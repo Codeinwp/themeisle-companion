@@ -26,6 +26,10 @@ if ( ORBIT_FOX_ELEMENTOR_DOUBLE_ACTIVE ) {
 			return 'contact';
 		}
 
+		public function get_name(): string {
+			return 'content_form_contact';
+		}
+
 		public function add_repeater_specific_fields( $repeater ): void {}
 
 		public function add_widget_specific_settings(): void {}
@@ -128,6 +132,10 @@ class Test_Content_Forms_Markup extends WP_UnitTestCase {
 
 	public function tearDown(): void {
 		Orbit_Fox_Elementor_Editor_Double::$edit_mode = false;
+		if ( ORBIT_FOX_BEAVER_DOUBLE_ACTIVE ) {
+			FLBuilderModel::$layout_data = array();
+		}
+		wp_dequeue_script( 'content-forms' );
 
 		parent::tearDown();
 	}
@@ -225,6 +233,39 @@ class Test_Content_Forms_Markup extends WP_UnitTestCase {
 	}
 
 	/**
+	 * The submit button's icon span keeps its icon class.
+	 */
+	public function test_elementor_submit_icon_keeps_its_class(): void {
+		$this->require_elementor_double();
+
+		$settings = array(
+			'form_fields'            => array(
+				array(
+					'_id'         => 'name1',
+					'type'        => 'text',
+					'key'         => 'name',
+					'label'       => 'Name',
+					'requirement' => 'optional',
+					'placeholder' => '',
+					'field_width' => '100',
+				),
+			),
+			'submit_label'           => 'Send',
+			'button_icon_new'        => array(
+				'value'   => 'fas fa-paper-plane',
+				'library' => 'fa-solid',
+			),
+			'hide_label'             => 'show',
+			'notification_alignment' => 'left',
+		);
+
+		$html = $this->capture( $this->elementor_form( $settings ), 'render' );
+
+		$this->assertSame( 1, preg_match( '/<span class="[^"]*\belementor-button-icon\b[^"]*">/', $html ), $html );
+		$this->assertStringNotContainsString( '&quot;', $html );
+	}
+
+	/**
 	 * A placeholder with spaces and markup characters is printed whole and escaped once.
 	 */
 	public function test_beaver_placeholder_is_one_quoted_attribute(): void {
@@ -245,6 +286,36 @@ class Test_Content_Forms_Markup extends WP_UnitTestCase {
 			$this->assertStringContainsString( $expected, $html, $type );
 			$this->assertStringNotContainsString( '&amp;amp;', $html, $type );
 		}
+	}
+
+	/**
+	 * The MailChimp address inputs print their multi-word placeholders whole.
+	 */
+	public function test_beaver_address_placeholders_are_quoted(): void {
+		if ( ! ORBIT_FOX_BEAVER_DOUBLE_ACTIVE ) {
+			$this->markTestSkipped( 'The real Beaver Builder plugin is loaded; the test double is not in use.' );
+		}
+
+		FLBuilderModel::$layout_data = array(
+			'node1' => (object) array(
+				'settings' => (object) array(
+					'provider'   => 'mailchimp',
+					'hide_label' => 'show',
+				),
+			),
+		);
+
+		$field = array(
+			'type'        => 'text',
+			'field_map'   => 'address',
+			'required'    => 'required',
+			'placeholder' => 'Street address',
+		);
+
+		$html = $this->capture( $this->beaver_form(), 'maybe_render_newsletter_address', array( $field, 'node1' ) );
+
+		$this->assertStringContainsString( 'placeholder="Address Line 2"', $html );
+		$this->assertStringContainsString( 'placeholder="City"', $html );
 	}
 
 	/**

@@ -119,6 +119,22 @@ namespace Elementor {
 		Plugin::$instance = new Plugin();
 
 		/**
+		 * Stands in for Elementor's icon renderer.
+		 */
+		class Icons_Manager {
+
+			/**
+			 * @param array{value: string, library: string} $icon       Icon setting.
+			 * @param array<string, string>                 $attributes Icon attributes.
+			 */
+			public static function render_icon( array $icon, array $attributes = array() ): bool {
+				echo '<i class="' . esc_attr( $icon['value'] ) . '" aria-hidden="true"></i>';
+
+				return true;
+			}
+		}
+
+		/**
 		 * Stands in for Elementor's widget base; the render attribute methods mirror Elementor 4.3.
 		 */
 		abstract class Widget_Base {
