@@ -968,12 +968,18 @@ abstract class Elementor_Widget_Base extends Widget_Base {
 
 		$btn_label = ! empty( $settings['submit_label'] ) ? $settings['submit_label'] : esc_html__( 'Submit', 'themeisle-companion' );
 		echo '<fieldset class="submit-form ' . esc_attr( $this->get_widget_type() ) . '">';
-		echo '<button type="submit" name="submit" ' . esc_attr( $disabled ) . ' value="submit-' . esc_attr( $this->get_widget_type() ) . '-' . esc_attr( $form_id ) . '" class="' . esc_attr( $this->get_render_attribute_string( 'button' ) ) . '">';
+		echo '<button type="submit" name="submit" ' . esc_attr( $disabled ) . ' value="submit-' . esc_attr( $this->get_widget_type() ) . '-' . esc_attr( $form_id ) . '" ';
+		$this->print_render_attribute_string( 'button' );
+		echo '>';
 		echo esc_html( $btn_label );
 
 		if ( isset( $settings['button_icon_new'] ) ) {
-			echo '<span ' . esc_attr( $this->get_render_attribute_string( 'content-wrapper' ) ) . '>';
-			echo '<span ' . esc_attr( $this->get_render_attribute_string( 'icon-align' ) ) . '>';
+			echo '<span ';
+			$this->print_render_attribute_string( 'content-wrapper' );
+			echo '>';
+			echo '<span ';
+			$this->print_render_attribute_string( 'icon-align' );
+			echo '>';
 			Icons_Manager::render_icon( $settings['button_icon_new'], array( 'aria-hidden' => 'true' ) );
 			echo '</span>';
 			echo '</span>';
@@ -1126,11 +1132,11 @@ abstract class Elementor_Widget_Base extends Widget_Base {
 		$style = $this->get_notice_style();
 
 		echo '<div class="content-form-notice-wrapper">';
-		echo '<h3 ' . esc_attr( $style ) . ' class="content-form-notice content-form-success">' . esc_html__( 'This is a preview of how the success notification will look', 'themeisle-companion' ) . '</h3>';
+		echo wp_kses_post( '<h3 ' . $style . ' class="content-form-notice content-form-success">' . esc_html__( 'This is a preview of how the success notification will look', 'themeisle-companion' ) . '</h3>' );
 		echo '</div>';
 
 		echo '<div class="content-form-notice-wrapper">';
-		echo '<h3 ' . esc_attr( $style ) . ' class="content-form-notice content-form-error">' . esc_html__( 'This is a preview of how the error notification will look', 'themeisle-companion' ) . '</h3>';
+		echo wp_kses_post( '<h3 ' . $style . ' class="content-form-notice content-form-error">' . esc_html__( 'This is a preview of how the error notification will look', 'themeisle-companion' ) . '</h3>' );
 		echo '</div>';
 
 		return true;
@@ -1187,7 +1193,9 @@ abstract class Elementor_Widget_Base extends Widget_Base {
 			)
 		);
 
-		echo '<fieldset ' . esc_attr( $this->get_render_attribute_string( 'fieldset' . $field_id ) ) . '>';
+		echo '<fieldset ';
+		$this->print_render_attribute_string( 'fieldset' . $field_id );
+		echo '>';
 		$this->render_field_label( $field );
 
 		switch ( $field['type'] ) {
@@ -1202,7 +1210,9 @@ abstract class Elementor_Widget_Base extends Widget_Base {
 				echo '<input type="hidden" value="' . esc_attr( $hidden_field_value ) . '" name="' . esc_attr( $field_name ) . '" id="' . esc_attr( $field_name ) . '" ' . esc_attr( $disabled ) . '>';
 				break;
 			case 'checkbox':
-				echo '<label class="checkbox-input" for="' . esc_attr( $field_name ) . '" ' . esc_attr( $this->get_render_attribute_string( 'label' . $field_id ) ) . '>';
+				echo '<label class="checkbox-input" for="' . esc_attr( $field_name ) . '" ';
+				$this->print_render_attribute_string( 'label' . $field_id );
+				echo '>';
 				echo wp_kses_post( $field['label'] );
 				if ( $field['requirement'] === 'required' ) {
 					echo '<span class="required-mark"> *</span>';
@@ -1290,7 +1300,9 @@ abstract class Elementor_Widget_Base extends Widget_Base {
 		$form_id       = $this->get_data( 'id' );
 		$field_name    = 'data[' . $form_id . '][' . $key . ']';
 
-		echo '<label for="' . esc_attr( $field_name ) . '" ' . esc_attr( $this->get_render_attribute_string( 'label' . $field_id ) ) . '>';
+		echo '<label for="' . esc_attr( $field_name ) . '" ';
+		$this->print_render_attribute_string( 'label' . $field_id );
+		echo '>';
 		if ( $display_label !== 'hide' && ! empty( $field['label'] ) ) {
 			echo wp_kses_post( $field['label'] );
 			if ( $field['requirement'] === 'required' ) {
