@@ -41,7 +41,7 @@ class Elementor_Widgets_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function set_module_strings() {
 		$this->name              = __( 'Elementor widgets', 'themeisle-companion' );
 		$this->description       = __( 'Adds widgets to the Elementor page builder.', 'themeisle-companion' );
-		$this->documentation_url = 'https://docs.themeisle.com/article/951-orbit-fox-documentation#page-builder-widgets';
+		$this->documentation_url = 'https://docs.themeisle.com/orbit-fox/page-builder-widgets-orbit-fox-module';
 
 		if ( self::should_add_placeholders() ) {
 			$this->description .=
