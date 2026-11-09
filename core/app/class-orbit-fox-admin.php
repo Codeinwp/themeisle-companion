@@ -220,6 +220,16 @@ class Orbit_Fox_Admin {
 				$modules
 			);
 
+			// The dashboard's "Docs" badges: the module's docs page with the UTMs. A copy, so other callers keep the plain URL.
+			$modules = array_map(
+				function ( $module ) {
+					$module                    = clone $module;
+					$module->documentation_url = $module->get_documentation_link();
+					return $module;
+				},
+				$modules
+			);
+
 			wp_register_script( 'obfx-dashboard', OBFX_URL . '/dashboard/build/dashboard.js', $dependencies['dependencies'], $this->version, true );
 			wp_localize_script(
 				'obfx-dashboard',

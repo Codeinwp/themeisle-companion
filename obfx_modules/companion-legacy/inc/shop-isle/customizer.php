@@ -20,7 +20,7 @@ function shop_isle_companion_customize_register( $wp_customize ) {
 		 * Render about page instruction
 		 */
 		public function render_content() {
-			echo wp_kses_post( __( 'To customize the About us Page you need to first select the template "About us page" for the page you want to use for this purpose. Then open that page in the browser and press "Customize" in the top bar.', 'themeisle-companion' ) . '<br><br>' . __( 'Need further assistance? Check out this', 'themeisle-companion' ) . ' <a href="http://docs.themeisle.com/article/211-shopisle-customizing-the-contact-and-about-us-page" target="_blank">' . __( 'doc', 'themeisle-companion' ) . '</a>' );
+			echo wp_kses_post( __( 'To customize the About us Page you need to first select the template "About us page" for the page you want to use for this purpose. Then open that page in the browser and press "Customize" in the top bar.', 'themeisle-companion' ) );
 		}
 	}
 

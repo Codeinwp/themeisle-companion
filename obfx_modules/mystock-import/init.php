@@ -65,7 +65,7 @@ class Mystock_Import_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function set_module_strings() {
 		$this->name              = __( 'Mystock Import', 'themeisle-companion' );
 		$this->description       = __( 'Module to import images directly from', 'themeisle-companion' ) . sprintf( ' <a href="%s" target="_blank">mystock.photos</a>', 'https://mystock.photos' );
-		$this->documentation_url = 'https://docs.themeisle.com/article/951-orbit-fox-documentation#mystock-photos';
+		$this->documentation_url = 'https://docs.themeisle.com/orbit-fox/mystock-photos-orbit-fox-module';
 	}
 
 

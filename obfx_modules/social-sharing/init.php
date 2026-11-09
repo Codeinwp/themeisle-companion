@@ -30,7 +30,7 @@ class Social_Sharing_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		 * translators: %s Document anchor link.
 		 */
 		$this->description       = __( 'Add basic social sharing to your posts and pages.', 'themeisle-companion' );
-		$this->documentation_url = 'https://docs.themeisle.com/article/951-orbit-fox-documentation#social-sharing';
+		$this->documentation_url = 'https://docs.themeisle.com/orbit-fox/social-sharing-icons-orbit-fox-module';
 	}
 
 	/**

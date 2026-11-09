@@ -202,6 +202,24 @@ abstract class Orbit_Fox_Module_Abstract {
 	}
 
 	/**
+	 * The module's docs link for the dashboard, with the Themeisle UTM parameters.
+	 * The UTMs go before the #section anchor, so utm_content names the page.
+	 *
+	 * @access  public
+	 * @return string The docs URL with UTMs, or '' when the module has no docs.
+	 */
+	public function get_documentation_link() {
+		if ( empty( $this->documentation_url ) || ! function_exists( 'tsdk_utmify' ) ) {
+			return (string) $this->documentation_url;
+		}
+
+		$parts = explode( '#', $this->documentation_url, 2 );
+		$url   = tsdk_utmify( $parts[0], (string) $this->get_slug(), 'dashboard' );
+
+		return isset( $parts[1] ) ? $url . '#' . $parts[1] : $url;
+	}
+
+	/**
 	 * Registers the loader.
 	 *
 	 * @codeCoverageIgnore
