@@ -153,6 +153,14 @@ Activating the Orbit Fox plugin is just like any other plugin. If you've uploade
 
 == Changelog ==
 
+##### [Version 3.0.12](https://github.com/Codeinwp/themeisle-companion/compare/v3.0.11...v3.0.12) (2026-11-09)
+
+- Fixed content form fields ignoring configured widths.
+- Updated dependencies
+
+
+
+
 ##### [Version 3.0.11](https://github.com/Codeinwp/themeisle-companion/compare/v3.0.10...v3.0.11) (2026-10-26)
 
 - Fixed the cookie notice policy link opening the wrong page.
