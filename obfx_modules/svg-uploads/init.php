@@ -155,6 +155,8 @@ class Svg_Uploads_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			}
 		}
 
+		$svg_code = Orbit_Fox_Svg_Compatibility::resolve_legacy_namespace_entities( $svg_code );
+
 		$clean_svg_code = $this->sanitizer->sanitize( $svg_code );
 
 		if ( ! $clean_svg_code ) {

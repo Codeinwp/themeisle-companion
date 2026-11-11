@@ -466,6 +466,8 @@ class Custom_Fonts_Admin {
 			}
 		}
 
+		$dirty = Orbit_Fox_Svg_Compatibility::resolve_legacy_namespace_entities( $dirty );
+
 		$sanitizer = new enshrined\svgSanitize\Sanitizer();
 		$clean     = $sanitizer->sanitize( $dirty );
 
