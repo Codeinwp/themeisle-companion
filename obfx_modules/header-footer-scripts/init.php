@@ -167,7 +167,7 @@ class Header_Footer_Scripts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			array(
 				'title'      => __( 'Header/Footer scripts', 'themeisle-companion' ),
 				'priority'   => 1000,
-				'capability' => 'edit_theme_options',
+				'capability' => 'unfiltered_html',
 			)
 		);
 
@@ -182,7 +182,7 @@ class Header_Footer_Scripts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 						'themeisle-companion'
 					)
 				),
-				'capability' => 'edit_theme_options',
+				'capability' => 'unfiltered_html',
 			)
 		);
 
@@ -212,7 +212,7 @@ class Header_Footer_Scripts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 						'themeisle-companion'
 					)
 				),
-				'capability' => 'edit_theme_options',
+				'capability' => 'unfiltered_html',
 			)
 		);
 
