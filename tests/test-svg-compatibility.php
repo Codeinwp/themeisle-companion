@@ -39,6 +39,7 @@ class Test_Svg_Compatibility extends WP_UnitTestCase {
 		$this->assertStringContainsString( 'xmlns="http://www.w3.org/2000/svg"', $resolved );
 		$this->assertStringContainsString( 'xmlns:xlink="http://www.w3.org/1999/xlink"', $resolved );
 		$this->assertStringContainsString( 'xmlns:i="http://ns.adobe.com/AdobeIllustrator/10.0/"', $resolved );
+		$this->assertStringContainsString( 'requiredExtensions="http://ns.adobe.com/AdobeIllustrator/10.0/"', $resolved );
 		$this->assertStringContainsString( '<!ENTITY ns_svg "https://example.invalid/svg">', $resolved );
 		$this->assertStringContainsString( '<!ENTITY payload', $resolved );
 		$this->assertStringContainsString( '&payload;', $resolved );
@@ -50,7 +51,7 @@ class Test_Svg_Compatibility extends WP_UnitTestCase {
 	public function test_does_not_rewrite_namespace_like_text_or_attributes(): void {
 		$svg = '<!-- <svg xmlns="&ns_svg;"></svg> -->
 <![CDATA[<svg xmlns="&ns_svg;"></svg>]]>
-<svg xmlns="http://www.w3.org/2000/svg" data-xmlns="&ns_svg;" data-note=\' xmlns="&ns_svg;"\' data-é=\' xmlns="&ns_svg;"\' XMLNS="&ns_svg;">
+<svg xmlns="http://www.w3.org/2000/svg" data-xmlns="prefix &ns_svg;" data-note=\' xmlns="&ns_svg;"\' data-é=\' xmlns="&ns_svg;"\' XMLNS="prefix &ns_svg;">
 	<text>xmlns="&ns_svg;"</text>
 </svg>';
 
@@ -133,6 +134,9 @@ class Test_Svg_Compatibility extends WP_UnitTestCase {
 ]>
 <svg xmlns="&ns_svg;" xmlns:xlink="&ns_xlink;" xmlns:i="&ns_ai;" width="100" height="100">
 	' . $title . '
+	<switch>
+		<foreignObject requiredExtensions="&ns_ai;" width="20" height="20"><div>AI editing data</div></foreignObject>
+	</switch>
 	<rect width="100" height="100" fill="red"/>
 </svg>';
 	}

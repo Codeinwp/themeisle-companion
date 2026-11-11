@@ -6,7 +6,7 @@
  */
 
 /**
- * Normalizes legacy SVG namespace declarations before sanitization.
+ * Normalizes legacy SVG namespace references before sanitization.
  */
 class Orbit_Fox_Svg_Compatibility {
 
@@ -14,8 +14,8 @@ class Orbit_Fox_Svg_Compatibility {
 	 * Replace the fixed namespace entities used by older Adobe SVG exports.
 	 *
 	 * The sanitizer removes DTD declarations before parsing. Resolving only this
-	 * fixed namespace allowlist keeps those exports readable without processing
-	 * document-defined entities.
+	 * fixed namespace allowlist in exact attribute values keeps those exports
+	 * readable without processing document-defined entities.
 	 *
 	 * @param string $svg SVG markup.
 	 *
@@ -93,7 +93,7 @@ class Orbit_Fox_Svg_Compatibility {
 
 			$markup = substr( $svg, $start, $end - $start + 1 );
 			if ( ! $is_doctype && ! $is_markup ) {
-				$markup = self::resolve_namespace_attributes( $markup, $namespaces );
+				$markup = self::resolve_attribute_entities( $markup, $namespaces );
 			}
 
 			$output .= $markup;
@@ -159,14 +159,14 @@ class Orbit_Fox_Svg_Compatibility {
 	}
 
 	/**
-	 * Resolve allowlisted entity references used as namespace attribute values.
+	 * Resolve allowlisted namespace entity references used as attribute values.
 	 *
 	 * @param string               $tag        One complete start tag.
 	 * @param array<string,string> $namespaces Fixed legacy namespace mapping.
 	 *
 	 * @return string
 	 */
-	private static function resolve_namespace_attributes( $tag, $namespaces ) {
+	private static function resolve_attribute_entities( $tag, $namespaces ) {
 		$length       = strlen( $tag );
 		$offset       = 1;
 		$replacements = array();
@@ -215,13 +215,8 @@ class Orbit_Fox_Svg_Compatibility {
 				break;
 			}
 
-			$offset       = $value_end + 1;
-			$is_namespace = 'xmlns' === $name || 1 === preg_match( '/^xmlns:[A-Za-z_][A-Za-z0-9_.-]*$/', $name );
-			if ( ! $is_namespace ) {
-				continue;
-			}
-
-			$value = substr( $tag, $value_start, $value_end - $value_start );
+			$offset = $value_end + 1;
+			$value  = substr( $tag, $value_start, $value_end - $value_start );
 			if ( 1 !== preg_match( '/^&([A-Za-z_][A-Za-z0-9_.-]*);$/', $value, $entity_match ) ) {
 				continue;
 			}
