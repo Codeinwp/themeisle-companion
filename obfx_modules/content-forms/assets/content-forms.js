@@ -189,16 +189,25 @@ and GPL (http://www.opensource.org/licenses/gpl-license.php) licenses.
         }
         var noticeData = typeof notice.responseText !== 'undefined' ? jQuery.parseJSON(notice.responseText) :  notice;
         var noticeText = noticeData.message;
+        var noticeTextDecoder = document.createElement('textarea');
+        noticeTextDecoder.innerHTML = noticeText;
+        noticeText = noticeTextDecoder.value;
         var style = typeof formStyle !== 'undefined' && formStyle.formStyle !== '' ? formStyle.formStyle : '';
+        var styleMatch = style.match(/^style="([^"]*)"$/);
+        var $noticeHeading = $('<h3>', {
+            'class': 'content-form-notice ' + noticeStatus
+        }).text(noticeText);
+        var $noticeEl = $('<div>', {
+            'class': 'content-form-notice-wrapper'
+        }).append($noticeHeading);
 
-        var noticeEl = '<div class="content-form-notice-wrapper"><h3 ' + style +' class="content-form-notice ' + noticeStatus + '" >' + noticeText + '</h3></div>';
+        if (styleMatch !== null) {
+            $noticeHeading.attr('style', styleMatch[1]);
+        }
 
-        var $noticeEl;
         if ($currentNotice.length > 0) {
-            $noticeEl = $(noticeEl);
             $currentNotice.replaceWith($noticeEl);
         } else {
-            $noticeEl = $(noticeEl);
             $form.prepend($noticeEl);
         }
 
