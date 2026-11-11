@@ -46,9 +46,9 @@ class Test_Svg_Compatibility extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Namespace-like text outside exact xmlns attributes remains untouched.
+	 * Namespace-like text and non-exact allowlisted values remain untouched.
 	 */
-	public function test_does_not_rewrite_namespace_like_text_or_attributes(): void {
+	public function test_does_not_rewrite_non_exact_namespace_entity_values(): void {
 		$svg = '<!-- <svg xmlns="&ns_svg;"></svg> -->
 <![CDATA[<svg xmlns="&ns_svg;"></svg>]]>
 <svg xmlns="http://www.w3.org/2000/svg" data-xmlns="prefix &ns_svg;" data-note=\' xmlns="&ns_svg;"\' data-é=\' xmlns="&ns_svg;"\' XMLNS="prefix &ns_svg;">

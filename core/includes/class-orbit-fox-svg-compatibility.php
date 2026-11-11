@@ -39,9 +39,14 @@ class Orbit_Fox_Svg_Compatibility {
 			'ns_adobe_xpath' => 'http://ns.adobe.com/XPath/1.0/',
 		);
 
-		$output = '';
-		$offset = 0;
-		$length = strlen( $svg );
+		$output   = '';
+		$offset   = 0;
+		$length   = strlen( $svg );
+		$sections = array(
+			'<!--'      => '-->',
+			'<![CDATA[' => ']]>',
+			'<?'        => '?>',
+		);
 
 		while ( true ) {
 			$start = strpos( $svg, '<', $offset );
@@ -51,37 +56,22 @@ class Orbit_Fox_Svg_Compatibility {
 
 			$output .= substr( $svg, $offset, $start - $offset );
 
-			if ( '<!--' === substr( $svg, $start, 4 ) ) {
-				$end = strpos( $svg, '-->', $start + 4 );
-				if ( false === $end ) {
-					return $output . substr( $svg, $start );
+			foreach ( $sections as $opener => $closer ) {
+				$opener_length = strlen( $opener );
+				if ( $opener !== substr( $svg, $start, $opener_length ) ) {
+					continue;
 				}
-				$end    += 3;
-				$output .= substr( $svg, $start, $end - $start );
-				$offset  = $end;
-				continue;
-			}
 
-			if ( '<![CDATA[' === substr( $svg, $start, 9 ) ) {
-				$end = strpos( $svg, ']]>', $start + 9 );
+				$closer_length = strlen( $closer );
+				$end           = strpos( $svg, $closer, $start + $opener_length );
 				if ( false === $end ) {
 					return $output . substr( $svg, $start );
 				}
-				$end    += 3;
-				$output .= substr( $svg, $start, $end - $start );
-				$offset  = $end;
-				continue;
-			}
 
-			if ( '<?' === substr( $svg, $start, 2 ) ) {
-				$end = strpos( $svg, '?>', $start + 2 );
-				if ( false === $end ) {
-					return $output . substr( $svg, $start );
-				}
-				$end    += 2;
+				$end    += $closer_length;
 				$output .= substr( $svg, $start, $end - $start );
 				$offset  = $end;
-				continue;
+				continue 2;
 			}
 
 			$is_doctype = 0 === strncasecmp( substr( $svg, $start, 9 ), '<!DOCTYPE', 9 );
