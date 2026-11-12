@@ -1,3 +1,7 @@
+##### [Version 3.0.13](https://github.com/Codeinwp/themeisle-companion/compare/v3.0.12...v3.0.13) (2026-11-12)
+
+- Enhanced security
+
 ##### [Version 3.0.12](https://github.com/Codeinwp/themeisle-companion/compare/v3.0.11...v3.0.12) (2026-11-09)
 
 - Fixed content form fields ignoring configured widths.
