@@ -39,7 +39,7 @@ class Header_Footer_Scripts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function set_module_strings() {
 		$this->name               = __( 'Header Footer Scripts', 'themeisle-companion' );
 		$this->description        = __( 'An easy way to add scripts, such as tracking and analytics scripts, to the header and footer of your website, as well as in the body of your posts and pages.', 'themeisle-companion' );
-		$this->documentation_url  = 'https://docs.themeisle.com/article/951-orbit-fox-documentation#header-footer-scripts';
+		$this->documentation_url  = 'https://docs.themeisle.com/orbit-fox/header-footer-scripts-orbit-fox-module';
 		$this->module_main_action = array(
 			'url'  => admin_url( 'customize.php?autofocus[section]=obfx_header_footer_scripts' ),
 			'text' => __( 'Add Global Scripts', 'themeisle-companion' ),
@@ -167,7 +167,7 @@ class Header_Footer_Scripts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 			array(
 				'title'      => __( 'Header/Footer scripts', 'themeisle-companion' ),
 				'priority'   => 1000,
-				'capability' => 'edit_theme_options',
+				'capability' => 'unfiltered_html',
 			)
 		);
 
@@ -182,7 +182,7 @@ class Header_Footer_Scripts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 						'themeisle-companion'
 					)
 				),
-				'capability' => 'edit_theme_options',
+				'capability' => 'unfiltered_html',
 			)
 		);
 
@@ -212,7 +212,7 @@ class Header_Footer_Scripts_OBFX_Module extends Orbit_Fox_Module_Abstract {
 						'themeisle-companion'
 					)
 				),
-				'capability' => 'edit_theme_options',
+				'capability' => 'unfiltered_html',
 			)
 		);
 

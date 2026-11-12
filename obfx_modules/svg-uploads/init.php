@@ -34,7 +34,7 @@ class Svg_Uploads_OBFX_Module extends Orbit_Fox_Module_Abstract {
 	public function set_module_strings() {
 		$this->name              = __( 'SVG Support', 'themeisle-companion' );
 		$this->description       = __( 'Enable SVG file uploads and media library support. By default, WordPress doesn\'t allow uploading SVG files for security reasons. This module safely enables SVG support with proper sanitization.', 'themeisle-companion' );
-		$this->documentation_url = 'https://docs.themeisle.com/article/951-orbit-fox-documentation#svg-support';
+		$this->documentation_url = 'https://docs.themeisle.com/orbit-fox/orbit-fox-documentation#9-svg-support';
 		$this->notices           = array(
 			array(
 				'message' => __( 'Only enable this if you trust all users who can upload files to your site. SVG files can contain malicious code if not properly sanitized.', 'themeisle-companion' ),
@@ -154,6 +154,8 @@ class Svg_Uploads_OBFX_Module extends Orbit_Fox_Module_Abstract {
 				return false;
 			}
 		}
+
+		$svg_code = Orbit_Fox_Svg_Compatibility::resolve_legacy_namespace_entities( $svg_code );
 
 		$clean_svg_code = $this->sanitizer->sanitize( $svg_code );
 
