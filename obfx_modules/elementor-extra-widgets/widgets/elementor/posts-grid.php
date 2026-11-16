@@ -1646,7 +1646,7 @@ class Posts_Grid extends Widget_Base {
 			?>
 			<<?php echo esc_attr( $tag ); ?> class="entry-title obfx-grid-title">
 			<?php if ( $settings['grid_title_link'] == 'yes' ) { ?>
-				<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+				<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
 					<?php the_title(); ?>
 				</a>
 				<?php
