@@ -247,6 +247,35 @@ namespace Elementor {
 			public function get_settings_for_display(): array {
 				return $this->settings;
 			}
+
+			/**
+			 * @return array{settings: array<string, mixed>}
+			 */
+			public function get_raw_data(): array {
+				return array( 'settings' => $this->settings );
+			}
+
+			protected function is_dynamic_content(): bool {
+				return true;
+			}
+
+			/**
+			 * Mirrors Elementor 4.3's element cache decision, without the dynamic tag check.
+			 *
+			 * @return bool
+			 */
+			protected function should_render_shortcode() {
+				if ( ! apply_filters( 'elementor/element/should_render_shortcode', false ) ) {
+					return false;
+				}
+
+				$raw_data = $this->get_raw_data();
+				if ( ! empty( $raw_data['settings']['_element_cache'] ) ) {
+					return 'yes' === $raw_data['settings']['_element_cache'];
+				}
+
+				return $this->is_dynamic_content() || (bool) apply_filters( 'elementor/element/is_dynamic_content', false, $raw_data, $this );
+			}
 		}
 	}
 }

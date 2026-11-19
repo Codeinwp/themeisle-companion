@@ -357,4 +357,23 @@ class Test_Content_Forms_Markup extends WP_UnitTestCase {
 
 		$this->assertTrue( $is_dynamic->invoke( $this->elementor_form( array() ) ) );
 	}
+
+	/**
+	 * A widget's own "Cache Settings: Active" must not cache the form either.
+	 */
+	public function test_elementor_form_ignores_per_widget_cache_setting(): void {
+		$this->require_elementor_double();
+
+		$should_render_shortcode = new ReflectionMethod( Orbit_Fox_Elementor_Form_Double::class, 'should_render_shortcode' );
+		$should_render_shortcode->setAccessible( true );
+		$form = $this->elementor_form( array( '_element_cache' => 'no' ) );
+
+		$this->assertFalse( $should_render_shortcode->invoke( $form ) );
+
+		add_filter( 'elementor/element/should_render_shortcode', '__return_true' );
+		$while_caching = $should_render_shortcode->invoke( $form );
+		remove_filter( 'elementor/element/should_render_shortcode', '__return_true' );
+
+		$this->assertTrue( $while_caching );
+	}
 }

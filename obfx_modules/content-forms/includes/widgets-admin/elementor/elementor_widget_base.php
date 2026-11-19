@@ -54,6 +54,15 @@ abstract class Elementor_Widget_Base extends Widget_Base {
 	}
 
 	/**
+	 * Ignore the per-widget "Cache Settings", which Elementor checks before is_dynamic_content().
+	 *
+	 * @return bool True while Elementor builds its element cache.
+	 */
+	protected function should_render_shortcode() {
+		return (bool) apply_filters( 'elementor/element/should_render_shortcode', false );
+	}
+
+	/**
 	 * Retrieve the list of styles the content forms widgets depended on.
 	 *
 	 * @return array Widget scripts dependencies.
