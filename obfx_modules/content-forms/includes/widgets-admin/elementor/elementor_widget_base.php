@@ -44,13 +44,22 @@ abstract class Elementor_Widget_Base extends Widget_Base {
 		return 'eicon-text-align-left';
 	}
 
-		/**
-	 * Is dynamic content.
+	/**
+	 * Keep forms out of Elementor's element cache: the markup carries a per-visitor nonce.
 	 *
-	 * @return bool
+	 * @return true
 	 */
 	protected function is_dynamic_content():bool { // phpcs:ignore PHPCompatibility.FunctionDeclarations.NewReturnTypeDeclarations.boolFound
-		return false;
+		return true;
+	}
+
+	/**
+	 * Ignore the per-widget "Cache Settings", which Elementor checks before is_dynamic_content().
+	 *
+	 * @return bool True while Elementor builds its element cache.
+	 */
+	protected function should_render_shortcode() {
+		return (bool) apply_filters( 'elementor/element/should_render_shortcode', false );
 	}
 
 	/**
