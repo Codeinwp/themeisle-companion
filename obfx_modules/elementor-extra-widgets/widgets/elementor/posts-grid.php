@@ -87,6 +87,20 @@ class Posts_Grid extends Widget_Base {
 	}
 
 	/**
+	 * A paginated grid depends on the requested page, so it ignores the per-widget "Cache Settings".
+	 *
+	 * @return bool
+	 */
+	protected function should_render_shortcode() {
+		$settings = $this->get_settings();
+		if ( empty( $settings['grid_pagination'] ) ) {
+			return parent::should_render_shortcode();
+		}
+
+		return (bool) apply_filters( 'elementor/element/should_render_shortcode', false );
+	}
+
+	/**
 	 * Get post types.
 	 */
 	private function grid_get_all_post_types() {
