@@ -345,4 +345,16 @@ class Test_Content_Forms_Markup extends WP_UnitTestCase {
 			$this->render_beaver_template( array( 'submit_display' => 'block' ) )
 		);
 	}
+
+	/**
+	 * The form nonce is per visitor, so Elementor must render the form on every request.
+	 */
+	public function test_elementor_form_is_rendered_per_request(): void {
+		$this->require_elementor_double();
+
+		$is_dynamic = new ReflectionMethod( Orbit_Fox_Elementor_Form_Double::class, 'is_dynamic_content' );
+		$is_dynamic->setAccessible( true );
+
+		$this->assertTrue( $is_dynamic->invoke( $this->elementor_form( array() ) ) );
+	}
 }
