@@ -33,7 +33,7 @@
     "codeinwp/full-width-page-templates": "master",
     "codeinwp/themeisle-sdk": "^3.3.65",
     "enshrined/svg-sanitize": "^1.1.1",
-    "mailerlite/mailerlite-api-v2-php-sdk": "^0.2.3"
+    "mailerlite/mailerlite-api-v2-php-sdk": "^0.3.2"
   },
   "autoload": {
     "files": [
