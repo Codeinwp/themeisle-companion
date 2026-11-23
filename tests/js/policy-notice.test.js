@@ -15,6 +15,7 @@ describe( 'cookie notice bar script', () => {
 
 	afterEach( () => {
 		document.body.innerHTML = '';
+		document.cookie = 'obfx-policy-consent=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
 	} );
 
 	it( 'does nothing on a page without the bar', () => {
@@ -26,5 +27,16 @@ describe( 'cookie notice bar script', () => {
 
 		expect( runScript ).not.toThrow();
 		expect( document.getElementById( 'obfx-cookie-bar' ).style.display ).toBe( 'block' );
+	} );
+
+	it( 'hides a filtered bar without the checkbox on accept', () => {
+		document.body.innerHTML =
+			'<div id="obfx-cookie-bar" style="display: none"><a href="#" id="obfx-accept-cookie-policy">Accept</a></div>';
+		runScript();
+
+		document.getElementById( 'obfx-accept-cookie-policy' ).click();
+
+		expect( document.getElementById( 'obfx-cookie-bar' ).style.display ).toBe( 'none' );
+		expect( document.cookie ).toContain( 'obfx-policy-consent=accepted' );
 	} );
 } );

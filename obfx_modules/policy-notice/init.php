@@ -258,7 +258,7 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 					document.cookie = 'obfx-policy-consent=accepted; expires=' + date.toGMTString() + '; path=/';
 
 					// after we get the acceptance cookie we can close the box
-					document.getElementById('obfx-checkbox-cb').checked = true;
+					bar.style.display = 'none';
 
 				}, false);
 
