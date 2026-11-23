@@ -122,6 +122,22 @@ function run_orbit_fox() {
 			);
 		}
 	);
+
+	add_filter(
+		'themeisle_companion_support_hub_metadata',
+		function () {
+			return array(
+				'is_pro' => false,
+				'links'  => array(
+					array(
+						'icon' => 'groups',
+						'text' => __( 'Community Forum', 'themeisle-companion' ),
+						'url'  => 'https://wordpress.org/support/plugin/themeisle-companion/',
+					),
+				),
+			);
+		}
+	);
 }
 
 require 'class-autoloader.php';
