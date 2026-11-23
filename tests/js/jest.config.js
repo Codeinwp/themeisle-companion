@@ -1,4 +1,4 @@
 module.exports = {
 	testEnvironment: 'jsdom',
-	testMatch: [ '<rootDir>/content-forms-notice.test.js' ],
+	testMatch: [ '<rootDir>/content-forms-notice.test.js', '<rootDir>/policy-notice.test.js' ],
 };

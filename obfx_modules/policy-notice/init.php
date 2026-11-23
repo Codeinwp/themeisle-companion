@@ -157,9 +157,10 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 		}
 
 		// only front-end hooks from now on
-		$this->loader->add_action( 'wp_print_footer_scripts', $this, 'wp_print_footer_scripts' );
-		$this->loader->add_action( 'wp_print_footer_scripts', $this, 'wp_print_footer_style' );
 		$this->loader->add_action( 'wp_footer', $this, 'display_cookie_notice' );
+		// After the bar markup; other footer-script contexts never print the bar.
+		$this->loader->add_action( 'wp_footer', $this, 'wp_print_footer_scripts', 20 );
+		$this->loader->add_action( 'wp_footer', $this, 'wp_print_footer_style', 20 );
 	}
 
 	/**
@@ -233,11 +234,20 @@ class Policy_Notice_OBFX_Module extends Orbit_Fox_Module_Abstract {
 					}
 					return "";
 				}
+				var bar = document.getElementById('obfx-cookie-bar');
+				// The obfx_cookie_notice_output filter can replace the markup.
+				if (!bar) {
+					return;
+				}
 				let cookie = getCookie('obfx-policy-consent');
 				if(cookie !== 'accepted'){
-					document.getElementById('obfx-cookie-bar').style.display = 'block';
+					bar.style.display = 'block';
 				}
-				document.getElementById('obfx-accept-cookie-policy').addEventListener('click', function (e) {
+				var accept = document.getElementById('obfx-accept-cookie-policy');
+				if (!accept) {
+					return;
+				}
+				accept.addEventListener('click', function (e) {
 					e.preventDefault();
 					var days = 365;
 					var date = new Date();

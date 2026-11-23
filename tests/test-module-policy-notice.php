@@ -82,4 +82,34 @@ class Test_Module_Policy_Notice extends WP_UnitTestCase {
 
     $this->assert_policy_href( '#', $this->render_notice() );
   }
+
+  public function test_bar_script_prints_only_on_wp_footer_after_the_bar(): void {
+    $loader = new Orbit_Fox_Loader();
+    $this->module->register_loader( $loader );
+    $this->module->set_option( 'enable_policy_notice', '1' );
+    // Core wp_footer callbacks emit deprecation notices in the test install.
+    remove_all_actions( 'wp_footer' );
+    $this->module->hooks();
+    $loader->run();
+
+    // Login page, editor canvas and embeds fire this without wp_footer.
+    ob_start();
+    do_action( 'wp_print_footer_scripts' );
+    $footer_scripts = (string) ob_get_clean();
+
+    $this->assertStringNotContainsString( 'obfx-policy-consent', $footer_scripts );
+    $this->assertStringNotContainsString( '.obfx-cookie-bar-container', $footer_scripts );
+
+    ob_start();
+    do_action( 'wp_footer' );
+    $footer = (string) ob_get_clean();
+
+    $bar_position    = strpos( $footer, 'id="obfx-cookie-bar"' );
+    $script_position = strpos( $footer, "getCookie('obfx-policy-consent')" );
+
+    $this->assertNotFalse( $bar_position );
+    $this->assertNotFalse( $script_position );
+    $this->assertLessThan( $script_position, $bar_position );
+    $this->assertStringContainsString( '.obfx-cookie-bar-container', $footer );
+  }
 }
