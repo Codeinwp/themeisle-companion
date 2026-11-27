@@ -82,4 +82,34 @@ class Test_Elementor_Posts_Grid extends WP_UnitTestCase {
 		$this->assertFalse( $link->hasAttribute( 'autofocus' ) );
 		$this->assertSame( '" onfocus="alert(1)" autofocus="', $link->getAttribute( 'title' ) );
 	}
+
+	/**
+	 * @param array<string, string> $settings Widget settings.
+	 */
+	protected function renders_per_request_while_caching( array $settings ): bool {
+		$should_render_shortcode = new ReflectionMethod( Posts_Grid::class, 'should_render_shortcode' );
+		$should_render_shortcode->setAccessible( true );
+
+		add_filter( 'elementor/element/should_render_shortcode', '__return_true' );
+		$per_request = $should_render_shortcode->invoke( new Posts_Grid( $settings ) );
+		remove_filter( 'elementor/element/should_render_shortcode', '__return_true' );
+
+		return $per_request;
+	}
+
+	public function test_paginated_grid_ignores_per_widget_cache_setting(): void {
+		if ( ! ORBIT_FOX_ELEMENTOR_DOUBLE_ACTIVE ) {
+			$this->markTestSkipped( 'The real Elementor plugin is loaded; the test double is not in use.' );
+		}
+
+		$this->assertTrue(
+			$this->renders_per_request_while_caching(
+				array(
+					'grid_pagination' => 'yes',
+					'_element_cache'  => 'no',
+				)
+			)
+		);
+		$this->assertFalse( $this->renders_per_request_while_caching( array( '_element_cache' => 'no' ) ) );
+	}
 }

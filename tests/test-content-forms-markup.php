@@ -345,4 +345,35 @@ class Test_Content_Forms_Markup extends WP_UnitTestCase {
 			$this->render_beaver_template( array( 'submit_display' => 'block' ) )
 		);
 	}
+
+	/**
+	 * The form nonce is per visitor, so Elementor must render the form on every request.
+	 */
+	public function test_elementor_form_is_rendered_per_request(): void {
+		$this->require_elementor_double();
+
+		$is_dynamic = new ReflectionMethod( Orbit_Fox_Elementor_Form_Double::class, 'is_dynamic_content' );
+		$is_dynamic->setAccessible( true );
+
+		$this->assertTrue( $is_dynamic->invoke( $this->elementor_form( array() ) ) );
+	}
+
+	/**
+	 * A widget's own "Cache Settings: Active" must not cache the form either.
+	 */
+	public function test_elementor_form_ignores_per_widget_cache_setting(): void {
+		$this->require_elementor_double();
+
+		$should_render_shortcode = new ReflectionMethod( Orbit_Fox_Elementor_Form_Double::class, 'should_render_shortcode' );
+		$should_render_shortcode->setAccessible( true );
+		$form = $this->elementor_form( array( '_element_cache' => 'no' ) );
+
+		$this->assertFalse( $should_render_shortcode->invoke( $form ) );
+
+		add_filter( 'elementor/element/should_render_shortcode', '__return_true' );
+		$while_caching = $should_render_shortcode->invoke( $form );
+		remove_filter( 'elementor/element/should_render_shortcode', '__return_true' );
+
+		$this->assertTrue( $while_caching );
+	}
 }
